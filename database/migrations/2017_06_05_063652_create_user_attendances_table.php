@@ -19,8 +19,8 @@ class CreateUserAttendancesTable extends Migration
             $table->foreign('event_id')->references('id')->on('events');
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->tinyint('status');
-            $table->tinyint('confirmation');
+            $table->tinyInteger('status');
+            $table->tinyInteger('confirmation');
             $table->string('reason')->nullable();
             $table->timestamps();
         });

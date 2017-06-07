@@ -23,7 +23,7 @@ class CreateEventsTable extends Migration
             $table->date('date');
             $table->time('time');
             $table->string('venue')->nullable();
-            $table->tinyint('status');
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }
