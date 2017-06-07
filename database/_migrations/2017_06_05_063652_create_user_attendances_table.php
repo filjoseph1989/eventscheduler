@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateApproveCountGroupsTable extends Migration
+class CreateUserAttendancesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateApproveCountGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('approve_count_groups', function (Blueprint $table) {
+        Schema::create('user_attendances', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users');
             $table->integer('event_id')->unsigned()->index();
             $table->foreign('event_id')->references('id')->on('events');
+            $table->integer('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->tinyInteger('status');
+            $table->tinyInteger('confirmation');
+            $table->string('reason')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +33,6 @@ class CreateApproveCountGroupsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('approve_count_groups');
+        Schema::dropIfExists('user_attendances');
     }
 }
