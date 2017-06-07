@@ -15,6 +15,9 @@ class CreateNotificationsTable extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->increments('id');
+            $table->date('duration_start')->default(date("Y-m-d H:i:s"));
+            $table->date('duration_end')->default(date("Y-m-d H:i:s"));
+            $table->date('time'); //for what?
             $table->timestamps();
         });
     }

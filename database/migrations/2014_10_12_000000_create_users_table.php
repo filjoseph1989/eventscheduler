@@ -30,7 +30,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('contact_number')->unique();
             $table->string('password');
-            $table->boolean('status');
+            $table->tinyint('status');
             $table->rememberToken();
             $table->timestamps();
         });
