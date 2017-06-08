@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNotificationsTable extends Migration
+class CreateAdminsTable extends Migration
 {
   /**
    * Run the migrations.
@@ -13,11 +13,13 @@ class CreateNotificationsTable extends Migration
    */
   public function up()
   {
-    Schema::create('notifications', function (Blueprint $table) {
+    Schema::create('admins', function (Blueprint $table) {
       $table->increments('id');
-      $table->date('duration_start')->default(date("Y-m-d H:i:s"));
-      $table->date('duration_end')->default(date("Y-m-d H:i:s"));
-      $table->date('time'); # for what? Time of the a system will make a alert to the user
+      $table->integer('user_id')->unsigned()->index();
+      $table->foreign('user_id')->references('id')->on('users');
+      $table->string('email')->unique();
+      $table->string('password');
+      $table->rememberToken();
       $table->timestamps();
     });
   }
@@ -29,6 +31,6 @@ class CreateNotificationsTable extends Migration
    */
   public function down()
   {
-      Schema::dropIfExists('notifications');
+      //
   }
 }

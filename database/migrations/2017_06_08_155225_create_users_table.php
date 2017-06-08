@@ -34,15 +34,6 @@ class CreateUsersTable extends Migration
       $table->rememberToken();
       $table->timestamps();
     });
-
-    Schema::create('admins', function (Blueprint $table) {
-      $table->increments('id');
-      $table->foreign('user_id')->references('id')->on('users');
-      $table->string('email')->unique();
-      $table->string('password');
-      $table->rememberToken();
-      $table->timestamps();
-    });
   }
 
   /**
@@ -52,6 +43,6 @@ class CreateUsersTable extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('users');
+      //
   }
 }

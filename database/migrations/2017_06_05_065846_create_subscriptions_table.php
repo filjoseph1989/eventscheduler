@@ -16,10 +16,10 @@ class CreateSubscriptionsTable extends Migration
     Schema::create('subscriptions', function (Blueprint $table) {
       $table->increments('id');
       $table->string('name');
-      $table->string('contact_number'); //ask if we can make this nullable
-      $table->string('facebook'); //ask if we can make this nullable
-      $table->string('twitter'); //ask if we can make this nullable
       $table->string('email'); //ask if we can make this nullable
+      $table->string('contact_number'); //ask if we can make this nullable
+      $table->string('facebook')->nullable(); //ask if we can make this nullable
+      $table->string('twitter')->nullable(); //ask if we can make this nullable
       $table->timestamps();
     });
   }
