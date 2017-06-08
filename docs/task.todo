@@ -1,0 +1,12 @@
+List of todos
+
+Summary
+  Below you can see a list that patterns, that is the "Issue" followed by a number.
+  There is an equivalent file of it in directory docs/issues/ like for example,
+    Issue 1 = issue#1.txt
+    Issue 2 = issue#2.txt
+
+  That contains description of the problem and solution
+
+New:
+  ☐ Issue 1: Fix the migration problem

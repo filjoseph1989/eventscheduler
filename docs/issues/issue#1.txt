@@ -1,0 +1,8 @@
+Problem:
+  Cannot migrate properly the tables using php artisan migrate because of the foreign key constraints,
+  which means, there should be a parent table that should be created first before creating a table that
+  needs it.
+
+Solution:
+  Create a migration tables that doesn't need a foreign key (parent table) before creating a migration that
+  has a foreign keys.
