@@ -6,29 +6,29 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateNotificationsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('notifications', function (Blueprint $table) {
-            $table->increments('id');
-            $table->date('duration_start')->default(date("Y-m-d H:i:s"));
-            $table->date('duration_end')->default(date("Y-m-d H:i:s"));
-            $table->date('time'); //for what?
-            $table->timestamps();
-        });
-    }
+  /**
+   * Run the migrations.
+   *
+   * @return void
+   */
+  public function up()
+  {
+    Schema::create('notifications', function (Blueprint $table) {
+      $table->increments('id');
+      $table->date('duration_start')->default(date("Y-m-d H:i:s"));
+      $table->date('duration_end')->default(date("Y-m-d H:i:s"));
+      $table->date('time'); # for what? Time of the a system will make a alert to the user
+      $table->timestamps();
+    });
+  }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('notifications');
-    }
+  /**
+   * Reverse the migrations.
+   *
+   * @return void
+   */
+  public function down()
+  {
+      Schema::dropIfExists('notifications');
+  }
 }
