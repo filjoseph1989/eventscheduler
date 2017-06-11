@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
         'last_name'       => 'Doe',
         'middle_name'     => 'Doe',
         'suffix_name'     => '',
-        'email'           => 'john@email.com',
+        'email'           => 'user@email.com',
         'contact_number'  => '09121234567',
         'password'        => bcrypt('password'),
         'status'          => '1',

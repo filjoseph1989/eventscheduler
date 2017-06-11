@@ -11,4 +11,4 @@ Summary
 New:
   ✔ Issue 1: Fix the migration problem @done(2017-06-09 01:39) @project(New)
   ✔ Issue 2: Make seeder @done(2017-06-09 01:49) @project(New)
-  ☐ Issue 3: Make front UI
+  ☐ Issue 3: Initial dashboard design
