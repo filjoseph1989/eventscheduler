@@ -12,7 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+  $name='Schedule Handler';
+  $version='1.0';
+  $description='This web app schedules and sends notifications for events';
+
+  return view('welcome', compact('name','version','description'));
 });
 
 Auth::routes();
@@ -24,3 +28,4 @@ Route::prefix('admin')->group(function() {
   Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
   Route::get('/', 'AdminController@index')->name('admin.dashboard');
 });
+Route::get('/notify_via_sms', 'smsNotifierController@index')->name('notify.via.sms');

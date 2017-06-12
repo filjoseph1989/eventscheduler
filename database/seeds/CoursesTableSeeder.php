@@ -103,7 +103,7 @@ class CoursesTableSeeder extends Seeder
       array('name' => 'BA Broadcasting','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
       array('name' => 'BS Development Communication','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
       array('name' => 'Chemical Engineering','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
-      array('name' => 'Landscape Architecture','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s'))
+      array('name' => 'Landscape Architecture')
     ]);
   }
 }
