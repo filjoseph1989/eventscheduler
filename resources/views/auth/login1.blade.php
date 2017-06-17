@@ -3,7 +3,8 @@
 @section('content')
   <div class="login-box">
     <div class="logo">
-      <a href="#"><b>Event</b>Scheduler</a>
+      <a href="javascript:void(0);">Admin<b>BSB</b></a>
+      <small>Admin BootStrap Based - Material Design</small>
     </div>
     <div class="card">
       <div class="body">
@@ -45,5 +46,10 @@
 @endsection
 
 @section('footer')
+  <script src="{{ asset('js/jquery.min.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/bootstrap.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/waves.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/jquery.validate.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/admin.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/sign-in.js') }}" charset="utf-8"></script>
 @endsection

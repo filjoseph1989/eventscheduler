@@ -12,11 +12,7 @@
 */
 
 Route::get('/', function () {
-  $name='Schedule Handler';
-  $version='1.0';
-  $description='This web app schedules and sends notifications for events';
-
-  return view('welcome', compact('name','version','description'));
+  return redirect()->route('login');
 });
 
 Auth::routes();
