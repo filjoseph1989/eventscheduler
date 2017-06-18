@@ -2,21 +2,8 @@
 
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/morris.css') }}?v=0.15">
-  <link rel="stylesheet" href="{{ asset('css/all-themes.css') }}?v=0.15">
-	<style type="text/css">
-		body
-		{
-			margin-top: 40px;
-			text-align: center;
-			font-size: 14px;
-			font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-		}
-		#calendar
-		{
-			width: 900px;
-			margin: 0 auto;
-		}
-	</style>
+  <link rel="stylesheet" href="{{ asset('css/fullcalendar.css') }}?v=0.1">
+  <link rel="stylesheet" href="{{ asset('css/fullcalendar.print.css') }}?v=0.1">
 @endsection
 
 @section('content')
@@ -78,7 +65,6 @@
           </div>
         </div>
       </div>
-
       <div class="row clearfix">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <div class="card">
@@ -113,7 +99,6 @@
 @endsection
 
 @section('footer')
-  <script src="{{ asset('js/admin.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/jquery-ui-1.10.2.custom.min.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/fullcalendar.min.js') }}" charset="utf-8"></script>
   <script type="text/javascript">

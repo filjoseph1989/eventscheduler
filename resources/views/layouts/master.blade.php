@@ -15,9 +15,8 @@
   <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}?v=0.15">
   <link rel="stylesheet" href="{{ asset('css/waves.css') }}?v=0.15">
   <link rel="stylesheet" href="{{ asset('css/animate.css') }}?v=0.15">
-  <link rel="stylesheet" href="{{ asset('css/fullcalendar.css') }}?v=0.1">
-  <link rel="stylesheet" href="{{ asset('css/fullcalendar.print.css') }}?v=0.1">
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}?v=0.15">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}?v=0.16">
+  <link rel="stylesheet" href="{{ asset('css/all-themes.css') }}?v=0.15">
 
   @yield('style')
 
