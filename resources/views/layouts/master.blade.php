@@ -24,15 +24,14 @@
   </script>
 </head>
 
-<body class="login-page">
+<body class="{{ session('class') }}">
 
   @yield('content')
 
   <script src="{{ asset('js/jquery.min.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/bootstrap.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/waves.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/jquery.validate.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/admin.js') }}" charset="utf-8"></script>
+
   @yield('footer')
 
 </body>
