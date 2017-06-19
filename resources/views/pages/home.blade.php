@@ -1,14 +1,15 @@
 @extends('layouts.master')
 
 @section('style')
-  <link rel="stylesheet" href="{{ asset('css/morris.css') }}?v=0.15">
+  <link rel="stylesheet" href="{{ asset('css/morris.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/all-themes.css') }}">
   <link rel="stylesheet" href="{{ asset('css/fullcalendar.css') }}?v=0.1">
   <link rel="stylesheet" href="{{ asset('css/fullcalendar.print.css') }}?v=0.1">
 @endsection
 
 @section('content')
 
-  @include('pages.top-nav')
+  @include('pages/top-nav')
 
   @include('pages.sidebar')
 
