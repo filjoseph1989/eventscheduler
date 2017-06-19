@@ -1,17 +1,14 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="{{ app()->getLocale() }}">
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <title>Sign In | Bootstrap Based Admin Template - Material Design</title>
-  <!-- Favicon-->
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>{{ config('app.name', 'Event Scheduler') }}</title>
 
-  <!-- Google Fonts -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
-
   <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet">
   <link href="{{asset('css/waves.css')}}" rel="stylesheet" />
   <link href="{{asset('css/animate.css')}}" rel="stylesheet" />
