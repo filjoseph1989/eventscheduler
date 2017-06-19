@@ -17,11 +17,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::name('home')->get('/home', 'HomeController@index');
 
 Route::prefix('admin')->group(function() {
-  Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
-  Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
-  Route::get('/', 'AdminController@index')->name('admin.dashboard');
+  Route::name('admin.login')->get('/login', 'Auth\AdminLoginController@showLoginForm');
+  Route::name('admin.login.submit')->post('/login', 'Auth\AdminLoginController@login');
+  Route::name('admin.dashboard')->get('/', 'AdminController@index');
 });
-Route::get('/notify_via_sms', 'smsNotifierController@index')->name('notify.via.sms');
+
+Route::name('notify.via.sms')->get('/notify_via_sms', 'smsNotifierController@index');
+
+Route::prefix('organization')->group(function() {
+  Route::name('organization.list')->get('/list', 'OrganizationController@index');
+});

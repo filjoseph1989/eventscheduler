@@ -15,8 +15,8 @@ class CreateOrganizationsTable extends Migration
     {
         Schema::create('organizations', function (Blueprint $table) {
           $table->increments('id');
-          $table->string('name');
-          $table->tinyInteger('status');
+          $table->string('name')->unique();
+          $table->tinyInteger('status')->default(0);
           $table->date('date_started')->default(date("Y-m-d H:i:s"));
           $table->date('date_expired')->default(date("Y-m-d H:i:s"));
           $table->string('url')->nullable();

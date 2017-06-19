@@ -1,3 +1,31 @@
 To Do:
+  ☐ Task 9: List of organization actions - show members
+  ☐ Task 8: List of organization actions - delete
+  ☐ Task 7: List of organization actions - edit
+  ☐ Task 6: List of organization actions - create
+  ✔ Task 5: Create a list of organization -dummy @done(2017-06-18 19:56) @project(To Do)
+  ✔ Task 4: Continue with making the calendar for making schedule of events @done(2017-06-18 19:34) @project(To Do)
+  ✔ Task 3: Create a calendar UI for an schedule of event @done(2017-06-18 17:19) @project(To Do)
   ✔ Task 2: Make the login form functional and display the dashboard @done(2017-06-18 10:59) @project(To Do)
   ✔ Task 1: Create a login form @done(2017-06-18 01:36) @project(To Do)
+
+
+  ☐ Make a form that add new user
+  ☐ Make a form that add new organization
+  ☐ Make a form that add new event
+  ☐ Make a calendar for the list of events
+  ☐ Users BREAD
+  ☐ Events BREAD
+  ☐ Organization BREAD
+  ☐ Organization - User browse the list of organizations
+  ☐ Organization - Admin browse the list of organizations
+  ☐ Organization - User/Admin My Organization
+  ☐ Organization - User/Admin, if the organization profile is display, put an indicator that he is a member
+  ☐ Make display user profile
+  ☐ User request to be a member to an organization
+  ☐ Determine the conflict of schedule
+  ☐ Change profile picture
+  ☐ Change profile picture background
+  ☐ Define user/admin permissions
+  ☐ On the calendar, if click on time, day a modal should up, where user can set schedule
+  ☐ Create a dynamic information in title tag <title>

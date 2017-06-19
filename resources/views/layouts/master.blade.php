@@ -15,7 +15,8 @@
   <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}?v=0.15">
   <link rel="stylesheet" href="{{ asset('css/waves.css') }}?v=0.15">
   <link rel="stylesheet" href="{{ asset('css/animate.css') }}?v=0.15">
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}?v=0.15">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}?v=0.16">
+  <link rel="stylesheet" href="{{ asset('css/all-themes.css') }}?v=0.15">
 
   @yield('style')
 
@@ -31,6 +32,7 @@
   <script src="{{ asset('js/jquery.min.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/bootstrap.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/waves.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/admin.js') }}" charset="utf-8"></script>
 
   @yield('footer')
 
