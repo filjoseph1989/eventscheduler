@@ -30,10 +30,10 @@ class CreateUsersTable extends Migration
           $table->string('last_name');
           $table->string('middle_name');
           $table->string('suffix_name')->nullable();
-          $table->string('facebook_email')->unique();
+          $table->string('facebook_username')->unique();
           $table->string('twitter_username')->unique();
           $table->string('instagram_username')->unique();
-          $table->string('contact_number')->unique();
+          $table->integer('mobile_number')->length(9)->unsigned();
           $table->tinyInteger('status')->default(0);
           $table->rememberToken();
           $table->timestamps();

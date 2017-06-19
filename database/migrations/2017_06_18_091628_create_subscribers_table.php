@@ -23,7 +23,7 @@ class CreateSubscribersTable extends Migration
             $table->string('twitter_username')->unique();
             $table->string('instagram_username')->unique();
             $table->string('facebook_email')->unique();
-            $table->integer('contact_number')->length(10)->unsigned();
+            $table->integer('mobile_number')->length(9)->unsigned();
             $table->timestamps();
         });
     }
