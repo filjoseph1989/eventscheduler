@@ -3,24 +3,24 @@
 @section('content')
   <div class="login-box">
     <div class="logo">
-      <a href="#">Event<b>Scheduler</b></a>
+      <a href="#"><b>Event</b>Scheduler</a>
     </div>
     <div class="card">
       <div class="body">
-        <form id="sign_in" id="sign_in" role="form" method="POST" action="{{ route('login') }}">
+        <form class="form-horizontal" id="sign_in" role="form" method="POST" action="{{ route('login') }}">
           {{ csrf_field() }}
           <div class="msg">Sign in to start your session</div>
           <div class="input-group form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-            <span class="input-group-addon"><i class="material-icons">person</i></span>
+            <span class="input-group-addon"> <i class="material-icons">person</i> </span>
             <div class="form-line">
-              <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" placeholder="Username" required autofocus>
+              <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Username" required autofocus>
               @if ($errors->has('email'))
                 <span class="help-block"> <strong>{{ $errors->first('email') }}</strong> </span>
               @endif
             </div>
           </div>
           <div class="input-group form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-            <span class="input-group-addon"><i class="material-icons">lock</i></span>
+            <span class="input-group-addon"> <i class="material-icons">lock</i> </span>
             <div class="form-line">
               <input id="password" type="password" class="form-control" name="password" placeholder="Password" required>
               @if ($errors->has('password'))
@@ -42,7 +42,7 @@
               <a href="sign-up.html">Register Now!</a>
             </div>
             <div class="col-xs-6 align-right">
-              <a href="forgot-password.html">Forgot Password?</a>
+              <a class="btn btn-link" href="{{ route('password.request') }}"> Forgot Your Password? </a>
             </div>
           </div>
         </form>
