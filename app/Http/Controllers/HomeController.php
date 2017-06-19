@@ -23,7 +23,7 @@ class HomeController extends Controller
    */
   public function index()
   {
-    session('class', 'theme-red');
+    session(['class' => 'theme-red']);
     return view('pages.home');
   }
 }

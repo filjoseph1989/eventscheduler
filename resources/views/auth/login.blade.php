@@ -53,6 +53,5 @@
 
 @section('footer')
   <script src="{{asset('js/jquery.validate.js')}}"></script>
-  <script src="{{asset('js/admin.js')}}"></script>
   <script src="{{asset('js/sign-in.js')}}"></script>
 @endsection
