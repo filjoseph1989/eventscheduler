@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('style')
+  <link rel="stylesheet" href="{{ asset('css/all-themes.css') }}">
   <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.css') }}">
 @endsection
 
