@@ -1,5 +1,11 @@
 @extends('layouts.master')
 
+@section('style')
+  <link rel="stylesheet" href="{{ asset('css/waitMe.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap-select.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap-material-datetimepicker.css') }}">
+@endsection
+
 @section('content')
   <div class="signup-box">
     <div class="logo">
@@ -9,25 +15,38 @@
       <div class="body">
         <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
           {{ csrf_field() }}
-
-          <select class="" name="user_account">
-            <option value="0">Account Type</option>
-            <option value="1">Admin</option>
-            <option value="2">Organization Adviser</option>
-            <option value="3">Organization Head</option>
-            <option value="4">Organization Member</option>
-            <option value="5">OSA Personnel</option>
-          </select>
-
-          <select class="" name="position">
-            <option value="0">Position</option>
-            <option value="1">Chairman</option>
-            <option value="2">Faculty</option>
-            <option value="3">OSA Staff</option>
-            <option value="4">Vice-Chairman</option>
-            <option value="5">Secretary</option>
-          </select>
-
+          <div class="form-group{{ $errors->has('user_account') ? ' has-error' : '' }}">
+            <label for="user_account" class="col-md-4 control-label">User Account</label>
+            <div class="col-md-6">
+              <select class="form-control show-tick" name="user_account">
+                <option value="0">-- Account Type --</option>
+                <option value="1">Admin</option>
+                <option value="2">Organization Adviser</option>
+                <option value="3">Organization Head</option>
+                <option value="4">Organization Member</option>
+                <option value="5">OSA Personnel</option>
+              </select>
+              @if ($errors->has('user_account'))
+                <span class="help-block"> <strong>{{ $errors->first('user_account') }}</strong> </span>
+              @endif
+            </div>
+          </div>
+          <div class="form-group{{ $errors->has('position') ? ' has-error' : '' }}">
+            <label for="position" class="col-md-4 control-label">Position</label>
+            <div class="col-md-6">
+              <select class="form-control show-tick" name="position">
+                <option value="0">-- Position --</option>
+                <option value="1">Chairman</option>
+                <option value="2">Faculty</option>
+                <option value="3">OSA Staff</option>
+                <option value="4">Vice-Chairman</option>
+                <option value="5">Secretary</option>
+              </select>
+              @if ($errors->has('position'))
+                <span class="help-block"> <strong>{{ $errors->first('position') }}</strong> </span>
+              @endif
+            </div>
+          </div>
           <div class="form-group{{ $errors->has('account_number') ? ' has-error' : '' }}">
             <label for="account_number" class="col-md-4 control-label">Username</label>
 
@@ -82,26 +101,39 @@
               @endif
             </div>
           </div>
-          <select class="" name="course">
-            <option value="0">Course</option>
-            <option value="1">BSCS</option>
-            <option value="2">Food Technology</option>
-            <option value="3">BS Biology</option>
-            <option value="4">BACA</option>
-            <option value="5">BA Anthropology</option>
-          </select>
-
-          <select class="" name="department">
-            <option value="0">Department</option>
-            <option value="1">College of Science and Mathematics</option>
-            <option value="2">College of Humanities and Social Science</option>
-            <option value="3">Department of Architecture</option>
-            <option value="4">School of Management</option>
-          </select>
-
+          <div class="form-group{{ $errors->has('course') ? ' has-error' : '' }}">
+            <label for="course" class="col-md-4 control-label">Course</label>
+            <div class="col-md-6">
+              <select class="form-control show-tick" name="course">
+                <option value="0">-- Course --</option>
+                <option value="1">BSCS</option>
+                <option value="2">Food Technology</option>
+                <option value="3">BS Biology</option>
+                <option value="4">BACA</option>
+                <option value="5">BA Anthropology</option>
+              </select>
+              @if ($errors->has('course'))
+                <span class="help-block"> <strong>{{ $errors->first('course') }}</strong> </span>
+              @endif
+            </div>
+          </div>
+          <div class="form-group{{ $errors->has('department') ? ' has-error' : '' }}">
+            <label for="department" class="col-md-4 control-label">Course</label>
+            <div class="col-md-6">
+              <select class="form-control show-tick" name="department">
+                <option value="0">Department</option>
+                <option value="1">College of Science and Mathematics</option>
+                <option value="2">College of Humanities and Social Science</option>
+                <option value="3">Department of Architecture</option>
+                <option value="4">School of Management</option>
+              </select>
+              @if ($errors->has('department'))
+                <span class="help-block"> <strong>{{ $errors->first('department') }}</strong> </span>
+              @endif
+            </div>
+          </div>
           <div class="form-group{{ $errors->has('facebook_username') ? ' has-error' : '' }}">
             <label for="facebook_username" class="col-md-4 control-label">Facebook Username</label>
-
             <div class="col-md-6">
               <input id="facebook_username" type="text" class="form-control" name="facebook_username" value="{{ old('facebook_username') }}" required autofocus>
               @if ($errors->has('facebook_username'))
@@ -187,6 +219,15 @@
 @endsection
 
 @section('footer')
+  <!--
   <script src="{{ asset('js/jquery.validate.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/sign-up.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/bootstrap-select.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/jquery.slimscroll.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/autosize.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/moment.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/basic-form-elements.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/demo.js') }}" charset="utf-8"></script>
+  -->
 @endsection

@@ -24,8 +24,7 @@
   <script src="{{asset('js/jquery.min.js')}}"></script>
   <script src="{{asset('js/bootstrap.js')}}"></script>
   <script src="{{asset('js/waves.js')}}"></script>
-  <script src="{{asset('js/admin.js')}}"></script>
-
   @yield('footer')
+  <script src="{{asset('js/admin.js')}}"></script>
 </body>
 </html>
