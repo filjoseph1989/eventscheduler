@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
+use App\Notifications\FacebookPublished;
 
 class HomeController extends Controller
 {
@@ -25,5 +27,11 @@ class HomeController extends Controller
   {
     session(['class' => 'theme-red']);
     return view('pages.home');
+  }
+
+  public function sendNotification()
+  {
+    $result = User::send();
+    echo "Good Job, you poster on facebook!! yeeeeey";
   }
 }

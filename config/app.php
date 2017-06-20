@@ -177,7 +177,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        Nexmo\Laravel\NexmoServiceProvider::class
+        Nexmo\Laravel\NexmoServiceProvider::class,
+
+        // Facebook notification
+        NotificationChannels\FacebookPoster\FacebookPosterServiceProvider::class,
     ],
 
     /*

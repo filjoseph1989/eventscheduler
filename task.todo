@@ -1,4 +1,6 @@
 To Do:
+  ☐ Task 14: Improve this facebook function by binding it to an approved events in the system
+  ✔ Task 13: Add facebook notification function  @done(2017-06-20 09:40) @project(To Do)
   ☐ Task 12: User Registration
   ✔ Task 11: Display he user name and email in sidebar @done(2017-06-19 23:35) @project(To Do)
   ✔ Task 10: Create migration for users @done(2017-06-19 21:14) @project(To Do)

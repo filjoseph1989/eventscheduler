@@ -30,3 +30,5 @@ Route::name('notify.via.sms')->get('/notify_via_sms', 'smsNotifierController@ind
 Route::prefix('organization')->group(function() {
   Route::name('organization.list')->get('/list', 'OrganizationController@index');
 });
+
+Route::name('faceboo.notification')->get('/fb/post', 'HomeController@sendNotification');
