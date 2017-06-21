@@ -155,6 +155,105 @@
                       </div>
                     </div>
                   </div>
+                  <div class="col-sm-8 col-sm-offset-2">
+                    <div class="form-group form-float form-group{{ $errors->has('account_number') ? ' has-error' : '' }}">
+                      <div class="form-line">
+                        <input type="text" class="form-control" name="account_number">
+                        <label class="form-label">Account Number</label>
+                        @if ($errors->has('account_number'))
+                          <span class="help-block"> <strong>{{ $errors->first('account_number') }}</strong> </span>
+                        @endif
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-8 col-sm-offset-2">
+                    <div class="form-group form-float form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                      <div class="form-line">
+                        <input type="text" class="form-control" name="email">
+                        <label class="form-label">Email</label>
+                        @if ($errors->has('email'))
+                          <span class="help-block"> <strong>{{ $errors->first('email') }}</strong> </span>
+                        @endif
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-8 col-sm-offset-2">
+                    <div class="form-group form-float form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                      <div class="form-line">
+                        <input type="password" class="form-control" name="password">
+                        <label class="form-label">Password</label>
+                        @if ($errors->has('password'))
+                          <span class="help-block"> <strong>{{ $errors->first('password') }}</strong> </span>
+                        @endif
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-8 col-sm-offset-2">
+                    <div class="form-group form-float form-group{{ $errors->has('facebook_username') ? ' has-error' : '' }}">
+                      <div class="form-line">
+                        <input type="text" class="form-control" name="facebook_username">
+                        <label class="form-label">Facebook Username</label>
+                        @if ($errors->has('facebook_username'))
+                          <span class="help-block"> <strong>{{ $errors->first('facebook_username') }}</strong> </span>
+                        @endif
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-8 col-sm-offset-2">
+                    <div class="form-group form-float form-group{{ $errors->has('twitter_username') ? ' has-error' : '' }}">
+                      <div class="form-line">
+                        <input type="text" class="form-control" name="twitter_username">
+                        <label class="form-label">Twitter Username</label>
+                        @if ($errors->has('twitter_username'))
+                          <span class="help-block"> <strong>{{ $errors->first('twitter_username') }}</strong> </span>
+                        @endif
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-8 col-sm-offset-2">
+                    <div class="form-group form-float form-group{{ $errors->has('instagram_username') ? ' has-error' : '' }}">
+                      <div class="form-line">
+                        <input type="text" class="form-control" name="instagram_username">
+                        <label class="form-label">Instagram Username</label>
+                        @if ($errors->has('instagram_username'))
+                          <span class="help-block"> <strong>{{ $errors->first('instagram_username') }}</strong> </span>
+                        @endif
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-8 col-sm-offset-2">
+                    <div class="form-group form-float form-group{{ $errors->has('mobile_number') ? ' has-error' : '' }}">
+                      <div class="form-line">
+                        <input type="text" class="form-control" name="mobile_number">
+                        <label class="form-label">Mobile Username</label>
+                        @if ($errors->has('mobile_number'))
+                          <span class="help-block"> <strong>{{ $errors->first('mobile_number') }}</strong> </span>
+                        @endif
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-8 col-sm-offset-2">
+                    <div class="form-group form-float form-group{{ $errors->has('status') ? ' has-error' : '' }}">
+                      <div class="form-line">
+                        <input type="text" class="form-control" name="status">
+                        <label class="form-label">Status</label>
+                        @if ($errors->has('status'))
+                          <span class="help-block"> <strong>{{ $errors->first('status') }}</strong> </span>
+                        @endif
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-8 col-sm-offset-2">
+                    <div class="form-group form-float form-group{{ $errors->has('status') ? ' has-error' : '' }}">
+                      <div class="form-line">
+                        <input type="text" class="form-control" name="status">
+                        <label class="form-label">Status</label>
+                        @if ($errors->has('status'))
+                          <span class="help-block"> <strong>{{ $errors->first('status') }}</strong> </span>
+                        @endif
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </form>
             </div>
