@@ -31,7 +31,7 @@
       <ul class="list">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active">
-          <a href="index.html">
+          <a href="{{ route('home') }}">
             <i class="material-icons">home</i>
             <span>Home</span>
           </a>
@@ -51,30 +51,14 @@
               </ul>
             </li>
             <li>
-              <a href="#">
-                <span>Users</span>
-              </a>
+                <a href="#" class="menu-toggle">
+                    <span>Users</span>
+                </a>
+                <ul class="ml-menu">
+                    <li><a href="{{ route('user.register') }}">Register User</a></li>
+                </ul>
             </li>
           </ul>
-        </li>
-        <li class="header">LABELS</li>
-        <li>
-          <a href="#">
-            <i class="material-icons col-red">donut_large</i>
-            <span>Important</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="material-icons col-amber">donut_large</i>
-            <span>Warning</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="material-icons col-light-blue">donut_large</i>
-            <span>Information</span>
-          </a>
         </li>
       </ul>
     </div>
