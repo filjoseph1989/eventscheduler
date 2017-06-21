@@ -177,6 +177,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        Nexmo\Laravel\NexmoServiceProvider::class,
+
+        // Facebook notification
+        NotificationChannels\FacebookPoster\FacebookPosterServiceProvider::class,
     ],
 
     /*
@@ -225,7 +229,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Nexmo' => \Nexmo\Laravel\Facade\Nexmo::class
     ],
 
 ];

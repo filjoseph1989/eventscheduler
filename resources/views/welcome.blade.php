@@ -79,9 +79,14 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    <!-- Laravel -->
                 </div>
 
+                  <!-- {{ bcrypt('password') }} -->
+
+                 <h1>Welcome to <br> <?=$name;?> Version <?=$version;?> </h1>
+                 <p><b><?=$description;?></b></p>
+                 
                 <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>
                     <a href="https://laracasts.com">Laracasts</a>

@@ -1,0 +1,84 @@
+Concept 1:
+  Join Organization
+  ☐ Register as user
+  ☐ Browse organizations, and
+  ☐ then request for join
+  ☐ Orgnization, person of authorities, may approved or disapproved the request
+      (may ask for requirements, depending on the organization)
+      (validate identity, and school of the requestor)
+  ☐ Update the profile of the user who requested
+
+  or
+  ☐ The authorities of the organization visit organization page
+  ☐ Add member
+  ☐ Update user account
+
+  or Both?
+
+Concept 2:
+  Create Event
+  ☐ If user has authority in the organization, display create button
+  ☐ Display form form making event
+  ☐ Browse personnel who will approved the said event
+  ☐ Notify to their system account those approvers also send them emails
+
+  Re-Schedule Event
+  ☐ Click on event edit,
+  ☐ Display edit form, choose date, time and venue
+  ☐ Display those personnel who will approved the said event
+  ☐ Notify to their system account those approvers also send them emails
+
+  On the approvers profile
+  ☐ In case his not available for approval
+  ☐ Browse | search other person who will replace him|her as approver
+  ☐ Notify the organization about the change
+  ☐ Update the event profile|panel about the new approver
+
+  Approved event
+  ☐ If event gather enoug approved
+  ☐ Notify the creator via text and post on their organization profile
+  ☐ Tweet, Post on fb and instagram about the comming event
+  ☐ Update the organization calendar on organization profile
+
+  Send invitation to the members
+  ☐ On organization profile, click event
+  ☐ On the event panel, send invitation
+  ☐ Desiminate invitation to all the members of the organization
+  ☐ On the event panel, there should be a list of all members in the system (faculty, students, etc)
+    ☐ Can either invite by choosing or all of them
+    ☐ Can invite by organization
+      ☐ if invite by organization system send invitation by organization
+
+  Accepting invitation
+  ☐ On the user profile, display the invitation having a button either accept or decline
+  ☐ if user accept accept, mark the calendar schedule
+    ☐ Check user schedule if there is no conflict
+      ☐ If conflict, display a panel|modal for sending notification the organization about the conflict
+  ☐ If decline,
+    ☐ Display the modal and state the reason for a decline
+    ☐ System notify the organization
+
+  Attendance
+  ☐ On the organization page, click on attendance
+  ☐ On the attendace sheet
+    ☐ Before event: Can display users or members id, name, accepted, decline and reason for declining
+    ☐ After event: Can display users or members id, name, accepted and confirm attendance
+    ☐ Filtered by accepted
+    ☐ Filtered by decline
+    ☐ Filtered by confirmed
+    ☐ Filtered by unconfirmed
+    ☐ Display the count of attendees (accepted)
+    ☐ Display the count of attendees (deline)
+    ☐ Display the count of attendees (confirmed)
+    ☐ Display the count of attendees (unconfirmed)
+
+  During the event
+  ☐ On attendance page,
+  ☐ Search ID number or name of attendees
+  ☐ Display a button of confirmation
+  ☐ Authorize personnel, click on button to confirm
+
+Concept 3:
+  User profile - Calendar
+  ☐ Display the personnal calendar
+  ☐ Can add own schedule
