@@ -1,6 +1,7 @@
 To Do:
+  ☐ Task 35: Create add organization form
   ✔ Task 34: Defined tasked @done(2017-06-20 12:00) @project(To Do)
-  ☐ Task 33: Make a form that add new user
+  ☐ Task 33: Create a Registration functionality
   ☐ Task 32: Make a form that add new organization
   ☐ Task 31: Make a form that add new event
   ☐ Task 30: Make a calendar for the list of events
@@ -18,7 +19,7 @@ To Do:
   ☐ Task 18: Change profile picture background
   ☐ Task 17: Define user/admin permissions
   ☐ Task 16: On the calendar, if click on time, day a modal should up, where user can set schedule
-  ☐ Task 15: Create a dynamic information in title tag <title>
+  ✔ Task 15: Create a dynamic information in title tag <title> @done(2017-06-21 16:53) @project(To Do)
   ☐ Task 14: Improve this facebook function by binding it to an approved events in the system
   ☐ Task 15: Create other functions about facebook notification that utilize the image and video post
   ✔ Task 13: Add facebook notification function  @done(2017-06-20 09:40) @project(To Do)

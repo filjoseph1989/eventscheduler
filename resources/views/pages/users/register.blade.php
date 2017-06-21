@@ -16,9 +16,6 @@
 
   <section class="content">
     <div class="container-fluid">
-      <div class="block-header">
-        <h2>WELCOME</h2>
-      </div>
       <div class="row clearfix">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <div class="card">
@@ -228,17 +225,6 @@
                         <label class="form-label">Mobile Username</label>
                         @if ($errors->has('mobile_number'))
                           <span class="help-block"> <strong>{{ $errors->first('mobile_number') }}</strong> </span>
-                        @endif
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-8 col-sm-offset-2">
-                    <div class="form-group form-float form-group{{ $errors->has('status') ? ' has-error' : '' }}">
-                      <div class="form-line">
-                        <input type="text" class="form-control" name="status">
-                        <label class="form-label">Status</label>
-                        @if ($errors->has('status'))
-                          <span class="help-block"> <strong>{{ $errors->first('status') }}</strong> </span>
                         @endif
                       </div>
                     </div>

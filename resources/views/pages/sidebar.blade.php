@@ -64,7 +64,7 @@
     </div>
     <div class="legal">
       <div class="copyright">
-        &copy; 2017 <a href="#">Event Scheduler Syste,</a>.
+        &copy; 2017 <a href="#">Event Scheduler System</a>.
       </div>
       <div class="version">
         <b>Version: </b> 1.0.0
