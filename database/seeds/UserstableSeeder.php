@@ -12,8 +12,8 @@ class UserstableSeeder extends Seeder
   public function run()
   {
     DB::table('users')->insert([
-        array(
-            'user_account_id'    => '1',
+        array
+        (   'user_account_id'    => '1',
             'course_id'          => '9',
             'department_id'      => '2',
             'position_id'        => '8',

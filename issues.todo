@@ -1,7 +1,8 @@
 frontend:
-☐ if admin is logged in alone, messed up dashboard ui
+✔ if admin is logged in alone, messed up dashboard ui @done(2017-06-23 16:27)
   if admin is logged in and user is also logged in, if admin dashboard is
   refreshed, admin dashboard will be fixed
+  
 ☐ if user is currently logged in, then goes to admin-login,
   admin login form is messed up or not the same when user is logged out
 ☐ (lead1) please create forms for {{ route('password.request') }} that will display
