@@ -3,7 +3,8 @@
 @section('content')
   <div class="login-box">
     <div class="logo">
-      <a href="#">Event<b>Scheduler</b></a>
+        <a href="#">Event<b>Scheduler</b></a>
+        <small>Admin Login</small>
     </div>
     <div class="card">
       <div class="body">

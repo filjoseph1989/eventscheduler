@@ -13,17 +13,29 @@ class AdminLoginController extends Controller
       $this->middleware('guest:admin');
     }
 
+    /**
+     * Disaplay the login form
+     *
+     * @return \Illuminate\Response
+     */
     public function showLoginForm()
     {
+        session(['class' => 'login-page']);
         return view('auth.admin-login');
     }
 
+    /**
+     * Accept the login request
+     *
+     * @param  Request $request
+     * @return \Illuminate\Response
+     */
     public function login(Request $request)
     {
         //Validate the form data
         $this->validate($request, [
-          'email' => 'required|email',
-          'password' => 'required|min:6'
+          'email'    => 'required|email',
+          'password' => 'required|min:8'
         ]);
 
         //Attempt to log the user in
