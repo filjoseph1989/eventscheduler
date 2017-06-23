@@ -15,6 +15,7 @@
           ☐ event_categories (public view, among org., within org., or user’s personal)
           ☐ event_types (meeting, exibit, job fair, etc.)
           ☐ approvers (osa personnel, org. adviser, org. head, proxy approvers)
+
           level 2 crud (dependent to level 1)
           ☐ manage schedule (events)
           ☐ generate attendance

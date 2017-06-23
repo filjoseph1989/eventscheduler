@@ -31,32 +31,66 @@
       <ul class="list">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active">
-          <a href="{{ route('home') }}">
+          <a href="{{ route('admin.dashboard') }}">
             <i class="material-icons">home</i>
             <span>Home</span>
           </a>
         </li>
         <li>
           <a href="#" class="menu-toggle">
-            <i class="material-icons">widgets</i>
-            <span>Widgets</span>
+            <i class="material-icons">accessibility</i>
+            <span>Administration</span>
           </a>
           <ul class="ml-menu">
             <li>
-              <a href="#" class="menu-toggle">
-                <span>Organizations</span>
+              <a href="#" class="">
+                <span>Users</span>
               </a>
-              <ul class="ml-menu">
-                <li><a href="{{ route('organization.list') }}">List of Organizations</a></li>
-              </ul>
             </li>
             <li>
-                <a href="#" class="menu-toggle">
-                    <span>Users</span>
-                </a>
-                <ul class="ml-menu">
-                    <li><a href="{{ route('user.register') }}">Register User</a></li>
-                </ul>
+              <a href="#" class="">
+                <span>User Accounts</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="">
+                <span>Courses</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="">
+                <span>Departments</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="">
+                <span>Positions</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="">
+                <span>Organization</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="">
+                <span>Event Categories</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="">
+                <span>Event Types</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="">
+                <span>Approvers</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="">
+                <span>Approvers</span>
+              </a>
             </li>
           </ul>
         </li>
