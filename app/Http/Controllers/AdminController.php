@@ -23,6 +23,7 @@ class AdminController extends Controller
      */
     public function index()
     {
+        session(['class' => parent::getTheme()]);
         return view('pages.admin');
     }
 }
