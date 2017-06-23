@@ -96,8 +96,8 @@
                           <option value="4">Organization Member</option>
                           <option value="5">OSA Personnel</option>
                         </select>
-                        @if ($errors->has('user_account'))
-                          <span class="help-block"> <strong>{{ $errors->first('user_account') }}</strong> </span>
+                        @if ($errors->has('user_account_id'))
+                          <span class="help-block"> <strong>{{ $errors->first('user_account_id') }}</strong> </span>
                         @endif
                       </div>
                     </div>

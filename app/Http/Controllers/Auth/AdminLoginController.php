@@ -18,7 +18,7 @@ class AdminLoginController extends Controller
         return view('auth.admin-login');
     }
 
-    public function login()
+    public function login(Request $request)
     {
         //Validate the form data
         $this->validate($request, [
@@ -27,10 +27,11 @@ class AdminLoginController extends Controller
         ]);
 
         //Attempt to log the user in
-        Auth::attempt($credentials, $remember);
-
-        //if successful, then ridirect to their intended location
-
+        if(Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
+          //if successful, then ridirect to their intended location
+          return redirect()->intended(route('admin.dashboard'));
+        }
         //if unsuccessful, then redirect back to the login with the form data
+        return redirect()->back()->withInput($request->only('email', 'remember'));
     }
 }

@@ -33,6 +33,7 @@ class User extends Authenticatable
      *
      * @return [type] [description]
      */
+
     public static function send()
     {
       $user = new User();

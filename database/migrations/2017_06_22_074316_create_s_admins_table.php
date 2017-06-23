@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSubscribersTable extends Migration
+class CreateSAdminsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,21 @@ class CreateSubscribersTable extends Migration
      */
     public function up()
     {
-        Schema::create('subscribers', function (Blueprint $table) {
+        Schema::create('s_admins', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('account_number', '20')->unique();
+            $table->string('email')->unique();
+            $table->string('password');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('middle_name');
-            $table->string('suffix_name')->nullable();
-            $table->string('email')->unique();
+            $table->string('suffix_name', '10')->nullable();
+            $table->string('facebook_username')->unique();
             $table->string('twitter_username')->unique();
             $table->string('instagram_username')->unique();
-            $table->string('facebook_email')->unique();
-            $table->integer('mobile_number')->length(9)->unsigned();
+            $table->string('mobile_number', '12')->unsigned();
+            $table->tinyInteger('status')->default(0);
+            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -35,6 +39,6 @@ class CreateSubscribersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subscribers');
+        Schema::dropIfExists('s_admins');
     }
 }

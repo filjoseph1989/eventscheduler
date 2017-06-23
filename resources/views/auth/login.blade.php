@@ -39,10 +39,10 @@
           </div>
           <div class="row m-t-15 m-b--20">
             <div class="col-xs-6">
-              <a href="{{ route('register') }}">Register Now!</a>            
+              <a href="{{ route('register') }}">Register Now!</a>
             </div>
             <div class="col-xs-6 align-right">
-              <a href="forgot-password.html">Forgot Password?</a>
+              <a href="{{ route('password.request') }}">Forgot Password?</a>
             </div>
           </div>
         </form>

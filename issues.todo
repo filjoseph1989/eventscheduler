@@ -1,0 +1,20 @@
+frontend:
+☐ if admin is logged in alone, messed up dashboard ui
+  if admin is logged in and user is also logged in, if admin dashboard is
+  refreshed, admin dashboard will be fixed
+☐ if user is currently logged in, then goes to admin-login,
+  admin login form is messed up or not the same when user is logged out
+☐ (lead1) please create forms for {{ route('password.request') }} that will display
+  for user login,
+    login button that goes to login.blade
+    and register button that goes register view and route for user login,
+  for admin login,
+    login button that goes to admin-login.blade
+
+backend:
+☐ if I go to login page, but will not type credentials,
+  then I go to admin-login page without typing credentials,
+  then go back to login page again, then sign in, the browser redirects
+  to admin-login page, not user dashboard but if you go to /home
+  you can guarantee that user is already logged in
+☐ when 'lead1' is achieved, establish their respective routes

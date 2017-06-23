@@ -14,22 +14,21 @@
 Route::get('/', function () {
   return redirect()->route('login');
 });
-
+// Route::name('/')->get('/home', 'HomeController@index');
 Auth::routes();
 
 Route::name('home')->get('/home', 'HomeController@index');
-
 /*
 |--------------------------------------------------------------------------
 | Admin route
 |--------------------------------------------------------------------------
 */
 Route::prefix('admin')->group(function() {
-  Route::name('admin.login')->get('/login', 'Auth\AdminLoginController@showLoginForm');
+  // Route::name('admin.login')->get('/admin', 'Auth\AdminLoginController@showLoginForm');
+  Route::name('admin.login')->get('/admin-login', 'Auth\AdminLoginController@showLoginForm');
   Route::name('admin.login.submit')->post('/login', 'Auth\AdminLoginController@login');
   Route::name('admin.dashboard')->get('/', 'AdminController@index');
 });
-
 /*
 |--------------------------------------------------------------------------
 | Organization routes
@@ -37,9 +36,8 @@ Route::prefix('admin')->group(function() {
 */
 Route::prefix('organization')->group(function() {
   Route::name('organization.list')->get('/list', 'OrganizationController@index');
+  Route::name('organization.add')->get('/add', 'OrganizationController@create');
 });
-
-
 /*
 |--------------------------------------------------------------------------
 | Notification route
@@ -47,7 +45,6 @@ Route::prefix('organization')->group(function() {
 */
 Route::name('notify.via.sms')->get('/notify_via_sms', 'smsNotifierController@index');
 Route::name('faceboo.notification')->get('/fb/post', 'HomeController@sendNotification');
-
 /*
 |--------------------------------------------------------------------------
 | Auth Routes

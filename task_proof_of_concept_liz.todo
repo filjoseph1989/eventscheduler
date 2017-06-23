@@ -1,0 +1,377 @@
+3 types of login
+  1. Login as super admin (whole system admin)
+  2. Login as user (Admin/OSA/Org Adviser/Org Head/Org Member)
+
+2 type Dashboard
+  1. super admin (s_admins table) Dashboard (direct to database management)
+          level 1
+          ☐ accept or reject user registration
+          ☐ USERS CRUD
+          ☐ users_account
+          ☐ courses
+          ☐ departments
+          ☐ positions
+          ☐ ORGANIZATION CRUDS
+          ☐ event_categories (public view, among org., within org., or user’s personal)
+          ☐ event_types (meeting, exibit, job fair, etc.)
+          ☐ approvers (osa personnel, org. adviser, org. head, proxy approvers)
+          level 2 crud (dependent to level 1)
+          ☐ manage schedule (events)
+          ☐ generate attendance
+              //and user_attendances are dependent on the user's reply on the
+              invitations per event
+          ☐ manage (notifications)
+          ☐ list of all organizations and it's members
+          ☐ list of all users and it's profile details + organizations
+              //organization_groups are dependent to the organization members
+              (who are the users with the same organizations id)
+
+  2. user Dashboard
+    ☐ Admin
+      ☐ accept or reject user registration
+      ☐ USERS CRUD
+      ☐ courses
+      ☐ departments
+      ☐ positions
+      ☐ ORGANIZATION CRUDS
+      ☐ approvers (osa personnel, org. adviser, org. head, proxy approvers)
+      level 2 crud (dependent to level 1)
+      ☐ manage schedule (events)
+      ☐ generate attendance
+          //and user_attendances are dependent on the user's reply on the
+          invitations per event
+      ☐ manage (notifications)
+      ☐ list of all organizations and it's members
+      ☐ list of all users and it's profile details + organizations
+          //organization_groups are dependent to the organization members
+          (who are the users with the same organizations id)
+    ☐ OSA
+      ☐ manage schedule (events)
+      ☐ generate attendance
+          //and user_attendances are dependent on the user's reply on the
+          invitations per event
+      ☐ manage (notifications)
+      ☐ list of all organizations and it's members
+      ☐ list of all users and it's profile details + organizations
+          //organization_groups are dependent to the organization members
+          (who are the users with the same organizations id)
+    ☐ Org Adviser
+      ☐ manage schedule (events)
+      ☐ generate attendance
+          //and user_attendances are dependent on the user's reply on the
+          invitations per event
+      ☐ manage (notifications)
+      ☐ list of "my" organization and it's members
+      ☐ list of all users in "my" org and it's profile details + organizations
+          //organization_groups are dependent to the organization members
+          (who are the users with the same organizations id)
+      ☐ list of other organizations and it's members
+    ☐ Org Head
+      ☐ manage schedule (events)
+      ☐ generate attendance
+          //and user_attendances are dependent on the user's reply on the
+          invitations per event
+      ☐ manage (notifications)
+      ☐ list of "my" organization and it's members
+      ☐ list of all users in "my" org and it's profile details + organizations
+          //organization_groups are dependent to the organization members
+          (who are the users with the same organizations id)
+      ☐ list of other organizations and it's members
+    ☐ Org Member
+      ☐ manage schedule (events)
+      ☐ generate attendance
+          //and user_attendances are dependent on the user's reply on the
+          invitations per event
+      ☐ manage (notifications)
+      ☐ list of "my" organization and it's members
+      ☐ list of all users in "my" org and it's profile details + organizations
+          //organization_groups are dependent to the organization members
+          (who are the users with the same organizations id)
+
+
+Dashboard Default
+{
+  ☐ Buttons
+    ☐ Manage Schedule
+    ☐ Generate Event Attendance
+    ☐ Manage Notifications
+    ☐ My Organization (display list of organizations)
+      backlog: with links to their pages/social media links
+      (note: all admin and osa personnel, all organizations will be listed in
+      their My Organizations dropdown)
+  ☐ Calendar
+  ☐ Others
+}
+
+Manage Schedule
+{
+  Legend Per User:
+    % Admin
+    * Osa personnel
+    - Org. adviser
+    = Org. head
+    + Org Member
+  Concept 1:
+  Upon Clicking the Manage Schedule Button (%*-=+)
+  ☐ display dropdown of (%*-=+)
+
+    ☐ University Calendar (%*-=+)
+    (All events are on Public View)
+      Default Dashboard display
+        ☐ Legend (%*-=+)
+          ☐ Maroon : open to all
+          ☐ Green : specified audience (string/text)
+        ☐ Calendar (%*-=+)
+          ☐ Per Events Square
+            ☐ open to all
+            ☐ specified audience upon clicking, specified audience will display
+        ☐ Button/s (%*)
+          ☐ backlog buttons
+          ☐ Create Event (%*)
+            ☐ dropdown Event Types (%*)
+              form to fill out
+                ☐ name of event (%*)
+                ☐ dates and time (%*)
+                ☐ venue (%*)
+                ☐ event type (%*)
+                  dropdown
+                  ☐ meeting
+                  ☐ contest
+                  ☐ feeding program
+                  ☐ etc
+    ☐ Organization Calendar (%*-=+)
+      Default Dashboard display
+        ☐ Legend (%*-=+)
+          ☐ Pink : Within Organization
+          ☐ Sky Blue : Among Organization
+        ☐ Calendar (%*-=+)
+          ☐ Per Events Square
+            ☐ (if Within Organizations) display name of organization
+            ☐ (if Among Organizations) upon clicking the event,
+            will display a pop up of the list of organizations involved
+        ☐ Button/s (-=+)
+          ☐ backlog buttons
+          ☐ Create Event (-=+)
+            ☐ dropdown Event Types (-=+)
+              ☐ Public (-=+)
+              form to fill out
+                ☐ name of event (-=+)
+                ☐ dates and time (-=+)
+                ☐ venue (-=+)
+                ☐ event type
+                  dropdown
+                  ☐ meeting
+                  ☐ contest
+                  ☐ feeding program
+                  ☐ etc
+                ☐ approval (-=+)
+                  checkbox
+                  ☐ osa
+                  ☐ adviser
+                  ☐ org. head
+              ☐ Within An Org (-=+)
+                ☐ name of event (-=+)
+                ☐ dates and time (-=+)
+                ☐ venue (-=+)
+                ☐ event type
+                  dropdown
+                  ☐ meeting
+                  ☐ contest
+                  ☐ feeding program
+                  ☐ etc
+                ☐ approval (=+)
+                  checkbox
+                  ☐ adviser (+) (= nullable)
+                  ☐ org. head (+)
+              ☐ Among Orgs (-=+)
+                ☐ checkbox of the organizations involved
+                  ☐ OA
+                  ☐ APO
+                  ☐ etc
+                ☐ name of event (-=+)
+                ☐ dates and time (-=+)
+                ☐ venue (-=+)
+                ☐ event type
+                  dropdown
+                  ☐ meeting
+                  ☐ contest
+                  ☐ feeding program
+                  ☐ etc
+                ☐ approval (-=+)
+                  checkbox
+                  ☐ osa
+                  ☐ adviser
+                  ☐ org. head
+
+    ☐ Personal Calendar (%*-=+)
+      Default Dashboard display
+      ☐ Legend
+        ☐ Red : Class Schedule
+        ☐ Yellow : Miscellaneous
+      ☐ Calendar
+        ☐ Per Events Square
+          ☐ (if Within Organizations) display name of organization
+          ☐ (if Among Organizations) upon clicking the event,
+          will display a pop up of the list of organizations involved
+      ☐ Buttons
+        ☐ Create Event
+          ☐ dropdown Event Types
+            ☐ Class Schedule
+              ☐ user will input
+                ☐ subject
+                ☐ days (M T W Th F S)
+                ☐
+            ☐ Miscellaneous
+
+  BACKLOG (fil)
+  { Concept 2:
+    Create Event
+    ☐ If user has authority in the organization, display create button
+    ☐ Display form form making event
+    ☐ Browse personnel who will approved the said event
+    ☐ Notify to their system account those approvers also send them emails
+
+    Re-Schedule Event
+    ☐ Click on event edit,
+    ☐ Display edit form, choose date, time and venue
+    ☐ Display those personnel who will approved the said event
+    ☐ Notify to their system account those approvers also send them emails
+
+    On the approvers profile
+    ☐ In case his not available for approval
+    ☐ Browse | search other person who will replace him|her as approver
+    ☐ Notify the organization about the change
+    ☐ Update the event profile|panel about the new approver
+
+    Approved event
+    ☐ If event gather enoug approved
+    ☐ Notify the creator via text and post on their organization profile
+    ☐ Tweet, Post on fb and instagram about the comming event
+    ☐ Update the organization calendar on organization profile
+    Concept 3:
+    User profile - Calendar
+    ☐ Display the personnal calendar
+    ☐ Can add own schedule
+  }
+}
+
+Generate Attendance
+{
+    Legend Per User:
+      % Admin
+      * Osa personnel
+      - Org. adviser
+      = Org. head
+      + Org Member
+    Concept 1:
+    Upon Clicking the Manage Schedule Button (%*-=+)
+    ☐ display dropdown of (%*-=+)
+
+      ☐ University Calendar (%*-=+)
+      (All events are on Public View)
+        Default Dashboard display
+          ☐ Legend (%*-=+)
+            ☐ Maroon : open to all
+            ☐ Green : specified audience (string/text)
+          ☐ Calendar (%*-=+)
+            ☐ Per Events Square
+              ☐ open to all
+              ☐ specified audience upon clicking, specified audience will display
+          ☐ Button/s (%*)
+            ☐ backlog buttons
+            ☐ Create Event (%*)
+              ☐ dropdown Event Types (%*)
+                form to fill out
+                  ☐ name of event (%*)
+                  ☐ dates and time (%*)
+                  ☐ venue (%*)
+                  ☐ event type (%*)
+                    dropdown
+                    ☐ meeting
+                    ☐ contest
+                    ☐ feeding program
+                    ☐ etc
+
+BACKLOG
+  Attendance
+  ☐ On the organization page, click on attendance
+  ☐ On the attendace sheet
+    ☐ Before event: Can display users or members id, name, accepted, decline and reason for declining
+    ☐ After event: Can display users or members id, name, accepted and confirm attendance
+      ☐ Filtered by accepted
+      ☐ Filtered by decline
+      ☐ Filtered by confirmed
+      ☐ Filtered by unconfirmed
+      ☐ Display the count of attendees (accepted)
+      ☐ Display the count of attendees (deline)
+      ☐ Display the count of attendees (confirmed)
+      ☐ Display the count of attendees (unconfirmed)
+
+  During the event
+  ☐ On attendance page,
+  ☐ Search ID number or name of attendees
+  ☐ Display a button of confirmation
+  ☐ Authorize personnel, click on button to confirm
+}
+
+BACKLOG
+{ Send invitation to the members
+  ☐ On organization profile, click event
+  ☐ On the event panel, send invitation
+  ☐ Desiminate invitation to all the members of the organization
+  ☐ On the event panel, there should be a list of all members in the system (faculty, students, etc)
+  ☐ Can either invite by choosing or all of them
+  ☐ Can invite by organization
+  ☐ if invite by organization system send invitation by organization
+
+  Accepting invitation
+  ☐ On the user profile, display the invitation having a button either accept or decline
+  ☐ if user accept accept, mark the calendar schedule
+  ☐ Check user schedule if there is no conflict
+  ☐ If conflict, display a panel|modal for sending notification the organization about the conflict
+  ☐ If decline,
+  ☐ Display the modal and state the reason for a decline
+  ☐ System notify the organization
+}
+
+Concept 1:
+  Join Organization
+  ☐ Register as user
+  ☐ Browse organizations, and
+  ☐ then request for join
+  ☐ Orgnization, person of authorities, may approved or disapproved the request
+      (may ask for requirements, depending on the organization)
+      (validate identity, and school of the requestor)
+  ☐ Update the profile of the user who requested
+
+  or
+  ☐ The authorities of the organization visit organization page
+  ☐ Add member
+  ☐ Update user account
+
+  or Both?
+
+
+
+
+Manage Notifications
+{
+  Concept 4:
+  After Event Approval (for Official Organization Event)
+  ☐ upon approval by authorities,
+    ☐ automatically hightlight sched in the specified calendar
+      (whether public view, among org., or within org. scope)
+    ☐ send sms to org. adviser, head, and members for the aproval of event
+      real-time
+    ☐ automatically disseminate to all social media accounts
+      (whether public view, among org., or within org. scope)
+                            ||
+  After Event Creation (for OSA/University/Personal Event)
+    ☐ automatically hightlight sched in the specified calendar
+      (whether public view, among org., or within org. scope)
+    ☐ the user who created the event has the option to manage the notification
+      ☐ on who will receive notification
+      ☐ how (whether sms/type of social media)
+      ☐ the user will input the duration date and time of the event
+        ☐ but time of notification is programmed by the system
+}
