@@ -22,10 +22,10 @@ class CreateSAdminsTable extends Migration
             $table->string('last_name');
             $table->string('middle_name');
             $table->string('suffix_name', '10')->nullable();
-            $table->string('facebook_username')->unique();
-            $table->string('twitter_username')->unique();
-            $table->string('instagram_username')->unique();
-            $table->string('mobile_number', '12')->unsigned();
+            $table->string('facebook_username')->unique()->nullable();
+            $table->string('twitter_username')->unique()->nullable();
+            $table->string('instagram_username')->unique()->nullable();
+            $table->string('mobile_number', '12');
             $table->tinyInteger('status')->default(0);
             $table->rememberToken();
             $table->timestamps();
