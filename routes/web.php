@@ -17,7 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::name('home')->get('/home', 'HomeController@index');
+Route::name('/home')->get('/home', 'HomeController@index');
+Route::name('/user.logout')->get('users/logout', 'Auth\LoginController@userLogout');
 /*
 |--------------------------------------------------------------------------
 | Admin route
@@ -38,6 +39,7 @@ Route::prefix('admin')->group(function() {
 
   Route::name('admin.login.submit')->post('/login', 'Auth\AdminLoginController@login');
   Route::name('admin.dashboard')->get('/', 'AdminController@index');
+  Route::name('admin.logout')->get('/logout', 'Auth\LoginController@adminLogout');
 });
 /*
 |--------------------------------------------------------------------------
