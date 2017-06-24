@@ -13,7 +13,7 @@ class OrganizationController extends Controller
      */
     public function index()
     {
-        return view('pages.organizations.list');
+        return view('pages.users.organizations.list');
     }
 
     /**
@@ -23,7 +23,7 @@ class OrganizationController extends Controller
      */
     public function create()
     {
-        return view('pages.organizations.add'); 
+        return view('pages.users.organizations.add');
     }
 
     /**

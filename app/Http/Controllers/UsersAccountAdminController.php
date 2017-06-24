@@ -62,18 +62,6 @@ class UsersAccountAdminController extends Controller
     }
 
     /**
-     * Return the list of user account to be displayed
-     * in the dashboard
-     *
-     * @return \Illuminate\Response
-     */
-    public function showAll()
-    {
-        $login_type = 'admin';
-        return view('pages.users.users-account-list', compact('login_type'));
-    }
-
-    /**
      * Return registration form to be display in the dashboard
      *
      * @return \Illuminate\Response

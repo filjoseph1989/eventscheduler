@@ -31,54 +31,63 @@
       <ul class="list">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active">
-          <a href="index.html">
+          <a href="{{ route('admin.dashboard') }}">
+            <i class="material-icons">home</i>
             <span>Home</span>
           </a>
         </li>
         <li>
-          <a href="{{ route('admin.users.list') }}">
-            <span>Manage Users</span>
+          <a href="#" class="menu-toggle">
+            <i class="material-icons">accessibility</i>
+            <span>Administration</span>
           </a>
-        </li>
-        <li>
-          <a href="{{ route('admin.user.account.list') }}">
-            <span>User Accounts</span>
-          </a>
-        </li>
-        <li>
-          <a href="{{ route('admin.course.list') }}">
-            <span>Courses</span>
-          </a>
-        </li>
-        <li>
-            <a href="{{ route('admin.department.list') }}" class="">
-                <span>Department</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('admin.position.list') }}" class="">
-                <span>Position</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('admin.organization.list') }}" class="">
+          <ul class="ml-menu">
+            <li>
+              <a href="{{ route('admin.users.list') }}" class="">
+                <span>Users</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('admin.user.account.list') }}" class="">
+                <span>User Accounts</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('admin.course.list') }}" class="">
+                <span>Courses</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('admin.department.list') }}" class="">
+                <span>Departments</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('admin.position.list') }}" class="">
+                <span>Positions</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('admin.organization.list') }}" class="">
                 <span>Organization</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('admin.event.categories.list') }}" class="">
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('admin.event.categories.list') }}" class="">
                 <span>Event Categories</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('admin.event.types.list') }}" class="">
+              </a>
+            </li>
+             <li>
+              <a href="#" class="">
                 <span>Event Types</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('admin.approvers.list') }}" class="">
+              </a>
+            </li>
+            <li>
+              <a href="#" class="">
                 <span>Approvers</span>
-            </a>
+              </a>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>

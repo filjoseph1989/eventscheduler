@@ -72,17 +72,6 @@ class CourseController extends Controller
     }
 
     /**
-     * Return the list of courses
-     *
-     * @return \Illuminate\Response
-     */
-    public function showAll()
-    {
-        $login_type = "admin";
-        return view('pages.users.course-list', compact('login_type'));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id

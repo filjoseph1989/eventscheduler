@@ -58,12 +58,6 @@ class EventCategoriesController extends Controller
         //
     }
 
-    public function showAll()
-    {
-        $login_type = 'admin';
-        return view('pages.users.event-categories-list', compact('login_type'));
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
