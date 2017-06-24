@@ -7,14 +7,41 @@
           level 1
           ☐ accept or reject user registration
           ☐ USERS CRUD
+            ✔ create @done(2017-06-24 21:45)
+            ☐ update
+            ☐ delete
           ☐ users_account
+              ✔ create @done(2017-06-24 21:45)
+              ☐ update
+              ☐ delete
           ☐ courses
+              ✔ create @done(2017-06-24 21:45)
+              ☐ update
+              ☐ delete
           ☐ departments
+              ☐ create
+              ☐ update
+              ☐ delete
           ☐ positions
+              ☐ create
+              ☐ update
+              ☐ delete
           ☐ ORGANIZATION CRUDS
+              ☐ create
+              ☐ update
+              ☐ delete
           ☐ event_categories (public view, among org., within org., or user’s personal)
+              ☐ create
+              ☐ update
+              ☐ delete
           ☐ event_types (meeting, exibit, job fair, etc.)
+              ☐ create
+              ☐ update
+              ☐ delete
           ☐ approvers (osa personnel, org. adviser, org. head, proxy approvers)
+              ☐ create
+              ☐ update
+              ☐ delete
 
           level 2 crud (dependent to level 1)
           ☐ manage schedule (events)

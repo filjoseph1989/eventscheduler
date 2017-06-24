@@ -43,7 +43,8 @@
               </ul>
             </div>
             <div class="body">
-              <form class="" role="form" method="POST" action="{{ route('register') }}">
+              <form class="" role="form" method="POST" action="{{ route('user.registered') }}">
+                {{ csrf_field() }}
                 <div class="row clearfix">
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group form-float form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
@@ -244,6 +245,15 @@
                       </div>
                     </div>
                   </div>
+                  <div class="col-sm-8 col-sm-offset-2">
+                    <button type="submit" class="btn btn-success" name="button">
+                      <i class="material-icons">save</i>
+                      SAVE
+
+
+                    </button>
+                  </div>
+
                 </div>
               </form>
             </div>

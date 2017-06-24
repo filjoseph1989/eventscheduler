@@ -1,5 +1,5 @@
 $(function () {
-    $('.js-sweetalert .users-delete').on('click', function () {
+    $('.delete').on('click', function () {
         var type = $(this).data('type');
         if (type === 'basic') {
             showBasicMessage();

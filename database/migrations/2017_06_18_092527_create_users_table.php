@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('middle_name', '10');
+            $table->string('middle_name', '10')->nullable();;
             $table->string('suffix_name', '10')->nullable();
             $table->string('facebook_username')->unique()->nullable();
             $table->string('twitter_username')->unique()->nullable();

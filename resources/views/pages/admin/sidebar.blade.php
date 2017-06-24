@@ -73,15 +73,15 @@
               </a>
             </li>
             <li>
-              <a href="{{ route('admin.event-categories.list') }}" class="">
+              <a href="{{ route('admin.event.categories.list') }}" class="">
                 <span>Event Categories</span>
               </a>
             </li>
-            <li>
+            <!-- <li>
               <a href="{{ route('admin.event.types.list') }}" class="">
                 <span>Event Types</span>
               </a>
-            </li>
+            </li> -->
             <li>
               <a href="#" class="">
                 <span>Approvers</span>

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\UserAccount;
 use Illuminate\Http\Request;
 
 class UsersAccountAdminController extends Controller
@@ -32,9 +32,11 @@ class UsersAccountAdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $data)
     {
-        //
+        return UserAccount::create([
+            'name' => $data['name'],
+        ]);
     }
 
     /**

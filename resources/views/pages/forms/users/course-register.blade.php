@@ -43,7 +43,8 @@
               </ul>
             </div>
             <div class="body">
-              <form class="" role="form" method="POST" action="">
+              <form class="" role="form" method="POST" action="{{ route('course.registered') }}">
+                  {{ csrf_field() }}
                 <div class="row clearfix">
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group form-float form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -59,7 +60,7 @@
                 </div>
                 <div class="row clearfix">
                     <div class="col-sm-8 col-sm-offset-2">
-                        <button href="" type="button" class="btn btn-success" name="button">
+                        <button href="" type="submit" class="btn btn-success" name="button">
                             <i class="material-icons">save</i> Save
                         </button>
                     </div>

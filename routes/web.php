@@ -17,8 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::name('/home')->get('/home', 'HomeController@index');
-Route::name('/user.logout')->get('users/logout', 'Auth\LoginController@userLogout');
+Route::name('home')->get('/home', 'HomeController@index');
+Route::name('user.logout')->get('users/logout', 'Auth\LoginController@userLogout');
 /*
 |--------------------------------------------------------------------------
 | Admin route
@@ -63,13 +63,16 @@ Route::name('faceboo.notification')->get('/fb/post', 'HomeController@sendNotific
 |--------------------------------------------------------------------------
 */
 Route::prefix('users')->group(function() {
-    Route::name('user.register')->get('/register', 'UsersController@showRegisterForm');
+    // Route::name('user.register')->get('/register', 'UsersController@showRegisterForm');
+    Route::name('user.registered')->post('/registered', 'UsersController@create');
 });
 
 Route::prefix('user-accounts')->group(function() {
     Route::name('user-account.register')->get('/register', 'UsersAccountAdminController@showRegisterForm');
+    Route::name('user-account.registered')->post('/registered', 'UsersAccountAdminController@create');
 });
 
 Route::prefix('course')->group(function() {
     Route::name('course.register')->get('/register', 'CourseController@showRegisterForm');
+    Route::name('course.registered')->post('/registered', 'CourseController@create');
 });

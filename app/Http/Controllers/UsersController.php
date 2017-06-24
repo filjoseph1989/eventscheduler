@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Admin;
+use App\User;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -18,6 +19,17 @@ class UsersController extends Controller
         $this->middleware('web');
     }
 
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'middle_name' => 'required|string|max:255',
+            'suffix_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -33,9 +45,27 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $data)
     {
-        //
+      // dd($data);
+      return User::create([
+          'user_account_id'    => $data['user_account_id'],
+          'course_id'          => $data['course_id'],
+          'department_id'      => $data['department_id'],
+          'position_id'        => $data['position_id'],
+          'account_number'     => $data['account_number'],
+          'email'              => $data['email'],
+          'password'           => bcrypt($data['password']),
+          'first_name'         => $data['first_name'],
+          'last_name'          => $data['last_name'],
+          'middle_name'        => $data['middle_name'],
+          'suffix_name'        => $data['suffix_name'],
+          'facebook_username'  => $data['facebook_username'],
+          'twitter_username'   => $data['twitter_username'],
+          'instagram_username' => $data['instagram_username'],
+          'mobile_number'      => $data['mobile_number'],
+          'status'             => $data['status'],
+      ]);
     }
 
     /**
