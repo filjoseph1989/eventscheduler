@@ -2,10 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use App\Admin;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('web');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -48,9 +60,15 @@ class UsersController extends Controller
         //
     }
 
+    /**
+     * Display the user form for registration
+     *
+     * @return
+     */
     public function showRegisterForm()
     {
-        return view('pages.users.register');
+        $register = 'user';
+        return view('pages.forms.users.register', compact('register'));
     }
 
     /**

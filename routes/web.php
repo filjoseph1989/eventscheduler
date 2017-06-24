@@ -25,6 +25,8 @@ Route::name('home')->get('/home', 'HomeController@index');
 */
 Route::prefix('admin')->group(function() {
   Route::name('admin.login')->get('/admin-login', 'Auth\AdminLoginController@showLoginForm');
+  Route::name('admin.users.list')->get('/users/list', 'AdminController@showAll');
+  Route::name('admin.user.register')->get('/register', 'AdminController@showRegisterForm');
   Route::name('admin.login.submit')->post('/login', 'Auth\AdminLoginController@login');
   Route::name('admin.dashboard')->get('/', 'AdminController@index');
 });

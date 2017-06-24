@@ -26,4 +26,26 @@ class AdminController extends Controller
         session(['class' => parent::getTheme()]);
         return view('pages.admin.admin');
     }
+
+    /**
+     * Display all users list in admin dashboard
+     *
+     * @return \Illuminate\Response
+     */
+    public function showAll()
+    {
+        $login_type = 'admin';
+        return view('pages.users.users-list', compact('login_type'));
+    }
+
+    /**
+     * Display the user form for registration
+     *
+     * @return
+     */
+    public function showRegisterForm()
+    {
+        $login_type = 'admin';
+        return view('pages.forms.users.register', compact('login_type'));
+    }
 }
