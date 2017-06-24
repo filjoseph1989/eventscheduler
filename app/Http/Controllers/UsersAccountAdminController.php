@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-use App\Admin;
 use Illuminate\Http\Request;
 
-class UsersController extends Controller
+class UsersAccountAdminController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -15,7 +13,8 @@ class UsersController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('web');
+        $this->middleware('auth:admin');
+        session(['class' => parent::getTheme()]);
     }
 
     /**
@@ -61,14 +60,26 @@ class UsersController extends Controller
     }
 
     /**
-     * Display the user form for registration
+     * Return the list of user account to be displayed
+     * in the dashboard
      *
-     * @return
+     * @return \Illuminate\Response
+     */
+    public function showAll()
+    {
+        $login_type = 'admin';
+        return view('pages.users.users-account-list', compact('login_type'));
+    }
+
+    /**
+     * Return registration form to be display in the dashboard
+     *
+     * @return \Illuminate\Response
      */
     public function showRegisterForm()
     {
-        $login_type = 'user';
-        return view('pages.forms.users.register', compact('login_type'));
+        $login_type = 'admin';
+        return view('pages.forms.users.user-account-register', compact('login_type'));
     }
 
     /**

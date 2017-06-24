@@ -60,7 +60,7 @@
                                         <td>Jr</td>
                                         <td>john@email.com</td>
                                         <td>
-                                            <a href="#" class="users-delete waves-effect" data-type="cancel"> <i class="material-icons">delete</i> </a>
+                                            <a href="#" class="users-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
                                             <a href="#" class="users-edit" data-toggle="modal" data-target="#edit-user"> <i class="material-icons">mode_edit</i> </a>
                                         </td>
                                     </tr>
@@ -72,7 +72,7 @@
                                         <td>Jr</td>
                                         <td>john@email.com</td>
                                         <td>
-                                            <a href="#" class="users-delete"> <i class="material-icons">delete</i> </a>
+                                            <a href="#" class="users-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
                                             <a href="#" class="users-edit" data-toggle="modal" data-target="#edit-user"> <i class="material-icons">mode_edit</i> </a>
                                         </td>
                                     </tr>
@@ -84,7 +84,7 @@
                                         <td>Jr</td>
                                         <td>john@email.com</td>
                                         <td>
-                                            <a href="#" class="users-delete"> <i class="material-icons">delete</i> </a>
+                                            <a href="#" class="users-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
                                             <a href="#" class="users-edit" data-toggle="modal" data-target="#edit-user"> <i class="material-icons">mode_edit</i> </a>
                                         </td>
                                     </tr>
@@ -96,7 +96,7 @@
                                         <td>Jr</td>
                                         <td>john@email.com</td>
                                         <td>
-                                            <a href="#" class="users-delete"> <i class="material-icons">delete</i> </a>
+                                            <a href="#" class="users-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
                                             <a href="#" class="users-edit" data-toggle="modal" data-target="#edit-user"> <i class="material-icons">mode_edit</i> </a>
                                         </td>
                                     </tr>
@@ -108,7 +108,7 @@
                                         <td>Jr</td>
                                         <td>john@email.com</td>
                                         <td>
-                                            <a href="#" class="users-delete"> <i class="material-icons">delete</i> </a>
+                                            <a href="#" class="users-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
                                             <a href="#" class="users-edit" data-toggle="modal" data-target="#edit-user"> <i class="material-icons">mode_edit</i> </a>
                                         </td>
                                     </tr>
@@ -120,7 +120,7 @@
                                         <td>Jr</td>
                                         <td>john@email.com</td>
                                         <td>
-                                            <a href="#" class="users-delete"> <i class="material-icons">delete</i> </a>
+                                            <a href="#" class="users-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
                                             <a href="#" class="users-edit" data-toggle="modal" data-target="#edit-user"> <i class="material-icons">mode_edit</i> </a>
                                         </td>
                                     </tr>
@@ -132,7 +132,7 @@
                                         <td>Jr</td>
                                         <td>john@email.com</td>
                                         <td>
-                                            <a href="#" class="users-delete"> <i class="material-icons">delete</i> </a>
+                                            <a href="#" class="users-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
                                             <a href="#" class="users-edit" data-toggle="modal" data-target="#edit-user"> <i class="material-icons">mode_edit</i> </a>
                                         </td>
                                     </tr>
@@ -144,7 +144,7 @@
                                         <td>Jr</td>
                                         <td>john@email.com</td>
                                         <td>
-                                            <a href="#" class="users-delete"> <i class="material-icons">delete</i> </a>
+                                            <a href="#" class="users-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
                                             <a href="#" class="users-edit" data-toggle="modal" data-target="#edit-user"> <i class="material-icons">mode_edit</i> </a>
                                         </td>
                                     </tr>
@@ -156,7 +156,7 @@
                                         <td>Jr</td>
                                         <td>john@email.com</td>
                                         <td>
-                                            <a href="#" class="users-delete"> <i class="material-icons">delete</i> </a>
+                                            <a href="#" class="users-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
                                             <a href="#" class="users-edit" data-toggle="modal" data-target="#edit-user"> <i class="material-icons">mode_edit</i> </a>
                                         </td>
                                     </tr>
@@ -168,7 +168,7 @@
                                         <td>Jr</td>
                                         <td>john@email.com</td>
                                         <td>
-                                            <a href="#" class="users-delete"> <i class="material-icons">delete</i> </a>
+                                            <a href="#" class="users-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
                                             <a href="#" class="users-edit" data-toggle="modal" data-target="#edit-user"> <i class="material-icons">mode_edit</i> </a>
                                         </td>
                                     </tr>
@@ -180,7 +180,7 @@
                                         <td>Jr</td>
                                         <td>john@email.com</td>
                                         <td>
-                                            <a href="#" class="users-delete"> <i class="material-icons">delete</i> </a>
+                                            <a href="#" class="users-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
                                             <a href="#" class="users-edit" data-toggle="modal" data-target="#edit-user"> <i class="material-icons">mode_edit</i> </a>
                                         </td>
                                     </tr>
@@ -192,7 +192,7 @@
                                         <td>Jr</td>
                                         <td>john@email.com</td>
                                         <td>
-                                            <a href="#" class="users-delete"> <i class="material-icons">delete</i> </a>
+                                            <a href="#" class="users-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
                                             <a href="#" class="users-edit" data-toggle="modal" data-target="#edit-user"> <i class="material-icons">mode_edit</i> </a>
                                         </td>
                                     </tr>
@@ -204,7 +204,7 @@
                                         <td>Jr</td>
                                         <td>john@email.com</td>
                                         <td>
-                                            <a href="#" class="users-delete"> <i class="material-icons">delete</i> </a>
+                                            <a href="#" class="users-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
                                             <a href="#" class="users-edit" data-toggle="modal" data-target="#edit-user"> <i class="material-icons">mode_edit</i> </a>
                                         </td>
                                     </tr>
@@ -216,7 +216,7 @@
                                         <td>Jr</td>
                                         <td>john@email.com</td>
                                         <td>
-                                            <a href="#" class="users-delete"> <i class="material-icons">delete</i> </a>
+                                            <a href="#" class="users-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
                                             <a href="#" class="users-edit" data-toggle="modal" data-target="#edit-user"> <i class="material-icons">mode_edit</i> </a>
                                         </td>
                                     </tr>
@@ -228,7 +228,7 @@
                                         <td>Jr</td>
                                         <td>john@email.com</td>
                                         <td>
-                                            <a href="#" class="users-delete"> <i class="material-icons">delete</i> </a>
+                                            <a href="#" class="users-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
                                             <a href="#" class="users-edit" data-toggle="modal" data-target="#edit-user"> <i class="material-icons">mode_edit</i> </a>
                                         </td>
                                     </tr>
@@ -240,7 +240,7 @@
                                         <td>Jr</td>
                                         <td>john@email.com</td>
                                         <td>
-                                            <a href="#" class="users-delete"> <i class="material-icons">delete</i> </a>
+                                            <a href="#" class="users-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
                                             <a href="#" class="users-edit" data-toggle="modal" data-target="#edit-user"> <i class="material-icons">mode_edit</i> </a>
                                         </td>
                                     </tr>
@@ -252,7 +252,7 @@
                                         <td>Jr</td>
                                         <td>john@email.com</td>
                                         <td>
-                                            <a href="#" class="users-delete"> <i class="material-icons">delete</i> </a>
+                                            <a href="#" class="users-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
                                             <a href="#" class="users-edit" data-toggle="modal" data-target="#edit-user"> <i class="material-icons">mode_edit</i> </a>
                                         </td>
                                     </tr>
@@ -264,7 +264,7 @@
                                         <td>Jr</td>
                                         <td>john@email.com</td>
                                         <td>
-                                            <a href="#" class="users-delete"> <i class="material-icons">delete</i> </a>
+                                            <a href="#" class="users-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
                                             <a href="#" class="users-edit" data-toggle="modal" data-target="#edit-user"> <i class="material-icons">mode_edit</i> </a>
                                         </td>
                                     </tr>

@@ -14,6 +14,7 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->middleware('auth:admin');
+        session(['class' => parent::getTheme()]);
     }
 
     /**
@@ -23,7 +24,6 @@ class AdminController extends Controller
      */
     public function index()
     {
-        session(['class' => parent::getTheme()]);
         return view('pages.admin.admin');
     }
 

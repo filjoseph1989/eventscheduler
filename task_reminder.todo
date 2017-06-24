@@ -1,4 +1,5 @@
 To DO:
+  ☐ Reminder 6: You can minimize the form in admin when your using ajax
   ☐ Reminder 5: Place somewhere this method showRegisterForm() from both UsersController and AdminController wher both of the controller can benefit
   ☐ Reminder 4: Remove this path resources\views\pages\sidebar.blade.php, users are now using resources\views\pages\users\sidebar.blade.php
   ☐ Reminder 3: Combine the registration form use by the user and the registration form use by the admin located at views/forms

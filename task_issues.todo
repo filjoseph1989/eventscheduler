@@ -1,4 +1,5 @@
 To Do:
+    ☐ Issue 14: How to switch guards on some controllers generated
     ☐ Issue 13: $login_type = 'admin'; in some controller could be replace by auth::check()
     ✔ Issue 12: The admin page is not rendering properly @done(2017-06-23 10:17) @project(To Do)
     ☐ Issue 11: (This issue will be applied next) how to send invitation on facebook, twitter, instagram?

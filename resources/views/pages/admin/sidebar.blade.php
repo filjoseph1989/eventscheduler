@@ -48,43 +48,38 @@
               </a>
             </li>
             <li>
-              <a href="#" class="">
+              <a href="{{ route('admin.user.account.list') }}" class="">
                 <span>User Accounts</span>
               </a>
             </li>
             <li>
-              <a href="#" class="">
+              <a href="{{ route('admin.course.list') }}" class="">
                 <span>Courses</span>
               </a>
             </li>
             <li>
-              <a href="#" class="">
+              <a href="{{ route('admin.department.list') }}" class="">
                 <span>Departments</span>
               </a>
             </li>
             <li>
-              <a href="#" class="">
+              <a href="{{ route('admin.position.list') }}" class="">
                 <span>Positions</span>
               </a>
             </li>
             <li>
-              <a href="#" class="">
+              <a href="{{ route('admin.organization.list') }}" class="">
                 <span>Organization</span>
               </a>
             </li>
             <li>
-              <a href="#" class="">
+              <a href="{{ route('admin.event-categories.list') }}" class="">
                 <span>Event Categories</span>
               </a>
             </li>
             <li>
-              <a href="#" class="">
+              <a href="{{ route('admin.event.types.list') }}" class="">
                 <span>Event Types</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="">
-                <span>Approvers</span>
               </a>
             </li>
             <li>
