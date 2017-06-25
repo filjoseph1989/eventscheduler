@@ -1,11 +1,5 @@
 @extends('layouts.master')
 
-@section('style')
-  <link rel="stylesheet" href="{{ asset('css/waitMe.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/bootstrap-select.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/bootstrap-material-datetimepicker.css') }}">
-@endsection
-
 @section('content')
   <div class="signup-box">
     @if (session('status'))
@@ -41,7 +35,7 @@
               <i class="material-icons">lock</i>
             </span>
             <div class="form-line">
-              <input type="password" class="form-control" id="password" name="password" required>
+              <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
               @if ($errors->has('password'))
               <span class="help-block">
                 <strong>{{ $errors->first('password') }}</strong>
@@ -54,7 +48,7 @@
               <i class="material-icons">lock</i>
             </span>
             <div class="form-line">
-              <input type="password" class="form-control" id="confirm-password" name="password_confirmation" required>
+              <input type="password" class="form-control" id="confirm-password" name="password_confirmation" placeholder="Confirm Password" required>
               @if ($errors->has('password_confirmation'))
               <span class="help-block">
                 <strong>{{ $errors->first('password_confirmation') }}</strong>
