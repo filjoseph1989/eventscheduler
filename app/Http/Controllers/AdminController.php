@@ -35,55 +35,55 @@ class AdminController extends Controller
     public function showAllUserList()
     {
         $login_type = 'admin';
-        return view('pages.users.users-list', compact('login_type'));
+        return view('pages.users.list', compact('login_type'));
     }
 
     public function showAllUserAccountList()
     {
         $login_type = 'admin';
-        return view('pages.users.users-account-list', compact('login_type'));
+        return view('pages.users.users-account.list', compact('login_type'));
     }
 
     public function showAllCourseList()
     {
         $login_type = "admin";
-        return view('pages.users.course-list', compact('login_type'));
+        return view('pages.users.course.list', compact('login_type'));
     }
 
     public function showAllDepartmentList()
     {
         $login_type = "admin";
-        return view('pages.users.course-list', compact('login_type'));
+        return view('pages.users.course.list', compact('login_type'));
     }
 
     public function showAllPositionList()
     {
         $login_type = "admin";
-        return view('pages.users.course-list', compact('login_type'));
+        return view('pages.users.course.list', compact('login_type'));
     }
 
     public function showAllOrganizationList()
     {
         $login_type = "admin";
-        return view('pages.users.course-list', compact('login_type'));
+        return view('pages.users.course.list', compact('login_type'));
     }
 
     public function showAllEvenCategoriesList()
     {
         $login_type = 'admin';
-        return view('pages.users.event-categories-list', compact('login_type'));
+        return view('pages.users.event-categories.list', compact('login_type'));
     }
 
     public function showAllEventTypes()
     {
         $login_type = 'admin';
-        return view('pages.users.event-categories-list', compact('login_type'));
+        return view('pages.users.event-categories.list', compact('login_type'));
     }
 
     public function showAllApprovers()
     {
         $login_type = 'admin';
-        return view('pages.users.event-categories-list', compact('login_type'));
+        return view('pages.users.event-categories.list', compact('login_type'));
     }
 
     /**
