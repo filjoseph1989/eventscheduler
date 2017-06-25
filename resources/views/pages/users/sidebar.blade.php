@@ -47,7 +47,7 @@
                 <span>Organizations</span>
               </a>
               <ul class="ml-menu">
-                <li><a href="{{ route('organization.list') }}">List of Organizations</a></li>
+                <li><a href="{{ route('user.organization.list') }}">List of Organizations</a></li>
               </ul>
             </li>
             <li>

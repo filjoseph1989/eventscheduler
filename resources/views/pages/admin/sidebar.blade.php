@@ -61,7 +61,7 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('admin.organization.list') }}" class="">
+            <a href="{{ route('admin.user.organization.list') }}" class="">
                 <span>Organization</span>
             </a>
         </li>
