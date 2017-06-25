@@ -43,7 +43,7 @@
               </ul>
             </div>
             <div class="body">
-              <form class="" role="form" method="POST" action="{{ route('course.registered') }}">
+              <form class="" role="form" method="POST" action="{{ route('user.course.registered') }}">
                   {{ csrf_field() }}
                 <div class="row clearfix">
                   <div class="col-sm-8 col-sm-offset-2">
