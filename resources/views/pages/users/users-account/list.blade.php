@@ -76,7 +76,7 @@
                                     </tr>
                                 </tfoot>
                             </table>
-                            <a href="{{ route('user-account.register') }}" type="button" class="btn btn-success" name="button">
+                            <a href="{{ route('user.account.register') }}" type="button" class="btn btn-success" name="button">
                                 <i class="material-icons">add</i> Add New
                             </a>
                         </div>

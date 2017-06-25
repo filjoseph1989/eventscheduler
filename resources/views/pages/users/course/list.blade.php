@@ -24,7 +24,7 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> LIST OF EVENT CATEGORIES </h2>
+                <h2> LIST OF UNIVERSITY COURSES </h2>
                 <ul class="header-dropdown m-r--5">
                   <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -48,31 +48,24 @@
                   </thead>
                   <tbody class="js-sweetalert">
                     <tr>
-                      <td>Team Building</td>
+                      <td>Bachelor of Science in Computer Science</td>
                       <td>
-                        <a href="#" class="events-categories-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
-                        <a href="#" class="events-categories-edit" data-toggle="modal" data-target="#edit-event-categories"> <i class="material-icons">mode_edit</i> </a>
+                        <a href="#" class="users-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
+                        <a href="#" class="users-edit" data-toggle="modal" data-target="#edit-course"> <i class="material-icons">mode_edit</i> </a>
                       </td>
                     </tr>
                     <tr>
-                      <td>Summit</td>
+                      <td>Bachelor of Science in Information Technology</td>
                       <td>
-                        <a href="#" class="events-categories-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
-                        <a href="#" class="events-categories-edit" data-toggle="modal" data-target="#edit-event-categories"> <i class="material-icons">mode_edit</i> </a>
+                        <a href="#" class="users-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
+                        <a href="#" class="users-edit" data-toggle="modal" data-target="#edit-course"> <i class="material-icons">mode_edit</i> </a>
                       </td>
                     </tr>
                     <tr>
-                      <td>Trade Shows</td>
+                      <td>Bachelor of Science in Engineering</td>
                       <td>
-                        <a href="#" class="events-categories-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
-                        <a href="#" class="events-categories-edit" data-toggle="modal" data-target="#edit-event-categories"> <i class="material-icons">mode_edit</i> </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Press Conference</td>
-                      <td>
-                        <a href="#" class="events-categories-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
-                        <a href="#" class="events-categories-edit" data-toggle="modal" data-target="#edit-event-categories"> <i class="material-icons">mode_edit</i> </a>
+                        <a href="#" class="users-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
+                        <a href="#" class="users-edit" data-toggle="modal" data-target="#edit-course"> <i class="material-icons">mode_edit</i> </a>
                       </td>
                     </tr>
                   </tbody>
@@ -83,7 +76,7 @@
                     </tr>
                   </tfoot>
                 </table>
-                <a href="{{ route('user-account.register') }}" type="button" class="btn btn-success" name="button">
+                <a href="{{ route('user.course.register') }}" type="button" class="btn btn-success" name="button">
                   <i class="material-icons">add</i> Add New
                 </a>
               </div>
@@ -96,31 +89,31 @@
 @endsection
 
 @section('modal')
-<div class="modal fade" id="edit-event-categories" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="">Edit Event Categories</h4>
-      </div>
-      <div class="modal-body">
-          <div class="form-group form-float form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-            <div class="form-line">
-              <input type="text" class="form-control" name="name">
-              <label class="form-label">Name</label>
-              @if ($errors->has('name'))
+    <div class="modal fade" id="edit-course" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="">Edit User Account</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group form-float form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+              <div class="form-line">
+                <input type="text" class="form-control" name="name">
+                <label class="form-label">Name</label>
+                @if ($errors->has('name'))
                 <span class="help-block"> <strong>{{ $errors->first('name') }}</strong> </span>
-              @endif
+                @endif
+              </div>
             </div>
           </div>
-      </div>
-      <div class="modal-footer">
-          <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
-          <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
+            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 @endsection
 
 @section('footer')
