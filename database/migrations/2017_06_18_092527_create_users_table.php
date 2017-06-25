@@ -13,6 +13,14 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        /**
+         * A reminder, I comment those database column that has unique for a moment
+         * to allow seeder entry of duplicate
+         *
+         * uncomment those later on
+         * 
+         * @var [type]
+         */
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_account_id')->unsigned()->index();
@@ -23,16 +31,20 @@ class CreateUsersTable extends Migration
             $table->foreign('department_id')->references('id')->on('departments');
             $table->integer('position_id')->unsigned()->index();
             $table->foreign('position_id')->references('id')->on('positions');
-            $table->string('account_number')->unique();
+            $table->string('account_number');
+            // $table->string('account_number')->unique();
             $table->string('email')->unique();
             $table->string('password');
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('middle_name', '10')->nullable();;
+            $table->string('middle_name', '10')->nullable();
             $table->string('suffix_name', '10')->nullable();
-            $table->string('facebook_username')->unique()->nullable();
-            $table->string('twitter_username')->unique()->nullable();
-            $table->string('instagram_username')->unique()->nullable();
+            $table->string('facebook_username')->nullable();
+            $table->string('twitter_username')->nullable();
+            $table->string('instagram_username')->nullable();
+            // $table->string('facebook_username')->nullable()->unique();
+            // $table->string('twitter_username')->nullable()->unique();
+            // $table->string('instagram_username')->nullable()->unique();
             $table->string('mobile_number', '12');
             $table->tinyInteger('status')->default(0);
             $table->rememberToken();
