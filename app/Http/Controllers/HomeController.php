@@ -26,7 +26,8 @@ class HomeController extends Controller
   public function index()
   {
     session(['class' => 'theme-red']);
-    return view('pages.home');
+    $login_type = 'user';
+    return view('pages.home', compact('login_type'));
   }
 
   public function sendNotification()

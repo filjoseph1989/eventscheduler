@@ -55,7 +55,7 @@
                     <span>Users</span>
                 </a>
                 <ul class="ml-menu">
-                    <li><a href="{{ route('user.register') }}">Register User</a></li>
+                    <li><a href="{{ route('register') }}">Register User</a></li>
                 </ul>
             </li>
           </ul>

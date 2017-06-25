@@ -9,7 +9,11 @@
 @section('content')
   @include('pages.top-nav')
 
-  @include('pages.sidebar')
+  <?php if (isset($login_type) and $login_type == 'user'): ?>
+    @include('pages.users.sidebar')
+  <?php elseif (isset($login_type) and $login_type == 'admin'): ?>
+    @include('pages.admin.sidebar')
+  <?php endif; ?>
 
   <section class="content">
     <div class="container-fluid">
