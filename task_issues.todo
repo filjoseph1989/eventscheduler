@@ -1,5 +1,5 @@
 To Do:
-    ☐ Issue 15: Add icons on sidebar for admin
+    ✔ Issue 15: Add icons on sidebar for admin @done(2017-06-25 22:49) @project(To Do)
     ☐ Issue 14: How to switch guards on some controllers generated
     ☐ Issue 13: $login_type = 'admin'; in some controller could be replace by auth::check()
     ✔ Issue 12: The admin page is not rendering properly @done(2017-06-23 10:17) @project(To Do)

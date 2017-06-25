@@ -37,8 +37,10 @@ Route::prefix('admin')->group(function() {
   Route::name('admin.event.types.list')->get('/event/types/list', 'AdminController@showAllEventTypes');
   Route::name('admin.approvers.list')->get('/approvers/list', 'AdminController@showAllApprovers');
   Route::name('admin.login.submit')->post('/login', 'Auth\AdminLoginController@login');
-  Route::name('admin.dashboard')->get('/', 'AdminController@index');
   Route::name('admin.logout')->get('/logout', 'Auth\LoginController@adminLogout');
+  Route::name('admin.password.request')->get('/forgot/password', 'Auth\ForgotPasswordController@showAdminLinkRequestForm');
+  Route::name('admin.password.email')->post('/forgot/password/link', 'Auth\AdminForgotPasswordController@sendResetLinkEmail');
+  Route::name('admin.dashboard')->get('/', 'AdminController@index');
 });
 /*
 |--------------------------------------------------------------------------

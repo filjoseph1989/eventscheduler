@@ -4,4 +4,4 @@ To DO:
   ☐ Reminder 4: Remove this path resources\views\pages\sidebar.blade.php, users are now using resources\views\pages\users\sidebar.blade.php
   ☐ Reminder 3: Combine the registration form use by the user and the registration form use by the admin located at views/forms
   ☐ Reminder 2: If something is not working on forms, review all css and js in documentation
-  ☐ Reminder 1: Study the forgot password html put in view/auth, its useful for making forgot password function
+  ✔ Reminder 1: Study the forgot password html put in view/auth, its useful for making forgot password function @done(2017-06-25 22:49) @project(To DO)
