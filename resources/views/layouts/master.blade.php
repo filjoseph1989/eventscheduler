@@ -13,7 +13,7 @@
   <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet">
   <link href="{{asset('css/waves.css')}}" rel="stylesheet" />
   <link href="{{asset('css/animate.css')}}" rel="stylesheet" />
-  <link href="{{asset('css/style.css')}}?v=0.3" rel="stylesheet">
+  <link href="{{asset('css/style.css')}}?v=0.4" rel="stylesheet">
 
   @yield('style')
 </head>

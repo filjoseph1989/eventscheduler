@@ -16,35 +16,46 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
 Route::name('home')->get('/home', 'HomeController@index');
-Route::name('user.logout')->get('users/logout', 'Auth\LoginController@userLogout');
 /*
 |--------------------------------------------------------------------------
 | Admin route
 |--------------------------------------------------------------------------
 */
 Route::prefix('admin')->group(function() {
-  Route::name('admin.login')->get('/admin-login', 'Auth\AdminLoginController@showLoginForm');
-  Route::name('admin.users.list')->get('/users/list', 'AdminController@showAllUserList');
-  Route::name('admin.user.account.list')->get('/users/account/list', 'AdminController@showAllUserAccountList');
-  Route::name('admin.course.list')->get('/course/list', 'AdminController@showAllCourseList');
-  Route::name('admin.user.register')->get('/register', 'AdminController@showRegisterForm');
-  Route::name('admin.department.list')->get('/department/list', 'AdminController@showAllDepartmentList');
-  Route::name('admin.position.list')->get('/position/list', 'AdminController@showAllPositionList');
-  Route::name('admin.user.organization.list')->get('/organization/list', 'AdminController@showAllOrganizationList');
-  Route::name('admin.event.categories.list')->get('/event/categories/list', 'AdminController@showAllEvenCategoriesList');
-  Route::name('admin.event.types.list')->get('/event/types/list', 'AdminController@showAllEventTypes');
-  Route::name('admin.approvers.list')->get('/approvers/list', 'AdminController@showAllApprovers');
-  Route::name('admin.login.submit')->post('/login', 'Auth\AdminLoginController@login');
-  Route::name('admin.logout')->get('/logout', 'Auth\LoginController@adminLogout');
-  Route::name('admin.password.request')->get('/forgot/password', 'Auth\ForgotPasswordController@showAdminLinkRequestForm');
-  Route::name('admin.password.email')->post('/forgot/password/link', 'Auth\AdminForgotPasswordController@sendResetLinkEmail');
-  Route::name('admin.dashboard')->get('/', 'AdminController@index');
+    # users
+    Route::name('admin.user.list')->get('/users/list', 'AdminController@showAllUserList');
+    Route::name('admin.user.account.list')->get('/users/account/list', 'AdminController@showAllUserAccountList');
+    Route::name('admin.user.register')->get('/register', 'AdminController@showRegisterForm');
+    Route::name('admin.user.organization.list')->get('/organization/list', 'AdminController@showAllOrganizationList');
+
+    # Events
+    Route::name('admin.event.categories.list')->get('/event/categories/list', 'AdminController@showAllEvenCategoriesList');
+    Route::name('admin.event.types.list')->get('/event/types/list', 'AdminController@showAllEventTypes');
+
+    # Others
+    Route::name('admin.course.list')->get('/course/list', 'AdminController@showAllCourseList');
+    Route::name('admin.department.list')->get('/department/list', 'AdminController@showAllDepartmentList');
+    Route::name('admin.position.list')->get('/position/list', 'AdminController@showAllPositionList');
+    Route::name('admin.approvers.list')->get('/approvers/list', 'AdminController@showAllApprovers');
+
+    # Authentication
+    Route::name('admin.login')->get('/admin-login', 'Auth\AdminLoginController@showLoginForm');
+    Route::name('admin.login.submit')->post('/login', 'Auth\AdminLoginController@login');
+    Route::name('admin.logout')->get('/logout', 'Auth\LoginController@adminLogout');
+
+    Route::name('admin.password.request')->get('/forgot/password', 'Auth\AdminForgotPasswordController@showAdminLinkRequestForm');
+    Route::name('admin.password.email')->post('/forgot/password/link', 'Auth\AdminForgotPasswordController@sendResetLinkEmail');
+    Route::name('admin.password.reset')->get('/forgot/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm');
+    Route::name('admin.password.request')->post('/forgot/password/reset', 'Auth\AdminResetPasswordController@reset');
+
+
+    # Dashboard
+    Route::name('admin.dashboard')->get('/', 'AdminController@index');
 });
 /*
 |--------------------------------------------------------------------------
-| Auth Routes
+| Users Routes
 |--------------------------------------------------------------------------
 */
 Route::prefix('users')->group(function() {
@@ -55,6 +66,7 @@ Route::prefix('users')->group(function() {
     Route::name('user.course.registered')->post('/course/registered', 'CourseController@create');
     Route::name('user.organization.list')->get('/organization/list', 'OrganizationController@index');
     Route::name('user.organization.add')->get('/organization/add', 'OrganizationController@create');
+    Route::name('user.logout')->get('/logout', 'Auth\LoginController@userLogout');
 });
 /*
 |--------------------------------------------------------------------------

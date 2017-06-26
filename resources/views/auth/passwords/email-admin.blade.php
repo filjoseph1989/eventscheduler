@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('page-title', 'Request New Password')
+
 @section('content')
   <div class="signup-box">
     @if (session('status'))

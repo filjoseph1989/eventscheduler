@@ -38,25 +38,37 @@
         </li>
         <li>
           <a href="#" class="menu-toggle">
-            <i class="material-icons">widgets</i>
-            <span>Widgets</span>
+            <i class="material-icons">supervisor_account</i>
+            <span>Organization</span>
           </a>
           <ul class="ml-menu">
             <li>
-              <a href="#" class="menu-toggle">
-                <span>Organizations</span>
+              <a href="{{ route('user.organization.list') }}">
+                <span>List of Organization</span>
               </a>
-              <ul class="ml-menu">
-                <li><a href="{{ route('user.organization.list') }}">List of Organizations</a></li>
-              </ul>
             </li>
             <li>
-                <a href="#" class="menu-toggle">
-                    <span>Users</span>
-                </a>
-                <ul class="ml-menu">
-                    <li><a href="{{ route('register') }}">Register User</a></li>
-                </ul>
+              <a href="{{ route('user.organization.list') }}">
+                <span>Add Member</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('user.organization.list') }}">
+                <span>Create Event</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" class="menu-toggle">
+            <i class="material-icons">person</i>
+            <span>User</span>
+          </a>
+          <ul class="ml-menu">
+            <li>
+              <a href="{{ route('register') }}">
+                <span>Add New</span>
+              </a>
             </li>
           </ul>
         </li>

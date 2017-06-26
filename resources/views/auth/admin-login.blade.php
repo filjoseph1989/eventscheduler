@@ -1,10 +1,11 @@
 @extends('layouts.master')
 
+@section('page-title', 'Admin Login')
+
 @section('content')
   <div class="login-box">
     <div class="logo">
-        <a href="#">Event<b>Scheduler</b></a>
-        <small>Admin Login</small>
+      <a href="#">Event<b>Scheduler</b></a>
     </div>
     <div class="card">
       <div class="body">

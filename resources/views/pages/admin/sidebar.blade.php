@@ -36,7 +36,7 @@
           </a>
         </li>
         <li>
-          <a href="{{ route('admin.users.list') }}">
+          <a href="{{ route('admin.user.list') }}">
             <span>Manage Users</span>
           </a>
         </li>
