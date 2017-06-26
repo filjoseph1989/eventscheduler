@@ -1,13 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Auth;
-use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class UsersController extends Controller
+class AdminUserController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -16,20 +13,9 @@ class UsersController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('web');
+        $this->middleware('auth:admin');
     }
 
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'first_name'  => 'required|string|max:255',
-            'last_name'   => 'required|string|max:255',
-            'middle_name' => 'required|string|max:255',
-            'suffix_name' => 'required|string|max:255',
-            'email'       => 'required|string|email|max:255|unique:users',
-            'password'    => 'required|string|min:6|confirmed',
-        ]);
-    }
     /**
      * Display a listing of the resource.
      *
@@ -87,17 +73,6 @@ class UsersController extends Controller
     public function show($id)
     {
         //
-    }
-
-    /**
-     * Display the user form for registration
-     *
-     * @return
-     */
-    public function showRegisterForm()
-    {
-        $login_type = 'user';
-        return view('pages.forms.users.register', compact('login_type'));
     }
 
     /**

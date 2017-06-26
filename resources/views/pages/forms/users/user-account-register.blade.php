@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page-title', 'User Registration')
+@section('page-title', 'User Account Registration')
 
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/bootstrap-material-datetimepicker.css') }}">
@@ -64,8 +64,7 @@
                             <i class="material-icons">save</i> Save
                         </button>
                     </div>
-                </div>
-
+                </div> 
               </form>
             </div>
           </div>

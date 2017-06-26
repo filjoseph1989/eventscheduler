@@ -144,12 +144,13 @@
   <div class="modal fade" id="add-user" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="">Add New User</h4>
-        </div>
-        <div class="modal-body">
-          <form class="" role="form" method="POST" action="{{ route('register') }}">
+        <form class="" id="user-registration" role="form" method="POST" action="{{ route('admin.user.register') }}">
+          {{ csrf_field() }}
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="">Add New User</h4>
+          </div>
+          <div class="modal-body">
             <div class="row clearfix">
               <div class="col-sm-8 col-sm-offset-2">
                 <div class="form-group form-float form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
@@ -157,7 +158,7 @@
                     <input type="text" class="form-control" name="first_name">
                     <label class="form-label">First Name</label>
                     @if ($errors->has('first_name'))
-                      <span class="help-block"> <strong>{{ $errors->first('first_name') }}</strong> </span>
+                    <span class="help-block"> <strong>{{ $errors->first('first_name') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -168,7 +169,7 @@
                     <input type="text" class="form-control" name="last_name">
                     <label class="form-label">Last Name</label>
                     @if ($errors->has('last_name'))
-                      <span class="help-block"> <strong>{{ $errors->first('last_name') }}</strong> </span>
+                    <span class="help-block"> <strong>{{ $errors->first('last_name') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -179,7 +180,7 @@
                     <input type="text" class="form-control" name="middle_name">
                     <label class="form-label">Middle Name</label>
                     @if ($errors->has('middle_name'))
-                      <span class="help-block"> <strong>{{ $errors->first('middle_name') }}</strong> </span>
+                    <span class="help-block"> <strong>{{ $errors->first('middle_name') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -190,7 +191,7 @@
                     <input type="text" class="form-control" name="suffix_name">
                     <label class="form-label">Suffix Name</label>
                     @if ($errors->has('suffix_name'))
-                      <span class="help-block"> <strong>{{ $errors->first('suffix_name') }}</strong> </span>
+                    <span class="help-block"> <strong>{{ $errors->first('suffix_name') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -207,7 +208,7 @@
                       <option value="5">OSA Personnel</option>
                     </select>
                     @if ($errors->has('user_account_id'))
-                      <span class="help-block"> <strong>{{ $errors->first('user_account_id') }}</strong> </span>
+                    <span class="help-block"> <strong>{{ $errors->first('user_account_id') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -224,7 +225,7 @@
                       <option value="5">BA Anthropology</option>
                     </select>
                     @if ($errors->has('course_id'))
-                      <span class="help-block"> <strong>{{ $errors->first('course_id') }}</strong> </span>
+                    <span class="help-block"> <strong>{{ $errors->first('course_id') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -240,7 +241,7 @@
                       <option value="4">School of Management</option>
                     </select>
                     @if ($errors->has('department_id'))
-                      <span class="help-block"> <strong>{{ $errors->first('department_id') }}</strong> </span>
+                    <span class="help-block"> <strong>{{ $errors->first('department_id') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -257,7 +258,7 @@
                       <option value="5">Secretary</option>
                     </select>
                     @if ($errors->has('position'))
-                      <span class="help-block"> <strong>{{ $errors->first('position') }}</strong> </span>
+                    <span class="help-block"> <strong>{{ $errors->first('position') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -268,7 +269,7 @@
                     <input type="text" class="form-control" name="account_number">
                     <label class="form-label">Account Number</label>
                     @if ($errors->has('account_number'))
-                      <span class="help-block"> <strong>{{ $errors->first('account_number') }}</strong> </span>
+                    <span class="help-block"> <strong>{{ $errors->first('account_number') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -279,7 +280,7 @@
                     <input type="text" class="form-control" name="email">
                     <label class="form-label">Email</label>
                     @if ($errors->has('email'))
-                      <span class="help-block"> <strong>{{ $errors->first('email') }}</strong> </span>
+                    <span class="help-block"> <strong>{{ $errors->first('email') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -290,7 +291,18 @@
                     <input type="password" class="form-control" name="password">
                     <label class="form-label">Password</label>
                     @if ($errors->has('password'))
-                      <span class="help-block"> <strong>{{ $errors->first('password') }}</strong> </span>
+                    <span class="help-block"> <strong>{{ $errors->first('password') }}</strong> </span>
+                    @endif
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group form-float form-group{{ $errors->has('confirm_password') ? ' has-error' : '' }}">
+                  <div class="form-line">
+                    <input type="password" class="form-control" name="confirm_password">
+                    <label class="form-label">Confirm Password</label>
+                    @if ($errors->has('confirm_password'))
+                    <span class="help-block"> <strong>{{ $errors->first('confirm_password') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -301,7 +313,7 @@
                     <input type="text" class="form-control" name="facebook_username">
                     <label class="form-label">Facebook Username</label>
                     @if ($errors->has('facebook_username'))
-                      <span class="help-block"> <strong>{{ $errors->first('facebook_username') }}</strong> </span>
+                    <span class="help-block"> <strong>{{ $errors->first('facebook_username') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -312,7 +324,7 @@
                     <input type="text" class="form-control" name="twitter_username">
                     <label class="form-label">Twitter Username</label>
                     @if ($errors->has('twitter_username'))
-                      <span class="help-block"> <strong>{{ $errors->first('twitter_username') }}</strong> </span>
+                    <span class="help-block"> <strong>{{ $errors->first('twitter_username') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -323,7 +335,7 @@
                     <input type="text" class="form-control" name="instagram_username">
                     <label class="form-label">Instagram Username</label>
                     @if ($errors->has('instagram_username'))
-                      <span class="help-block"> <strong>{{ $errors->first('instagram_username') }}</strong> </span>
+                    <span class="help-block"> <strong>{{ $errors->first('instagram_username') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -334,7 +346,7 @@
                     <input type="text" class="form-control" name="mobile_number">
                     <label class="form-label">Mobile Username</label>
                     @if ($errors->has('mobile_number'))
-                      <span class="help-block"> <strong>{{ $errors->first('mobile_number') }}</strong> </span>
+                    <span class="help-block"> <strong>{{ $errors->first('mobile_number') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -344,26 +356,26 @@
                   <div class="form-line">
                     <select class="form-control" name="status">
                       <option value="0">-- Status --</option>
-                      <option value="0">Inactive</option>
                       <option value="1">Active</option>
+                      <option value="0">Inactive</option>
                     </select>
                     @if ($errors->has('status'))
-                      <span class="help-block"> <strong>{{ $errors->first('status') }}</strong> </span>
+                    <span class="help-block"> <strong>{{ $errors->first('status') }}</strong> </span>
                     @endif
                   </div>
                 </div>
               </div>
             </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success">
-            <i class="material-icons">save</i> Save
-          </button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">
-            <i class="material-icons">close</i> Close
-          </button>
-        </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">
+              <i class="material-icons">save</i> Save
+            </button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              <i class="material-icons">close</i> Close
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -381,5 +393,9 @@
   <script src="{{ asset('js/buttons.print.min.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/jquery-datatable.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/jquery.validate.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/dialogs.js') }}?v=0.1" charset="utf-8"></script>
+  <script type="text/javascript">
+    $("#user-registration").validate();
+  </script>
 @endsection

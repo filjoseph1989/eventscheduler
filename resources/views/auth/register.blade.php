@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('page-title', 'user registration')
+
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/waitMe.css') }}">
   <link rel="stylesheet" href="{{ asset('css/bootstrap-select.css') }}">

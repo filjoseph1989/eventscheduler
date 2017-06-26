@@ -14,12 +14,15 @@ class CreateUsersTable extends Migration
     public function up()
     {
         /**
-         * A reminder, I comment those database column that has unique for a moment
-         * to allow seeder entry of duplicate
+         * A reminder, I commented those database column that has unique for a moment
+         * to allow seeder entry of duplicate, while creating a copy of those line which 
+         * is not not unique.
          *
-         * uncomment those later on
+         * uncomment those later on and remove those copies that are not unique to
+         * return to original.
          * 
-         * @var [type]
+         * @type function
+         * @author liz n. d. guzman
          */
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');

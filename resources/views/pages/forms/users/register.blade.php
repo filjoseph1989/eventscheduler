@@ -235,22 +235,14 @@
                     </div>
                   </div>
                   <div class="col-sm-8 col-sm-offset-2">
-                    <div class="form-group form-float form-group{{ $errors->has('status') ? ' has-error' : '' }}">
-                      <div class="form-line">
-                        <input type="text" class="form-control" name="status">
-                        <label class="form-label">Status</label>
-                        @if ($errors->has('status'))
-                          <span class="help-block"> <strong>{{ $errors->first('status') }}</strong> </span>
-                        @endif
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-8 col-sm-offset-2">
                     <button type="submit" class="btn btn-success" name="button">
                       <i class="material-icons">save</i>
                       SAVE
-
-
+                    </button>
+                  </div>
+                  <div class="col-sm-8 col-sm-offset-2">
+                    <button type="submit" class="btn btn-success" name="button">
+                      <i class="material-icons">save</i> SAVE 
                     </button>
                   </div>
 

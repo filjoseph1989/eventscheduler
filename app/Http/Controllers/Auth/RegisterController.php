@@ -48,7 +48,10 @@ class RegisterController extends Controller
   protected function validator(array $data)
   {
       return Validator::make($data, [
-          'name' => 'required|string|max:255',
+          'first_name' => 'required|string|max:255',
+          'last_name' => 'required|string|max:255',
+          'middle_name' => 'required|string|max:255',
+          'suffix_name' => 'required|string|max:255',
           'email' => 'required|string|email|max:255|unique:users',
           'password' => 'required|string|min:6|confirmed',
       ]);
@@ -63,9 +66,21 @@ class RegisterController extends Controller
   protected function create(array $data)
   {
       return User::create([
-          'name' => $data['name'],
-          'email' => $data['email'],
-          'password' => bcrypt($data['password']),
+          'user_account_id'    => $data['user_account_id'],
+          'course_id'          => $data['course_id'],
+          'department_id'      => $data['department_id'],
+          'position_id'        => $data['position_id'],
+          'account_number'     => $data['account_number'],
+          'email'              => $data['email'],
+          'password'           => bcrypt($data['password']),
+          'first_name'         => $data['first_name'],
+          'last_name'          => $data['last_name'],
+          'middle_name'        => $data['middle_name'],
+          'suffix_name'        => $data['suffix_name'],
+          'facebook_username'  => $data['facebook_username'],
+          'twitter_username'   => $data['twitter_username'],
+          'instagram_username' => $data['instagram_username'],
+          'mobile_number'      => $data['mobile_number'],
       ]);
   }
 

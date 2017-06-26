@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page-title', 'User Registration')
+@section('page-title', 'Course Registration')
 
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/bootstrap-material-datetimepicker.css') }}">
