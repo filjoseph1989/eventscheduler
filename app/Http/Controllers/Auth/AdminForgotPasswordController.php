@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Password;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
-use Password;
 
 class AdminForgotPasswordController extends Controller
 {
@@ -31,8 +31,25 @@ class AdminForgotPasswordController extends Controller
         $this->middleware('guest:admin');
     }
 
-    protected function broker()
+    /**
+     * Display the form to request a password reset link.
+     * for admin
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showAdminLinkRequestForm()
     {
-      return Password::broker('admins');
+        session(['class' => 'signup-page']);
+        return view('auth.passwords.email-admin');
+    }
+
+    /**
+     * Get the broker to be used during password reset.
+     *
+     * @return \Illuminate\Contracts\Auth\PasswordBroker
+     */
+    public function broker()
+    {
+        return Password::broker('admins');
     }
 }
