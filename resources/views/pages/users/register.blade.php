@@ -44,7 +44,7 @@
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group form-float form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
                       <div class="form-line">
-                        <input type="text" class="form-control" name="first_name">
+                        <input type="text" class="form-control" name="first_name" required>
                         <label class="form-label">First Name</label>
                         @if ($errors->has('first_name'))
                           <span class="help-block"> <strong>{{ $errors->first('first_name') }}</strong> </span>
@@ -55,7 +55,7 @@
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group form-float form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
                       <div class="form-line">
-                        <input type="text" class="form-control" name="last_name">
+                        <input type="text" class="form-control" name="last_name" required>
                         <label class="form-label">Last Name</label>
                         @if ($errors->has('last_name'))
                           <span class="help-block"> <strong>{{ $errors->first('last_name') }}</strong> </span>
@@ -66,7 +66,7 @@
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group form-float form-group{{ $errors->has('middle_name') ? ' has-error' : '' }}">
                       <div class="form-line">
-                        <input type="text" class="form-control" name="middle_name">
+                        <input type="text" class="form-control" name="middle_name" required>
                         <label class="form-label">Middle Name</label>
                         @if ($errors->has('middle_name'))
                           <span class="help-block"> <strong>{{ $errors->first('middle_name') }}</strong> </span>
@@ -88,7 +88,7 @@
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group form-float form-group{{ $errors->has('user_account_id') ? ' has-error' : '' }}">
                       <div class="form-line">
-                        <select class="form-control show-tick" name="user_account_id">
+                        <select class="form-control show-tick" name="user_account_id" required>
                           <option value="0">-- Account Type --</option>
                           <option value="1">Admin</option>
                           <option value="2">Organization Adviser</option>
@@ -105,7 +105,7 @@
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group form-float form-group{{ $errors->has('course_id') ? ' has-error' : '' }}">
                       <div class="form-line">
-                        <select class="form-control show-tick" name="course_id">
+                        <select class="form-control show-tick" name="course_id" required>
                           <option value="0">-- Course --</option>
                           <option value="1">BSCS</option>
                           <option value="2">Food Technology</option>
@@ -122,7 +122,7 @@
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group form-float form-group{{ $errors->has('department_id') ? ' has-error' : '' }}">
                       <div class="form-line">
-                        <select class="form-control show-tick" name="department_id">
+                        <select class="form-control show-tick" name="department_id" required>
                           <option value="0">-- Department --</option>
                           <option value="1">College of Science and Mathematics</option>
                           <option value="2">College of Humanities and Social Science</option>
@@ -138,7 +138,7 @@
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group form-float form-group{{ $errors->has('position_id') ? ' has-error' : '' }}">
                       <div class="form-line">
-                        <select class="form-control show-tick" name="position_id">
+                        <select class="form-control show-tick" name="position_id" required>
                           <option value="0">-- Position --</option>
                           <option value="1">Chairman</option>
                           <option value="2">Faculty</option>
@@ -155,7 +155,7 @@
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group form-float form-group{{ $errors->has('account_number') ? ' has-error' : '' }}">
                       <div class="form-line">
-                        <input type="text" class="form-control" name="account_number">
+                        <input type="text" class="form-control" name="account_number" required>
                         <label class="form-label">Account Number</label>
                         @if ($errors->has('account_number'))
                           <span class="help-block"> <strong>{{ $errors->first('account_number') }}</strong> </span>
@@ -166,7 +166,7 @@
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group form-float form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                       <div class="form-line">
-                        <input type="text" class="form-control" name="email">
+                        <input type="email" class="form-control" name="email" required>
                         <label class="form-label">Email</label>
                         @if ($errors->has('email'))
                           <span class="help-block"> <strong>{{ $errors->first('email') }}</strong> </span>
@@ -177,10 +177,21 @@
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group form-float form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                       <div class="form-line">
-                        <input type="password" class="form-control" name="password">
+                        <input type="password" class="form-control" name="password" required>
                         <label class="form-label">Password</label>
                         @if ($errors->has('password'))
                           <span class="help-block"> <strong>{{ $errors->first('password') }}</strong> </span>
+                        @endif
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-8 col-sm-offset-2">
+                    <div class="form-group form-float form-group{{ $errors->has('confirm_password') ? ' has-error' : '' }}">
+                      <div class="form-line">
+                        <input type="password" class="form-control" name="confirm_password" required>
+                        <label class="form-label">Password</label>
+                        @if ($errors->has('confirm_password'))
+                          <span class="help-block"> <strong>{{ $errors->first('confirm_password') }}</strong> </span>
                         @endif
                       </div>
                     </div>
@@ -221,7 +232,7 @@
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group form-float form-group{{ $errors->has('mobile_number') ? ' has-error' : '' }}">
                       <div class="form-line">
-                        <input type="text" class="form-control" name="mobile_number">
+                        <input type="text" class="form-control" name="mobile_number" required>
                         <label class="form-label">Mobile Username</label>
                         @if ($errors->has('mobile_number'))
                           <span class="help-block"> <strong>{{ $errors->first('mobile_number') }}</strong> </span>
@@ -232,7 +243,11 @@
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group form-float form-group{{ $errors->has('status') ? ' has-error' : '' }}">
                       <div class="form-line">
-                        <input type="text" class="form-control" name="status">
+                        <select class="form-control" name="status">
+                          <option value="0">-- Status --</option>
+                          <option value="1">Active</option>
+                          <option value="0">Inactive</option>
+                        </select>
                         <label class="form-label">Status</label>
                         @if ($errors->has('status'))
                           <span class="help-block"> <strong>{{ $errors->first('status') }}</strong> </span>

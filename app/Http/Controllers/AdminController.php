@@ -35,6 +35,7 @@ class AdminController extends Controller
     public function showAllUserList()
     {
         $login_type = 'admin';
+        session(['class' => 'theme-red']);
         return view('pages.users.list', compact('login_type'));
     }
 

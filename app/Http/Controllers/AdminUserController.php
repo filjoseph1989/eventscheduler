@@ -33,35 +33,41 @@ class AdminUserController extends Controller
      */
     public function create(Request $data)
     {
-      return User::create([
-          'user_account_id'    => $data['user_account_id'],
-          'course_id'          => $data['course_id'],
-          'department_id'      => $data['department_id'],
-          'position_id'        => $data['position_id'],
-          'account_number'     => $data['account_number'],
-          'email'              => $data['email'],
-          'password'           => bcrypt($data['password']),
-          'first_name'         => $data['first_name'],
-          'last_name'          => $data['last_name'],
-          'middle_name'        => $data['middle_name'],
-          'suffix_name'        => $data['suffix_name'],
-          'facebook_username'  => $data['facebook_username'],
-          'twitter_username'   => $data['twitter_username'],
-          'instagram_username' => $data['instagram_username'],
-          'mobile_number'      => $data['mobile_number'],
-          'status'             => $data['status'],
-      ]);
+        #
     }
 
     /**
      * Store a newly created resource in storage.
      *
+     * Note:
+     * AdminUser class is used to validate the incoming request
+     * which is define in app\Http\Requests\AdminUser.php and created
+     * using php artisan make:request AdminUser
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    // public function store(AdminUser $request)
+    public function store(Request $data)
     {
-        //
+        return User::create([
+            'user_account_id'    => $data['user_account_id'],
+            'course_id'          => $data['course_id'],
+            'department_id'      => $data['department_id'],
+            'position_id'        => $data['position_id'],
+            'account_number'     => $data['account_number'],
+            'email'              => $data['email'],
+            'password'           => bcrypt($data['password']),
+            'first_name'         => $data['first_name'],
+            'last_name'          => $data['last_name'],
+            'middle_name'        => $data['middle_name'],
+            'suffix_name'        => $data['suffix_name'],
+            'facebook_username'  => $data['facebook_username'],
+            'twitter_username'   => $data['twitter_username'],
+            'instagram_username' => $data['instagram_username'],
+            'mobile_number'      => $data['mobile_number'],
+            'status'             => $data['status'],
+        ]);
     }
 
     /**

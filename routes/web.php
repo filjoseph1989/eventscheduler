@@ -42,7 +42,7 @@ Route::prefix('admin')->group(function() {
     Route::name('admin.user.list')->get('/users/list', 'AdminController@showAllUserList');
     Route::name('admin.user.account.list')->get('/users/account/list', 'AdminController@showAllUserAccountList');
     Route::name('admin.user.register')->get('/register', 'AdminController@showRegisterForm');
-    Route::name('admin.user.register')->post('/user/register', 'AdminUserController@create');
+    Route::name('admin.user.register')->post('/user/register', 'AdminUserController@store');
     Route::name('admin.user.organization.list')->get('/organization/list', 'AdminController@showAllOrganizationList');
 
     # Events
