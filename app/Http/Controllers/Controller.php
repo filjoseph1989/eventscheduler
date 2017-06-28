@@ -15,7 +15,7 @@ class Controller extends BaseController
      * The kind of theme use by this project
      * @var string
      */
-    protected $theme = "theme-red";
+    protected $theme = "theme-teal";
 
     /**
      * Return the name of the theme

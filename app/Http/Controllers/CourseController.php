@@ -82,9 +82,14 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $data)
     {
-        //
+      $course       = Course::find($data->id);
+      $course->name = $data['name'];
+      if ($course->save()) {
+        return redirect()->route('admin.course.list')
+          ->with('status', 'Successfuly updated module');
+      }
     }
 
     /**

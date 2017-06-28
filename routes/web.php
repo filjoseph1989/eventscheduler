@@ -56,6 +56,7 @@ Route::prefix('admin')->group(function() {
     # User Accounts
     Route::name('admin.user.account.list')->get('/user-account/list', 'AdminController@showAllUserAccountList');
     Route::name('admin.user-account.register')->post('/user-account/register', 'UserAccountController@adminCreate');
+    Route::name('admin.user-account.edit')->post('/user-account/edit', 'UserAccountController@edit');
 
     # Events
     Route::name('admin.event.categories.list')->get('/event/categories/list', 'AdminController@showAllEvenCategoriesList');
@@ -64,6 +65,7 @@ Route::prefix('admin')->group(function() {
     # Course
     Route::name('admin.course.list')->get('/course/list', 'AdminController@showAllCourseList');
     Route::name('admin.course.register')->post('/course/register', 'CourseController@adminCreate');
+    Route::name('admin.course.edit')->post('/course/edit', 'CourseController@edit');
 
     # Department
     Route::name('admin.department.list')->get('/department/list', 'AdminController@showAllDepartmentList');

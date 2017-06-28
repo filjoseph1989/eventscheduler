@@ -52,8 +52,9 @@
                         <tr>
                           <td>{{ $usersvalue->name }}</td>
                           <td>
-                            <a href="#" class="user-acounts-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
-                            <a href="#" class="user-acounts-edit" data-toggle="modal" data-target="#edit-user-acounts"> <i class="material-icons">mode_edit</i> </a>
+                            <a href="#" class="course-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
+                            <a href="#" class="course-edit" data-id="{{ $usersvalue->id }}" data-toggle="modal" data-target="#edit-course"> <i class="material-icons">mode_edit</i>
+                            </a>
                           </td>
                         </tr>
                       @endforeach
@@ -78,6 +79,40 @@
 @endsection
 
 @section('modal')
+  //for editting course
+  <div class="modal fade" id="edit-course" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form class="" id="course-update" role="form" method="POST" action="{{ route('admin.course.edit') }}">
+          {{ csrf_field() }}
+            <input type="hidden" name="id" id="course_id">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="">Edit Course Name</h4>
+            </div>
+            <div class="modal-body">
+              <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group form-float form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                  <div class="form-line">
+                    <input type="text" class="form-control" name="name" value="{{ old('name') }}" required="true" autofocus>
+                    <label class="form-label">Account Type Name</label>
+                    @if ($errors->has('name'))
+                    <span class="help-block"> <strong>{{ $errors->first('name') }}</strong> </span>
+                    @endif
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-link waves-effect">SAVE CHANGES</button>
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+
+  //for adding course
   <div class="modal fade" id="add-course" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -117,6 +152,7 @@
       </div>
     </div>
   </div>
+
 @endsection
 
 
@@ -160,5 +196,5 @@
   <script src="{{ asset('js/buttons.print.min.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/jquery-datatable.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/dialogs.js') }}?v=0.1" charset="utf-8"></script>
+  <script src="{{ asset('js/dialogs.js') }}?v=0.2" charset="utf-8"></script>
 @endsection

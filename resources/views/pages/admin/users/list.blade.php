@@ -188,6 +188,17 @@
                 </div>
               </div>
               <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group form-float form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                  <div class="form-line">
+                    <input type="text" class="form-control" name="password" value="{{ old('password') }}">
+                    <label class="form-label">Password</label>
+                    @if ($errors->has('password'))
+                    <span class="help-block"> <strong>{{ $errors->first('password') }}</strong> </span>
+                    @endif
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-8 col-sm-offset-2">
                 <div class="form-group form-float form-group{{ $errors->has('facebook_username') ? ' has-error' : '' }}">
                   <div class="form-line">
                     <input type="text" class="form-control" name="facebook_username" value="{{ old('facebook_username') }}">
@@ -539,6 +550,8 @@
       </div>
     </div>
   </div>
+
+  //for deleting existing users
 @endsection
 
 @section('footer')

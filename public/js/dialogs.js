@@ -138,3 +138,12 @@ function showAjaxLoaderMessage() {
         }, 2000);
     });
 }
+
+$(document).on('click', '.user-accounts-edit', function() {
+  var user_account_id = $(this).data('id');
+  $('#user_account_id').val(user_account_id);
+});
+$(document).on('click', '.course-edit', function() {
+  var course_id = $(this).data('id');
+  $('#course_id').val(course_id);
+});

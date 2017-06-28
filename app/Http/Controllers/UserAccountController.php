@@ -78,9 +78,14 @@ class UserAccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $data)
     {
-        //
+        $user_account        = UserAccount::find($data->id);
+        $user_account->name  = $data['name'];
+        if ($user_account->save()) {
+          return redirect()->route('admin.user.account.list')
+            ->with('status', 'Successfuly updated module');
+        }
     }
 
     /**

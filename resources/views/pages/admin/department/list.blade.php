@@ -58,9 +58,16 @@
                       @endforeach
                     @endif
                   </tbody>
-                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-department">
-                    <i class="material-icons">add</i> Add New
-                  </button>
+                  <tfoot>
+                    <tr>
+                      <th>Name</th>
+                      <th>Actions</th>
+                    </tr>
+                  </tfoot>
+                </table>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-department">
+                  <i class="material-icons">add</i> Add New
+                </button>
               </div>
             </div>
           </div>
