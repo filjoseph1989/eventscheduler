@@ -75,29 +75,31 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($data)
+    public function edit(Request $data)
     {
-      $user                     = User::find($data['id']);
-      $user->user_account_id    = $data['user_account_id'];
-      $user->course_id          = $data['course_id'];
-      $user->department_id      = $data['department_id'];
-      $user->position_id        = $data['position_id'];
-      $user->account_number     = $data['account_number'];
-      $user->email              = $data['email'];
-      $user->password           = $data['password'];
+      $user                     = User::find($data->id);
+      // $user->user_account_id    = $data['user_account_id'];
+      // $user->course_id          = $data['course_id'];
+      // $user->department_id      = $data['department_id'];
+      // $user->position_id        = $data['position_id'];
+      // $user->account_number     = $data['account_number'];
+      // $user->email              = $data['email'];
+      // $user->password           = $data['password'];
+
       $user->first_name         = $data['first_name'];
       $user->last_name          = $data['last_name'];
       $user->middle_name        = $data['middle_name'];
       $user->suffix_name        = $data['suffix_name'];
-      $user->facebook_username  = $data['facebook_username'];
-      $user->twitter_username   = $data['twitter_username'];
-      $user->instagram_username = $data['instagram_username'];
-      $user->mobile_number      = $data['mobile_number'];
-      $user->status             = $data['status'];
+
+      // $user->facebook_username  = $data['facebook_username'];
+      // $user->twitter_username   = $data['twitter_username'];
+      // $user->instagram_username = $data['instagram_username'];
+      // $user->mobile_number      = $data['mobile_number'];
+      // $user->status             = $data['status'];
 
       if ($user->save()) {
-        return redirect()->route('admin.user.list')
-          ->with('status', 'Successfuly updated module');
+        // return redirect()->route('admin.user.list')
+        //   ->with('status', 'Successfuly updated module');
       }
     }
 

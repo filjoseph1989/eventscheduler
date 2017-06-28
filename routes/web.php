@@ -61,9 +61,14 @@ Route::prefix('admin')->group(function() {
     Route::name('admin.event.categories.list')->get('/event/categories/list', 'AdminController@showAllEvenCategoriesList');
     Route::name('admin.event.types.list')->get('/event/types/list', 'AdminController@showAllEventTypes');
 
-    # Others
+    # Course
     Route::name('admin.course.list')->get('/course/list', 'AdminController@showAllCourseList');
+    Route::name('admin.course.register')->post('/course/register', 'CourseController@adminCreate');
+
+    # Department
     Route::name('admin.department.list')->get('/department/list', 'AdminController@showAllDepartmentList');
+    Route::name('admin.department.register')->post('/department/register', 'DepartmentController@adminCreate');
+
     Route::name('admin.position.list')->get('/position/list', 'AdminController@showAllPositionList');
     Route::name('admin.organization.list')->get('/organization/list', 'AdminController@showAllOrganizationList');
     Route::name('admin.approvers.list')->get('/approvers/list', 'AdminController@showAllApprovers');

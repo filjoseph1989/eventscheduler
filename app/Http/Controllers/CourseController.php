@@ -31,12 +31,18 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function create(Request $data)
+     public function adminCreate(Request $data)
      {
          return Course::create([
              'name' => $data['name'],
          ]);
      }
+     /**
+      * Show the form for creating a new resource.
+      *
+      * @return \Illuminate\Http\Response
+      */
+
     /**
      * Store a newly created resource in storage.
      *

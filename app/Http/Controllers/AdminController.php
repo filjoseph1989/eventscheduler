@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\UserAccount;
+use App\Models\Course;
+use App\Models\Department;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -50,14 +52,16 @@ class AdminController extends Controller
 
     public function showAllCourseList()
     {
+        $courses  = Course::all();
         $login_type = "admin";
-        return view('pages.users.course.list', compact('login_type'));
+        return view('pages.admin.course.list', compact('login_type','courses'));
     }
 
     public function showAllDepartmentList()
     {
+        $departments  = Department::all();
         $login_type = "admin";
-        return view('pages.users.department.list', compact('login_type'));
+        return view('pages.admin.department.list', compact('login_type','departments'));
     }
 
     public function showAllPositionList()

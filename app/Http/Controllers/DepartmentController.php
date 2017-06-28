@@ -31,7 +31,7 @@ class DepartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function create(Request $data)
+     public function adminCreate(Request $data)
      {
          return Department::create([
              'name' => $data['name'],

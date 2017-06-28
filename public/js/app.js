@@ -21,3 +21,14 @@ function form_validation(id) {
         }
     });
 }
+
+/**
+ * kani ang goal ani, is to get user ID from
+ * basta mag click ang use og user edit icon
+ *
+ * @return void
+ */
+$(document).on('click', '.users-edit', function() {
+  var user_id = $(this).data('id');
+  $('#user_id').val(user_id);
+});

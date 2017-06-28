@@ -56,7 +56,7 @@
                                       </tr>
                                     @endforeach
                                   @endif
-                                </tfoot>
+                                </tbody>
                             </table>
                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-user-account">
                               <i class="material-icons">add</i> Add New
