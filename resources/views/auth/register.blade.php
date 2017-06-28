@@ -10,9 +10,20 @@
 
 @section('content')
   <div class="signup-box">
+    @if ($errors->any())
+      <div class="alert alert-danger">
+        <ul>
+          @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+          @endforeach
+        </ul>
+      </div>
+    @endif
+
     <div class="logo">
-      <a href="javascript:void(0);">Event<b>Scheduler</b></a>
+      <a href="javascript:void(0);">Event<b>Scheduler</b></a> 
     </div>
+
     <div class="card">
         <div class="body">
             <form id="sign_up" method="POST" action="{{ route('register') }}">
@@ -83,7 +94,7 @@
                         <i class="material-icons">lock</i>
                     </span>
                     <div class="form-line">
-                        <input type="password" class="form-control" name="confirm" minlength="6" placeholder="Confirm Password" required>
+                        <input type="password" class="form-control" name="password_confirmation" minlength="6" placeholder="Confirm Password" required>
                     </div>
                 </div>
                 <div class="input-group">
@@ -92,6 +103,24 @@
                     </span>
                     <div class="form-line">
                         <input id="account_number" type="text" class="form-control" name="account_number" placeholder="Account Number" value="{{ old('account_number') }}" required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="material-icons">lock</i>
+                    </span>
+                    <div class="form-line">
+                      <select class="form-control show-tick" name="user_account_id">
+                        <option value="0">-- Account Type --</option>
+                        <option value="1">Admin</option>
+                        <option value="2">Organization Adviser</option>
+                        <option value="3">Organization Head</option>
+                        <option value="4">Organization Member</option>
+                        <option value="5">OSA Personnel</option>
+                      </select>
+                      @if ($errors->has('user_account_id'))
+                        <span class="help-block"> <strong>{{ $errors->first('user_account_id') }}</strong> </span>
+                      @endif
                     </div>
                 </div>
                 <div class="input-group">
@@ -109,6 +138,7 @@
                         </select>
                     </div>
                 </div>
+
                 <div class="input-group">
                     <span class="input-group-addon">
                         <i class="material-icons">lock</i>
