@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\EventType;
 use Illuminate\Http\Request;
 
-class EventCategoriesController extends Controller
+class EventTypeController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -14,6 +14,7 @@ class EventCategoriesController extends Controller
     public function __construct()
     {
         $this->middleware('auth:admin');
+        session(['class' => parent::getTheme()]);
     }
 
     /**
@@ -31,10 +32,12 @@ class EventCategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+     public function create(Request $data)
+     {
+         return EventType::create([
+             'name' => $data['name'],
+         ]);
+     }
 
     /**
      * Store a newly created resource in storage.
@@ -58,6 +61,17 @@ class EventCategoriesController extends Controller
         //
     }
 
+
+    /**
+     * Display the registration form for courses
+     *
+     * @return \Illuminate\Response
+     */
+    public function showRegisterForm()
+    {
+        $login_type = 'admin';
+        return view('pages.forms.users.event-type-register', compact('login_type'));
+    }
     /**
      * Show the form for editing the specified resource.
      *

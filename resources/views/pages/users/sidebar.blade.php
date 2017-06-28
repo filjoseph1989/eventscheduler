@@ -43,17 +43,17 @@
           </a>
           <ul class="ml-menu">
             <li>
-              <a href="{{ route('user.organization.list') }}">
+              <a href="#">
                 <span>List of Organization</span>
               </a>
             </li>
             <li>
-              <a href="{{ route('user.organization.list') }}">
+              <a href="#">
                 <span>Add Member</span>
               </a>
             </li>
             <li>
-              <a href="{{ route('user.organization.list') }}">
+              <a href="#">
                 <span>Create Event</span>
               </a>
             </li>

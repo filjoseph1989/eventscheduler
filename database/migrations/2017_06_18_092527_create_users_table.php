@@ -15,12 +15,12 @@ class CreateUsersTable extends Migration
     {
         /**
          * A reminder, I commented those database column that has unique for a moment
-         * to allow seeder entry of duplicate, while creating a copy of those line which 
+         * to allow seeder entry of duplicate, while creating a copy of those line which
          * is not not unique.
          *
          * uncomment those later on and remove those copies that are not unique to
          * return to original.
-         * 
+         *
          * @type function
          * @author liz n. d. guzman
          */
@@ -34,8 +34,7 @@ class CreateUsersTable extends Migration
             $table->foreign('department_id')->references('id')->on('departments');
             $table->integer('position_id')->unsigned()->index();
             $table->foreign('position_id')->references('id')->on('positions');
-            $table->string('account_number');
-            // $table->string('account_number')->unique();
+            $table->string('account_number')->unique();
             $table->string('email')->unique();
             $table->string('password');
             $table->string('first_name');

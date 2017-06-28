@@ -1,17 +1,22 @@
 @extends('layouts.master')
 
-@section('page-title', 'Organization List')
+@section('page-title', 'List of Organizations')
 
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/all-themes.css') }}">
   <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/sweetalert.css') }}">
 @endsection
 
 @section('content')
 
     @include('pages.top-nav')
 
-    @include('pages.sidebar')
+    @if (isset($login_type) and $login_type == 'admin')
+        @include('pages.admin.sidebar')
+    @elseif (isset($login_type) and $login_type == 'user')
+        @include('pages.users.sidebar')
+    @endif
 
     <section class="content">
         <div class="container-fluid">
@@ -643,7 +648,7 @@
                                     </tr>
                                 </tfoot>
                             </table>
-                            <a href="{{ route('organization.add') }}" type="button" class="btn btn-success" name="button">
+                            <a href="{{ route('user.organization.register') }}" type="button" class="btn btn-success" name="button">
                                 <i class="material-icons">add</i> Add New
                             </a>
                         </div>

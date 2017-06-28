@@ -11,39 +11,39 @@
             ☐ update
             ☐ delete
           ☐ users_account
-              ✔ create @done(2017-06-24 21:45)
-              ☐ update
-              ☐ delete
+            ✔ create @done(2017-06-24 21:45)
+            ☐ update
+            ☐ delete
           ☐ courses
-              ✔ create @done(2017-06-24 21:45)
-              ☐ update
-              ☐ delete
+            ✔ create @done(2017-06-24 21:45)
+            ☐ update
+            ☐ delete
           ☐ departments
-              ☐ create
-              ☐ update
-              ☐ delete
+            ✔ create @done(2017-06-27 14:49)
+            ☐ update
+            ☐ delete
           ☐ positions
-              ☐ create
-              ☐ update
-              ☐ delete
+            ✔ create @done(2017-06-27 14:49)
+            ☐ update
+            ☐ delete
           ☐ ORGANIZATION CRUDS
-              ☐ create
-              ☐ update
-              ☐ delete
+            ✔ create @done(2017-06-27 22:11)
+            ☐ update
+            ☐ delete
           ☐ event_categories (public view, among org., within org., or user’s personal)
-              ☐ create
-              ☐ update
-              ☐ delete
+            ✔ create @done(2017-06-27 22:11)
+            ☐ update
+            ☐ delete
           ☐ event_types (meeting, exibit, job fair, etc.)
-              ☐ create
-              ☐ update
-              ☐ delete
+            ✔ create @done(2017-06-27 22:11)
+            ☐ update
+            ☐ delete
+
+          level 2 crud (dependent to level 1)
           ☐ approvers (osa personnel, org. adviser, org. head, proxy approvers)
               ☐ create
               ☐ update
               ☐ delete
-
-          level 2 crud (dependent to level 1)
           ☐ manage schedule (events)
           ☐ generate attendance
               //and user_attendances are dependent on the user's reply on the

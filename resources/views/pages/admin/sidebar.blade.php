@@ -31,12 +31,12 @@
       <ul class="list">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active">
-          <a href="index.html">
+          <a href="{{ route('admin.dashboard') }}">
             <span>Home</span>
           </a>
         </li>
         <li>
-          <a href="{{ route('admin.user.list') }}">
+          <a href="{{ route('admin.user.list') }}"> 
             <span>Manage Users</span>
           </a>
         </li>
@@ -61,7 +61,7 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('admin.user.organization.list') }}" class="">
+            <a href="{{ route('admin.organization.list') }}" class="">
                 <span>Organization</span>
             </a>
         </li>

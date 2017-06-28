@@ -27,9 +27,8 @@ class AdminUser extends FormRequest
             'first_name'  => 'required|string|max:191',
             'last_name'   => 'required|string|max:191',
             'middle_name' => 'required|string|max:191',
-            'suffix_name' => 'required|string|max:191',
+            'suffix_name' => 'nullable|string|max:10',
             'email'       => 'required|string|email|max:191|unique:s_admins',
-            'password'    => 'required|string|min:6|confirmed',
         ];
     }
 }

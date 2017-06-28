@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page-title', 'List of Courses')
+@section('page-title', 'List of Positions')
 
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/all-themes.css') }}">
@@ -24,7 +24,7 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> LIST OF UNIVERSITY COURSES </h2>
+                <h2> LIST OF UNIVERSITY POSITIONS </h2>
                 <ul class="header-dropdown m-r--5">
                   <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -76,7 +76,7 @@
                     </tr>
                   </tfoot>
                 </table>
-                <a href="{{ route('user.course.register') }}" type="button" class="btn btn-success" name="button">
+                <a href="{{ route('user.position.register') }}" type="button" class="btn btn-success" name="button">
                   <i class="material-icons">add</i> Add New
                 </a>
               </div>

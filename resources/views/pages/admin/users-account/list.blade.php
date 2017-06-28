@@ -76,9 +76,9 @@
                                     </tr>
                                 </tfoot>
                             </table>
-                            <a href="{{ route('user.account.register') }}" type="button" class="btn btn-success" name="button">
-                                <i class="material-icons">add</i> Add New
-                            </a>
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-user-account">
+                              <i class="material-icons">add</i> Add New
+                            </button>
                         </div>
                     </div>
                 </div>

@@ -35,14 +35,14 @@ class AdminController extends Controller
     public function showAllUserList()
     {
         $login_type = 'admin';
-        session(['class' => 'theme-red']);
-        return view('pages.users.list', compact('login_type'));
+        session(['class' => parent::getTheme()]);
+        return view('pages.admin.users.list', compact('login_type'));
     }
 
     public function showAllUserAccountList()
     {
         $login_type = 'admin';
-        return view('pages.users.users-account.list', compact('login_type'));
+        return view('pages.admin.users-account.list', compact('login_type'));
     }
 
     public function showAllCourseList()
@@ -54,31 +54,31 @@ class AdminController extends Controller
     public function showAllDepartmentList()
     {
         $login_type = "admin";
-        return view('pages.users.course.list', compact('login_type'));
+        return view('pages.users.department.list', compact('login_type'));
     }
 
     public function showAllPositionList()
     {
         $login_type = "admin";
-        return view('pages.users.course.list', compact('login_type'));
+        return view('pages.users.position.list', compact('login_type'));
     }
 
     public function showAllOrganizationList()
     {
         $login_type = "admin";
-        return view('pages.users.course.list', compact('login_type'));
+        return view('pages.users.organization.list', compact('login_type'));
     }
 
     public function showAllEvenCategoriesList()
     {
         $login_type = 'admin';
-        return view('pages.users.event-categories.list', compact('login_type'));
+        return view('pages.users.event-category.list', compact('login_type'));
     }
 
     public function showAllEventTypes()
     {
         $login_type = 'admin';
-        return view('pages.users.event-categories.list', compact('login_type'));
+        return view('pages.users.event-type.list', compact('login_type'));
     }
 
     public function showAllApprovers()

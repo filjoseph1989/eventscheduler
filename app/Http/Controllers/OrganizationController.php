@@ -1,11 +1,26 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Organization;
 use Illuminate\Http\Request;
 
 class OrganizationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+        session(['class' => parent::getTheme()]);
+    }
+    /**
+     * Display the registration form for courses
+     *
+     * @return \Illuminate\Response
+     */
+    public function showRegisterForm()
+    {
+        $login_type = 'admin';
+        return view('pages.forms.users.organization-register', compact('login_type'));
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +28,7 @@ class OrganizationController extends Controller
      */
     public function index()
     {
-        return view('pages.users.organizations.list');
+        //
     }
 
     /**
@@ -21,9 +36,15 @@ class OrganizationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $data)
     {
-        return view('pages.users.organizations.add');
+        return Organization::create([
+            'name' => $data['name'],
+            'status' => $data['status'],
+            'url' => $data['url'],
+            'date_started' => $data['date_started'],
+            'date_expired' => $data['date_expired'],
+        ]);
     }
 
     /**

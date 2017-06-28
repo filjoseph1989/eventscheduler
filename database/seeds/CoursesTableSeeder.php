@@ -12,6 +12,7 @@ class CoursesTableSeeder extends Seeder
   public function run()
   {
     DB::table('courses')->insert([
+      array('name' => 'Not Applicable','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
       array('name' => 'BS Agribusiness Economics','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
       array('name' => 'BS Food Technology','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
       array('name' => 'BS Biology','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),

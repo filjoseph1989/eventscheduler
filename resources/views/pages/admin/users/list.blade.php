@@ -19,11 +19,21 @@
 
     <section class="content">
       <div class="container-fluid">
-        <?php if (session('status')): ?>
+        @if (session('status'))
           <div class="alert alert-success">
             {{ session('status') }}
           </div>
-        <?php endif; ?>
+        @endif
+
+        @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
 
         <div class="row clearfix">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -161,10 +171,10 @@
               <div class="col-sm-8 col-sm-offset-2">
                 <div class="form-group form-float form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
                   <div class="form-line">
-                    <input type="text" class="form-control" name="first_name" required="true" autofocus>
+                    <input type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" required="true" autofocus>
                     <label class="form-label">First Name</label>
                     @if ($errors->has('first_name'))
-                    <span class="help-block"> <strong>{{ $errors->first('first_name') }}</strong> </span>
+                        <span class="help-block"> <strong>{{ $errors->first('first_name') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -172,10 +182,10 @@
               <div class="col-sm-8 col-sm-offset-2">
                 <div class="form-group form-float form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
                   <div class="form-line">
-                    <input type="text" class="form-control" name="last_name" required>
+                    <input type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" required>
                     <label class="form-label">Last Name</label>
                     @if ($errors->has('last_name'))
-                    <span class="help-block"> <strong>{{ $errors->first('last_name') }}</strong> </span>
+                      <span class="help-block"> <strong>{{ $errors->first('last_name') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -183,10 +193,10 @@
               <div class="col-sm-8 col-sm-offset-2">
                 <div class="form-group form-float form-group{{ $errors->has('middle_name') ? ' has-error' : '' }}">
                   <div class="form-line">
-                    <input type="text" class="form-control" name="middle_name" required>
+                    <input type="text" class="form-control" name="middle_name" value="{{ old('middle_name') }}" required>
                     <label class="form-label">Middle Name</label>
                     @if ($errors->has('middle_name'))
-                    <span class="help-block"> <strong>{{ $errors->first('middle_name') }}</strong> </span>
+                      <span class="help-block"> <strong>{{ $errors->first('middle_name') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -194,10 +204,76 @@
               <div class="col-sm-8 col-sm-offset-2">
                 <div class="form-group form-float form-group{{ $errors->has('suffix_name') ? ' has-error' : '' }}">
                   <div class="form-line">
-                    <input type="text" class="form-control" name="suffix_name">
+                    <input type="text" class="form-control" name="suffix_name" value="{{ old('suffix_name') }}">
                     <label class="form-label">Suffix Name</label>
                     @if ($errors->has('suffix_name'))
-                    <span class="help-block"> <strong>{{ $errors->first('suffix_name') }}</strong> </span>
+                      <span class="help-block"> <strong>{{ $errors->first('suffix_name') }}</strong> </span>
+                    @endif
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-8 col-sm-offset-2">
+                  <div class="form-group form-float form-group{{ $errors->has('account_number') ? ' has-error' : '' }}">
+                      <div class="form-line">
+                        <input type="text" class="form-control" name="account_number" value="{{ old('account_number') }}">
+                        <label class="form-label">Account Number</label>
+                        @if ($errors->has('account_number'))
+                          <span class="help-block"> <strong>{{ $errors->first('account_number') }}</strong> </span>
+                        @endif
+                      </div>
+                  </div>
+              </div>
+              <div class="col-sm-8 col-sm-offset-2">
+                  <div class="form-group form-float form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                      <div class="form-line">
+                        <input type="text" class="form-control" name="email" value="{{ old('email') }}">
+                        <label class="form-label">Email</label>
+                        @if ($errors->has('email'))
+                          <span class="help-block"> <strong>{{ $errors->first('email') }}</strong> </span>
+                        @endif
+                      </div>
+                  </div>
+              </div>
+              <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group form-float form-group{{ $errors->has('facebook_username') ? ' has-error' : '' }}">
+                  <div class="form-line">
+                    <input type="text" class="form-control" name="facebook_username" value="{{ old('facebook_username') }}">
+                    <label class="form-label">Facebook Username</label>
+                    @if ($errors->has('facebook_username'))
+                      <span class="help-block"> <strong>{{ $errors->first('facebook_username') }}</strong> </span>
+                    @endif
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group form-float form-group{{ $errors->has('twitter_username') ? ' has-error' : '' }}">
+                  <div class="form-line">
+                    <input type="text" class="form-control" name="twitter_username" value="{{ old('twitter_username') }}">
+                    <label class="form-label">Twitter Username</label>
+                    @if ($errors->has('twitter_username'))
+                      <span class="help-block"> <strong>{{ $errors->first('twitter_username') }}</strong> </span>
+                    @endif
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group form-float form-group{{ $errors->has('instagram_username') ? ' has-error' : '' }}">
+                  <div class="form-line">
+                    <input type="text" class="form-control" name="instagram_username" value="{{ old('instagram_username') }}">
+                    <label class="form-label">Instagram Username</label>
+                    @if ($errors->has('instagram_username'))
+                      <span class="help-block"> <strong>{{ $errors->first('instagram_username') }}</strong> </span>
+                    @endif
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group form-float form-group{{ $errors->has('mobile_number') ? ' has-error' : '' }}">
+                  <div class="form-line">
+                    <input type="text" class="form-control" name="mobile_number" value="{{ old('mobile_number') }}">
+                    <label class="form-label">Mobile Username</label>
+                    @if ($errors->has('mobile_number'))
+                      <span class="help-block"> <strong>{{ $errors->first('mobile_number') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -214,7 +290,7 @@
                       <option value="5">OSA Personnel</option>
                     </select>
                     @if ($errors->has('user_account_id'))
-                    <span class="help-block"> <strong>{{ $errors->first('user_account_id') }}</strong> </span>
+                      <span class="help-block"> <strong>{{ $errors->first('user_account_id') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -231,7 +307,7 @@
                       <option value="5">BA Anthropology</option>
                     </select>
                     @if ($errors->has('course_id'))
-                    <span class="help-block"> <strong>{{ $errors->first('course_id') }}</strong> </span>
+                      <span class="help-block"> <strong>{{ $errors->first('course_id') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -264,95 +340,7 @@
                       <option value="5">Secretary</option>
                     </select>
                     @if ($errors->has('position'))
-                    <span class="help-block"> <strong>{{ $errors->first('position') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-8 col-sm-offset-2">
-                <div class="form-group form-float form-group{{ $errors->has('account_number') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <input type="number" class="form-control" name="account_number" required>
-                    <label class="form-label">Account Number</label>
-                    @if ($errors->has('account_number'))
-                    <span class="help-block"> <strong>{{ $errors->first('account_number') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-8 col-sm-offset-2">
-                <div class="form-group form-float form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <input type="email" class="form-control" name="email" required>
-                    <label class="form-label">Email</label>
-                    @if ($errors->has('email'))
-                    <span class="help-block"> <strong>{{ $errors->first('email') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-8 col-sm-offset-2">
-                <div class="form-group form-float form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <input type="password" class="form-control" name="password" required>
-                    <label class="form-label">Password</label>
-                    @if ($errors->has('password'))
-                    <span class="help-block"> <strong>{{ $errors->first('password') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-8 col-sm-offset-2">
-                <div class="form-group form-float form-group{{ $errors->has('confirm_password') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <input type="password" class="form-control" name="confirm_password" required>
-                    <label class="form-label">Confirm Password</label>
-                    @if ($errors->has('confirm_password'))
-                    <span class="help-block"> <strong>{{ $errors->first('confirm_password') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-8 col-sm-offset-2">
-                <div class="form-group form-float form-group{{ $errors->has('facebook_username') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <input type="text" class="form-control" name="facebook_username">
-                    <label class="form-label">Facebook Username</label>
-                    @if ($errors->has('facebook_username'))
-                    <span class="help-block"> <strong>{{ $errors->first('facebook_username') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-8 col-sm-offset-2">
-                <div class="form-group form-float form-group{{ $errors->has('twitter_username') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <input type="text" class="form-control" name="twitter_username">
-                    <label class="form-label">Twitter Username</label>
-                    @if ($errors->has('twitter_username'))
-                    <span class="help-block"> <strong>{{ $errors->first('twitter_username') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-8 col-sm-offset-2">
-                <div class="form-group form-float form-group{{ $errors->has('instagram_username') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <input type="text" class="form-control" name="instagram_username">
-                    <label class="form-label">Instagram Username</label>
-                    @if ($errors->has('instagram_username'))
-                    <span class="help-block"> <strong>{{ $errors->first('instagram_username') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-8 col-sm-offset-2">
-                <div class="form-group form-float form-group{{ $errors->has('mobile_number') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <input type="number" class="form-control" name="mobile_number" required>
-                    <label class="form-label">Mobile Username</label>
-                    @if ($errors->has('mobile_number'))
-                    <span class="help-block"> <strong>{{ $errors->first('mobile_number') }}</strong> </span>
+                      <span class="help-block"> <strong>{{ $errors->first('position') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -401,13 +389,13 @@
   <script src="{{ asset('js/sweetalert.min.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/jquery.validate.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/dialogs.js') }}?v=0.1" charset="utf-8"></script>
-  <script src="{{ asset('js/app.js') }}?v=0.1" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.2" charset="utf-8"></script>
   <script type="text/javascript">
     $(function () {
       /**
        * Note:
        * form_validation() function is define in app.js
-       * @var [type]
+       * @var function
        */
       form_validation('#user-registration');
     });

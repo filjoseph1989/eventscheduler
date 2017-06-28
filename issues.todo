@@ -3,22 +3,32 @@ frontend:
   if admin is logged in and user is also logged in, if admin dashboard is
   refreshed, admin dashboard will be fixed
 
-☐ if user is currently logged in, then goes to admin-login,
+✔ if user is currently logged in, then goes to admin-login, @done(2017-06-28 01:48)
   admin login form is messed up or not the same when user is logged out
-☐ (lead1) please create forms for {{ route('password.request') }} that will display
+✔ (lead1) please create forms for {{ route('password.request') }} that will display @done(2017-06-28 01:52)
   for user login,
     login button that goes to login.blade
     and register button that goes register view and route for user login,
   for admin login,
     login button that goes to admin-login.blade
-
+☐ make login forms field as account_number and password (not username(email) and password)
+☐ make every form to be modal
+☐ fix routing - admin is for admin views, user is for user views,
+make individual views-folder for every user dashboard and admin dashboard
+use proper/same controllers and models for every manipulation of cruds
+(do not change or modify controller and model names)
 backend:
-☐ if I go to login page, but will not type credentials,
+✔ if I go to login page, but will not type credentials, @done(2017-06-28 02:01)
   then I go to admin-login page without typing credentials,
   then go back to login page again, then sign in, the browser redirects
   to admin-login page, not user dashboard but if you go to /home
   you can guarantee that user is already logged in
-☐ when 'lead1' is achieved, establish their respective routes
-
-☐ make the password confirmation for user registration
-☐ if logged in as admin, delete password field in blade, and in UserController, make account_number as password default  
+✔ when 'lead1' is achieved, establish their respective routes @done(2017-06-28 01:53)
+✔ make the password confirmation for user registration for user type user @done(2017-06-28 03:22)
+✔ if logged in as admin, delete password field in blade, and in UserController, make account_number as password default @done(2017-06-28 03:22)
+☐ only active(status=active/1) users are accessible to login
+☐ make login forms field as account_number and password (not username(email) and password)
+☐ fix routing - admin is for admin views, user is for user views,
+make individual views-folder for every user dashboard and admin dashboard
+use proper/same controllers and models for every manipulation of cruds
+(do not change or modify controller and model names)

@@ -23,13 +23,26 @@ Route::name('home')->get('/home', 'HomeController@index');
 |--------------------------------------------------------------------------
 */
 Route::prefix('users')->group(function() {
-    Route::name('user.registered')->post('/registered', 'UsersController@create');
+    Route::name('user.registered')->post('/registered', 'UserController@create');
+
     Route::name('user.account.register')->get('/register', 'UsersAccountAdminController@showRegisterForm');
     Route::name('user.account.registered')->post('/account/registered', 'UsersAccountAdminController@create');
+
     Route::name('user.course.register')->get('/course/register', 'CourseController@showRegisterForm');
     Route::name('user.course.registered')->post('/course/registered', 'CourseController@create');
-    Route::name('user.organization.list')->get('/organization/list', 'OrganizationController@index');
-    Route::name('user.organization.add')->get('/organization/add', 'OrganizationController@create');
+
+    Route::name('user.department.register')->get('/department/register', 'DepartmentController@showRegisterForm');
+    Route::name('user.department.registered')->post('/department/registered', 'DepartmentController@create');
+
+    Route::name('user.position.register')->get('/position/register', 'PositionController@showRegisterForm');
+    Route::name('user.position.registered')->post('/position/registered', 'PositionController@create');
+
+    Route::name('user.organization.register')->get('/organization/register', 'OrganizationController@showRegisterForm');
+    Route::name('user.organization.registered')->post('/organization/registered', 'OrganizationController@create');
+
+    Route::name('user.event-category.register')->get('/event-category/register', 'EventCategoryController@showRegisterForm');
+    Route::name('user.event-category.registered')->post('/event-category/registered', 'EventCategoryController@create');
+
     Route::name('user.logout')->get('/logout', 'Auth\LoginController@userLogout');
 });
 /*
@@ -38,12 +51,10 @@ Route::prefix('users')->group(function() {
 |--------------------------------------------------------------------------
 */
 Route::prefix('admin')->group(function() {
-    # users
     Route::name('admin.user.list')->get('/users/list', 'AdminController@showAllUserList');
-    Route::name('admin.user.account.list')->get('/users/account/list', 'AdminController@showAllUserAccountList');
-    Route::name('admin.user.register')->get('/register', 'AdminController@showRegisterForm');
-    Route::name('admin.user.register')->post('/user/register', 'AdminUserController@store');
-    Route::name('admin.user.organization.list')->get('/organization/list', 'AdminController@showAllOrganizationList');
+    Route::name('admin.user.account.list')->get('/user-account/list', 'AdminController@showAllUserAccountList');
+
+    Route::name('admin.user.register')->post('/user/register', 'UserController@adminCreate');
 
     # Events
     Route::name('admin.event.categories.list')->get('/event/categories/list', 'AdminController@showAllEvenCategoriesList');
@@ -53,6 +64,7 @@ Route::prefix('admin')->group(function() {
     Route::name('admin.course.list')->get('/course/list', 'AdminController@showAllCourseList');
     Route::name('admin.department.list')->get('/department/list', 'AdminController@showAllDepartmentList');
     Route::name('admin.position.list')->get('/position/list', 'AdminController@showAllPositionList');
+    Route::name('admin.organization.list')->get('/organization/list', 'AdminController@showAllOrganizationList');
     Route::name('admin.approvers.list')->get('/approvers/list', 'AdminController@showAllApprovers');
 
     # Authentication

@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Course;
+use App\Models\EventCategory;
 use Illuminate\Http\Request;
 
-class CourseController extends Controller
+class EventCategoryController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -16,6 +16,7 @@ class CourseController extends Controller
         $this->middleware('auth:admin');
         session(['class' => parent::getTheme()]);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -33,10 +34,11 @@ class CourseController extends Controller
      */
      public function create(Request $data)
      {
-         return Course::create([
+         return EventCategory::create([
              'name' => $data['name'],
          ]);
      }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -59,6 +61,7 @@ class CourseController extends Controller
         //
     }
 
+
     /**
      * Display the registration form for courses
      *
@@ -67,9 +70,8 @@ class CourseController extends Controller
     public function showRegisterForm()
     {
         $login_type = 'admin';
-        return view('pages.forms.users.course-register', compact('login_type'));
+        return view('pages.forms.users.event-category-register', compact('login_type'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *
