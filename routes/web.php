@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,11 +9,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
   return redirect()->route('login');
 });
-
 Auth::routes();
 Route::name('home')->get('/home', 'HomeController@index');
 /*
@@ -51,10 +48,13 @@ Route::prefix('users')->group(function() {
 |--------------------------------------------------------------------------
 */
 Route::prefix('admin')->group(function() {
+    # Users
     Route::name('admin.user.list')->get('/users/list', 'AdminController@showAllUserList');
-    Route::name('admin.user.account.list')->get('/user-account/list', 'AdminController@showAllUserAccountList');
-
     Route::name('admin.user.register')->post('/user/register', 'UserController@adminCreate');
+
+    # User Accounts
+    Route::name('admin.user.account.list')->get('/user-account/list', 'AdminController@showAllUserAccountList');
+    Route::name('admin.user-account.register')->post('/user-account/register', 'UsersAccountController@adminCreate');
 
     # Events
     Route::name('admin.event.categories.list')->get('/event/categories/list', 'AdminController@showAllEvenCategoriesList');

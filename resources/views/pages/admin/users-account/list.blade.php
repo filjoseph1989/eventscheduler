@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page-title', 'List of User Account Ids')
+@section('page-title', 'List of User Account Types')
 
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/all-themes.css') }}">
@@ -9,22 +9,19 @@
 @endsection
 
 @section('content')
-
     @include('pages.top-nav')
-
     @if (isset($login_type) and $login_type == 'admin')
         @include('pages.admin.sidebar')
     @elseif (isset($login_type) and $login_type == 'user')
         @include('pages.users.sidebar')
     @endif
-
     <section class="content">
         <div class="container-fluid">
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                            <h2> LIST OF USER ACCOUNT IDS </h2>
+                            <h2> LIST OF USER ACCOUNT TYPES </h2>
                             <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
                                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -85,35 +82,48 @@
             </div>
         </div>
     </section>
-
 @endsection
 
 @section('modal')
-<div class="modal fade" id="edit-user-account" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="">Edit User Account</h4>
-      </div>
-      <div class="modal-body">
-          <div class="form-group form-float form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-            <div class="form-line">
-              <input type="text" class="form-control" name="name">
-              <label class="form-label">Name</label>
-              @if ($errors->has('name'))
-                <span class="help-block"> <strong>{{ $errors->first('name') }}</strong> </span>
-              @endif
+  <div class="modal fade" id="add-user-account" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form class="" id="user-registration" role="form" method="POST" action="{{ route('admin.user-account.register') }}">
+          {{ csrf_field() }}
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="">Add New User</h4>
+          </div>
+
+          <div class="modal-body">
+            <div class="row clearfix">
+              <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group form-float form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                  <div class="form-line">
+                    <input type="text" class="form-control" name="name" value="{{ old('name') }}" required="true" autofocus>
+                    <label class="form-label">User Account Type</label>
+                    @if ($errors->has('name'))
+                        <span class="help-block"> <strong>{{ $errors->first('name') }}</strong> </span>
+                    @endif
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-      </div>
-      <div class="modal-footer">
-          <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
-          <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">
+              <i class="material-icons">save</i> Save
+            </button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              <i class="material-icons">close</i> Close
+            </button>
+          </div>
+
+        </form>
       </div>
     </div>
   </div>
-</div>
 @endsection
 
 @section('footer')

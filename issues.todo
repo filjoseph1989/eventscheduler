@@ -19,7 +19,7 @@ use proper/same controllers and models for every manipulation of cruds
 (do not change or modify controller and model names)
 backend:
 ✔ if I go to login page, but will not type credentials, @done(2017-06-28 02:01)
-  then I go to admin-login page without typing credentials,
+  then I go to admin-limongogin page without typing credentials,
   then go back to login page again, then sign in, the browser redirects
   to admin-login page, not user dashboard but if you go to /home
   you can guarantee that user is already logged in
