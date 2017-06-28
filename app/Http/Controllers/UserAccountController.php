@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\UserAccount;
 use Illuminate\Http\Request;
 
-class UsersAccountController extends Controller
+class UserAccountController extends Controller
 {
     /**
      * Create a new controller instance.
