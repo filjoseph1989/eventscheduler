@@ -17,6 +17,7 @@
     @endif
     <section class="content">
         <div class="container-fluid">
+
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
@@ -44,33 +45,17 @@
                                     </tr>
                                 </thead>
                                 <tbody class="js-sweetalert">
-                                    <tr>
-                                        <td>Adviser</td>
+                                  @if (isset($user_accounts))
+                                    @foreach ($user_accounts as $usersKey => $usersvalue)
+                                      <tr>
+                                        <td>{{ $usersvalue->name }}</td>
                                         <td>
-                                            <a href="#" class="users-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
-                                            <a href="#" class="users-edit" data-toggle="modal" data-target="#edit-user-account"> <i class="material-icons">mode_edit</i> </a>
+                                          <a href="#" class="user-acounts-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
+                                          <a href="#" class="user-acounts-edit" data-toggle="modal" data-target="#edit-user-acounts"> <i class="material-icons">mode_edit</i> </a>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Organization Head</td>
-                                        <td>
-                                            <a href="#" class="users-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
-                                            <a href="#" class="users-edit" data-toggle="modal" data-target="#edit-user-account"> <i class="material-icons">mode_edit</i> </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Member</td>
-                                        <td>
-                                            <a href="#" class="users-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
-                                            <a href="#" class="users-edit" data-toggle="modal" data-target="#edit-user-account"> <i class="material-icons">mode_edit</i> </a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Actions</th>
-                                    </tr>
+                                      </tr>
+                                    @endforeach
+                                  @endif
                                 </tfoot>
                             </table>
                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-user-account">

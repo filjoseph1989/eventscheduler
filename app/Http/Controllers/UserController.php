@@ -7,8 +7,10 @@ use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+
 class UserController extends Controller
 {
+
     /**
      * Create a new controller instance.
      *
@@ -68,6 +70,38 @@ class UserController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($data)
+    {
+      $user                     = User::find($data['id']);
+      $user->user_account_id    = $data['user_account_id'];
+      $user->course_id          = $data['course_id'];
+      $user->department_id      = $data['department_id'];
+      $user->position_id        = $data['position_id'];
+      $user->account_number     = $data['account_number'];
+      $user->email              = $data['email'];
+      $user->password           = $data['password'];
+      $user->first_name         = $data['first_name'];
+      $user->last_name          = $data['last_name'];
+      $user->middle_name        = $data['middle_name'];
+      $user->suffix_name        = $data['suffix_name'];
+      $user->facebook_username  = $data['facebook_username'];
+      $user->twitter_username   = $data['twitter_username'];
+      $user->instagram_username = $data['instagram_username'];
+      $user->mobile_number      = $data['mobile_number'];
+      $user->status             = $data['status'];
+
+      if ($user->save()) {
+        return redirect()->route('admin.user.list')
+          ->with('status', 'Successfuly updated module');
+      }
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -113,7 +147,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+    //
+
     }
 
     /**
@@ -127,16 +162,6 @@ class UserController extends Controller
         return view('pages.forms.users.register', compact('login_type'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.

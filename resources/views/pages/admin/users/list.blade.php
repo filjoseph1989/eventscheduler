@@ -10,13 +10,11 @@
 
 @section('content')
     @include('pages.top-nav')
-
     @if (isset($login_type) and $login_type == 'admin')
         @include('pages.admin.sidebar')
     @elseif (isset($login_type) and $login_type == 'user')
         @include('pages.users.sidebar')
     @endif
-
     <section class="content">
       <div class="container-fluid">
         @if (session('status'))

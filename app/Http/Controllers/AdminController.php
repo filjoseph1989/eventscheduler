@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
+use App\Models\UserAccount;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -34,15 +35,17 @@ class AdminController extends Controller
      */
     public function showAllUserList()
     {
+        $users      = User::all();
         $login_type = 'admin';
         session(['class' => parent::getTheme()]);
-        return view('pages.admin.users.list', compact('login_type'));
+        return view('pages.admin.users.list', compact('login_type','users'));
     }
 
     public function showAllUserAccountList()
     {
-        $login_type = 'admin';
-        return view('pages.admin.users-account.list', compact('login_type'));
+        $user_accounts  = UserAccount::all();
+        $login_type     = 'admin';
+        return view('pages.admin.user-accounts.list', compact('login_type','user_accounts'));
     }
 
     public function showAllCourseList()

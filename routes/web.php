@@ -51,6 +51,7 @@ Route::prefix('admin')->group(function() {
     # Users
     Route::name('admin.user.list')->get('/users/list', 'AdminController@showAllUserList');
     Route::name('admin.user.register')->post('/user/register', 'UserController@adminCreate');
+    Route::name('admin.user.edit')->post('/user/edit', 'UserController@edit');
 
     # User Accounts
     Route::name('admin.user.account.list')->get('/user-account/list', 'AdminController@showAllUserAccountList');
