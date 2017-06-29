@@ -36,6 +36,11 @@ class AdminUserController extends Controller
         #
     }
 
+    public function getUsers(Request $data)
+    {
+        return User::find($data->id);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

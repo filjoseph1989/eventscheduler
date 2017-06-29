@@ -127,6 +127,11 @@ class UserController extends Controller
       ]);
     }
 
+    public function getUser(Request $data)
+    {
+        return User::find($data->id);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
