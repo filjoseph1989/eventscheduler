@@ -21,6 +21,12 @@ class UserController extends Controller
         $this->middleware('web');
     }
 
+    /**
+     * validate the incoming data
+     *
+     * @param  array  $data
+     * @return \Illuminate\Response
+     */
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -32,6 +38,7 @@ class UserController extends Controller
             'password'    => 'required|string|min:6|confirmed',
         ]);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -191,8 +198,17 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $user = User::find($request->id);
+        $name = $user->first_name;
+        $user->status = 0;
+
+        if ($user->save()) {
+            echo json_encode([
+                'result' => true,
+                'name'   => $name
+            ]);
+        }
     }
 }

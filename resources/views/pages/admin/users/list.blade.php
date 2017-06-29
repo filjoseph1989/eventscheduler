@@ -69,14 +69,14 @@
                   <tbody class="js-sweetalert">
                     @if (isset($users))
                       @foreach ($users as $usersKey => $usersvalue)
-                        <tr>
+                        <tr data-id="{{ $usersvalue->id }}">
                           <td>{{ $usersvalue->account_number }}</td>
                           <td>{{ $usersvalue->first_name }}</td>
                           <td>{{ $usersvalue->last_name }}</td>
                           <td>{{ $usersvalue->email }}</td>
                           <td>{{ $usersvalue->mobile_number }}</td>
                           <td>
-                            <a href="#" class="users-delete" data-type="cancel">
+                            <a href="#" class="users-delete delete" data-type="cancel">
                               <i class="material-icons">delete</i>
                             </a>
                             <a href="#" class="users-edit" data-id="{{ $usersvalue->id }}" data-toggle="modal" data-target="#edit-user">

@@ -10,7 +10,12 @@ To Do:
   ☐ Task 32: Make a form that add new organization
   ☐ Task 31: Make a form that add new event
   ☐ Task 30: Make a calendar for the list of events
-  ☐ Task 29: Users BREAD
+  ☐ Task 29: Users BREAD:
+      ☐ browse
+      ☐ read
+      ✔ edit @done(2017-06-29 20:07) @project(To Do / ☐ Task 29: Users BREAD)
+      ✔ add  @done(2017-06-29 20:07) @project(To Do / ☐ Task 29: Users BREAD)
+      ☐ delete
   ☐ Task 28: Events BREAD
   ☐ Task 27: Organization BREAD
   ☐ Task 26: Organization - User browse the list of organizations
