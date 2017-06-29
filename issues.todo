@@ -17,6 +17,7 @@ frontend:
 make individual views-folder for every user dashboard and admin dashboard
 use proper/same controllers and models for every manipulation of cruds
 (do not change or modify controller and model names)
+☐ when adding/updating dates in field, use date formats
 backend:
 ✔ if I go to login page, but will not type credentials, @done(2017-06-28 02:01)
   then I go to admin-limongogin page without typing credentials,

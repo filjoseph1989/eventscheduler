@@ -44,16 +44,22 @@ $(document).on('click', '.users-edit', function() {
       request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
     },
     success: function(data) {
-      $('#account_number').val(data.account_number);
-      $('#email').val(data.email);
-      $('#facebook_username').val(data.facebook_username);
-      $('#first_name').val(data.first_name);
-      $('#instagram_username').val(data.instagram_username);
-      $('#last_name').val(data.last_name);
-      $('#middle_name').val(data.middle_name);
-      $('#mobile_number').val(data.mobile_number);
-      $('#suffix_name').val(data.suffix_name);
-      $('#twitter_username').val(data.twitter_username);
+      $('#account_number').val(data.user.account_number);
+      $('#email').val(data.user.email);
+      $('#facebook_username').val(data.user.facebook_username);
+      $('#first_name').val(data.user.first_name);
+      $('#instagram_username').val(data.user.instagram_username);
+      $('#last_name').val(data.user.last_name);
+      $('#middle_name').val(data.user.middle_name);
+      $('#mobile_number').val(data.user.mobile_number);
+      $('#suffix_name').val(data.user.suffix_name);
+      $('#twitter_username').val(data.user.twitter_username);
+
+      var html = '<option value="0">-- Account Type --</option>';
+      for (var i = 0; i < data.user_account.length; i++) {
+        html += '<option value="'+data.user_account[i].id+'">'+data.user_account[i].name+'</option>';
+      }
+      $('#user_account_id').html(html);
     },
     error: function(data) {
       console.log('Error:');

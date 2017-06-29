@@ -174,8 +174,7 @@
                   </div>
                   <div class="form-group form-float form-group{{ $errors->has('facebook_username') ? ' has-error' : '' }}">
                     <div class="form-line">
-                      <input type="text" class="form-control" name="facebook_username" value="{{ old('facebook_username') }}">
-                      <label class="form-label">Facebook Username</label>
+                      <input type="text" class="form-control" id="facebook_username" name="facebook_username" value="{{ old('facebook_username') }}">
                       @if ($errors->has('facebook_username'))
                       <span class="help-block"> <strong>{{ $errors->first('facebook_username') }}</strong> </span>
                       @endif
@@ -207,7 +206,7 @@
                   </div>
                   <div class="form-group form-float form-group{{ $errors->has('user_account_id') ? ' has-error' : '' }}">
                     <div class="form-line">
-                      <select class="form-control show-tick" name="user_account_id" required>
+                      <select class="form-control show-tick" id="user_account_id" name="user_account_id" required>
                         <option value="0">-- Account Type --</option>
                         <option value="1">Admin</option>
                         <option value="2">Organization Adviser</option>
@@ -216,7 +215,7 @@
                         <option value="5">OSA Personnel</option>
                       </select>
                       @if ($errors->has('user_account_id'))
-                      <span class="help-block"> <strong>{{ $errors->first('user_account_id') }}</strong> </span>
+                        <span class="help-block"> <strong>{{ $errors->first('user_account_id') }}</strong> </span>
                       @endif
                     </div>
                   </div>
@@ -417,13 +416,15 @@
               <div class="col-sm-8 col-sm-offset-2">
                 <div class="form-group form-float form-group{{ $errors->has('user_account_id') ? ' has-error' : '' }}">
                   <div class="form-line">
-                    <select class="form-control show-tick" name="user_account_id" required>
-                      <option value="0">-- Account Type --</option>
-                      <option value="1">Admin</option>
-                      <option value="2">Organization Adviser</option>
-                      <option value="3">Organization Head</option>
-                      <option value="4">Organization Member</option>
-                      <option value="5">OSA Personnel</option>
+                    <select class="form-control show-tick" id="user_account" name="user_account_id" required>
+                      <!--
+                        <option value="0">-- Account Type --</option>
+                        <option value="1">Admin</option>
+                        <option value="2">Organization Adviser</option>
+                        <option value="3">Organization Head</option>
+                        <option value="4">Organization Member</option>
+                        <option value="5">OSA Personnel</option>
+                      -->
                     </select>
                     @if ($errors->has('user_account_id'))
                       <span class="help-block"> <strong>{{ $errors->first('user_account_id') }}</strong> </span>

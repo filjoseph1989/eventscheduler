@@ -44,11 +44,6 @@
               ☐ create
               ☐ update
               ☐ delete
-          ☐ manage schedule (events)
-          ☐ generate attendance
-              //and user_attendances are dependent on the user's reply on the
-              invitations per event
-          ☐ manage (notifications)
           ☐ list of all organizations and it's members
           ☐ list of all users and it's profile details + organizations
               //organization_groups are dependent to the organization members

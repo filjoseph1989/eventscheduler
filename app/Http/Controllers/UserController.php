@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\Models\Admin;
 use App\Models\User;
+use App\Models\Admin;
+use App\Models\Course;
+use App\Models\Position;
+use App\Models\Department;
+use App\Models\UserAccount;
 use Illuminate\Http\Request;
 
 
@@ -148,7 +152,18 @@ class UserController extends Controller
      */
     public function getUser(Request $data)
     {
-        return User::find($data->id);
+        $data = [
+          'department'   => Department::All(),
+          'user_account' => UserAccount::all(),
+          'position'     => Position::all(),
+          'course'       => Course::all(),
+          'user'         => User::find($data->id),
+        ];
+
+        echo json_encode($data);
+        
+        # next time use Illuminate\Response to return json
+        // return User::find($data->id);
     }
 
     /**
