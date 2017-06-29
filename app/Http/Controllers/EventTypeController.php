@@ -32,11 +32,16 @@ class EventTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function create(Request $data)
+     public function adminCreate(Request $data)
      {
-         return EventType::create([
-             'name' => $data['name'],
-         ]);
+       $event_type = EventType::create([
+           'name' => $data['name'],
+       ]);
+
+       if ($event_type->save()) {
+         return redirect()->route('admin.event-type.list')
+           ->with('status', 'Successfuly updated module');
+       }
      }
 
     /**
@@ -78,9 +83,14 @@ class EventTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $data)
     {
-        //
+      $event_type       = EventType::find($data->id);
+      $event_type->name = $data['name'];
+      if ($event_type->save()) {
+        return redirect()->route('admin.event-type.list')
+          ->with('status', 'Successfuly updated module');
+      }
     }
 
     /**

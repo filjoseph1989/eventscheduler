@@ -34,9 +34,14 @@ class UserAccountController extends Controller
      */
     public function adminCreate(Request $data)
     {
-        return UserAccount::create([
+        $useraccount = UserAccount::create([
             'name' => $data['name'],
         ]);
+
+        if ($useraccount->save()) {
+          return redirect()->route('admin.user.account.list')
+            ->with('status', 'Successfuly updated module');
+        }
     }
 
     /**

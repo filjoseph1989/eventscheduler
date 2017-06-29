@@ -36,15 +36,20 @@ class OrganizationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $data)
+    public function adminCreate(Request $data)
     {
-        return Organization::create([
-            'name' => $data['name'],
-            'status' => $data['status'],
-            'url' => $data['url'],
+        $organization       = Organization::create([
+            'name'         => $data['name'],
+            'status'       => $data['status'],
+            'url'          => $data['url'],
             'date_started' => $data['date_started'],
             'date_expired' => $data['date_expired'],
         ]);
+
+        if ($organization->save()) {
+          return redirect()->route('admin.organization.list')
+            ->with('status', 'Successfuly updated module');
+        }
     }
 
     /**
@@ -75,9 +80,19 @@ class OrganizationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $data)
     {
-        //
+      $organization               = Organization::find($data->id);
+      $organization->name         = $data['name'];
+      $organization->status       = $data['status'];
+      $organization->url          = $data['url'];
+      $organization->date_started = $data['date_started'];
+      $organization->date_expired = $data['date_expired'];
+
+      if ($organization->save()) {
+        return redirect()->route('admin.organization.list')
+          ->with('status', 'Successfuly updated module');
+      }
     }
 
     /**

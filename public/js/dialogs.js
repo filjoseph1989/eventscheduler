@@ -147,3 +147,23 @@ $(document).on('click', '.course-edit', function() {
   var course_id = $(this).data('id');
   $('#course_id').val(course_id);
 });
+$(document).on('click', '.department-edit', function() {
+  var department_id = $(this).data('id');
+  $('#department_id').val(department_id);
+});
+$(document).on('click', '.position-edit', function() {
+  var position_id = $(this).data('id');
+  $('#position_id').val(position_id);
+});
+$(document).on('click', '.organization-edit', function() {
+  var organization_id = $(this).data('id');
+  $('#organization_id').val(organization_id);
+});
+$(document).on('click', '.event-category-edit', function() {
+  var event_category_id = $(this).data('id');
+  $('#event_category_id').val(event_category_id);
+});
+$(document).on('click', '.event-type-edit', function() {
+  var event_type_id = $(this).data('id');
+  $('#event_type_id').val(event_type_id);
+});

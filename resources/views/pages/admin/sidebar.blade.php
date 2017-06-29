@@ -36,7 +36,7 @@
           </a>
         </li>
         <li>
-          <a href="{{ route('admin.user.list') }}"> 
+          <a href="{{ route('admin.user.list') }}">
             <span>Manage Users</span>
           </a>
         </li>
@@ -66,12 +66,12 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('admin.event.categories.list') }}" class="">
+            <a href="{{ route('admin.event-category.list') }}" class="">
                 <span>Event Categories</span>
             </a>
         </li>
         <li>
-            <a href="{{ route('admin.event.types.list') }}" class="">
+            <a href="{{ route('admin.event-type.list') }}" class="">
                 <span>Event Types</span>
             </a>
         </li>

@@ -31,12 +31,34 @@ class PositionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function create(Request $data)
-     {
-         return Position::create([
-             'name' => $data['name'],
-         ]);
-     }
+    public function adminCreate(Request $data)
+    {
+       $position = Position::create([
+           'name' => $data['name'],
+       ]);
+
+       if ($position->save()) {
+         return redirect()->route('admin.position.list')
+           ->with('status', 'Successfuly updated module');
+       }
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Request $data)
+    {
+      $position       = Position::find($data->id);
+      $position->name = $data['name'];
+      if ($position->save()) {
+        return redirect()->route('admin.position.list')
+          ->with('status', 'Successfuly updated module');
+      }
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -68,17 +90,6 @@ class PositionController extends Controller
     {
         $login_type = 'admin';
         return view('pages.forms.users.position-register', compact('login_type'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
