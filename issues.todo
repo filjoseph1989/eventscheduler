@@ -12,8 +12,8 @@ frontend:
   for admin login,
     login button that goes to admin-login.blade
 ☐ make login forms field as account_number and password (not username(email) and password)
-☐ make every form to be modal
-☐ fix routing - admin is for admin views, user is for user views,
+✔ make every edit and create form to be modal @done(2017-06-29 22:51)
+✔ fix routing - admin is for admin views, user is for user views, @done(2017-06-29 22:51)
 make individual views-folder for every user dashboard and admin dashboard
 use proper/same controllers and models for every manipulation of cruds
 (do not change or modify controller and model names)
@@ -28,7 +28,7 @@ backend:
 ✔ if logged in as admin, delete password field in blade, and in UserController, make account_number as password default @done(2017-06-28 03:22)
 ☐ only active(status=active/1) users are accessible to login
 ☐ make login forms field as account_number and password (not username(email) and password)
-☐ fix routing - admin is for admin views, user is for user views,
+✔ fix routing - admin is for admin views, user is for user views, @done(2017-06-29 22:52)
 make individual views-folder for every user dashboard and admin dashboard
 use proper/same controllers and models for every manipulation of cruds
 (do not change or modify controller and model names)

@@ -5,6 +5,10 @@ use App\Models\User;
 use App\Models\UserAccount;
 use App\Models\Course;
 use App\Models\Department;
+use App\Models\Position;
+use App\Models\Organization;
+use App\Models\EventCategory;
+use App\Models\EventType;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -66,26 +70,30 @@ class AdminController extends Controller
 
     public function showAllPositionList()
     {
+        $positions  = Position::all();
         $login_type = "admin";
-        return view('pages.users.position.list', compact('login_type'));
+        return view('pages.admin.position.list', compact('login_type','positions'));
     }
 
     public function showAllOrganizationList()
     {
+        $organizations = Organization::all();
         $login_type = "admin";
-        return view('pages.users.organization.list', compact('login_type'));
+        return view('pages.admin.organization.list', compact('login_type','organizations'));
     }
 
     public function showAllEvenCategoriesList()
     {
-        $login_type = 'admin';
-        return view('pages.users.event-category.list', compact('login_type'));
+        $event_categories = EventCategory::all();
+        $login_type    = "admin";
+        return view('pages.admin.event-category.list', compact('login_type','event_categories'));
     }
 
-    public function showAllEventTypes()
+    public function showAllEventTypeList()
     {
+        $event_types = EventType::all();
         $login_type = 'admin';
-        return view('pages.users.event-type.list', compact('login_type'));
+        return view('pages.admin.event-type.list', compact('login_type','event_types'));
     }
 
     public function showAllApprovers()

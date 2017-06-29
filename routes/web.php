@@ -59,10 +59,6 @@ Route::prefix('admin')->group(function() {
     Route::name('admin.user-account.register')->post('/user-account/register', 'UserAccountController@adminCreate');
     Route::name('admin.user-account.edit')->post('/user-account/edit', 'UserAccountController@edit');
 
-    # Events
-    Route::name('admin.event.categories.list')->get('/event/categories/list', 'AdminController@showAllEvenCategoriesList');
-    Route::name('admin.event.types.list')->get('/event/types/list', 'AdminController@showAllEventTypes');
-
     # Course
     Route::name('admin.course.list')->get('/course/list', 'AdminController@showAllCourseList');
     Route::name('admin.course.register')->post('/course/register', 'CourseController@adminCreate');
@@ -71,9 +67,29 @@ Route::prefix('admin')->group(function() {
     # Department
     Route::name('admin.department.list')->get('/department/list', 'AdminController@showAllDepartmentList');
     Route::name('admin.department.register')->post('/department/register', 'DepartmentController@adminCreate');
+    Route::name('admin.department.edit')->post('/department/edit', 'DepartmentController@edit');
 
+    # Position
     Route::name('admin.position.list')->get('/position/list', 'AdminController@showAllPositionList');
+    Route::name('admin.position.register')->post('/position/register', 'PositionController@adminCreate');
+    Route::name('admin.position.edit')->post('/position/edit', 'PositionController@edit');
+
+    # Organization
     Route::name('admin.organization.list')->get('/organization/list', 'AdminController@showAllOrganizationList');
+    Route::name('admin.organization.register')->post('/organization/register', 'OrganizationController@adminCreate');
+    Route::name('admin.organization.edit')->post('/organization/edit', 'OrganizationController@edit');
+
+    #event-category
+    Route::name('admin.event-category.list')->get('/event-category/list', 'AdminController@showAllEvenCategoriesList');
+    Route::name('admin.event-category.register')->post('/event-category/register', 'EventCategoryController@adminCreate');
+    Route::name('admin.event-category.edit')->post('/event-category/edit', 'EventCategoryController@edit');
+
+    #event-type
+    Route::name('admin.event-type.list')->get('/event-type/list', 'AdminController@showAllEventTypeList');
+    Route::name('admin.event-type.register')->post('/event-type/register', 'EventTypeController@adminCreate');
+    Route::name('admin.event-type.edit')->post('/event-type/edit', 'EventTypeController@edit');
+
+    #approvers
     Route::name('admin.approvers.list')->get('/approvers/list', 'AdminController@showAllApprovers');
 
     # Authentication

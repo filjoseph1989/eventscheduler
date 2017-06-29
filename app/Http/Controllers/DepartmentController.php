@@ -33,9 +33,15 @@ class DepartmentController extends Controller
      */
      public function adminCreate(Request $data)
      {
-         return Department::create([
+         $department = Department::create([
              'name' => $data['name'],
          ]);
+
+         if ($department->save()) {
+           return redirect()->route('admin.department.list')
+             ->with('status', 'Successfuly updated module');
+         }
+
      }
      /**
       * Store a newly created resource in storage.
@@ -65,11 +71,15 @@ class DepartmentController extends Controller
       * @param  int  $id
       * @return \Illuminate\Http\Response
       */
-     public function edit($id)
-     {
-         //
-     }
-
+      public function edit(Request $data)
+      {
+        $department       = Department::find($data->id);
+        $department->name = $data['name'];
+        if ($department->save()) {
+          return redirect()->route('admin.department.list')
+            ->with('status', 'Successfuly updated module');
+        }
+      }
      /**
       * Update the specified resource in storage.
       *

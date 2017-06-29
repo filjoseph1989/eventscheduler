@@ -8,35 +8,35 @@
           ☐ accept or reject user registration
           ☐ USERS CRUD
             ✔ create @done(2017-06-24 21:45)
-            ☐ update
+            ✔ update @done(2017-06-29 22:52)
             ☐ delete
           ☐ users_account
             ✔ create @done(2017-06-24 21:45)
-            ☐ update
+            ✔ update @done(2017-06-29 22:52)
             ☐ delete
           ☐ courses
             ✔ create @done(2017-06-24 21:45)
-            ☐ update
+            ✔ update @done(2017-06-29 22:52)
             ☐ delete
           ☐ departments
             ✔ create @done(2017-06-27 14:49)
-            ☐ update
+            ✔ update @done(2017-06-29 22:52)
             ☐ delete
           ☐ positions
             ✔ create @done(2017-06-27 14:49)
-            ☐ update
+            ✔ update @done(2017-06-29 22:52)
             ☐ delete
           ☐ ORGANIZATION CRUDS
             ✔ create @done(2017-06-27 22:11)
-            ☐ update
+            ✔ update @done(2017-06-29 22:52)
             ☐ delete
           ☐ event_categories (public view, among org., within org., or user’s personal)
             ✔ create @done(2017-06-27 22:11)
-            ☐ update
+            ✔ update @done(2017-06-29 22:52)
             ☐ delete
           ☐ event_types (meeting, exibit, job fair, etc.)
             ✔ create @done(2017-06-27 22:11)
-            ☐ update
+            ✔ update @done(2017-06-29 22:52)
             ☐ delete
 
           level 2 crud (dependent to level 1)

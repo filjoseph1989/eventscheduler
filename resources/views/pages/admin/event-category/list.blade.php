@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page-title', 'List of Departments')
+@section('page-title', 'List of Event Categories')
 
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/all-themes.css') }}">
@@ -17,6 +17,7 @@
     @elseif (isset($login_type) and $login_type == 'user')
         @include('pages.users.sidebar')
     @endif
+
     <section class="content">
 
       <div class="container-fluid">
@@ -36,12 +37,13 @@
           </div>
         @endif
 
+
       <div class="container-fluid">
         <div class="row clearfix">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> LIST OF UNIVERSITY DEPARTMENTS </h2>
+                <h2> LIST OF EVENT CATEGORIES </h2>
                 <ul class="header-dropdown m-r--5">
                   <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -64,18 +66,18 @@
                     </tr>
                   </thead>
                   <tbody class="js-sweetalert">
-                    @if (isset($departments))
-                      @foreach ($departments as $usersKey => $usersvalue)
+                    @if (isset($event_categories))
+                      @foreach ($event_categories as $usersKey => $usersvalue)
                         <tr>
                           <td>{{ $usersvalue->name }}</td>
                           <td>
-                            <a href="#" class="department-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
-                            <a href="#" class="department-edit" data-id="{{ $usersvalue->id }}" data-toggle="modal" data-target="#edit-department"> <i class="material-icons">mode_edit</i> </a>
+                            <a href="#" class="event-category-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
+                            <a href="#" class="event-category-edit" data-id="{{ $usersvalue->id }}" data-toggle="modal" data-target="#edit-event-category"> <i class="material-icons">mode_edit</i>
+                            </a>
                           </td>
                         </tr>
                       @endforeach
                     @endif
-                  </tbody>
                   <tfoot>
                     <tr>
                       <th>Name</th>
@@ -83,7 +85,7 @@
                     </tr>
                   </tfoot>
                 </table>
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-department">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-event-category">
                   <i class="material-icons">add</i> Add New
                 </button>
               </div>
@@ -96,46 +98,48 @@
 @endsection
 
 @section('modal')
-  //for editting department
-  <div class="modal fade" id="edit-department" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  //for editting event-category
+  <div class="modal fade" id="edit-event-category" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form class="" id="department-update" role="form" method="POST" action="{{ route('admin.department.edit') }}">
+        <form class="" id="event-category-update" role="form" method="POST" action="{{ route('admin.event-category.edit') }}">
           {{ csrf_field() }}
-          <input type="hidden" name="id" id="department_id">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="">Edit Department Name</h4>
-          </div>
-          <div class="modal-body">
-            <div class="form-group form-float form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-              <div class="form-line">
-                <input type="text" class="form-control" name="name">
-                <label class="form-label">Department Name</label>
-                @if ($errors->has('name'))
-                <span class="help-block"> <strong>{{ $errors->first('name') }}</strong> </span>
-                @endif
+            <input type="hidden" name="id" id="event_category_id">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="">Edit Event Category</h4>
+            </div>
+            <div class="modal-body">
+              <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group form-float form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                  <div class="form-line">
+                    <input type="text" class="form-control" name="name" value="{{ old('name') }}" required="true" autofocus>
+                    <label class="form-label">Event Category Name</label>
+                    @if ($errors->has('name'))
+                    <span class="help-block"> <strong>{{ $errors->first('name') }}</strong> </span>
+                    @endif
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-link waves-effect">SAVE CHANGES</button>
-            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
-          </div>
-        </form>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-link waves-effect">SAVE CHANGES</button>
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+            </div>
+          </form>
       </div>
     </div>
   </div>
 
-  //for adding department
-  <div class="modal fade" id="add-department" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  //for adding event-category
+  <div class="modal fade" id="add-event-category" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form class="" id="department-registration" role="form" method="POST" action="{{ route('admin.department.register') }}">
+        <form class="" id="event-category-registration" role="form" method="POST" action="{{ route('admin.event-category.register') }}">
           {{ csrf_field() }}
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="">Add New Department</h4>
+            <h4 class="modal-title" id="">Add Event Category</h4>
           </div>
 
           <div class="modal-body">
@@ -144,7 +148,7 @@
                 <div class="form-group form-float form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                   <div class="form-line">
                     <input type="text" class="form-control" name="name" value="{{ old('name') }}" required="true" autofocus>
-                    <label class="form-label">Department Name</label>
+                    <label class="form-label">Event Category</label>
                     @if ($errors->has('name'))
                         <span class="help-block"> <strong>{{ $errors->first('name') }}</strong> </span>
                     @endif
@@ -182,5 +186,5 @@
   <script src="{{ asset('js/buttons.print.min.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/jquery-datatable.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/dialogs.js') }}?v=0.1" charset="utf-8"></script>
+  <script src="{{ asset('js/dialogs.js') }}?v=0.2" charset="utf-8"></script>
 @endsection

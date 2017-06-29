@@ -19,6 +19,25 @@
     @endif
 
     <section class="content">
+
+      <div class="container-fluid">
+        @if (session('status'))
+          <div class="alert alert-success">
+            {{ session('status') }}
+          </div>
+        @endif
+
+        @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
+
+
       <div class="container-fluid">
         <div class="row clearfix">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -95,7 +114,7 @@
                 <div class="form-group form-float form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                   <div class="form-line">
                     <input type="text" class="form-control" name="name" value="{{ old('name') }}" required="true" autofocus>
-                    <label class="form-label">Account Type Name</label>
+                    <label class="form-label">Course Name</label>
                     @if ($errors->has('name'))
                     <span class="help-block"> <strong>{{ $errors->first('name') }}</strong> </span>
                     @endif
@@ -116,11 +135,11 @@
   <div class="modal fade" id="add-course" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form class="" id="user-registration" role="form" method="POST" action="{{ route('admin.course.register') }}">
+        <form class="" id="course-registration" role="form" method="POST" action="{{ route('admin.course.register') }}">
           {{ csrf_field() }}
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="">Add New User</h4>
+            <h4 class="modal-title" id="">Add New Course</h4>
           </div>
 
           <div class="modal-body">

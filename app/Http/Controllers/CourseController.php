@@ -17,7 +17,7 @@ class CourseController extends Controller
         session(['class' => parent::getTheme()]);
     }
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource
      *
      * @return \Illuminate\Http\Response
      */
@@ -33,9 +33,14 @@ class CourseController extends Controller
      */
      public function adminCreate(Request $data)
      {
-         return Course::create([
+         $course = Course::create([
              'name' => $data['name'],
          ]);
+
+         if ($course->save()) {
+           return redirect()->route('admin.course.list')
+             ->with('status', 'Successfuly updated module');
+         }
      }
      /**
       * Show the form for creating a new resource.

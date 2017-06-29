@@ -32,11 +32,16 @@ class EventCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function create(Request $data)
+     public function adminCreate(Request $data)
      {
-         return EventCategory::create([
+         $event_category = EventCategory::create([
              'name' => $data['name'],
          ]);
+
+         if ($event_category->save()) {
+           return redirect()->route('admin.event-category.list')
+             ->with('status', 'Successfuly updated module');
+         }
      }
 
     /**
@@ -78,9 +83,14 @@ class EventCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $data)
     {
-        //
+      $event_category       = EventCategory::find($data->id);
+      $event_category->name = $data['name'];
+      if ($event_category->save()) {
+        return redirect()->route('admin.event-category.list')
+          ->with('status', 'Successfuly updated module');
+      }
     }
 
     /**
