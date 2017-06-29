@@ -172,15 +172,6 @@
                       @endif
                     </div>
                   </div>
-                  <div class="form-group form-float form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                    <div class="form-line">
-                      <input type="text" class="form-control" name="password" value="{{ old('password') }}">
-                      <label class="form-label">Password</label>
-                      @if ($errors->has('password'))
-                      <span class="help-block"> <strong>{{ $errors->first('password') }}</strong> </span>
-                      @endif
-                    </div>
-                  </div>
                   <div class="form-group form-float form-group{{ $errors->has('facebook_username') ? ' has-error' : '' }}">
                     <div class="form-line">
                       <input type="text" class="form-control" name="facebook_username" value="{{ old('facebook_username') }}">
@@ -192,7 +183,7 @@
                   </div>
                   <div class="form-group form-float form-group{{ $errors->has('twitter_username') ? ' has-error' : '' }}">
                     <div class="form-line">
-                      <input type="text" class="form-control" id="twitter_username" name="twitter_username" placeholder="Twitter Username" value="{{ old('twitter_username') }}" required>
+                      <input type="text" class="form-control" id="twitter_username" name="twitter_username" placeholder="Twitter Username" value="{{ old('twitter_username') }}">
                       @if ($errors->has('twitter_username'))
                       <span class="help-block"> <strong>{{ $errors->first('twitter_username') }}</strong> </span>
                       @endif
@@ -200,7 +191,7 @@
                   </div>
                   <div class="form-group form-float form-group{{ $errors->has('instagram_username') ? ' has-error' : '' }}">
                     <div class="form-line">
-                      <input type="text" class="form-control" id="instagram_username" name="instagram_username" placeholder="Instagram Username" value="{{ old('instagram_username') }}" required>
+                      <input type="text" class="form-control" id="instagram_username" name="instagram_username" placeholder="Instagram Username" value="{{ old('instagram_username') }}">
                       @if ($errors->has('instagram_username'))
                       <span class="help-block"> <strong>{{ $errors->first('instagram_username') }}</strong> </span>
                       @endif

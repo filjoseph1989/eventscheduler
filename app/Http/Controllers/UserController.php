@@ -70,10 +70,10 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Edit the user's information
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $data
+     * @return \illuminate\resposnse
      */
     public function edit(Request $data)
     {
@@ -84,7 +84,6 @@ class UserController extends Controller
       $user->position_id        = $data['position_id'];
       $user->account_number     = $data['account_number'];
       $user->email              = $data['email'];
-      $user->password           = $data['password'];
       $user->first_name         = $data['first_name'];
       $user->last_name          = $data['last_name'];
       $user->middle_name        = $data['middle_name'];
@@ -94,9 +93,10 @@ class UserController extends Controller
       $user->instagram_username = $data['instagram_username'];
       $user->mobile_number      = $data['mobile_number'];
       $user->status             = $data['status'];
+
       if ($user->save()) {
         return redirect()->route('admin.user.list')
-          ->with('status', 'Successfuly updated module');
+          ->with('status', 'Successfuly User Information');
       }
     }
 
@@ -127,6 +127,12 @@ class UserController extends Controller
       ]);
     }
 
+    /**
+     * Get the single row of user base on the given ID
+     *
+     * @param  Request $data
+     * @return json
+     */
     public function getUser(Request $data)
     {
         return User::find($data->id);
