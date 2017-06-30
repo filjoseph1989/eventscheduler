@@ -41,7 +41,7 @@ class AdminController extends Controller
      */
     public function showAllUserList()
     {
-        $users      = User::all();
+        $users      = User::where('deleted_or_not', '=', 1)->get();
         $login_type = 'admin';
         session(['class' => parent::getTheme()]);
         return view('pages.admin.users.list', compact('login_type','users'));
@@ -49,49 +49,49 @@ class AdminController extends Controller
 
     public function showAllUserAccountList()
     {
-        $user_accounts  = UserAccount::all();
+        $user_accounts  = UserAccount::where('deleted_or_not', '=', 1)->get();
         $login_type     = 'admin';
         return view('pages.admin.user-accounts.list', compact('login_type','user_accounts'));
     }
 
     public function showAllCourseList()
     {
-        $courses  = Course::all();
+        $courses  = Course::where('deleted_or_not', '=', 1)->get();
         $login_type = "admin";
         return view('pages.admin.course.list', compact('login_type','courses'));
     }
 
     public function showAllDepartmentList()
     {
-        $departments  = Department::all();
+        $departments  = Department::where('deleted_or_not', '=', 1)->get();
         $login_type = "admin";
         return view('pages.admin.department.list', compact('login_type','departments'));
     }
 
     public function showAllPositionList()
     {
-        $positions  = Position::all();
+        $positions  = Position::where('deleted_or_not', '=', 1)->get();
         $login_type = "admin";
         return view('pages.admin.position.list', compact('login_type','positions'));
     }
 
     public function showAllOrganizationList()
     {
-        $organizations = Organization::all();
+        $organizations = Organization::where('deleted_or_not', '=', 1)->get();
         $login_type = "admin";
         return view('pages.admin.organization.list', compact('login_type','organizations'));
     }
 
     public function showAllEvenCategoriesList()
     {
-        $event_categories = EventCategory::all();
+        $event_categories = EventCategory::where('deleted_or_not', '=', 1)->get();
         $login_type    = "admin";
         return view('pages.admin.event-category.list', compact('login_type','event_categories'));
     }
 
     public function showAllEventTypeList()
     {
-        $event_types = EventType::all();
+        $event_types = EventType::where('deleted_or_not', '=', 1)->get();
         $login_type = 'admin';
         return view('pages.admin.event-type.list', compact('login_type','event_types'));
     }
