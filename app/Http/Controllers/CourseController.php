@@ -96,7 +96,20 @@ class CourseController extends Controller
           ->with('status', 'Successfuly updated module');
       }
     }
+    public function delete(Request $data)
+    {
+      $course = Course::find($data->id);
+      $name = "the course: ".$course->name;
+      $course->deleted_or_not = 0;
 
+      if ($course->save()){
+        $data = [
+          'result' => true,
+          'name' => $name
+        ];
+        echo json_encode($data);
+      }
+    }
     /**
      * Update the specified resource in storage.
      *

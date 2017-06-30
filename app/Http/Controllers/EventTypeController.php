@@ -92,7 +92,20 @@ class EventTypeController extends Controller
           ->with('status', 'Successfuly updated module');
       }
     }
+    public function delete(Request $data)
+    {
+      $event_type = EventType::find($data->id);
+      $name = "the event-type: ".$event_type->name;
+      $event_type->deleted_or_not = 0;
 
+      if ($event_type->save()){
+        $data = [
+          'result' => true,
+          'name' => $name
+        ];
+        echo json_encode($data);
+      }
+    }
     /**
      * Update the specified resource in storage.
      *

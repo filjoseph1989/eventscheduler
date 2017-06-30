@@ -71,14 +71,14 @@
                   <tbody class="js-sweetalert">
                     @if (isset($organizations))
                       @foreach ($organizations as $usersKey => $usersvalue)
-                        <tr>
+                        <tr data-id="{{ $usersvalue->id }}">
                           <td>{{ $usersvalue->name }}</td>
                           <td>{{ $usersvalue->status }}</td>
                           <td>{{ $usersvalue->url }}</td>
                           <td>{{ $usersvalue->date_started }}</td>
                           <td>{{ $usersvalue->date_expired }}</td>
                           <td>
-                            <a href="#" class="organization-delete" data-type="cancel"> <i class="material-icons">delete</i>
+                            <a href="#" class="organization-delete delete" data-url="/admin/organization/delete" data-type="cancel"> <i class="material-icons">delete</i>
                             </a>
                             <a href="#" class="organization-edit" data-id="{{ $usersvalue->id }}" data-toggle="modal" data-target="#edit-organization"> <i class="material-icons">mode_edit</i>
                             </a>
@@ -272,5 +272,5 @@
   <script src="{{ asset('js/buttons.print.min.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/jquery-datatable.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/dialogs.js') }}?v=0.2" charset="utf-8"></script>
+  <script src="{{ asset('js/dialogs.js') }}?v=0.3" charset="utf-8"></script>
 @endsection

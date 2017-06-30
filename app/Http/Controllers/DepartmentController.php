@@ -80,6 +80,21 @@ class DepartmentController extends Controller
             ->with('status', 'Successfuly updated module');
         }
       }
+
+      public function delete(Request $data)
+      {
+        $department = Department::find($data->id);
+        $name = "the department: ".$department->name;
+        $department->deleted_or_not = 0;
+
+        if ($department->save()){
+          $data = [
+            'result' => true,
+            'name' => $name
+          ];
+          echo json_encode($data);
+        }
+      }
      /**
       * Update the specified resource in storage.
       *

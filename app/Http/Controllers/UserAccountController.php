@@ -115,4 +115,19 @@ class UserAccountController extends Controller
     {
         //
     }
+
+    public function delete(Request $data)
+    {
+      $user_account = UserAccount::find($data->id);
+      $name = "the user account type: ".$user_account->name;
+      $user_account->deleted_or_not = 0;
+
+      if ($user_account->save()){
+        $data = [
+          'result' => true,
+          'name' => $name
+        ];
+        echo json_encode($data);
+      }
+    }
 }

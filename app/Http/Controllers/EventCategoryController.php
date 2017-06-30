@@ -92,7 +92,20 @@ class EventCategoryController extends Controller
           ->with('status', 'Successfuly updated module');
       }
     }
+    public function delete(Request $data)
+    {
+      $event_category = EventCategory::find($data->id);
+      $name = "the event-category: ".$event_category->name;
+      $event_category->deleted_or_not = 0;
 
+      if ($event_category->save()){
+        $data = [
+          'result' => true,
+          'name' => $name
+        ];
+        echo json_encode($data);
+      }
+    }
     /**
      * Update the specified resource in storage.
      *

@@ -58,7 +58,20 @@ class PositionController extends Controller
           ->with('status', 'Successfuly updated module');
       }
     }
+    public function delete(Request $data)
+    {
+      $position = Position::find($data->id);
+      $name = "the position: ".$position->name;
+      $position->deleted_or_not = 0;
 
+      if ($position->save()){
+        $data = [
+          'result' => true,
+          'name' => $name
+        ];
+        echo json_encode($data);
+      }
+    }
     /**
      * Store a newly created resource in storage.
      *

@@ -18,6 +18,7 @@ make individual views-folder for every user dashboard and admin dashboard
 use proper/same controllers and models for every manipulation of cruds
 (do not change or modify controller and model names)
 ☐ when adding/updating dates in field, use date formats
+☐ after deleting data, and pressing ok, must reload page
 backend:
 ✔ if I go to login page, but will not type credentials, @done(2017-06-28 02:01)
   then I go to admin-limongogin page without typing credentials,
@@ -33,7 +34,7 @@ backend:
 make individual views-folder for every user dashboard and admin dashboard
 use proper/same controllers and models for every manipulation of cruds
 (do not change or modify controller and model names)
-☐ delete via delete_or_not column in table, delete_or_not => 1 are the ones that will be displayed in list.blade(do delete files in database unless updated)
+✔ delete via delete_or_not column in table, delete_or_not => 1 are the ones that will be displayed in list.blade(do delete files in database unless updated) @done(2017-06-30 21:11)
 ☐ revalidate back
 ☐ deployment for ftp
 ✔ different logouts for user, fixed csrf error @done(2017-06-30 15:31)

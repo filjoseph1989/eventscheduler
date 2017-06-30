@@ -117,6 +117,21 @@ class UserController extends Controller
       }
     }
 
+    public function delete(Request $data)
+    {
+      $user = User::find($data->id);
+      $name = "the name: ".$user->first_name." ".$user->middle_name." ".$user->last_name." and account number: ".$user->account_number;
+      $user->deleted_or_not = 0;
+
+      if ($user->save()){
+        $data = [
+          'result' => true,
+          'name' => $name
+        ];
+        echo json_encode($data);
+      }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -233,5 +248,5 @@ class UserController extends Controller
         }
     }
 
-    
+
 }

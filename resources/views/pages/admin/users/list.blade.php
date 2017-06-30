@@ -76,7 +76,7 @@
                           <td>{{ $usersvalue->email }}</td>
                           <td>{{ $usersvalue->mobile_number }}</td>
                           <td>
-                            <a href="#" class="users-delete delete" data-type="cancel">
+                            <a href="#" class="users-delete delete" data-url="/admin/user/delete" data-type="cancel">
                               <i class="material-icons">delete</i>
                             </a>
                             <a href="#" class="users-edit" data-id="{{ $usersvalue->id }}" data-toggle="modal" data-target="#edit-user">

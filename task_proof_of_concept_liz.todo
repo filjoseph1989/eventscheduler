@@ -9,11 +9,11 @@
           ☐ USERS CRUD
             ✔ create @done(2017-06-24 21:45)
             ✔ update @done(2017-06-29 22:52)
-            ☐ delete
+            ☐ not static deletion
           ☐ users_account
             ✔ create @done(2017-06-24 21:45)
             ✔ update @done(2017-06-29 22:52)
-            ☐ delete
+            ☐ not static deletion
           ☐ courses
             ✔ create @done(2017-06-24 21:45)
             ✔ update @done(2017-06-29 22:52)
@@ -21,7 +21,7 @@
           ☐ departments
             ✔ create @done(2017-06-27 14:49)
             ✔ update @done(2017-06-29 22:52)
-            ☐ delete
+            ☐ not static deletion
           ☐ positions
             ✔ create @done(2017-06-27 14:49)
             ✔ update @done(2017-06-29 22:52)
@@ -29,15 +29,15 @@
           ☐ ORGANIZATION CRUDS
             ✔ create @done(2017-06-27 22:11)
             ✔ update @done(2017-06-29 22:52)
-            ☐ delete
+            ☐ not static deletion
           ☐ event_categories (public view, among org., within org., or user’s personal)
             ✔ create @done(2017-06-27 22:11)
             ✔ update @done(2017-06-29 22:52)
-            ☐ delete
+            ☐ not static deletion
           ☐ event_types (meeting, exibit, job fair, etc.)
             ✔ create @done(2017-06-27 22:11)
             ✔ update @done(2017-06-29 22:52)
-            ☐ delete
+            ☐ not static deletion
 
           level 2 crud (dependent to level 1)
           ☐ approvers (osa personnel, org. adviser, org. head, proxy approvers)

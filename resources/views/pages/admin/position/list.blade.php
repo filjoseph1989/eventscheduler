@@ -68,10 +68,10 @@
                   <tbody class="js-sweetalert">
                     @if (isset($positions))
                       @foreach ($positions as $usersKey => $usersvalue)
-                        <tr>
+                        <tr data-id="{{ $usersvalue->id }}">
                           <td>{{ $usersvalue->name }}</td>
                           <td>
-                            <a href="#" class="position-delete" data-type="cancel"> <i class="material-icons">delete</i>
+                            <a href="#" class="position-delete delete" data-url="/admin/position/delete" data-type="cancel"> <i class="material-icons">delete</i>
                             </a>
                             <a href="#" class="position-edit" data-id="{{ $usersvalue->id }}" data-toggle="modal" data-target="#edit-position"> <i class="material-icons">mode_edit</i>
                             </a>
@@ -216,5 +216,5 @@
   <script src="{{ asset('js/buttons.print.min.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/jquery-datatable.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/dialogs.js') }}?v=0.2" charset="utf-8"></script>
+  <script src="{{ asset('js/dialogs.js') }}?v=0.3" charset="utf-8"></script>
 @endsection

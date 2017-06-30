@@ -80,6 +80,7 @@ $(document).on('click', '.course-edit', function() {
  */
 $(document).on('click', '.delete', function() {
   var id = $(this).parents('tr').data('id');
+  var url = $(this).data('url');
   swal({
     title: "Are you sure?",
     text: "You will not be able to recover this imaginary file!",
@@ -94,7 +95,7 @@ $(document).on('click', '.delete', function() {
     if (isConfirm) {
       $.ajax({
         type: 'POST',
-        url: '/admin/user/delete',
+        url: url,
         data: {
           id: id,
         },
@@ -103,7 +104,11 @@ $(document).on('click', '.delete', function() {
           request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
         },
         success: function(data) {
-          swal("Deleted!", "The user with name <strong>"+data.name+"</strong> was Successfuly generated!", "success");
+          swal("Deleted!", "The user with "+data.name+" was Successfuly deleted!", "success").then(
+            function() {
+              location.reload();
+            }
+          );
           // after the list should be updated
         },
         error: function(data) {

@@ -68,10 +68,10 @@
                   <tbody class="js-sweetalert">
                     @if (isset($event_categories))
                       @foreach ($event_categories as $usersKey => $usersvalue)
-                        <tr>
+                        <tr data-id="{{ $usersvalue->id }}">
                           <td>{{ $usersvalue->name }}</td>
                           <td>
-                            <a href="#" class="event-category-delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
+                            <a href="#" class="event-category-delete delete" data-url="/admin/event-category/delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
                             <a href="#" class="event-category-edit" data-id="{{ $usersvalue->id }}" data-toggle="modal" data-target="#edit-event-category"> <i class="material-icons">mode_edit</i>
                             </a>
                           </td>
@@ -186,5 +186,5 @@
   <script src="{{ asset('js/buttons.print.min.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/jquery-datatable.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/dialogs.js') }}?v=0.2" charset="utf-8"></script>
+  <script src="{{ asset('js/dialogs.js') }}?v=0.3" charset="utf-8"></script>
 @endsection
