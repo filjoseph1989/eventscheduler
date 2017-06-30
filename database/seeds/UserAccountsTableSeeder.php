@@ -12,12 +12,12 @@ class UserAccountsTableSeeder extends Seeder
    public function run()
    {
        DB::table('user_accounts')->insert([
-           array('name' => 'user','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
-           array('name' => 'admin','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
-           array('name' => 'organization adviser','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
-           array('name' => 'organization head','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
-           array('name' => 'organization member','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
-           array('name' => 'osa personnel','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
+           array('name' => 'user', 'deleted_or_not'=>1,  'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
+           array('name' => 'admin', 'deleted_or_not'=>1,  'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
+           array('name' => 'organization adviser', 'deleted_or_not'=>1,  'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
+           array('name' => 'organization head', 'deleted_or_not'=>1,  'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
+           array('name' => 'organization member', 'deleted_or_not'=>1,  'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
+           array('name' => 'osa personnel', 'deleted_or_not'=>1,  'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
        ]);
    }
 }

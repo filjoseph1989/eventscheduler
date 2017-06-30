@@ -161,7 +161,7 @@ class UserController extends Controller
         ];
 
         echo json_encode($data);
-        
+
         # next time use Illuminate\Response to return json
         // return User::find($data->id);
     }

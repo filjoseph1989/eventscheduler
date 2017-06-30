@@ -33,7 +33,8 @@ class UserstableSeeder extends Seeder
                 'twitter_username'   => $faker->lastName.'@twitter.com',
                 'instagram_username' => $faker->lastName.'@instagram.com',
                 'mobile_number'      => $faker->numberBetween($min = 1000, $max = 9000),
-                'status'             => '0',
+                'status'             => 0,
+                'deleted_or_not'     => 1,
                 'remember_token'     => NULL
             ]);
         }

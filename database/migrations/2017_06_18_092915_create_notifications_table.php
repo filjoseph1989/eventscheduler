@@ -22,6 +22,7 @@ class CreateNotificationsTable extends Migration
           $table->date('duration_start')->default(date("Y-m-d H:i:s"));
           $table->date('duration_end')->default(date("Y-m-d H:i:s"));
           $table->date('time'); # for what? Time of the a system will make a alert to the user
+          $table->tinyInteger('deleted_or_not')->default(1);
           $table->timestamps();
         });
     }

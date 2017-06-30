@@ -49,6 +49,7 @@ class CreateUsersTable extends Migration
             // $table->string('instagram_username')->nullable()->unique();
             $table->string('mobile_number', '12');
             $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('deleted_or_not')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

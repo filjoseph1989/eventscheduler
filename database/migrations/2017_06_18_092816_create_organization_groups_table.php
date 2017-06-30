@@ -19,6 +19,7 @@ class CreateOrganizationGroupsTable extends Migration
           $table->foreign('user_id')->references('id')->on('users');
           $table->integer('organization_id')->unsigned()->index();
           $table->foreign('organization_id')->references('id')->on('organizations');
+          $table->tinyInteger('deleted_or_not')->default(1);
           $table->timestamps();
         });
     }

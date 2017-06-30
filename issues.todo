@@ -33,3 +33,6 @@ backend:
 make individual views-folder for every user dashboard and admin dashboard
 use proper/same controllers and models for every manipulation of cruds
 (do not change or modify controller and model names)
+☐ delete via status(not completely files)
+☐ revalitdate back
+☐ deployment for ftp

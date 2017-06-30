@@ -20,6 +20,7 @@ class CreateOrganizationsTable extends Migration
             $table->string('url')->nullable();
             $table->date('date_started')->default(date("Y-m-d H:i:s"));
             $table->date('date_expired')->default(date("Y-m-d H:i:s"));
+            $table->tinyInteger('deleted_or_not')->default(1);
             $table->timestamps();
         });
     }

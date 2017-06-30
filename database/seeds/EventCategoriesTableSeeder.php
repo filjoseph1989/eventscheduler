@@ -12,9 +12,9 @@ class EventCategoriesSeeder extends Seeder
     public function run()
     {
       DB::table('event_categories')->insert([
-        array('name' => 'public view','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
-        array('name' => 'within organizations','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
-        array('name' => 'among organizations','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
+        array('name' => 'public view', 'deleted_or_not'=>1, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
+        array('name' => 'within organizations', 'deleted_or_not'=>1, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
+        array('name' => 'among organizations', 'deleted_or_not'=>1, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
       ]);
     }
 }

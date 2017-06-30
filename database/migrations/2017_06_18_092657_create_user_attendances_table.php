@@ -22,6 +22,7 @@ class CreateUserAttendancesTable extends Migration
             $table->tinyInteger('confirmation')->default(0);
             $table->string('reason');
             $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('deleted_or_not')->default(1);
             $table->timestamps();
         });
     }

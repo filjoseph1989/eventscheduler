@@ -24,6 +24,7 @@ class CreateEventsTable extends Migration
           $table->time('time');
           $table->string('venue')->nullable();
           $table->tinyInteger('status')->default(0);
+          $table->tinyInteger('deleted_or_not')->default(1);
           $table->timestamps();
         });
     }
