@@ -5,45 +5,41 @@
 2 type Dashboard
   1. super admin (s_admins table) Dashboard (direct to database management)
           level 1
-          ☐ accept or reject user registration
-          ☐ USERS CRUD
+          ✔ accept or reject user registration via status(active/inactive) @done(2017-07-01 00:38)
+          ✔ USERS CRUD @done(2017-07-01 00:38)
             ✔ create @done(2017-06-24 21:45)
             ✔ update @done(2017-06-29 22:52)
             ✔ not static deletion @done(2017-06-30 21:45)
-          ☐ users_account
+          ✔ users_account @done(2017-07-01 00:39)
             ✔ create @done(2017-06-24 21:45)
             ✔ update @done(2017-06-29 22:52)
             ✔ not static deletion @done(2017-06-30 21:45)
-          ☐ courses
+          ✔ courses @done(2017-07-01 00:39)
             ✔ create @done(2017-06-24 21:45)
             ✔ update @done(2017-06-29 22:52)
             ✔ not static deletion @done(2017-06-30 21:45)
-          ☐ departments
+          ✔ departments @done(2017-07-01 00:39)
             ✔ create @done(2017-06-27 14:49)
             ✔ update @done(2017-06-29 22:52)
             ✔ not static deletion @done(2017-06-30 21:45)
-          ☐ positions
+          ✔ positions @done(2017-07-01 00:39)
             ✔ create @done(2017-06-27 14:49)
             ✔ update @done(2017-06-29 22:52)
             ✔ not static deletion @done(2017-06-30 21:45)
-          ☐ ORGANIZATION CRUDS
+          ✔ ORGANIZATION CRUDS @done(2017-07-01 00:39)
             ✔ create @done(2017-06-27 22:11)
             ✔ update @done(2017-06-29 22:52)
             ✔ not static deletion @done(2017-06-30 21:45)
-          ☐ event_categories (public view, among org., within org., or user’s personal)
+          ✔ event_categories (public view, among org., within org., or user’s personal) @done(2017-07-01 00:39)
             ✔ create @done(2017-06-27 22:11)
             ✔ update @done(2017-06-29 22:52)
             ✔ not static deletion @done(2017-06-30 21:46)
-          ☐ event_types (meeting, exibit, job fair, etc.)
+          ✔ event_types (meeting, exibit, job fair, etc.) @done(2017-07-01 00:39)
             ✔ create @done(2017-06-27 22:11)
             ✔ update @done(2017-06-29 22:52)
             ✔ not static deletion @done(2017-06-30 21:46)
 
-          level 2 crud (dependent to level 1)
-          ☐ approvers (osa personnel, org. adviser, org. head, proxy approvers)
-              ☐ create
-              ☐ update
-              ☐ delete
+          level 2 crud (dependent to level 1 of user dashboard)
           ☐ list of all organizations and it's members
           ☐ list of all users and it's profile details + organizations
               //organization_groups are dependent to the organization members
@@ -51,65 +47,65 @@
 
   2. user Dashboard
     ☐ Admin
-      ☐ accept or reject user registration
-      ☐ USERS CRUD
-      ☐ courses
-      ☐ departments
-      ☐ positions
-      ☐ ORGANIZATION CRUDS
-      ☐ approvers (osa personnel, org. adviser, org. head, proxy approvers)
-      level 2 crud (dependent to level 1)
+        ☐ accept or reject user registration
+        ☐ USERS CRUD
+        ☐ courses
+        ☐ departments
+        ☐ positions
+        ☐ ORGANIZATION CRUDS
+        level 2 crud (dependent to level 1)
+        ☐ hidden MY ORGANIZATION div
       ☐ manage schedule (events)
       ☐ generate attendance
           //and user_attendances are dependent on the user's reply on the
           invitations per event
       ☐ manage (notifications)
-      ☐ list of all organizations and it's members
-      ☐ list of all users and it's profile details + organizations
-          //organization_groups are dependent to the organization members
-          (who are the users with the same organizations id)
+        ☐ list of all organizations and it's members
+        ☐ list of all users and it's profile details + organizations
+            //organization_groups are dependent to the organization members
+            (who are the users with the same organizations id)
     ☐ OSA
       ☐ manage schedule (events)
       ☐ generate attendance
           //and user_attendances are dependent on the user's reply on the
           invitations per event
       ☐ manage (notifications)
-      ☐ list of all organizations and it's members
-      ☐ list of all users and it's profile details + organizations
-          //organization_groups are dependent to the organization members
-          (who are the users with the same organizations id)
+        ☐ list of all organizations and it's members
+        ☐ list of all users and it's profile details + organizations
+            //organization_groups are dependent to the organization members
+            (who are the users with the same organizations id)
     ☐ Org Adviser
       ☐ manage schedule (events)
       ☐ generate attendance
           //and user_attendances are dependent on the user's reply on the
           invitations per event
       ☐ manage (notifications)
-      ☐ list of "my" organization and it's members
-      ☐ list of all users in "my" org and it's profile details + organizations
-          //organization_groups are dependent to the organization members
-          (who are the users with the same organizations id)
-      ☐ list of other organizations and it's members
+        ☐ list of "my" organization and it's members
+        ☐ list of all users in "my" org and it's profile details + organizations
+            //organization_groups are dependent to the organization members
+            (who are the users with the same organizations id)
+        ☐ list of other organizations and it's members
     ☐ Org Head
       ☐ manage schedule (events)
       ☐ generate attendance
           //and user_attendances are dependent on the user's reply on the
           invitations per event
       ☐ manage (notifications)
-      ☐ list of "my" organization and it's members
-      ☐ list of all users in "my" org and it's profile details + organizations
-          //organization_groups are dependent to the organization members
-          (who are the users with the same organizations id)
-      ☐ list of other organizations and it's members
+        ☐ list of "my" organization and it's members
+        ☐ list of all users in "my" org and it's profile details + organizations
+            //organization_groups are dependent to the organization members
+            (who are the users with the same organizations id)
+        ☐ list of other organizations and it's members
     ☐ Org Member
       ☐ manage schedule (events)
       ☐ generate attendance
           //and user_attendances are dependent on the user's reply on the
           invitations per event
       ☐ manage (notifications)
-      ☐ list of "my" organization and it's members
-      ☐ list of all users in "my" org and it's profile details + organizations
-          //organization_groups are dependent to the organization members
-          (who are the users with the same organizations id)
+        ☐ list of "my" organization and it's members
+        ☐ list of all users in "my" org and it's profile details + organizations
+            //organization_groups are dependent to the organization members
+            (who are the users with the same organizations id)
 
 
 Dashboard Default

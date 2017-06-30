@@ -25,10 +25,10 @@
   @yield('modal')
 
   @if (Auth::check())
-  <footer class="admin-footer">
-    @component('components.who')
-    @endcomponent
-  </footer>
+    <footer class="admin-footer">
+      @component('components.who')
+      @endcomponent
+    </footer>
   @endif
 
   <script src="{{asset('js/jquery.min.js')}}"></script>
@@ -37,8 +37,8 @@
   <script src="{{asset('js/jquery.slimscroll.js')}}"></script>
 
   @if (Auth::check())
-  @endif
     <script src="{{asset('js/admin.js')}}"></script>
+  @endif
 
   @yield('footer')
 </body>

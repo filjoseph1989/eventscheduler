@@ -30,7 +30,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        session(['class' => parent::getTheme()]);
+        session(['class' => 'theme-black']);
         return view('pages.admin.admin');
     }
 

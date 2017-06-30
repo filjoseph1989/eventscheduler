@@ -15,15 +15,4 @@ class Controller extends BaseController
      * The kind of theme use by this project
      * @var string
      */
-    protected $theme = "theme-teal";
-
-    /**
-     * Return the name of the theme
-     *
-     * @return string
-     */
-    protected function getTheme()
-    {
-        return $this->theme;
-    }
 }
