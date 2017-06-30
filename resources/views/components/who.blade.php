@@ -1,19 +1,12 @@
-@if (Auth::guard('web')->check())
-  <p>
-    You are logged in as a <strong>USER</strong>
-  </p>
-@else
-  <p>
-    You are logged out as a <strong>USER</strong>
-  </p>
-@endif
-
-@if (Auth::guard('admin')->check())
+@if (Auth::guard('admin')->check() and Auth::guard('web')->check())
   <p>
     You are logged in as a <strong>ADMIN</strong>
   </p>
-@else
   <p>
-    You are logged out as a <strong>ADMIN</strong>
+    You are logged in as a <strong>USER</strong>
+  </p>
+@elseif(!(Auth::guard('web')->check()))
+  <p>
+    You are logged in as a <strong>ADMIN</strong>
   </p>
 @endif

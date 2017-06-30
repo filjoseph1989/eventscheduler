@@ -10364,3 +10364,11 @@ html.ie11 .bs-searchbox .form-control {
   margin-left: 3px;
   margin-right: 4px;
 }
+
+.admin-footer {
+  float: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: 20px;
+}

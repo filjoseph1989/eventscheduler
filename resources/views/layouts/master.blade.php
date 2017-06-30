@@ -13,7 +13,7 @@
   <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet">
   <link href="{{asset('css/waves.css')}}" rel="stylesheet" />
   <link href="{{asset('css/animate.css')}}" rel="stylesheet" />
-  <link href="{{asset('css/style.css')}}?v=0.4" rel="stylesheet">
+  <link href="{{asset('css/style.css')}}?v=0.5" rel="stylesheet">
 
   @yield('style')
 </head>
@@ -24,14 +24,21 @@
 
   @yield('modal')
 
+  @if (Auth::check())
+  <footer class="admin-footer">
+    @component('components.who')
+    @endcomponent
+  </footer>
+  @endif
+
   <script src="{{asset('js/jquery.min.js')}}"></script>
   <script src="{{asset('js/bootstrap.js')}}"></script>
   <script src="{{asset('js/waves.js')}}"></script>
   <script src="{{asset('js/jquery.slimscroll.js')}}"></script>
 
   @if (Auth::check())
-    <script src="{{asset('js/admin.js')}}"></script>
   @endif
+    <script src="{{asset('js/admin.js')}}"></script>
 
   @yield('footer')
 </body>
