@@ -49,6 +49,6 @@ class AdminLoginController extends Controller
 
     public function adminLogout(){
       Auth::guard('admin')->logout();
-      return redirect('admin/admin-login');
+      return redirect('login');
     }
 }
