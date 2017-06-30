@@ -33,6 +33,7 @@ backend:
 make individual views-folder for every user dashboard and admin dashboard
 use proper/same controllers and models for every manipulation of cruds
 (do not change or modify controller and model names)
-☐ delete via status(not completely files)
-☐ revalitdate back
+☐ delete via delete_or_not column in table, delete_or_not => 1 are the ones that will be displayed in list.blade(do delete files in database unless updated)
+☐ revalidate back
 ☐ deployment for ftp
+✔ different logouts for user, fixed csrf error @done(2017-06-30 15:31)
