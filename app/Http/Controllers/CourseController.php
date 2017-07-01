@@ -104,7 +104,8 @@ class CourseController extends Controller
       if ($course->save()){
         $data = [
           'result' => true,
-          'name' => $name
+          'name' => $name,
+          'id'  => $data
         ];
         echo json_encode($data);
       }

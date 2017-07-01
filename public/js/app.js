@@ -104,11 +104,8 @@ $(document).on('click', '.delete', function() {
           request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
         },
         success: function(data) {
-          swal("Deleted!", "The user with "+data.name+" was Successfuly deleted!", "success").then(
-            function() {
-              location.reload();
-            }
-          );
+          swal("Deleted!", "The user with "+data.name+" was Successfuly deleted!", "success")
+            location.reload();
           // after the list should be updated
         },
         error: function(data) {
