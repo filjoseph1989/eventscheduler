@@ -19,6 +19,8 @@ use proper/same controllers and models for every manipulation of cruds
 (do not change or modify controller and model names)
 ☐ when adding/updating dates in field, use date formats
 ☐ after deleting data, and pressing ok, must reload page
+☐ change layout for admin/admin-login
+☐ make blades for different types of user account
 backend:
 ✔ if I go to login page, but will not type credentials, @done(2017-06-28 02:01)
   then I go to admin-limongogin page without typing credentials,
@@ -28,7 +30,7 @@ backend:
 ✔ when 'lead1' is achieved, establish their respective routes @done(2017-06-28 01:53)
 ✔ make the password confirmation for user registration for user type user @done(2017-06-28 03:22)
 ✔ if logged in as admin, delete password field in blade, and in UserController, make account_number as password default @done(2017-06-28 03:22)
-☐ only active(status=active/1) users are accessible to login
+✔ only active(status=active/1) users are accessible to login @done(2017-07-01 04:19)
 ☐ make login forms field as account_number and password (not username(email) and password)
 ✔ fix routing - admin is for admin views, user is for user views, @done(2017-06-29 22:52)
 make individual views-folder for every user dashboard and admin dashboard
