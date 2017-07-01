@@ -40,3 +40,5 @@ use proper/same controllers and models for every manipulation of cruds
 ☐ revalidate back
 ☐ deployment for ftp
 ✔ different logouts for user, fixed csrf error @done(2017-06-30 15:31)
+✔ fix the routing that when visited admin login, then proceeds to user login, the user is logged in @done(2017-07-01 14:15)
+but the browser redirects to admin login page

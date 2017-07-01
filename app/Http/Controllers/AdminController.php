@@ -43,7 +43,6 @@ class AdminController extends Controller
     {
         $users      = User::where('deleted_or_not', '=', 1)->get();
         $login_type = 'admin';
-        session(['class' => parent::getTheme()]);
         return view('pages.admin.users.list', compact('login_type','users'));
     }
 

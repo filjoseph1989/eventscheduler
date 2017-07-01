@@ -9,7 +9,6 @@ class OrganizationController extends Controller
     public function __construct()
     {
         $this->middleware('auth:admin');
-        session(['class' => parent::getTheme()]);
     }
     /**
      * Display the registration form for courses

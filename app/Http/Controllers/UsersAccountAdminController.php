@@ -14,7 +14,6 @@ class UsersAccountAdminController extends Controller
     public function __construct()
     {
         $this->middleware('auth:admin');
-        session(['class' => parent::getTheme()]);
     }
 
     /**
