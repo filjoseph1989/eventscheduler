@@ -13,13 +13,10 @@ Route::get('/', function () {
   return redirect()->route('login');
 });
 Auth::routes();
-Route::name('home')->get('/home', 'HomeController@index');
-/*
-|--------------------------------------------------------------------------
-| Users Routes
-|--------------------------------------------------------------------------
-*/
-Route::prefix('users')->group(function() {
+Route::group(['middleware' => 'revalidate'], function()
+{
+  Route::name('home')->get('/home', 'HomeController@index');
+  Route::prefix('users')->group(function() {
     Route::name('user.registered')->post('/registered', 'UserController@create');
 
     Route::name('user.account.register')->get('/register', 'UsersAccountAdminController@showRegisterForm');
@@ -41,13 +38,13 @@ Route::prefix('users')->group(function() {
     Route::name('user.event-category.registered')->post('/event-category/registered', 'EventCategoryController@create');
 
     Route::name('user.logout')->get('/logout', 'Auth\LoginController@userLogout');
-});
-/*
-|--------------------------------------------------------------------------
-| Admin route
-|--------------------------------------------------------------------------
-*/
-Route::prefix('admin')->group(function() {
+  });
+  /*
+  |--------------------------------------------------------------------------
+  | Admin route
+  |--------------------------------------------------------------------------
+  */
+  Route::prefix('admin')->group(function() {
     # Users
     Route::name('admin.user.list')->get('/users/list', 'AdminController@showAllUserList');
     Route::name('admin.user.register')->post('/user/register', 'UserController@adminCreate');
@@ -113,11 +110,17 @@ Route::prefix('admin')->group(function() {
 
     # Dashboard
     Route::name('admin.dashboard')->get('/', 'AdminController@index');
+  });
+  /*
+  |--------------------------------------------------------------------------
+  | Notification route
+  |--------------------------------------------------------------------------
+  */
+  Route::name('notify.via.sms')->get('/notify_via_sms', 'smsNotifierController@index');
+  Route::name('faceboo.notification')->get('/fb/post', 'HomeController@sendNotification');
 });
 /*
 |--------------------------------------------------------------------------
-| Notification route
+| Users Routes
 |--------------------------------------------------------------------------
 */
-Route::name('notify.via.sms')->get('/notify_via_sms', 'smsNotifierController@index');
-Route::name('faceboo.notification')->get('/fb/post', 'HomeController@sendNotification');
