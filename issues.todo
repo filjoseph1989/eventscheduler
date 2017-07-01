@@ -18,9 +18,9 @@ make individual views-folder for every user dashboard and admin dashboard
 use proper/same controllers and models for every manipulation of cruds
 (do not change or modify controller and model names)
 ☐ when adding/updating dates in field, use date formats
-☐ after deleting data, and pressing ok, must reload page
+✔ after deleting data, and pressing ok, must reload page @done(2017-07-01 15:43)
 ☐ change layout for admin/admin-login
-☐ make blades for different types of user account
+☐ make dashboard blades for different types of user account types
 backend:
 ✔ if I go to login page, but will not type credentials, @done(2017-06-28 02:01)
   then I go to admin-limongogin page without typing credentials,
@@ -48,3 +48,4 @@ but the browser redirects to admin login page
   ☐ sms
   ☐ facebook
   ☐ instagram
+☐mas nice if ang table section lang sa div ang refresh kay sometimes naay hinay na browsers
