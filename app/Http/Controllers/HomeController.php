@@ -35,6 +35,7 @@ class HomeController extends Controller
          'class'      => self::getIdentity()['theme'],
          'color'      => self::getIdentity()['color'],
          'sidebar'    => "components.user-sidebar.".str_replace(' ', '-', self::getIdentity()['name'])."-menu",
+         'info_box'   => "components.info-box.".str_replace(' ', '-', self::getIdentity()['name'])."",
          'login_type' => 'user',
        ]);
        return view('pages.home');
