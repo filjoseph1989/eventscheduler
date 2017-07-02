@@ -11,9 +11,9 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
   <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet">
   <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet">
-  <link href="{{asset('css/waves.css')}}" rel="stylesheet" />
-  <link href="{{asset('css/animate.css')}}" rel="stylesheet" />
-  <link href="{{asset('css/style.css')}}?v=0.5" rel="stylesheet">
+  <link href="{{asset('css/waves.css')}}" rel="stylesheet">
+  <link href="{{asset('css/animate.css')}}" rel="stylesheet">
+  <link href="{{asset('css/style.css')}}?v=0.6" rel="stylesheet">
 
   @yield('style')
 </head>
