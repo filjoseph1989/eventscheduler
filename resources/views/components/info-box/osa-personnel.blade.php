@@ -1,5 +1,5 @@
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-  <div class="info-box bg-purple hover-expand-effect">
+  <div class="info-box {{ session('color') }} hover-expand-effect">
     <div class="icon">
       <i class="material-icons">date_range</i>
     </div>
@@ -10,7 +10,7 @@
   </div>
 </div>
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-  <div class="info-box bg-purple hover-expand-effect">
+  <div class="info-box {{ session('color') }} hover-expand-effect">
     <div class="icon">
       <i class="material-icons">event_note</i>
     </div>
@@ -21,7 +21,7 @@
   </div>
 </div>
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-  <div class="info-box bg-purple hover-expand-effect">
+  <div class="info-box {{ session('color') }} hover-expand-effect">
     <div class="icon">
       <i class="material-icons">bubble_chart</i>
     </div>
@@ -32,7 +32,7 @@
   </div>
 </div>
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-  <div class="info-box bg-purple hover-expand-effect">
+  <div class="info-box {{ session('color') }} hover-expand-effect">
     <div class="icon">
       <i class="material-icons">people</i>
     </div>
