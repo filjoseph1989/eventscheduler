@@ -37,6 +37,26 @@ class UserstableSeeder extends Seeder
                 'deleted_or_not'     => 1,
                 'remember_token'     => NULL
             ]);
+             DB::table('users')->insert([
+               'user_account_id'    => 1,
+               'course_id'          => 1,
+               'department_id'      => 1,
+               'position_id'        => 1,
+               'account_number'     => '0000-00001',
+               'first_name'         => 'not user',
+               'last_name'          => '01',
+               'middle_name'        => '',
+               'suffix_name'        => '',
+               'email'              => 'user@email.com',
+               'password'           => bcrypt('password'),
+               'facebook_username'  => 'user@email.com',
+               'twitter_username'   => 'user@email.com',
+               'instagram_username' => 'user@email.com',
+               'mobile_number'      => '9958633866',
+               'status'             => 1,
+               'deleted_or_not'     => 1,
+               'remember_token'     => NULL
+             ]);
         }
     }
 }
