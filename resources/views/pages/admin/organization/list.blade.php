@@ -3,9 +3,10 @@
 @section('page-title', 'List of Organizations')
 
 @section('style')
-  <link rel="stylesheet" href="{{ asset('css/all-themes.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap-material-datetimepicker.css') }}">
   <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('css/sweetalert.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/all-themes.css') }}">
 @endsection
 
 @section('content')
@@ -130,18 +131,6 @@
                     @endif
                   </div>
                 </div>
-                <div class="form-group form-float form-group{{ $errors->has('status') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <select class="form-control" name="status">
-                      <option value="0">-- Status --</option>
-                      <option value="1">Active</option>
-                      <option value="0">Inactive</option>
-                    </select>
-                    @if ($errors->has('status'))
-                        <span class="help-block"> <strong>{{ $errors->first('status') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
                 <div class="form-group form-float form-group{{ $errors->has('url') ? ' has-error' : '' }}">
                   <div class="form-line">
                     <input type="text" class="form-control" name="url" value="{{ old('url') }}" required="true" autofocus>
@@ -153,19 +142,29 @@
                 </div>
                 <div class="form-group form-float form-group{{ $errors->has('date_started') ? ' has-error' : '' }}">
                   <div class="form-line">
-                    <input type="text" class="form-control" name="date_started" value="{{ old('date_started') }}" required="true" autofocus>
-                    <label class="form-label">Date Active</label>
+                    <input type="text" class="datepicker form-control" name="date_started" value="{{ old('date_started') }}" required="true" placeholder="Date Started">
                     @if ($errors->has('date_started'))
-                        <span class="help-block"> <strong>{{ $errors->first('date_started') }}</strong> </span>
+                      <span class="help-block"> <strong>{{ $errors->first('date_started') }}</strong> </span>
                     @endif
                   </div>
                 </div>
                 <div class="form-group form-float form-group{{ $errors->has('date_expired') ? ' has-error' : '' }}">
                   <div class="form-line">
-                    <input type="text" class="form-control" name="date_expired" value="{{ old('date_expired') }}" required="true" autofocus>
-                    <label class="form-label">Date Inactive</label>
+                    <input type="text" class="datepicker form-control" name="date_expired" value="{{ old('date_expired') }}" required="true" placeholder="Date Expired">
                     @if ($errors->has('date_expired'))
-                        <span class="help-block"> <strong>{{ $errors->first('date_expired') }}</strong> </span>
+                    <span class="help-block"> <strong>{{ $errors->first('date_expired') }}</strong> </span>
+                    @endif
+                  </div>
+                </div>
+                <div class="form-group form-float form-group{{ $errors->has('status') ? ' has-error' : '' }}">
+                  <div class="form-line">
+                    <select class="form-control" name="status">
+                      <option value="0">-- Status --</option>
+                      <option value="1">Active</option>
+                      <option value="0">Inactive</option>
+                    </select>
+                    @if ($errors->has('status'))
+                    <span class="help-block"> <strong>{{ $errors->first('status') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -202,18 +201,6 @@
                     @endif
                   </div>
                 </div>
-                <div class="form-group form-float form-group{{ $errors->has('status') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <select class="form-control" name="status">
-                      <option value="0">-- Status --</option>
-                      <option value="1">Active</option>
-                      <option value="0">Inactive</option>
-                    </select>
-                    @if ($errors->has('status'))
-                        <span class="help-block"> <strong>{{ $errors->first('status') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
                 <div class="form-group form-float form-group{{ $errors->has('url') ? ' has-error' : '' }}">
                   <div class="form-line">
                     <input type="text" class="form-control" name="url" value="{{ old('url') }}" required="true" autofocus>
@@ -225,26 +212,35 @@
                 </div>
                 <div class="form-group form-float form-group{{ $errors->has('date_started') ? ' has-error' : '' }}">
                   <div class="form-line">
-                    <input type="text" class="form-control" name="date_started" value="{{ old('date_started') }}" required="true" autofocus>
-                    <label class="form-label">Date Active</label>
+                    <input type="text" class="datepicker form-control" name="date_started" value="{{ old('date_started') }}" required="true" placeholder="Date Started">
                     @if ($errors->has('date_started'))
-                        <span class="help-block"> <strong>{{ $errors->first('date_started') }}</strong> </span>
+                      <span class="help-block"> <strong>{{ $errors->first('date_started') }}</strong> </span>
                     @endif
                   </div>
                 </div>
                 <div class="form-group form-float form-group{{ $errors->has('date_expired') ? ' has-error' : '' }}">
                   <div class="form-line">
-                    <input type="text" class="form-control" name="date_expired" value="{{ old('date_expired') }}" required="true" autofocus>
-                    <label class="form-label">Date Inactive</label>
+                    <input type="text" class="datepicker form-control" name="date_expired" value="{{ old('date_expired') }}" required="true" placeholder="Date Expired">
                     @if ($errors->has('date_expired'))
-                        <span class="help-block"> <strong>{{ $errors->first('date_expired') }}</strong> </span>
+                    <span class="help-block"> <strong>{{ $errors->first('date_expired') }}</strong> </span>
+                    @endif
+                  </div>
+                </div>
+                <div class="form-group form-float form-group{{ $errors->has('status') ? ' has-error' : '' }}">
+                  <div class="form-line">
+                    <select class="form-control" name="status">
+                      <option value="0">-- Status --</option>
+                      <option value="1">Active</option>
+                      <option value="0">Inactive</option>
+                    </select>
+                    @if ($errors->has('status'))
+                    <span class="help-block"> <strong>{{ $errors->first('status') }}</strong> </span>
                     @endif
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
           <div class="modal-footer">
             <button type="submit" class="btn btn-success">
               <i class="material-icons">save</i> Save
@@ -253,12 +249,10 @@
               <i class="material-icons">close</i> Close
             </button>
           </div>
-
         </form>
       </div>
     </div>
   </div>
-
 @endsection
 
 @section('footer')
@@ -274,4 +268,15 @@
   <script src="{{ asset('js/jquery-datatable.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/dialogs.js') }}?v=0.3" charset="utf-8"></script>
+  <script src="{{ asset('js/moment.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/autosize.js') }}" charset="utf-8"></script>
+  <script type="text/javascript">
+    $('.datepicker').bootstrapMaterialDatePicker({
+      format: 'YYYY/MM/DD',
+      clearButton: true,
+      weekStart: 1,
+      time: false
+    });
+  </script>
 @endsection
