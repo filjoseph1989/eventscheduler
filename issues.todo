@@ -48,3 +48,5 @@ but the browser redirects to admin login page
   ☐ facebook
   ☐ instagram
 ☐mas nice if ang table section lang sa div ang refresh kay sometimes naay hinay na browsers
+
+☐ if maglog both users(user and admin dashboard) naka login, tapos maglog out si user, pagrefresh sa admin, malog out pud og apil c admin
