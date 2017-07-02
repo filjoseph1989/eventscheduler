@@ -11025,11 +11025,10 @@ html.ie11 .bs-searchbox .form-control {
 }
 
 .admin-footer {
-    right: 0;
-    bottom: 0;
-    float: right;
-    margin-right: 20px;
-    position: absolute;
+  right: 0;
+  bottom: 0;
+  float: right;
+  margin-right: 20px;
 }
 
 .admin-footer p {
@@ -11037,8 +11036,8 @@ html.ie11 .bs-searchbox .form-control {
 }
 
 .admin-footer p:first-child {
-    margin-bottom: 0px;
-    margin-right: 20px;
+  margin-bottom: 0px;
+  margin-right: 20px;
 }
 a {
   cursor: pointer;
