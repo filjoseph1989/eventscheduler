@@ -9,12 +9,11 @@
 @endsection
 
 @section('content')
-    //list all users on admin dashboard
-
     @include('pages.top-nav')
-    @if (isset($login_type) and $login_type == 'admin')
+
+    @if (session('login_type') and session('login_type') == 'admin')
         @include('pages.admin.sidebar')
-    @elseif (isset($login_type) and $login_type == 'user')
+    @elseif (session('login_type') and session('login_type') == 'user')
         @include('pages.users.sidebar')
     @endif
 
@@ -22,7 +21,7 @@
       <div class="container-fluid">
         @if (session('status'))
           <div class="alert alert-success">
-            {{ session('status') }}
+            {!! session('status') !!} <?php # using this syntax as oppose to {{ }} to prevent excaping html rendering ?>
           </div>
         @endif
 
@@ -107,12 +106,18 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <footer class="admin-footer">
+            @component('components.who')
+            @endcomponent
+          </footer>
+        </div>
       </div>
     </section>
 @endsection
 
 @section('modal')
-  //for editting details of users
+  <!-- modal for editing user information -->
   <div class="modal fade" id="edit-user" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -293,7 +298,7 @@
     </div>
   </div>
 
-  //for adding new users
+  <!-- modal for adding user information -->
   <div class="modal fade" id="add-user" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -496,8 +501,6 @@
       </div>
     </div>
   </div>
-
-  //for deleting existing users
 @endsection
 
 @section('footer')

@@ -31,7 +31,10 @@ class AdminController extends Controller
      */
     public function index()
     {
-        session(['class' => 'theme-black']);
+        session([
+          'class'      => 'theme-black',
+          'login_type' => 'admin'
+        ]);
         return view('pages.admin.admin');
     }
 
