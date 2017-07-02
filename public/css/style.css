@@ -10294,7 +10294,7 @@ fieldset[disabled] .form-control {
     cursor: default;
     display: block;
     position: relative;
-    top: 25px;
+    top: 15px;
 }
 
 .sidebar .user-info .info-container .name {
@@ -11024,10 +11024,11 @@ html.ie11 .bs-searchbox .form-control {
 }
 
 .admin-footer {
-    float: right;
-    bottom: 0;
     right: 0;
+    bottom: 0;
+    float: right;
     margin-right: 20px;
+    position: absolute;
 }
 
 .admin-footer p {

@@ -1,47 +1,92 @@
 To Do:
-  ☐ Task 40: utilize Illuminate\Foundation\Auth\RegistersUsers for registering users in the admin login include it in some admin controller that handle the registration
-  ✔ Task 39: Remove some fragments of hmtl which is not necessary @done(2017-06-23 11:10) @project(To Do)
-  ☐ Task 38: Create form as define in sidebar
-  ✔ Task 37: Add menu to admin sidebar as define in the \task_proof_of_concept_liz.todo @done(2017-06-23 10:52) @project(To Do)
-  ✔ Task 36: Update the admin and user migration as well as their seeders @done(2017-06-23 09:34) @project(To Do)
-  ✔ Task 35: Create add organization form @done(2017-06-21 21:06) @project(To Do)
-  ✔ Task 34: Defined tasked @done(2017-06-20 12:00) @project(To Do)
-  ☐ Task 33: Create a Registration functionality
-  ☐ Task 32: Make a form that add new organization
-  ☐ Task 31: Make a form that add new event
-  ☐ Task 30: Make a calendar for the list of events
-  ☐ Task 29: Users BREAD:
-      ☐ browse
-      ☐ read
-      ✔ edit @done(2017-06-29 20:07) @project(To Do / ☐ Task 29: Users BREAD)
-      ✔ add  @done(2017-06-29 20:07) @project(To Do / ☐ Task 29: Users BREAD)
-      ☐ delete
-  ☐ Task 28: Events BREAD
-  ☐ Task 27: Organization BREAD
-  ☐ Task 26: Organization - User browse the list of organizations
-  ☐ Task 25: Organization - Admin browse the list of organizations
-  ☐ Task 24: Organization - User/Admin My Organization
-  ☐ Task 23: Organization - User/Admin, if the organization profile is display, put an indicator that he is a member
-  ☐ Task 22: Make display user profile
-  ☐ Task 21: User request to be a member to an organization
-  ☐ Task 20: Determine the conflict of schedule
-  ☐ Task 19: Change profile picture
-  ☐ Task 18: Change profile picture background
-  ☐ Task 17: Define user/admin permissions
-  ☐ Task 16: On the calendar, if click on time, day a modal should up, where user can set schedule
-  ✔ Task 15: Create a dynamic information in title tag <title> @done(2017-06-21 16:53) @project(To Do)
-  ☐ Task 14: Improve this facebook function by binding it to an approved events in the system
-  ☐ Task 15: Create other functions about facebook notification that utilize the image and video post
-  ✔ Task 13: Add facebook notification function  @done(2017-06-20 09:40) @project(To Do)
-  ✔ Task 12: Create a user Registration form @done(2017-06-21 16:30) @project(To Do)
-  ✔ Task 11: Display he user name and email in sidebar @done(2017-06-19 23:35) @project(To Do)
-  ✔ Task 10: Create migration for users @done(2017-06-19 21:14) @project(To Do)
-  ☐ Task 9: List of organization actions - show members
-  ☐ Task 8: List of organization actions - delete
-  ☐ Task 7: List of organization actions - edit
-  ☐ Task 6: List of organization actions - create
-  ✔ Task 5: Create a list of organization -dummy @done(2017-06-18 19:56) @project(To Do)
-  ✔ Task 4: Continue with making the calendar for making schedule of events @done(2017-06-18 19:34) @project(To Do)
-  ✔ Task 3: Create a calendar UI for an schedule of event @done(2017-06-18 17:19) @project(To Do)
-  ✔ Task 2: Make the login form functional and display the dashboard @done(2017-06-18 10:59) @project(To Do)
-  ✔ Task 1: Create a login form @done(2017-06-18 01:36) @project(To Do)
+  ☐ Task 29 - Different user dashboard
+  ☐ Task 28 - Login as OSA:
+    ☐ Organization:
+      ☐ Attendance
+      ☐ List
+  ☐ Task 27 - Create a function which return an information about css and js version
+  ☐ Task 26 - Manage Approvers:
+    ☐ Browse
+    ☐ Read
+    ☐ Edit
+    ☐ Add
+    ☐ Delete
+  ☐ Task 25 - Manage Event Types:
+    ☐ Browse
+    ☐ Read
+    ☐ Edit
+    ☐ Add
+    ☐ Delete
+  ☐ Task 24 - Manage Event Categories:
+    ☐ Browse
+    ☐ Read
+    ☐ Edit
+    ☐ Add
+    ☐ Delete
+  ☐ Task 23 - Manage Organization:
+    ☐ Browse
+    ☐ Read
+    ☐ Edit
+    ☐ Add
+    ☐ Delete
+  ☐ Task 22 - Manage Position:
+    ☐ Browse
+    ☐ Read
+    ☐ Edit
+    ☐ Add
+    ☐ Delete
+  ☐ Task 21 - Manage Department:
+    ☐ Browse
+    ☐ Read
+    ☐ Edit
+    ☐ Add
+    ☐ Delete
+  ☐ Task 20 - Manage Courses:
+    ☐ Browse
+    ☐ Read
+    ☐ Edit
+    ☐ Add
+    ☐ Delete
+  ☐ Task 19 - Manage Users Account:
+    ☐ Browse
+    ☐ Read
+    ☐ Edit
+    ☐ Add
+    ☐ Delete
+  ☐ Task 18 - Manage Users
+    ✔ Browse @done(2017-06-30 11:26) @project(To Do / ☐ Task 19 - Manage Users Account)
+    ✔ Read @done(2017-06-30 11:26) @project(To Do / ☐ Task 19 - Manage Users Account)
+    ✔ Edit  @done(2017-06-30 11:26) @project(To Do / ☐ Task 19 - Manage Users Account)
+    ✔ Add  @done(2017-06-30 11:26) @project(To Do / ☐ Task 19 - Manage Users Account)
+    ☐ Delete
+  ☐ Task 17 - Create a function for deleting user information:
+    ☐ Note that there should be no delete, instead change the status to inactive
+    ☐ But admin can view it
+  ☐ Task 16 - Create a function for editing user information:
+      ☐ Need to validate the input of the editing process
+  ☐ Task 15 - Create add functionality to all
+  ✔ Task 14 - Create a user registration functionality before login because liz already created it @done(2017-06-28 13:19) @project(To Do)
+    ✔ Return the inputs errors during registration failure @done(2017-06-28 13:19) @project(To Do / ☐ Task 14 - Create a user registration functionality before login because liz already created it)
+  ✔ Task 13 - Create a modal which display for adding new user in admin dashboard: @done(2017-06-28 09:56) @project(To Do)
+    ✔ Put an error on return when unsuccessful @done(2017-06-28 09:54) @project(To Do / ☐ Task 13 - Create a modal which display for adding new user in admin dashboard)
+    ✔ Let the system create a default password using account_number during registration on the admin side @done(2017-06-28 09:56) @project(To Do / ☐ Task 13 - Create a modal which display for adding new user in admin dashboard)
+    ✔ match the confirm password and password, this should be determine using jquery validation and in controller validation @done(2017-06-28 00:21) @project(To Do / ☐ Task 13 - Create a modal which display for adding new user in admin dashboard)
+    ✔ validate the inputs @done(2017-06-27 12:13) @project(To Do / ☐ Task 13 - Create a modal which display for adding new user in admin dashboard)
+    ✔ Create a modal which display for adding new user @done(2017-06-26 21:23) @project(To Do / ☐ Task 13 - Create a modal which display for adding new user)
+    ✔ Status field should be select dropdown @done(2017-06-26 21:23) @project(To Do / ☐ Task 13 - Create a modal which display for adding new user)
+  ☐ Task 12 - Create a modal which display the user information aka view user profile
+  ☐ Task 11 - Create a filtering in list of user in the admin dashboard (admin/users/list):
+    ☐ Filter by Course
+    ☐ Filter by Department
+    ☐ Filter by Position
+    ☐ Filter by Status
+  ✔ Task 10 - Create an admin forgot password @done(2017-06-26 16:32) @project(To Do)
+  ✔ Task 9 - Display all register user in admin panel @done(2017-06-26 19:50) @project(To Do)
+  ✔ Task 8 - Make forgot password functionality @done(2017-06-25 19:07) @project(To Do)
+  ✔ Task 7 - Make email functionality for forgot password @done(2017-06-25 15:49) @project(To Do)
+  ✔ Task 6 - Improved the layout of the forgot password @done(2017-06-25 14:37) @project(To Do)
+  ✔ Task 5 - Make a validation of user registration @done(2017-06-29 12:36) @project(To Do)
+  ✔ Task 4 - After the successfull registration of the user he/she should be redirected to his/her home page @done(2017-06-29 12:36) @project(To Do)
+  ☐ Task 3 - After the registration of the user and the admin display the list of user he/she should be able to change user_account_type
+  ☐ Task 2 - Get the user dropdowns using eloquent relationship
+  ✔ Task 1 - Create a user registration functionality @done(2017-06-25 14:17) @project(To Do)

@@ -7,6 +7,7 @@
       <div class="info-container">
         <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</div>
         <div class="email">{{ Auth::user()->email }}</div>
+        <div class="email">{{ session('name') }}</div>
         <div class="btn-group user-helper-dropdown">
           <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
           <ul class="dropdown-menu pull-right">
@@ -19,7 +20,7 @@
               <a href="{{ route('user.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="material-icons">input</i> Sign Out
               </a>
-              <form id="logout-form" action="{{ route('user.logout') }}" method="GET" style="display: none;">
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
               </form>
             </li>
@@ -36,42 +37,7 @@
             <span>Home</span>
           </a>
         </li>
-        <li>
-          <a href="#" class="menu-toggle">
-            <i class="material-icons">supervisor_account</i>
-            <span>Organization</span>
-          </a>
-          <ul class="ml-menu">
-            <li>
-              <a href="#">
-                <span>List of Organization</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span>Add Member</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span>Create Event</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#" class="menu-toggle">
-            <i class="material-icons">person</i>
-            <span>User</span>
-          </a>
-          <ul class="ml-menu">
-            <li>
-              <a href="{{ route('register') }}">
-                <span>Add New</span>
-              </a>
-            </li>
-          </ul>
-        </li>
+        @include( session('sidebar') )
       </ul>
     </div>
     <div class="legal">

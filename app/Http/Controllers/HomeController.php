@@ -26,24 +26,23 @@ class HomeController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function index()
-  {
-    /**
-     * 1. Check the status of the user
-     *  1.a what are the requirement?
-     * 2. Check what is the user_account type?
-     * 3. Determine what type of dashboard to display
-     * @var [type]
-     */
-    if (self::getIdentity()['status'] == 1) {
-      session(['class' => self::getIdentity()['theme']]);
-      $login_type = 'user';
-      return view('pages.home', compact('login_type'));
-    } else {
-      Auth::guard('web')->logout();
-      return redirect()->route('register');
-    }
-  }
+   public function index()
+   {
+     # Check if the status of the user who loggedin is active
+     if (self::getIdentity()['status'] == 1) {
+       session([
+         'name'       => self::getIdentity()['name'],
+         'class'      => self::getIdentity()['theme'],
+         'color'      => self::getIdentity()['color'],
+         'sidebar'    => "components.user-sidebar.".str_replace(' ', '-', self::getIdentity()['name'])."-menu",
+         'login_type' => 'user',
+       ]);
+       return view('pages.home');
+     } else { # redirect to register page if status is not active
+       Auth::guard('web')->logout();
+       return redirect()->route('register');
+     }
+   }
 
   public function sendNotification()
   {
@@ -57,12 +56,14 @@ class HomeController extends Controller
    */
   private function getIdentity()
   {
-    $user = User::find(Auth::user()->id);
-    $account_id = UserAccount::find($user->user_account_id);
+    $user        = User::find(Auth::user()->id);
+    $userAccount = UserAccount::find($user->user_account_id);
+
     return [
       'status' => $user->status,
-      'theme'  => $account_id->theme,
-      'account'=> $account_id->name,
+      'name'   => $userAccount->name,
+      'theme'  => $userAccount->theme,
+      'color'  => $userAccount->color,
     ];
   }
 }
