@@ -15,7 +15,7 @@ class UserstableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        for ($i=0; $i < 50; $i++) {
+        for ($i=0; $i < 20; $i++) {
             $gender = ['male','female'];
             User::create([
                 'user_account_id'    => $faker->numberBetween($min = 1, $max = 6),

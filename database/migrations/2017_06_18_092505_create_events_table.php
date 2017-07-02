@@ -20,6 +20,10 @@ class CreateEventsTable extends Migration
           $table->foreign('event_type_id')->references('id')->on('event_types');
           $table->integer('event_category_id')->unsigned()->index();
           $table->foreign('event_category_id')->references('id')->on('event_categories');
+          $table->integer('organization_id')->unsigned()->index();
+          $table->foreign('organization_id')->references('id')->on('organizations');
+          $table->integer('user_id')->unsigned()->index();
+          $table->foreign('user_id')->references('id')->on('users');
           $table->date('date');
           $table->time('time');
           $table->string('venue')->nullable();
