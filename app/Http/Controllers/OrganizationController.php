@@ -37,7 +37,7 @@ class OrganizationController extends Controller
      */
     public function adminCreate(Request $data)
     {
-        $organization       = Organization::create([
+        $organization = Organization::create([
             'name'         => $data['name'],
             'status'       => $data['status'],
             'url'          => $data['url'],
@@ -47,7 +47,7 @@ class OrganizationController extends Controller
 
         if ($organization->save()) {
           return redirect()->route('admin.organization.list')
-            ->with('status', 'Successfuly updated module');
+            ->with('status', "Successfuly Added New Organization <b>{$data['name']}</b>");
         }
     }
 
@@ -74,6 +74,17 @@ class OrganizationController extends Controller
     }
 
     /**
+     * Display the organization form for adding
+     * new organization name
+     *
+     * @return \Illuminate\Response
+     */
+    public function showOrganizationAddForm()
+    {
+      return view('pages.admin.organization.add');
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -93,6 +104,7 @@ class OrganizationController extends Controller
           ->with('status', 'Successfuly updated module');
       }
     }
+
     public function delete(Request $data)
     {
       $organization = Organization::find($data->id);

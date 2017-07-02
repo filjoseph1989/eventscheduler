@@ -79,6 +79,7 @@ Route::group(['middleware' => 'revalidate'], function()
 
     # Organization
     Route::name('admin.organization.list')->get('/organization/list', 'AdminController@showAllOrganizationList');
+    Route::name('admin.organization.add')->get('/organization/add', 'OrganizationController@showOrganizationAddForm');
     Route::name('admin.organization.register')->post('/organization/register', 'OrganizationController@adminCreate');
     Route::name('admin.organization.edit')->post('/organization/edit', 'OrganizationController@edit');
     Route::name('admin.organization.delete')->post('/organization/delete', 'OrganizationController@delete');
