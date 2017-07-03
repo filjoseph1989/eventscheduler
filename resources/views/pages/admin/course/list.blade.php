@@ -24,7 +24,7 @@
       <div class="container-fluid">
         @if (session('status'))
         <div class="alert alert-success">
-          {{ session('status') }}
+          {!! session('status') !!}
         </div>
         @endif
 
@@ -96,7 +96,7 @@
 @endsection
 
 @section('modal')
-  //for editting course
+  {{-- for editting course --}}
   <div class="modal fade" id="edit-course" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -129,7 +129,7 @@
     </div>
   </div>
 
-  //for adding course
+  {{-- for adding course --}}
   <div class="modal fade" id="add-course" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">

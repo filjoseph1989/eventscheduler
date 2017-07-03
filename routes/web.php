@@ -62,7 +62,8 @@ Route::group(['middleware' => 'revalidate'], function()
 
     # Course
     Route::name('admin.course.list')->get('/course/list', 'AdminController@showAllCourseList');
-    Route::name('admin.course.register')->post('/course/register', 'CourseController@adminCreate');
+    Route::name('admin.course.add')->get('/course/add', 'CourseController@showCourseAddForm');
+    Route::name('admin.course.register')->post('/course/register', 'CourseController@courseCreate');
     Route::name('admin.course.edit')->post('/course/edit', 'CourseController@edit');
     Route::name('admin.course.delete')->post('/course/delete', 'CourseController@delete');
 
