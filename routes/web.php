@@ -100,40 +100,38 @@ Route::group(['middleware' => 'revalidate'], function()
   | Users Dashboard Routes
   |--------------------------------------------------------------------------
   */
-    Route::name('home')->get('/home', 'HomeController@index');
+  Route::name('home')->get('/home', 'HomeController@index');
 
-    Route::prefix('users')->group(function() {
-      /**
-       *  Admin User Account
-       *
-       */
-       Route::name('user.logout')->post('/logout', 'Auth\LoginController@userLogout');
-      # User Crud
-      Route::name('user.list')->get('/users/list', 'UserController@showAllUserList');
-      Route::name('user.edit')->post('/user/edit', 'UserController@edit');
-      Route::name('user.delete')->post('/user/delete', 'UserController@delete');
-      Route::name('user.register')->post('/user/register', 'UserController@adminCreate');
-      # Course Crud
-      Route::name('course.list')->get('/course/list', 'CourseController@showAllCourseList');
-      Route::name('course.edit')->post('/course/edit', 'CourseController@edit');
-      Route::name('course.delete')->post('/course/delete', 'CourseController@delete');
-      Route::name('course.register')->post('/course/register', 'CourseController@courseCreate');
-      # Department Crud
-      Route::name('department.list')->get('/department/list', 'DepartmentController@showAllDepartmentList');
-      Route::name('department.edit')->post('/department/edit', 'DepartmentController@edit');
-      Route::name('department.delete')->post('/department/delete', 'DepartmentController@delete');
-      Route::name('department.register')->post('/department/register', 'DepartmentController@adminCreate');
-      # Position Crud
-      Route::name('position.list')->get('/position/list', 'PositionController@showAllPositionList');
-      Route::name('position.register')->post('/position/register', 'PositionController@positionCreate');
-      Route::name('position.edit')->post('/position/edit', 'PositionController@edit');
-      Route::name('position.delete')->post('/position/delete', 'PositionController@delete');
-      # Organization Crud
-      Route::name('organization.list')->get('/organization/list', 'OrganizationController@showAllOrganizationList');
-      Route::name('organization.register')->post('/organization/register', 'OrganizationController@adminCreate');
-      Route::name('organization.edit')->post('/organization/edit', 'OrganizationController@edit');
-      Route::name('organization.delete')->post('/organization/delete', 'OrganizationController@delete');
-    });
+  Route::prefix('users')->group(function() {
+    Route::name('user.logout')->post('/logout', 'Auth\LoginController@userLogout');
+    # User Crud
+    Route::name('user.list')->get('/users/list', 'UserController@showAllUserList');
+    Route::name('user.edit')->post('/user/edit', 'UserController@edit');
+    Route::name('user.delete')->post('/user/delete', 'UserController@delete');
+    Route::name('user.register')->post('/user/register', 'UserController@adminCreate');
+    # Course Crud
+    Route::name('course.list')->get('/course/list', 'CourseController@showAllCourseList');
+    Route::name('course.edit')->post('/course/edit', 'CourseController@edit');
+    Route::name('course.delete')->post('/course/delete', 'CourseController@delete');
+    Route::name('course.register')->post('/course/register', 'CourseController@courseCreate');
+    # Department Crud
+    Route::name('department.list')->get('/department/list', 'DepartmentController@showAllDepartmentList');
+    Route::name('department.edit')->post('/department/edit', 'DepartmentController@edit');
+    Route::name('department.delete')->post('/department/delete', 'DepartmentController@delete');
+    Route::name('department.register')->post('/department/register', 'DepartmentController@adminCreate');
+    # Position Crud
+    Route::name('position.list')->get('/position/list', 'PositionController@showAllPositionList');
+    Route::name('position.register')->post('/position/register', 'PositionController@positionCreate');
+    Route::name('position.edit')->post('/position/edit', 'PositionController@edit');
+    Route::name('position.delete')->post('/position/delete', 'PositionController@delete');
+    # Organization Crud
+    Route::name('organization.list')->get('/organization/list', 'OrganizationController@showAllOrganizationList');
+    Route::name('organization.register')->post('/organization/register', 'OrganizationController@adminCreate');
+    Route::name('organization.edit')->post('/organization/edit', 'OrganizationController@edit');
+    Route::name('organization.delete')->post('/organization/delete', 'OrganizationController@delete');
+
+    Route::name('notification.show')->get('/notification/show', 'ManageNotification@showNotificationPage');
+  });
 });
   /*
   |--------------------------------------------------------------------------

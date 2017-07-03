@@ -28,7 +28,9 @@
     <div class="navbar-header">
       <a href="#" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
       <a href="#" class="bars"></a>
-      <a class="navbar-brand" href="">Event Scheduler System</a>
+      <a class="navbar-brand" href="{{ route('home') }}" title="Event Scheduler System">
+        <i class="material-icons">access_time</i>
+      </a>
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="nav navbar-nav navbar-right">

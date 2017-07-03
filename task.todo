@@ -1,6 +1,7 @@
 To Do:
+  ☐ Task 31: Create a manage notification - This will be a setting what to notify or what kind of notification should be if org adviser will create a event
   ☐ Task 30 - Give functionality the super admin dashboard info-box:
-    ☐ Add Organization
+    ✔ Add Organization @done(2017-07-03 23:11) @project(To Do / ☐ Task 30 - Give functionality the super admin dashboard info-box)
     ✔ Add user  @done(2017-07-03 00:41) @project(To Do / ☐ Task 30 - Give functionality the super admin dashboard info-box)
   ☐ Task 29 - Different user dashboard:
     ☐ Define the sidebar details for deffirent type of user

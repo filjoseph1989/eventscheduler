@@ -49,7 +49,7 @@
               </ul>
             </div>
             <div class="body">
-              <div id='calendar'></div>
+              <!-- <div id='calendar'></div> -->
             </div>
           </div>
         </div>
