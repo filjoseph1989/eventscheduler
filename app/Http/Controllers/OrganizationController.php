@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Auth;
 use App\Models\Organization;
 use Illuminate\Http\Request;
 
@@ -8,7 +9,7 @@ class OrganizationController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware('web');
     }
     /**
      * Display the registration form for courses
@@ -46,8 +47,14 @@ class OrganizationController extends Controller
         ]);
 
         if ($organization->save()) {
-          return redirect()->route('admin.organization.list')
+          if (Auth::guard('admin')->check()){
+            return redirect()->route('admin.organization.list')
             ->with('status', "Successfuly Added New Organization <b>{$data['name']}</b>");
+          }
+          if (Auth::guard('web')->check()){
+            return redirect()->route('organization.list')
+            ->with('status', "Successfuly Added New Organization <b>{$data['name']}</b>");
+          }
         }
     }
 
@@ -100,8 +107,14 @@ class OrganizationController extends Controller
       $organization->date_expired = $data['date_expired'];
 
       if ($organization->save()) {
-        return redirect()->route('admin.organization.list')
-          ->with('status', 'Successfuly updated module');
+        if (Auth::guard('admin')->check()){
+          return redirect()->route('admin.organization.list')
+          ->with('status', "Successfuly Added New Organization <b>{$data['name']}</b>");
+        }
+        if (Auth::guard('web')->check()){
+          return redirect()->route('organization.list')
+          ->with('status', "Successfuly Added New Organization <b>{$data['name']}</b>");
+        }
       }
     }
 
@@ -140,5 +153,11 @@ class OrganizationController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function showAllOrganizationList()
+    {
+        $organizations = Organization::where('deleted_or_not', '=', 1)->get();
+        $login_type = 'user';
+        return view('pages.users.admin-user.organization.list', compact('login_type','organizations'));
     }
 }

@@ -26,13 +26,18 @@
      </a>
    </li>
    <li>
-     <a href="#">
+     <a href="{{ route('department.list') }}">
        <span>DEPARTMENTS</span>
      </a>
    </li>
    <li>
-     <a href="#">
+     <a href="{{ route('position.list') }}">
        <span>POSITIONS</span>
+     </a>
+   </li>
+   <li>
+     <a href="{{ route('organization.list') }}">
+       <span>ORGANIZATIONS</span>
      </a>
    </li>
    <li>

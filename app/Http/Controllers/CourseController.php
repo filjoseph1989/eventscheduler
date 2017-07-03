@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Auth;
 use App\Models\Course;
 use Illuminate\Http\Request;
-
 class CourseController extends Controller
 {
     /**
@@ -92,7 +92,6 @@ class CourseController extends Controller
     {
       $course       = Course::find($data->id);
       $course->name = $data['name'];
-
       if ($course->save()) {
         if (Auth::guard('admin')->check()){
           return redirect()->route('admin.course.list')

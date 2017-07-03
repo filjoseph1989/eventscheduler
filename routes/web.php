@@ -118,8 +118,22 @@ Route::group(['middleware' => 'revalidate'], function()
       Route::name('course.edit')->post('/course/edit', 'CourseController@edit');
       Route::name('course.delete')->post('/course/delete', 'CourseController@delete');
       Route::name('course.register')->post('/course/register', 'CourseController@courseCreate');
+      # Department Crud
+      Route::name('department.list')->get('/department/list', 'DepartmentController@showAllDepartmentList');
+      Route::name('department.edit')->post('/department/edit', 'DepartmentController@edit');
+      Route::name('department.delete')->post('/department/delete', 'DepartmentController@delete');
+      Route::name('department.register')->post('/department/register', 'DepartmentController@adminCreate');
+      # Position Crud
+      Route::name('position.list')->get('/position/list', 'PositionController@showAllPositionList');
+      Route::name('position.register')->post('/position/register', 'PositionController@positionCreate');
+      Route::name('position.edit')->post('/position/edit', 'PositionController@edit');
+      Route::name('position.delete')->post('/position/delete', 'PositionController@delete');
+      # Organization Crud
+      Route::name('organization.list')->get('/organization/list', 'OrganizationController@showAllOrganizationList');
+      Route::name('organization.register')->post('/organization/register', 'OrganizationController@adminCreate');
+      Route::name('organization.edit')->post('/organization/edit', 'OrganizationController@edit');
+      Route::name('organization.delete')->post('/organization/delete', 'OrganizationController@delete');
     });
-
 });
   /*
   |--------------------------------------------------------------------------

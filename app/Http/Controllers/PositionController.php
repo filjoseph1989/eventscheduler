@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use Auth;
 use App\Models\Position;
 use Illuminate\Http\Request;
-
 class PositionController extends Controller
 {
     /**
@@ -13,7 +13,7 @@ class PositionController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware('web');
     }
     /**
      * Display a listing of the resource.
@@ -37,8 +37,14 @@ class PositionController extends Controller
       ]);
 
       if ($position->save()) {
-        return redirect()->route('admin.position.list')
-        ->with('status', "Successfuly Added New Position <b>{$data['name']}</b>");
+        if (Auth::guard('admin')->check()){
+          return redirect()->route('admin.position.list')
+          ->with('status', "Successfuly Added New Position <b>{$data['name']}</b>");
+        }
+        if (Auth::guard('web')->check()){
+          return redirect()->route('position.list')
+          ->with('status', "Successfuly Added New Position <b>{$data['name']}</b>");
+        }
       }
     }
 
@@ -53,8 +59,14 @@ class PositionController extends Controller
       $position       = Position::find($data->id);
       $position->name = $data['name'];
       if ($position->save()) {
-        return redirect()->route('admin.position.list')
-          ->with('status', 'Successfuly updated module');
+        if (Auth::guard('admin')->check()){
+          return redirect()->route('admin.position.list')
+          ->with('status', "Successfuly Added New Position <b>{$data['name']}</b>");
+        }
+        if (Auth::guard('web')->check()){
+          return redirect()->route('position.list')
+          ->with('status', "Successfuly Added New Position <b>{$data['name']}</b>");
+        }
       }
     }
 
@@ -131,5 +143,12 @@ class PositionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function showAllPositionList()
+    {
+        $positions  = Position::where('deleted_or_not', '=', 1)->get();
+        $login_type = 'user';
+        return view('pages.users.admin-user.position.list', compact('login_type','positions'));
     }
 }

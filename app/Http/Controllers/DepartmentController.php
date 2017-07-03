@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use Auth;
 use App\Models\Department;
 use Illuminate\Http\Request;
 
@@ -13,7 +15,7 @@ class DepartmentController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware('web');
     }
 
     /**
@@ -35,10 +37,15 @@ class DepartmentController extends Controller
       $department = Department::create([
         'name' => $data['name']
       ]);
-
       if ($department->save()) {
-        return redirect()->route('admin.department.list')
-          ->with('status', "Successfuly Added new department <b>{$data['name']}</b>"); 
+        if (Auth::guard('admin')->check()){
+          return redirect()->route('admin.department.list')
+            ->with('status', 'Successfuly Course Information');
+        }
+        if (Auth::guard('web')->check()){
+          return redirect()->route('department.list')
+            ->with('status', 'Successfuly Course Information');
+        }
       }
     }
 
@@ -86,8 +93,14 @@ class DepartmentController extends Controller
       $department       = Department::find($data->id);
       $department->name = $data['name'];
       if ($department->save()) {
-        return redirect()->route('admin.department.list')
-          ->with('status', 'Successfuly updated module');
+        if (Auth::guard('admin')->check()){
+          return redirect()->route('admin.department.list')
+            ->with('status', 'Successfuly Course Information');
+        }
+        if (Auth::guard('web')->check()){
+          return redirect()->route('department.list')
+            ->with('status', 'Successfuly Course Information');
+        }
       }
     }
 
@@ -127,5 +140,10 @@ class DepartmentController extends Controller
      {
          //
      }
-
+     public function showAllDepartmentList()
+     {
+         $departments = Department::where('deleted_or_not', '=', 1)->get();
+         $login_type = 'user';
+         return view('pages.users.admin-user.department.list', compact('login_type','departments'));
+     }
 }

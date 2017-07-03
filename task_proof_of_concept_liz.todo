@@ -47,12 +47,14 @@
 
   2. user Dashboard
     ☐ Admin
+    (defective routes when admin user is logged in,
+    some prompts are lacking or not specific)
         ☐ accept or reject user registration
-        ☐ USERS CRUD
-        ☐ courses
-        ☐ departments
-        ☐ positions
-        ☐ ORGANIZATION CRUDS
+        ✔ USERS CRUD @done(2017-07-03 16:49)
+        ✔ courses @done(2017-07-03 16:49)
+        ✔ departments @done(2017-07-03 16:49)
+        ✔ positions @done(2017-07-03 16:49)
+        ✔ ORGANIZATION CRUDS @done(2017-07-03 16:49)
         level 2 crud (dependent to level 1)
         ☐ hidden MY ORGANIZATION div
       ☐ manage schedule (events)
