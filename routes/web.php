@@ -17,7 +17,6 @@ Auth::routes();
 #revalidation of back history
 Route::group(['middleware' => 'revalidate'], function()
 {
-
   /*
   |--------------------------------------------------------------------------
   | Admin route
@@ -97,8 +96,10 @@ Route::group(['middleware' => 'revalidate'], function()
   */
 
     Route::name('home')->get('/home', 'HomeController@index');
-    Route::prefix('users')->group(function() {});
-    Route::name('user.logout')->get('/logout', 'Auth\LoginController@userLogout');
+    Route::prefix('users')->group(function() {
+      Route::name('user.logout')->post('/logout', 'Auth\LoginController@userLogout');
+    });
+
 });
   /*
   |--------------------------------------------------------------------------
