@@ -41,7 +41,7 @@
         defaultView option used to define which view to show by default,
         for example we have used agendaWeek.
       */
-      defaultView: 'agendaWeek',
+      defaultView: 'month',
       /*
         selectable:true will enable user to select datetime slot
         selectHelper will add helpers for selectable.

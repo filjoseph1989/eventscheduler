@@ -104,6 +104,9 @@ Route::group(['middleware' => 'revalidate'], function()
 
   Route::prefix('users')->group(function() {
     Route::name('user.logout')->post('/logout', 'Auth\LoginController@userLogout');
+    /**
+     * Admin User Account Type
+     */
     # User Crud
     Route::name('user.list')->get('/users/list', 'UserController@showAllUserList');
     Route::name('user.edit')->post('/user/edit', 'UserController@edit');
@@ -130,7 +133,18 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('organization.edit')->post('/organization/edit', 'OrganizationController@edit');
     Route::name('organization.delete')->post('/organization/delete', 'OrganizationController@delete');
 
-    Route::name('notification.show')->get('/notification/show', 'ManageNotification@showNotificationPage');
+    /**
+     * Org. Head User Account Type
+     */
+     # Manage Schedule (Type of Calendars)
+        Route::name('university-calendar')->get('/calendar/university-calendar', 'CalendarController@universityCalendar');
+        Route::name('all-organization-calendar')->get('/calendar/all-organization-calendar', 'CalendarController@allOrgsCalendar');
+        Route::name('my-organization-calendar')->get  ('/calendar/my-organization-calendar', 'CalendarController@myOrgCalendar');
+        Route::name('my-personal-calendar')->get('/calendar/my-personal-calendar', 'CalendarController@myPersonalCalendar');
+     # Manage Notifications
+        Route::name('notification.show')->get('/notification/show', 'ManageNotification@showNotificationPage');
+        Route::name('event.show')->get('/events/show', 'ManageNotification@showEventList');
+        Route::name('event.notify')->post('/events/show', 'ManageNotification@notify');
   });
 });
   /*

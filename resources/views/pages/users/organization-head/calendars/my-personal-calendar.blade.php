@@ -40,8 +40,8 @@
             <div class="card">
               <div class="header">
                 <h2>
-                  Organization Calendar
-                  <small>Name of the organization</small>
+                  My Personal Calendar
+                  <small>Legend of Color of events based on Priority</small>
                 </h2>
                 <ul class="header-dropdown m-r--5">
                   <li class="dropdown">
@@ -49,9 +49,10 @@
                       <i class="material-icons">more_vert</i>
                     </a>
                     <ul class="dropdown-menu pull-right">
-                      <li><a href="javascript:void(0);">Action</a></li>
-                      <li><a href="javascript:void(0);">Another action</a></li>
-                      <li><a href="javascript:void(0);">Something else here</a></li>
+                      <li><a href="{{ route('university-calendar') }}">University Calendar</a></li>
+                      <li><a href="{{ route('all-organization-calendar') }}">All Organizations Calendar</a></li>
+                      <li><a href="{{ route('my-organization-calendar') }}">My Organization Calendar</a></li>
+                      <li><a href="{{ route('my-personal-calendar') }}">My Personal Calendar</a></li>
                     </ul>
                   </li>
                 </ul>
