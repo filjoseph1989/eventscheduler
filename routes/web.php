@@ -67,6 +67,7 @@ Route::group(['middleware' => 'revalidate'], function()
 
     # Department
     Route::name('admin.department.list')->get('/department/list', 'AdminController@showAllDepartmentList');
+    Route::name('admin.department.add')->get('/department/add', 'DepartmentController@showDepartmentAddForm');
     Route::name('admin.department.register')->post('/department/register', 'DepartmentController@adminCreate');
     Route::name('admin.department.edit')->post('/department/edit', 'DepartmentController@edit');
     Route::name('admin.department.delete')->post('/department/delete', 'DepartmentController@delete');

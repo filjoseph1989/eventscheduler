@@ -1,4 +1,5 @@
 To Do:
+  ☐ Issue 17: Find the right icon for super admin info box
   ☐ Issue 16: Date expired should not less than the day of date started in {admin/organization/list} same on add organization form
   ✔ Issue 15: Add icons on sidebar for admin @done(2017-06-25 22:49) @project(To Do)
   ✔ Issue 14: How to switch guards on some controllers generated @done(2017-07-03 00:41) @project(To Do)

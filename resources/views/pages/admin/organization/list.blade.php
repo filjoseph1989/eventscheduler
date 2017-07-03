@@ -10,7 +10,6 @@
 @endsection
 
 @section('content')
-
     @include('pages.top-nav')
 
     @if (session('login_type') and session('login_type') == 'admin')
@@ -103,9 +102,14 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <footer class="admin-footer">
+            @component('components.who')
+            @endcomponent
+          </footer>
+        </div>
       </div>
     </section>
-
 @endsection
 
 @section('modal')

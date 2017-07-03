@@ -18,11 +18,10 @@
         @include('pages.users.sidebar')
     @endif
     <section class="content">
-
       <div class="container-fluid">
         @if (session('status'))
           <div class="alert alert-success">
-            {{ session('status') }}
+            {!! session('status') !!}
           </div>
         @endif
 
@@ -36,7 +35,6 @@
           </div>
         @endif
 
-      <div class="container-fluid">
         <div class="row clearfix">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
@@ -65,15 +63,15 @@
                   </thead>
                   <tbody class="js-sweetalert">
                     @if (isset($departments))
-                      @foreach ($departments as $usersKey => $usersvalue)
-                        <tr data-id="{{ $usersvalue->id }}">
-                          <td>{{ $usersvalue->name }}</td>
-                          <td>
-                            <a href="#" class="department-delete delete" data-url="/admin/department/delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
-                            <a href="#" class="department-edit" data-id="{{ $usersvalue->id }}" data-toggle="modal" data-target="#edit-department"> <i class="material-icons">mode_edit</i> </a>
-                          </td>
-                        </tr>
-                      @endforeach
+                    @foreach ($departments as $usersKey => $usersvalue)
+                    <tr data-id="{{ $usersvalue->id }}">
+                      <td>{{ $usersvalue->name }}</td>
+                      <td>
+                        <a href="#" class="department-delete delete" data-url="/admin/department/delete" data-type="cancel"> <i class="material-icons">delete</i> </a>
+                        <a href="#" class="department-edit" data-id="{{ $usersvalue->id }}" data-toggle="modal" data-target="#edit-department"> <i class="material-icons">mode_edit</i> </a>
+                      </td>
+                    </tr>
+                    @endforeach
                     @endif
                   </tbody>
                   <tfoot>
@@ -90,9 +88,14 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <footer class="admin-footer">
+            @component('components.who')
+            @endcomponent
+          </footer>
+        </div>
       </div>
     </section>
-
 @endsection
 
 @section('modal')

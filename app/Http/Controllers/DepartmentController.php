@@ -5,7 +5,6 @@ use App\Models\Department;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
-
 {
     /**
      * Create a new controller instance.
@@ -16,6 +15,7 @@ class DepartmentController extends Controller
     {
         $this->middleware('auth:admin');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -23,25 +23,25 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        //
     }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-     public function adminCreate(Request $data)
-     {
-         $department = Department::create([
-             'name' => $data['name'],
-         ]);
+    public function adminCreate(Request $data)
+    {
+      $department = Department::create([
+        'name' => $data['name']
+      ]);
 
-         if ($department->save()) {
-           return redirect()->route('admin.department.list')
-             ->with('status', 'Successfuly updated module');
-         }
+      if ($department->save()) {
+        return redirect()->route('admin.department.list')
+          ->with('status', "Successfuly Added new department <b>{$data['name']}</b>"); 
+      }
+    }
 
-     }
      /**
       * Store a newly created resource in storage.
       *
@@ -53,32 +53,43 @@ class DepartmentController extends Controller
      {
          //
      }
-     /**
-      * Display the registration form for courses
-      *
-      * @return \Illuminate\Response
-      */
-     public function showRegisterForm()
-     {
-         $login_type = 'admin';
-         return view('pages.forms.users.department-register', compact('login_type'));
-     }
 
-     /**
-      * Show the form for editing the specified resource.
-      *
-      * @param  int  $id
-      * @return \Illuminate\Http\Response
-      */
-      public function edit(Request $data)
-      {
-        $department       = Department::find($data->id);
-        $department->name = $data['name'];
-        if ($department->save()) {
-          return redirect()->route('admin.department.list')
-            ->with('status', 'Successfuly updated module');
-        }
+    /**
+     * Display the registration form for courses
+     * @return [type] [description]
+     */
+    public function showRegisterForm()
+    {
+       $login_type = 'admin';
+       return view('pages.forms.users.department-register', compact('login_type'));
+    }
+
+    /**
+     * Display the department add form
+     * for the admin dashboard
+     *
+     * @return \Illuminate\Response
+     */
+    public function showDepartmentAddForm()
+    {
+      return view('pages.admin.department.add');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Request $data)
+    {
+      $department       = Department::find($data->id);
+      $department->name = $data['name'];
+      if ($department->save()) {
+        return redirect()->route('admin.department.list')
+          ->with('status', 'Successfuly updated module');
       }
+    }
 
       public function delete(Request $data)
       {
