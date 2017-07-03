@@ -16,7 +16,7 @@
  </a>
  <ul class="ml-menu">
    <li>
-     <a href="#">
+     <a href="{{ route('user.list') }}">
        <span>USERS</span>
      </a>
    </li>

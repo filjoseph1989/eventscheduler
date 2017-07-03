@@ -98,6 +98,11 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('home')->get('/home', 'HomeController@index');
     Route::prefix('users')->group(function() {
       Route::name('user.logout')->post('/logout', 'Auth\LoginController@userLogout');
+      Route::name('user.list')->get('/users/list', 'UserController@showAllUserList');
+      Route::name('user.edit')->post('/user/edit', 'UserController@edit');
+      Route::name('user.delete')->post('/user/delete', 'UserController@delete');
+      Route::name('user.register')->post('/user/register', 'UserController@adminCreate');
+
     });
 
 });
