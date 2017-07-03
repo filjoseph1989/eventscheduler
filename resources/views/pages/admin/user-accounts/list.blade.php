@@ -21,7 +21,7 @@
           <div class="container-fluid">
             @if (session('status'))
               <div class="alert alert-success">
-                {{ session('status') }}
+                {!! session('status') !!}
               </div>
             @endif
 
@@ -36,61 +36,67 @@
             @endif
 
             <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="header">
-                            <h2> LIST OF USER ACCOUNT TYPES </h2>
-                            <ul class="header-dropdown m-r--5">
-                                <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="material-icons">more_vert</i>
-                                    </a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="javascript:void(0);">Action</a></li>
-                                        <li><a href="javascript:void(0);">Another action</a></li>
-                                        <li><a href="javascript:void(0);">Something else here</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="body">
-                            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="js-sweetalert">
-                                  @if (isset($user_accounts))
-                                    @foreach ($user_accounts as $usersKey => $usersvalue)
-                                      <tr data-id="{{ $usersvalue->id }}">
-                                        <td>{{ $usersvalue->name }}</td>
-                                        <td>
-                                          <a href="#" class="user-acounts-delete delete" data-url="/admin/user-account/delete" data-type="cancel"> <i class="material-icons">delete</i>
-                                          </a>
-                                          <a href="#" class="user-accounts-edit" data-toggle="modal" data-target="#edit-user-accounts">
-                                          <i class="material-icons">mode_edit</i>
-                                          </a>
-                                        </td>
-                                      </tr>
-                                    @endforeach
-                                  @endif
-                                </tbody>
-                            </table>
-                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-user-account">
-                              <i class="material-icons">add</i> Add New
-                            </button>
-                        </div>
-                    </div>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                  <div class="header">
+                    <h2> LIST OF USER ACCOUNT TYPES </h2>
+                    <ul class="header-dropdown m-r--5">
+                      <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                          <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                          <li><a href="javascript:void(0);">Action</a></li>
+                          <li><a href="javascript:void(0);">Another action</a></li>
+                          <li><a href="javascript:void(0);">Something else here</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="body">
+                    <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody class="js-sweetalert">
+                        @if (isset($user_accounts))
+                        @foreach ($user_accounts as $usersKey => $usersvalue)
+                        <tr data-id="{{ $usersvalue->id }}">
+                          <td>{{ $usersvalue->name }}</td>
+                          <td>
+                            <a href="#" class="user-acounts-delete delete" data-url="/admin/user-account/delete" data-type="cancel"> <i class="material-icons">delete</i>
+                            </a>
+                            <a href="#" class="user-accounts-edit" data-toggle="modal" data-target="#edit-user-accounts">
+                              <i class="material-icons">mode_edit</i>
+                            </a>
+                          </td>
+                        </tr>
+                        @endforeach
+                        @endif
+                      </tbody>
+                    </table>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-user-account">
+                      <i class="material-icons">add</i> Add New
+                    </button>
+                  </div>
                 </div>
+              </div>
             </div>
+            <div class="row">
+              <footer class="admin-footer">
+                @component('components.who')
+                @endcomponent
+              </footer>
+            </div>             
         </div>
     </section>
 @endsection
 
 @section('modal')
-  //for editting details of user-accounts
+  {{-- for editting details of user-accounts --}}
   <div class="modal fade" id="edit-user-accounts" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -123,7 +129,7 @@
     </div>
   </div>
 
-  //for adding user-accounts
+  {{-- for adding user-accounts --}}
   <div class="modal fade" id="add-user-account" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -133,7 +139,6 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="">Add New User-Account Name</h4>
           </div>
-
           <div class="modal-body">
             <div class="row clearfix">
               <div class="col-sm-8 col-sm-offset-2">

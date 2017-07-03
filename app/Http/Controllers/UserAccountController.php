@@ -31,15 +31,17 @@ class UserAccountController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function adminCreate(Request $data)
+    public function useAccountCreate(Request $data)
     {
         $useraccount = UserAccount::create([
             'name' => $data['name'],
+            'theme' => $data['theme'],
+            'color' => $data['color'],
         ]);
 
         if ($useraccount->save()) {
           return redirect()->route('admin.user.account.list')
-            ->with('status', 'Successfuly updated module');
+            ->with('status', "Successfuly added new user account <b>{$data['name']}</b>");
         }
     }
 
@@ -55,14 +57,14 @@ class UserAccountController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the user account adding form
+     * for super admin dashboard info box or related.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showUserAccountAddForm()
     {
-        //
+        return view('pages.admin.user-accounts.add');
     }
 
     /**

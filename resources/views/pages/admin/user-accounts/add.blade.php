@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page-title', 'Add Department')
+@section('page-title', 'Add User Account')
 
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/bootstrap-material-datetimepicker.css') }}">
@@ -43,7 +43,7 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> Add New Position </h2>
+                <h2> Add New User Account Name </h2>
                 <ul class="header-dropdown m-r--5">
                   <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -58,15 +58,31 @@
                 </ul>
               </div>
               <div class="body">
-                <form class="" id="positions-registration" role="form" method="POST" action="{{ route('admin.position.register') }}">
+                <form class="" id="user-registration" role="form" method="POST" action="{{ route('admin.user-account.register') }}">
                   {{ csrf_field() }}
                   <div class="row clearfix">
                     <div class="col-sm-8 col-sm-offset-2">
                       <div class="form-group form-float form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                         <div class="form-line">
-                          <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Position Name" required="true" autofocus>
+                          <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="User Account Name" required="true" autofocus>
                           @if ($errors->has('name'))
                             <span class="help-block"> <strong>{{ $errors->first('name') }}</strong> </span>
+                          @endif
+                        </div>
+                      </div>
+                      <div class="form-group form-float form-group{{ $errors->has('theme') ? ' has-error' : '' }}">
+                        <div class="form-line">
+                          <input type="text" class="form-control" name="theme" value="{{ old('theme') }}" placeholder="User Account Theme" required="true" autofocus>
+                          @if ($errors->has('theme'))
+                            <span class="help-block"> <strong>{{ $errors->first('theme') }}</strong> </span>
+                          @endif
+                        </div>
+                      </div>
+                      <div class="form-group form-float form-group{{ $errors->has('color') ? ' has-error' : '' }}">
+                        <div class="form-line">
+                          <input type="text" class="form-control" name="color" value="{{ old('color') }}" placeholder="User Account Color" required="true" autofocus>
+                          @if ($errors->has('color'))
+                            <span class="help-block"> <strong>{{ $errors->first('color') }}</strong> </span>
                           @endif
                         </div>
                       </div>

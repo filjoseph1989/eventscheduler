@@ -55,7 +55,8 @@ Route::group(['middleware' => 'revalidate'], function()
 
     # User Accounts
     Route::name('admin.user.account.list')->get('/user-account/list', 'AdminController@showAllUserAccountList');
-    Route::name('admin.user-account.register')->post('/user-account/register', 'UserAccountController@adminCreate');
+    Route::name('admin.user.account.add')->get('/user-account/add', 'UserAccountController@showUserAccountAddForm');
+    Route::name('admin.user-account.register')->post('/user-account/register', 'UserAccountController@useAccountCreate');
     Route::name('admin.user-account.edit')->post('/user-account/edit', 'UserAccountController@edit');
     Route::name('admin.user-account.delete')->post('/user-account/delete', 'UserAccountController@delete');
 

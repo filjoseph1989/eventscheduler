@@ -98,15 +98,4 @@
 @endsection
 
 @section('footer')
-  <script src="{{ asset('js/moment.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/autosize.js') }}" charset="utf-8"></script>
-  <script type="text/javascript">
-    $('.datepicker').bootstrapMaterialDatePicker({
-      format: 'YYYY/MM/DD',
-      clearButton: true,
-      weekStart: 1,
-      time: false
-    });
-  </script>
 @endsection
