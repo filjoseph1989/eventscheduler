@@ -21,7 +21,7 @@
      </a>
    </li>
    <li>
-     <a href="#">
+     <a href="{{ route('course.list') }}">
        <span>COURSES</span>
      </a>
    </li>

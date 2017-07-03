@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Auth;
 use App\Models\Course;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class CourseController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware('web');
     }
     /**
      * Display a listing of the resource
@@ -37,8 +38,14 @@ class CourseController extends Controller
       ]);
 
       if ($course->save()) {
-        return redirect()->route('admin.course.list')
-        ->with('status', "Successfuly added new <b>{$data['name']}</b>");
+        if (Auth::guard('admin')->check()){
+          return redirect()->route('admin.course.list')
+            ->with('status', 'Successfuly Course Information');
+        }
+        if (Auth::guard('web')->check()){
+          return redirect()->route('course.list')
+            ->with('status', 'Successfuly Course Information');
+        }
       }
     }
 
@@ -85,11 +92,19 @@ class CourseController extends Controller
     {
       $course       = Course::find($data->id);
       $course->name = $data['name'];
+
       if ($course->save()) {
-        return redirect()->route('admin.course.list')
-          ->with('status', 'Successfuly updated module');
+        if (Auth::guard('admin')->check()){
+          return redirect()->route('admin.course.list')
+            ->with('status', 'Successfully Course Information');
+        }
+        if (Auth::guard('web')->check()){
+          return redirect()->route('course.list')
+            ->with('status', 'Successfully Course Information');
+        }
       }
     }
+
     public function delete(Request $data)
     {
       $course = Course::find($data->id);
@@ -126,5 +141,12 @@ class CourseController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function showAllCourseList()
+    {
+        $courses      = Course::where('deleted_or_not', '=', 1)->get();
+        $login_type = 'user';
+        return view('pages.users.admin-user.course.list', compact('login_type','courses'));
     }
 }

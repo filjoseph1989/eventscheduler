@@ -90,8 +90,8 @@ class UserController extends Controller
             ->with('status', 'Successfuly User Information');
         }
       }
-      }
     }
+
 
     /**
      * Edit the user's information
@@ -121,11 +121,11 @@ class UserController extends Controller
       if ($user->save()) {
         if (Auth::guard('admin')->check()){
           return redirect()->route('admin.user.list')
-            ->with('status', 'Successfuly User Information');
+            ->with('status', 'Successfully User Information');
         }
         if (Auth::guard('web')->check()){
           return redirect()->route('user.list')
-            ->with('status', 'Successfuly User Information');
+            ->with('status', 'Successfully User Information');
         }
       }
     }

@@ -19,7 +19,7 @@ Route::group(['middleware' => 'revalidate'], function()
 {
   /*
   |--------------------------------------------------------------------------
-  | Admin route
+  | Admin Dashboard Routes
   |--------------------------------------------------------------------------
   */
   Route::prefix('admin')->group(function() {
@@ -97,18 +97,27 @@ Route::group(['middleware' => 'revalidate'], function()
   });
   /*
   |--------------------------------------------------------------------------
-  | Users Routes
+  | Users Dashboard Routes
   |--------------------------------------------------------------------------
   */
-
     Route::name('home')->get('/home', 'HomeController@index');
+
     Route::prefix('users')->group(function() {
-      Route::name('user.logout')->post('/logout', 'Auth\LoginController@userLogout');
+      /**
+       *  Admin User Account
+       *
+       */
+       Route::name('user.logout')->post('/logout', 'Auth\LoginController@userLogout');
+      # User Crud
       Route::name('user.list')->get('/users/list', 'UserController@showAllUserList');
       Route::name('user.edit')->post('/user/edit', 'UserController@edit');
       Route::name('user.delete')->post('/user/delete', 'UserController@delete');
       Route::name('user.register')->post('/user/register', 'UserController@adminCreate');
-
+      # Course Crud
+      Route::name('course.list')->get('/course/list', 'CourseController@showAllCourseList');
+      Route::name('course.edit')->post('/course/edit', 'CourseController@edit');
+      Route::name('course.delete')->post('/course/delete', 'CourseController@delete');
+      Route::name('course.register')->post('/course/register', 'CourseController@courseCreate');
     });
 
 });
