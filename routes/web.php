@@ -37,7 +37,7 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('user.event-category.register')->get('/event-category/register', 'EventCategoryController@showRegisterForm');
     Route::name('user.event-category.registered')->post('/event-category/registered', 'EventCategoryController@create');
 
-    Route::name('user.logout')->get('/logout', 'Auth\LoginController@userLogout');
+    Route::name('user.logout')->post('/logout', 'Auth\LoginController@userLogout');
   });
   /*
   |--------------------------------------------------------------------------
@@ -47,6 +47,7 @@ Route::group(['middleware' => 'revalidate'], function()
   Route::prefix('admin')->group(function() {
     # Users
     Route::name('admin.user.list')->get('/users/list', 'AdminController@showAllUserList');
+    Route::name('admin.user.add')->get('/users/add', 'AdminUserController@showUserAddForm');
     Route::name('admin.user.register')->post('/user/register', 'UserController@adminCreate');
     Route::name('admin.user.edit')->post('/user/edit', 'UserController@edit');
     Route::name('admin.user.get')->post('/user/get', 'UserController@getUser');
@@ -54,30 +55,35 @@ Route::group(['middleware' => 'revalidate'], function()
 
     # User Accounts
     Route::name('admin.user.account.list')->get('/user-account/list', 'AdminController@showAllUserAccountList');
-    Route::name('admin.user-account.register')->post('/user-account/register', 'UserAccountController@adminCreate');
+    Route::name('admin.user.account.add')->get('/user-account/add', 'UserAccountController@showUserAccountAddForm');
+    Route::name('admin.user-account.register')->post('/user-account/register', 'UserAccountController@useAccountCreate');
     Route::name('admin.user-account.edit')->post('/user-account/edit', 'UserAccountController@edit');
     Route::name('admin.user-account.delete')->post('/user-account/delete', 'UserAccountController@delete');
 
     # Course
     Route::name('admin.course.list')->get('/course/list', 'AdminController@showAllCourseList');
-    Route::name('admin.course.register')->post('/course/register', 'CourseController@adminCreate');
+    Route::name('admin.course.add')->get('/course/add', 'CourseController@showCourseAddForm');
+    Route::name('admin.course.register')->post('/course/register', 'CourseController@courseCreate');
     Route::name('admin.course.edit')->post('/course/edit', 'CourseController@edit');
     Route::name('admin.course.delete')->post('/course/delete', 'CourseController@delete');
 
     # Department
     Route::name('admin.department.list')->get('/department/list', 'AdminController@showAllDepartmentList');
+    Route::name('admin.department.add')->get('/department/add', 'DepartmentController@showDepartmentAddForm');
     Route::name('admin.department.register')->post('/department/register', 'DepartmentController@adminCreate');
     Route::name('admin.department.edit')->post('/department/edit', 'DepartmentController@edit');
     Route::name('admin.department.delete')->post('/department/delete', 'DepartmentController@delete');
 
     # Position
     Route::name('admin.position.list')->get('/position/list', 'AdminController@showAllPositionList');
-    Route::name('admin.position.register')->post('/position/register', 'PositionController@adminCreate');
+    Route::name('admin.position.add')->get('/position/add', 'PositionController@showPositionAddForm');
+    Route::name('admin.position.register')->post('/position/register', 'PositionController@positionCreate');
     Route::name('admin.position.edit')->post('/position/edit', 'PositionController@edit');
     Route::name('admin.position.delete')->post('/position/delete', 'PositionController@delete');
 
     # Organization
     Route::name('admin.organization.list')->get('/organization/list', 'AdminController@showAllOrganizationList');
+    Route::name('admin.organization.add')->get('/organization/add', 'OrganizationController@showOrganizationAddForm');
     Route::name('admin.organization.register')->post('/organization/register', 'OrganizationController@adminCreate');
     Route::name('admin.organization.edit')->post('/organization/edit', 'OrganizationController@edit');
     Route::name('admin.organization.delete')->post('/organization/delete', 'OrganizationController@delete');

@@ -30,22 +30,17 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function adminCreate(Request $data)
-     {
-         $course = Course::create([
-             'name' => $data['name'],
-         ]);
+    public function courseCreate(Request $data)
+    {
+      $course = Course::create([
+        'name' => $data['name'],
+      ]);
 
-         if ($course->save()) {
-           return redirect()->route('admin.course.list')
-             ->with('status', 'Successfuly updated module');
-         }
-     }
-     /**
-      * Show the form for creating a new resource.
-      *
-      * @return \Illuminate\Http\Response
-      */
+      if ($course->save()) {
+        return redirect()->route('admin.course.list')
+        ->with('status', "Successfuly added new <b>{$data['name']}</b>");
+      }
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -59,14 +54,14 @@ class CourseController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the course adding form for info-box
+     * in the super admin dashboard
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showCourseAddForm()
     {
-        //
+      return view('pages.admin.course.add');
     }
 
     /**

@@ -12,6 +12,6 @@ class UserAccount extends Model
      * @var array
      */
     protected $fillable = [
-      'name',
+      'name','theme','color',
     ];
 }

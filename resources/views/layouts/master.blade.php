@@ -10,10 +10,10 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
   <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet">
-  <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet">
+  <link href="{{asset('css/bootstrap.css')}}?v=3.3.7" rel="stylesheet">
   <link href="{{asset('css/waves.css')}}" rel="stylesheet">
   <link href="{{asset('css/animate.css')}}" rel="stylesheet">
-  <link href="{{asset('css/style.css')}}?v=0.8" rel="stylesheet">
+  <link href="{{asset('css/style.css')}}?v=0.10" rel="stylesheet">
 
   @yield('style')
 </head>
@@ -24,15 +24,8 @@
 
   @yield('modal')
 
-  @if (Auth::check())
-    <footer class="admin-footer">
-      @component('components.who')
-      @endcomponent
-    </footer>
-  @endif
-
-  <script src="{{asset('js/jquery.min.js')}}"></script>
-  <script src="{{asset('js/bootstrap.js')}}"></script>
+  <script src="{{asset('js/jquery.min.js')}}?v=3.2.1"></script>
+  <script src="{{asset('js/bootstrap.js')}}?v=3.3.7"></script>
   <script src="{{asset('js/waves.js')}}"></script>
   <script src="{{asset('js/jquery.slimscroll.js')}}"></script>
 

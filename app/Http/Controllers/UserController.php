@@ -60,30 +60,30 @@ class UserController extends Controller
      */
     public function adminCreate(Request $data)
     {
-          $user = User::create([
-            'user_account_id'    => $data['user_account_id'],
-            'course_id'          => $data['course_id'],
-            'department_id'      => $data['department_id'],
-            'position_id'        => $data['position_id'],
-            'account_number'     => $data['account_number'],
-            'email'              => $data['email'],
-            'password'           => bcrypt($data['account_number']),
-            'first_name'         => $data['first_name'],
-            'last_name'          => $data['last_name'],
-            'middle_name'        => $data['middle_name'],
-            'suffix_name'        => $data['suffix_name'],
-            'facebook_username'  => $data['facebook_username'],
-            'twitter_username'   => $data['twitter_username'],
-            'instagram_username' => $data['instagram_username'],
-            'mobile_number'      => $data['mobile_number'],
-            'status'             => $data['status'],
+      $user = User::create([
+        'user_account_id'    => $data['user_account_id'],
+        'course_id'          => $data['course_id'],
+        'department_id'      => $data['department_id'],
+        'position_id'        => $data['position_id'],
+        'account_number'     => $data['account_number'],
+        'email'              => $data['email'],
+        'password'           => bcrypt($data['account_number']),
+        'first_name'         => ucwords($data['first_name']), # Capitalize the name
+        'last_name'          => ucwords($data['last_name']), # Capitalize the last name
+        'middle_name'        => ucwords($data['middle_name']), # Capitalize the middle name
+        'suffix_name'        => ucwords($data['suffix_name']), # Capitalize the suffix name
+        'facebook_username'  => $data['facebook_username'],
+        'twitter_username'   => $data['twitter_username'],
+        'instagram_username' => $data['instagram_username'],
+        'mobile_number'      => $data['mobile_number'],
+        'status'             => $data['status'],
       ]);
 
+      # if successfuly save
       if ($user->save()) {
         return redirect()->route('admin.user.list')
-          ->with('status', 'Successfuly updated module');
+          ->with('status', "Successfuly added new user <b>{$data['first_name']}</b>");
       }
-
     }
 
     /**

@@ -30,16 +30,16 @@ class PositionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function adminCreate(Request $data)
+    public function positionCreate(Request $data)
     {
-       $position = Position::create([
-           'name' => $data['name'],
-       ]);
+      $position = Position::create([
+        'name' => $data['name'],
+      ]);
 
-       if ($position->save()) {
-         return redirect()->route('admin.position.list')
-           ->with('status', 'Successfuly updated module');
-       }
+      if ($position->save()) {
+        return redirect()->route('admin.position.list')
+        ->with('status', "Successfuly Added New Position <b>{$data['name']}</b>");
+      }
     }
 
     /**
@@ -57,6 +57,7 @@ class PositionController extends Controller
           ->with('status', 'Successfuly updated module');
       }
     }
+
     public function delete(Request $data)
     {
       $position = Position::find($data->id);
@@ -91,6 +92,11 @@ class PositionController extends Controller
     public function show($id)
     {
         //
+    }
+
+    public function showPositionAddForm()
+    {
+      return view('pages.admin.position.add');
     }
 
     /**

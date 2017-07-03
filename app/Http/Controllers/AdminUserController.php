@@ -1,7 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\User;
+use App\Models\Course;
+use App\Models\Position;
+use App\Models\Department;
+use App\Models\UserAccount;
 use Illuminate\Http\Request;
 
 class AdminUserController extends Controller
@@ -27,15 +32,11 @@ class AdminUserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Return user information
      *
-     * @return \Illuminate\Http\Response
+     * @param  Request $data
+     * @return \Illuminate\Response
      */
-    public function create(Request $data)
-    {
-        #
-    }
-
     public function getUsers(Request $data)
     {
         return User::find($data->id);
@@ -83,6 +84,27 @@ class AdminUserController extends Controller
     public function show($id)
     {
         //
+    }
+
+    /**
+     * Display the user adding form for super-admin
+     * dashboard
+     *
+     * @return \Illuminate\Response
+     */
+    public function showUserAddForm()
+    {
+        $user_account = UserAccount::all();
+        $course       = Course::all();
+        $department   = Department::all();
+        $position     = Position::all();
+
+        return view('pages.admin.users.add', compact(
+            'user_account',
+            'course',
+            'department',
+            'position'
+        ));
     }
 
     /**

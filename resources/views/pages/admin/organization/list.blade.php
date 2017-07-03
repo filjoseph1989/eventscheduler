@@ -3,42 +3,38 @@
 @section('page-title', 'List of Organizations')
 
 @section('style')
-  <link rel="stylesheet" href="{{ asset('css/all-themes.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap-material-datetimepicker.css') }}">
   <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('css/sweetalert.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/all-themes.css') }}">
 @endsection
 
 @section('content')
-
     @include('pages.top-nav')
 
-    @if (isset($login_type) and $login_type == 'admin')
+    @if (session('login_type') and session('login_type') == 'admin')
         @include('pages.admin.sidebar')
-    @elseif (isset($login_type) and $login_type == 'user')
+    @elseif (session('login_type') and session('login_type') == 'user')
         @include('pages.users.sidebar')
     @endif
 
     <section class="content">
-
       <div class="container-fluid">
         @if (session('status'))
           <div class="alert alert-success">
-            {{ session('status') }}
+            {!! session('status') !!}
           </div>
         @endif
 
         @if ($errors->any())
-          <div class="alert alert-danger">
-            <ul>
-              @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-              @endforeach
-            </ul>
-          </div>
+        <div class="alert alert-danger">
+          <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
         @endif
-
-
-      <div class="container-fluid">
         <div class="row clearfix">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
@@ -62,10 +58,11 @@
                   <thead>
                     <tr>
                       <th>Name</th>
-                      <th>Status</th>
-                      <th>Url</th>
+                      <th>URL</th>
                       <th>Date Active</th>
                       <th>Date Inactive</th>
+                      <th>Status</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody class="js-sweetalert">
@@ -73,10 +70,10 @@
                       @foreach ($organizations as $usersKey => $usersvalue)
                         <tr data-id="{{ $usersvalue->id }}">
                           <td>{{ $usersvalue->name }}</td>
-                          <td>{{ $usersvalue->status }}</td>
                           <td>{{ $usersvalue->url }}</td>
                           <td>{{ $usersvalue->date_started }}</td>
                           <td>{{ $usersvalue->date_expired }}</td>
+                          <td class="align-center">{{ $usersvalue->status }}</td>
                           <td>
                             <a href="#" class="organization-delete delete" data-url="/admin/organization/delete" data-type="cancel"> <i class="material-icons">delete</i>
                             </a>
@@ -86,10 +83,15 @@
                         </tr>
                       @endforeach
                     @endif
+                  </tbody>
                   <tfoot>
                     <tr>
                       <th>Name</th>
-                      <th>Actions</th>
+                      <th>URL</th>
+                      <th>Date Active</th>
+                      <th>Date Inactive</th>
+                      <th>Status</th>
+                      <th>Action</th>
                     </tr>
                   </tfoot>
                 </table>
@@ -100,13 +102,18 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <footer class="admin-footer">
+            @component('components.who')
+            @endcomponent
+          </footer>
+        </div>
       </div>
     </section>
-
 @endsection
 
 @section('modal')
-  //for editting positions
+  {{-- for editting positions --}}
   <div class="modal fade" id="edit-organization" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -128,18 +135,6 @@
                     @endif
                   </div>
                 </div>
-                <div class="form-group form-float form-group{{ $errors->has('status') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <select class="form-control" name="status">
-                      <option value="0">-- Status --</option>
-                      <option value="1">Active</option>
-                      <option value="0">Inactive</option>
-                    </select>
-                    @if ($errors->has('status'))
-                        <span class="help-block"> <strong>{{ $errors->first('status') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
                 <div class="form-group form-float form-group{{ $errors->has('url') ? ' has-error' : '' }}">
                   <div class="form-line">
                     <input type="text" class="form-control" name="url" value="{{ old('url') }}" required="true" autofocus>
@@ -151,19 +146,29 @@
                 </div>
                 <div class="form-group form-float form-group{{ $errors->has('date_started') ? ' has-error' : '' }}">
                   <div class="form-line">
-                    <input type="text" class="form-control" name="date_started" value="{{ old('date_started') }}" required="true" autofocus>
-                    <label class="form-label">Date Active</label>
+                    <input type="text" class="datepicker form-control" name="date_started" value="{{ old('date_started') }}" required="true" placeholder="Date Started">
                     @if ($errors->has('date_started'))
-                        <span class="help-block"> <strong>{{ $errors->first('date_started') }}</strong> </span>
+                      <span class="help-block"> <strong>{{ $errors->first('date_started') }}</strong> </span>
                     @endif
                   </div>
                 </div>
                 <div class="form-group form-float form-group{{ $errors->has('date_expired') ? ' has-error' : '' }}">
                   <div class="form-line">
-                    <input type="text" class="form-control" name="date_expired" value="{{ old('date_expired') }}" required="true" autofocus>
-                    <label class="form-label">Date Inactive</label>
+                    <input type="text" class="datepicker form-control" name="date_expired" value="{{ old('date_expired') }}" required="true" placeholder="Date Expired">
                     @if ($errors->has('date_expired'))
-                        <span class="help-block"> <strong>{{ $errors->first('date_expired') }}</strong> </span>
+                    <span class="help-block"> <strong>{{ $errors->first('date_expired') }}</strong> </span>
+                    @endif
+                  </div>
+                </div>
+                <div class="form-group form-float form-group{{ $errors->has('status') ? ' has-error' : '' }}">
+                  <div class="form-line">
+                    <select class="form-control" name="status">
+                      <option value="0">-- Status --</option>
+                      <option value="1">Active</option>
+                      <option value="0">Inactive</option>
+                    </select>
+                    @if ($errors->has('status'))
+                    <span class="help-block"> <strong>{{ $errors->first('status') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -178,7 +183,7 @@
     </div>
   </div>
 
-  //for adding organizations
+  {{-- for adding organizations --}}
   <div class="modal fade" id="add-organization" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -188,7 +193,6 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="">Add New Organization</h4>
           </div>
-
           <div class="modal-body">
             <div class="row clearfix">
               <div class="col-sm-8 col-sm-offset-2">
@@ -198,18 +202,6 @@
                     <label class="form-label">Organization Name</label>
                     @if ($errors->has('name'))
                         <span class="help-block"> <strong>{{ $errors->first('name') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
-                <div class="form-group form-float form-group{{ $errors->has('status') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <select class="form-control" name="status">
-                      <option value="0">-- Status --</option>
-                      <option value="1">Active</option>
-                      <option value="0">Inactive</option>
-                    </select>
-                    @if ($errors->has('status'))
-                        <span class="help-block"> <strong>{{ $errors->first('status') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -224,26 +216,35 @@
                 </div>
                 <div class="form-group form-float form-group{{ $errors->has('date_started') ? ' has-error' : '' }}">
                   <div class="form-line">
-                    <input type="text" class="form-control" name="date_started" value="{{ old('date_started') }}" required="true" autofocus>
-                    <label class="form-label">Date Active</label>
+                    <input type="text" class="datepicker form-control" name="date_started" value="{{ old('date_started') }}" required="true" placeholder="Date Started">
                     @if ($errors->has('date_started'))
-                        <span class="help-block"> <strong>{{ $errors->first('date_started') }}</strong> </span>
+                      <span class="help-block"> <strong>{{ $errors->first('date_started') }}</strong> </span>
                     @endif
                   </div>
                 </div>
                 <div class="form-group form-float form-group{{ $errors->has('date_expired') ? ' has-error' : '' }}">
                   <div class="form-line">
-                    <input type="text" class="form-control" name="date_expired" value="{{ old('date_expired') }}" required="true" autofocus>
-                    <label class="form-label">Date Inactive</label>
+                    <input type="text" class="datepicker form-control" name="date_expired" value="{{ old('date_expired') }}" required="true" placeholder="Date Expired">
                     @if ($errors->has('date_expired'))
-                        <span class="help-block"> <strong>{{ $errors->first('date_expired') }}</strong> </span>
+                    <span class="help-block"> <strong>{{ $errors->first('date_expired') }}</strong> </span>
+                    @endif
+                  </div>
+                </div>
+                <div class="form-group form-float form-group{{ $errors->has('status') ? ' has-error' : '' }}">
+                  <div class="form-line">
+                    <select class="form-control" name="status">
+                      <option value="0">-- Status --</option>
+                      <option value="1">Active</option>
+                      <option value="0">Inactive</option>
+                    </select>
+                    @if ($errors->has('status'))
+                    <span class="help-block"> <strong>{{ $errors->first('status') }}</strong> </span>
                     @endif
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
           <div class="modal-footer">
             <button type="submit" class="btn btn-success">
               <i class="material-icons">save</i> Save
@@ -252,12 +253,10 @@
               <i class="material-icons">close</i> Close
             </button>
           </div>
-
         </form>
       </div>
     </div>
   </div>
-
 @endsection
 
 @section('footer')
@@ -273,4 +272,15 @@
   <script src="{{ asset('js/jquery-datatable.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/dialogs.js') }}?v=0.3" charset="utf-8"></script>
+  <script src="{{ asset('js/moment.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/autosize.js') }}" charset="utf-8"></script>
+  <script type="text/javascript">
+    $('.datepicker').bootstrapMaterialDatePicker({
+      format: 'YYYY/MM/DD',
+      clearButton: true,
+      weekStart: 1,
+      time: false
+    });
+  </script>
 @endsection

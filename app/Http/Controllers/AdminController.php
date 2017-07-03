@@ -31,7 +31,10 @@ class AdminController extends Controller
      */
     public function index()
     {
-        session(['class' => 'theme-black']);
+        session([
+          'class'      => 'theme-black',
+          'login_type' => 'admin'
+        ]);
         return view('pages.admin.admin');
     }
 
@@ -75,11 +78,16 @@ class AdminController extends Controller
         return view('pages.admin.position.list', compact('login_type','positions'));
     }
 
+    /**
+     * Display the table of organization in the super admin
+     * dashboard
+     *
+     * @return \Illuminate\Response
+     */
     public function showAllOrganizationList()
     {
         $organizations = Organization::where('deleted_or_not', '=', 1)->get();
-        $login_type = "admin";
-        return view('pages.admin.organization.list', compact('login_type','organizations'));
+        return view('pages.admin.organization.list', compact('organizations'));
     }
 
     public function showAllEvenCategoriesList()
