@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page-title', 'List of Organizations')
+@section('page-title', 'Add Department')
 
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/bootstrap-material-datetimepicker.css') }}">
@@ -43,7 +43,7 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> Add New Organization </h2>
+                <h2> Add New Position </h2>
                 <ul class="header-dropdown m-r--5">
                   <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -58,53 +58,15 @@
                 </ul>
               </div>
               <div class="body">
-                <form class="" id="organization-registration" role="form" method="POST" action="{{ route('admin.organization.register') }}">
+                <form class="" id="positions-registration" role="form" method="POST" action="{{ route('admin.position.register') }}">
                   {{ csrf_field() }}
                   <div class="row clearfix">
                     <div class="col-sm-8 col-sm-offset-2">
                       <div class="form-group form-float form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                         <div class="form-line">
-                          <input type="text" class="form-control" name="name" value="{{ old('name') }}" required="true" autofocus>
-                          <label class="form-label">Organization Name</label>
+                          <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Position Name" required="true" autofocus>
                           @if ($errors->has('name'))
-                          <span class="help-block"> <strong>{{ $errors->first('name') }}</strong> </span>
-                          @endif
-                        </div>
-                      </div>
-                      <div class="form-group form-float form-group{{ $errors->has('url') ? ' has-error' : '' }}">
-                        <div class="form-line">
-                          <input type="text" class="form-control" name="url" value="{{ old('url') }}" required="true" autofocus>
-                          <label class="form-label">URL</label>
-                          @if ($errors->has('url'))
-                            <span class="help-block"> <strong>{{ $errors->first('url') }}</strong> </span>
-                          @endif
-                        </div>
-                      </div>
-                      <div class="form-group form-float form-group{{ $errors->has('date_started') ? ' has-error' : '' }}">
-                        <div class="form-line">
-                          <input type="text" class="datepicker form-control" name="date_started" value="{{ old('date_started') }}" required="true" placeholder="Date Started">
-                          @if ($errors->has('date_started'))
-                            <span class="help-block"> <strong>{{ $errors->first('date_started') }}</strong> </span>
-                          @endif
-                        </div>
-                      </div>
-                      <div class="form-group form-float form-group{{ $errors->has('date_expired') ? ' has-error' : '' }}">
-                        <div class="form-line">
-                          <input type="text" class="datepicker form-control" name="date_expired" value="{{ old('date_expired') }}" required="true" placeholder="Date Expired">
-                          @if ($errors->has('date_expired'))
-                          <span class="help-block"> <strong>{{ $errors->first('date_expired') }}</strong> </span>
-                          @endif
-                        </div>
-                      </div>
-                      <div class="form-group form-float form-group{{ $errors->has('status') ? ' has-error' : '' }}">
-                        <div class="form-line">
-                          <select class="form-control" name="status">
-                            <option value="0">-- Status --</option>
-                            <option value="1">Active</option>
-                            <option value="0">Inactive</option>
-                          </select>
-                          @if ($errors->has('status'))
-                          <span class="help-block"> <strong>{{ $errors->first('status') }}</strong> </span>
+                            <span class="help-block"> <strong>{{ $errors->first('name') }}</strong> </span>
                           @endif
                         </div>
                       </div>

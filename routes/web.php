@@ -74,7 +74,8 @@ Route::group(['middleware' => 'revalidate'], function()
 
     # Position
     Route::name('admin.position.list')->get('/position/list', 'AdminController@showAllPositionList');
-    Route::name('admin.position.register')->post('/position/register', 'PositionController@adminCreate');
+    Route::name('admin.position.add')->get('/position/add', 'PositionController@showPositionAddForm');
+    Route::name('admin.position.register')->post('/position/register', 'PositionController@positionCreate');
     Route::name('admin.position.edit')->post('/position/edit', 'PositionController@edit');
     Route::name('admin.position.delete')->post('/position/delete', 'PositionController@delete');
 

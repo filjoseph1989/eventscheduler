@@ -19,11 +19,10 @@
     @endif
 
     <section class="content">
-
       <div class="container-fluid">
         @if (session('status'))
           <div class="alert alert-success">
-            {{ session('status') }}
+            {!! session('status') !!}
           </div>
         @endif
 
@@ -37,8 +36,6 @@
           </div>
         @endif
 
-
-      <div class="container-fluid">
         <div class="row clearfix">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
@@ -67,31 +64,38 @@
                   </thead>
                   <tbody class="js-sweetalert">
                     @if (isset($positions))
-                      @foreach ($positions as $usersKey => $usersvalue)
-                        <tr data-id="{{ $usersvalue->id }}">
-                          <td>{{ $usersvalue->name }}</td>
-                          <td>
-                            <a href="#" class="position-delete delete" data-url="/admin/position/delete" data-type="cancel"> <i class="material-icons">delete</i>
-                            </a>
-                            <a href="#" class="position-edit" data-id="{{ $usersvalue->id }}" data-toggle="modal" data-target="#edit-position"> <i class="material-icons">mode_edit</i>
-                            </a>
-                          </td>
-                        </tr>
-                      @endforeach
-                    @endif
-                  <tfoot>
-                    <tr>
-                      <th>Name</th>
-                      <th>Actions</th>
+                    @foreach ($positions as $usersKey => $usersvalue)
+                    <tr data-id="{{ $usersvalue->id }}">
+                      <td>{{ $usersvalue->name }}</td>
+                      <td>
+                        <a href="#" class="position-delete delete" data-url="/admin/position/delete" data-type="cancel"> <i class="material-icons">delete</i>
+                        </a>
+                        <a href="#" class="position-edit" data-id="{{ $usersvalue->id }}" data-toggle="modal" data-target="#edit-position"> <i class="material-icons">mode_edit</i>
+                        </a>
+                      </td>
                     </tr>
-                  </tfoot>
-                </table>
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-position">
-                  <i class="material-icons">add</i> Add New
-                </button>
+                    @endforeach
+                    @endif
+                    <tfoot>
+                      <tr>
+                        <th>Name</th>
+                        <th>Actions</th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-position">
+                    <i class="material-icons">add</i> Add New
+                  </button>
+                </div>
               </div>
             </div>
           </div>
+        </div>
+        <div class="row">
+          <footer class="admin-footer">
+            @component('components.who')
+            @endcomponent
+          </footer>
         </div>
       </div>
     </section>
