@@ -13,32 +13,10 @@ Route::get('/', function () {
   return redirect()->route('login');
 });
 Auth::routes();
+
+#revalidation of back history
 Route::group(['middleware' => 'revalidate'], function()
 {
-  Route::name('home')->get('/home', 'HomeController@index');
-  Route::prefix('users')->group(function() {
-    Route::name('user.registered')->post('/registered', 'UserController@create');
-
-    Route::name('user.account.register')->get('/register', 'UsersAccountAdminController@showRegisterForm');
-    Route::name('user.account.registered')->post('/account/registered', 'UsersAccountAdminController@create');
-
-    Route::name('user.course.register')->get('/course/register', 'CourseController@showRegisterForm');
-    Route::name('user.course.registered')->post('/course/registered', 'CourseController@create');
-
-    Route::name('user.department.register')->get('/department/register', 'DepartmentController@showRegisterForm');
-    Route::name('user.department.registered')->post('/department/registered', 'DepartmentController@create');
-
-    Route::name('user.position.register')->get('/position/register', 'PositionController@showRegisterForm');
-    Route::name('user.position.registered')->post('/position/registered', 'PositionController@create');
-
-    Route::name('user.organization.register')->get('/organization/register', 'OrganizationController@showRegisterForm');
-    Route::name('user.organization.registered')->post('/organization/registered', 'OrganizationController@create');
-
-    Route::name('user.event-category.register')->get('/event-category/register', 'EventCategoryController@showRegisterForm');
-    Route::name('user.event-category.registered')->post('/event-category/registered', 'EventCategoryController@create');
-
-    Route::name('user.logout')->post('/logout', 'Auth\LoginController@userLogout');
-  });
   /*
   |--------------------------------------------------------------------------
   | Admin route
@@ -119,14 +97,25 @@ Route::group(['middleware' => 'revalidate'], function()
   });
   /*
   |--------------------------------------------------------------------------
+  | Users Routes
+  |--------------------------------------------------------------------------
+  */
+
+    Route::name('home')->get('/home', 'HomeController@index');
+    Route::prefix('users')->group(function() {
+      Route::name('user.logout')->post('/logout', 'Auth\LoginController@userLogout');
+      Route::name('user.list')->get('/users/list', 'UserController@showAllUserList');
+      Route::name('user.edit')->post('/user/edit', 'UserController@edit');
+      Route::name('user.delete')->post('/user/delete', 'UserController@delete');
+      Route::name('user.register')->post('/user/register', 'UserController@adminCreate');
+
+    });
+
+});
+  /*
+  |--------------------------------------------------------------------------
   | Notification route
   |--------------------------------------------------------------------------
   */
   Route::name('notify.via.sms')->get('/notify_via_sms', 'smsNotifierController@index');
   Route::name('faceboo.notification')->get('/fb/post', 'HomeController@sendNotification');
-});
-/*
-|--------------------------------------------------------------------------
-| Users Routes
-|--------------------------------------------------------------------------
-*/

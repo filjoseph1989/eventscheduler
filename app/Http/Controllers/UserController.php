@@ -81,8 +81,15 @@ class UserController extends Controller
 
       # if successfuly save
       if ($user->save()) {
-        return redirect()->route('admin.user.list')
-          ->with('status', "Successfuly added new user <b>{$data['first_name']}</b>");
+        if (Auth::guard('admin')->check()){
+          return redirect()->route('admin.user.list')
+            ->with('status', 'Successfuly User Information');
+        }
+        if (Auth::guard('web')->check()){
+          return redirect()->route('user.list')
+            ->with('status', 'Successfuly User Information');
+        }
+      }
       }
     }
 
@@ -112,8 +119,14 @@ class UserController extends Controller
       $user->status             = $data['status'];
 
       if ($user->save()) {
-        return redirect()->route('admin.user.list')
-          ->with('status', 'Successfuly User Information');
+        if (Auth::guard('admin')->check()){
+          return redirect()->route('admin.user.list')
+            ->with('status', 'Successfuly User Information');
+        }
+        if (Auth::guard('web')->check()){
+          return redirect()->route('user.list')
+            ->with('status', 'Successfuly User Information');
+        }
       }
     }
 
@@ -248,5 +261,11 @@ class UserController extends Controller
         }
     }
 
+    public function showAllUserList()
+    {
+        $users      = User::where('deleted_or_not', '=', 1)->get();
+        $login_type = 'user';
+        return view('pages.users.admin-user.users.list', compact('login_type','users'));
+    }
 
 }
