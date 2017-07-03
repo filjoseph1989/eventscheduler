@@ -18,7 +18,7 @@ class smsNotifierController extends Controller
         Nexmo::message()->send([
         'to' => '639958633866',
         'from' => '639124918787',
-        'text' => 'Using the facade to send a mesage.'
+        'text' => 'Your event has been approved.'
         ]);
 
         dd($result);
