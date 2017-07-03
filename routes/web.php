@@ -37,7 +37,7 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('user.event-category.register')->get('/event-category/register', 'EventCategoryController@showRegisterForm');
     Route::name('user.event-category.registered')->post('/event-category/registered', 'EventCategoryController@create');
 
-    Route::name('user.logout')->get('/logout', 'Auth\LoginController@userLogout');
+    Route::name('user.logout')->post('/logout', 'Auth\LoginController@userLogout');
   });
   /*
   |--------------------------------------------------------------------------
