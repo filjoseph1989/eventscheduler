@@ -44,7 +44,7 @@ but the browser redirects to admin login page
 ☐ clarify routes for notifications functionality and activate it using admin dashboard for the mean time
   ☐ email using mailtrap
   ☐ twitter
-  ☐ sms
+  ✔ sms @done(2017-07-03 22:03)
   ☐ facebook
   ☐ instagram
 ☐mas nice if ang table section lang sa div ang refresh kay sometimes naay hinay na browsers
