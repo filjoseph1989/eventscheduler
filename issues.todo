@@ -51,3 +51,12 @@ but the browser redirects to admin login page
 
 ✔ if maglog both users(user and admin dashboard) naka login, tapos maglog out si user, pagrefresh sa admin, malog out pud og apil c admin @done(2017-07-03 14:59)
 ☐ if nakalog in ang admin, pag redirect sa curd, muadto xag admin dashboard
+
+
+☐ NOTIFICATIONS
+  ✔ SMS not integrated but accessible via test.dev/notify_via_sms @done(2017-07-03 18:16)
+  ☐ Twitter, unfinished
+  TWITTER_CONSUMER_KEY=
+  TWITTER_CONSUMER_SECRET=
+  TWITTER_ACCESS_TOKEN=
+  TWITTER_ACCESS_TOKEN_SECRET=
