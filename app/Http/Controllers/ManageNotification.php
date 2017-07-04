@@ -10,6 +10,7 @@ use App\Models\Organization;
 use App\Models\User;
 use Auth;
 use Nexmo\Laravel\Facade\Nexmo;
+use Thujohn\Twitter\Facades\Twitter;
 
 class ManageNotification extends Controller
 {
@@ -97,7 +98,7 @@ class ManageNotification extends Controller
 
   private function notifyViaTwitter (Request $data) {
     if( isset($data['twitter']) ){
-      // return true;
+      return Twitter::postTweet(['status' => 'hi Event Scheduler', 'format' => 'json']);
     }
   }
 
