@@ -9,6 +9,7 @@ use App\Models\EventCategory;
 use App\Models\Organization;
 use App\Models\User;
 use Auth;
+use Nexmo\Laravel\Facade\Nexmo;
 
 class ManageNotification extends Controller
 {
@@ -55,17 +56,23 @@ class ManageNotification extends Controller
 
   public function notify(Request $data){
     if( isset($data['facebook']) ){
-
+      self::notifyViaFacebook($data);
     }
     if( isset($data['twitter']) ){
-
+      self::notifyViaTwitter($data);
     }
     if( isset($data['instagram']) ){
-
+      self::notifyViaInstagram($data);
     }
     if( isset($data['email']) ){
-      
+      self::notifyViaEmail($data);
     }
+    if( isset($data['sms']) ){
+      self::notifyViaSms($data);
+    }
+  }
+
+  private function notifyViaSms (Request $data){
     if( isset($data['sms']) ){
       $result =
         Nexmo::message()->send([
@@ -73,7 +80,31 @@ class ManageNotification extends Controller
           'from' => '639124918787',
           'text' => 'Your event has been approved.'
         ]);
-      dd($result);
+    }
+  }
+
+  private function notifyViaEmail (Request $data) {
+    if( isset($data['email']) ){
+      // return true;
+    }
+  }
+
+  private function notifyViaFacebook (Request $data) {
+    if( isset($data['facebook']) ){
+      // return true;
+    }
+  }
+
+  private function notifyViaTwitter (Request $data) {
+    if( isset($data['twitter']) ){
+      // return true;
+    }
+  }
+
+  private function notifyViaInstagram (Request $data) {
+
+    if( isset($data['instagram']) ){
+      // return true;
     }
   }
 

@@ -159,7 +159,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary"><i class="material-icons">save</i> Notify</button>
+            <button type="submit" class="btn btn-primary"><i class="material-icons">info</i> Notify</button>
             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="material-icons">close</i> Close</button>
           </div>
         </form>

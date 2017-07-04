@@ -144,7 +144,19 @@ Route::group(['middleware' => 'revalidate'], function()
      # Manage Notifications
         Route::name('notification.show')->get('/notification/show', 'ManageNotification@showNotificationPage');
         Route::name('event.show')->get('/events/show', 'ManageNotification@showEventList');
-        Route::name('event.notify')->post('/events/show', 'ManageNotification@notify');
+
+        Route::name('event.notify')->post('/events/notify', 'ManageNotification@notify');
+
+        // Route::name('event.notify.via.sms')->post('/events/sms_sent', 'ManageNotification@notifyViaSms');
+        //
+        // Route::name('event.notify.via.email')->post('/events/email_sent', 'ManageNotification@notifyViaEmail');
+        //
+        // Route::name('event.notify.via.facebook')->post('/events/facebook_notification_sent',
+        // 'ManageNotification@notifyViaFacebook');
+        //
+        // Route::name('event.notify.via.twitter')->post('/events/twitter_notification_sent', 'ManageNotification@notifyViaTwitter');
+        //
+        // Route::name('event.notify.via.instagram')->post('/events/instagram_notification_sent', 'ManageNotification@notifyViaInstagram');
   });
 });
   /*
