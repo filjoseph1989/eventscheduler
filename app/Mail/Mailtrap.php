@@ -28,7 +28,7 @@ class Mailtrap extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.mail');
-                    ->text('emails.mail-text')
+        return $this->view('emails.mail')
+                    ->from('ano.user12345@gmail.com');
     }
 }

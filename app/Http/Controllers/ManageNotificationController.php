@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Event;
-use App\Models\EventType;
-use App\Models\EventCategory;
-use App\Models\Organization;
-use App\Models\User;
 use Auth;
+use App\Models\User;
+use App\Models\Event;
+use App\Mail\Mailtrap;
+use App\Models\EventType;
+use App\Models\Organization;
+use Illuminate\Http\Request;
+use App\Models\EventCategory;
 use Nexmo\Laravel\Facade\Nexmo;
+use Illuminate\Support\Facades\Mail;
 use Thujohn\Twitter\Facades\Twitter;
-
-class ManageNotification extends Controller
+class ManageNotificationController extends Controller
 {
   /**
    * Create a new controller instance.
@@ -31,6 +32,12 @@ class ManageNotification extends Controller
 
   public function showEventList () {
     // $events = Event::where('user_id', Auth::user()->id )->get();
+    $events = self::getEventsData();
+
+    return view('pages.users.organization-head.notifications.notification', compact('events') );
+  }
+
+  private function getEventsData(){
     $event = new Event();
     $events = $event
     ->select(
@@ -51,8 +58,7 @@ class ManageNotification extends Controller
         ->join('users', 'users.id', '=', 'events.user_id')
         ->where('events.user_id', '=', Auth::user()->id)
         ->get();
-
-    return view('pages.users.organization-head.notifications.notification', compact('events') );
+        return $events;
   }
 
   public function notify(Request $data){
@@ -74,6 +80,7 @@ class ManageNotification extends Controller
   }
 
   private function notifyViaSms (Request $data){
+      // $message = "The event ".$events->name."  is on ".$events->date.", ".$events->time." at the ".$events->venue.".";
     if( isset($data['sms']) ){
       $result =
         Nexmo::message()->send([
@@ -86,7 +93,7 @@ class ManageNotification extends Controller
 
   private function notifyViaEmail (Request $data) {
     if( isset($data['email']) ){
-      // return true;
+      Mail::to('janicalizdeguzman@gmail.com')->send(new Mailtrap());
     }
   }
 
@@ -97,6 +104,7 @@ class ManageNotification extends Controller
   }
 
   private function notifyViaTwitter (Request $data) {
+      // $message = "The event ".$events->name."  is on ".$events->date.", ".$events->time." at the ".$events->venue.".";
     if( isset($data['twitter']) ){
       return Twitter::postTweet(['status' => 'hi Event Scheduler', 'format' => 'json']);
     }

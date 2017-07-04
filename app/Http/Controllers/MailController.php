@@ -9,6 +9,6 @@ use Illuminate\Support\Facades\Mail;
 class MailController extends Controller
 {
     public function index(){
-      Mail::to('janicalizdeguzman@gmail.com')->send(new Mail());
+      Mail::to('janicalizdeguzman@gmail.com')->send(new Mailtrap());
     }
 }

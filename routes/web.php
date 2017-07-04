@@ -142,21 +142,13 @@ Route::group(['middleware' => 'revalidate'], function()
         Route::name('my-organization-calendar')->get  ('/calendar/my-organization-calendar', 'CalendarController@myOrgCalendar');
         Route::name('my-personal-calendar')->get('/calendar/my-personal-calendar', 'CalendarController@myPersonalCalendar');
      # Manage Notifications
-        Route::name('notification.show')->get('/notification/show', 'ManageNotification@showNotificationPage');
-        Route::name('event.show')->get('notifications/events/show', 'ManageNotification@showEventList');
+        Route::name('notification.show')->get('/notification/show', 'ManageNotificationController@showNotificationPage'); //unpassed events data
 
-        Route::name('event.notify')->post('/events/notify', 'ManageNotification@notify');
+        Route::name('event.show')->get('notifications/events/show', 'ManageNotificationController@showEventList');
 
-        // Route::name('event.notify.via.sms')->post('/events/sms_sent', 'ManageNotification@notifyViaSms');
-        //
-        // Route::name('event.notify.via.email')->post('/events/email_sent', 'ManageNotification@notifyViaEmail');
-        //
-        // Route::name('event.notify.via.facebook')->post('/events/facebook_notification_sent',
-        // 'ManageNotification@notifyViaFacebook');
-        //
-        // Route::name('event.notify.via.twitter')->post('/events/twitter_notification_sent', 'ManageNotification@notifyViaTwitter');
-        //
-        // Route::name('event.notify.via.instagram')->post('/events/instagram_notification_sent', 'ManageNotification@notifyViaInstagram');
+        Route::name('event.notify')->post('/events/notify', 'ManageNotificationController@notify');
+
+        Route::name('email')->get('/email', 'MailController@index'); //test for email notif
   });
 });
   /*
