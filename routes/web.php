@@ -143,7 +143,7 @@ Route::group(['middleware' => 'revalidate'], function()
         Route::name('my-personal-calendar')->get('/calendar/my-personal-calendar', 'CalendarController@myPersonalCalendar');
      # Manage Notifications
         Route::name('notification.show')->get('/notification/show', 'ManageNotification@showNotificationPage');
-        Route::name('event.show')->get('/events/show', 'ManageNotification@showEventList');
+        Route::name('event.show')->get('notifications/events/show', 'ManageNotification@showEventList');
 
         Route::name('event.notify')->post('/events/notify', 'ManageNotification@notify');
 
