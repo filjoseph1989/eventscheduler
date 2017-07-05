@@ -26,25 +26,30 @@ class HomeController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-   public function index()
-   {
-     # Check if the status of the user who loggedin is active
-     if (self::getIdentity()['status'] == 1) {
-       session([
-         'name'       => self::getIdentity()['name'],
-         'class'      => self::getIdentity()['theme'],
-         'color'      => self::getIdentity()['color'],
-         'sidebar'    => "components.user-sidebar.".str_replace(' ', '-', self::getIdentity()['name'])."-menu",
-         'info_box'   => "components.info-box.".str_replace(' ', '-', self::getIdentity()['name'])."",
-         'login_type' => 'user',
-       ]);
-       return view('pages.home');
-     } else { # redirect to register page if status is not active
-       Auth::guard('web')->logout();
-       return redirect()->route('register');
-     }
-   }
+  public function index()
+  {
+    # Check if the status of the user who loggedin is active
+    if (self::getIdentity()['status'] == 1) {
+      session([
+        'name'       => self::getIdentity()['name'],
+        'class'      => self::getIdentity()['theme'],
+        'color'      => self::getIdentity()['color'],
+        'sidebar'    => "components.user-sidebar.".str_replace(' ', '-', self::getIdentity()['name'])."-menu",
+        'info_box'   => "components.info-box.".str_replace(' ', '-', self::getIdentity()['name'])."",
+        'login_type' => 'user',
+      ]);
+      return view('pages.home');
+    } else { # redirect to register page if status is not active
+      Auth::guard('web')->logout();
+      return redirect()->route('register');
+    }
+  }
 
+  /**
+   * ! Deprecated
+   * 
+   * @return [type] [description]
+   */
   public function sendNotification()
   {
     $result = User::send();

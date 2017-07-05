@@ -13,6 +13,8 @@ use App\Models\EventCategory;
 use Nexmo\Laravel\Facade\Nexmo;
 use Illuminate\Support\Facades\Mail;
 use Thujohn\Twitter\Facades\Twitter;
+use App\Notifications\FacebookPublished;
+
 class ManageNotificationController extends Controller
 {
   /**
@@ -39,44 +41,52 @@ class ManageNotificationController extends Controller
 
   private function getEventsData(){
     $event = new Event();
-    $events = $event
-    ->select(
-      'events.id',
-      'events.name',
-      'event_types.name as event_type_name',
-      'event_categories.name as event_category_name',
-      'organizations.name as organization_name',
-      'events.date',
-      'events.time',
-      'events.venue',
-      'events.status',
-      'events.created_at',
-      'events.updated_at')
-        ->join('event_types', 'event_types.id', '=', 'events.event_type_id')
-        ->join('event_categories', 'event_categories.id', '=', 'events.event_category_id')
-        ->join('organizations', 'organizations.id', '=', 'events.organization_id')
-        ->join('users', 'users.id', '=', 'events.user_id')
-        ->where('events.user_id', '=', Auth::user()->id)
-        ->get();
-        return $events;
+    $events = $event->select(
+        'events.id',
+        'events.name',
+        'event_types.name as event_type_name',
+        'event_categories.name as event_category_name',
+        'organizations.name as organization_name',
+        'events.date',
+        'events.time',
+        'events.venue',
+        'events.status',
+        'events.created_at',
+        'events.updated_at'
+      )
+      ->join('event_types', 'event_types.id', '=', 'events.event_type_id')
+      ->join('event_categories', 'event_categories.id', '=', 'events.event_category_id')
+      ->join('organizations', 'organizations.id', '=', 'events.organization_id')
+      ->join('users', 'users.id', '=', 'events.user_id')
+      ->where('events.user_id', '=', Auth::user()->id)
+      ->get();
+    return $events;
   }
 
+  /**
+   * This method will send notification on different media
+   *
+   * @param  Request $data [description]
+   * @return
+   */
   public function notify(Request $data){
     if( isset($data['facebook']) ){
       self::notifyViaFacebook($data);
     }
-    if( isset($data['twitter']) ){
-      self::notifyViaTwitter($data);
-    }
-    if( isset($data['instagram']) ){
-      self::notifyViaInstagram($data);
-    }
-    if( isset($data['email']) ){
-      self::notifyViaEmail($data);
-    }
-    if( isset($data['sms']) ){
-      self::notifyViaSms($data);
-    }
+
+     if( isset($data['twitter']) ){
+       self::notifyViaTwitter($data);
+     }
+     if( isset($data['instagram']) ){
+       self::notifyViaInstagram($data);
+     }
+     if( isset($data['email']) ){
+       self::notifyViaEmail($data);
+     }
+     if( isset($data['sms']) ){
+       self::notifyViaSms($data);
+     }
+    
   }
 
   private function notifyViaSms (Request $data){
@@ -84,9 +94,9 @@ class ManageNotificationController extends Controller
     if( isset($data['sms']) ){
       $result =
         Nexmo::message()->send([
-          'to' => '639958633866',
+          'to'   => '639958633866',
           'from' => '639124918787',
-          'text' => 'Your event has been approved.'
+          'text' => 'Your event has been approved oimlmkmjnjnkjbkjblbjklk;.'
         ]);
     }
   }
@@ -99,14 +109,16 @@ class ManageNotificationController extends Controller
 
   private function notifyViaFacebook (Request $data) {
     if( isset($data['facebook']) ){
-      // return true;
+      $result = User::send($data['fb_message']);
+      // $result = User::send("This is a test message");
+      echo "Good Job, you poster on facebook!! yeeeeey";
     }
   }
 
   private function notifyViaTwitter (Request $data) {
       // $message = "The event ".$events->name."  is on ".$events->date.", ".$events->time." at the ".$events->venue.".";
     if( isset($data['twitter']) ){
-      return Twitter::postTweet(['status' => 'hi Event Scheduler', 'format' => 'json']);
+      return Twitter::postTweet(['status' => 'hi Event Schedulerscacassacijnkknjhhjkjbk', 'format' => 'json']);
     }
   }
 

@@ -157,6 +157,12 @@
               <label>OFF<input type="checkbox" name='sms' checked><span class="lever switch-col-red"></span>ON</label>
               SMS (temporary demo, should be for osa dashboard when osa user approves an event, status => 1)
             </div>
+            <div class="switch" id="facebook-message">
+              <div class="form-line">
+                <input type="text" class="form-control" name="fb_message" value="">
+                <label class="form-label">Facebook Message</label>
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-primary"><i class="material-icons">info</i> Notify</button>

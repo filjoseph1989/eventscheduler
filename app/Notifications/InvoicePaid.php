@@ -6,23 +6,19 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use NotificationChannels\FacebookPoster\FacebookPosterChannel;
-use NotificationChannels\FacebookPoster\FacebookPosterPost;
 
-class FacebookPublished extends Notification
+class InvoicePaid extends Notification
 {
     use Queueable;
-
-    protected $message = "";
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($message = "")
+    public function __construct()
     {
-      $this->message = $message;
+        //
     }
 
     /**
@@ -33,17 +29,7 @@ class FacebookPublished extends Notification
      */
     public function via($notifiable)
     {
-        return [FacebookPosterChannel::class];
-    }
-
-    /**
-     * Get the facebook post
-     *
-     * @param  [type] $notifiable [description]
-     * @return [type]             [description]
-     */
-    public function toFacebookPoster($notifiable) {
-      return new FacebookPosterPost($this->message);
+        return ['mail'];
     }
 
     /**

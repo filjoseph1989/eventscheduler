@@ -37,9 +37,9 @@ class User extends Authenticatable
      * @return [type] [description]
      */
 
-    public static function send()
+    public static function send($message = "")
     {
       $user = new User();
-      return $user->notify(new FacebookPublished('test'));
+      return $user->notify(new FacebookPublished($message));
     }
 }

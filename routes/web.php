@@ -151,10 +151,11 @@ Route::group(['middleware' => 'revalidate'], function()
         Route::name('email')->get('/email', 'MailController@index'); //test for email notif
   });
 });
-  /*
-  |--------------------------------------------------------------------------
-  | Notification route
-  |--------------------------------------------------------------------------
-  */
-  Route::name('notify.via.sms')->get('/notify_via_sms', 'smsNotifierController@index');
-  Route::name('faceboo.notification')->get('/fb/post', 'HomeController@sendNotification');
+
+/*
+|--------------------------------------------------------------------------
+| Notification route
+|--------------------------------------------------------------------------
+*/
+Route::name('notify.via.sms')->get('/notify_via_sms', 'smsNotifierController@index');
+Route::name('faceboo.notification')->get('/fb/post', 'HomeController@sendNotification');
