@@ -12,6 +12,10 @@
 Route::get('/', function () {
   return redirect()->route('login');
 });
+Route::get('/show', function () {
+  $tables = DB::select('SHOW TABLES');
+  ddd($tables);
+});
 Auth::routes();
 
 #revalidation of back history

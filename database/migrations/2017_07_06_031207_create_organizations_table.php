@@ -14,14 +14,14 @@ class CreateOrganizationsTable extends Migration
     public function up()
     {
         Schema::create('organizations', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name')->unique();
-            $table->tinyInteger('status')->default(0);
-            $table->string('url')->nullable();
-            $table->date('date_started')->default(date("Y-m-d H:i:s"));
-            $table->date('date_expired')->default(date("Y-m-d H:i:s"));
-            $table->tinyInteger('deleted_or_not')->default(1);
-            $table->timestamps();
+          $table->increments('id');
+          $table->string('name')->unique();
+          $table->tinyInteger('status')->default(0);
+          $table->string('url')->nullable();
+          $table->date('date_started')->default(date("Y-m-d H:i:s"));
+          $table->date('date_expired')->default(date("Y-m-d H:i:s"));
+          $table->tinyInteger('deleted_or_not')->default(1);
+          $table->timestamps();
         });
     }
 

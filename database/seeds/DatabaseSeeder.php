@@ -11,13 +11,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(EventCategoriesSeeder::class);
-        $this->call(CoursesTableSeeder::class);
-        $this->call(UserAccountsTableSeeder::class);
-        $this->call(DepartmentsTableSeeder::class);
-        $this->call(PositionsTableSeeder::class);
-        $this->call(OrganizationsTableSeeder::class);
-        $this->call(UserstableSeeder::class);
-        $this->call(SAdminsSeeder::class);
+        if (App::environment() === 'production') exit();
+
+        Eloquent::unguard();
+
+        # Truncate all tables, except migrations
+        # Please replace 'liz' in 'Tables_in_liz' with Database name of yours
+        // $tables = DB::select('SHOW TABLES');
+        // foreach ($tables as $table) {
+        //     if ($table->Tables_in_liz !== 'migrations')
+        //         DB::table($table->Tables_in_liz)->truncate();
+        // }
+
+        // Find and run all seeders
+        $classes = require base_path().'/vendor/composer/autoload_classmap.php';
+        foreach ($classes as $class) {
+          if (strpos($class, 'TableSeeder') !== false) {
+            $seederClass = substr(last(explode('/', $class)), 0, -4);
+            $this->call($seederClass);
+          }
+        }
     }
 }

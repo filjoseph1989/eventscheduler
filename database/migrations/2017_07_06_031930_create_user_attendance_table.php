@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNotificationsTable extends Migration
+class CreateUserAttendanceTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateNotificationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('notifications', function (Blueprint $table) {
+        Schema::create('user_attendance', function (Blueprint $table) {
           $table->increments('id');
-          $table->integer('user_id')->unsigned()->index();
-          $table->foreign('user_id')->references('id')->on('users');
           $table->integer('event_id')->unsigned()->index();
           $table->foreign('event_id')->references('id')->on('events');
-          $table->date('duration_start')->default(date("Y-m-d H:i:s"));
-          $table->date('duration_end')->default(date("Y-m-d H:i:s"));
-          $table->date('time'); # for what? Time of the a system will make a alert to the user
+          $table->integer('user_id')->unsigned()->index();
+          $table->foreign('user_id')->references('id')->on('users');
+          $table->tinyInteger('confirmation')->default(0);
+          $table->string('reason');
+          $table->tinyInteger('status')->default(0);
           $table->tinyInteger('deleted_or_not')->default(1);
           $table->timestamps();
         });
@@ -34,6 +34,6 @@ class CreateNotificationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notifications');
+        Schema::dropIfExists('user_attendance');
     }
 }

@@ -14,12 +14,12 @@ class CreateUserAccountsTable extends Migration
     public function up()
     {
         Schema::create('user_accounts', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name')->unique();
-            $table->string('theme');
-            $table->string('color');
-            $table->tinyInteger('deleted_or_not')->default(1);
-            $table->timestamps();
+          $table->increments('id');
+          $table->string('name')->unique();
+          $table->string('theme')->nullable();
+          $table->string('color')->nullable();
+          $table->tinyInteger('deleted_or_not')->default(1);
+          $table->timestamps();
         });
     }
 
