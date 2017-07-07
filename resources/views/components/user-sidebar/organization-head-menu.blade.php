@@ -10,7 +10,7 @@
   </a>
   <ul class="ml-menu">
     <li>
-      <a href="#">
+      <a href="{{ route('university-calendar') }}">
         <span>Manage Schedule</span>
       </a>
     </li>
@@ -20,7 +20,7 @@
       </a>
     </li>
     <li>
-      <a href="#">
+      <a href="{{ route('event.show') }}">
         <span>Manage Notification</span>
       </a>
     </li>

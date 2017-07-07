@@ -5,7 +5,7 @@ use Carbon\Carbon;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
-class UsersTableSeeder extends Seeder
+class UserstableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
