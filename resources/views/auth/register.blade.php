@@ -20,6 +20,12 @@
       </div>
     @endif
 
+    @if (session('status'))
+      <div class="alert alert-warning">
+        {{ session('status') }}
+      </div>
+    @endif
+
     <div class="logo">
       <a href="javascript:void(0);">Event<b>Scheduler</b></a>
     </div>
