@@ -14,4 +14,15 @@ class Position extends Model
     protected $fillable = [
       'name',
     ];
+
+    /**
+     * This define a one to one relationship of a
+     * position to a user
+     *
+     * @return object
+     */
+    public function user()
+    {
+      return $this->hasOne('App\Models\User');
+    }
 }

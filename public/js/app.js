@@ -22,9 +22,7 @@ function form_validation(id) {
 }
 
 /**
- * kani ang goal ani, is to get user ID from
- * basta mag click ang use og user edit icon
- *
+ * Display data on the edit modal
  * Issue 6
  *
  * @return void
@@ -44,28 +42,54 @@ $(document).on('click', '.users-edit', function() {
       request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
     },
     success: function(data) {
-      $('#account_number').val(data.user.account_number);
-      $('#email').val(data.user.email);
-      $('#facebook_username').val(data.user.facebook_username);
-      $('#first_name').val(data.user.first_name);
-      $('#instagram_username').val(data.user.instagram_username);
-      $('#last_name').val(data.user.last_name);
-      $('#middle_name').val(data.user.middle_name);
-      $('#mobile_number').val(data.user.mobile_number);
-      $('#suffix_name').val(data.user.suffix_name);
-      $('#twitter_username').val(data.user.twitter_username);
+      console.log(data);
+      // $('#account_number').val(data.user.account_number);
+      // $('#email').val(data.user.email);
+      // $('#facebook_username').val(data.user.facebook_username);
+      // $('#first_name').val(data.user.first_name);
+      // $('#instagram_username').val(data.user.instagram_username);
+      // $('#last_name').val(data.user.last_name);
+      // $('#middle_name').val(data.user.middle_name);
+      // $('#mobile_number').val(data.user.mobile_number);
+      // $('#suffix_name').val(data.user.suffix_name);
+      // $('#twitter_username').val(data.user.twitter_username);
+      //
+      // var html = '<option value="0">-- Account Type --</option>';
+      // for (var i = 0; i < data.user_account.length; i++) {
+      //   html += '<option value="'+data.user_account[i].id+'">'+data.user_account[i].name+'</option>';
+      // }
+      // $('#user_account_id').html(html);
+      // var html = '<option value="0">'+data.accountTypeName+'</option>';
+      // for (var i = 0; i < data.allAccountTypes.length; i++) {
+      //   html += '<option value="'+data.allAccountTypes[i].id+'">'+data.allAccountTypes[i].name+'</option>';
+      // }
+      // $('#account_type_id').html(html);
 
-      var html = '<option value="0">-- Account Type --</option>';
-      for (var i = 0; i < data.user_account.length; i++) {
-        html += '<option value="'+data.user_account[i].id+'">'+data.user_account[i].name+'</option>';
+      html = '<option value="0">'+data.courseName+'</option>';
+      for (var i = 0; i < data.allCourses.length; i++) {
+        html += '<option value="'+data.allCourses[i].id+'">'+data.allCourses[i].name+'</option>';
       }
-      $('#user_account_id').html(html);
+      $('#course_id').html(html);
+
+      html = '<option value="0">'+data.departmentName+'</option>';
+      for (var i = 0; i < data.allDepartments.length; i++) {
+        html += '<option value="'+data.allDepartments[i].id+'">'+data.allDepartments[i].name+'</option>';
+      }
+      $('#department_id').html(html);
+
+      html = '<option value="0">'+data.positionName+'</option>';
+      for (var i = 0; i < data.allPositions.length; i++) {
+        html += '<option value="'+data.allPositions[i].id+'">'+data.allPositions[i].name+'</option>';
+      }
+      $('#position_id').html(html);
     },
     error: function(data) {
       console.log('Error:');
     }
   });
 });
+
+
 $(document).on('click', '.user-accounts-edit', function() {
   var user_account_id = $(this).data('id');
   $('#user_account_id').val(user_account_id);

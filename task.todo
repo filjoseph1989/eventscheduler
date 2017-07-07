@@ -55,12 +55,22 @@ To Do:
     ☐ Edit
     ☐ Add
     ☐ Delete
-  ☐ Task 18 - Super Admin Manage Users
+  ☐ Task 18 - Super Admin Manage Users:
+    ☐ Delete - soft delete
+    ☐ Fetch the dropdown for editing the user:
+      ☐ All Account Type
+      ☐ A users account type
+✔ All Courses @done(2017-07-08 02:25)
+✔ A users course @done(2017-07-08 02:25)
+✔ All departments name @done(2017-07-08 02:25)
+✔ A user department belong to @done(2017-07-08 02:25)
+✔ All positions @done(2017-07-08 02:25)
+✔ A user position @done(2017-07-08 02:25)
+      ☐ Table relationship
     ✔ Browse @done(2017-06-30 11:26) @project(To Do / ☐ Task 19 - Manage Users Account)
     ✔ Read @done(2017-06-30 11:26) @project(To Do / ☐ Task 19 - Manage Users Account)
     ✔ Edit  @done(2017-06-30 11:26) @project(To Do / ☐ Task 19 - Manage Users Account)
     ✔ Add  @done(2017-06-30 11:26) @project(To Do / ☐ Task 19 - Manage Users Account)
-    ☐ Delete
   ☐ Task 17 - Create a function for deleting user information:
     ☐ Note that there should be no delete, instead change the status to inactive
     ☐ But admin can view it

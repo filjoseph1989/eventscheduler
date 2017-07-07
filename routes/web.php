@@ -32,7 +32,7 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('admin.user.add')->get('/users/add', 'AdminUserController@showUserAddForm');
     Route::name('admin.user.register')->post('/user/register', 'UserController@adminCreate');
     Route::name('admin.user.edit')->post('/user/edit', 'UserController@edit');
-    Route::name('admin.user.get')->post('/user/get', 'UserController@getUser');
+    Route::name('admin.user.get')->post('/user/get', 'UserController@getUserData');
     Route::name('admin.user.delete')->post('/user/delete', 'UserController@delete');
 
     # User Accounts

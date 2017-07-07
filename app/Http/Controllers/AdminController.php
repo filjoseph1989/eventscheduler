@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Models\User;
-use App\Models\UserAccount;
 use App\Models\Course;
-use App\Models\Department;
+use App\Models\EventType;
 use App\Models\Position;
+use App\Models\Department;
+use App\Models\UserAccount;
 use App\Models\Organization;
 use App\Models\EventCategory;
-use App\Models\EventType;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -45,9 +46,15 @@ class AdminController extends Controller
      */
     public function showAllUserList()
     {
-        $users      = User::where('deleted_or_not', '=', 1)->get();
-        $login_type = 'admin';
-        return view('pages.admin.users.list', compact('login_type','users'));
+      // $department     = User::find(Auth::user()->id)->department()->getResults();
+      // $departmentName = $department->name;
+      // $allDepartments = $department->all();
+      // d($allDepartments);
+      // ddd($department->user()->getResults());
+      // ddd($department);
+      $users      = User::where('deleted_or_not', '=', 1)->get();
+      $login_type = 'admin';
+      return view('pages.admin.users.list', compact('login_type','users', 'departmentName', 'allDepartments'));
     }
 
     public function showAllUserAccountList()
