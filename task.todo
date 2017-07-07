@@ -1,4 +1,5 @@
 To Do:
+  ☐ Task 33 - Change the profile background according to the user type
   ☐ Task 32 - Try View Composers to manage the rendering of two sidebar for user and for admin
   ☐ Task 31 - Create a manage notification - This will be a setting what to notify or what kind of notification should be if org adviser will create a event
   ☐ Task 30 - Give functionality the super admin dashboard info-box:
@@ -9,7 +10,7 @@ To Do:
     ✔ Defined initial info-box for a Different type of user @done(2017-07-02 15:11) @project(To Do / ☐ Task 29 - Different user dashboard)
   ☐ Task 28 - Login as OSA:
     ☐ Organization:
-      ☐ Attendance
+      ☐ Generate Attendance
       ☐ List
   ☐ Task 27 - Create a function which return an information about css and js version
   ☐ Task 25 - Manage Event Types:
