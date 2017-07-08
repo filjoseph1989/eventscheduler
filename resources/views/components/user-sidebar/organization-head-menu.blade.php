@@ -1,8 +1,3 @@
-<?php
-/**
- * This will display the menus for organization head account
- */
-?>
 <li>
   <a href="javascript:void(0);" class="menu-toggle">
     <i class="material-icons">supervisor_account</i>
@@ -15,7 +10,13 @@
       </a>
       <ul class="ml-menu">
         <li>
-          <a href="#">Show Calendar</a>
+          <a href="#" class="menu-toggle">Calendars</a>
+          <ul class="ml-menu">
+            <li><a href="{{ route('my-organization-calendar') }}">University Calendar</a></li>
+            <li><a href="#">All Organization Calendar</a></li>
+            <li><a href="#">My Organization Celendar</a></li>
+            <li><a href="#">My Personal Calendar</a></li>
+          </ul>
         </li>
         <li>
           <a href="#">Generate Attendance</a>

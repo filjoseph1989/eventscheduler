@@ -12,10 +12,6 @@
 Route::get('/', function () {
   return redirect()->route('login');
 });
-Route::get('/show', function () {
-  $tables = DB::select('SHOW TABLES');
-  ddd($tables);
-});
 Auth::routes();
 
 #revalidation of back history
@@ -105,12 +101,8 @@ Route::group(['middleware' => 'revalidate'], function()
   |--------------------------------------------------------------------------
   */
   Route::name('home')->get('/home', 'HomeController@index');
-
   Route::prefix('users')->group(function() {
     Route::name('user.logout')->post('/logout', 'Auth\LoginController@userLogout');
-    /**
-     * Admin User Account Type
-     */
     # User Crud
     Route::name('user.list')->get('/users/list', 'UserController@showAllUserList');
     Route::name('user.edit')->post('/user/edit', 'UserController@edit');
@@ -140,19 +132,17 @@ Route::group(['middleware' => 'revalidate'], function()
     /**
      * Org. Head User Account Type
      */
-     # Manage Schedule (Type of Calendars)
-        Route::name('university-calendar')->get('/calendar/university-calendar', 'CalendarController@universityCalendar');
-        Route::name('all-organization-calendar')->get('/calendar/all-organization-calendar', 'CalendarController@allOrgsCalendar');
-        Route::name('my-organization-calendar')->get  ('/calendar/my-organization-calendar', 'CalendarController@myOrgCalendar');
-        Route::name('my-personal-calendar')->get('/calendar/my-personal-calendar', 'CalendarController@myPersonalCalendar');
-     # Manage Notifications
-        Route::name('notification.show')->get('/notification/show', 'ManageNotificationController@showNotificationPage'); //unpassed events data
+    # Manage Schedule (Type of Calendars)
+    Route::name('university-calendar')->get('/calendar/university-calendar', 'CalendarController@universityCalendar');
+    Route::name('all-organization-calendar')->get('/calendar/all-organization-calendar', 'CalendarController@allOrgsCalendar');
+    Route::name('my-organization-calendar')->get('/calendar/my-organization-calendar', 'CalendarController@myOrgCalendar');
+    Route::name('my-personal-calendar')->get('/calendar/my-personal-calendar', 'CalendarController@myPersonalCalendar');
 
-        Route::name('event.show')->get('notifications/events/show', 'ManageNotificationController@showEventList');
-
-        Route::name('event.notify')->post('/events/notify', 'ManageNotificationController@notify');
-
-        Route::name('email')->get('/email', 'MailController@index'); //test for email notif
+    # Manage Notifications
+    Route::name('notification.show')->get('/notification/show', 'ManageNotificationController@showNotificationPage'); //unpassed events data
+    Route::name('event.show')->get('notifications/events/show', 'ManageNotificationController@showEventList');
+    Route::name('event.notify')->post('/events/notify', 'ManageNotificationController@notify');
+    Route::name('email')->get('/email', 'MailController@index'); //test for email notif
   });
 });
 

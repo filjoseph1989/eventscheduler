@@ -15,6 +15,7 @@
     var d = date.getDate();
     var m = date.getMonth();
     var y = date.getFullYear();
+    var global_start, global_end;
 
     /*
       Initialize fullCalendar and store into variable.
@@ -46,6 +47,7 @@
         selectable:true will enable user to select datetime slot
         selectHelper will add helpers for selectable.
       */
+      navLinks: true, // can click day/week names to navigate views
       selectable: true,
       selectHelper: true,
       /*
@@ -57,81 +59,109 @@
       */
       select: function(start, end, allDay)
       {
+        global_start = start;
+        global_end   = end;
         /*
           after selection user will be promted for enter title for event.
         */
-        var title = prompt('Event Title:');
+        $('#add-event').modal('show');
+        // var title = prompt('Event Title:');
         /*
           if title is enterd calendar will add title and event into fullCalendar.
         */
-        if (title)
-        {
-          calendar.fullCalendar('renderEvent',
-            {
-              title: title,
-              start: start,
-              end: end,
-              allDay: allDay
-            },
-            true // make the event "stick"
-          );
-        }
-        calendar.fullCalendar('unselect');
+        // if (title)
+        // {
+        //   calendar.fullCalendar('renderEvent',
+        //   {
+        //     title:  title,
+        //     start:  start,
+        //     end:    end,
+        //     allDay: allDay
+        //   },
+        //   // make the event "stick"
+        //   true );
+        // }
+        // calendar.fullCalendar('unselect');
       },
+
       /*
         editable: true allow user to edit events.
       */
       editable: true,
+      eventLimit: true, // allow "more" link when too many events
       /*
         events is the main option for calendar.
         for demo we have added predefined events in json object.
       */
       events: [
-        {
-          title: 'All Day Event',
-          start: new Date(y, m, 1)
-        },
-        {
-          title: 'Long Event',
-          start: new Date(y, m, d-5),
-          end: new Date(y, m, d-2)
-        },
-        {
-          id: 999,
-          title: 'Repeating Event',
-          start: new Date(y, m, d-3, 16, 0),
-          allDay: false
-        },
-        {
-          id: 999,
-          title: 'Repeating Event',
-          start: new Date(y, m, d+4, 16, 0),
-          allDay: false
-        },
-        {
-          title: 'Meeting',
-          start: new Date(y, m, d, 10, 30),
-          allDay: false
-        },
-        {
-          title: 'Lunch',
-          start: new Date(y, m, d, 12, 0),
-          end: new Date(y, m, d, 14, 0),
-          allDay: false
-        },
-        {
-          title: 'Birthday Party',
-          start: new Date(y, m, d+1, 19, 0),
-          end: new Date(y, m, d+1, 22, 30),
-          allDay: false
-        },
-        {
-          title: 'Click for Google',
-          start: new Date(y, m, 28),
-          end: new Date(y, m, 29),
-          url: 'http://google.com/'
-        }
+        // {
+        //   title: 'All Day Event',
+        //   start: new Date(y, m, 1)
+        // },
+        // {
+        //   title: 'Long Event',
+        //   start: new Date(y, m, d-5),
+        //   end: new Date(y, m, d-2)
+        // },
+        // {
+        //   id: 999,
+        //   title: 'Repeating Event',
+        //   start: new Date(y, m, d-3, 16, 0),
+        //   allDay: false
+        // },
+        // {
+        //   id: 999,
+        //   title: 'Repeating Event',
+        //   start: new Date(y, m, d+4, 16, 0),
+        //   allDay: false
+        // },
+        // {
+        //   title: 'Meeting',
+        //   start: new Date(y, m, d, 10, 30),
+        //   allDay: false
+        // },
+        // {
+        //   title: 'Lunch',
+        //   start: new Date(y, m, d, 12, 0),
+        //   end: new Date(y, m, d, 14, 0),
+        //   allDay: false
+        // },
+        // {
+        //   title: 'Birthday Party',
+        //   start: new Date(y, m, d+1, 19, 0),
+        //   end: new Date(y, m, d+1, 22, 30),
+        //   allDay: false
+        // },
+        // {
+        //   title: 'Click for Google',
+        //   start: new Date(y, m, 28),
+        //   end: new Date(y, m, 29),
+        //   url: 'http://google.com/'
+        // }
       ]
     });
 
+    $('#save-event').on('click', function() {
+      var title = $('#event').val();
+
+      if (title) {
+        calendar.fullCalendar('renderEvent', {
+          title:  title,
+          // start: $('#date_start').val(),
+          // end: $('#date_end').val()
+          // allDay: allDay
+          start:  global_start,
+          end:    global_end
+        },
+        // make the event "stick"
+        true );
+      }
+      calendar.fullCalendar('unselect');
+
+      // Clear modal inputs
+      $('.modal').find('input').val('');
+
+      // hide modal
+      $('.modal').modal('hide');
+    });
   });
