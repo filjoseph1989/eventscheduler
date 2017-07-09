@@ -10,8 +10,10 @@
         ☐ My Organization Calendar:
           ☐ Chose organization first:
             ☐ Display the calendar for the chosen organization:
-              ☐ Add new events on the calendar
-                ☐ Capture the events data
+              ✔ Get the type and categories of events, and user id @done(2017-07-09 21:09) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first / ☐ Display the calendar for the chosen organization)
+              ☐ Get the calendar organization ID, for identifying what organization a calendar belons to.
+              ✔ Add new events on the calendar @done(2017-07-09 20:27) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first / ☐ Display the calendar for the chosen organization)
+                ✔ Capture the events data in javascript @done(2017-07-09 20:27) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first / ☐ Display the calendar for the chosen organization)
                   ✔ The event will not display since the end date is not yet correct in coding @done(2017-07-09 18:35) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ University Calendar / Issue)
                   ✔ whole day? @done(2017-07-09 19:37) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first)
                   ✔ title @done(2017-07-09 14:12) @project(To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ University Calendar)
@@ -19,10 +21,13 @@
                   ✔ day start and day end @done(2017-07-09 14:12) @project(To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ University Calendar)
                   ✔ what time in the day? @done(2017-07-09 14:12) @project(To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ University Calendar)
               ☐ Add event in the database:
-                ☐ What are the process of adding calendar data to the database?
-                ☐ Alter the events table:
+                ☐ What are the process of adding calendar data to the database?:
+                  ☐ When the user click on save button:
+                    ☐ Get the data and pass to controller, while at same time, update the calendar in view
+                ☐ Getting the data from the database:
                   ☐ Get all event of the current month where user equal to current loggedin user id and chosen calendar
                 ☐ Do we need a validation?
+                ✔ Alter the events table @done(2017-07-09 20:25) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first / ☐ Display the calendar for the chosen organization / ☐ Add event in the database)
               ☐ Display again the events setted previously from the calendar.
               ☐ Edit the schedule within the calendar
                 ☐ Display the modal for editing

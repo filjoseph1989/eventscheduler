@@ -87,6 +87,7 @@
           <div class="modal-body">
             <div class="row clearfix">
               <div class="col-sm-8 col-sm-offset-2">
+                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                 <div class="form-group form-float form-group{{ $errors->has('event') ? ' has-error' : '' }}">
                   <div class="form-line">
                     <input type="text" class="form-control" id="event" name="event" placeholder="Name of the event" value="{{ old('event') }}" required="true" autofocus>
@@ -100,6 +101,14 @@
                     <textarea rows="4" class="form-control no-resize" id="description" placeholder="Description of the event">{{ old('description') }}</textarea>
                     @if ($errors->has('description'))
                       <span class="help-block"> <strong>{{ $errors->first('description') }}</strong> </span>
+                    @endif
+                  </div>
+                </div>
+                <div class="form-group form-float form-group{{ $errors->has('venue') ? ' has-error' : '' }}">
+                  <div class="form-line">
+                    <input type="text" class="form-control" id="venue" placeholder="Venue" name="" value="{{ old('venue') }}">
+                    @if ($errors->has('venue'))
+                      <span class="help-block"> <strong>{{ $errors->first('venue') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -151,14 +160,25 @@
                   <div class="form-line">
                     <select class="form-control show-tick" id="event-type" name="event_id">
                       <option value="0">-- Select type of event--</option>
-                      <option value="1">Event type 1</option>
-                      <option value="2">Event type 2</option>
-                      <option value="3">Event type 3</option>
-                      <option value="4">Event type 4</option>
-                      <option value="5">Event type 5</option>
+                      @foreach ($event_type as $key => $value)
+                        <option value="{{ $value->id }}">{{ $value->name }}</option>
+                      @endforeach
                     </select>
                     @if ($errors->has('event_type'))
                       <span class="help-block"> <strong>{{ $errors->first('event_type') }}</strong> </span>
+                    @endif
+                  </div>
+                </div>
+                <div class="form-group form-float form-group{{ $errors->has('event_categories') ? ' has-error' : '' }}">
+                  <div class="form-line">
+                    <select class="form-control show-tick" id="event-type" name="event_id">
+                      <option value="0">-- Select type of event--</option>
+                      @foreach ($event_categories as $key => $value)
+                        <option value="{{ $value->id }}">{{ $value->name }}</option>
+                      @endforeach
+                    </select>
+                    @if ($errors->has('event_categories'))
+                      <span class="help-block"> <strong>{{ $errors->first('event_categories') }}</strong></span>
                     @endif
                   </div>
                 </div>
