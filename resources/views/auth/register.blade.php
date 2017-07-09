@@ -22,7 +22,7 @@
 
     @if (session('status'))
       <div class="alert alert-warning">
-        {{ session('status') }}
+        {!! session('status') !!}
       </div>
     @endif
 
@@ -150,11 +150,7 @@
                     <div class="form-line">
                         <select class="form-control show-tick" name="user_account_id">
                             <option value="0">-- Account Type --</option>
-                            <option value="1">Admin</option>
-                            <option value="2">Organization Adviser</option>
-                            <option value="3">Organization Head</option>
                             <option value="4">Organization Member</option>
-                            <option value="5">OSA Personnel</option>
                         </select>
                         @if ($errors->has('user_account_id'))
                         <span class="help-block"> <strong>{{ $errors->first('user_account_id') }}</strong> </span>
@@ -168,11 +164,12 @@
                     <div class="form-line">
                         <select class="form-control show-tick" name="course_id">
                             <option value="0">-- Course --</option>
-                            <option value="1">BS in Computer Science</option>
-                            <option value="2">Food Technology</option>
-                            <option value="3">BS Biology</option>
-                            <option value="4">BACA</option>
-                            <option value="5">BA Anthropology</option>
+                            <option value="1">Course Not Applicable</option>
+                            <option value="2">BS in Computer Science</option>
+                            <option value="3">Food Technology</option>
+                            <option value="4">BS Biology</option>
+                            <option value="5">BACA</option>
+                            <option value="6">BA Anthropology</option>
                         </select>
                     </div>
                 </div>
@@ -197,19 +194,7 @@
                     <div class="form-line">
                         <select class="form-control show-tick" name="position_id">
                             <option value="0">-- Positions --</option>
-                            <option value="1">Chairperson</option>
-                            <option value="2">Vice Chairperson</option>
-                            <option value="3">President</option>
-                            <option value="4">Vice President</option>
-                            <option value="5">Secretary</option>
-                            <option value="6">Treasurer</option>
-                            <option value="7">Pubic Relation Officer</option>
-                            <option value="8">1st Year Representative</option>
-                            <option value="9">2nd Year Representative</option>
-                            <option value="10">3rd Year Representative</option>
-                            <option value="11">Instructor</option>
-                            <option value="12">OSA Staff</option>
-                            <option value="12">OSA Head</option>
+                            <option value="1">No position yet</option>
                         </select>
                     </div>
                 </div>
