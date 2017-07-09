@@ -105,17 +105,33 @@
                 </div>
                 <div class="form-group form-float form-group{{ $errors->has('date_start') ? ' has-error' : '' }}">
                   <div class="form-line">
-                    <input type="text" class="form-control datepicker " id="date_start" name="date_start" placeholder="Select Date" value="{{ old('date_start') }}">
+                    <input type="text" class="form-control event-datepicker" id="date_start" name="date_start" placeholder="Select Date Start" value="{{ old('date_start') }}">
                     @if ($errors->has('date_start'))
                       <span class="help-block"> <strong>{{ $errors->first('date_start') }}</strong> </span>
                     @endif
                   </div>
                 </div>
+                <div class="form-group form-float form-group{{ $errors->has('date_start_time') ? ' has-error' : '' }}">
+                  <div class="form-line">
+                    <input type="text" class="form-control event-timepicker" id="date_start_time" name="date_start_time" placeholder="Select Time Start" value="{{ old('date_start_time') }}">
+                    @if ($errors->has('date_start_time'))
+                      <span class="help-block"> <strong>{{ $errors->first('date_start_time') }}</strong> </span>
+                    @endif
+                  </div>
+                </div>
                 <div class="form-group form-float form-group{{ $errors->has('date_end') ? ' has-error' : '' }}">
                   <div class="form-line">
-                    <input type="text" class="form-control datepicker " id="date_end" name="date_end" placeholder="Select Date" value="{{ old('date_end') }}">
+                    <input type="text" class="form-control event-datepicker" id="date_end" name="date_end" placeholder="Select Date End" value="{{ old('date_end') }}">
                     @if ($errors->has('date_end'))
                       <span class="help-block"> <strong>{{ $errors->first('date_end') }}</strong> </span>
+                    @endif
+                  </div>
+                </div>
+                <div class="form-group form-float form-group{{ $errors->has('date_end_time') ? ' has-error' : '' }}">
+                  <div class="form-line">
+                    <input type="text" class="form-control event-timepicker" id="date_end_time" name="date_end_time" placeholder="Select Time End" value="{{ old('date_end_time') }}">
+                    @if ($errors->has('date_end_time'))
+                      <span class="help-block"> <strong>{{ $errors->first('date_end_time') }}</strong> </span>
                     @endif
                   </div>
                 </div>
@@ -130,15 +146,12 @@
                       <option value="5">Event type 5</option>
                     </select>
                     @if ($errors->has('event_type'))
-                    <span class="help-block"> <strong>{{ $errors->first('event_type') }}</strong> </span>
+                      <span class="help-block"> <strong>{{ $errors->first('event_type') }}</strong> </span>
                     @endif
                   </div>
                 </div>
                 <div class="switch">
                   <label>OFF <input type="checkbox"><span class="lever"></span>ON All Day</label>
-                  <label>OFF <input type="checkbox"><span class="lever"></span>ON Half Day</label>
-                </div>
-                <div class="switch">
                 </div>
               </div>
             </div>
@@ -160,7 +173,7 @@
   <script src="{{ asset('js/moment.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/autosize.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/basic-form-elements.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/basic-form-elements.js') }}?v=0.2" charset="utf-8"></script>
   <script src="{{ asset('js/fullcalendar.min.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/master.js') }}?v=0.2" charset="utf-8"></script>
+  <script src="{{ asset('js/master.js') }}?v=0.3" charset="utf-8"></script>
 @endsection

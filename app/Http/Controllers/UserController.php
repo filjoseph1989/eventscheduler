@@ -185,7 +185,7 @@ class UserController extends Controller
 
       $data = [
         'allDepartments'  => $department->all(),
-        'allPositions'    => $position->all(),
+        'allPositions'    => $position->all(), 
         'allCourses'    => $course->all(),
         'departmentName'  => $department->name,
         'positionName'    => $position->name,
