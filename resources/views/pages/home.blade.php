@@ -33,5 +33,5 @@
   <script src="{{ asset('js/jquery-ui-1.10.2.custom.min.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/moment.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/fullcalendar.min.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/master.js') }}?v=0.3" charset="utf-8"></script>
+  <script src="{{ asset('js/master.js') }}?v=0.4" charset="utf-8"></script>
 @endsection

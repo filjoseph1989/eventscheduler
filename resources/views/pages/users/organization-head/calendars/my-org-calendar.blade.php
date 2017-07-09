@@ -79,7 +79,7 @@
   <div class="modal fade" id="add-event" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form class="" action="index.html" method="post">
+        <form class="" id="add-event-form" action="{{ route('event.new') }}" method="POST">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="">Create Event</h4>
@@ -204,5 +204,5 @@
   <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/basic-form-elements.js') }}?v=0.2" charset="utf-8"></script>
   <script src="{{ asset('js/fullcalendar.min.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/master.js') }}?v=0.3" charset="utf-8"></script>
+  <script src="{{ asset('js/master.js') }}?v=0.4" charset="utf-8"></script>
 @endsection

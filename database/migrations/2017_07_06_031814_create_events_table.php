@@ -19,12 +19,12 @@ class CreateEventsTable extends Migration
             $table->integer('event_category_id')->unsigned()->index();
             $table->integer('organization_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
-            $table->string('name');
+            $table->string('event');
             $table->text('description');
             $table->date('date_start');
             $table->date('date_end');
-            $table->time('time_start');
-            $table->time('time_end');
+            $table->time('date_start_time');
+            $table->time('date_end_time');
             $table->integer('whole_day');
             $table->string('venue')->nullable();
             $table->tinyInteger('status')->default(0);

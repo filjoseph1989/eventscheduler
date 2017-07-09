@@ -143,6 +143,24 @@ $(document).ready(function()
     }
     calendar.fullCalendar('unselect');
 
+    $.ajax({
+      type: 'POST',
+      url: '/users/event/new',
+      data: {
+        form: $('#add-event-form').serializeArray(),
+      },
+      dataType: 'json',
+      beforeSend: function(request) {
+        request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
+      },
+      success: function(data) {
+        console.log(data);
+      },
+      error: function(data) {
+        console.log('Error:');
+      }
+    });
+
     // Clear modal inputs
     $('.modal').find('input').val('');
 
