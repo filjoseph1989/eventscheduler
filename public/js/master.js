@@ -1,3 +1,4 @@
+var global_start, global_end;
 
 /*
   jQuery document ready
@@ -15,7 +16,8 @@ $(document).ready(function()
   var d = date.getDate();
   var m = date.getMonth();
   var y = date.getFullYear();
-  var global_start, global_end;
+
+  // Issue: 20
 
   /*
     Initialize fullCalendar and store into variable.
@@ -47,8 +49,8 @@ $(document).ready(function()
       selectable:true will enable user to select datetime slot
       selectHelper will add helpers for selectable.
     */
-    navLinks: true, // can click day/week names to navigate views
-    selectable: true,
+    navLinks:     true, // can click day/week names to navigate views
+    selectable:   true,
     selectHelper: true,
     /*
       when user select timeslot this option code will execute.
@@ -124,32 +126,20 @@ $(document).ready(function()
     backgroundColor: "#009688"
   });
 
+  /*
+    When the user click the save button when setting events in
+    modal, the function below will trigger.
+   */
   $('#save-event').on('click', function() {
-    var title         = $('#event').val();
-    var tglobal_start = $('#date_start').val() != "" ? $('#date_start').val().split('/') : "";
-    var tglobal_end   = $('#date_end').val() != "" ? $('#date_end').val().split('/') : "";
-    var time_start    = $('#date_start_time').val() != "" ? $('#date_start_time').val().split(':') : "" ;
-    var time_end      = $('#date_end_time').val() != "" ? $('#date_end_time').val() : "";
-
-    /* Start */
-    var start_year   = tglobal_start[0];
-    var start_month  = tglobal_start[1];
-    var start_day    = tglobal_start[2];
-    var start_hour   = (time_start != "") ? time_start[0] : time_start;
-    var start_minute = (time_start != "") ? time_start[1] : time_start;
-
-    /* end */
-    var end_year   = tglobal_end[0];
-    var end_month  = tglobal_end[1];
-    var end_day    = tglobal_end[2];
-    var end_hour   = (time_end != "") ? time_end[0] : time_end;
-    var end_minute = (time_end != "") ? time_end[1] : time_end;
+    var title = $('#event').val();
 
     if (title) {
       calendar.fullCalendar('renderEvent', {
         title:  title,
-        start:  new Date(start_year, start_month - 1  , start_day, start_hour, start_minute),
-        start:  new Date(end_year, end_month - 1  , end_day, end_hour, end_minute),
+        start:  getDate('#date_start'),
+        end:  getDate('#date_end'),
+        // start:  startDate(),
+        // end:  endDate(),
         allDay: false //allDay
       },
       // make the event "stick"
@@ -185,3 +175,26 @@ $(document).ready(function()
     date: false
   });
 });
+
+/**
+ * Return the date and time of the set
+ * event
+ *
+ * @param  {string} $id
+ * @return object Date
+ */
+function getDate($id) {
+  var date = $($id).val() != "" ? $($id).val().split('/') : "";
+  var time = $($id+'_time').val() != "" ? $($id+'_time').val().split(':') : "";
+
+  if (date != "" && time == "") {
+    return new Date(date[0], (date[1] - 1), date[2]);
+  } else if (date == "" && time != "") {
+    date = new Date(global_start);
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate(), time[0], time[1]);
+  } else if (date != "" && time != "") {
+    return new Date(date[0], (date[1] - 1), date[2], time[0], time[1]);
+  }
+
+  return global_start;
+}
