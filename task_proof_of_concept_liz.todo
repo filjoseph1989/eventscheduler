@@ -4,6 +4,7 @@
 
 2 type Dashboard
   1. super admin (s_admins table) Dashboard (direct to database management)
+  ☐ registers admin and osa user
           level 1
           ✔ accept or reject user registration via status(active/inactive) @done(2017-07-01 00:38)
           ✔ USERS CRUD @done(2017-07-01 00:38)
@@ -67,6 +68,7 @@
             //organization_groups are dependent to the organization members
             (who are the users with the same organizations id)
     ☐ OSA
+      ☐ designate users position (will ask list of position from org)
       ☐ manage schedule (events)
       ☐ generate attendance
           //and user_attendances are dependent on the user's reply on the
