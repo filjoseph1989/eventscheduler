@@ -1,34 +1,35 @@
-To Do:
+--To Do:
   ☐ Task 35 - Transfer the master.js to app.js
   ☐ Task 34 - Login as Organization HEAD:
     ☐ Manage Schedule:
       ☐ Show calendar
         Task:
         ☐ University Calendar:
-          ☐ Capture the events data
-            ☐ just a day?
-            ☐ whole day?
-            ☐ half day?
-            Issue:
-              ☐ The event will not display since the end date is not yet correct in coding
-            Archive:
-            ✔ title @done(2017-07-09 14:12) @project(To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ University Calendar)
-            ✔ desription of the event @done(2017-07-09 14:12) @project(To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ University Calendar)
-            ✔ day start and day end @done(2017-07-09 14:12) @project(To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ University Calendar)
-            ✔ what time in the day? @done(2017-07-09 14:12) @project(To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ University Calendar)
-          ☐ Edit the schedule within the calendar
-            ☐ Display the modal for editing
-              ☐ fetch the data from source, either from database or within the calendar itself?
-          ☐ Add event in the database
-            ☐ Do we need a validation?
-          ☐ Retrieve back the schedule set from the database and arrange it according to previous settings.
-          ☐ display event in the table with status approved or not
-            ☐ if not approved yet, who will approved?
-            ☐ what are the process of approving events?
-            ☐ Once approve, Who will be notified?
-          ☐ Is the org-head authorize the management of the university calendar?
+          ☐ View calendar
         ☐ All Organization Calendar
-        ☐ My Organization Calendar
+        ☐ My Organization Calendar:
+          ☐ Chose organization first:
+            ☐ Display the calendar for the chosen organization
+              ☐ Add new events on the calendar
+                ☐ Capture the events data
+                  Issue:
+                    ✔ The event will not display since the end date is not yet correct in coding @done(2017-07-09 18:35) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ University Calendar / Issue)
+                  Archive:
+                  ✔ whole day? @done(2017-07-09 19:37) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first)
+                  ✔ title @done(2017-07-09 14:12) @project(To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ University Calendar)
+                  ✔ desription of the event @done(2017-07-09 18:36) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first)
+                  ✔ day start and day end @done(2017-07-09 14:12) @project(To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ University Calendar)
+                  ✔ what time in the day? @done(2017-07-09 14:12) @project(To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ University Calendar)
+              ☐ Display again the events setted previously from the calendar.
+              ☐ Edit the schedule within the calendar
+                ☐ Display the modal for editing
+                  ☐ fetch the data from source, either from database or within the calendar itself?
+              ☐ Add event in the database
+                ☐ Do we need a validation?
+              ☐ display event in the table with status approved or not
+                ☐ if not approved yet, who will approved?
+                ☐ what are the process of approving events?
+                ☐ Once approve, Who will be notified?
         ☐ My Personal Calendar
         Issues:
           ☐ How to determine these individual calendar?

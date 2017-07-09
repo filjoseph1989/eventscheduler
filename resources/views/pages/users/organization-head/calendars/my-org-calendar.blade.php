@@ -135,6 +135,18 @@
                     @endif
                   </div>
                 </div>
+                <div class="form-group form-float">
+                  <div class="form-line">
+                    <select class="form-control show-tick" id="whole-day" name="whole_day">
+                      <option value="0">-- Whole day? --</option>
+                      <option value="1">YES</option>
+                      <option value="0">NO</option>
+                    </select>
+                    @if ($errors->has('event_type'))
+                      <span class="help-block"> <strong>{{ $errors->first('event_type') }}</strong> </span>
+                    @endif
+                  </div>
+                </div>
                 <div class="form-group form-float form-group{{ $errors->has('event_type') ? ' has-error' : '' }}">
                   <div class="form-line">
                     <select class="form-control show-tick" id="event-type" name="event_id">
@@ -149,9 +161,6 @@
                       <span class="help-block"> <strong>{{ $errors->first('event_type') }}</strong> </span>
                     @endif
                   </div>
-                </div>
-                <div class="switch">
-                  <label>OFF <input type="checkbox"><span class="lever"></span>ON All Day</label>
                 </div>
               </div>
             </div>
