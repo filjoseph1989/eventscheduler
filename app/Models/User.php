@@ -33,13 +33,40 @@ class User extends Authenticatable
 
     /**
      * Send notification on fb page
+     * ! Deprecated
      *
      * @return [type] [description]
      */
-
     public static function send($message = "")
     {
       $user = new User();
       return $user->notify(new FacebookPublished($message));
+    }
+
+    /**
+     * This mean that the user belong to a one department
+     * @return object
+     */
+    public function department()
+    {
+      return $this->belongsTo('App\Models\Department');
+    }
+
+    /**
+     * This means that user has only one position
+     * @return Object
+     */
+    public function position()
+    {
+      return $this->belongsTo('App\Models\Position');
+    }
+
+    /**
+     * This mean that the user has only one position
+     * @return object
+     */
+    public function course()
+    {
+      return $this->belongsTo('App\Models\Course');
     }
 }

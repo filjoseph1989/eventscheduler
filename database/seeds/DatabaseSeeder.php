@@ -15,15 +15,6 @@ class DatabaseSeeder extends Seeder
 
         Eloquent::unguard();
 
-        # Truncate all tables, except migrations
-        # Please replace 'liz' in 'Tables_in_liz' with Database name of yours
-        // $tables = DB::select('SHOW TABLES');
-        // foreach ($tables as $table) {
-        //     if ($table->Tables_in_liz !== 'migrations')
-        //         DB::table($table->Tables_in_liz)->truncate();
-        // }
-
-        // Find and run all seeders
         $classes = require base_path().'/vendor/composer/autoload_classmap.php';
         foreach ($classes as $class) {
           if (strpos($class, 'TableSeeder') !== false) {

@@ -14,4 +14,16 @@ class Course extends Model
     protected $fillable = [
       'name',
     ];
+
+    /**
+     * This that for every position there's only person
+     * associated user
+     *
+     * @return object
+     */
+    public function user()
+    {
+      return $this->hasOne('App\Models\User');
+    }
+
 }

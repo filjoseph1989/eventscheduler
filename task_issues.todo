@@ -1,5 +1,6 @@
 To Do:
-  ☐ Issue 18: No data in admin table
+  ☐ Issue 19: The current loggedin user should not cross the pages of the other user_account_type
+  ✔ Issue 18: No data in admin table @done(2017-07-07 15:31) @project(To Do)
   ☐ Issue 17: Find the right icon for super admin info box
   ☐ Issue 16: Date expired should not less than the day of date started in {admin/organization/list} same on add organization form
   ✔ Issue 15: Add icons on sidebar for admin @done(2017-06-25 22:49) @project(To Do)

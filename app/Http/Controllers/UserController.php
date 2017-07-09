@@ -92,7 +92,6 @@ class UserController extends Controller
       }
     }
 
-
     /**
      * Edit the user's information
      *
@@ -178,15 +177,24 @@ class UserController extends Controller
      * @param  Request $data
      * @return json
      */
-    public function getUser(Request $data)
+    public function getUserData(Request $data)
     {
-        $data = [
-          'department'   => Department::All(),
-          'user_account' => UserAccount::all(),
-          'position'     => Position::all(),
-          'course'       => Course::all(),
-          'user'         => User::find($data->id),
-        ];
+      $department = User::find($data->id)->department()->getResults();
+      $position   = User::find($data->id)->position()->getResults();
+      $course     = User::find($data->id)->course()->getResults();
+
+      $data = [
+        'allDepartments'  => $department->all(),
+        'allPositions'    => $position->all(), 
+        'allCourses'    => $course->all(),
+        'departmentName'  => $department->name,
+        'positionName'    => $position->name,
+        'courseName'    => $course->name,
+        // 'user_account' => UserAccount::all(),
+        // 'position'     => Position::all(),
+        // 'course'       => Course::all(),
+        // 'user'         => User::find($data->id),
+      ];
 
         echo json_encode($data);
 

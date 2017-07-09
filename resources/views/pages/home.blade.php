@@ -25,35 +25,6 @@
 
       @component( session('info_box') )
       @endcomponent
-
-      <div class="row clearfix">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="card">
-            <div class="header">
-              <div class="row clearfix">
-                <div class="col-xs-12 col-sm-6">
-                  <h2 id="heading-schedule">Calendar for {{ ucwords(session('name')) }}</h2>
-                </div>
-              </div>
-              <ul class="header-dropdown m-r--5">
-                <li class="dropdown">
-                  <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="material-icons">more_vert</i>
-                  </a>
-                  <ul class="dropdown-menu pull-right">
-                    <li><a href="javascript:void(0);">Action</a></li>
-                    <li><a href="javascript:void(0);">Another action</a></li>
-                    <li><a href="javascript:void(0);">Something else here</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-            <div class="body">
-              <!-- <div id='calendar'></div> -->
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 @endsection
@@ -62,5 +33,5 @@
   <script src="{{ asset('js/jquery-ui-1.10.2.custom.min.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/moment.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/fullcalendar.min.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/master.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/master.js') }}?v=0.3" charset="utf-8"></script>
 @endsection

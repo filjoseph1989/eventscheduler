@@ -1,4 +1,36 @@
 To Do:
+  ☐ Task 35 - Transfer the master.js to app.js
+  ☐ Task 34 - Login as Organization HEAD:
+    ☐ Manage Schedule:
+      ☐ Show calendar
+        Task:
+        ☐ University Calendar:
+          ☐ Capture the events data
+            ☐ just a day?
+            ☐ whole day?
+            ☐ half day?
+            ✔ title @done(2017-07-09 14:12) @project(To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ University Calendar)
+            ✔ desription of the event @done(2017-07-09 14:12) @project(To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ University Calendar)
+            ✔ day start and day end @done(2017-07-09 14:12) @project(To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ University Calendar)
+            ✔ what time in the day? @done(2017-07-09 14:12) @project(To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ University Calendar)
+          ☐ Edit the schedule within the calendar
+            ☐ Display the modal for editing
+              ☐ fetch the data from source, either from database or within the calendar itself?
+          ☐ Add event in the database
+            ☐ Do we need a validation?
+          ☐ Retrieve back the schedule set from the database and arrange it according to previous settings.
+          ☐ display event in the table with status approved or not
+            ☐ if not approved yet, who will approved?
+            ☐ what are the process of approving events?
+            ☐ Once approve, Who will be notified?
+          ☐ Is the org-head authorize the management of the university calendar?
+        ☐ All Organization Calendar
+        ☐ My Organization Calendar
+        ☐ My Personal Calendar
+        Issues:
+          ☐ How to determine these individual calendar?
+      ☐ Generate User Attendance
+  ☐ Task 33 - Change the profile background according to the user type
   ☐ Task 32 - Try View Composers to manage the rendering of two sidebar for user and for admin
   ☐ Task 31 - Create a manage notification - This will be a setting what to notify or what kind of notification should be if org adviser will create a event
   ☐ Task 30 - Give functionality the super admin dashboard info-box:
@@ -9,7 +41,7 @@ To Do:
     ✔ Defined initial info-box for a Different type of user @done(2017-07-02 15:11) @project(To Do / ☐ Task 29 - Different user dashboard)
   ☐ Task 28 - Login as OSA:
     ☐ Organization:
-      ☐ Attendance
+      ☐ Generate Attendance
       ☐ List
   ☐ Task 27 - Create a function which return an information about css and js version
   ☐ Task 25 - Manage Event Types:
@@ -54,12 +86,22 @@ To Do:
     ☐ Edit
     ☐ Add
     ☐ Delete
-  ☐ Task 18 - Super Admin Manage Users
+  ☐ Task 18 - Super Admin Manage Users:
+    ☐ Delete - soft delete
+    ☐ Fetch the dropdown for editing the user:
+      ☐ All Account Type
+      ☐ A users account type
+      ✔ All Courses @done(2017-07-08 02:25)
+      ✔ A users course @done(2017-07-08 02:25)
+      ✔ All departments name @done(2017-07-08 02:25)
+      ✔ A user department belong to @done(2017-07-08 02:25)
+      ✔ All positions @done(2017-07-08 02:25)
+      ✔ A user position @done(2017-07-08 02:25)
+      ☐ Table relationship
     ✔ Browse @done(2017-06-30 11:26) @project(To Do / ☐ Task 19 - Manage Users Account)
     ✔ Read @done(2017-06-30 11:26) @project(To Do / ☐ Task 19 - Manage Users Account)
     ✔ Edit  @done(2017-06-30 11:26) @project(To Do / ☐ Task 19 - Manage Users Account)
     ✔ Add  @done(2017-06-30 11:26) @project(To Do / ☐ Task 19 - Manage Users Account)
-    ☐ Delete
   ☐ Task 17 - Create a function for deleting user information:
     ☐ Note that there should be no delete, instead change the status to inactive
     ☐ But admin can view it

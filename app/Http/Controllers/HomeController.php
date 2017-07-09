@@ -41,13 +41,13 @@ class HomeController extends Controller
       return view('pages.home');
     } else { # redirect to register page if status is not active
       Auth::guard('web')->logout();
-      return redirect()->route('register');
+      return redirect()->route('register')->with('status', 'Sorry Your Not allowed, Please Register');
     }
   }
 
   /**
    * ! Deprecated
-   * 
+   *
    * @return [type] [description]
    */
   public function sendNotification()

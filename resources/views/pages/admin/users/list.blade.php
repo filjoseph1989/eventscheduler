@@ -21,7 +21,7 @@
       <div class="container-fluid">
         @if (session('status'))
           <div class="alert alert-success">
-            {!! session('status') !!} <?php # using this syntax as oppose to {{ }} to prevent excaping html rendering ?>
+            {!! session('status') !!}
           </div>
         @endif
 
@@ -117,7 +117,7 @@
 @endsection
 
 @section('modal')
-  <!-- modal for editing user information -->
+  {{-- modal for editing user information --}}
   <div class="modal fade" id="edit-user" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -228,45 +228,25 @@
                   </div>
                   <div class="form-group form-float form-group{{ $errors->has('course_id') ? ' has-error' : '' }}">
                     <div class="form-line">
-                      <select class="form-control show-tick" name="course_id" required>
-                        <option value="0">-- Course --</option>
-                        <option value="1">BSCS</option>
-                        <option value="2">Food Technology</option>
-                        <option value="3">BS Biology</option>
-                        <option value="4">BACA</option>
-                        <option value="5">BA Anthropology</option>
-                      </select>
+                      <select class="form-control show-tick" id="course_id" name="course_id">&nbsp;</select>
                       @if ($errors->has('course_id'))
-                      <span class="help-block"> <strong>{{ $errors->first('course_id') }}</strong> </span>
+                        <span class="help-block"> <strong>{{ $errors->first('course_id') }}</strong> </span>
                       @endif
                     </div>
                   </div>
                   <div class="form-group form-float form-group{{ $errors->has('department_id') ? ' has-error' : '' }}">
                     <div class="form-line">
-                      <select class="form-control show-tick" name="department_id" required>
-                        <option value="0">-- Department --</option>
-                        <option value="1">College of Science and Mathematics</option>
-                        <option value="2">College of Humanities and Social Science</option>
-                        <option value="3">Department of Architecture</option>
-                        <option value="4">School of Management</option>
-                      </select>
+                      <select class="form-control show-tick" id="department_id" name="department_id">&nbsp;</select>
                       @if ($errors->has('department_id'))
-                      <span class="help-block"> <strong>{{ $errors->first('department_id') }}</strong> </span>
+                        <span class="help-block"> <strong>{{ $errors->first('department_id') }}</strong> </span>
                       @endif
                     </div>
                   </div>
                   <div class="form-group form-float form-group{{ $errors->has('position_id') ? ' has-error' : '' }}">
                     <div class="form-line">
-                      <select class="form-control show-tick" name="position_id" required>
-                        <option value="0">-- Position --</option>
-                        <option value="1">Chairman</option>
-                        <option value="2">Faculty</option>
-                        <option value="3">OSA Staff</option>
-                        <option value="4">Vice-Chairman</option>
-                        <option value="5">Secretary</option>
-                      </select>
+                      <select class="form-control show-tick" id="position_id" name="position_id">&nbsp;</select>
                       @if ($errors->has('position'))
-                      <span class="help-block"> <strong>{{ $errors->first('position') }}</strong> </span>
+                        <span class="help-block"> <strong>{{ $errors->first('position') }}</strong> </span>
                       @endif
                     </div>
                   </div>
@@ -298,7 +278,7 @@
     </div>
   </div>
 
-  <!-- modal for adding user information -->
+  {{-- modal for adding user information --}}
   <div class="modal fade" id="add-user" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -517,7 +497,7 @@
   <script src="{{ asset('js/sweetalert.min.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/jquery.validate.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/dialogs.js') }}?v=0.1" charset="utf-8"></script>
-  <script src="{{ asset('js/app.js') }}?v=0.3" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.4" charset="utf-8"></script>
   <script type="text/javascript">
     $(function () {
       /**

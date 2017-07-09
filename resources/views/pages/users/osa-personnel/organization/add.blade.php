@@ -111,5 +111,5 @@
     <script src="{{asset('js/autosize.js')}}"></script>
     <script src="{{asset('js/moment.js')}}"></script>
     <script src="{{asset('js/bootstrap-material-datetimepicker.js')}}"></script>
-    <script src="{{asset('js/basic-form-elements.js')}}"></script>
+    <script src="{{asset('js/basic-form-elements.js')}}?v=0.2"></script>
 @endsection
