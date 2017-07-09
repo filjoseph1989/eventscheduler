@@ -147,9 +147,10 @@ $(document).ready(function()
 
     if (title) {
       calendar.fullCalendar('renderEvent', {
-        title:  title,
-        start:  new Date(start_year, start_month - 1  , start_day, start_hour, start_minute),
-        start:  new Date(end_year, end_month - 1  , end_day, end_hour, end_minute),
+        title: title,
+        start: new Date(start_year, start_month - 1  , start_day, start_hour, start_minute),
+        end:   new Date(start_year, start_month - 1  , start_day, start_hour, start_minute),
+        // end:  new Date(end_year, end_month - 1  , end_day, end_hour, end_minute),
         allDay: false //allDay
       },
       // make the event "stick"
