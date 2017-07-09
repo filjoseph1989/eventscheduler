@@ -183,13 +183,13 @@ class UserController extends Controller
       $position   = User::find($data->id)->position()->getResults();
       $course     = User::find($data->id)->course()->getResults();
 
-      $data = [
-        'allDepartments'  => $department->all(),
-        'allPositions'    => $position->all(), 
-        'allCourses'    => $course->all(),
-        'departmentName'  => $department->name,
-        'positionName'    => $position->name,
-        'courseName'    => $course->name,
+      $data               = [
+        'allDepartments' => $department->all(),
+        'allPositions'   => $position->all(), 
+        'allCourses'     => $course->all(),
+        'departmentName' => $department->name,
+        'positionName'   => $position->name,
+        'courseName'     => $course->name,
         // 'user_account' => UserAccount::all(),
         // 'position'     => Position::all(),
         // 'course'       => Course::all(),
