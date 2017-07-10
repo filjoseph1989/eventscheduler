@@ -206,5 +206,5 @@
   <script src="{{ asset('js/basic-form-elements.js') }}?v=0.2" charset="utf-8"></script>
   <script src="{{ asset('js/fullcalendar.min.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/master.js') }}?v=0.5" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.5" charset="utf-8"></script>
 @endsection
