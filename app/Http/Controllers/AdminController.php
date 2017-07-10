@@ -57,10 +57,13 @@ class AdminController extends Controller
         'users.email',
         'users.mobile_number',
         'users.deleted_or_not',
-        'users.status'
-        )->join(
-          'user_accounts', 'users.user_account_id', '=', 'user_accounts.id'
+        'users.status',
+        'users.position_id',
+        'positions.id',
+        'positions.name as p_name'
         )
+        ->join('user_accounts', 'users.user_account_id', '=', 'user_accounts.id')
+        ->join('positions', 'users.position_id', '=', 'positions.id')
         ->where('users.deleted_or_not', '=', 1)
         ->get();
 

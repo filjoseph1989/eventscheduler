@@ -15,13 +15,18 @@
       </a>
       <ul class="ml-menu">
         <li>
-          <a href="{{ route('organization.list') }}">
+          <a href="{{ route('osa.org.list') }}">
             <span>List of organizations</span>
           </a>
         </li>
         <li>
-          <a href="{{ route('admin.organization.add') }}">
+          <a href="{{ route('osa.org.add') }}">
             <span>Add an organization</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span>Assign positions</span>
           </a>
         </li>
       </ul>
@@ -48,10 +53,6 @@
         <span>List Of Users</span>
       </a>
     </li>
-    <li>
-      <a href="#">
-        <span>Assign Positions</span>
-      </a>
-    </li>
+
   </ul>
 </li>

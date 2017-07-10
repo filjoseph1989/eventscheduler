@@ -153,6 +153,8 @@ Route::group(['middleware' => 'revalidate'], function()
      * OSA User Account Type
      */
     Route::name('osa.user.list')->get('osa/list_of_users','OsaAccountController@showAllUserList');
+    Route::name('osa.org.list')->get('osa/list_of_organizations','OsaAccountController@showAllOrganizationList');
+    Route::name('osa.org.add')->get('osa/organization/add', 'OsaAccountController@showOrganizationAddForm');
   });
 });
 

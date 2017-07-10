@@ -64,6 +64,7 @@
                       <th>Mobile</th>
                       <th>Status</th>
                       <th>Account Type</th>
+                      <th>Position</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
@@ -78,6 +79,7 @@
                           <td>{{ $usersvalue->mobile_number }}</td>
                           <td>{{ $usersvalue->status == 1 ? 'active' : 'inactive'  }}</td>
                           <td>{{ $usersvalue->name }}</td>
+                          <td>{{ $usersvalue->p_name }}</td>
                           <td>
                             <a href="#" class="users-delete delete" data-url="/admin/user/delete" data-type="cancel">
                               <i class="material-icons">delete</i>
@@ -98,6 +100,7 @@
                       <th>Email</th>
                       <th>Mobile</th>
                       <th>Account Type</th>
+                      <th>Position</th>
                       <th>Actions</th>
                     </tr>
                   </tfoot>
