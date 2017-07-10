@@ -10,15 +10,15 @@
         ☐ My Organization Calendar:
           ☐ Chose organization first:
             ☐ Display the calendar for the chosen organization:
-              ☐ Get the calendar organization ID, for identifying what organization a calendar belons to.
+              ☐ Get the calendar organization ID, for identifying what organization a calendar belongs to.
               ☐ Add event in the database:
+                ✔ Alter the events table @done(2017-07-09 20:25) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first / ☐ Display the calendar for the chosen organization / ☐ Add event in the database)
                 ☐ What are the process of adding calendar data to the database?:
-                  ☐ When the user click on save button:
-                    ✔ Get the data and pass to controller, while at same time, update the calendar in view @done(2017-07-10 00:04) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first / ☐ Display the calendar for the chosen organization / ☐ Add event in the database / ☐ What are the process of adding calendar data to the database? / ☐ When the user click on save button)
+                  ✔ When the user click on save button on event modal, get the data and pass to controller, while at same time, update the calendar in view @done(2017-07-10 11:14) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first / ☐ Display the calendar for the chosen organization / ☐ Add event in the database / ☐ What are the process of adding calendar data to the database?)
+                  ☐ The event should only display on calendar once the data successfully inserted into the database
                 ☐ Getting the data from the database:
                   ☐ Get all event of the current month where user equal to current loggedin user id and chosen calendar
                 ☐ Do we need a validation?
-                ✔ Alter the events table @done(2017-07-09 20:25) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first / ☐ Display the calendar for the chosen organization / ☐ Add event in the database)
               ☐ Display again the events setted previously from the calendar.
               ☐ Edit the schedule within the calendar
                 ☐ Display the modal for editing
@@ -28,11 +28,15 @@
                 ☐ what are the process of approving events?
                 ☐ Once approve, Who will be notified?
 
+              Issues:
+                ☐ When the user click on the calendar date, then try to chose date and time, it should match the clicked date
+                ☐ During the insert of new event in the database, no organization_id yet.
+
               Archive:
               ✔ Get the type and categories of events, and user id @done(2017-07-09 21:09) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first / ☐ Display the calendar for the chosen organization)
-              ✔ Add new events on the calendar @done(2017-07-09 20:27) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first / ☐ Display the calendar for the chosen organization)
-                ✔ Capture the events data in javascript @done(2017-07-09 20:27) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first / ☐ Display the calendar for the chosen organization)
-                  ✔ The event will not display since the end date is not yet correct in coding @done(2017-07-09 18:35) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ University Calendar / Issue)
+              ✔ Add new events on the calendar @done(2017-07-10 00:34) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first / ☐ Display the calendar for the chosen organization)
+                ✔ Capture the events data in javascript @done(2017-07-10 00:34) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first / ☐ Display the calendar for the chosen organization / Archive)
+                  ✔ The event will not display since the end date is not yet correct in coding @done(2017-07-10 00:34) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first / ☐ Display the calendar for the chosen organization / Archive)
                   ✔ whole day? @done(2017-07-09 19:37) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first)
                   ✔ title @done(2017-07-09 14:12) @project(To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ University Calendar)
                   ✔ desription of the event @done(2017-07-09 18:36) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first)

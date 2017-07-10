@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="{{ asset('css/fullcalendar.css') }}?v=0.1">
   <link rel="stylesheet" href="{{ asset('css/fullcalendar.print.css') }}?v=0.1">
   <link rel="stylesheet" href="{{ asset('css/bootstrap-material-datetimepicker.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/sweetalert.css') }}">
   <link rel="stylesheet" href="{{ asset('css/all-themes.css') }}">
 @endsection
 
@@ -98,7 +99,7 @@
                 </div>
                 <div class="form-group form-float form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                   <div class="form-line">
-                    <textarea rows="4" class="form-control no-resize" id="description" placeholder="Description of the event">{{ old('description') }}</textarea>
+                    <textarea rows="4" class="form-control no-resize" id="description" name="description" placeholder="Description of the event">{{ old('description') }}</textarea>
                     @if ($errors->has('description'))
                       <span class="help-block"> <strong>{{ $errors->first('description') }}</strong> </span>
                     @endif
@@ -106,7 +107,7 @@
                 </div>
                 <div class="form-group form-float form-group{{ $errors->has('venue') ? ' has-error' : '' }}">
                   <div class="form-line">
-                    <input type="text" class="form-control" id="venue" placeholder="Venue" name="" value="{{ old('venue') }}">
+                    <input type="text" class="form-control" id="venue" name="venue" placeholder="Venue" value="{{ old('venue') }}">
                     @if ($errors->has('venue'))
                       <span class="help-block"> <strong>{{ $errors->first('venue') }}</strong> </span>
                     @endif
@@ -158,27 +159,27 @@
                 </div>
                 <div class="form-group form-float form-group{{ $errors->has('event_type') ? ' has-error' : '' }}">
                   <div class="form-line">
-                    <select class="form-control show-tick" id="event-type" name="event_id">
+                    <select class="form-control show-tick" id="event-type" name="event_type_id">
                       <option value="0">-- Select type of event--</option>
                       @foreach ($event_type as $key => $value)
                         <option value="{{ $value->id }}">{{ $value->name }}</option>
                       @endforeach
                     </select>
-                    @if ($errors->has('event_type'))
-                      <span class="help-block"> <strong>{{ $errors->first('event_type') }}</strong> </span>
+                    @if ($errors->has('event_type_id'))
+                      <span class="help-block"> <strong>{{ $errors->first('event_type_id') }}</strong> </span>
                     @endif
                   </div>
                 </div>
                 <div class="form-group form-float form-group{{ $errors->has('event_categories') ? ' has-error' : '' }}">
                   <div class="form-line">
-                    <select class="form-control show-tick" id="event-type" name="event_id">
+                    <select class="form-control show-tick" id="event-category" name="event_category_id">
                       <option value="0">-- Select type of event--</option>
                       @foreach ($event_categories as $key => $value)
                         <option value="{{ $value->id }}">{{ $value->name }}</option>
                       @endforeach
                     </select>
-                    @if ($errors->has('event_categories'))
-                      <span class="help-block"> <strong>{{ $errors->first('event_categories') }}</strong></span>
+                    @if ($errors->has('event_category_id'))
+                      <span class="help-block"> <strong>{{ $errors->first('event_category_id') }}</strong></span>
                     @endif
                   </div>
                 </div>
@@ -204,5 +205,6 @@
   <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/basic-form-elements.js') }}?v=0.2" charset="utf-8"></script>
   <script src="{{ asset('js/fullcalendar.min.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/master.js') }}?v=0.4" charset="utf-8"></script>
+  <script src="{{ asset('js/sweetalert.min.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/master.js') }}?v=0.5" charset="utf-8"></script>
 @endsection

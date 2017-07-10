@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Event;
 
 /**
  * Manage the events
@@ -30,8 +31,20 @@ class EventController extends Controller
    */
   public function createNewEvent(Request $data)
   {
+    $request = [];
+    foreach ($data->form as $key => $value) {
+      if (($value['name'] == 'date_start' or $value['name'] == 'date_end') and ! empty($value['value'])) {
+        $request[$value['name']] = date( "Y/m/d", strtotime($value['value']));
+      } else {
+        $request[$value['name']] = $value['value'];
+      }
+    }
+    $request['organization_id'] = 1;
+
+    $result = Event::create($request);
+
     echo json_encode([
-      'data' => $data->form
+      'wasRecentlyCreated' => $result->wasRecentlyCreated
     ]);
   }
 }
