@@ -26,6 +26,7 @@ Route::group(['middleware' => 'revalidate'], function()
     # Users
     Route::name('admin.user.list')->get('/users/list', 'AdminController@showAllUserList');
     Route::name('admin.user.add')->get('/users/add', 'AdminUserController@showUserAddForm');
+    Route::name('admin.user.set.status')->post('/users/set/status', 'AdminUserController@setStatus');
     Route::name('admin.user.register')->post('/user/register', 'UserController@adminCreate');
     Route::name('admin.user.edit')->post('/user/edit', 'UserController@edit');
     Route::name('admin.user.get')->post('/user/get', 'UserController@getUserData');

@@ -62,10 +62,10 @@
                       <th>Last Name</th>
                       <th>Email</th>
                       <th>Mobile</th>
-                      <th>Status</th>
                       <th>Account Type</th>
                       <th>Position</th>
                       <th>Actions</th>
+                      <th>Status</th>
                     </tr>
                   </thead>
                   <tbody class="js-sweetalert">
@@ -77,9 +77,12 @@
                           <td>{{ $usersvalue->last_name }}</td>
                           <td>{{ $usersvalue->email }}</td>
                           <td>{{ $usersvalue->mobile_number }}</td>
-                          <td>{{ $usersvalue->status == 1 ? 'active' : 'inactive'  }}</td>
                           <td>{{ $usersvalue->name }}</td>
                           <td>{{ $usersvalue->p_name }}</td>
+                          <td>
+                            <input type="checkbox" class="user-status" id="basic_checkbox_{{ $usersvalue->id }}" data-id="{{ $usersvalue->id }}"/>
+                            <label id="user-status-label-{{ $usersvalue->id }}" for="basic_checkbox_{{ $usersvalue->id }}">{{$usersvalue->status == 1 ? 'active' : 'inactive'}}</label>
+                          </td>
                           <td>
                             <a href="#" class="users-delete delete" data-url="/admin/user/delete" data-type="cancel">
                               <i class="material-icons">delete</i>
@@ -503,7 +506,7 @@
   <script src="{{ asset('js/sweetalert.min.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/jquery.validate.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/dialogs.js') }}?v=0.1" charset="utf-8"></script>
-  <script src="{{ asset('js/app.js') }}?v=0.5" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.6" charset="utf-8"></script>
   <script type="text/javascript">
     $(function () {
       /**
