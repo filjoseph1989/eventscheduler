@@ -21,12 +21,12 @@ class CreateEventsTable extends Migration
             $table->integer('user_id')->unsigned()->index();
             $table->string('event');
             $table->text('description');
-            $table->date('date_start');
-            $table->date('date_end');
-            $table->time('date_start_time');
-            $table->time('date_end_time');
+            $table->string('venue');
+            $table->date('date_start')->useCurrent();
+            $table->date('date_end')->useCurrent();
+            $table->time('date_start_time')->default('00:00:00');
+            $table->time('date_end_time')->default('00:00:00');
             $table->integer('whole_day');
-            $table->string('venue')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->tinyInteger('deleted_or_not')->default(1);
             $table->timestamps();
