@@ -15,7 +15,8 @@ $('.user-status').click(function() {
     type: 'POST',
     url: '/admin/users/set/status',
     data: {
-      on: check
+      status_: check,
+      id: id
     },
     dataType: 'json',
     beforeSend: function(request) {

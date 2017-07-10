@@ -64,8 +64,8 @@
                       <th>Mobile</th>
                       <th>Account Type</th>
                       <th>Position</th>
-                      <th>Actions</th>
                       <th>Status</th>
+                      <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody class="js-sweetalert">
@@ -104,6 +104,7 @@
                       <th>Mobile</th>
                       <th>Account Type</th>
                       <th>Position</th>
+                      <th>Status</th>
                       <th>Actions</th>
                     </tr>
                   </tfoot>
