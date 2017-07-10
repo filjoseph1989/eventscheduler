@@ -17,6 +17,16 @@
       </li>
       <li>
         <a href="#">
+          <span>Add an Organization Head</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <span>Add an Organization Adviser</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
           <span>Activate accounts</span>
         </a>
       </li>
