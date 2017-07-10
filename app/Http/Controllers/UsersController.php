@@ -30,6 +30,7 @@ class UsersController extends Controller
             'password'    => 'required|string|min:6|confirmed',
         ]);
     }
+
     /**
      * Display a listing of the resource.
      *

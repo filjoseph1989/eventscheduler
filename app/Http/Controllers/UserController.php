@@ -14,7 +14,6 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-
     /**
      * Create a new controller instance.
      *
@@ -185,7 +184,7 @@ class UserController extends Controller
 
       $data               = [
         'allDepartments' => $department->all(),
-        'allPositions'   => $position->all(), 
+        'allPositions'   => $position->all(),
         'allCourses'     => $course->all(),
         'departmentName' => $department->name,
         'positionName'   => $position->name,
@@ -200,6 +199,14 @@ class UserController extends Controller
 
         # next time use Illuminate\Response to return json
         // return User::find($data->id);
+    }
+
+    public function gets()
+    {
+        $user = User::all();
+        foreach ($user as $key => $value) {
+            d($value->department->name);
+        }
     }
 
     /**
