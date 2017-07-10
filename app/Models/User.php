@@ -69,4 +69,7 @@ class User extends Authenticatable
     {
       return $this->belongsTo('App\Models\Course');
     }
+    public function userAccount(){
+      return $this->hasOne('App\Models\UserAccount');
+    }
 }

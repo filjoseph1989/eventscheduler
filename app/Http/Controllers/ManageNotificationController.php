@@ -50,7 +50,7 @@ class ManageNotificationController extends Controller
         'events.date',
         'events.time',
         'events.venue',
-        'events.status',
+        'events.status', 
         'events.created_at',
         'events.updated_at'
       )
@@ -86,7 +86,7 @@ class ManageNotificationController extends Controller
      if( isset($data['sms']) ){
        self::notifyViaSms($data);
      }
-    
+
   }
 
   private function notifyViaSms (Request $data){

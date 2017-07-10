@@ -14,4 +14,8 @@ class UserAccount extends Model
     protected $fillable = [
       'name','theme','color',
     ];
+
+    public function user(){
+      return $this->hasMany('App\Models\User');
+    }
 }

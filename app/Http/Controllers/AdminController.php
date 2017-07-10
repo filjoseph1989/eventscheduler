@@ -46,15 +46,27 @@ class AdminController extends Controller
      */
     public function showAllUserList()
     {
-      // $department     = User::find(Auth::user()->id)->department()->getResults();
-      // $departmentName = $department->name;
-      // $allDepartments = $department->all();
-      // d($allDepartments);
-      // ddd($department->user()->getResults());
-      // ddd($department);
+      $user = new User();
+      $data = $user->select(
+        'users.id',
+        'users.user_account_id',
+        'user_accounts.name',
+        'users.account_number',
+        'users.first_name',
+        'users.last_name',
+        'users.email',
+        'users.mobile_number',
+        'users.deleted_or_not',
+        'users.status'
+        )->join(
+          'user_accounts', 'users.user_account_id', '=', 'user_accounts.id'
+        )
+        ->where('users.deleted_or_not', '=', 1)
+        ->get();
+
       $users      = User::where('deleted_or_not', '=', 1)->get();
       $login_type = 'admin';
-      return view('pages.admin.users.list', compact('login_type','users', 'departmentName', 'allDepartments'));
+      return view('pages.admin.users.list', compact('login_type','data', 'departmentName', 'allDepartments'));
     }
 
     public function showAllUserAccountList()
