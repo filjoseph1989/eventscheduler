@@ -128,7 +128,7 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('organization.register')->post('/organization/register', 'OrganizationController@adminCreate');
     Route::name('organization.edit')->post('/organization/edit', 'OrganizationController@edit');
     Route::name('organization.delete')->post('/organization/delete', 'OrganizationController@delete');
-
+    Route::name('organization.add')->get('/organization/add', 'OrganizationController@showOrganizationAddForm');
     /**
      * Org. Head User Account Type
      */
@@ -148,6 +148,11 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::prefix('event')->group(function() {
       Route::name('event.new')->post('/new', 'EventController@createNewEvent');
     });
+
+    /**
+     * OSA User Account Type
+     */
+    Route::name('osa.user.list')->get('osa/list_of_users','OsaAccountController@showAllUserList');
   });
 });
 

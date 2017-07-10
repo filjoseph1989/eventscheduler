@@ -63,19 +63,21 @@
                       <th>Email</th>
                       <th>Mobile</th>
                       <th>Status</th>
+                      <th>Account Type</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody class="js-sweetalert">
-                    @if (isset($users))
-                      @foreach ($users as $usersKey => $usersvalue)
+                    @if (isset($data))
+                      @foreach ($data as $usersKey => $usersvalue)
                         <tr data-id="{{ $usersvalue->id }}">
                           <td>{{ $usersvalue->account_number }}</td>
                           <td>{{ $usersvalue->first_name }}</td>
                           <td>{{ $usersvalue->last_name }}</td>
                           <td>{{ $usersvalue->email }}</td>
                           <td>{{ $usersvalue->mobile_number }}</td>
-                          <td>{{ $usersvalue->status }}</td>
+                          <td>{{ $usersvalue->status == 1 ? 'active' : 'inactive'  }}</td>
+                          <td>{{ $usersvalue->name }}</td>
                           <td>
                             <a href="#" class="users-delete delete" data-url="/admin/user/delete" data-type="cancel">
                               <i class="material-icons">delete</i>
@@ -95,6 +97,7 @@
                       <th>Last Name</th>
                       <th>Email</th>
                       <th>Mobile</th>
+                      <th>Account Type</th>
                       <th>Actions</th>
                     </tr>
                   </tfoot>
