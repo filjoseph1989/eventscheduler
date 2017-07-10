@@ -143,8 +143,31 @@ $(document).ready(function()
     }
     calendar.fullCalendar('unselect');
 
+    $.ajax({
+      type: 'POST',
+      url: '/users/event/new',
+      data: {
+        form: $('#add-event-form').serializeArray(),
+      },
+      dataType: 'json',
+      beforeSend: function(request) {
+        request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
+      },
+      success: function(data) {
+        // console.log(data.wasRecentlyCreated);
+        if (data.wasRecentlyCreated) {
+          swal("Success!", "Successfuly created new event", "success") ;
+        }
+      },
+      error: function(data) {
+        swal("Opps!", "We cannot process that", "error");
+      }
+    });
+
     // Clear modal inputs
+    var id = $('.modal').find('input[name="user_id"]').val('');
     $('.modal').find('input').val('');
+    $('.modal').find('input[name="user_id"]').val(id);
 
     // hide modal
     $('.modal').modal('hide');

@@ -143,6 +143,11 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('event.show')->get('notifications/events/show', 'ManageNotificationController@showEventList');
     Route::name('event.notify')->post('/events/notify', 'ManageNotificationController@notify');
     Route::name('email')->get('/email', 'MailController@index'); //test for email notif
+
+    # Create event
+    Route::prefix('event')->group(function() {
+      Route::name('event.new')->post('/new', 'EventController@createNewEvent');
+    });
   });
 });
 
