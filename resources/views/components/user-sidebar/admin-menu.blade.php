@@ -66,8 +66,8 @@
   </a>
   <ul class="ml-menu">
     <li>
-      <a href="#">
-        <span>List of Organization</span>
+      <a href="{{ route('administrator.organization.list') }}">
+        <span>List of Organizations</span>
       </a>
     </li>
     <li>
