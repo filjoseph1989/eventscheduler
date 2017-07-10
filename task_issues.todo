@@ -1,4 +1,5 @@
 To Do:
+  ☐ Issue 22: Create a function which handle the ajax request, becase ajax request code are redundunt
   ☐ Issue 21: Remove the master.js because all of its code are transfered to app.js
   ☐ Issue 20: Go to this line, i think its not needed anymore
   ☐ Issue 19: The current loggedin user should not cross the pages of the other user_account_type

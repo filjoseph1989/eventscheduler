@@ -47,4 +47,43 @@ class EventController extends Controller
       'wasRecentlyCreated' => $result->wasRecentlyCreated
     ]);
   }
+
+  /**
+   * Return the event for the current month
+   *
+   * @return
+   */
+  public function getEventOfTheMonth()
+  {
+    # Code here
+  }
+
+  /**
+   * return the event from previous month
+   * @return
+   */
+  public function getEventOfPreviousMonth()
+  {
+    # Code Here
+  }
+
+  /**
+   * Return the event for the next month
+   *
+   * @return
+   */
+  public function getEventOfNextMonth()
+  {
+    # Code Here
+  }
+
+  /**
+   * Return the event of the given month
+   *
+   * @return
+   */
+  public function getEventOfNextMonth()
+  {
+    # Code Here
+  }
 }

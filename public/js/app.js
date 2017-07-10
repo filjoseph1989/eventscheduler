@@ -255,18 +255,10 @@ $(document).ready(function() {
       var title     = $('#event').val();
       var whole_day = $('#whole-day').val() == 1 ? true : false;
 
-      // if (title) {
-      //   calendar.fullCalendar('renderEvent', {
-      //     title:  title,
-      //     start:  getDate('#date_start'),
-      //     end:    getDate('#date_end'),
-      //     allDay: whole_day
-      //   },
-      //   // make the event "stick"
-      //   true );
-      // }
-      // calendar.fullCalendar('unselect');
-
+      /**
+       * Submit the data to database
+       * @type {String}
+       */
       $.ajax({
         type: 'POST',
         url: '/users/event/new',
@@ -348,6 +340,27 @@ function getDate($id) {
   }
 
   return global_start;
+}
+
+/**
+ * Fetch the events of the current month
+ * @return json
+ */
+function getEvents() {
+  $.ajax({
+    type: 'POST',
+    url: '',
+    dataType: 'json',
+    beforeSend: function(request) {
+      request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
+    },
+    success: function(data) {
+      // response here
+    },
+    error: function(data) {
+      swal("Opps!", "We cannot process that", "error");
+    }
+  });
 }
 
 /**
