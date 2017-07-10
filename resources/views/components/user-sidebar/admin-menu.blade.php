@@ -16,27 +16,27 @@
  </a>
  <ul class="ml-menu">
    <li>
-     <a href="{{ route('user.list') }}">
+     <a href="{{ route('administrator.user.list') }}">
        <span>USERS</span>
      </a>
    </li>
    <li>
-     <a href="{{ route('course.list') }}">
+     <a href="{{ route('administrator.course.list') }}">
        <span>COURSES</span>
      </a>
    </li>
    <li>
-     <a href="{{ route('department.list') }}">
+     <a href="{{ route('administrator.department.list') }}">
        <span>DEPARTMENTS</span>
      </a>
    </li>
    <li>
-     <a href="{{ route('position.list') }}">
+     <a href="{{ route('administrator.position.list') }}">
        <span>POSITIONS</span>
      </a>
    </li>
    <li>
-     <a href="{{ route('organization.list') }}">
+     <a href="{{ route('administrator.organization.list') }}">
        <span>ORGANIZATIONS</span>
      </a>
    </li>

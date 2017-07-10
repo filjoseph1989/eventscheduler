@@ -155,9 +155,16 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('osa.user.list')->get('osa/list_of_users','OsaAccountController@showAllUserList');
     Route::name('osa.org.list')->get('osa/list_of_organizations','OsaAccountController@showAllOrganizationList');
     Route::name('osa.org.add')->get('osa/organization/add', 'OsaAccountController@showOrganizationAddForm');
+    /**
+     * Admin User Account Type
+     */
+    Route::name('administrator.user.list')->get('administrator/users/list', 'AdminAccountController@showAllUserList');
+    Route::name('administrator.course.list')->get('administrator/course/list', 'AdminAccountController@showAllCourseList');
+    Route::name('administrator.department.list')->get('administrator/department/list', 'AdminAccountController@showAllDepartmentList');
+    Route::name('administrator.position.list')->get('administrator/position/list', 'AdminAccountController@showAllPositionList');
+    Route::name('administrator.organization.list')->get('administrator/organization/list', 'AdminAccountController@showAllOrganizationList');
   });
 });
-
 /*
 |--------------------------------------------------------------------------
 | Notification route
