@@ -252,20 +252,20 @@ $(document).ready(function() {
       modal, the function below will trigger.
     */
     $('#save-event').on('click', function() {
-      var title = $('#event').val();
+      var title     = $('#event').val();
       var whole_day = $('#whole-day').val() == 1 ? true : false;
 
-      if (title) {
-        calendar.fullCalendar('renderEvent', {
-          title:  title,
-          start:  getDate('#date_start'),
-          end:    getDate('#date_end'),
-          allDay: whole_day
-        },
-        // make the event "stick"
-        true );
-      }
-      calendar.fullCalendar('unselect');
+      // if (title) {
+      //   calendar.fullCalendar('renderEvent', {
+      //     title:  title,
+      //     start:  getDate('#date_start'),
+      //     end:    getDate('#date_end'),
+      //     allDay: whole_day
+      //   },
+      //   // make the event "stick"
+      //   true );
+      // }
+      // calendar.fullCalendar('unselect');
 
       $.ajax({
         type: 'POST',
@@ -278,10 +278,18 @@ $(document).ready(function() {
           request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
         },
         success: function(data) {
-          // console.log(data.wasRecentlyCreated);
           if (data.wasRecentlyCreated) {
-            swal("Success!", "Successfuly created new event", "success") ;
+            swal("Success!", "Successfuly created new event", "success");
+            calendar.fullCalendar('renderEvent', {
+              title:  title,
+              start:  getDate('#date_start'),
+              end:    getDate('#date_end'),
+              allDay: whole_day
+            },
+            // make the event "stick"
+            true );
           }
+          calendar.fullCalendar('unselect');
         },
         error: function(data) {
           swal("Opps!", "We cannot process that", "error");

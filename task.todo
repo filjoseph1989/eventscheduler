@@ -15,7 +15,7 @@
                 ✔ Alter the events table @done(2017-07-09 20:25) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first / ☐ Display the calendar for the chosen organization / ☐ Add event in the database)
                 ☐ What are the process of adding calendar data to the database?:
                   ✔ When the user click on save button on event modal, get the data and pass to controller, while at same time, update the calendar in view @done(2017-07-10 11:14) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first / ☐ Display the calendar for the chosen organization / ☐ Add event in the database / ☐ What are the process of adding calendar data to the database?)
-                  ☐ The event should only display on calendar once the data successfully inserted into the database
+                  ✔ The event should only display on calendar once the data successfully inserted into the database @done(2017-07-10 14:47) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first / ☐ Display the calendar for the chosen organization / ☐ Add event in the database / ☐ What are the process of adding calendar data to the database?)
                 ☐ Getting the data from the database:
                   ☐ Get all event of the current month where user equal to current loggedin user id and chosen calendar
                 ☐ Do we need a validation?
