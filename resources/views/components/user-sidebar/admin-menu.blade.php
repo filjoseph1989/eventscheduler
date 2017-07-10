@@ -5,14 +5,26 @@
 ?>
 <li>
   <li>
-    <a href="#">
+    <a href="#" class="menu-toggle">
       <i class="material-icons">assignment_turned_in</i>
       <span>REGISTRATION</span>
     </a>
+    <ul class="ml-menu">
+      <li>
+        <a href="#">
+          <span>Add an OSA personnel</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <span>Activate accounts</span>
+        </a>
+      </li>
+    </ul>
   </li>
  <a href="#" class="menu-toggle">
    <i class="material-icons">input</i>
-   <span>Insert Data</span>
+   <span>Manage Data</span>
  </a>
  <ul class="ml-menu">
    <li>
@@ -40,11 +52,6 @@
        <span>ORGANIZATIONS</span>
      </a>
    </li>
-   <li>
-     <a href="#">
-       <span>APPROVERS</span>
-     </a>
-   </li>
  </ul>
 </li>
 <?php
@@ -65,7 +72,7 @@
     </li>
     <li>
       <a href="#">
-        <span>Upcomming Events</span>
+        <span>Upcoming Events</span>
       </a>
     </li>
     <li>
@@ -73,22 +80,10 @@
         <span>Generate Attendance</span>
       </a>
     </li>
+    <li>
+      <a href="#">
+        <span>Manage Approvers</span>
+      </a>
+    </li>
   </ul>
-</li>
-<li>
-  <a href="#" class="menu-toggle">
-    <i class="material-icons">supervisor_account</i>
-    <span>Manage Member</span>
-  </a>
-  <ul class="ml-menu">
-    <li>
-      <a href="#">
-        <span>Add New Member</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <span>All Members</span>
-      </a>
-    </li>
 </li>

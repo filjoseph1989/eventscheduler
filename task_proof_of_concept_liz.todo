@@ -58,6 +58,8 @@
         ✔ ORGANIZATION CRUDS @done(2017-07-03 21:53)
         level 2 crud (dependent to level 1)
         ☐ hidden MY ORGANIZATION div
+      ☐ registers an osa user
+      ☐ activates an 
       ☐ manage schedule (events)
       ☐ generate attendance
           //and user_attendances are dependent on the user's reply on the
