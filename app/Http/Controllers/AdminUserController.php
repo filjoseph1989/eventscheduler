@@ -90,7 +90,8 @@ class AdminUserController extends Controller
      * This method set the user status
      */
     public function setStatus(Request $data)
-    {   //echo means sending data to browser
+    {
+        //echo means sending data to browser
         $user = User::find($data->id);
         if($data->status_ == 'on') {
           $user->status = '1';

@@ -2,8 +2,14 @@
   Globa varialble
  */
 var global_start, global_end;
+
+/**
+ * Change the status
+ * @return
+ */
 $('.user-status').click(function() {
   var id = $(this).data('id');
+
   if ($(this).is(":checked")) {
     var check = "on";
     $('#user-status-label-'+id).html('Active');
@@ -11,6 +17,7 @@ $('.user-status').click(function() {
     var check = "off";
     $('#user-status-label-'+id).html('Inactive');
   }
+
   $.ajax({
     type: 'POST',
     url: '/admin/users/set/status',

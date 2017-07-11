@@ -80,8 +80,8 @@
                           <td>{{ $usersvalue->name }}</td>
                           <td>{{ $usersvalue->p_name }}</td>
                           <td>
-                            <input type="checkbox" class="user-status" id="basic_checkbox_{{ $usersvalue->id }}" data-id="{{ $usersvalue->id }}"/>
-                            <label id="user-status-label-{{ $usersvalue->id }}" for="basic_checkbox_{{ $usersvalue->id }}">{{$usersvalue->status == 1 ? 'active' : 'inactive'}}</label>
+                            <input type="checkbox" class="user-status" id="basic_checkbox_{{ $usersvalue->user_id }}" data-id="{{ $usersvalue->user_id }}" {{ $usersvalue->status == 1 ? 'checked' : 'inactive'}}>
+                            <label id="user-status-label-{{ $usersvalue->user_id }}" for="basic_checkbox_{{ $usersvalue->user_id }}">{{ $usersvalue->status == 1 ? 'active' : 'inactive'}}</label>
                           </td>
                           <td>
                             <a href="#" class="users-delete delete" data-url="/admin/user/delete" data-type="cancel">

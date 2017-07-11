@@ -48,7 +48,7 @@ class AdminController extends Controller
     {
       $user = new User();
       $data = $user->select(
-        'users.id',
+        'users.id as user_id',
         'users.user_account_id',
         'user_accounts.name',
         'users.account_number',
@@ -61,11 +61,11 @@ class AdminController extends Controller
         'users.position_id',
         'positions.id',
         'positions.name as p_name'
-        )
-        ->join('user_accounts', 'users.user_account_id', '=', 'user_accounts.id')
-        ->join('positions', 'users.position_id', '=', 'positions.id')
-        ->where('users.deleted_or_not', '=', 1)
-        ->get();
+      )
+      ->join('user_accounts', 'users.user_account_id', '=', 'user_accounts.id')
+      ->join('positions', 'users.position_id', '=', 'positions.id')
+      ->where('users.deleted_or_not', '=', 1)
+      ->get();
 
       $users      = User::where('deleted_or_not', '=', 1)->get();
       $login_type = 'admin';
