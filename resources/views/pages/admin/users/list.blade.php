@@ -167,7 +167,7 @@
                   </div>
                   <div class="form-group form-float form-group{{ $errors->has('suffix_name') ? ' has-error' : '' }}">
                     <div class="form-line">
-                      <input type="text" class="form-control" id="suffix_name" name="suffix_name" placeholder="Suffix Name" value="{{ old('suffix_name') }}" required>
+                      <input type="text" class="form-control" id="suffix_name" name="suffix_name" placeholder="Suffix Name" value="{{ old('suffix_name') }}">
                       @if ($errors->has('suffix_name'))
                         <span class="help-block"> <strong>{{ $errors->first('suffix_name') }}</strong> </span>
                       @endif

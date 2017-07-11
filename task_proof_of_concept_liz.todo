@@ -59,18 +59,18 @@
         level 2 crud (dependent to level 1)
         ☐ hidden MY ORGANIZATION div
       ☐ registers an osa user
-      ☐ activates an 
-      ☐ manage schedule (events)
-      ☐ generate attendance
+      ☐ activates an account
+      ☐ manage schedule (events)XXXXXX
+      ☐ generate attendance ------------ORG HEAD LANG SA
           //and user_attendances are dependent on the user's reply on the
           invitations per event
-      ☐ manage (notifications)
-        ☐ list of all organizations and it's members
-        ☐ list of all users and it's profile details + organizations
-            //organization_groups are dependent to the organization members
-            (who are the users with the same organizations id)
+      ☐ manage (notifications)XXXXX -----OSA LANG NI
+      ☐ list of all organizations and it's members
+      ☐ list of all users and it's profile details + organizations
+          //organization_groups are dependent to the organization members
+          (who are the users with the same organizations id)
     ☐ OSA
-      ☐ designate users position (will ask list of position from org)
+      ☐ designate users account type(except admin account type) and position (will ask list of position from org)
       ☐ manage schedule (events)
       ☐ generate attendance
           //and user_attendances are dependent on the user's reply on the
@@ -81,7 +81,7 @@
             //organization_groups are dependent to the organization members
             (who are the users with the same organizations id)
     ☐ Org Adviser
-      ☐ manage schedule (events)
+      ☐ manage schedule (events) within organization, my personal
       ☐ generate attendance
           //and user_attendances are dependent on the user's reply on the
           invitations per event
@@ -96,6 +96,7 @@
       ☐ generate attendance
           //and user_attendances are dependent on the user's reply on the
           invitations per event
+          ☐ confirmed attendance
       ☐ manage (notifications)
         ☐ list of "my" organization and it's members
         ☐ list of all users in "my" org and it's profile details + organizations
@@ -103,11 +104,11 @@
             (who are the users with the same organizations id)
         ☐ list of other organizations and it's members
     ☐ Org Member
-      ☐ manage schedule (events)
+      ☐ manage schedule (events) - personal calendar, view other calendar
       ☐ generate attendance
           //and user_attendances are dependent on the user's reply on the
           invitations per event
-      ☐ manage (notifications)
+      ☐ manage (notifications) - personal
         ☐ list of "my" organization and it's members
         ☐ list of all users in "my" org and it's profile details + organizations
             //organization_groups are dependent to the organization members
