@@ -270,6 +270,9 @@ $('.organization-edit').click(function(){
  * @type ajax
  */
 $('.osa-users-edit').click(function() {
+  var id = $(this).data('id');
+  $('#osa-user-id').val(id);
+  
   $.ajax({
     type: 'POST',
     url: '/users/position/get/positions',

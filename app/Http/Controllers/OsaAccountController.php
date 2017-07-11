@@ -20,7 +20,7 @@ class OsaAccountController extends Controller
       #Issue: 23 User the eloquent for this
       $user = new User();
       $data = $user->select(
-        'users.id',
+        'users.id as user_id',
         'users.user_account_id',
         'user_accounts.name',
         'users.account_number',

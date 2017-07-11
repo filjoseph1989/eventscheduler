@@ -12,10 +12,17 @@
     {{-- list all users on user dashboard --}}
 
     @include('pages.top-nav')
+
     @if (isset($login_type) and $login_type == 'admin')
         @include('pages.admin.sidebar')
     @elseif (isset($login_type) and $login_type == 'user')
         @include('pages.users.sidebar')
+    @endif
+
+    @if (session('status'))
+      <div class="alert alert-success">
+        {{ session('status') }}
+      </div>
     @endif
 
     <section class="content">
@@ -85,7 +92,7 @@
                               <i class="material-icons">delete</i>
                             </a>
                             --}}
-                            <a href="#" class="osa-users-edit" data-toggle="modal" data-target="#change-position">
+                            <a href="#" class="osa-users-edit" data-id="{{ $usersvalue->user_id }}" data-toggle="modal" data-target="#change-position">
                               <i class="material-icons">mode_edit</i>
                             </a>
                           </td>
@@ -119,7 +126,9 @@
   <div class="modal fade" id="change-position" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form class="" action="{{ route() }}" method="post">
+        <form class="" action="{{ route('user.update.position') }}" method="post">
+          {{ csrf_field() }}
+          <input type="hidden" name="id" id="osa-user-id" value="">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="">Change User Position</h4>
@@ -128,12 +137,12 @@
             <div class="row clearfix">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 {{-- This wil contain the list of position filled using ajax --}}
-                <select class="form-control show-tick" name="name" id="position-name">&nbsp;</select>
+                <select class="form-control show-tick" name="position_id" id="position-name">&nbsp;</select>
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary"> <i class="material-icons">save</i>Save</button>
+            <button type="submit" class="btn btn-primary"> <i class="material-icons">save</i>Save</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">
               <i class="material-icons">close</i> Close</button>
             </div>
@@ -157,7 +166,7 @@
   <script src="{{ asset('js/sweetalert.min.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/jquery.validate.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/dialogs.js') }}?v=0.1" charset="utf-8"></script>
-  <script src="{{ asset('js/app.js') }}?v=0.7" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.8" charset="utf-8"></script>
   <script type="text/javascript">
     $(function () {
       /**
