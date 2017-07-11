@@ -37,6 +37,7 @@ $('.user-status').click(function() {
     }
   });
 });
+
 /**
  * Display data on the edit modal
  * Issue 6
@@ -234,3 +235,32 @@ function form_validation(id) {
     }
   });
 }
+
+$('.organization-edit').click(function(){
+  var id = $(this).data('id');
+
+  $.ajax({
+    type: 'POST',
+    url: '/users/organization/get',
+    data: {
+      id: id
+    },
+    dataType: 'json',
+    beforeSend: function(request) {
+      request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
+    },
+    success: function(data) {
+      console.log(data);
+      $('#name').val(data.organization.name);
+      $('#url').val(data.organization.url);
+      $('#date_started').val(data.organization.date_started);
+      $('#date_expired').val(data.organization.date_expired);
+      $('#option-edit-status').val(data.organization.status);
+      var status = data.organization.status == 1 ? 'Active' : 'Inactive';
+      $('#option-edit-status').html(status);
+    },
+    error: function(data) {
+      console.log('Error:');
+    }
+  });
+});
