@@ -1,8 +1,3 @@
-/*
-  Globa varialble
- */
-var global_start, global_end;
-
 /**
  * Change the status
  * @return
