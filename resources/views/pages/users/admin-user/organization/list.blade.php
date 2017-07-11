@@ -125,7 +125,8 @@
               <h4 class="modal-title" id="">Edit Organization Name</h4>
             </div>
             <div class="modal-body">
-              <div class="col-sm-8 col-sm-offset-2">
+              <div class="row clearfix">
+                <div class="col-sm-8 col-sm-offset-2">
                 <div class="form-group form-float form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                   <div class="form-line">
                     <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" placeholder="Organization Name" required="true" autofocus>
@@ -170,6 +171,7 @@
                     @endif
                   </div>
                 </div>
+              </div>
               </div>
             </div>
             <div class="modal-footer">

@@ -264,3 +264,31 @@ $('.organization-edit').click(function(){
     }
   });
 });
+
+/**
+ * Transfer me to app.js
+ * @type ajax
+ */
+$('.osa-users-edit').click(function() {
+  $.ajax({
+    type: 'POST',
+    url: '/users/position/get/positions',
+    data: {
+      // id: id
+    },
+    dataType: 'json',
+    beforeSend: function(request) {
+      request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
+    },
+    success: function(data) {
+      var html = "";
+      for (var i = 0; i < data.length; i++) {
+        html += '<option value="'+ data[i].id +'">'+ data[i].name +'</option>';
+      }
+      $('#position-name').html(html);
+    },
+    error: function(data) {
+      console.log('Error:');
+    }
+  });
+});

@@ -124,6 +124,7 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('position.register')->post('/position/register', 'PositionController@positionCreate');
     Route::name('position.edit')->post('/position/edit', 'PositionController@edit');
     Route::name('position.delete')->post('/position/delete', 'PositionController@delete');
+    Route::name('position.get')->post('/position/get/positions', 'PositionController@getPositions');
     # Organization Crud
     Route::name('organization.list')->get('/organization/list', 'OrganizationController@showAllOrganizationList');
     Route::name('organization.register')->post('/organization/register', 'OrganizationController@adminCreate');

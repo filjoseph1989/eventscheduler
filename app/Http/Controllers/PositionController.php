@@ -15,15 +15,6 @@ class PositionController extends Controller
     {
         $this->middleware('web');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -84,27 +75,6 @@ class PositionController extends Controller
         echo json_encode($data);
       }
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     public function showPositionAddForm()
     {
@@ -122,33 +92,23 @@ class PositionController extends Controller
         return view('pages.forms.users.position-register', compact('login_type'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
     public function showAllPositionList()
     {
         $positions  = Position::where('deleted_or_not', '=', 1)->get();
         $login_type = 'user';
         return view('pages.users.admin-user.position.list', compact('login_type','positions'));
+    }
+
+    /**
+     * Return the position names
+     *
+     * This function used to response the ajax request
+     * for the list of positions
+     *
+     * @return json
+     */
+    public function getPositions()
+    {
+      return Position::All();
     }
 }

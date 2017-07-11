@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    //list all users on user dashboard
+    {{-- list all users on user dashboard --}}
 
     @include('pages.top-nav')
     @if (isset($login_type) and $login_type == 'admin')
@@ -48,8 +48,6 @@
                     </a>
                     <ul class="dropdown-menu pull-right">
                       <li><a href="javascript:void(0);">Action</a></li>
-                      <li><a href="javascript:void(0);">Another action</a></li>
-                      <li><a href="javascript:void(0);">Something else here</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -82,9 +80,13 @@
                           <td>{{ $usersvalue->name }}</td>
                           <td>{{ $usersvalue->p_name }}</td>
                           <td>
+                            {{-- Meaning the OSA cannot delete user - that's the job of admin
                             <a href="#" class="users-delete delete" data-url="/admin/user/delete" data-type="cancel">
-                              <i class="material-icons">assignment_ind</i>
-                            </br>assign
+                              <i class="material-icons">delete</i>
+                            </a>
+                            --}}
+                            <a href="#" class="osa-users-edit" data-toggle="modal" data-target="#change-position">
+                              <i class="material-icons">mode_edit</i>
                             </a>
                           </td>
                         </tr>
@@ -111,6 +113,34 @@
         </div>
       </div>
     </section>
+@endsection
+
+@section('modal')
+  <div class="modal fade" id="change-position" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form class="" action="{{ route() }}" method="post">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="">Change User Position</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row clearfix">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                {{-- This wil contain the list of position filled using ajax --}}
+                <select class="form-control show-tick" name="name" id="position-name">&nbsp;</select>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary"> <i class="material-icons">save</i>Save</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              <i class="material-icons">close</i> Close</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
 @endsection
 
 @section('footer')
