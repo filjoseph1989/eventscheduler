@@ -250,7 +250,6 @@ $('.organization-edit').click(function(){
       request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
     },
     success: function(data) {
-      console.log(data);
       $('#name').val(data.organization.name);
       $('#url').val(data.organization.url);
       $('#date_started').val(data.organization.date_started);
@@ -270,9 +269,11 @@ $('.organization-edit').click(function(){
  * @type ajax
  */
 $('.osa-users-edit').click(function() {
-  var id = $(this).data('id');
+  var id    = $(this).data('id');
+  var pname = $(this).data('position');
+  var pid   = $(this).data('position-id');
   $('#osa-user-id').val(id);
-  
+
   $.ajax({
     type: 'POST',
     url: '/users/position/get/positions',
@@ -286,7 +287,11 @@ $('.osa-users-edit').click(function() {
     success: function(data) {
       var html = "";
       for (var i = 0; i < data.length; i++) {
-        html += '<option value="'+ data[i].id +'">'+ data[i].name +'</option>';
+        if (data[i].name == 'No position yet') {
+          html += '<option value="'+ pid +'">'+ pname +'</option>';
+        } else {
+          html += '<option value="'+ data[i].id +'">'+ data[i].name +'</option>';
+        }
       }
       $('#position-name').html(html);
     },

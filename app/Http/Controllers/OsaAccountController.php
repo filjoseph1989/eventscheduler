@@ -31,7 +31,7 @@ class OsaAccountController extends Controller
         'users.deleted_or_not',
         'users.status',
         'users.position_id',
-        'positions.id',
+        'positions.id as p_id',
         'positions.name as p_name'
       )
       ->join('user_accounts', 'users.user_account_id', '=', 'user_accounts.id')
