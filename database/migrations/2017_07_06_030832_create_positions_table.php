@@ -14,10 +14,10 @@ class CreatePositionsTable extends Migration
     public function up()
     {
         Schema::create('positions', function (Blueprint $table) {
-          $table->increments('id');
-          $table->string('name')->unique();
-          $table->softDeletes();
-          $table->timestamps();
+            $table->increments('id');
+            $table->string('name');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
