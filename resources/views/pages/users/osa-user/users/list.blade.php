@@ -92,6 +92,7 @@
                               <i class="material-icons">delete</i>
                             </a>
                             --}}
+
                             <a href="#" class="osa-users-edit" data-id="{{ $usersvalue->user_id }}" data-position="{{ $usersvalue->p_name }}" data-position-id="{{ $usersvalue->p_id }}" data-toggle="modal" data-target="#change-position">
                               <i class="material-icons">mode_edit</i>
                             </a>

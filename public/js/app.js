@@ -272,6 +272,8 @@ $('.osa-users-edit').click(function() {
   var id    = $(this).data('id');
   var pname = $(this).data('position');
   var pid   = $(this).data('position-id');
+
+  // assign id to hidden input
   $('#osa-user-id').val(id);
 
   $.ajax({
@@ -287,7 +289,7 @@ $('.osa-users-edit').click(function() {
     success: function(data) {
       var html = "";
       for (var i = 0; i < data.length; i++) {
-        if (data[i].name == 'No position yet') {
+        if (data[i].id == 1) {
           html += '<option value="'+ pid +'">'+ pname +'</option>';
         } else {
           html += '<option value="'+ data[i].id +'">'+ data[i].name +'</option>';
