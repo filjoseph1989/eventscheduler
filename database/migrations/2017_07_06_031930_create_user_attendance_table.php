@@ -16,14 +16,17 @@ class CreateUserAttendanceTable extends Migration
         Schema::create('user_attendance', function (Blueprint $table) {
           $table->increments('id');
           $table->integer('event_id')->unsigned()->index();
-          $table->foreign('event_id')->references('id')->on('events');
           $table->integer('user_id')->unsigned()->index();
-          $table->foreign('user_id')->references('id')->on('users');
           $table->tinyInteger('confirmation')->default(0);
           $table->string('reason');
           $table->tinyInteger('status')->default(0);
-          $table->tinyInteger('deleted_or_not')->default(1);
+          $table->softDeletes();
           $table->timestamps();
+
+          #foreign keys
+          $table->foreign('user_id')->references('id')->on('users');
+          $table->foreign('event_id')->references('id')->on('events');
+
         });
     }
 

@@ -73,7 +73,7 @@
                           <td>{{ $usersvalue->url }}</td>
                           <td>{{ $usersvalue->date_started }}</td>
                           <td>{{ $usersvalue->date_expired }}</td>
-                          <td class="align-center">{{ $usersvalue->status }}</td>
+                          <td class="align-center">{{ $usersvalue->status == 1 ? 'active' : 'inactive' }}</td>
                           <td>
                             <a href="#" class="organization-delete delete" data-url="/admin/organization/delete" data-type="cancel"> <i class="material-icons">delete</i>
                             </a>
@@ -275,6 +275,7 @@
   <script src="{{ asset('js/moment.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/autosize.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.8" charset="utf-8"></script>
   <script type="text/javascript">
     $('.datepicker').bootstrapMaterialDatePicker({
       format: 'YYYY/MM/DD',

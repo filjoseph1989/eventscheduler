@@ -10,26 +10,30 @@
   </a>
   <ul class="ml-menu">
     <li>
-      <a href="#" class="menu-toggle">
-        <span>Manage organizations</span>
+      <a href="{{ route('osa.org.list') }}">
+        <span>List of organizations</span>
       </a>
-      <ul class="ml-menu">
-        <li>
-          <a href="{{ route('osa.org.list') }}">
-            <span>List of organizations</span>
-          </a>
-        </li>
-        <li>
-          <a href="{{ route('osa.org.add') }}">
-            <span>Add an organization</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span>Assign positions</span>
-          </a>
-        </li>
-      </ul>
+    </li>
+    <li>
+      <a href="{{ route('osa.org.add') }}">
+        <span>Add an organization</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <span>Assign positions in organizations</span>
+      </a>
+    </li>
+  </ul>
+  <a href="#" class="menu-toggle">
+    <i class="material-icons">supervisor_account</i>
+    <span>Events</span>
+  </a>
+  <ul class="ml-menu">
+    <li>
+      <a href="#">
+        <span>List of Events</span>
+      </a>
     </li>
     <li>
       <a href="#">
@@ -38,11 +42,10 @@
     </li>
     <li>
       <a href="#">
-        <span>Generate event attendance</span>
+        <span>Generate Event Attendance</span>
       </a>
     </li>
   </ul>
-
   <a href="#" class="menu-toggle">
     <i class="material-icons">supervisor_account</i>
     <span>Manage Users</span>
@@ -53,6 +56,5 @@
         <span>List Of Users</span>
       </a>
     </li>
-
   </ul>
 </li>

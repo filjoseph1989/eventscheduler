@@ -16,11 +16,14 @@ class CreateApproversTable extends Migration
         Schema::create('approvers', function (Blueprint $table) {
           $table->increments('id');
           $table->integer('user_id')->unsigned()->index();
-          $table->foreign('user_id')->references('id')->on('users');
           $table->integer('event_id')->unsigned()->index();
-          $table->foreign('event_id')->references('id')->on('events');
-          $table->tinyInteger('deleted_or_not')->default(1);
+          $table->softDeletes();
           $table->timestamps();
+
+          #foreign keys
+          $table->foreign('user_id')->references('id')->on('users');
+          $table->foreign('event_id')->references('id')->on('events');
+
         });
     }
 

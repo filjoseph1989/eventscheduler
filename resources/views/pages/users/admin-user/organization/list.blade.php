@@ -73,7 +73,7 @@
                           <td>{{ $usersvalue->url }}</td>
                           <td>{{ $usersvalue->date_started }}</td>
                           <td>{{ $usersvalue->date_expired }}</td>
-                          <td class="align-center">{{ $usersvalue->status }}</td>
+                          <td class="align-center">{{ $usersvalue->status == 1 ? 'active' : 'inactive' }}</td>
                           <td>
                             <a href="#" class="organization-delete delete" data-url="/users/organization/delete" data-type="cancel"> <i class="material-icons">delete</i>
                             </a>
@@ -125,11 +125,11 @@
               <h4 class="modal-title" id="">Edit Organization Name</h4>
             </div>
             <div class="modal-body">
-              <div class="col-sm-8 col-sm-offset-2">
+              <div class="row clearfix">
+                <div class="col-sm-8 col-sm-offset-2">
                 <div class="form-group form-float form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                   <div class="form-line">
-                    <input type="text" class="form-control" name="name" value="{{ old('name') }}" required="true" autofocus>
-                    <label class="form-label">Organization Name</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" placeholder="Organization Name" required="true" autofocus>
                     @if ($errors->has('name'))
                         <span class="help-block"> <strong>{{ $errors->first('name') }}</strong> </span>
                     @endif
@@ -137,8 +137,7 @@
                 </div>
                 <div class="form-group form-float form-group{{ $errors->has('url') ? ' has-error' : '' }}">
                   <div class="form-line">
-                    <input type="text" class="form-control" name="url" value="{{ old('url') }}" required="true" autofocus>
-                    <label class="form-label">Url</label>
+                    <input type="text" class="form-control" id="url" name="url" value="{{ old('url') }}" placeholder="URL" required="true">
                     @if ($errors->has('url'))
                         <span class="help-block"> <strong>{{ $errors->first('url') }}</strong> </span>
                     @endif
@@ -146,7 +145,7 @@
                 </div>
                 <div class="form-group form-float form-group{{ $errors->has('date_started') ? ' has-error' : '' }}">
                   <div class="form-line">
-                    <input type="text" class="datepicker form-control" name="date_started" value="{{ old('date_started') }}" required="true" placeholder="Date Started">
+                    <input type="text" class="datepicker form-control" id="date_started" name="date_started" value="{{ old('date_started') }}" required="true" placeholder="Date Started">
                     @if ($errors->has('date_started'))
                       <span class="help-block"> <strong>{{ $errors->first('date_started') }}</strong> </span>
                     @endif
@@ -154,7 +153,7 @@
                 </div>
                 <div class="form-group form-float form-group{{ $errors->has('date_expired') ? ' has-error' : '' }}">
                   <div class="form-line">
-                    <input type="text" class="datepicker form-control" name="date_expired" value="{{ old('date_expired') }}" required="true" placeholder="Date Expired">
+                    <input type="text" class="datepicker form-control" id="date_expired" name="date_expired" value="{{ old('date_expired') }}" required="true" placeholder="Date Expired">
                     @if ($errors->has('date_expired'))
                     <span class="help-block"> <strong>{{ $errors->first('date_expired') }}</strong> </span>
                     @endif
@@ -163,7 +162,7 @@
                 <div class="form-group form-float form-group{{ $errors->has('status') ? ' has-error' : '' }}">
                   <div class="form-line">
                     <select class="form-control" name="status">
-                      <option value="0">-- Status --</option>
+                      <option value="0" id="option-edit-status"></option>
                       <option value="1">Active</option>
                       <option value="0">Inactive</option>
                     </select>
@@ -172,6 +171,7 @@
                     @endif
                   </div>
                 </div>
+              </div>
               </div>
             </div>
             <div class="modal-footer">
@@ -275,6 +275,7 @@
   <script src="{{ asset('js/moment.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/autosize.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.8" charset="utf-8"></script>
   <script type="text/javascript">
     $('.datepicker').bootstrapMaterialDatePicker({
       format: 'YYYY/MM/DD',

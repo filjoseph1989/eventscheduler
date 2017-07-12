@@ -28,8 +28,8 @@ class CreateEventsTable extends Migration
             $table->time('date_end_time')->default('00:00:00');
             $table->integer('whole_day');
             $table->tinyInteger('status')->default(0);
-            $table->tinyInteger('deleted_or_not')->default(1);
             $table->timestamps();
+            $table->softDeletes();
 
             # Foreign keys
             $table->foreign('event_type_id')->references('id')->on('event_types');
