@@ -133,15 +133,13 @@ class UserController extends Controller
     {
       $user = User::find($data->id);
       $name = "the name: ".$user->first_name." ".$user->middle_name." ".$user->last_name." and account number: ".$user->account_number;
-      $user->deleted_or_not = 0;
-
-      if ($user->save()){
-        $data = [
-          'result' => true,
-          'name' => $name
-        ];
-        echo json_encode($data);
-      }
+      $user->delete();
+      $data = [
+        'result' => true,
+        'name' => $name,
+        'id'  => $data
+      ];
+      echo json_encode($data);
     }
 
     /**
@@ -253,7 +251,7 @@ class UserController extends Controller
 
     public function showAllUserList()
     {
-        $users      = User::where('deleted_or_not', '=', 1)->get();
+        $users      = User::all()->get();
         $login_type = 'user';
         return view('pages.users.admin-user.users.list', compact('login_type','users'));
     }

@@ -18,7 +18,7 @@ class CreateUserAccountsTable extends Migration
           $table->string('name')->unique();
           $table->string('theme')->nullable();
           $table->string('color')->nullable();
-          $table->tinyInteger('deleted_or_not')->default(1);
+          $table->softDeletes();
           $table->timestamps();
         });
     }

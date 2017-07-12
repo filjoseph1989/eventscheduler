@@ -56,7 +56,6 @@ class AdminController extends Controller
         'users.last_name',
         'users.email',
         'users.mobile_number',
-        'users.deleted_or_not',
         'users.status',
         'users.position_id',
         'positions.id',
@@ -64,38 +63,37 @@ class AdminController extends Controller
       )
       ->join('user_accounts', 'users.user_account_id', '=', 'user_accounts.id')
       ->join('positions', 'users.position_id', '=', 'positions.id')
-      ->where('users.deleted_or_not', '=', 1)
       ->get();
 
-      $users      = User::where('deleted_or_not', '=', 1)->get();
+      $users      = User::all()->get();
       $login_type = 'admin';
       return view('pages.admin.users.list', compact('login_type','data', 'departmentName', 'allDepartments'));
     }
 
     public function showAllUserAccountList()
     {
-        $user_accounts  = UserAccount::where('deleted_or_not', '=', 1)->get();
+        $user_accounts  = UserAccount::all()->get();
         $login_type     = 'admin';
         return view('pages.admin.user-accounts.list', compact('login_type','user_accounts'));
     }
 
     public function showAllCourseList()
     {
-        $courses  = Course::where('deleted_or_not', '=', 1)->get();
+        $courses  = Course::all()->get();
         $login_type = "admin";
         return view('pages.admin.course.list', compact('login_type','courses'));
     }
 
     public function showAllDepartmentList()
     {
-        $departments  = Department::where('deleted_or_not', '=', 1)->get();
+        $departments  = Department::all()->get();
         $login_type = "admin";
         return view('pages.admin.department.list', compact('login_type','departments'));
     }
 
     public function showAllPositionList()
     {
-        $positions  = Position::where('deleted_or_not', '=', 1)->get();
+        $positions  = Position::all()->get();
         $login_type = "admin";
         return view('pages.admin.position.list', compact('login_type','positions'));
     }
@@ -108,20 +106,20 @@ class AdminController extends Controller
      */
     public function showAllOrganizationList()
     {
-        $organizations = Organization::where('deleted_or_not', '=', 1)->get();
+        $organizations = Organization::all()->get();
         return view('pages.admin.organization.list', compact('organizations'));
     }
 
     public function showAllEvenCategoriesList()
     {
-        $event_categories = EventCategory::where('deleted_or_not', '=', 1)->get();
+        $event_categories = EventCategory::all()->get();
         $login_type    = "admin";
         return view('pages.admin.event-category.list', compact('login_type','event_categories'));
     }
 
     public function showAllEventTypeList()
     {
-        $event_types = EventType::where('deleted_or_not', '=', 1)->get();
+        $event_types = EventType::all()->get();
         $login_type = 'admin';
         return view('pages.admin.event-type.list', compact('login_type','event_types'));
     }

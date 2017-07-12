@@ -123,15 +123,13 @@ class OrganizationController extends Controller
     {
       $organization = Organization::find($data->id);
       $name = "the organization: ".$organization->name;
-      $organization->deleted_or_not = 0;
-
-      if ($organization->save()){
-        $data = [
-          'result' => true,
-          'name' => $name
-        ];
-        echo json_encode($data);
-      }
+      $organization->delete();
+      $data = [
+        'result' => true,
+        'name' => $name,
+        'id'  => $data
+      ];
+      echo json_encode($data);
     }
     /**
      * Update the specified resource in storage.
@@ -158,7 +156,7 @@ class OrganizationController extends Controller
 
     public function showAllOrganizationList()
     {
-        $organizations = Organization::where('deleted_or_not', '=', 1)->get();
+        $organizations = Organization::all()->get();
         $login_type = 'user';
         return view('pages.users.admin-user.organization.list', compact('login_type','organizations'));
     }

@@ -27,6 +27,7 @@ class CreateSAdminsTable extends Migration
           $table->string('instagram_username')->unique()->nullable();
           $table->string('mobile_number', '12');
           $table->tinyInteger('status')->default(0);
+          $table->softDeletes();
           $table->rememberToken();
           $table->timestamps();
         });

@@ -65,15 +65,13 @@ class PositionController extends Controller
     {
       $position = Position::find($data->id);
       $name = "the position: ".$position->name;
-      $position->deleted_or_not = 0;
-
-      if ($position->save()){
-        $data = [
-          'result' => true,
-          'name' => $name
-        ];
-        echo json_encode($data);
-      }
+      $position->delete();
+      $data = [
+        'result' => true,
+        'name' => $name,
+        'id'  => $data
+      ];
+      echo json_encode($data);
     }
 
     public function showPositionAddForm()
@@ -94,7 +92,7 @@ class PositionController extends Controller
 
     public function showAllPositionList()
     {
-        $positions  = Position::where('deleted_or_not', '=', 1)->get();
+        $positions  = Position::all()->get();
         $login_type = 'user';
         return view('pages.users.admin-user.position.list', compact('login_type','positions'));
     }

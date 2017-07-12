@@ -3,14 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Event extends Model
 {
+  use SoftDeletes;
   /**
    * The attributes that are mass assignable.
    *
    * @var array
    */
+  protected $dates = ['deleted_at'];
   protected $fillable = [
     'event_type_id',
     'event_category_id',
@@ -25,6 +27,5 @@ class Event extends Model
     'whole_day',
     'venue',
     'status',
-    'deleted_or_not',
   ];
 }

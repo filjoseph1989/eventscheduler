@@ -28,7 +28,6 @@ class OsaAccountController extends Controller
         'users.last_name',
         'users.email',
         'users.mobile_number',
-        'users.deleted_or_not',
         'users.status',
         'users.position_id',
         'positions.id as p_id',
@@ -36,7 +35,6 @@ class OsaAccountController extends Controller
       )
       ->join('user_accounts', 'users.user_account_id', '=', 'user_accounts.id')
       ->join('positions', 'users.position_id', '=', 'positions.id')
-      ->where('users.deleted_or_not', '=', 1)
       ->where('user_accounts.name', '!=', 'admin')
       ->get();
 
@@ -46,7 +44,7 @@ class OsaAccountController extends Controller
 
   public function showAllOrganizationList()
   {
-      $organizations = Organization::where('deleted_or_not', '=', 1)->get();
+      $organizations = Organization::all()->get();
       $login_type = 'user';
       return view('pages.users.osa-user.organization.list', compact('login_type','organizations'));
   }
