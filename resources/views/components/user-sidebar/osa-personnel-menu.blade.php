@@ -21,7 +21,7 @@
     </li>
     <li>
       <a href="#">
-        <span>Assign positions</span>
+        <span>Assign positions in organizations</span>
       </a>
     </li>
   </ul>
@@ -31,12 +31,12 @@
   </a>
   <ul class="ml-menu">
     <li>
-      <a href="{{ route('osa.org.list') }}">
+      <a href="#">
         <span>List of Events</span>
       </a>
     </li>
     <li>
-      <a href="{{ route('osa.org.add') }}">
+      <a href="#">
         <span>Create an event</span>
       </a>
     </li>
