@@ -1,0 +1,151 @@
+--To Do:
+  ☐ Task 35 - Transfer the master.js to app.js
+  ☐ Task 34 - Login as Organization HEAD:
+    ☐ Manage Schedule:
+      ☐ Show calendar
+        Task:
+        ☐ University Calendar:
+          ☐ View calendar
+        ☐ All Organization Calendar
+        ☐ My Organization Calendar:
+          ☐ Chose organization first:
+            ☐ Display the calendar for the chosen organization:
+              ☐ Get the calendar organization ID, for identifying what organization a calendar belongs to.
+              ☐ Add event in the database:
+                ✔ Alter the events table @done(2017-07-09 20:25) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first / ☐ Display the calendar for the chosen organization / ☐ Add event in the database)
+                ☐ What are the process of adding calendar data to the database?:
+                  ☐ Need a validation of entry on the following fields, title, description
+                  ✔ When the user click on save button on event modal, get the data and pass to controller, while at same time, update the calendar in view @done(2017-07-10 11:14) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first / ☐ Display the calendar for the chosen organization / ☐ Add event in the database / ☐ What are the process of adding calendar data to the database?)
+                  ✔ The event should only display on calendar once the data successfully inserted into the database @done(2017-07-10 14:47) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first / ☐ Display the calendar for the chosen organization / ☐ Add event in the database / ☐ What are the process of adding calendar data to the database?)
+                ☐ Getting the data from the database:
+                  ☐ Get all event of the current month where user equal to current loggedin user id and chosen calendar
+              ☐ Display again the events setted previously from the calendar.
+              ☐ Edit the schedule within the calendar
+                ☐ Display the modal for editing
+                  ☐ fetch the data from source, either from database or within the calendar itself?
+              ☐ display event in the table with status approved or not
+                ☐ if not approved yet, who will approved?
+                ☐ what are the process of approving events?
+                ☐ Once approve, Who will be notified?
+
+              Issues:
+                ☐ When the user click on the calendar date, then try to chose date and time, it should match the clicked date
+                ☐ During the insert of new event in the database, no organization_id yet.
+
+              Archive:
+              ✔ Get the type and categories of events, and user id @done(2017-07-09 21:09) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first / ☐ Display the calendar for the chosen organization)
+              ✔ Add new events on the calendar @done(2017-07-10 00:34) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first / ☐ Display the calendar for the chosen organization)
+                ✔ Capture the events data in javascript @done(2017-07-10 00:34) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first / ☐ Display the calendar for the chosen organization / Archive)
+                  ✔ The event will not display since the end date is not yet correct in coding @done(2017-07-10 00:34) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first / ☐ Display the calendar for the chosen organization / Archive)
+                  ✔ whole day? @done(2017-07-09 19:37) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first)
+                  ✔ title @done(2017-07-09 14:12) @project(To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ University Calendar)
+                  ✔ desription of the event @done(2017-07-09 18:36) @project(--To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ My Organization Calendar / ☐ Chose organization first)
+                  ✔ day start and day end @done(2017-07-09 14:12) @project(To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ University Calendar)
+                  ✔ what time in the day? @done(2017-07-09 14:12) @project(To Do / ☐ Task 34 - Login as Organization HEAD / ☐ Manage Schedule / ☐ University Calendar)
+        ☐ My Personal Calendar
+        Issues:
+          ☐ How to determine these individual calendar?
+      ☐ Generate User Attendance
+  ☐ Task 33 - Change the profile background according to the user type
+  ☐ Task 32 - Try View Composers to manage the rendering of two sidebar for user and for admin
+  ☐ Task 31 - Create a manage notification - This will be a setting what to notify or what kind of notification should be if org adviser will create a event
+  ☐ Task 30 - Give functionality the super admin dashboard info-box:
+    ✔ Add Organization @done(2017-07-03 23:11) @project(To Do / ☐ Task 30 - Give functionality the super admin dashboard info-box)
+    ✔ Add user  @done(2017-07-03 00:41) @project(To Do / ☐ Task 30 - Give functionality the super admin dashboard info-box)
+  ☐ Task 29 - Different user dashboard:
+    ☐ Define the sidebar details for deffirent type of user
+    ✔ Defined initial info-box for a Different type of user @done(2017-07-02 15:11) @project(To Do / ☐ Task 29 - Different user dashboard)
+  ☐ Task 28 - Login as OSA:
+    ☐ Organization:
+      ☐ Generate Attendance
+      ☐ List
+  ☐ Task 27 - Create a function which return an information about css and js version
+  ☐ Task 25 - Manage Event Types:
+    ☐ Browse
+    ☐ Read
+    ☐ Edit
+    ☐ Add
+    ☐ Delete
+  ☐ Task 24 - Manage Event Categories:
+    ☐ Browse
+    ☐ Read
+    ☐ Edit
+    ☐ Add
+    ☐ Delete
+  ☐ Task 23 - Manage Organization:
+    ☐ Browse
+    ☐ Read
+    ☐ Edit
+    ☐ Add
+    ☐ Delete
+  ☐ Task 22 - Manage Position:
+    ☐ Browse
+    ☐ Read
+    ☐ Edit
+    ☐ Add
+    ☐ Delete
+  ☐ Task 21 - Manage Department:
+    ☐ Browse
+    ☐ Read
+    ☐ Edit
+    ☐ Add
+    ☐ Delete
+  ☐ Task 20 - Manage Courses:
+    ☐ Browse
+    ☐ Read
+    ☐ Edit
+    ☐ Add
+    ☐ Delete
+  ☐ Task 19 - Super admin Manage Users Account:
+    ☐ Browse
+    ☐ Read
+    ☐ Edit
+    ☐ Add
+    ☐ Delete
+  ☐ Task 18 - Super Admin Manage Users:
+    ☐ Delete - soft delete
+    ☐ Fetch the dropdown for editing the user:
+      ☐ All Account Type
+      ☐ A users account type
+      ✔ All Courses @done(2017-07-08 02:25)
+      ✔ A users course @done(2017-07-08 02:25)
+      ✔ All departments name @done(2017-07-08 02:25)
+      ✔ A user department belong to @done(2017-07-08 02:25)
+      ✔ All positions @done(2017-07-08 02:25)
+      ✔ A user position @done(2017-07-08 02:25)
+      ☐ Table relationship
+    ✔ Browse @done(2017-06-30 11:26) @project(To Do / ☐ Task 19 - Manage Users Account)
+    ✔ Read @done(2017-06-30 11:26) @project(To Do / ☐ Task 19 - Manage Users Account)
+    ✔ Edit  @done(2017-06-30 11:26) @project(To Do / ☐ Task 19 - Manage Users Account)
+    ✔ Add  @done(2017-06-30 11:26) @project(To Do / ☐ Task 19 - Manage Users Account)
+  ☐ Task 17 - Create a function for deleting user information:
+    ☐ Note that there should be no delete, instead change the status to inactive
+    ☐ But admin can view it
+  ☐ Task 16 - Create a function for editing user information:
+      ☐ Need to validate the input of the editing process
+  ☐ Task 15 - Create add functionality to all
+  ✔ Task 14 - Create a user registration functionality before login because liz already created it @done(2017-06-28 13:19) @project(To Do)
+    ✔ Return the inputs errors during registration failure @done(2017-06-28 13:19) @project(To Do / ☐ Task 14 - Create a user registration functionality before login because liz already created it)
+  ✔ Task 13 - Create a modal which display for adding new user in admin dashboard: @done(2017-06-28 09:56) @project(To Do)
+    ✔ Put an error on return when unsuccessful @done(2017-06-28 09:54) @project(To Do / ☐ Task 13 - Create a modal which display for adding new user in admin dashboard)
+    ✔ Let the system create a default password using account_number during registration on the admin side @done(2017-06-28 09:56) @project(To Do / ☐ Task 13 - Create a modal which display for adding new user in admin dashboard)
+    ✔ match the confirm password and password, this should be determine using jquery validation and in controller validation @done(2017-06-28 00:21) @project(To Do / ☐ Task 13 - Create a modal which display for adding new user in admin dashboard)
+    ✔ validate the inputs @done(2017-06-27 12:13) @project(To Do / ☐ Task 13 - Create a modal which display for adding new user in admin dashboard)
+    ✔ Create a modal which display for adding new user @done(2017-06-26 21:23) @project(To Do / ☐ Task 13 - Create a modal which display for adding new user)
+    ✔ Status field should be select dropdown @done(2017-06-26 21:23) @project(To Do / ☐ Task 13 - Create a modal which display for adding new user)
+  ☐ Task 12 - Create a modal which display the user information aka view user profile
+  ☐ Task 11 - Create a filtering in list of user in the admin dashboard (admin/users/list):
+    ☐ Filter by Course
+    ☐ Filter by Department
+    ☐ Filter by Position
+    ☐ Filter by Status
+  ✔ Task 10 - Create an admin forgot password @done(2017-06-26 16:32) @project(To Do)
+  ✔ Task 9 - Display all register user in admin panel @done(2017-06-26 19:50) @project(To Do)
+  ✔ Task 8 - Make forgot password functionality @done(2017-06-25 19:07) @project(To Do)
+  ✔ Task 7 - Make email functionality for forgot password @done(2017-06-25 15:49) @project(To Do)
+  ✔ Task 6 - Improved the layout of the forgot password @done(2017-06-25 14:37) @project(To Do)
+  ✔ Task 5 - Make a validation of user registration @done(2017-06-29 12:36) @project(To Do)
+  ✔ Task 4 - After the successfull registration of the user he/she should be redirected to his/her home page @done(2017-06-29 12:36) @project(To Do)
+  ☐ Task 3 - After the registration of the user and the admin display the list of user he/she should be able to change user_account_type
+  ☐ Task 2 - Get the user dropdowns using eloquent relationship
+  ✔ Task 1 - Create a user registration functionality @done(2017-06-25 14:17) @project(To Do)

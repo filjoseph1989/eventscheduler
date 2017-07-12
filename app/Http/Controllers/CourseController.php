@@ -108,16 +108,13 @@ class CourseController extends Controller
     {
       $course = Course::find($data->id);
       $name = "the course: ".$course->name;
-      $course->deleted_or_not = 0;
-
-      if ($course->save()){
+      $course->delete();
         $data = [
           'result' => true,
           'name' => $name,
           'id'  => $data
         ];
         echo json_encode($data);
-      }
     }
     /**
      * Update the specified resource in storage.
@@ -144,7 +141,7 @@ class CourseController extends Controller
 
     public function showAllCourseList()
     {
-        $courses      = Course::where('deleted_or_not', '=', 1)->get();
+        $courses      = Course::all()->get();
         $login_type = 'user';
         return view('pages.users.admin-user.course.list', compact('login_type','courses'));
     }

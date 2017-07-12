@@ -1,0 +1,62 @@
+frontend:
+✔ if admin is logged in alone, messed up dashboard ui @done(2017-06-23 16:27)
+  if admin is logged in and user is also logged in, if admin dashboard is
+  refreshed, admin dashboard will be fixed
+✔ if user is currently logged in, then goes to admin-login, @done(2017-06-28 01:48)
+  admin login form is messed up or not the same when user is logged out
+✔ (lead1) please create forms for {{ route('password.request') }} that will display @done(2017-06-28 01:52)
+  for user login,
+    login button that goes to login.blade
+    and register button that goes register view and route for user login,
+  for admin login,
+    login button that goes to admin-login.blade
+☐ make login forms field as account_number and password (not username(email) and password)
+✔ make every edit and create form to be modal @done(2017-06-29 22:51)
+✔ fix routing - admin is for admin views, user is for user views, @done(2017-06-29 22:51)
+make individual views-folder for every user dashboard and admin dashboard
+use proper/same controllers and models for every manipulation of cruds
+(do not change or modify controller and model names)
+☐ when adding/updating dates in field, use date formats
+✔ after deleting data, and pressing ok, must reload page @done(2017-07-01 15:43)
+☐ change layout for admin/admin-login
+☐ make dashboard blades for different types of user account types
+backend:
+✔ if I go to login page, but will not type credentials, @done(2017-06-28 02:01)
+  then I go to admin-limongogin page without typing credentials,
+  then go back to login page again, then sign in, the browser redirects
+  to admin-login page, not user dashboard but if you go to /home
+  you can guarantee that user is already logged in
+✔ when 'lead1' is achieved, establish their respective routes @done(2017-06-28 01:53)
+✔ make the password confirmation for user registration for user type user @done(2017-06-28 03:22)
+✔ if logged in as admin, delete password field in blade, and in UserController, make account_number as password default @done(2017-06-28 03:22)
+✔ only active(status=active/1) users are accessible to login @done(2017-07-01 04:19)
+☐ make login forms field as account_number and password (not username(email) and password)
+✔ fix routing - admin is for admin views, user is for user views, @done(2017-06-29 22:52)
+make individual views-folder for every user dashboard and admin dashboard
+use proper/same controllers and models for every manipulation of cruds
+(do not change or modify controller and model names)
+✔ delete via delete_or_not column in table, delete_or_not => 1 are the ones that will be displayed in list.blade(do delete files in database unless updated) @done(2017-06-30 21:11)
+✔ revalidate back @done(2017-07-01 14:37)
+☐ project deployment for public audience (using laragon)
+✔ different logouts for user, fixed csrf error @done(2017-06-30 15:31)
+✔ fix the routing that when visited admin login, then proceeds to user login, the user is logged in @done(2017-07-01 14:15)
+but the browser redirects to admin login page
+☐ clarify routes for notifications functionality and activate it using admin dashboard for the mean time
+  ☐ email using mailtrap
+  ☐ twitter
+  ✔ sms @done(2017-07-03 22:03)
+  ☐ facebook
+  ☐ instagram
+☐mas nice if ang table section lang sa div ang refresh kay sometimes naay hinay na browsers
+
+✔ if maglog both users(user and admin dashboard) naka login, tapos maglog out si user, pagrefresh sa admin, malog out pud og apil c admin @done(2017-07-03 14:59)
+☐ if nakalog in ang admin, pag redirect sa curd, muadto xag admin dashboard
+
+
+☐ NOTIFICATIONS
+  ✔ SMS not integrated but accessible via test.dev/notify_via_sms @done(2017-07-03 18:16)
+  ☐ Twitter, unfinished
+  TWITTER_CONSUMER_KEY=
+  TWITTER_CONSUMER_SECRET=
+  TWITTER_ACCESS_TOKEN=
+  TWITTER_ACCESS_TOKEN_SECRET=

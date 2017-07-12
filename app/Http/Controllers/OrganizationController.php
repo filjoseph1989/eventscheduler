@@ -100,6 +100,7 @@ class OrganizationController extends Controller
     public function edit(Request $data)
     {
       $organization               = Organization::find($data->id);
+      $name                       = $organization->name;
       $organization->name         = $data['name'];
       $organization->status       = $data['status'];
       $organization->url          = $data['url'];
@@ -109,11 +110,11 @@ class OrganizationController extends Controller
       if ($organization->save()) {
         if (Auth::guard('admin')->check()){
           return redirect()->route('admin.organization.list')
-          ->with('status', "Successfuly Added New Organization <b>{$data['name']}</b>");
+            ->with('status', "Successfuly Updated from <b>{$name}</b> to <b>{$data['name']}</b>");
         }
         if (Auth::guard('web')->check()){
           return redirect()->route('organization.list')
-          ->with('status', "Successfuly Added New Organization <b>{$data['name']}</b>");
+            ->with('status', "Successfuly Updated from <b>{$name}</b> to <b>{$data['name']}</b>");
         }
       }
     }
@@ -122,15 +123,13 @@ class OrganizationController extends Controller
     {
       $organization = Organization::find($data->id);
       $name = "the organization: ".$organization->name;
-      $organization->deleted_or_not = 0;
-
-      if ($organization->save()){
-        $data = [
-          'result' => true,
-          'name' => $name
-        ];
-        echo json_encode($data);
-      }
+      $organization->delete();
+      $data = [
+        'result' => true,
+        'name' => $name,
+        'id'  => $data
+      ];
+      echo json_encode($data);
     }
     /**
      * Update the specified resource in storage.
@@ -154,10 +153,24 @@ class OrganizationController extends Controller
     {
         //
     }
+
     public function showAllOrganizationList()
     {
-        $organizations = Organization::where('deleted_or_not', '=', 1)->get();
+        $organizations = Organization::all()->get();
         $login_type = 'user';
         return view('pages.users.admin-user.organization.list', compact('login_type','organizations'));
+    }
+
+    /**
+     * Return the organization
+     * @param  Request $data [description]
+     * @return [type]        [description]
+     */
+    public function getOrganization(Request $data)
+    {
+      $org = Organization::find($data->id);
+      echo json_encode([
+        'organization' => $org
+      ]);
     }
 }

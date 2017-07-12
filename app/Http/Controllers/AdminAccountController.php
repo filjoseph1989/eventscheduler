@@ -22,7 +22,6 @@ class AdminAccountController extends Controller
       'users.last_name',
       'users.email',
       'users.mobile_number',
-      'users.deleted_or_not',
       'users.status',
       'users.position_id',
       'positions.id',
@@ -30,7 +29,6 @@ class AdminAccountController extends Controller
       )
       ->join('user_accounts', 'users.user_account_id', '=', 'user_accounts.id')
       ->join('positions', 'users.position_id', '=', 'positions.id')
-      ->where('users.deleted_or_not', '=', 1)
       ->where('user_accounts.name', '!=', 'admin')
       ->get();
       $login_type = 'user';
@@ -38,25 +36,25 @@ class AdminAccountController extends Controller
   }
   public function showAllCourseList()
   {
-      $courses      = Course::where('deleted_or_not', '=', 1)->get();
+      $courses      = Course::all()->get();
       $login_type = 'user';
       return view('pages.users.admin-user.course.list', compact('login_type','courses'));
   }
   public function showAllDepartmentList()
   {
-      $departments = Department::where('deleted_or_not', '=', 1)->get();
+      $departments = Department::all()->get();
       $login_type = 'user';
       return view('pages.users.admin-user.department.list', compact('login_type','departments'));
   }
   public function showAllPositionList()
   {
-      $positions  = Position::where('deleted_or_not', '=', 1)->get();
+      $positions  = Position::all()->get();
       $login_type = 'user';
       return view('pages.users.admin-user.position.list', compact('login_type','positions'));
   }
   public function showAllOrganizationList()
   {
-      $organizations = Organization::where('deleted_or_not', '=', 1)->get();
+      $organizations = Organization::all()->get();
       $login_type = 'user';
       return view('pages.users.admin-user.organization.list', compact('login_type','organizations'));
   }

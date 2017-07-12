@@ -1,0 +1,144 @@
+A user's case is way of a developer to test the functionality of the system
+
+Login:
+------------------------------------------------------------------------------------------------------------------
+  Steps
+    1. Go to login page
+    2. Enter Login Credentials
+      2.a Username: {user account number} {email}
+      2.b Password:
+  Expected Result:
+    ☐ User should be redirected to user dashboard
+  Actual Result:
+    ☐ { Edit ME for actual result }
+
+
+Logout:
+------------------------------------------------------------------------------------------------------------------
+  Steps
+    1. Should passed the steps in the login
+    2. On the sidebar, beside user profile picture click dropdown
+    3. choose logout options
+  Expected Result:
+    ☐ User should be redirected to login page
+  Actual Result:
+    ☐ { Edit ME for actual result }
+
+
+Registration Form:
+------------------------------------------------------------------------------------------------------------------
+  Steps
+    1. Go to login page
+    2. Click on register
+  Expected Result:
+    ☐ The system should open the registration form
+  Actual Result:
+    ☐ { Edit ME for actual result }
+
+Registration Form - submit:
+------------------------------------------------------------------------------------------------------------------
+  Steps
+    1. Should follow the registration form steps
+    2. Enter user information and click submit
+  Expected Result:
+    ☐ The system should say wait for the confirmation before you can login
+  Actual Result:
+    ☐ { Edit ME for actual result }
+
+Forgot Password Form:
+------------------------------------------------------------------------------------------------------------------
+  Steps
+    1. Go to login page
+    2. Click on forgot password
+  Expected Result:
+    ☐ The system display the form asking for email
+  Actual Result:
+    ☐ { Edit ME for actual result }
+
+Forgot Password Form - submit:
+------------------------------------------------------------------------------------------------------------------
+  Steps
+    1. Should passed the forgot password form steps
+    2. Enter email
+  Expected Result:
+    ☐ The system should give a message for a successfull email
+  Actual Result:
+    ☐ { Edit ME for actual result }
+
+Forgot Password Form - email:
+------------------------------------------------------------------------------------------------------------------
+  Steps
+    1. Should passed the forgot password form steps
+    2. Should passed the forgot password form -submit steps
+    3. Check email
+  Expected Result:
+    ☐ Email should received the link for forgot password reset
+    ☐ forgot password reset link should be correct {domain/forgot/reset/{token}}
+  Actual Result:
+    ☐ { Edit ME for actual result }
+
+Forgot Password Form - link:
+------------------------------------------------------------------------------------------------------------------
+  Steps
+    1. Should passed the forgot password form steps
+    2. Should passed the forgot password form -submit steps
+    3. Should passed the forgot password form -email steps
+    4. Click on reset link
+  Expected Result:
+    ☐ The link should redirect to the system and
+    ☐ Display the form asking for:
+      ☐ Email
+      ☐ Password
+      ☐ Confirm Password
+  Actual Result:
+    ☐ { Edit ME for actual result }
+
+Admin Should follow above steps:
+
+Display Different Color and type of User Dashboard:
+------------------------------------------------------------------------------------------------------------------
+  Steps
+    1. Go to login page
+    2. Enter Login Credentials
+  Expected Result:
+    ☐ User should be redirected to user dashboard
+    ☐ The Color of the UI for the user dashboard should reflect to the assign color in the database
+    ☐ The info-box options should reflect the user capabilities in his/her own dashboard:
+      ☐ For Admin:
+        ☐ List of Organization
+        ☐ Display Organization Event
+        ☐ Generate Event Attendance
+        ☐ Upcomming events
+      ☐ For Organization Adviser:
+        ☐ List of Organization
+        ☐ Display Organization Event
+        ☐ Generate Event Attendance
+      ☐ For Organization Head:
+        ☐ List of Organization
+        ☐ Display Organization Event
+        ☐ Generate Event Attendance
+        ☐ Add member
+        ☐ Create event
+      ☐ For Organization Member:
+        ☐ List of Organization
+        ☐ My Organization
+        ☐ My Calendar/Schedule
+        ☐ Check Event Attendance
+      ☐ For OSA Personnel:
+        ☐ List of Organization
+        ☐ Display Organization Event
+        ☐ Generate Event Attendance
+  Actual Result:
+    ☐ { Edit ME for actual result }
+
+
+Display Different Color of User Dashboard:
+------------------------------------------------------------------------------------------------------------------
+  Steps
+    1. Go to login page
+    2. Enter Login Credentials
+  Expected Result:
+    ☐ User should be redirected to user dashboard
+    ☐ The Color of the UI for the user dashboard should reflect to the assign color in the database
+  Actual Result:
+    ☐ { Edit ME for actual result }
