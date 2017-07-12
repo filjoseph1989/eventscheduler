@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UserAccount extends Model
 {
-  use SofDeletes;
+  use SoftDeletes;
     /**
      * The attributes that are mass assignable.
      *
