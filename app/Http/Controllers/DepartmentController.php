@@ -108,13 +108,15 @@ class DepartmentController extends Controller
       {
         $department = Department::find($data->id);
         $name = "the department: ".$department->name;
-        $department->delete();
-        $data = [
-          'result' => true,
-          'name' => $name,
-          'id'  => $data
-        ];
-        echo json_encode($data);
+        $department->deleted_or_not = 0;
+
+        if ($department->save()){
+          $data = [
+            'result' => true,
+            'name' => $name
+          ];
+          echo json_encode($data);
+        }
       }
      /**
       * Update the specified resource in storage.
@@ -140,7 +142,7 @@ class DepartmentController extends Controller
      }
      public function showAllDepartmentList()
      {
-         $departments = Department::all()->get();
+         $departments = Department::where('deleted_or_not', '=', 1)->get();
          $login_type = 'user';
          return view('pages.users.admin-user.department.list', compact('login_type','departments'));
      }

@@ -11,17 +11,7 @@ use App\Models\Department;
 use App\Models\UserAccount;
 use Illuminate\Http\Request;
 
-/**
- * The user controller is reponsible for
- * entertain request
- *
- * @author LN De Guzman
- * @package SystemScheduler
- * @since 0.1
- * @version 0.1
- *
- * @last Update July 12, 2017
- */
+
 class UserController extends Controller
 {
 
@@ -51,6 +41,16 @@ class UserController extends Controller
             'email'       => 'required|string|email|max:255|unique:users',
             'password'    => 'required|string|min:6|confirmed',
         ]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
     }
 
     /**
@@ -133,13 +133,15 @@ class UserController extends Controller
     {
       $user = User::find($data->id);
       $name = "the name: ".$user->first_name." ".$user->middle_name." ".$user->last_name." and account number: ".$user->account_number;
-      $user->delete();
-      $data = [
-        'result' => true,
-        'name' => $name,
-        'id'  => $data
-      ];
-      echo json_encode($data);
+      $user->deleted_or_not = 0;
+
+      if ($user->save()){
+        $data = [
+          'result' => true,
+          'name' => $name
+        ];
+        echo json_encode($data);
+      }
     }
 
     /**
@@ -183,7 +185,7 @@ class UserController extends Controller
 
       $data               = [
         'allDepartments' => $department->all(),
-        'allPositions'   => $position->all(),
+        'allPositions'   => $position->all(), 
         'allCourses'     => $course->all(),
         'departmentName' => $department->name,
         'positionName'   => $position->name,
@@ -201,6 +203,29 @@ class UserController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+    //
+
+    }
+
+    /**
      * Display the user form for registration
      *
      * @return
@@ -211,6 +236,7 @@ class UserController extends Controller
         return view('pages.forms.users.register', compact('login_type'));
     }
 
+
     /**
      * Update the specified resource in storage.
      *
@@ -218,15 +244,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updatePosition(Request $request)
+    public function update(Request $request, $id)
     {
-      #Note: Need validation i think
-      $user = User::find($request->id);
-      $user->position_id = $request->position_id;
-      if ($user->save()) {
-        return redirect()->route('osa.user.list')
-          ->with('status', 'Successfuly change the position');
-      }
+        //
     }
 
     /**
@@ -251,7 +271,7 @@ class UserController extends Controller
 
     public function showAllUserList()
     {
-        $users      = User::all()->get();
+        $users      = User::where('deleted_or_not', '=', 1)->get();
         $login_type = 'user';
         return view('pages.users.admin-user.users.list', compact('login_type','users'));
     }

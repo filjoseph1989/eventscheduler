@@ -5,18 +5,16 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\FacebookPublished;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
     use Notifiable;
-    use SoftDeletes;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $dates = ['deleted_at'];
     protected $fillable = [
       'user_account_id', 'course_id', 'department_id', 'position_id',
       'account_number', 'email', 'password', 'first_name', 'last_name',
