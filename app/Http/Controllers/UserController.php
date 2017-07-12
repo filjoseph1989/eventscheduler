@@ -251,7 +251,7 @@ class UserController extends Controller
 
     public function showAllUserList()
     {
-        $users      = User::all()->get();
+        $users      = User::all();
         $login_type = 'user';
         return view('pages.users.admin-user.users.list', compact('login_type','users'));
     }

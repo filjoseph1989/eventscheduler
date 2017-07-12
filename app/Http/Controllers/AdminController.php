@@ -65,35 +65,35 @@ class AdminController extends Controller
       ->join('positions', 'users.position_id', '=', 'positions.id')
       ->get();
 
-      $users      = User::all()->get();
+      $users      = User::all();
       $login_type = 'admin';
       return view('pages.admin.users.list', compact('login_type','data', 'departmentName', 'allDepartments'));
     }
 
     public function showAllUserAccountList()
     {
-        $user_accounts  = UserAccount::all()->get();
+        $user_accounts  = UserAccount::all();
         $login_type     = 'admin';
         return view('pages.admin.user-accounts.list', compact('login_type','user_accounts'));
     }
 
     public function showAllCourseList()
     {
-        $courses  = Course::all()->get();
+        $courses  = Course::all();
         $login_type = "admin";
         return view('pages.admin.course.list', compact('login_type','courses'));
     }
 
     public function showAllDepartmentList()
     {
-        $departments  = Department::all()->get();
+        $departments  = Department::all();
         $login_type = "admin";
         return view('pages.admin.department.list', compact('login_type','departments'));
     }
 
     public function showAllPositionList()
     {
-        $positions  = Position::all()->get();
+        $positions  = Position::all();
         $login_type = "admin";
         return view('pages.admin.position.list', compact('login_type','positions'));
     }
@@ -106,20 +106,20 @@ class AdminController extends Controller
      */
     public function showAllOrganizationList()
     {
-        $organizations = Organization::all()->get();
+        $organizations = Organization::all();
         return view('pages.admin.organization.list', compact('organizations'));
     }
 
     public function showAllEvenCategoriesList()
     {
-        $event_categories = EventCategory::all()->get();
+        $event_categories = EventCategory::all();
         $login_type    = "admin";
         return view('pages.admin.event-category.list', compact('login_type','event_categories'));
     }
 
     public function showAllEventTypeList()
     {
-        $event_types = EventType::all()->get();
+        $event_types = EventType::all();
         $login_type = 'admin';
         return view('pages.admin.event-type.list', compact('login_type','event_types'));
     }

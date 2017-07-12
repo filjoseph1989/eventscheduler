@@ -141,7 +141,7 @@ class CourseController extends Controller
 
     public function showAllCourseList()
     {
-        $courses      = Course::all()->get();
+        $courses      = Course::all();
         $login_type = 'user';
         return view('pages.users.admin-user.course.list', compact('login_type','courses'));
     }

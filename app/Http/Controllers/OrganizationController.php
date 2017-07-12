@@ -156,7 +156,7 @@ class OrganizationController extends Controller
 
     public function showAllOrganizationList()
     {
-        $organizations = Organization::all()->get();
+        $organizations = Organization::all();
         $login_type = 'user';
         return view('pages.users.admin-user.organization.list', compact('login_type','organizations'));
     }

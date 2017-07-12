@@ -92,7 +92,7 @@ class PositionController extends Controller
 
     public function showAllPositionList()
     {
-        $positions  = Position::all()->get();
+        $positions  = Position::all();
         $login_type = 'user';
         return view('pages.users.admin-user.position.list', compact('login_type','positions'));
     }

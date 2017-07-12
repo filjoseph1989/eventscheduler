@@ -140,7 +140,7 @@ class DepartmentController extends Controller
      }
      public function showAllDepartmentList()
      {
-         $departments = Department::all()->get();
+         $departments = Department::all();
          $login_type = 'user';
          return view('pages.users.admin-user.department.list', compact('login_type','departments'));
      }

@@ -36,25 +36,25 @@ class AdminAccountController extends Controller
   }
   public function showAllCourseList()
   {
-      $courses      = Course::all()->get();
+      $courses      = Course::all();
       $login_type = 'user';
       return view('pages.users.admin-user.course.list', compact('login_type','courses'));
   }
   public function showAllDepartmentList()
   {
-      $departments = Department::all()->get();
+      $departments = Department::all();
       $login_type = 'user';
       return view('pages.users.admin-user.department.list', compact('login_type','departments'));
   }
   public function showAllPositionList()
   {
-      $positions  = Position::all()->get();
+      $positions  = Position::all();
       $login_type = 'user';
       return view('pages.users.admin-user.position.list', compact('login_type','positions'));
   }
   public function showAllOrganizationList()
   {
-      $organizations = Organization::all()->get();
+      $organizations = Organization::all();
       $login_type = 'user';
       return view('pages.users.admin-user.organization.list', compact('login_type','organizations'));
   }
