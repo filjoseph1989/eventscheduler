@@ -87,8 +87,21 @@
     <i class="material-icons">supervisor_account</i>
     <span>Generate Attendance</span>
   </a>
-  <a href="#">
+  <a href="#" class="menu-toggle">
     <i class="material-icons">supervisor_account</i>
     <span>Manage Notifications</span>
   </a>
+  <ul class="ml-menu">
+    <li>
+      <a href="{{ route('event.show') }}">
+        <span>Events Created By You</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <span>All Events</span>
+      </a>
+    </li>
+    <li>
+  </ul>
 </li>

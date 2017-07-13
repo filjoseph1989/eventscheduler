@@ -34,23 +34,29 @@ class ManageNotificationController extends Controller
 
   public function showEventList () {
     // $events = Event::where('user_id', Auth::user()->id )->get();
-    $events = self::getEventsData();
+    $events_and_author = self::getEventsData();
 
-    return view('pages.users.organization-head.notifications.notification', compact('events') );
+    return view('pages.users.organization-head.notifications.notification', $events_and_author );
   }
 
   private function getEventsData(){
     $event = new Event();
     $events = $event->select(
         'events.id',
-        'events.name',
+        'events.event',
         'event_types.name as event_type_name',
         'event_categories.name as event_category_name',
         'organizations.name as organization_name',
-        'events.date',
-        'events.time',
+        'users.first_name as fname',
+        'users.middle_name as mname',
+        'users.last_name as lname',
+        'users.suffix_name as sname',
+        'events.date_start',
+        'events.date_end',
+        'events.date_start_time',
+        'events.date_end_time',
         'events.venue',
-        'events.status', 
+        'events.status',
         'events.created_at',
         'events.updated_at'
       )
@@ -60,7 +66,10 @@ class ManageNotificationController extends Controller
       ->join('users', 'users.id', '=', 'events.user_id')
       ->where('events.user_id', '=', Auth::user()->id)
       ->get();
-    return $events;
+      $current_user = User::find(Auth::user()->id);
+      $event_author = "{$current_user->first_name} {$current_user->middle_name} {$current_user->last_name} {$current_user->suffix_name}";
+
+    return ['events'=> $events, 'event_author'=> $event_author];
   }
 
   /**
@@ -76,9 +85,6 @@ class ManageNotificationController extends Controller
 
      if( isset($data['twitter']) ){
        self::notifyViaTwitter($data);
-     }
-     if( isset($data['instagram']) ){
-       self::notifyViaInstagram($data);
      }
      if( isset($data['email']) ){
        self::notifyViaEmail($data);
@@ -121,12 +127,4 @@ class ManageNotificationController extends Controller
       return Twitter::postTweet(['status' => 'hi Event Schedulerscacassacijnkknjhhjkjbk', 'format' => 'json']);
     }
   }
-
-  private function notifyViaInstagram (Request $data) {
-
-    if( isset($data['instagram']) ){
-      // return true;
-    }
-  }
-
 }
