@@ -59,7 +59,7 @@ class EventController extends Controller
   {
     # Issue 23: find a way to make it more laravel
     $event = new Event();
-    $event = $event->query("select * from events where date_start = MONTH('".date('YYYY/mm/dd')."')");
+    $event = $event->query("select * from events where date_start = YEAR('".date('YYYY/mm/dd')."')");
     echo json_encode( $event->get() );
   }
 
