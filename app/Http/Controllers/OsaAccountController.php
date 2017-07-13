@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\UserAccount;
 use App\Models\Positions;
 use App\Models\Organization;
+use App\Models\OrganizationGroup;
 use Illuminate\Http\Request;
 
 class OsaAccountController extends Controller
@@ -17,7 +18,8 @@ class OsaAccountController extends Controller
    */
   public function showAllUserList()
   {
-      #Issue: 23 User the eloquent for this
+      $organizations = Organization::all();
+
       $user = new User();
       $data = $user->select(
         'users.id as user_id',
@@ -39,7 +41,7 @@ class OsaAccountController extends Controller
       ->get();
 
       $login_type = 'user';
-      return view('pages.users.osa-user.users.list', compact('login_type','data'));
+      return view('pages.users.osa-user.users.list', compact('login_type','data', 'organizations'));
   }
 
   public function showAllOrganizationList()
@@ -51,5 +53,13 @@ class OsaAccountController extends Controller
   public function showOrganizationAddForm()
   {
     return view('pages.users.osa-user.organization.add');
+  }
+
+  public function addOrganizationToMember(){
+    //
+  }
+
+  public function addMemberToOrganization(){
+
   }
 }

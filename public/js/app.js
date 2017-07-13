@@ -272,6 +272,7 @@ $('.osa-users-edit').click(function() {
   var id    = $(this).data('id');
   var pname = $(this).data('position');
   var pid   = $(this).data('position-id');
+  var orgs = $(this).data('orgs');
 
   // assign id to hidden input
   $('#osa-user-id').val(id);
@@ -286,8 +287,9 @@ $('.osa-users-edit').click(function() {
     beforeSend: function(request) {
       request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
     },
-    success: function(data) {
+    success: function(data, orgs) {
       var html = "";
+      var orghtml = "";
       for (var i = 0; i < data.length; i++) {
         if (data[i].id == 1) {
           html += '<option value="'+ pid +'">'+ pname +'</option>';
@@ -296,7 +298,13 @@ $('.osa-users-edit').click(function() {
         }
       }
       $('#position-name').html(html);
+
+      for (var i = 1; i < orgs.length; i++) {
+          orghtml += '<option value="'+ orgs[i].id +'">'+ orgs[i].name +'</option>';
+      }
+      $('#organization-name').html(orghtml);
     },
+
     error: function(data) {
       console.log('Error:');
     }
