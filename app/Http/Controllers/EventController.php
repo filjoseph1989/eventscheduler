@@ -71,24 +71,4 @@ class EventController extends Controller
     $event = $event->query("select * from events where date_start = YEAR('".date('YYYY/mm/dd')."')");
     echo json_encode( $event->get() );
   }
-
-  /**
-   * return the event from previous month
-   * @return
-   */
-  public function getEventOfPreviousMonth()
-  {
-    # Code Here
-  }
-
-  /**
-   * Return the event for the next month
-   *
-   * @return
-   */
-  public function getEventOfNextMonth()
-  {
-    # Code Here
-  }
-
 }
