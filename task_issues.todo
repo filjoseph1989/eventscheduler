@@ -1,5 +1,6 @@
 To Do:
-  ☐ Issue 23: go to this line and use eloquent
+  ✔ Issue 24: go to this line and use eloquent @done(2017-07-13 10:21) @project(To Do)
+  ☐ Issue 23: Go to this line and find a way to make it in laravel way of coding
   ☐ Issue 22: Create a function which handle the ajax request, becase ajax request code are redundunt
   ☐ Issue 21: Remove the master.js because all of its code are transfered to app.js
   ☐ Issue 20: Go to this line, i think its not needed anymore

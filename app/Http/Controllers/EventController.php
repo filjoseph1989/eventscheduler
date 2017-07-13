@@ -27,7 +27,7 @@ class EventController extends Controller
   /**
    * Receive passed data and create new event
    *
-   * @return [type] [description]
+   * @return json
    */
   public function createNewEvent(Request $data)
   {
@@ -41,9 +41,11 @@ class EventController extends Controller
     }
     $request['organization_id'] = 1;
 
+
     $result = Event::create($request);
 
     echo json_encode([
+      'request'            => $request,
       'wasRecentlyCreated' => $result->wasRecentlyCreated
     ]);
   }
@@ -55,7 +57,18 @@ class EventController extends Controller
    */
   public function getEventOfTheMonth()
   {
-    # Code here
+    # Issue 23: find a way to make it more laravel
+    $event = new Event();
+    $event = $event->query("select * from events where date_start = MONTH('".date('YYYY/mm/dd')."')");
+    $event = $event->get();
+    ddd($event);
+  }
+  public function _getEventOfTheMonth()
+  {
+    # Issue 23: find a way to make it more laravel
+    $event = new Event();
+    $event = $event->query("select * from events where date_start = MONTH('".date('YYYY/mm/dd')."')");
+    echo json_encode( $event->get() );
   }
 
   /**
@@ -77,13 +90,4 @@ class EventController extends Controller
     # Code Here
   }
 
-  /**
-   * Return the event of the given month
-   *
-   * @return
-   */
-  public function getEventOfNextMonth()
-  {
-    # Code Here
-  }
 }
