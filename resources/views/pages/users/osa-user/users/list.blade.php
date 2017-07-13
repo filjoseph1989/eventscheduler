@@ -192,24 +192,6 @@
                 </select>
               </div>
             </div>
-            </br>
-            <div class="row clearfix">
-              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                {{--
-                  This wil contain the list of organization filled using ajax
-
-                  Since, we already get the list of organizations from the OsaAccountController@showAllUserList
-                  all we need to do is to display it here as dropdown
-                                      -liz
-                --}}
-                <select class="form-control show-tick" name="organization_id" id="organization-name">
-                  <option value="0">-- Select Organization --</option>
-                  @foreach ($organizations as $key => $value)
-                    <option value="{{ $value->id }}">{{ $value->name }}</option>
-                  @endforeach
-                </select>
-              </div>
-            </div>
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-primary"> <i class="material-icons">save</i>Save</button>
