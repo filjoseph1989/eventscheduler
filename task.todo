@@ -11,6 +11,10 @@ To Do:
           ☐ Chose organization first:
             ☐ Display the calendar for the chosen organization:
               ☐ Add event in the database:
+                ☐ List Events
+                  ☐ current month 
+                  ☐ all events
+                  ☐ upcomming events
                 ☐ Need a validation of entry on the following fields, title, description
                 ✔ Alter the events table @done(2017-07-09 20:25)
                 ✔ What are the process of adding calendar data to the database @done(2017-07-13 15:43)
@@ -19,10 +23,10 @@ To Do:
                 ✔ Getting the data from the database @done(2017-07-13 10:26)
                   ✔ Get all event of the current month where user equal to current loggedin user id and chosen calendar @done(2017-07-13 10:26)
               ☐ Get the calendar organization ID, for identifying what organization a calendar belongs to.
-              ✔ Display again the events setted previously from the calendar. @done(2017-07-13 15:37)
               ☐ Edit the schedule within the calendar
                 ☐ Display the modal for editing
                   ☐ fetch the data from source, either from database or within the calendar itself?
+              ✔ Display again the events setted previously from the calendar. @done(2017-07-13 15:37)
               ☐ Display event in the table with status approved or not
                 ☐ if not approved yet, who will approved?
                 ☐ what are the process of approving events?
