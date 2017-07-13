@@ -111,6 +111,7 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('user.delete')->post('/user/delete', 'UserController@delete');
     Route::name('user.register')->post('/user/register', 'UserController@adminCreate');
     Route::name('user.update.position')->post('/user/update/position', 'UserController@updatePosition');
+    Route::name('user.update.user_account')->post('/user/update/user_account', 'UserController@updateUserAccount');
 
     # Course Crud
     Route::name('course.list')->get('/course/list', 'CourseController@showAllCourseList');
@@ -156,7 +157,7 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::prefix('event')->group(function() {
       Route::name('event.new')->post('/new', 'EventController@createNewEvent');
       Route::name('event.gets')->post('/gets', 'EventController@getEventOfTheMonth');
-      Route::name('event.gets')->get('/gets/{get}', 'EventController@getEventOfTheMonth'); 
+      Route::name('event.gets')->get('/gets/{get}', 'EventController@getEventOfTheMonth');
     });
 
     /**

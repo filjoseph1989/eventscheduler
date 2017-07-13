@@ -228,16 +228,29 @@ class UserController extends Controller
     {
       #Note: Need validation i think
 
-      $user = User::find($request->id);
+      $user                                = User::find($request->id);
 
-      $organization_group = new OrganizationGroup();
-      $organization_group->user_id = $request->id;
-      $organization_group->organization_id = $request->organization_id;
-      $organization_group->position_id = $request->position_id;
+      $organization_group                  = new OrganizationGroup();
+      $organization_group->user_id         = $user->id;
+      $organization_group->organization_id = $request->add_organization_id;
+      $organization_group->position_id     = $request->add_position_id;
 
       if ( $organization_group->save() && $user->save() ) {
         return redirect()->route('osa.user.list')
           ->with('status', "Successfuly added {$user->first_name}'s organization/s with corresponding positions");
+      }
+    }
+
+    public function updateUserAccount(Request $request)
+    {
+      #Note: Need validation i think
+
+      $user = User::find($request->id);
+      $user->user_account_id = $request->edit_user_account_id;
+
+      if ($user->save() ) {
+        return redirect()->route('osa.user.list')
+          ->with('status', "Successfuly changed {$user->first_name}'s account type");
       }
     }
 

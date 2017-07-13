@@ -57,4 +57,38 @@
       </a>
     </li>
   </ul>
+  <a href="#" class="menu-toggle">
+    <i class="material-icons">supervisor_account</i>
+    <span>Manage Schedule</span>
+  </a>
+  <ul class="ml-menu">
+    <li>
+      <a href="{{ route('university-calendar') }}">
+        <span>University Calendar</span>
+      </a>
+    </li>
+    <li>
+      <a href="{{ route('all-organization-calendar') }}">
+        <span>All Organization Calendar</span>
+      </a>
+    </li>
+    <li>
+      <a href="{{ route('my-organization-calendar') }}">
+        <span>My Organization Calendar</span>
+      </a>
+    </li>
+    <li>
+      <a href="{{ route('my-personal-calendar') }}">
+        <span>My Personal Calendar</span>
+      </a>
+    </li>
+  </ul>
+  <a href="#">
+    <i class="material-icons">supervisor_account</i>
+    <span>Generate Attendance</span>
+  </a>
+  <a href="#">
+    <i class="material-icons">supervisor_account</i>
+    <span>Manage Notifications</span>
+  </a>
 </li>

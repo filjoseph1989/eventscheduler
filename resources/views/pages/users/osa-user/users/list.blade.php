@@ -85,10 +85,10 @@
                           <td>{{ $usersvalue->status == 1 ? 'active' : 'inactive'  }}</td>
                           <td>{{ $usersvalue->u_acc_name }}</td>
                           <td>
-                            <a href="#" class="osa-add-org" data-orgs="{{$organizations}}" data-positions="{{$positions}}" data-id="{{ $usersvalue->user_id }}" data-toggle="modal" data-target="#change-position">
+                            <a href="#" class="osa-add-org" data-orgs="{{$organizations}}" title="add organization" data-positions="{{$positions}}" data-id="{{ $usersvalue->user_id }}" data-toggle="modal" data-target="#change-position">
                               <i class="material-icons">bubble_chart</i>
                             </a>
-                            <a href="#" class="osa-user-account-edit" data-orgs="{{$org_grps}}" data-user-accounts="{{$user_accounts}}" data-id="{{ $usersvalue->user_id }}" data-toggle="modal" data-target="#change-user-account">
+                            <a href="#" class="osa-user-account-edit" data-orgs="{{$org_grps}}" title="edit user account type" data-user-accounts="{{$user_accounts}}" data-id="{{ $usersvalue->user_id }}" data-toggle="modal" data-target="#change-user-account">
                               <i class="material-icons">mode_edit</i>
                             </a>
                           </td>
@@ -124,7 +124,7 @@
       <div class="modal-content">
         <form class="" action="{{ route('user.update.position') }}" method="post">
           {{ csrf_field() }}
-          <input type="hidden" name="id" id="osa-user-id" value="">
+          <input type="hidden" name="id" id="osa-add-org" value="">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="">Add User Position</h4>
@@ -132,7 +132,7 @@
           <div class="modal-body">
             <div class="row clearfix">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <select class="form-control show-tick" name="position_id" id="position-name">
+                <select class="form-control show-tick" name="add_position_id" id="position-name">
                   <option value="0">-- Select Position --</option>
                   @foreach ($positions as $key => $value)
                     <option value="{{ $value->id }}">{{ $value->name }}</option>
@@ -150,7 +150,7 @@
                   all we need to do is to display it here as dropdown
                                       -liz
                 --}}
-                <select class="form-control show-tick" name="organization_id" id="organization-name">
+                <select class="form-control show-tick" name="add_organization_id" id="organization-name">
                   <option value="0">-- Select Organization --</option>
                   @foreach ($organizations as $key => $value)
                     <option value="{{ $value->id }}">{{ $value->name }}</option>
@@ -168,13 +168,13 @@
       </div>
     </div>
   </div>
-  
+
   <div class="modal fade" id="change-user-account" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form class="" action="#" method="post">
+        <form class="" action="{{ route('user.update.user_account') }}" method="post">
           {{ csrf_field() }}
-          <input type="hidden" name="id" id="osa-user-id" value="">
+          <input type="hidden" name="id" id="osa-user-account-edit" value="">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="">Edit User's Account Type</h4>
@@ -182,7 +182,7 @@
           <div class="modal-body">
             <div class="row clearfix">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <select class="form-control show-tick" name="user_account_id" id="user-account-name">
+                <select class="form-control show-tick" name="edit_user_account_id" id="user-account-name">
                   <option value="0">-- Select User Account --</option>
                   @foreach ($user_accounts as $key => $value)
                   <option value="{{ $value->id }}">{{ $value->name }}</option>
