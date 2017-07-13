@@ -116,7 +116,7 @@ $('#save-event').on('click', function() {
   // Start date and time if no given
   if (form[4].value == "") {
     var lday   = global_start.getDate();
-    var lmonth = global_start.getMonth();
+    var lmonth = global_start.getMonth() + 1;
     var lyear  = global_start.getFullYear();
     var lhour  = global_end.getHours();
     var lmin   = global_end.getMinutes();
@@ -128,7 +128,7 @@ $('#save-event').on('click', function() {
   // End Date and time if no given
   if (form[6].value == "") {
     var lday   = global_end.getDate();
-    var lmonth = global_end.getMonth();
+    var lmonth = global_end.getMonth() + 1;
     var lyear  = global_end.getFullYear();
     var lhour  = global_end.getHours();
     var lmin   = global_end.getMinutes();
@@ -137,41 +137,41 @@ $('#save-event').on('click', function() {
     form[7].value = lhour + ":" + lmin;
   }
 
-    // Submit the data to database
-    $.ajax({
-        type: 'POST',
-        url: '/users/event/new',
-        data: {
-          form: form,
-        },
-        dataType: 'json',
-        beforeSend: function(request) {
-            request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
-        },
-        success: function(data) {
-          if (data.wasRecentlyCreated) {
-            swal("Success!", "Successfuly created new event", "success");
-            calendar.fullCalendar('renderEvent', {
-              title:  title,
-              start:  getDate('#date_start'),
-              end:    getDate('#date_end'),
-              allDay: whole_day
-            }, true);
-          }
-          calendar.fullCalendar('unselect');
-        },
-        error: function(data) {
-            swal("Opps!", "We cannot process that", "error");
-        }
-    });
+  // Submit the data to database
+  $.ajax({
+    type: 'POST',
+    url: '/users/event/new',
+    data: {
+      form: form,
+    },
+    dataType: 'json',
+    beforeSend: function(request) {
+      request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
+    },
+    success: function(data) {
+      if (data.wasRecentlyCreated) {
+        swal("Success!", "Successfuly created new event", "success");
+        calendar.fullCalendar('renderEvent', {
+          title:  title,
+          start:  getDate('#date_start'),
+          end:    getDate('#date_end'),
+          allDay: whole_day
+        }, true);
+      }
+      calendar.fullCalendar('unselect');
+    },
+    error: function(data) {
+      swal("Opps!", "We cannot process that", "error");
+    }
+  });
 
-    // Clear modal inputs
-    var id = $('.modal').find('input[name="user_id"]').val('');
-    $('.modal').find('input').val('');
-    $('.modal').find('input[name="user_id"]').val(id);
+  // Clear modal inputs
+  var id = $('.modal').find('input[name="user_id"]').val('');
+  $('.modal').find('input').val('');
+  $('.modal').find('input[name="user_id"]').val(id);
 
-    // hide modal
-    $('.modal').modal('hide');
+  // hide modal
+  $('.modal').modal('hide');
 });
 
 /**
@@ -220,9 +220,9 @@ function getEvents() {
         for (var i = 0; i < data.length; i++) {
           event = data[i];
           calendar.fullCalendar('renderEvent', {
-            title: event.event,
-            start:getDate('', event.date_start, event.date_start_time),
-            end:getDate('', event.date_end, event.date_end_time),
+            title:  event.event,
+            start:  getDate('', event.date_start, event.date_start_time),
+            end:    getDate('', event.date_end, event.date_end_time),
             allDay: event.whole_day == 1 ? true : false
           }, true);
           calendar.fullCalendar('unselect');
@@ -235,7 +235,6 @@ function getEvents() {
 
     return json;
 }
-
 
 /*
 // events: [
