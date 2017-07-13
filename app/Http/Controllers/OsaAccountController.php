@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Models\User;
 use App\Models\UserAccount;
-use App\Models\Positions;
+use App\Models\Position;
 use App\Models\Organization;
 use App\Models\OrganizationGroup;
 use Illuminate\Http\Request;
@@ -18,30 +18,46 @@ class OsaAccountController extends Controller
    */
   public function showAllUserList()
   {
-    $organizations = Organization::all();
-    $user          = new User();
+    $organizations       = Organization::all();
+    $organization_groups = new OrganizationGroup();
+    $positions           = Position::all();
+    $user_accounts       = UserAccount::all();
+    $user                = new User();
 
     $data = $user->select(
       'users.id as user_id',
-      'users.user_account_id',
-      'user_accounts.name',
+      'users.user_account_id as u_acc_id',
+      'user_accounts.name as u_acc_name',
       'users.account_number',
       'users.first_name',
       'users.last_name',
       'users.email',
       'users.mobile_number',
-      'users.status',
-      'users.position_id',
-      'positions.id as p_id',
-      'positions.name as p_name'
+      'users.status'
     )
     ->join('user_accounts', 'users.user_account_id', '=', 'user_accounts.id')
-    ->join('positions', 'users.position_id', '=', 'positions.id')
     ->where('user_accounts.name', '!=', 'admin')
     ->get();
 
+    $org_grps = $organization_groups->select(
+      'organization_groups.id as org_grp_id',
+      'organization_groups.user_id as og_user_id',
+      'organization_groups.organization_id as og_org_id',
+      'organization_groups.position_id as og_pos_id',
+      'organizations.name as org_name',
+      'positions.name as pos_name',
+      'users.first_name as user_fname',
+      'users.middle_name as user_mname',
+      'users.last_name as user_lname',
+      'users.suffix_name as user_sname'
+    )
+    ->join('users', 'organization_groups.user_id', '=', 'users.id')
+    ->join('organizations', 'organization_groups.organization_id', '=', 'organizations.id')
+    ->join('positions', 'organization_groups.position_id', '=', 'positions.id')
+    ->get();
+
     $login_type = 'user';
-    return view('pages.users.osa-user.users.list', compact('login_type','data', 'organizations'));
+    return view('pages.users.osa-user.users.list', compact('login_type','data', 'organizations', 'positions', 'org_grps', 'user_accounts'));
   }
 
   public function showAllOrganizationList()

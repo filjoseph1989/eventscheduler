@@ -65,7 +65,6 @@ class UserController extends Controller
         'user_account_id'    => $data['user_account_id'],
         'course_id'          => $data['course_id'],
         'department_id'      => $data['department_id'],
-        'position_id'        => $data['position_id'],
         'account_number'     => $data['account_number'],
         'email'              => $data['email'],
         'password'           => bcrypt($data['account_number']),
@@ -105,7 +104,6 @@ class UserController extends Controller
       $user->user_account_id    = $data['user_account_id'];
       $user->course_id          = $data['course_id'];
       $user->department_id      = $data['department_id'];
-      $user->position_id        = $data['position_id'];
       $user->account_number     = $data['account_number'];
       $user->email              = $data['email'];
       $user->first_name         = $data['first_name'];
@@ -154,7 +152,6 @@ class UserController extends Controller
           'user_account_id'    => $data['user_account_id'],
           'course_id'          => $data['course_id'],
           'department_id'      => $data['department_id'],
-          'position_id'        => $data['position_id'],
           'account_number'     => $data['account_number'],
           'email'              => $data['email'],
           'password'           => bcrypt($data['password']),
@@ -179,15 +176,15 @@ class UserController extends Controller
     public function getUserData(Request $data)
     {
       $department = User::find($data->id)->department()->getResults();
-      $position   = User::find($data->id)->position()->getResults();
+      $user_account   = User::find($data->id)->userAccount()->getResults();
       $course     = User::find($data->id)->course()->getResults();
 
       $data               = [
         'allDepartments' => $department->all(),
-        'allPositions'   => $position->all(),
+        'allUserAccounts'=> $user_account->all(),
         'allCourses'     => $course->all(),
         'departmentName' => $department->name,
-        'positionName'   => $position->name,
+        'UserAccountName'   => $user_account->name,
         'courseName'     => $course->name,
         // 'user_account' => UserAccount::all(),
         // 'position'     => Position::all(),
@@ -232,7 +229,6 @@ class UserController extends Controller
       #Note: Need validation i think
 
       $user = User::find($request->id);
-      $user->position_id = $request->position_id;
 
       $organization_group = new OrganizationGroup();
       $organization_group->user_id = $request->id;
@@ -241,7 +237,7 @@ class UserController extends Controller
 
       if ( $organization_group->save() && $user->save() ) {
         return redirect()->route('osa.user.list')
-          ->with('status', 'Successfuly change the position');
+          ->with('status', "Successfuly added {$user->first_name}'s organization/s with corresponding positions");
       }
     }
 

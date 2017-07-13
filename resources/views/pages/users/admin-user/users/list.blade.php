@@ -254,21 +254,6 @@
                       @endif
                     </div>
                   </div>
-                  <div class="form-group form-float form-group{{ $errors->has('position_id') ? ' has-error' : '' }}">
-                    <div class="form-line">
-                      <select class="form-control show-tick" name="position_id" required>
-                        <option value="0">-- Position --</option>
-                        <option value="1">Chairman</option>
-                        <option value="2">Faculty</option>
-                        <option value="3">OSA Staff</option>
-                        <option value="4">Vice-Chairman</option>
-                        <option value="5">Secretary</option>
-                      </select>
-                      @if ($errors->has('position'))
-                      <span class="help-block"> <strong>{{ $errors->first('position') }}</strong> </span>
-                      @endif
-                    </div>
-                  </div>
                   <div class="form-group form-float form-group{{ $errors->has('status') ? ' has-error' : '' }}">
                     <div class="form-line">
                       <select class="form-control" name="status">
@@ -456,18 +441,6 @@
                     </select>
                     @if ($errors->has('department_id'))
                     <span class="help-block"> <strong>{{ $errors->first('department_id') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-8 col-sm-offset-2">
-                <div class="form-group form-float form-group{{ $errors->has('position_id') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <select class="form-control show-tick" name="position_id" required>
-                    <option value="1">Not Applicable</option>
-                    </select>
-                    @if ($errors->has('position'))
-                      <span class="help-block"> <strong>{{ $errors->first('position') }}</strong> </span>
                     @endif
                   </div>
                 </div>

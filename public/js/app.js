@@ -89,11 +89,6 @@ $(document).on('click', '.users-edit', function() {
             }
             $('#department_id').html(html);
 
-            html = '<option value="0">' + data.positionName + '</option>';
-            for (var i = 0; i < data.allPositions.length; i++) {
-                html += '<option value="' + data.allPositions[i].id + '">' + data.allPositions[i].name + '</option>';
-            }
-            $('#position_id').html(html);
         },
         error: function(data) {
             console.log('Error:');
@@ -242,4 +237,3 @@ $('.osa-users-edit').click(function() {
     }
   });
 });
-  

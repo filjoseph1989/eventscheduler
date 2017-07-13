@@ -18,7 +18,7 @@ class User extends Authenticatable
      */
     protected $dates = ['deleted_at'];
     protected $fillable = [
-      'user_account_id', 'course_id', 'department_id', 'position_id',
+      'user_account_id', 'course_id', 'department_id',
       'account_number', 'email', 'password', 'first_name', 'last_name',
       'middle_name', 'suffix_name', 'facebook_username', 'twitter_username',
       'instagram_username', 'mobile_number', 'status',
@@ -55,15 +55,6 @@ class User extends Authenticatable
     }
 
     /**
-     * This means that user has only one position
-     * @return Object
-     */
-    public function position()
-    {
-      return $this->belongsTo('App\Models\Position');
-    }
-
-    /**
      * This mean that the user has only one position
      * @return object
      */
@@ -72,6 +63,9 @@ class User extends Authenticatable
       return $this->belongsTo('App\Models\Course');
     }
     public function userAccount(){
+      return $this->belongsTo('App\Models\UserAccount');
+    }
+    public function userHasOneUserAccount(){
       return $this->hasOne('App\Models\UserAccount');
     }
 }
