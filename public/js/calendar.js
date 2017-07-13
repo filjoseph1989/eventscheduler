@@ -149,14 +149,15 @@ $('#save-event').on('click', function() {
       request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
     },
     success: function(data) {
+      var event = data.request;
       if (data.wasRecentlyCreated) {
-        swal("Success!", "Successfuly created new event", "success");
         calendar.fullCalendar('renderEvent', {
-          title:  title,
-          start:  getDate('#date_start'),
-          end:    getDate('#date_end'),
-          allDay: whole_day
+          title:  event.event,
+          start:  getDate('', event.date_start, event.date_start_time),
+          end:    getDate('', event.date_end, event.date_end_time),
+          allDay: event.whole_day == 1 ? true : false
         }, true);
+        swal("Success!", "Successfuly created new event", "success");
       }
       calendar.fullCalendar('unselect');
     },
@@ -166,7 +167,7 @@ $('#save-event').on('click', function() {
   });
 
   // Clear modal inputs
-  var id = $('.modal').find('input[name="user_id"]').val('');
+  var id = $('.modal').find('input[name="user_id"]').val();
   $('.modal').find('input').val('');
   $('.modal').find('input[name="user_id"]').val(id);
 
@@ -235,53 +236,3 @@ function getEvents() {
 
     return json;
 }
-
-/*
-// events: [
-    // {
-    //   title: 'All Day Event',
-    //   start: new Date(y, m, 1)
-    // },
-    // {
-    //   title: 'Long Event',
-    //   start: new Date(y, m, d-5),
-    //   end: new Date(y, m, d-2)
-    // },
-    // {
-    //   id: 999,
-    //   title: 'Repeating Event',
-    //   start: new Date(y, m, d-3, 16, 0),
-    //   allDay: false
-    // },
-    // {
-    //   id: 999,
-    //   title: 'Repeating Event',
-    //   start: new Date(y, m, d+4, 16, 0),
-    //   allDay: false
-    // },
-    // {
-    //   title: 'Meeting',
-    //   start: new Date(y, m, d, 10, 30),
-    //   allDay: false
-    // },
-    // {
-    //   title: 'Lunch',
-    //   start: new Date(y, m, d, 12, 0),
-    //   end: new Date(y, m, d, 14, 0),
-    //   allDay: false
-    // },
-    // {
-    //   title: 'Birthday Party',
-    //   start: new Date(y, m, d+1, 19, 0),
-    //   end: new Date(y, m, d+1, 22, 30),
-    //   allDay: false
-    // },
-    // {
-    //   title: 'Click for Google',
-    //   start: new Date(y, m, 28),
-    //   end: new Date(y, m, 29),
-    //   url: 'http://google.com/'
-    // }
-// ],
-
- */
