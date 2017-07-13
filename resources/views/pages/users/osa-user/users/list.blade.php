@@ -168,9 +168,7 @@
       </div>
     </div>
   </div>
-@endsection
-
-@section('modal')
+  
   <div class="modal fade" id="change-user-account" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -187,7 +185,7 @@
                 <select class="form-control show-tick" name="user_account_id" id="user-account-name">
                   <option value="0">-- Select User Account --</option>
                   @foreach ($user_accounts as $key => $value)
-                    <option value="{{ $value->id }}">{{ $value->name }}</option>
+                  <option value="{{ $value->id }}">{{ $value->name }}</option>
                   @endforeach
                 </select>
               </div>
@@ -198,10 +196,10 @@
             <button type="button" class="btn btn-default" data-dismiss="modal">
               <i class="material-icons">close</i> Close</button>
             </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
 @endsection
 
 @section('footer')

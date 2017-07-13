@@ -64,11 +64,22 @@ class EventController extends Controller
    *
    * @return
    */
-  public function getEventOfTheMonth()
+  public function getEventOfTheMonth($get = false)
   {
     # Issue 23: find a way to make it more laravel
     $event = new Event();
     $event = $event->query("select * from events where date_start = YEAR('".date('YYYY/mm/dd')."')");
-    echo json_encode( $event->get() );
+    $event = $event->get();
+
+    /*
+      $get, distiguish the response between to ajax or not
+     */
+    if ($get == true) {
+      $login_type = 'user';
+      return view('pages.users.organization-head.calendars.events.list', compact('login_type', 'event'));
+    } else {
+      echo json_encode( $event );
+    }
+
   }
 }

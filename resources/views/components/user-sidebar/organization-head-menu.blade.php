@@ -12,9 +12,9 @@
         <li>
           <a href="#" class="menu-toggle">Calendars</a>
           <ul class="ml-menu">
+            <li><a href="{{ route('my-organization-calendar') }}">My Organization Calendar</a></li>
             <li><a href="#">University Celendar</a></li>
             <li><a href="#">All Organization Calendar</a></li>
-            <li><a href="{{ route('my-organization-calendar') }}">My Organization Calendar</a></li>
             <li><a href="#">My Personal Calendar</a></li>
           </ul>
         </li>
@@ -30,6 +30,9 @@
       <ul class="ml-menu">
         <li>
           <a href="#">Create Events</a>
+        </li>
+        <li>
+          <a href="{{ route('event.gets', true) }}">List of Events</a>
         </li>
         <li>
           <a href="#">Manage Notifications</a>
