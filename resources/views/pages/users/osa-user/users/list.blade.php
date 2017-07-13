@@ -185,7 +185,7 @@
                 <select class="form-control show-tick" name="edit_user_account_id" id="user-account-name">
                   <option value="0">-- Select User Account --</option>
                   @foreach ($user_accounts as $key => $value)
-                  <option value="{{ $value->id }}">{{ $value->name }}</option>
+                    <option value="{{ $value->id }}">{{ $value->name }}</option>
                   @endforeach
                 </select>
               </div>

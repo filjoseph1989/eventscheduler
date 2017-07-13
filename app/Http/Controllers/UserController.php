@@ -198,12 +198,24 @@ class UserController extends Controller
         // return User::find($data->id);
     }
 
-    public function gets()
+    /**
+     * [gets description]
+     * @return [type] [description]
+     */
+    public function gets(Request $data)
     {
-        $user = User::all();
-        foreach ($user as $key => $value) {
-            d($value->department->name);
-        }
+      # Note: use eloquent for this code
+      $org = new OrganizationGroup();
+      $orgs = $org->select('organization.name as org_name', 'position.name as pos_name')
+        ->join('organization', 'organization.id', '=', 'organization_group.organization_id')
+        ->join('position', 'position.id', '=', 'organization_group.position_id')
+        ->join('users', 'users.id', '=', 'users.user_id')
+        ->where('users.id','=',$data->id)
+        ->get();
+
+      echo json_encode(
+        'result' => $orgs
+      );
     }
 
     /**

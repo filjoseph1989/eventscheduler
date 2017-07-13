@@ -290,20 +290,25 @@ $('.osa-add-org').click(function() {
     }
   });
 });
+
 $('.osa-user-account-edit').click(function() {
-  var id    = $(this).data('id');
+  var id = $(this).data('id');
 
   // assign id to hidden input
   $('#osa-user-account-edit').val(id);
 
   $.ajax({
     type: 'POST',
-    url: '/users/position/get/positions',
+    url: '/users/user/get',
+    data: {
+      id: id
+    },
     dataType: 'json',
     beforeSend: function(request) {
       request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
     },
     success: function(data) {
+      console.log(data);
     },
     error: function(data) {
       console.log('Error:');
