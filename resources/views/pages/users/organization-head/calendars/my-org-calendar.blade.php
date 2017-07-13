@@ -173,7 +173,7 @@
                 <div class="form-group form-float form-group{{ $errors->has('event_categories') ? ' has-error' : '' }}">
                   <div class="form-line">
                     <select class="form-control show-tick" id="event-category" name="event_category_id">
-                      <option value="0">-- Select type of event--</option>
+                      <option value="0">-- Select audience for this event--</option>
                       @foreach ($event_categories as $key => $value)
                         <option value="{{ $value->id }}">{{ $value->name }}</option>
                       @endforeach

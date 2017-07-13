@@ -9,6 +9,8 @@ use App\Models\Course;
 use App\Models\Position;
 use App\Models\Department;
 use App\Models\UserAccount;
+use App\Models\Organization;
+use App\Models\OrganizationGroup;
 use Illuminate\Http\Request;
 
 /**
@@ -228,9 +230,16 @@ class UserController extends Controller
     public function updatePosition(Request $request)
     {
       #Note: Need validation i think
+
       $user = User::find($request->id);
       $user->position_id = $request->position_id;
-      if ($user->save()) {
+
+      $organization_group = new OrganizationGroup();
+      $organization_group->user_id = $request->id;
+      $organization_group->organization_id = $request->organization_id;
+      $organization_group->position_id = $request->position_id;
+
+      if ( $organization_group->save() && $user->save() ) {
         return redirect()->route('osa.user.list')
           ->with('status', 'Successfuly change the position');
       }
@@ -263,4 +272,7 @@ class UserController extends Controller
         return view('pages.users.admin-user.users.list', compact('login_type','users'));
     }
 
+    public function addOrgGroup(){
+      //
+    }
 }

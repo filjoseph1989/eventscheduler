@@ -126,7 +126,7 @@
           <input type="hidden" name="id" id="osa-user-id" value="">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="">Change User Position</h4>
+            <h4 class="modal-title" id="">Add User Position</h4>
           </div>
           <div class="modal-body">
             <div class="row clearfix">
@@ -145,7 +145,7 @@
                   all we need to do is to display it here as dropdown
                                       -liz
                 --}}
-                <select class="form-control show-tick" id="organization-name">
+                <select class="form-control show-tick" name="organization_id" id="organization-name">
                   <option value="0">-- Select Organization --</option>
                   <?php foreach ($organizations as $key => $value): ?>
                     <option value="{{ $value->id }}">{{ $value->name }}</option>

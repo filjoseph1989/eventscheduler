@@ -7,6 +7,8 @@ use Illuminate\Database\Migrations\Migration;
 class CreateUsersTable extends Migration
 {
     /**
+     *
+     * 
      * Run the migrations.
      *
      * @return void
@@ -18,7 +20,6 @@ class CreateUsersTable extends Migration
           $table->integer('user_account_id')->unsigned()->index();
           $table->integer('course_id')->unsigned()->index();
           $table->integer('department_id')->unsigned()->index();
-          $table->integer('position_id')->unsigned()->index();
           $table->string('account_number')->unique();
           $table->string('email')->unique();
           $table->string('password');
@@ -39,8 +40,6 @@ class CreateUsersTable extends Migration
           $table->foreign('user_account_id')->references('id')->on('user_accounts');
           $table->foreign('course_id')->references('id')->on('courses');
           $table->foreign('department_id')->references('id')->on('departments');
-          $table->foreign('position_id')->references('id')->on('positions');
-
         });
     }
 

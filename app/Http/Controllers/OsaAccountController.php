@@ -62,4 +62,16 @@ class OsaAccountController extends Controller
   public function addMemberToOrganization(){
 
   }
+
+  public function getOrganizationGroup(){
+    $organization_group = new OrganizationGroup();
+    $org_grp = $organization_group->select(
+      'organization_groups.id as org_g_id',
+      'organization_groups.user_id as orgg_user_id',
+      'organization_groups.organization_id as orgg_org_id'
+    )
+    ->join('users', 'organization_groups.user_id', '=', 'users.id')
+    ->join('organizations', 'organization_groups.organization_id', '=', 'organizations.id')
+    ->get();
+  }
 }
