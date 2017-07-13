@@ -19,7 +19,6 @@ class OsaAccountController extends Controller
   public function showAllUserList()
   {
       $organizations = Organization::all();
-
       $user = new User();
       $data = $user->select(
         'users.id as user_id',

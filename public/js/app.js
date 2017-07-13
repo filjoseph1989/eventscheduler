@@ -299,7 +299,7 @@ $('.osa-users-edit').click(function() {
       }
       $('#position-name').html(html);
 
-      for (var i = 1; i < orgs.length; i++) {
+      for (var i = 0; i < orgs.length; i++) {
           orghtml += '<option value="'+ orgs[i].id +'">'+ orgs[i].name +'</option>';
       }
       $('#organization-name').html(orghtml);
