@@ -75,9 +75,11 @@
                           <td>{{ $usersvalue->date_expired }}</td>
                           <td class="align-center">{{ $usersvalue->status == 1 ? 'active' : 'inactive' }}</td>
                           <td>
-                            <a href="#" class="organization-delete delete" data-url="/users/organization/delete" data-type="cancel"> <i class="material-icons">delete</i>
+                            <a href="#" class="organization-delete delete" data-url="/users/organization/delete" data-type="cancel">
+                              <i class="material-icons">delete</i>
                             </a>
-                            <a href="#" class="organization-edit" data-id="{{ $usersvalue->id }}" data-toggle="modal" data-target="#edit-organization"> <i class="material-icons">mode_edit</i>
+                            <a href="#" class="organization-edit osa-organization-edit" data-id="{{ $usersvalue->id }}" data-toggle="modal" data-target="#edit-organization">
+                              <i class="material-icons">mode_edit</i>
                             </a>
                           </td>
                         </tr>

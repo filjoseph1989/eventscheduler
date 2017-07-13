@@ -87,11 +87,6 @@
                           <td>{{ $usersvalue->name }}</td>
                           <td>{{ $usersvalue->p_name }}</td>
                           <td>
-                            {{-- Meaning the OSA cannot delete user - that's the job of admin
-                            <a href="#" class="users-delete delete" data-url="/admin/user/delete" data-type="cancel">
-                              <i class="material-icons">delete</i>
-                            </a>
-                            --}}
                             <a href="#" class="osa-users-edit" data-orgs="{{$organizations}}" data-id="{{ $usersvalue->user_id }}" data-position="{{ $usersvalue->p_name }}" data-position-id="{{ $usersvalue->p_id }}" data-toggle="modal" data-target="#change-position">
                               <i class="material-icons">mode_edit</i>
                             </a>
@@ -143,8 +138,19 @@
             </br>
             <div class="row clearfix">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                {{-- This wil contain the list of organization filled using ajax --}}
-                <select class="form-control show-tick" id="organization-name">&nbsp;</select>
+                {{--
+                  This wil contain the list of organization filled using ajax
+
+                  Since, we already get the list of organizations from the OsaAccountController@showAllUserList
+                  all we need to do is to display it here as dropdown
+                                      -liz
+                --}}
+                <select class="form-control show-tick" id="organization-name">
+                  <option value="0">-- Select Organization --</option>
+                  <?php foreach ($organizations as $key => $value): ?>
+                    <option value="{{ $value->id }}">{{ $value->name }}</option>
+                  <?php endforeach; ?>
+                </select>
               </div>
             </div>
           </div>
