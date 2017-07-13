@@ -26,7 +26,7 @@
     </li>
   </ul>
   <a href="#" class="menu-toggle">
-    <i class="material-icons">supervisor_account</i>
+    <i class="material-icons">event</i>
     <span>Events</span>
   </a>
   <ul class="ml-menu">
@@ -47,7 +47,7 @@
     </li>
   </ul>
   <a href="#" class="menu-toggle">
-    <i class="material-icons">supervisor_account</i>
+    <i class="material-icons">contacts</i>
     <span>Manage Users</span>
   </a>
   <ul class="ml-menu">
@@ -58,7 +58,7 @@
     </li>
   </ul>
   <a href="#" class="menu-toggle">
-    <i class="material-icons">supervisor_account</i>
+    <i class="material-icons">date_range</i>
     <span>Manage Schedule</span>
   </a>
   <ul class="ml-menu">
@@ -84,17 +84,17 @@
     </li>
   </ul>
   <a href="#">
-    <i class="material-icons">supervisor_account</i>
+    <i class="material-icons">people_outline</i>
     <span>Generate Attendance</span>
   </a>
   <a href="#" class="menu-toggle">
-    <i class="material-icons">supervisor_account</i>
+    <i class="material-icons">info_outline</i>
     <span>Manage Notifications</span>
   </a>
   <ul class="ml-menu">
     <li>
       <a href="{{ route('event.show') }}">
-        <span>Events Created By You</span>
+        <span>Events You Created</span>
       </a>
     </li>
     <li>
