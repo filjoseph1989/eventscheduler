@@ -222,9 +222,6 @@ $('.osa-users-edit').click(function() {
   $.ajax({
     type: 'POST',
     url: '/users/position/get/positions',
-    data: {
-      // id: id
-    },
     dataType: 'json',
     beforeSend: function(request) {
       request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));

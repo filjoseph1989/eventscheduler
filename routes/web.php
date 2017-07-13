@@ -135,6 +135,7 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('organization.delete')->post('/organization/delete', 'OrganizationController@delete');
     Route::name('organization.add')->get('/organization/add', 'OrganizationController@showOrganizationAddForm');
     Route::name('organization.get')->post('/organization/get', 'OrganizationController@getOrganization');
+    Route::name('organization.gets')->post('/organization/gets', 'OrganizationController@getOrganizationList');
 
     /**
      * Org. Head User Account Type

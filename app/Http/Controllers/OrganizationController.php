@@ -1,16 +1,27 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Auth;
 use App\Models\Organization;
 use Illuminate\Http\Request;
 
+/**
+ * This class controller handles the request related to
+ * Organization
+ *
+ * @author jlvoice777
+ * @author Janica Liz De Guzman
+ * @version 0.1
+ * @updated 7/13/2017
+ */
 class OrganizationController extends Controller
 {
     public function __construct()
     {
         $this->middleware('web');
     }
+
     /**
      * Display the registration form for courses
      *
@@ -21,14 +32,15 @@ class OrganizationController extends Controller
         $login_type = 'admin';
         return view('pages.forms.users.organization-register', compact('login_type'));
     }
+
     /**
-     * Display a listing of the resource.
+     * Reponse to http request for the list of organization.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getOrganizationList()
     {
-        //
+        return Organization::All();
     }
 
     /**
@@ -56,28 +68,6 @@ class OrganizationController extends Controller
             ->with('status', "Successfuly Added New Organization <b>{$data['name']}</b>");
           }
         }
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -130,28 +120,6 @@ class OrganizationController extends Controller
         'id'  => $data
       ];
       echo json_encode($data);
-    }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     public function showAllOrganizationList()
