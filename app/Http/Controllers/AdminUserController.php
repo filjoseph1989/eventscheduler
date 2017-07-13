@@ -49,7 +49,6 @@ class AdminUserController extends Controller
             'user_account_id'    => $data['user_account_id'],
             'course_id'          => $data['course_id'],
             'department_id'      => $data['department_id'],
-            'position_id'        => $data['position_id'],
             'account_number'     => $data['account_number'],
             'email'              => $data['email'],
             'password'           => bcrypt($data['password']),
@@ -76,13 +75,11 @@ class AdminUserController extends Controller
         $user_account = UserAccount::all();
         $course       = Course::all();
         $department   = Department::all();
-        $position     = Position::all();
 
         return view('pages.admin.users.add', compact(
             'user_account',
             'course',
             'department',
-            'position'
         ));
     }
 

@@ -34,7 +34,7 @@ class AdminController extends Controller
     {
         session([
           'class'      => 'theme-black',
-          'login_type' => 'admin'
+          'login_type' => 'admin',
         ]);
         return view('pages.admin.admin');
     }
@@ -57,12 +57,8 @@ class AdminController extends Controller
         'users.email',
         'users.mobile_number',
         'users.status',
-        'users.position_id',
-        'positions.id',
-        'positions.name as p_name'
       )
       ->join('user_accounts', 'users.user_account_id', '=', 'user_accounts.id')
-      ->join('positions', 'users.position_id', '=', 'positions.id')
       ->get();
 
       $users      = User::all();

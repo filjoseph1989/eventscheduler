@@ -24,8 +24,4 @@ class Position extends Model
      *
      * @return object
      */
-    public function user()
-    {
-      return $this->hasOne('App\Models\User');
-    }
 }

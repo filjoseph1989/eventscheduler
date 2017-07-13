@@ -52,7 +52,6 @@ class UsersController extends Controller
           'user_account_id'    => $data['user_account_id'],
           'course_id'          => $data['course_id'],
           'department_id'      => $data['department_id'],
-          'position_id'        => $data['position_id'],
           'account_number'     => $data['account_number'],
           'email'              => $data['email'],
           'password'           => bcrypt($data['password']),

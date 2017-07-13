@@ -23,12 +23,8 @@ class AdminAccountController extends Controller
       'users.email',
       'users.mobile_number',
       'users.status',
-      'users.position_id',
-      'positions.id',
-      'positions.name as p_name'
       )
       ->join('user_accounts', 'users.user_account_id', '=', 'user_accounts.id')
-      ->join('positions', 'users.position_id', '=', 'positions.id')
       ->where('user_accounts.name', '!=', 'admin')
       ->get();
       $login_type = 'user';

@@ -187,17 +187,6 @@
                         </select>
                     </div>
                 </div>
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="material-icons">accessibility</i>
-                    </span>
-                    <div class="form-line">
-                        <select class="form-control show-tick" name="position_id">
-                            <option value="0">-- Positions --</option>
-                            <option value="1">No position yet</option>
-                        </select>
-                    </div>
-                </div>
                 <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">SIGN UP</button>
                 <div class="m-t-25 m-b--5 align-center">
                     <a href="{{ route('login') }}">You already have a membership?</a>

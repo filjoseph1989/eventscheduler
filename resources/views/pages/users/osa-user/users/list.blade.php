@@ -70,7 +70,6 @@
                       <th>Mobile</th>
                       <th>Status</th>
                       <th>Account Type</th>
-                      <th>Position</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -84,10 +83,12 @@
                           <td>{{ $usersvalue->email }}</td>
                           <td>{{ $usersvalue->mobile_number }}</td>
                           <td>{{ $usersvalue->status == 1 ? 'active' : 'inactive'  }}</td>
-                          <td>{{ $usersvalue->name }}</td>
-                          <td>{{ $usersvalue->p_name }}</td>
+                          <td>{{ $usersvalue->u_acc_name }}</td>
                           <td>
-                            <a href="#" class="osa-users-edit" data-orgs="{{$organizations}}" data-id="{{ $usersvalue->user_id }}" data-position="{{ $usersvalue->p_name }}" data-position-id="{{ $usersvalue->p_id }}" data-toggle="modal" data-target="#change-position">
+                            <a href="#" class="osa-add-org" data-orgs="{{$organizations}}" data-positions="{{$positions}}" data-id="{{ $usersvalue->user_id }}" data-toggle="modal" data-target="#change-position">
+                              <i class="material-icons">bubble_chart</i>
+                            </a>
+                            <a href="#" class="osa-user-account-edit" data-orgs="{{$org_grps}}" data-user-accounts="{{$user_accounts}}" data-id="{{ $usersvalue->user_id }}" data-toggle="modal" data-target="#change-user-account">
                               <i class="material-icons">mode_edit</i>
                             </a>
                           </td>
@@ -131,8 +132,12 @@
           <div class="modal-body">
             <div class="row clearfix">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                {{-- This wil contain the list of position filled using ajax --}}
-                <select class="form-control show-tick" name="position_id" id="position-name">&nbsp;</select>
+                <select class="form-control show-tick" name="position_id" id="position-name">
+                  <option value="0">-- Select Position --</option>
+                  @foreach ($positions as $key => $value)
+                    <option value="{{ $value->id }}">{{ $value->name }}</option>
+                  @endforeach
+                </select>
               </div>
             </div>
             </br>
@@ -147,9 +152,9 @@
                 --}}
                 <select class="form-control show-tick" name="organization_id" id="organization-name">
                   <option value="0">-- Select Organization --</option>
-                  <?php foreach ($organizations as $key => $value): ?>
+                  @foreach ($organizations as $key => $value)
                     <option value="{{ $value->id }}">{{ $value->name }}</option>
-                  <?php endforeach; ?>
+                  @endforeach
                 </select>
               </div>
             </div>
@@ -163,6 +168,38 @@
       </div>
     </div>
   </div>
+  
+  <div class="modal fade" id="change-user-account" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form class="" action="#" method="post">
+          {{ csrf_field() }}
+          <input type="hidden" name="id" id="osa-user-id" value="">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="">Edit User's Account Type</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row clearfix">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <select class="form-control show-tick" name="user_account_id" id="user-account-name">
+                  <option value="0">-- Select User Account --</option>
+                  @foreach ($user_accounts as $key => $value)
+                  <option value="{{ $value->id }}">{{ $value->name }}</option>
+                  @endforeach
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary"> <i class="material-icons">save</i>Save</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              <i class="material-icons">close</i> Close</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 @endsection
 
 @section('footer')
