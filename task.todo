@@ -14,6 +14,7 @@ To Do:
                 ☐ List Events
                   ✔ All events of the current year @done(2017-07-14 21:20)
                   ✔ Display the full details of the events @done(2017-07-14 21:20)
+                  ✔ Event dataTables @done(2017-07-14 21:37) 
                   ☐ Upcommig events
 
                 ☐ Need a validation of entry on the following fields, title, description

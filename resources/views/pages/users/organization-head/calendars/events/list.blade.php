@@ -39,7 +39,7 @@
                 </ul>
               </div>
               <div class="body">
-                <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                   <thead>
                     <tr>
                       <th>Title</th>
@@ -48,6 +48,7 @@
                       <th>Time</th>
                       <th>Date End</th>
                       <th>Time</th>
+                      <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -76,6 +77,7 @@
                       <th>Time</th>
                       <th>Date End</th>
                       <th>Time</th>
+                      <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </tfoot>
@@ -152,5 +154,8 @@
 @endsection
 
 @section('footer')
+  <script src="{{ asset('js/jquery.slimscroll.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/jquery.dataTables.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/jquery-datatable.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/app.js') }}?v=0.10" charset="utf-8"></script>
 @endsection
