@@ -17,4 +17,14 @@ class EventCategory extends Model
     protected $fillable = [
       'name',
     ];
+
+    /**
+     * The organization can have many events
+     *
+     * @return object
+     */
+    public function events()
+    {
+      return $this->hasMany('App\Models\Organization');
+    }
 }

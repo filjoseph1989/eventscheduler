@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Event;
+use App\Models\Category;
+use App\Models\EventType;
+use App\Models\Organization;
+use Illuminate\Http\Request;
 
 /**
  * Manage the events
@@ -81,5 +85,24 @@ class EventController extends Controller
       echo json_encode( $event );
     }
 
+  }
+
+  /**
+   * Used to response the http request for a single event
+   * information
+   *
+   * @return json
+   */
+  public function getEvent(Request $data)
+  {
+    $event = Event::find($data->id);
+    $event->load('eventCategory');
+    $event->load('eventType');
+    $event->load('organization');
+    $event->load('user');
+
+    echo json_encode([
+      'event' => $event
+    ]);
   }
 }

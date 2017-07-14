@@ -28,4 +28,43 @@ class Event extends Model
     'venue',
     'status',
   ];
+
+  /**
+   * The events own by organization
+   *
+   * @return object
+   */
+  public function organization()
+  {
+    return $this->belongsTo('App\Models\Organization');
+  }
+
+  /**
+   * The events own by user
+   * @return object
+   */
+  public function user()
+  {
+    return $this->belongsTo('App\Models\User');
+  }
+
+  /**
+   * The events has one category
+   *
+   * @return object
+   */
+  public function eventCategory()
+  {
+    return $this->belongsTo('App\Models\EventCategory');
+  }
+
+  /**
+   * The event has one type
+   *
+   * @return object
+   */
+  public function eventType()
+  {
+    return $this->belongsTo('App\Models\EventType');
+  }
 }

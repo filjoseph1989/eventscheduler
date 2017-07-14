@@ -237,3 +237,67 @@ $('.osa-users-edit').click(function() {
     }
   });
 });
+
+$('.view-event').click(function() {
+  var id = $(this).data('id');
+
+  $.ajax({
+    type: 'POST',
+    url: '/users/event/ajax/get',
+    data: {
+      id: id
+    },
+    dataType: 'json',
+    beforeSend: function(request) {
+      request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
+    },
+    success: function(data) {
+      var event = data.event;
+      event.whole_day = event.whole_day == 1 ? 'Yes' : 'No';
+      event.status    = event.status == 1 ? "Approved" : "Unapproved";
+
+      $('#view-event-title').html(event.event);
+      var html =
+      '<tr>' +
+        '<td>Event Title:</td>' +
+        '<td>'+ event.event + '</td>' +
+      '</tr>' +
+      '<tr>' +
+        '<td>Description:</td>' +
+        '<td>'+ event.description +'</td>' +
+      '</tr>' +
+      '<tr>' +
+        '<td>Date and Time Start:</td>' +
+        '<td>'+ event.date_start + ' ' + event.date_start_time + '</td>' +
+      '</tr>' +
+      '<tr>' +
+        '<td>Date and Time End:</td>' +
+        '<td>'+ event.date_end + ' ' + event.date_end_time + '</td>' +
+      '</tr>' +
+      '<tr>' +
+        '<td>Whole Day?:</td>' +
+        '<td>'+ event.whole_day +'</td>' +
+      '</tr>' +
+      '<tr>' +
+        '<td>Event Type:</td>' +
+        '<td>'+ event.event_type.name + '</td>' +
+      '</tr>' +
+      '<tr>' +
+        '<td>Event Category:</td>' +
+        '<td>'+ event.event_category.name + '</td>' +
+      '</tr>' +
+      '<tr>' +
+        '<td>Organiztion:</td>' +
+        '<td>'+ event.organization.name + '</td>' +
+      '</tr>' +
+      '<tr>' +
+        '<td>Status:</td>' +
+        '<td>'+ event.status + '</td>' +
+      '</tr>';
+      $('#event-details').html(html);
+    },
+    error: function(data) {
+      console.log('Error:');
+    }
+  });
+});

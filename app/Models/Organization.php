@@ -18,12 +18,17 @@ class Organization extends Model
       'name', 'status', 'url', 'date_started', 'date_expired',
     ];
 
-    // public static function registered(){
-    //   return static::where('status', 1)->get();
-    // }
-
     public function scopeRegistered($query){
       return $query->where('status', 1);
     }
 
+    /**
+     * The organization can have many events
+     *
+     * @return object
+     */
+    public function events()
+    {
+      return $this->hasMany('App\Models\Organization');
+    }
 }

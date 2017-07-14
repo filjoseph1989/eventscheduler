@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\FacebookPublished;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
@@ -62,9 +62,21 @@ class User extends Authenticatable
     {
       return $this->belongsTo('App\Models\Course');
     }
+
+    /**
+     * The user can have many events set
+     *
+     * @return object
+     */
+    public function events()
+    {
+      return $this->hasMany('App\Models\Event');
+    }
+
     public function userAccount(){
       return $this->belongsTo('App\Models\UserAccount');
     }
+
     public function userHasOneUserAccount(){
       return $this->hasOne('App\Models\UserAccount');
     }

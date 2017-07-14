@@ -156,7 +156,8 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::prefix('event')->group(function() {
       Route::name('event.new')->post('/new', 'EventController@createNewEvent');
       Route::name('event.gets')->post('/gets', 'EventController@getEventOfTheMonth');
-      Route::name('event.gets')->get('/gets/{get}', 'EventController@getEventOfTheMonth'); 
+      Route::name('event.gets')->get('/gets/{get}', 'EventController@getEventOfTheMonth');
+      Route::name('event.ajax.get')->post('/ajax/get', 'EventController@getEvent');
     });
 
     /**
