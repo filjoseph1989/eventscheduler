@@ -301,3 +301,24 @@ $('.view-event').click(function() {
     }
   });
 });
+
+/**
+ * If the user click on the input that has class
+ *    event-datepicker
+ *    event-timepicker
+ * this function here will trigger and there will be
+ * prompt for date and time
+ *
+ * @type {String}
+ */
+$('.event-datepicker').bootstrapMaterialDatePicker({
+    format: 'YYYY/MM/DD',
+    clearButton: true,
+    weekStart: 1,
+    time: false
+});
+$('.event-timepicker').bootstrapMaterialDatePicker({
+    format: 'HH:mm',
+    clearButton: true,
+    date: false
+});

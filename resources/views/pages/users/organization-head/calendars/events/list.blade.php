@@ -5,6 +5,7 @@
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/all-themes.css') }}">
   <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap-material-datetimepicker.css') }}">
   <link rel="stylesheet" href="{{ asset('css/sweetalert.css') }}">
 @endsection
 
@@ -82,7 +83,7 @@
                     </tr>
                   </tfoot>
                 </table>
-                <a href="#" type="button" class="btn btn-success" name="button">
+                <a href="#" type="button" class="btn btn-success" name="button" data-toggle="modal" data-target="#add-event">
                   <i class="material-icons">add</i> Add New
                 </a>
               </div>
@@ -126,28 +127,95 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="edit-user-account" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal fade" id="add-event" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="">Edit User Account</h4>
-        </div>
-        <div class="modal-body">
-            <div class="form-group form-float form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-              <div class="form-line">
-                <input type="text" class="form-control" name="name">
-                <label class="form-label">Name</label>
-                @if ($errors->has('name'))
-                  <span class="help-block"> <strong>{{ $errors->first('name') }}</strong> </span>
-                @endif
+        <form class="" id="add-event-form" action="#" method="POST">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="">Create New Event</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row clearfix">
+              <div class="col-sm-8 col-sm-offset-2">
+                <input type="hidden" name="user_id" value="1">
+                <div class="form-group form-float form-group">
+                  <div class="form-line">
+                    <input type="text" class="form-control" id="event" name="event" placeholder="Name of the event" value="" required="true" autofocus="">
+                  </div>
+                </div>
+                <div class="form-group form-float form-group">
+                  <div class="form-line">
+                    <textarea rows="4" class="form-control no-resize" id="description" name="description" placeholder="Description of the event"></textarea>
+                  </div>
+                </div>
+                <div class="form-group form-float form-group">
+                  <div class="form-line">
+                    <input type="text" class="form-control" id="venue" name="venue" placeholder="Venue" value="">
+                  </div>
+                </div>
+                <div class="form-group form-float form-group">
+                  <div class="form-line">
+                    <input type="text" class="form-control event-datepicker" id="date_start" name="date_start" placeholder="Select Date Start" value="" data-dtp="dtp_mR6wO">
+                  </div>
+                </div>
+                <div class="form-group form-float form-group">
+                  <div class="form-line">
+                    <input type="text" class="form-control event-timepicker" id="date_start_time" name="date_start_time" placeholder="Select Time Start" value="" data-dtp="dtp_Ty5Ak">
+                  </div>
+                </div>
+                <div class="form-group form-float form-group">
+                  <div class="form-line">
+                    <input type="text" class="form-control event-datepicker" id="date_end" name="date_end" placeholder="Select Date End" value="" data-dtp="dtp_WVmA7">
+                  </div>
+                </div>
+                <div class="form-group form-float form-group">
+                  <div class="form-line">
+                    <input type="text" class="form-control event-timepicker" id="date_end_time" name="date_end_time" placeholder="Select Time End" value="" data-dtp="dtp_Cymge">
+                  </div>
+                </div>
+                <div class="form-group form-float">
+                  <div class="form-line focused">
+                    <select class="form-control show-tick" id="whole-day" name="whole_day">
+                      <option value="0">-- Whole day? --</option>
+                      <option value="1">YES</option>
+                      <option value="0">NO</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group form-float form-group">
+                  <div class="form-line focused">
+                    <select class="form-control show-tick" id="event-type" name="event_type_id">
+                      <option value="0">-- Select type of event--</option>
+                      <option value="1">Conference</option>
+                      <option value="2">Symposium</option>
+                      <option value="3">Siminar</option>
+                      <option value="4">Workshop</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group form-float form-group">
+                  <div class="form-line focused">
+                    <select class="form-control show-tick" id="event-category" name="event_category_id">
+                      <option value="0">-- Select audience for this event--</option>
+                      <option value="1">public view</option>
+                      <option value="2">within organizations</option>
+                      <option value="3">among organizations</option>
+                    </select>
+                  </div>
+                </div>
               </div>
             </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
-            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
-        </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">
+              <i class="material-icons">save</i> Save
+            </button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              <i class="material-icons">close</i> Close
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -157,5 +225,8 @@
   <script src="{{ asset('js/jquery.slimscroll.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/jquery.dataTables.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/jquery-datatable.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/app.js') }}?v=0.10" charset="utf-8"></script>
+  <script src="{{ asset('js/autosize.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/moment.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.11" charset="utf-8"></script>
 @endsection
