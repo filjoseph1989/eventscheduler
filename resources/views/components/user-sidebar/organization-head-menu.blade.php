@@ -32,7 +32,7 @@
           <a href="#">Create Events</a>
         </li>
         <li>
-          <a href="{{ route('event.gets', true) }}">List of Events</a>
+          <a href="{{ route('event.get') }}">List of Events</a>
         </li>
         <li>
           <a href="#">Manage Notifications</a>

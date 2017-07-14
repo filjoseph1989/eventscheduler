@@ -12,6 +12,9 @@ To Do:
             ☐ Display the calendar for the chosen organization:
               ✔ Add event in the database @done(2017-07-14 21:38)
               ☐ Add new event not on calendar
+                ✔ Only add event without anything @done(2017-07-15 01:16)
+                ☐ Within an organization
+                ☐ with personnal
               ☐ List Events
                 ✔ All events of the current year @done(2017-07-14 21:20)
                 ✔ Display the full details of the events @done(2017-07-14 21:20)
