@@ -19,6 +19,12 @@
         @include('pages.users.sidebar')
     @endif
 
+    <?php if (session('status')): ?>
+      <div class="alert alert-success">
+        {{ session('status') }}
+      </div>
+    <?php endif; ?>
+
     <section class="content">
       <div class="container-fluid">
         <div class="row clearfix">
@@ -130,7 +136,7 @@
   <div class="modal fade" id="add-event" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form class="" id="add-event-form" action="#" method="POST">
+        <form class="" id="add-event-form" action="{{ route('event.new') }}" method="POST">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="">Create New Event</h4>
@@ -138,7 +144,9 @@
           <div class="modal-body">
             <div class="row clearfix">
               <div class="col-sm-8 col-sm-offset-2">
-                <input type="hidden" name="user_id" value="1">
+                {{ csrf_field() }}
+                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                <input type="hidden" name="from_calendar" value="1">
                 <div class="form-group form-float form-group">
                   <div class="form-line">
                     <input type="text" class="form-control" id="event" name="event" placeholder="Name of the event" value="" required="true" autofocus="">
@@ -208,7 +216,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary">
               <i class="material-icons">save</i> Save
             </button>
             <button type="button" class="btn btn-default" data-dismiss="modal">

@@ -13,8 +13,8 @@ use Illuminate\Http\Request;
  * Manage the events
  *
  * @author jlvoice777
- * @since 0
- * @version 0.1
+ * @since 0.0.0
+ * @version 0.2
  */
 class EventController extends Controller
 {
@@ -35,6 +35,8 @@ class EventController extends Controller
    */
   public function createNewEvent(Request $data)
   {
+    $fromCalendar = isset($data->from_calendar) ? $data->from_calendar : null;
+
     # Reformat submitted date to mysql compatible format
     $request = [];
     foreach ($data->form as $key => $value) {
@@ -56,11 +58,16 @@ class EventController extends Controller
     $request['date_start'] = str_replace('/', '-', $request['date_start']);
     $request['date_end']   = str_replace('/', '-', $request['date_end']);
 
-    # Response to HTTP request (ajax)
-    echo json_encode([
-      'request'            => $request,
-      'wasRecentlyCreated' => $result->wasRecentlyCreated
-    ]);
+    if (isset($fromCalendar)) {
+      return redirect()->route('event.gets')
+        ->with('status', 'Successfuly Added new event');
+    } else {
+      # Response to HTTP request (ajax)
+      echo json_encode([
+        'request'            => $request,
+        'wasRecentlyCreated' => $result->wasRecentlyCreated
+      ]);
+    }
   }
 
   /**
