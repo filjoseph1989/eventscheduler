@@ -9,17 +9,29 @@ To Do:
         ☐ All Organization Calendar
         ☐ My Organization Calendar:
           ☐ Chose organization first:
+            ☐ Add new event not on calendar
+              ✔ Only add event without anything @done(2017-07-15 01:16)
+              ☐ Check if event already exist?
+              ☐ Within an organization
+              ☐ with personnal
+              ☐ Chose which calendar it should display
+                ☐ Personal calendar
+                ☐ Organization calendar
+                ☐ if the user chose a calendar, is he/she allowed to create event on that calendar?
+                ☐ if chose calendar is organization display organization dropdown
+                  else no dropdown
+            ☐ List Events
+              ✔ All events of the current year @done(2017-07-14 21:20)
+              ✔ Display the full details of the events @done(2017-07-14 21:20)
+              ✔ Event dataTables @done(2017-07-14 21:37)
+              ☐ Upcommig events
+            ☐ Display event in the table with status approved or not
+              ✔ Display the event @done(2017-07-15 12:27)
+              ☐ if not approved yet, who will approved?
+              ☐ what are the process of approving events?
+              ☐ Once approve, Who will be notified?
             ☐ Display the calendar for the chosen organization:
               ✔ Add event in the database @done(2017-07-14 21:38)
-              ☐ Add new event not on calendar
-                ✔ Only add event without anything @done(2017-07-15 01:16)
-                ☐ Within an organization
-                ☐ with personnal
-              ☐ List Events
-                ✔ All events of the current year @done(2017-07-14 21:20)
-                ✔ Display the full details of the events @done(2017-07-14 21:20)
-                ✔ Event dataTables @done(2017-07-14 21:37)
-                ☐ Upcommig events
               ☐ Need a validation of entry on the following fields, title, description
               ✔ Alter the events table @done(2017-07-09 20:25)
               ✔ What are the process of adding calendar data to the database @done(2017-07-13 15:43)
@@ -32,10 +44,6 @@ To Do:
                 ☐ Display the modal for editing
                   ☐ fetch the data from source, either from database or within the calendar itself?
               ✔ Display again the events setted previously from the calendar. @done(2017-07-13 15:37)
-              ☐ Display event in the table with status approved or not
-                ☐ if not approved yet, who will approved?
-                ☐ what are the process of approving events?
-                ☐ Once approve, Who will be notified?
 
               Issues:
                 ✔ When the user click on the calendar date, then try to chose date and time, it should match the clicked date @done(2017-07-13 15:41)
@@ -63,11 +71,20 @@ To Do:
     ✔ Add user  @done(2017-07-03 00:41)
   ☐ Task 29 - Different user dashboard:
     ☐ Define the sidebar details for deffirent type of user
+      ☐ Admin
+      ☐ Organization-head
+      ☐ Organization-adviser
+      ☐ Organization-member
+      ☐ OSA Personnel
     ✔ Defined initial info-box for a Different type of user @done(2017-07-02 15:11)
   ☐ Task 28 - Login as OSA:
     ☐ Organization:
       ☐ Generate Attendance
-      ☐ List
+      ☐ List of events
+        ☐ On OSA account, display the upnapproved events and then they will be the one to chose who will approve
+          ☐ They can also set personnalities for approving
+          ☐ What if the approver is not available?
+            ☐ On approvers page, he can chose of whom can approve when he not around
   ☐ Task 27 - Create a function which return an information about css and js version
   ☐ Task 25 - Manage Event Types:
     ☐ Browse

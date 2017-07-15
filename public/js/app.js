@@ -322,3 +322,13 @@ $('.event-timepicker').bootstrapMaterialDatePicker({
     clearButton: true,
     date: false
 });
+
+$('#event-calendar').click(function() {
+  var value = $(this).val();
+  if (value == 2) {
+    $('#form-event-organization').removeClass('hidden');
+    
+  } else {
+    $('#form-event-organization').addClass('hidden');
+  }
+});

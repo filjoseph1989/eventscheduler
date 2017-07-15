@@ -30,18 +30,6 @@
             <div class="card">
               <div class="header">
                 <h2> NEW EVENTS </h2>
-                <ul class="header-dropdown m-r--5">
-                  <li class="dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                      <i class="material-icons">more_vert</i>
-                    </a>
-                    <ul class="dropdown-menu pull-right">
-                      <li><a href="javascript:void(0);">Action</a></li>
-                      <li><a href="javascript:void(0);">Another action</a></li>
-                      <li><a href="javascript:void(0);">Something else here</a></li>
-                    </ul>
-                  </li>
-                </ul>
               </div>
               <div class="body">
                 <form class="" id="add-event-form" action="{{ route('event.new') }}" method="POST">
@@ -115,6 +103,81 @@
                           </select>
                         </div>
                       </div>
+                      <div class="form-group form-float form-group">
+                        <div class="form-line focused">
+                          <select class="form-control show-tick" id="event-calendar" name="calendar">
+                            <option value="0">-- Select Calendar for this event --</option>
+                            <option value="1">University Calendar</option>
+                            <option value="2">Organization Calendar</option>
+                            <option value="3">Personal Calendar</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group form-float form-group hidden" id="form-event-organization">
+                        <div class="form-line focused">
+                          <select class="form-control show-tick" id="event-organization" name="organization_id">
+                            <option value="0">-- Select Organization for this event --</option>
+                            <option value="1">Organization One</option>
+                            <option value="2">Organization two</option>
+                            <option value="3">Organization three</option>
+                            <option value="4">Organization four</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row clearfix">
+                    <div class="col-sm-8 col-sm-offset-2">
+                      <h4>Notification</h4>
+                    </div>
+                  </div>
+                  <div class="row clearfix">
+                    <div class="col-sm-8 col-sm-offset-2">
+                      <div class="demo-switch">
+                          <div class="switch" id="facebook">
+                            <label>OFF<input type="checkbox" checked><span class="lever switch-col-indigo"></span>ON</label> Facebook
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row clearfix">
+                    <div class="col-sm-8 col-sm-offset-2">
+                      <div class="demo-switch">
+                          <div class="switch" id="instagram">
+                            <label>OFF<input type="checkbox" checked><span class="lever switch-col-deep-orange"></span>ON</label> Instagram
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row clearfix">
+                    <div class="col-sm-8 col-sm-offset-2">
+                      <div class="demo-switch">
+                          <div class="switch" id="twitter">
+                            <label>OFF<input type="checkbox" checked><span class="lever switch-col-blue"></span>ON</label> Twitter
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row clearfix">
+                    <div class="col-sm-8 col-sm-offset-2">
+                      <div class="demo-switch">
+                          <div class="switch" id="email">
+                            <label>OFF<input type="checkbox" checked><span class="lever switch-col-teal"></span>ON</label> Email
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row clearfix">
+                    <div class="col-sm-8 col-sm-offset-2">
+                      <div class="demo-switch">
+                        <div class="switch" id="phone">
+                          <label>OFF<input type="checkbox" checked><span class="lever switch-col-pink"></span>ON</label> Phone
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row clearfix">
+                    <div class="col-sm-8 col-sm-offset-2">
                       <div class="form-group form-float form-group">
                         <button type="submit" class="btn btn-primary">
                           <i class="material-icons">save</i> Save
@@ -262,10 +325,8 @@
 
 @section('footer')
   <script src="{{ asset('js/jquery.slimscroll.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/jquery.dataTables.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/jquery-datatable.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/autosize.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/moment.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/app.js') }}?v=0.11" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.12" charset="utf-8"></script>
 @endsection
