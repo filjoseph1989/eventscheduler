@@ -119,8 +119,31 @@ class OsaAccountController extends Controller
 
   public function approveEvents()
   {
-    
-    $login_type = 'user';
-    return view('pages.users.osa-user.events.approve-events', compact('login_type'));
+    $events = new Event();
+    $ev = $events->select(
+       'events.id',
+       'events.event_type_id',
+       'events.event_category_id',
+       'events.organization_id',
+       'events.event',
+       'events.description',
+       'events.venue',
+       'events.date_start',
+       'events.date_end',
+       'events.date_start_time',
+       'events.date_end_time',
+       'events.whole_day',
+       'events.status',
+       'events.approver_count',
+       'organization_groups.user_id as orgg_uid',
+       'organizations.name as org_name'
+      )
+      ->join('organization_groups', 'events.organization_id', '=', 'organization_groups.id')
+      ->join('organizations', 'events.organization_id', '=', 'organizations.id')
+      ->where('organization_groups.user_id', '=', Auth::user()->id)
+      ->get();
+
+      $login_type = 'user';
+      return view('pages.users.osa-user.events.approve-events', compact('login_type','ev'));
   }
 }

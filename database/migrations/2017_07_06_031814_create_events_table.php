@@ -29,7 +29,7 @@ class CreateEventsTable extends Migration
             $table->time('date_end_time')->default('00:00:00');
             $table->integer('whole_day');
             $table->tinyInteger('status')->default(0);
-            $table->integer('approver_count');
+            $table->integer('approver_count')->default(0);
             $table->timestamps();
             $table->softDeletes();
 

@@ -38,6 +38,7 @@
                       {{ csrf_field() }}
                       <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                       <input type="hidden" name="from_calendar" value="1">
+                      <input type="hidden" name="approver_count" value="0">
                       <div class="form-group form-float form-group">
                         <div class="form-line">
                           <input type="text" class="form-control" id="event" name="event" placeholder="Name of the event" value="" required="true" autofocus="">

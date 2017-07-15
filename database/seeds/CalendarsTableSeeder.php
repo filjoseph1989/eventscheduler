@@ -17,8 +17,9 @@ class CalendarsTableSeeder extends Seeder
         'University Calendar',
         'My Organization Calendar',
         'My Personnal Calendar',
+        'All Organization Calendar',
       ];
-      
+
       foreach ($name as $key => $value) {
         Calendar::create(['name' => $value]);
       }
