@@ -26,7 +26,7 @@
     </li>
   </ul>
   <a href="#" class="menu-toggle">
-    <i class="material-icons">supervisor_account</i>
+    <i class="material-icons">event</i>
     <span>Events</span>
   </a>
   <ul class="ml-menu">
@@ -47,7 +47,7 @@
     </li>
   </ul>
   <a href="#" class="menu-toggle">
-    <i class="material-icons">supervisor_account</i>
+    <i class="material-icons">contacts</i>
     <span>Manage Users</span>
   </a>
   <ul class="ml-menu">
@@ -56,5 +56,52 @@
         <span>List Of Users</span>
       </a>
     </li>
+  </ul>
+  <a href="#" class="menu-toggle">
+    <i class="material-icons">date_range</i>
+    <span>Manage Schedule</span>
+  </a>
+  <ul class="ml-menu">
+    <li>
+      <a href="{{ route('university-calendar') }}">
+        <span>University Calendar</span>
+      </a>
+    </li>
+    <li>
+      <a href="{{ route('all-organization-calendar') }}">
+        <span>All Organization Calendar</span>
+      </a>
+    </li>
+    <li>
+      <a href="{{ route('my-organization-calendar') }}">
+        <span>My Organization Calendar</span>
+      </a>
+    </li>
+    <li>
+      <a href="{{ route('my-personal-calendar') }}">
+        <span>My Personal Calendar</span>
+      </a>
+    </li>
+  </ul>
+  <a href="#">
+    <i class="material-icons">people_outline</i>
+    <span>Generate Attendance</span>
+  </a>
+  <a href="#" class="menu-toggle">
+    <i class="material-icons">info_outline</i>
+    <span>Manage Notifications</span>
+  </a>
+  <ul class="ml-menu">
+    <li>
+      <a href="{{ route('event.show') }}">
+        <span>Events You Created</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <span>All Events</span>
+      </a>
+    </li>
+    <li>
   </ul>
 </li>

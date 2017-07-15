@@ -41,7 +41,7 @@
             <div class="card">
               <div class="header">
                 <h2>
-                  Events
+                  Events You Created
                   <small>Choose event for notification, user search for easy filtering</small>
                 </h2>
                 <ul class="header-dropdown m-r--5">
@@ -50,9 +50,7 @@
                       <i class="material-icons">more_vert</i>
                     </a>
                     <ul class="dropdown-menu pull-right">
-                      <li><a href="javascript:void(0);">Action</a></li>
-                      <li><a href="javascript:void(0);">Another action</a></li>
-                      <li><a href="javascript:void(0);">Something else here</a></li>
+                      <li><a href="javascript:void(0);">All Events</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -77,7 +75,7 @@
                     @if (isset($events))
                       @foreach ($events as $usersKey => $usersvalue)
                         <tr>
-                          <td>{{ $usersvalue->name }}</td>
+                          <td>{{ $usersvalue->event }}</td>
                           <td>{{ $usersvalue->event_type_name }}</td>
                           <td>{{ $usersvalue->event_category_name }}</td>
                           <td>{{ $usersvalue->organization_name }}</td>
@@ -90,8 +88,8 @@
                             <a href="#" class="events-delete delete">
                               <i class="material-icons">delete</i>
                             </a>
-                            <a href="#" class="events-edit" data-toggle="modal" data-target="#edit-events">
-                              <i class="material-icons">mode_edit</i>
+                            <a href="#" class="events-edit" title="Send announcement about this event" data-toggle="modal" data-target="#edit-events">
+                              <i class="material-icons">share</i>
                             </a>
                           </td>
                         </tr>
@@ -140,10 +138,6 @@
             <div class="switch" id="facebook">
               <label>OFF<input type="checkbox" name='facebook' checked><span class="lever switch-col-indigo"></span>ON</label>
               Facebook
-            </div>
-            <div class="switch" id="instagram">
-              <label>OFF<input type="checkbox" name='instagram' checked><span class="lever switch-col-deep-orange"></span>ON</label>
-              Instagram
             </div>
             <div class="switch" id="twitter">
               <label>OFF<input type="checkbox" name='twitter' checked><span class="lever switch-col-blue"></span>ON</label>

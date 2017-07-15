@@ -111,6 +111,8 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('user.delete')->post('/user/delete', 'UserController@delete');
     Route::name('user.register')->post('/user/register', 'UserController@adminCreate');
     Route::name('user.update.position')->post('/user/update/position', 'UserController@updatePosition');
+    Route::name('user.update.user_account')->post('/user/update/user_account', 'UserController@updateUserAccount');
+    Route::name('user.get')->post('/user/get', 'UserController@gets');
 
     # Course Crud
     Route::name('course.list')->get('/course/list', 'CourseController@showAllCourseList');

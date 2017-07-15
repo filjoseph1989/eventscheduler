@@ -16,7 +16,7 @@
   <a href="#">
     <div class="info-box {{ session('color') }} hover-expand-effect">
     <div class="icon">
-      <i class="material-icons">bubble_chart</i>
+      <i class="material-icons">people_outline</i>
     </div>
     <div class="content">
       <div class="text">Generate Attendance</div>
@@ -29,7 +29,7 @@
   <a href="{{ route('event.show') }}">
     <div class="info-box {{ session('color') }} hover-expand-effect">
       <div class="icon">
-        <i class="material-icons">people</i>
+        <i class="material-icons">info_outline</i>
       </div>
       <div class="content">
         <div class="text">Manage Notifications</div>

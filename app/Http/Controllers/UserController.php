@@ -198,12 +198,24 @@ class UserController extends Controller
         // return User::find($data->id);
     }
 
-    public function gets()
+    /**
+     * [gets description]
+     * @return [type] [description]
+     */
+    public function gets(Request $data)
     {
-        $user = User::all();
-        foreach ($user as $key => $value) {
-            d($value->department->name);
-        }
+      # Note: use eloquent for this code
+      $org = new OrganizationGroup();
+      $orgs = $org->select('organization.name as org_name', 'position.name as pos_name')
+        ->join('organization', 'organization.id', '=', 'organization_group.organization_id')
+        ->join('position', 'position.id', '=', 'organization_group.position_id')
+        ->join('users', 'users.id', '=', 'users.user_id')
+        ->where('users.id','=',$data->id)
+        ->get();
+
+      echo json_encode(
+        'result' => $orgs
+      );
     }
 
     /**
@@ -228,16 +240,29 @@ class UserController extends Controller
     {
       #Note: Need validation i think
 
-      $user = User::find($request->id);
+      $user                                = User::find($request->id);
 
-      $organization_group = new OrganizationGroup();
-      $organization_group->user_id = $request->id;
-      $organization_group->organization_id = $request->organization_id;
-      $organization_group->position_id = $request->position_id;
+      $organization_group                  = new OrganizationGroup();
+      $organization_group->user_id         = $user->id;
+      $organization_group->organization_id = $request->add_organization_id;
+      $organization_group->position_id     = $request->add_position_id;
 
       if ( $organization_group->save() && $user->save() ) {
         return redirect()->route('osa.user.list')
           ->with('status', "Successfuly added {$user->first_name}'s organization/s with corresponding positions");
+      }
+    }
+
+    public function updateUserAccount(Request $request)
+    {
+      #Note: Need validation i think
+
+      $user = User::find($request->id);
+      $user->user_account_id = $request->edit_user_account_id;
+
+      if ($user->save() ) {
+        return redirect()->route('osa.user.list')
+          ->with('status', "Successfuly changed {$user->first_name}'s account type");
       }
     }
 
