@@ -57,7 +57,7 @@ class OsaAccountController extends Controller
     ->get();
 
     $login_type = 'user';
-    return view('pages.users.osa-user.users.list', compact('login_type','data', 'organizations', 'positions', 'org_grps', 'user_accounts'));
+    return view('pages.users.osa-user.manage-users.list', compact('login_type','data', 'organizations', 'positions', 'org_grps', 'user_accounts'));
   }
 
   public function showAllOrganizationList()

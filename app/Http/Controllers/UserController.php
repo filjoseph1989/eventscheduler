@@ -214,7 +214,7 @@ class UserController extends Controller
         ->get();
 
       echo json_encode(
-        'result' => $orgs
+        ['result' => $orgs]
       );
     }
 

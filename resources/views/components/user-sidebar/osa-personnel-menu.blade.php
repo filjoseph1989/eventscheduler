@@ -98,7 +98,7 @@
       </a>
     </li>
     <li>
-      <a href="#">
+      <a href="{{ route('event.get') }}">
         <span>All Events</span>
       </a>
     </li>
