@@ -19,11 +19,6 @@
         <span>Add an organization</span>
       </a>
     </li>
-    <li>
-      <a href="#">
-        <span>Assign positions in organizations</span>
-      </a>
-    </li>
   </ul>
   <a href="#" class="menu-toggle">
     <i class="material-icons">event</i>
@@ -38,11 +33,6 @@
     <li>
       <a href="{{ route('osa.event.new') }}">
         <span>Create an event</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <span>Generate Event Attendance</span>
       </a>
     </li>
   </ul>
