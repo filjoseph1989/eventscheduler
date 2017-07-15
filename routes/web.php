@@ -169,6 +169,8 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('osa.user.list')->get('osa/list_of_users','OsaAccountController@showAllUserList');
     Route::name('osa.org.list')->get('osa/list_of_organizations','OsaAccountController@showAllOrganizationList');
     Route::name('osa.org.add')->get('osa/organization/add', 'OsaAccountController@showOrganizationAddForm');
+    Route::name('osa.event.get')->get('osa/event/get', 'OsaAccountController@getEventOfTheMonthList');
+    Route::name('osa.event.new')->get('osa/event/new', 'OsaAccountController@createNewEventForm');
     /**
      * Admin User Account Type
      */

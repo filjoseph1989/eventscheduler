@@ -9,6 +9,12 @@ use App\Models\Organization;
 use App\Models\OrganizationGroup;
 use Illuminate\Http\Request;
 
+use App\Models\Event;
+use App\Models\Calendar;
+use App\Models\Category;
+use App\Models\EventType;
+
+
 class OsaAccountController extends Controller
 {
   /**
@@ -89,5 +95,24 @@ class OsaAccountController extends Controller
     ->join('users', 'organization_groups.user_id', '=', 'users.id')
     ->join('organizations', 'organization_groups.organization_id', '=', 'organizations.id')
     ->get();
+  }
+
+  public function getEventOfTheMonthList()
+  {
+    # Issue 23: find a way to make it more laravel
+    $event = new Event();
+    $event = $event->query("select * from events where date_start = YEAR('".date('YYYY/mm/dd')."')");
+    $event = $event->get();
+
+    $login_type = 'user';
+    $calendar   = Calendar::all();
+    return view('pages.users.osa-user.events.list', compact('login_type', 'event', 'calendar'));
+  }
+
+  public function createNewEventForm()
+  {
+    $login_type = 'user';
+    $calendar   = Calendar::all();
+    return view('pages.users.osa-user.events.new_event', compact('login_type', 'calendar'));
   }
 }

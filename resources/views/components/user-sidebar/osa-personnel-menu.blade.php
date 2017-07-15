@@ -31,12 +31,12 @@
   </a>
   <ul class="ml-menu">
     <li>
-      <a href="#">
+      <a href="{{ route('osa.event.get') }}">
         <span>List of Events</span>
       </a>
     </li>
     <li>
-      <a href="#">
+      <a href="{{ route('osa.event.new') }}">
         <span>Create an event</span>
       </a>
     </li>
