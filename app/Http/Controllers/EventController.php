@@ -157,7 +157,8 @@ class EventController extends Controller
     $event = $event->get();
 
     $login_type = 'user';
-    return view('pages.users.organization-head.calendars.events.list', compact('login_type', 'event'));
+    $calendar   = Calendar::all();
+    return view('pages.users.organization-head.calendars.events.list', compact('login_type', 'event', 'calendar'));
   }
 
   /**
