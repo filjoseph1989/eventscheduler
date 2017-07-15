@@ -8,7 +8,7 @@ class CreateUsersTable extends Migration
 {
     /**
      *
-     * 
+     *
      * Run the migrations.
      *
      * @return void
@@ -32,6 +32,7 @@ class CreateUsersTable extends Migration
           $table->string('instagram_username')->nullable()->unique();
           $table->string('mobile_number', '12');
           $table->tinyInteger('status')->default(0);
+          $table->tinyInteger('approver_or_not')->default(0);
           $table->softDeletes();
           $table->rememberToken();
           $table->timestamps();

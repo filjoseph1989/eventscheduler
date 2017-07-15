@@ -74,6 +74,7 @@ class UsersTableSeeder extends Seeder
                'instagram_username' => $instagram_username,
                'mobile_number'      => $faker->numberBetween($min = 1000, $max = 9000),
                'status'             => 0,
+               'approver_or_not'    => 0,
                'remember_token'     => NULL
            ]);
       }
@@ -94,6 +95,7 @@ class UsersTableSeeder extends Seeder
               'instagram_username' => 'adminuser@email.com',
               'mobile_number'      => '9958633866',
               'status'             => 1,
+              'approver_or_not'    => 0,
               'remember_token'     => NULL
           ),
           array(
@@ -112,6 +114,7 @@ class UsersTableSeeder extends Seeder
             'instagram_username' => 'adviseruser@email.com',
             'mobile_number'      => '9958633866',
             'status'             => 1,
+            'approver_or_not'    => 0,
             'remember_token'     => NULL
           ),
           array(
@@ -130,6 +133,7 @@ class UsersTableSeeder extends Seeder
                 'instagram_username' => 'headuser@email.com',
                 'mobile_number'      => '9958633866',
                 'status'             => 1,
+                'approver_or_not'    => 0,
                 'remember_token'     => NULL
           ),
           array(
@@ -148,6 +152,7 @@ class UsersTableSeeder extends Seeder
             'instagram_username' => 'memberuser@email.com',
             'mobile_number'      => '9958633866',
             'status'             => 1,
+            'approver_or_not'    => 0,
             'remember_token'     => NULL
           ),
           array(
@@ -166,6 +171,7 @@ class UsersTableSeeder extends Seeder
                   'instagram_username' => 'osauser@email.com',
                   'mobile_number'      => '9958633866',
                   'status'             => 1,
+                  'approver_or_not'    => 0,
                   'remember_token'     => NULL
           ),
       ]);

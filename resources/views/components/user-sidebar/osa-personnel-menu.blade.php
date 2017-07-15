@@ -22,17 +22,22 @@
   </ul>
   <a href="#" class="menu-toggle">
     <i class="material-icons">event</i>
-    <span>Events</span>
+    <span>Manage Events</span>
   </a>
   <ul class="ml-menu">
     <li>
       <a href="{{ route('osa.event.get') }}">
-        <span>List of Events</span>
+        <span>List of events</span>
       </a>
     </li>
     <li>
       <a href="{{ route('osa.event.new') }}">
         <span>Create an event</span>
+      </a>
+    </li>
+    <li>
+      <a href="{{ route('osa.event.approval') }}">
+        <span>Approve events</span>
       </a>
     </li>
   </ul>
@@ -92,6 +97,6 @@
         <span>All Events</span>
       </a>
     </li>
-    <li>
+
   </ul>
 </li>

@@ -39,7 +39,8 @@ class OsaAccountController extends Controller
       'users.last_name',
       'users.email',
       'users.mobile_number',
-      'users.status'
+      'users.status',
+      'users.approver_or_not'
     )
     ->join('user_accounts', 'users.user_account_id', '=', 'user_accounts.id')
     ->where('user_accounts.name', '!=', 'admin')
@@ -114,5 +115,12 @@ class OsaAccountController extends Controller
     $login_type = 'user';
     $calendar   = Calendar::all();
     return view('pages.users.osa-user.events.new_event', compact('login_type', 'calendar'));
+  }
+
+  public function approveEvents()
+  {
+    
+    $login_type = 'user';
+    return view('pages.users.osa-user.events.approve-events', compact('login_type'));
   }
 }
