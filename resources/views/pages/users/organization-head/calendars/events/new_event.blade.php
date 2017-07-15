@@ -143,15 +143,6 @@
                   <div class="row clearfix">
                     <div class="col-sm-8 col-sm-offset-2">
                       <div class="demo-switch">
-                          <div class="switch" id="instagram">
-                            <label>OFF<input type="checkbox" checked><span class="lever switch-col-deep-orange"></span>ON</label> Instagram
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row clearfix">
-                    <div class="col-sm-8 col-sm-offset-2">
-                      <div class="demo-switch">
                           <div class="switch" id="twitter">
                             <label>OFF<input type="checkbox" checked><span class="lever switch-col-blue"></span>ON</label> Twitter
                           </div>

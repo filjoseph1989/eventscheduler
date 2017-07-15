@@ -4,6 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
+/**
+ * @author jlvoice777
+ * @since 0.1
+ * @version 0.2
+ * @updated 7/15/2017
+ */
 class Event extends Model
 {
   use SoftDeletes;
@@ -66,5 +73,18 @@ class Event extends Model
   public function eventType()
   {
     return $this->belongsTo('App\Models\EventType');
+  }
+
+  /**
+   * This define the relationship between
+   * calendar and events.
+   *
+   * For every events it correspond to one calendar
+   *
+   * @return
+   */
+  public function calendar()
+  {
+    return $this->belongsTo('App\Models\Calendar');
   }
 }

@@ -19,6 +19,7 @@ class CreateEventsTable extends Migration
             $table->integer('event_category_id')->unsigned()->index();
             $table->integer('organization_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
+            $table->integer('calendar_id')->unsigned()->index();
             $table->string('event');
             $table->text('description');
             $table->string('venue');
@@ -36,6 +37,7 @@ class CreateEventsTable extends Migration
             $table->foreign('event_category_id')->references('id')->on('event_categories');
             $table->foreign('organization_id')->references('id')->on('organizations');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('calendar_id')->references('id')->on('calendars');
         });
     }
 
