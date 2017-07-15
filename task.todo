@@ -11,8 +11,10 @@ To Do:
           ☐ Chose organization first:
             ☐ Add new event not on calendar
               ✔ Only add event without anything @done(2017-07-15 01:16)
-              ☐ Check if event already exist?
+              ✔ Chose organization @done(2017-07-15 18:59)
+              ☐ What there no entry?
               ☐ Within an organization
+              ☐ Check if event already exist?
               ☐ within personnal
               ☐ Chose which calendar it should display
                 ☐ Personal calendar

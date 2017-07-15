@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Event;
+use App\Models\Calendar;
 use App\Models\Category;
 use App\Models\EventType;
 use App\Models\Organization;
@@ -47,6 +48,10 @@ class EventController extends Controller
           $request[$value['name']] = $value['value'];
         }
       }
+
+      # Add the organization ID
+      # Issue 26: This should be dynamic and the ID should come from from in view
+      $request['organization_id'] = 1;
     } else {
       $request = $data->only(
         'user_id',
@@ -60,18 +65,40 @@ class EventController extends Controller
         'date_end_time',
         'whole_day',
         'event_type_id',
-        'event_category_id'
+        'event_category_id',
+        'organization_id',
+        'calendar_id'
       );
     }
-
-    # Add the organization ID
-    # Issue 26: This should be dynamic and the ID should come from from in view
-    $request['organization_id'] = 1;
 
     # Update the table events
     $result = Event::create($request);
 
-    #
+    # Make notification here after successfull insert of event
+    if ($result->wasRecentlyCreated) {
+      # Make notification here
+      if ($data->facebook == 'on') {
+        /*
+          facebook notification here
+         */
+      }
+      if ($data->twitter == 'on') {
+        /*
+          twitter notification here
+         */
+      }
+      if ($data->email == 'on') {
+        /*
+          email notification here
+         */
+      }
+      if ($data->phone == 'on') {
+        /*
+          phone notification here
+         */
+      }
+    }
+
     if (isset($fromCalendar)) {
       return redirect()->route('event.get')
         ->with('status', 'Successfuly Added new event');
@@ -99,7 +126,8 @@ class EventController extends Controller
   public function createNewEventForm()
   {
     $login_type = 'user';
-    return view('pages.users.organization-head.calendars.events.new_event', compact('login_type'));
+    $calendar   = Calendar::all();
+    return view('pages.users.organization-head.calendars.events.new_event', compact('login_type', 'calendar'));
   }
 
   /**

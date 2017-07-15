@@ -238,6 +238,11 @@ $('.osa-users-edit').click(function() {
   });
 });
 
+/**
+ * Display the event details in modal
+ *
+ * @return
+ */
 $('.view-event').click(function() {
   var id = $(this).data('id');
 
@@ -323,11 +328,35 @@ $('.event-timepicker').bootstrapMaterialDatePicker({
     date: false
 });
 
+/**
+ * Display the organization dropdown
+ *
+ * @return
+ */
 $('#event-calendar').click(function() {
   var value = $(this).val();
   if (value == 2) {
+    $.ajax({
+        type: 'POST',
+        url: '/users/organization/gets',
+        dataType: 'json',
+        beforeSend: function(request) {
+          request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
+        },
+        success: function(data) {
+          // console.log(data);
+          var $temp, html = '<option value="0">-- Select Organization for this event --</option>';
+          for (var i = 0; i < data.length; i++) {
+            $temp = data[i];
+            html += '<option value="'+$temp.id+'">'+$temp.name+'</option>';
+          }
+          $('#event-organization').html(html);
+        },
+        error: function(data) {
+          console.log('Error:');
+        }
+    });
     $('#form-event-organization').removeClass('hidden');
-    
   } else {
     $('#form-event-organization').addClass('hidden');
   }

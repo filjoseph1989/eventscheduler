@@ -105,22 +105,18 @@
                       </div>
                       <div class="form-group form-float form-group">
                         <div class="form-line focused">
-                          <select class="form-control show-tick" id="event-calendar" name="calendar">
+                          <select class="form-control show-tick" id="event-calendar" name="calendar_id">
                             <option value="0">-- Select Calendar for this event --</option>
-                            <option value="1">University Calendar</option>
-                            <option value="2">Organization Calendar</option>
-                            <option value="3">Personal Calendar</option>
+                            @foreach ($calendar as $key => $value)
+                              <option value="{{ $value->id }}">{{ $value->name }}</option>
+                            @endforeach
                           </select>
                         </div>
                       </div>
                       <div class="form-group form-float form-group hidden" id="form-event-organization">
                         <div class="form-line focused">
                           <select class="form-control show-tick" id="event-organization" name="organization_id">
-                            <option value="0">-- Select Organization for this event --</option>
-                            <option value="1">Organization One</option>
-                            <option value="2">Organization two</option>
-                            <option value="3">Organization three</option>
-                            <option value="4">Organization four</option>
+                            {{-- This part here is manage by ajax --}}
                           </select>
                         </div>
                       </div>
@@ -135,7 +131,7 @@
                     <div class="col-sm-8 col-sm-offset-2">
                       <div class="demo-switch">
                           <div class="switch" id="facebook">
-                            <label>OFF<input type="checkbox" checked><span class="lever switch-col-indigo"></span>ON</label> Facebook
+                            <label>OFF<input type="checkbox" name="facebook" checked><span class="lever switch-col-indigo"></span>ON</label> Facebook
                           </div>
                       </div>
                     </div>
@@ -144,7 +140,7 @@
                     <div class="col-sm-8 col-sm-offset-2">
                       <div class="demo-switch">
                           <div class="switch" id="twitter">
-                            <label>OFF<input type="checkbox" checked><span class="lever switch-col-blue"></span>ON</label> Twitter
+                            <label>OFF<input type="checkbox" name="twitter" checked><span class="lever switch-col-blue"></span>ON</label> Twitter
                           </div>
                       </div>
                     </div>
@@ -153,7 +149,7 @@
                     <div class="col-sm-8 col-sm-offset-2">
                       <div class="demo-switch">
                           <div class="switch" id="email">
-                            <label>OFF<input type="checkbox" checked><span class="lever switch-col-teal"></span>ON</label> Email
+                            <label>OFF<input type="checkbox" name="email" checked><span class="lever switch-col-teal"></span>ON</label> Email
                           </div>
                       </div>
                     </div>
@@ -162,7 +158,7 @@
                     <div class="col-sm-8 col-sm-offset-2">
                       <div class="demo-switch">
                         <div class="switch" id="phone">
-                          <label>OFF<input type="checkbox" checked><span class="lever switch-col-pink"></span>ON</label> Phone
+                          <label>OFF<input type="checkbox" name="phone" checked><span class="lever switch-col-pink"></span>ON</label> Phone
                         </div>
                       </div>
                     </div>

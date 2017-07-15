@@ -14,6 +14,12 @@ class EventCategory extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
+
+    /**
+     * Fillable
+     *
+     * @var array
+     */
     protected $fillable = [
       'name',
     ];
