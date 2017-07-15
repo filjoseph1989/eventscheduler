@@ -86,10 +86,9 @@
                         <div class="form-line focused">
                           <select class="form-control show-tick" id="event-type" name="event_type_id">
                             <option value="0">-- Select type of event--</option>
-                            <option value="1">Conference</option>
-                            <option value="2">Symposium</option>
-                            <option value="3">Siminar</option>
-                            <option value="4">Workshop</option>
+                            @foreach ($event_type as $key => $value)
+                              <option value="{{ $value->id }}">{{ $value->name }}</option>
+                            @endforeach
                           </select>
                         </div>
                       </div>
@@ -97,9 +96,9 @@
                         <div class="form-line focused">
                           <select class="form-control show-tick" id="event-category" name="event_category_id">
                             <option value="0">-- Select audience for this event--</option>
-                            <option value="1">public view</option>
-                            <option value="2">within organizations</option>
-                            <option value="3">among organizations</option>
+                            @foreach ($event_category as $key => $value)
+                              <option value="{{ $value->id }}">{{ $value->name }}</option>
+                            @endforeach
                           </select>
                         </div>
                       </div>

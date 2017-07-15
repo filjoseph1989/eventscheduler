@@ -7,6 +7,7 @@ use App\Models\Event;
 use App\Models\Calendar;
 use App\Models\Category;
 use App\Models\EventType;
+use App\Models\EventCategory;
 use App\Models\Organization;
 use Illuminate\Http\Request;
 
@@ -125,9 +126,20 @@ class EventController extends Controller
    */
   public function createNewEventForm()
   {
-    $login_type = 'user';
-    $calendar   = Calendar::all();
-    return view('pages.users.organization-head.calendars.events.new_event', compact('login_type', 'calendar'));
+    $login_type     = 'user';
+    $calendar       = Calendar::all();
+    $event_type     = EventType::all();
+    $event_category = EventCategory::all();
+
+    return view(
+      'pages.users.organization-head.calendars.events.new_event',
+      compact(
+        'login_type',
+        'calendar',
+        'event_type',
+        'event_category'
+      )
+    );
   }
 
   /**
