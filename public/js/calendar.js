@@ -208,10 +208,15 @@ function getDate($id, $event = false, $time = false, default_date = false) {
  * @return json
  */
 function getEvents() {
+    var id = $('#my-calendar').data('org-id');
+
     var json = "";
     $.ajax({
       type: 'POST',
       url: '/users/event/gets',
+      data: {
+        id: id
+      },
       dataType: 'json',
       beforeSend: function(request) {
         request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));

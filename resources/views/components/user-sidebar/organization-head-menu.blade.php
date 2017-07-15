@@ -12,7 +12,6 @@
         <li>
           <a href="#" class="menu-toggle">Calendars</a>
           <ul class="ml-menu">
-            <li><a href="#">University Celendar</a></li>
             <li><a href="{{ route('my-organization-calendar') }}">My Organization Calendar</a></li>
             <li><a href="#">My Personal Calendar</a></li>
           </ul>

@@ -11,4 +11,14 @@ class OrganizationGroup extends Model
 
     protected $dates = ['deleted_at'];
 
+    /**
+     * Define the relationship between
+     * user and organization group
+     *
+     * @return object
+     */
+    public function user()
+    {
+      return $this->belongsTo('App\Models\User');
+    }
 }

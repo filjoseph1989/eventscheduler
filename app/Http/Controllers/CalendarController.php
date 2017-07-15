@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\Models\User;
 use App\Models\EventType;
 use Illuminate\Http\Request;
 use App\Models\EventCategory;
@@ -43,7 +44,13 @@ class CalendarController extends Controller
   {
     $event_type       = EventType::all();
     $event_categories = EventCategory::all();
-    return view('pages.users.organization-head.calendars.my-org-calendar', compact('event_type', 'event_categories'));
+    $user = new User();
+    $user = $user->select('organization_id')
+      ->join('organization_groups', 'organization_groups.user_id', '=', 'users.id')
+      ->where('organization_groups.user_id', '=', Auth::user()->id)
+      ->get();
+
+    return view('pages.users.organization-head.calendars.my-org-calendar', compact('event_type', 'event_categories', 'user'));
   }
 
   /**

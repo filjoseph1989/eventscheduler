@@ -130,6 +130,7 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('position.edit')->post('/position/edit', 'PositionController@edit');
     Route::name('position.delete')->post('/position/delete', 'PositionController@delete');
     Route::name('position.get')->post('/position/get/positions', 'PositionController@getPositions');
+
     # Organization Crud
     Route::name('organization.list')->get('/organization/list', 'OrganizationController@showAllOrganizationList');
     Route::name('organization.register')->post('/organization/register', 'OrganizationController@adminCreate');
@@ -169,6 +170,7 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('osa.user.list')->get('osa/list_of_users','OsaAccountController@showAllUserList');
     Route::name('osa.org.list')->get('osa/list_of_organizations','OsaAccountController@showAllOrganizationList');
     Route::name('osa.org.add')->get('osa/organization/add', 'OsaAccountController@showOrganizationAddForm');
+
     /**
      * Admin User Account Type
      */

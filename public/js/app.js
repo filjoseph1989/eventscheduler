@@ -164,50 +164,6 @@ $(document).on('click', '.users-edit', function() {
  */
 
 /**
- * Return the date and time of the set
- * event
- *
- * @param  {string} $id
- * @return object Date
- */
-function getDate($id) {
-  var date = $($id).val() != "" ? $($id).val().split('/') : "";
-  var time = $($id+'_time').val() != "" ? $($id+'_time').val().split(':') : "";
-
-  if (date != "" && time == "") {
-    return new Date(date[0], (date[1] - 1), date[2]);
-  } else if (date == "" && time != "") {
-    date = new Date(global_start);
-    return new Date(date.getFullYear(), date.getMonth(), date.getDate(), time[0], time[1]);
-  } else if (date != "" && time != "") {
-    return new Date(date[0], (date[1] - 1), date[2], time[0], time[1]);
-  }
-
-  return global_start;
-}
-
-/**
- * Fetch the events of the current month
- * @return json
- */
-function getEvents() {
-  $.ajax({
-    type: 'POST',
-    url: '',
-    dataType: 'json',
-    beforeSend: function(request) {
-      request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
-    },
-    success: function(data) {
-      // response here
-    },
-    error: function(data) {
-      swal("Opps!", "We cannot process that", "error");
-    }
-  });
-}
-
-/**
  * Form validation
  *
  * @param  {int} id

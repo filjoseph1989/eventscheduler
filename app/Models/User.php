@@ -73,6 +73,17 @@ class User extends Authenticatable
       return $this->hasMany('App\Models\Event');
     }
 
+    /**
+     * Define the relationship between
+     * user and organization group
+     *
+     * @return object
+     */
+    public function organizationGroup()
+    {
+      return $this->hasMany('App\Models\OrganizationGroup');
+    }
+
     public function userAccount(){
       return $this->belongsTo('App\Models\UserAccount');
     }

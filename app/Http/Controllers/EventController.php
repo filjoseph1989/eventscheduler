@@ -147,12 +147,11 @@ class EventController extends Controller
    *
    * @return
    */
-  public function getEventOfTheMonth($get = false)
+  public function getEventOfTheMonth(Request $data)
   {
-    # Issue 23: find a way to make it more laravel
-    $event = new Event();
-    $event = $event->query("select * from events where date_start = YEAR('".date('YYYY/mm/dd')."')");
-    $event = $event->get();
+    $event = Event::whereRaw('year(date_start) = year(now())')
+      ->whereRaw("organization_id = ". $data->id)
+      ->get();
 
     echo json_encode( $event );
   }

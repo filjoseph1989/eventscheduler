@@ -4,9 +4,6 @@ To Do:
     ☐ Manage Schedule:
       ☐ Show calendar
         Task:
-        ☐ University Calendar:
-          ☐ View calendar
-        ☐ All Organization Calendar
         ☐ My Organization Calendar:
           ☐ Chose organization first:
             ☐ Add new event not on calendar
@@ -16,6 +13,7 @@ To Do:
               ☐ What if there's no entry?
               ☐ Check if event already exist?
               ☐ within personnal
+              ☐ Remove among organization in the dropdown of whos audience
               ☐ Notification
                 ☐ facebook
                 ☐ twitter
@@ -25,8 +23,7 @@ To Do:
                 ☐ Personal calendar
                 ☐ Organization calendar
                 ☐ if the user chose a calendar, is he/she allowed to create event on that calendar?
-                ☐ if chose calendar is organization display organization dropdown
-                  else no dropdown
+                ✔ if chosen calendar is organization display organization dropdown else no dropdown @done(2017-07-16 02:20)
             ☐ List Events
               ✔ All events of the current year @done(2017-07-14 21:20)
               ✔ Display the full details of the events @done(2017-07-14 21:20)
