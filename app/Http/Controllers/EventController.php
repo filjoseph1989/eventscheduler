@@ -91,6 +91,18 @@ class EventController extends Controller
   }
 
   /**
+   * Create new event as a response to event page
+   *
+   * @param  Request $data
+   * @return \Response
+   */
+  public function createNewEventForm()
+  {
+    $login_type = 'user';
+    return view('pages.users.organization-head.calendars.events.new_event', compact('login_type'));
+  }
+
+  /**
    * Return the event for the current month
    *
    * @return

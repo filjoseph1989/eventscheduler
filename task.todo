@@ -20,14 +20,13 @@ To Do:
                 ✔ Display the full details of the events @done(2017-07-14 21:20)
                 ✔ Event dataTables @done(2017-07-14 21:37)
                 ☐ Upcommig events
-
-                ☐ Need a validation of entry on the following fields, title, description
-                ✔ Alter the events table @done(2017-07-09 20:25)
-                ✔ What are the process of adding calendar data to the database @done(2017-07-13 15:43)
-                  ✔ When the user click on save button on event modal, get the data and pass to controller, while at same time, update the calendar in view @done(2017-07-10 11:14)
-                  ✔ The event should only display on calendar once the data successfully inserted into the database @done(2017-07-10 14:47)
-                ✔ Getting the data from the database @done(2017-07-13 10:26)
-                  ✔ Get all event of the current month where user equal to current loggedin user id and chosen calendar @done(2017-07-13 10:26)
+              ☐ Need a validation of entry on the following fields, title, description
+              ✔ Alter the events table @done(2017-07-09 20:25)
+              ✔ What are the process of adding calendar data to the database @done(2017-07-13 15:43)
+                ✔ When the user click on save button on event modal, get the data and pass to controller, while at same time, update the calendar in view @done(2017-07-10 11:14)
+                ✔ The event should only display on calendar once the data successfully inserted into the database @done(2017-07-10 14:47)
+              ✔ Getting the data from the database @done(2017-07-13 10:26)
+                ✔ Get all event of the current month where user equal to current loggedin user id and chosen calendar @done(2017-07-13 10:26)
               ☐ Get the calendar organization ID, for identifying what organization a calendar belongs to.
               ☐ Edit the schedule within the calendar
                 ☐ Display the modal for editing
