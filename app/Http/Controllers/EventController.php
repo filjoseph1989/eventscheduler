@@ -163,10 +163,7 @@ class EventController extends Controller
    */
   public function getEventOfTheMonthList()
   {
-    # Issue 23: find a way to make it more laravel
-    $event = new Event();
-    $event = $event->query("select * from events where date_start = YEAR('".date('YYYY/mm/dd')."')");
-    $event = $event->get();
+    $event = Event::whereRaw('year(date_start) = year(now())')->get();
 
     $login_type = 'user';
     $calendar   = Calendar::all();
