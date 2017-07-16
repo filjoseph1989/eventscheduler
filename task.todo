@@ -1,39 +1,49 @@
 To Do:
+  ☐ Task 36 - Login as Organization Members:
+    ☐ Check my attendance:
+    ☐ Events:
+      ☐ My Personal:
+        ☐ Create Event
+        ☐ List Events
+      ☐ My Organization:
+        ☐ Create Event - remove the create functionality
+        ☐ List Events - view event from organization
+    ☐ Manage Schedule:
+      ☐ My Personal Calendar
+      ☐ My Organization Calendar
+        ☐ Display the list of organization first
+        ☐ When the use click on organization
+          ☐ Display the event on the calendar only
+          ☐ Remove the add functionality of event
   ☐ Task 35 - Transfer the master.js to app.js
   ☐ Task 34 - Login as Organization HEAD:
     ☐ Generate User Attendance:
       ✔ Display events @done(2017-07-16 19:01)
-      ☐ Display the attendance sheet on the chosen events
-      Process:
-        ☐ get the organization id from the list of event or event click
-        ☐ using organization group get all members of the organization
-
+      ✔ Display the attendance sheet on the chosen events @done(2017-07-16 23:17)
     ☐ Events:
       ☐ My Personal:
       ☐ My Organization:
         ☐ List Events
           ☐ Display event in the table with status approved or not
             ✔ Display the event @done(2017-07-15 12:27)
-            ☐ if not approved yet, who will approved?
-            ☐ what are the process of approving events?
-            ☐ Once approve, Who will be notified?
+            ☐ Approved, Unapproved
           ✔ All events of the current year @done(2017-07-14 21:20)
           ✔ Display the full details of the events @done(2017-07-14 21:20)
           ✔ Event dataTables @done(2017-07-14 21:37)
-          ☐ Upcommig events
         ☐ Create Event
           ✔ Only add event without anything @done(2017-07-15 01:16)
           ✔ Chose organization @done(2017-07-15 18:59)
           ✔ Within an organization @done(2017-07-16 14:31)
-          ☐ What if there's no entry?
-          ☐ Check if event already exist?
           ☐ within personnal
-          ☐ Remove among organization in the dropdown of whos audience
           ☐ Notification - the notificaion need approval first before it will execute
             ☐ facebook
             ☐ twitter
             ☐ email
             ☐ phone
+          Issue:
+          ☐ What if there's no entry?
+          ☐ Check if event already exist?
+          ☐ Remove among organization in the dropdown of whos audience
     ☐ Manage Schedule:
       ☐ My Personal Calendar
       ☐ My Organization Calendar:
@@ -77,7 +87,7 @@ To Do:
     ☐ Define the sidebar details for deffirent type of user
       ☐ Admin
       ☐ Organization-head
-      ☐ Organization-adviser
+      ✔ Organization-adviser @done(2017-07-16 23:35)
       ☐ Organization-member
       ☐ OSA Personnel
     ✔ Defined initial info-box for a Different type of user @done(2017-07-02 15:11)

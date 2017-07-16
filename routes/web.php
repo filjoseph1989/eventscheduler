@@ -181,6 +181,12 @@ Route::group(['middleware' => 'revalidate'], function()
       Route::name('event.ajax.get')->post('/ajax/get', 'OrganizationHead\Events\EventController@getEvent');
     });
 
+    # Create event
+    Route::prefix('org-member')->group(function() {
+      Route::name('event.show')->get('/show', 'OrganizationHead\Events\EventController@showEvents');
+      Route::name('member.org-calendar')->get('/my-organization-calendar', 'OrganizationMember\ManageSchedule\CalendarController@myOrgCalendar');
+    });
+
     /**
      * OSA User Account Type
      */
