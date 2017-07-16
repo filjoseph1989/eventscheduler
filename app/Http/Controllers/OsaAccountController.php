@@ -142,7 +142,7 @@ class OsaAccountController extends Controller
       ->join('organizations', 'events.organization_id', '=', 'organizations.id')
       ->where('organization_groups.user_id', '=', Auth::user()->id)
       ->get();
-
+      dd($events);
       $login_type = 'user';
       return view('pages.users.osa-user.events.approve-events', compact('login_type','ev'));
   }
