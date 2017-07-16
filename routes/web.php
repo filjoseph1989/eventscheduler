@@ -167,7 +167,7 @@ Route::group(['middleware' => 'revalidate'], function()
 
     # Attendance
     Route::prefix('attendance')->group(function() {
-      Route::name('attendance')->get('/new', 'OrganizationHead\ManageSchedule\GenerateAttendanceController@index');
+      Route::name('attendance')->get('/new/{id}', 'OrganizationHead\ManageSchedule\GenerateAttendanceController@index');
     });
 
     # Create event

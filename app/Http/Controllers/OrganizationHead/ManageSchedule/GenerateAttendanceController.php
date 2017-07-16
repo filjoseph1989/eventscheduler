@@ -21,13 +21,16 @@ class GenerateAttendanceController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Display the Attendance sheet
+     * .
+     * @param  int $id Organization ID
+     * @return Object Response
      */
-    public function index()
+    public function index($id)
     {
-      $attendance = OrganizationGroup::with(['user', 'organization'])->get();
+      $attendance = OrganizationGroup::with(['user', 'organization'])
+        ->where('organization_id', '=', $id)
+        ->get();
 
       $login_type = 'user';
       return view(

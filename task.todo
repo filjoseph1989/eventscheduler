@@ -4,6 +4,10 @@ To Do:
     ☐ Generate User Attendance:
       ✔ Display events @done(2017-07-16 19:01)
       ☐ Display the attendance sheet on the chosen events
+      Process:
+        ☐ get the organization id from the list of event or event click
+        ☐ using organization group get all members of the organization
+
     ☐ Events:
       ☐ My Personal:
       ☐ My Organization:
