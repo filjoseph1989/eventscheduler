@@ -13,12 +13,12 @@ class CreateUserAttendanceTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_attendance', function (Blueprint $table) {
+        Schema::create('user_attendances', function (Blueprint $table) {
           $table->increments('id');
           $table->integer('event_id')->unsigned()->index();
           $table->integer('user_id')->unsigned()->index();
           $table->tinyInteger('confirmation')->default(0);
-          $table->string('reason');
+          $table->string('reason')->nullable();
           $table->tinyInteger('status')->default(0);
           $table->softDeletes();
           $table->timestamps();

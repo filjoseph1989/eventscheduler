@@ -4,6 +4,7 @@ namespace app\Http\Controllers\OrganizationHead\ManageSchedule;
 
 use Auth;
 use App\Models\User;
+use App\Models\UserAttendance;
 use Illuminate\Http\Request;
 use App\Models\OrganizationGroup;
 use App\Http\Controllers\Controller;
@@ -26,7 +27,7 @@ class GenerateAttendanceController extends Controller
      * @param  int $id Organization ID
      * @return Object Response
      */
-    public function index($id)
+    public function index($id, $eid)
     {
       $attendance = OrganizationGroup::with(['user', 'organization'])
         ->where('organization_id', '=', $id)
@@ -35,7 +36,11 @@ class GenerateAttendanceController extends Controller
       $login_type = 'user';
       return view(
         'pages.users.organization-head.calendars.generate_attendance.attendance',
-        compact('login_type', 'attendance')
+        compact(
+          'login_type',
+          'attendance',
+          'eid'
+        )
       );
     }
 
@@ -49,14 +54,27 @@ class GenerateAttendanceController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * store the confirmation to
+     * table attendance.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+      $data['event_id']     = $request->eid;
+      $data['user_id']      = $request->id;
+      $data['confirmation'] = 1;
+      $data['confirmation'] = 1;
+      $data['reason']       = '';
+      $data['status']       = 1;
+
+      $result = UserAttendance::create($data);
+      if ($result->wasRecentlyCreated) {
+        echo json_encode([
+          'status' =>  true
+        ]);
+      }
     }
 
     /**

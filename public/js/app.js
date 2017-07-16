@@ -342,27 +342,6 @@ $('.view-event').click(function() {
 });
 
 /**
- * If the user click on the input that has class
- *    event-datepicker
- *    event-timepicker
- * this function here will trigger and there will be
- * prompt for date and time
- *
- * @type {String}
- */
-$('.event-datepicker').bootstrapMaterialDatePicker({
-    format: 'YYYY/MM/DD',
-    clearButton: true,
-    weekStart: 1,
-    time: false
-});
-$('.event-timepicker').bootstrapMaterialDatePicker({
-    format: 'HH:mm',
-    clearButton: true,
-    date: false
-});
-
-/**
  * Display the organization dropdown
  *
  * @return
@@ -394,4 +373,33 @@ $('#event-calendar').click(function() {
   } else {
     $('#form-event-organization').addClass('hidden');
   }
+});
+
+/**
+ * Submit the confirmation of attendance to the database
+ *
+ * @return {}
+ */
+$('.confirmed').click(function() {
+  var id = $(this).data('user-id');
+  var eid = $(this).data('event-id');
+
+  $.ajax({
+    type: 'POST',
+    url: '/users/attendance/store',
+    data: {
+      id: id,
+      eid: eid
+    },
+    dataType: 'json',
+    beforeSend: function(request) {
+      request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
+    },
+    success: function(data) {
+      console.log(data);
+    },
+    error: function(data) {
+      console.log('Error:');
+    }
+  });
 });

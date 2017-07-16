@@ -11,6 +11,7 @@ use App\Models\EventType;
 use App\Models\EventCategory;
 use App\Models\Organization;
 use Illuminate\Http\Request;
+use App\Models\OrganizationGroup;
 use App\Http\Controllers\Controller;
 
 /**
@@ -34,11 +35,22 @@ class EventController extends Controller
 
   public function showEvents()
   {
-    $orgHead = Event::where('user_id', '=', Auth::user()->id)->get();
+    # Get the user organization ID
+    $organization = OrganizationGroup::where('user_id', '=', Auth::user()->id)
+      ->take(1)
+      ->get();
+
+    foreach ($organization as $key => $value) {
+      $id = $value->organization_id;
+    }
+
+    # Get the events from organiation ID
+    $event      = Event::where('organization_id', '=', $id)->get();
     $login_type = 'user';
+
     return view(
       'pages.users.organization-head.calendars.events.list_for_attendance',
-      compact('orgHead', 'login_type')
+      compact('event', 'login_type')
     );
   }
 
