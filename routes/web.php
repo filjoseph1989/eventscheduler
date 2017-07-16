@@ -97,14 +97,22 @@ Route::group(['middleware' => 'revalidate'], function()
     # Dashboard
     Route::name('admin.dashboard')->get('/', 'AdminController@index');
   });
+
+  /*
+  |--------------------------------------------------------------------------
+  | Redirect to home page
+  |--------------------------------------------------------------------------
+  */
+  Route::name('home')->get('/home', 'HomeController@index');
+
   /*
   |--------------------------------------------------------------------------
   | Users Dashboard Routes
   |--------------------------------------------------------------------------
   */
-  Route::name('home')->get('/home', 'HomeController@index');
   Route::prefix('users')->group(function() {
     Route::name('user.logout')->post('/logout', 'Auth\LoginController@userLogout');
+
     # User Crud
     Route::name('user.list')->get('/users/list', 'UserController@showAllUserList');
     Route::name('user.edit')->post('/user/edit', 'UserController@edit');
@@ -120,11 +128,13 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('course.edit')->post('/course/edit', 'CourseController@edit');
     Route::name('course.delete')->post('/course/delete', 'CourseController@delete');
     Route::name('course.register')->post('/course/register', 'CourseController@courseCreate');
+
     # Department Crud
     Route::name('department.list')->get('/department/list', 'DepartmentController@showAllDepartmentList');
     Route::name('department.edit')->post('/department/edit', 'DepartmentController@edit');
     Route::name('department.delete')->post('/department/delete', 'DepartmentController@delete');
     Route::name('department.register')->post('/department/register', 'DepartmentController@adminCreate');
+
     # Position Crud
     Route::name('position.list')->get('/position/list', 'PositionController@showAllPositionList');
     Route::name('position.register')->post('/position/register', 'PositionController@positionCreate');
@@ -174,6 +184,7 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('osa.event.get')->get('osa/event/get', 'OsaAccountController@getEventOfTheMonthList');
     Route::name('osa.event.new')->get('osa/event/new', 'OsaAccountController@createNewEventForm');
     Route::name('osa.event.approval')->get('osa/event/approval', 'OsaAccountController@approveEvents');
+
     /**
      * Admin User Account Type
      */
@@ -184,6 +195,7 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('administrator.organization.list')->get('administrator/organization/list', 'AdminAccountController@showAllOrganizationList');
   });
 });
+
 /*
 |--------------------------------------------------------------------------
 | Notification route
