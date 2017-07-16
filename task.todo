@@ -27,8 +27,10 @@ To Do:
           ☐ phone
     ☐ Manage Schedule:
       ☐ Generate User Attendance:
-        ☐ Chose organization
-        ☐ Display the attendance sheet base on the organization
+        ☐ Chose events
+          ☐ Display the attendance sheet on the chosen events
+          Issue:
+            ☐ 
       ☐ Show calendar
         ☐ My Personal Calendar
         ☐ My Organization Calendar:

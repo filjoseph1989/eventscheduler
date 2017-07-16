@@ -1,48 +1,44 @@
 <li>
   <a href="javascript:void(0);" class="menu-toggle">
-    <i class="material-icons">supervisor_account</i>
-    <span>Actions</span>
+    <i class="material-icons">date_range</i>
+    <span>Manage Schedule</span>
   </a>
   <ul class="ml-menu">
     <li>
-      <a href="javascript:void(0);" class="menu-toggle">
-        <span>Manage Schedule</span>
+      <a href="{{ route('my-organization-calendar') }}">
+        <span>My Organization Calendar</span>
       </a>
-      <ul class="ml-menu">
-        <li>
-          <a href="#" class="menu-toggle">Calendars</a>
-          <ul class="ml-menu">
-            <li><a href="{{ route('my-organization-calendar') }}">My Organization Calendar</a></li>
-            <li><a href="#">My Personal Calendar</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="{{ route('attendance') }}">Generate Attendance</a>
-        </li>
-      </ul>
     </li>
     <li>
-      <a href="javascript:void(0);" class="menu-toggle">
-        <span>Events</span>
+      <a href="javascript:void(0);">
+        <span>My Personal Calendar</span>
       </a>
-      <ul class="ml-menu">
-        <li>
-          <a href="{{ route('event.get') }}">List of Events</a>
-        </li>
-        <li>
-          <a href="{{ route('event.new') }}">Create Events</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <a href="javascript:void(0);" class="menu-toggle">
-        <span>Organizations</span>
-      </a>
-      <ul class="ml-menu">
-        <li>
-          <a href="#">List Of Organizations</a>
-        </li>
-      </ul>
     </li>
   </ul>
+</li>
+<li>
+  <a href="javascript:void(0);" class="menu-toggle">
+    <i class="material-icons">event_seat</i>
+    <span>Events</span>
+  </a>
+  <ul class="ml-menu">
+    <li>
+      <a href="{{ route('event.get') }}">List of Events</a>
+    </li>
+    <li>
+      <a href="{{ route('event.new') }}">Create Events</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="{{ route('attendance')}}">
+    <i class="material-icons">list</i>
+    <span>Generate Attendance</span>
+  </a>
+</li>
+<li>
+  <a href="javascript:void(0);">
+    <i class="material-icons">list</i>
+    <span>List of Organizations</span>
+  </a>
 </li>
