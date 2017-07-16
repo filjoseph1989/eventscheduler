@@ -172,6 +172,7 @@ Route::group(['middleware' => 'revalidate'], function()
 
     # Create event
     Route::prefix('event')->group(function() {
+      Route::name('event.show')->get('/show', 'OrganizationHead\Events\EventController@showEvents');
       Route::name('event.new')->get('/new', 'OrganizationHead\Events\EventController@createNewEventForm');
       Route::name('event.new')->post('/new', 'OrganizationHead\Events\EventController@createNewEvent');
       Route::name('event.get')->get('/get', 'OrganizationHead\Events\EventController@getEventOfTheMonthList');

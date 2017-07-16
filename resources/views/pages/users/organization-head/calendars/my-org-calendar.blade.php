@@ -41,19 +41,13 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2>
-                  My Organization Calendar
-                  <small>Dropdown to choose the what specific organization among your organizations</small>
-                  <small>Enable Add Event Functionality if you are the head of that org</small>
-                </h2>
+                <h2> My Organization Calendar </h2>
                 <ul class="header-dropdown m-r--5">
                   <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                       <i class="material-icons">more_vert</i>
                     </a>
                     <ul class="dropdown-menu pull-right">
-                      <li><a href="{{ route('university-calendar') }}">University Calendar</a></li>
-                      <li><a href="{{ route('all-organization-calendar') }}">All Organizations Calendar</a></li>
                       <li><a href="{{ route('my-organization-calendar') }}">My Organization Calendar</a></li>
                       <li><a href="{{ route('my-personal-calendar') }}">My Personal Calendar</a></li>
                     </ul>

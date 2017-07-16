@@ -2,6 +2,7 @@
 
 namespace app\Http\Controllers\OrganizationHead\ManageSchedule;
 
+use Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\OrganizationGroup;

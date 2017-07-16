@@ -10,7 +10,7 @@
       </a>
     </li>
     <li>
-      <a href="javascript:void(0);">
+      <a href="{{ route('my-personal-calendar') }}">
         <span>My Personal Calendar</span>
       </a>
     </li>
@@ -23,22 +23,24 @@
   </a>
   <ul class="ml-menu">
     <li>
-      <a href="{{ route('event.get') }}">List of Events</a>
+      <a href="#" class="menu-toggle">My Organization</a>
+      <ul class="ml-menu">
+        <li><a href="{{ route('event.get') }}">List</a></li>
+        <li><a href="{{ route('event.new') }}">Create</a></li>
+      </ul>
     </li>
     <li>
-      <a href="{{ route('event.new') }}">Create Events</a>
+      <a href="#" class="menu-toggle">My Personal</a>
+      <ul class="ml-menu">
+        <li><a href="{{ route('event.get') }}">List</a></li>
+        <li><a href="{{ route('event.new') }}">Create</a></li>
+      </ul>
     </li>
   </ul>
 </li>
 <li>
-  <a href="{{ route('attendance')}}">
+  <a href="{{ route('event.show')}}">
     <i class="material-icons">list</i>
     <span>Generate Attendance</span>
-  </a>
-</li>
-<li>
-  <a href="javascript:void(0);">
-    <i class="material-icons">list</i>
-    <span>List of Organizations</span>
   </a>
 </li>

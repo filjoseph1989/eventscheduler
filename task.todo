@@ -1,69 +1,68 @@
 To Do:
   ☐ Task 35 - Transfer the master.js to app.js
   ☐ Task 34 - Login as Organization HEAD:
+    ☐ Generate User Attendance:
+      ✔ Display events @done(2017-07-16 19:01)
+      ☐ Display the attendance sheet on the chosen events
     ☐ Events:
-      ☐ List Events:
-        ☐ Display event in the table with status approved or not
-          ✔ Display the event @done(2017-07-15 12:27)
-          ☐ if not approved yet, who will approved?
-          ☐ what are the process of approving events?
-          ☐ Once approve, Who will be notified?
-        ✔ All events of the current year @done(2017-07-14 21:20)
-        ✔ Display the full details of the events @done(2017-07-14 21:20)
-        ✔ Event dataTables @done(2017-07-14 21:37)
-        ☐ Upcommig events
-      ☐ Create Event:
-        ✔ Only add event without anything @done(2017-07-15 01:16)
-        ✔ Chose organization @done(2017-07-15 18:59)
-        ✔ Within an organization @done(2017-07-16 14:31)
-        ☐ What if there's no entry?
-        ☐ Check if event already exist?
-        ☐ within personnal
-        ☐ Remove among organization in the dropdown of whos audience
-        ☐ Notification - the notificaion need approval first before it will execute
-          ☐ facebook
-          ☐ twitter
-          ☐ email
-          ☐ phone
+      ☐ My Personal:
+      ☐ My Organization:
+        ☐ List Events
+          ☐ Display event in the table with status approved or not
+            ✔ Display the event @done(2017-07-15 12:27)
+            ☐ if not approved yet, who will approved?
+            ☐ what are the process of approving events?
+            ☐ Once approve, Who will be notified?
+          ✔ All events of the current year @done(2017-07-14 21:20)
+          ✔ Display the full details of the events @done(2017-07-14 21:20)
+          ✔ Event dataTables @done(2017-07-14 21:37)
+          ☐ Upcommig events
+        ☐ Create Event
+          ✔ Only add event without anything @done(2017-07-15 01:16)
+          ✔ Chose organization @done(2017-07-15 18:59)
+          ✔ Within an organization @done(2017-07-16 14:31)
+          ☐ What if there's no entry?
+          ☐ Check if event already exist?
+          ☐ within personnal
+          ☐ Remove among organization in the dropdown of whos audience
+          ☐ Notification - the notificaion need approval first before it will execute
+            ☐ facebook
+            ☐ twitter
+            ☐ email
+            ☐ phone
     ☐ Manage Schedule:
-      ☐ Generate User Attendance:
-        ☐ Chose events
-          ☐ Display the attendance sheet on the chosen events
-          Issue:
-            ☐ 
-      ☐ Show calendar
-        ☐ My Personal Calendar
-        ☐ My Organization Calendar:
-          ☐ Chose which calendar the event should display
-            ☐ Personal calendar
-            ☐ if the user chose a calendar, is he/she allowed to create event on that calendar?
-            ✔ Organization calendar @done(2017-07-16 02:28)
-            ✔ if chosen calendar is organization display organization dropdown else no dropdown @done(2017-07-16 02:20)
-          ☐ Display the calendar for the chosen organization:
-            ☐ Edit the schedule within the calendar via modal prompt
-            ☐ Need a validation of entry on the following fields, title, description
+      ☐ My Personal Calendar
+      ☐ My Organization Calendar:
+        ☐ Chose which calendar the event should display
+          ☐ Personal calendar
+          ☐ if the user chose a calendar, is he/she allowed to create event on that calendar?
+          ✔ Organization calendar @done(2017-07-16 02:28)
+          ✔ if chosen calendar is organization display organization dropdown else no dropdown @done(2017-07-16 02:20)
+        ☐ Display the calendar for the chosen organization:
+          ☐ Edit the schedule within the calendar via modal prompt
+          ☐ Need a validation of entry on the following fields, title, description
 
-          Archive:
-          ✔ Add event in the database @done(2017-07-14 21:38)
-          ✔ Alter the events table @done(2017-07-09 20:25)
-          ✔ What are the process of adding calendar data to the database @done(2017-07-13 15:43)
-            ✔ When the user click on save button on event modal, get the data and pass to controller, while at same time, update the calendar in view @done(2017-07-10 11:14)
-            ✔ The event should only display on calendar once the data successfully inserted into the database @done(2017-07-10 14:47)
-          ✔ Getting the data from the database @done(2017-07-13 10:26)
-            ✔ Get all event of the current month where user equal to current loggedin user id and chosen calendar @done(2017-07-13 10:26)
-          ✔ Get the calendar organization ID, for identifying what organization a calendar belongs to. @done(2017-07-16 14:38)
-          ✔ Display again the events setted previously from the calendar. @done(2017-07-13 15:37)
-          ✔ When the user click on the calendar date, then try to chose date and time, it should match the clicked date @done(2017-07-13 15:41)
-          ✔ During the insert of new event in the database, include the organization ID. @done(2017-07-16 14:39)
-          ✔ Get the type and categories of events, and user id @done(2017-07-09 21:09)
-          ✔ Add new events on the calendar @done(2017-07-10 00:34)
-            ✔ Capture the events data in javascript @done(2017-07-10 00:34)
-              ✔ The event will not display since the end date is not yet correct in coding @done(2017-07-10 00:34)
-              ✔ whole day? @done(2017-07-09 19:37)
-              ✔ title @done(2017-07-09 14:12)
-              ✔ desription of the event @done(2017-07-09 18:36)
-              ✔ day start and day end @done(2017-07-09 14:12)
-              ✔ what time in the day? @done(2017-07-09 14:12)
+        Archive:
+        ✔ Add event in the database @done(2017-07-14 21:38)
+        ✔ Alter the events table @done(2017-07-09 20:25)
+        ✔ What are the process of adding calendar data to the database @done(2017-07-13 15:43)
+          ✔ When the user click on save button on event modal, get the data and pass to controller, while at same time, update the calendar in view @done(2017-07-10 11:14)
+          ✔ The event should only display on calendar once the data successfully inserted into the database @done(2017-07-10 14:47)
+        ✔ Getting the data from the database @done(2017-07-13 10:26)
+          ✔ Get all event of the current month where user equal to current loggedin user id and chosen calendar @done(2017-07-13 10:26)
+        ✔ Get the calendar organization ID, for identifying what organization a calendar belongs to. @done(2017-07-16 14:38)
+        ✔ Display again the events setted previously from the calendar. @done(2017-07-13 15:37)
+        ✔ When the user click on the calendar date, then try to chose date and time, it should match the clicked date @done(2017-07-13 15:41)
+        ✔ During the insert of new event in the database, include the organization ID. @done(2017-07-16 14:39)
+        ✔ Get the type and categories of events, and user id @done(2017-07-09 21:09)
+        ✔ Add new events on the calendar @done(2017-07-10 00:34)
+          ✔ Capture the events data in javascript @done(2017-07-10 00:34)
+            ✔ The event will not display since the end date is not yet correct in coding @done(2017-07-10 00:34)
+            ✔ whole day? @done(2017-07-09 19:37)
+            ✔ title @done(2017-07-09 14:12)
+            ✔ desription of the event @done(2017-07-09 18:36)
+            ✔ day start and day end @done(2017-07-09 14:12)
+            ✔ what time in the day? @done(2017-07-09 14:12)
   ☐ Task 33 - Change the profile background according to the user type
   ☐ Task 32 - Try View Composers to manage the rendering of two sidebar for user and for admin
   ☐ Task 31 - Create a manage notification - This will be a setting what to notify or what kind of notification should be if org adviser will create a event

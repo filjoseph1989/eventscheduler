@@ -2,6 +2,7 @@
 
 namespace app\Http\Controllers\OrganizationHead\Events;
 
+use Auth;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Calendar;
@@ -29,6 +30,16 @@ class EventController extends Controller
   public function __construct()
   {
     $this->middleware('web');
+  }
+
+  public function showEvents()
+  {
+    $orgHead = Event::where('user_id', '=', Auth::user()->id)->get();
+    $login_type = 'user';
+    return view(
+      'pages.users.organization-head.calendars.events.list_for_attendance',
+      compact('orgHead', 'login_type')
+    );
   }
 
   /**
