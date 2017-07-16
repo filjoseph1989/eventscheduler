@@ -49,10 +49,6 @@ class EventController extends Controller
           $request[$value['name']] = $value['value'];
         }
       }
-
-      # Add the organization ID
-      # Issue 26: This should be dynamic and the ID should come from from in view
-      $request['organization_id'] = 1;
     } else {
       $request = $data->only(
         'user_id',
@@ -154,14 +150,6 @@ class EventController extends Controller
       ->get();
 
     echo json_encode( $event );
-  }
-  public function simulate()
-  {
-    $event = Event::whereRaw('year(date_start) = year(now())')
-      ->whereRaw("organization_id = ". 1)
-      ->get();
-
-      d($event->count());
   }
 
   /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Models\User;
+use App\Models\Calendar;
 use App\Models\EventType;
 use Illuminate\Http\Request;
 use App\Models\EventCategory;
@@ -44,13 +45,26 @@ class CalendarController extends Controller
   {
     $event_type       = EventType::all();
     $event_categories = EventCategory::all();
+    $calendar         = Calendar::all();
+
+    # get organization name and id
     $user = new User();
-    $user = $user->select('organization_id')
+    $user = $user->select('organization_groups.organization_id', 'organizations.name')
       ->join('organization_groups', 'organization_groups.user_id', '=', 'users.id')
+      ->join('organizations', 'organization_groups.organization_id', '=', 'organizations.id')
       ->where('organization_groups.user_id', '=', Auth::user()->id)
       ->get();
 
-    return view('pages.users.organization-head.calendars.my-org-calendar', compact('event_type', 'event_categories', 'user'));
+    # Display the calendar
+    return view(
+      'pages.users.organization-head.calendars.my-org-calendar',
+      compact(
+        'event_type',
+        'event_categories',
+        'calendar',
+        'user'
+      )
+    );
   }
 
   /**

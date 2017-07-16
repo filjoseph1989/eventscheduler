@@ -61,9 +61,7 @@
                 </ul>
               </div>
               <div class="body">
-                @if (isset($user[0]->organization_id))
-                  <div class="" id="my-calendar" data-org-id="{{ $user[0]->organization_id }}"></div>
-                @endif
+                <div class="" id="my-calendar" data-org-id="{{ $user->first()->organization_id }}"></div>
                 <div id='calendar'></div>
               </div>
             </div>
@@ -183,6 +181,29 @@
                     </select>
                     @if ($errors->has('event_category_id'))
                       <span class="help-block"> <strong>{{ $errors->first('event_category_id') }}</strong></span>
+                    @endif
+                  </div>
+                </div>
+                <div class="form-group form-float form-group{{ $errors->has('calendar_id') ? ' has-error' : '' }}">
+                  <div class="form-line">
+                    <select class="form-control show-tick" id="event-calendar" name="calendar_id">
+                      <option value="0">-- Select What calendar --</option>
+                      @foreach ($calendar as $key => $value)
+                        <option value="{{ $value->id }}">{{ $value->name }}</option>
+                      @endforeach
+                    </select>
+                    @if ($errors->has('calendar_id'))
+                      <span class="help-block"> <strong>{{ $errors->first('calendar_id') }}</strong></span>
+                    @endif
+                  </div>
+                </div>
+                <div class="form-group form-float form-group{{ $errors->has('organization_id') ? ' has-error' : '' }}">
+                  <div class="form-line">
+                    <select class="form-control show-tick" id="event-category" name="organization_id">
+                      <option value="{{ $user->first()->organization_id }}">{{ $user->first()->name }} Organization</option>
+                    </select>
+                    @if ($errors->has('organization_id'))
+                      <span class="help-block"> <strong>{{ $errors->first('organization_id') }}</strong></span>
                     @endif
                   </div>
                 </div>
