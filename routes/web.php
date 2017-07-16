@@ -190,6 +190,7 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('osa.event.get')->get('osa/event/get', 'OsaAccountController@getEventOfTheMonthList');
     Route::name('osa.event.new')->get('osa/event/new', 'OsaAccountController@createNewEventForm');
     Route::name('osa.event.approval')->get('osa/event/approval', 'OsaAccountController@approveEvents');
+    Route::name('osa.event.osa-approve')->get('osa/event/approved/{id}/{orgg_uid}', 'OsaAccountController@approve');
 
     /**
      * Admin User Account Type

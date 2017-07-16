@@ -19,14 +19,15 @@
         @include('pages.users.sidebar')
     @endif
 
-    <?php if (session('status')): ?>
-      <div class="alert alert-success">
-        {{ session('status') }}
-      </div>
-    <?php endif; ?>
-
     <section class="content">
       <div class="container-fluid">
+
+        @if (session('status'))
+          <div class="alert alert-success">
+            {{ session('status') }}
+          </div>
+        @endif
+
         <div class="row clearfix">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
@@ -55,6 +56,7 @@
                       <th>Time</th>
                       <th>Date End</th>
                       <th>Time</th>
+                      <th>Approve Count</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -67,8 +69,9 @@
                           <td>{{ $value->date_start_time }}</td>
                           <td>{{ date("M d, Y", strtotime($value->date_end)) }}</td>
                           <td>{{ $value->date_end_time }}</td>
+                          <td>{{ $value->approver_count }}</td>
                           <td>
-                            <a href="#" class="" title="approve this event"> <i class="material-icons">fingerprint</i> </a>
+                            <a href="{{ route('osa.event.osa-approve', [$value->id, $value->orgg_uid] ) }}" class="" title="approve this event"> <i class="material-icons">fingerprint</i> </a>
                             <a href="#" class="view-event" title="further details" data-id="{{ $value->id }}" data-toggle="modal" data-target="#view-event"> <i class="material-icons">visibility</i></a>
                           </td>
                         </tr>
@@ -82,6 +85,7 @@
                       <th>Time</th>
                       <th>Date End</th>
                       <th>Time</th>
+                      <th>Approve Count</th>
                       <th>Action</th>
                     </tr>
                   </tfoot>

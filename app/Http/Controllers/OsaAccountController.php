@@ -13,6 +13,7 @@ use App\Models\Event;
 use App\Models\Calendar;
 use App\Models\Category;
 use App\Models\EventType;
+use App\Models\EventApprovalMonitor;
 
 
 class OsaAccountController extends Controller
@@ -28,8 +29,8 @@ class OsaAccountController extends Controller
     $organization_groups = new OrganizationGroup();
     $positions           = Position::all();
     $user_accounts       = UserAccount::all();
-    $user                = new User();
 
+    $user                = new User();
     $data = $user->select(
       'users.id as user_id',
       'users.user_account_id as u_acc_id',
@@ -138,12 +139,26 @@ class OsaAccountController extends Controller
        'organization_groups.user_id as orgg_uid',
        'organizations.name as org_name'
       )
-      ->join('organization_groups', 'events.organization_id', '=', 'organization_groups.id')
+      ->join('organization_groups', 'events.organization_id', '=', 'organization_groups.organization_id')
       ->join('organizations', 'events.organization_id', '=', 'organizations.id')
       ->where('organization_groups.user_id', '=', Auth::user()->id)
       ->get();
-      dd($events);
+
       $login_type = 'user';
       return view('pages.users.osa-user.events.approve-events', compact('login_type','ev'));
+  }
+
+  public function approve($id, $orgg_uid)
+  {
+    $event_approval_monitor = EventApprovalMonitor::where('event_id', '=', 1)->get();
+    dd($event_approval_monitor);
+    $approved_event = Event::find($id);
+    if($approved_event->event_category_id == 1 || $approved_event->event_category_id == 3 && $approved_event->approver_count < 3){
+        $approved_event->approver_count++;
+        if($approved_event->save() ){
+          return redirect()->route('osa.event.approval')
+          ->with('status', "Successfuly approved the event {$approved_event->event}.");
+        }
+    }
   }
 }

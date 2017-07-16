@@ -89,4 +89,10 @@ class Event extends Model
   {
     return $this->belongsTo('App\Models\Calendar');
   }
+
+  public function organizationGroup()
+  {
+    return $this->hasMany('App\Models\OrganizationGroup');
+  }
+
 }
