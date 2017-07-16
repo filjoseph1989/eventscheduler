@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace app\Http\Controllers\OrganizationHead\Events;
 
 use App\Models\User;
 use App\Models\Event;
@@ -10,6 +10,7 @@ use App\Models\EventType;
 use App\Models\EventCategory;
 use App\Models\Organization;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 /**
  * Manage the events

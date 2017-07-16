@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\OrganizationHead\ManageSchedule;
 
 use Auth;
 use App\Models\User;
@@ -8,6 +8,7 @@ use App\Models\Calendar;
 use App\Models\EventType;
 use Illuminate\Http\Request;
 use App\Models\EventCategory;
+use App\Http\Controllers\Controller;
 
 class CalendarController extends Controller
 {

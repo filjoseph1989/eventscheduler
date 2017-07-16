@@ -140,28 +140,28 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('organization.get')->post('/organization/get', 'OrganizationController@getOrganization');
     Route::name('organization.gets')->post('/organization/gets', 'OrganizationController@getOrganizationList');
 
-    /**
-     * Org. Head User Account Type
-     */
-    # Manage Schedule (Type of Calendars)
-    Route::name('university-calendar')->get('/calendar/university-calendar', 'CalendarController@universityCalendar');
-    Route::name('all-organization-calendar')->get('/calendar/all-organization-calendar', 'CalendarController@allOrgsCalendar');
-    Route::name('my-organization-calendar')->get('/calendar/my-organization-calendar', 'CalendarController@myOrgCalendar');
-    Route::name('my-personal-calendar')->get('/calendar/my-personal-calendar', 'CalendarController@myPersonalCalendar');
-
     # Manage Notifications
     Route::name('notification.show')->get('/notification/show', 'ManageNotificationController@showNotificationPage'); //unpassed events data
     Route::name('event.show')->get('notifications/events/show', 'ManageNotificationController@showEventList');
     Route::name('event.notify')->post('/events/notify', 'ManageNotificationController@notify');
     Route::name('email')->get('/email', 'MailController@index'); //test for email notif
 
+    # Manage Schedule (Type of Calendars)
+    Route::prefix('calendar')->group(function() {
+      Route::name('university-calendar')->get('/university-calendar', 'OrganizationHead\ManageSchedule\CalendarController@universityCalendar');
+      Route::name('all-organization-calendar')->get('/all-organization-calendar', 'OrganizationHead\ManageSchedule\CalendarController@allOrgsCalendar');
+      Route::name('my-organization-calendar')->get('/my-organization-calendar', 'OrganizationHead\ManageSchedule\CalendarController@myOrgCalendar');
+      Route::name('my-personal-calendar')->get('/my-personal-calendar', 'OrganizationHead\ManageSchedule\CalendarController@myPersonalCalendar');
+    });
+
     # Create event
     Route::prefix('event')->group(function() {
-      Route::name('event.new')->get('/new', 'EventController@createNewEventForm');
-      Route::name('event.new')->post('/new', 'EventController@createNewEvent');
-      Route::name('event.get')->get('/get', 'EventController@getEventOfTheMonthList');
-      Route::name('event.gets')->post('/gets', 'EventController@getEventOfTheMonth');
-      Route::name('event.ajax.get')->post('/ajax/get', 'EventController@getEvent');
+      Route::name('event.new')->get('/new', 'OrganizationHead\Events\EventController@createNewEventForm');
+      Route::name('event.new')->post('/new', 'OrganizationHead\Events\EventController@createNewEvent');
+      Route::name('event.get')->get('/get', 'OrganizationHead\Events\EventController@getEventOfTheMonthList');
+      Route::name('event.gets')->post('/gets', 'OrganizationHead\Events\EventController@getEventOfTheMonth');
+      Route::name('event.ajax.get')->post('/ajax/get', 'OrganizationHead\Events\EventController@getEvent');
+      Route::prefix('event')->group(function() {
     });
 
     /**
