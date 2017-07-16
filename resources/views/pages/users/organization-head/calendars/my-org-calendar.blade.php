@@ -61,7 +61,7 @@
                 </ul>
               </div>
               <div class="body">
-                <div class="" id="my-calendar" data-org-id="{{ $user->first()->organization_id }}"></div>
+                <div class="" id="my-organization" data-org-id="{{ $user->first()->organization_id }}"></div>
                 <div id='calendar'></div>
               </div>
             </div>

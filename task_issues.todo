@@ -1,13 +1,14 @@
 To Do:
+  ☐ Issue 29: On visiting the "users/calendar/my-organization-calendar" the system should automatically determine what type of calendar the user visiting
   ☐ Issue 28: There should be a login checker in almost every method
   ☐ Issue 27: The title here is wrong "users/calendar/my-organization-calendar"
-  ☐ Issue 26: Go to this line and do the description in there
+  ✔ Issue 26: Go to this line and do the description in there @done(2017-07-16 14:31) @project(To Do)
   ☐ Issue 25: When the user is in any page, then it happens that the loggedin session already expired, redirect the user to login page
   ✔ Issue 24: go to this line and use eloquent @done(2017-07-13 10:21)
-  ☐ Issue 23: Go to this line and find a way to make it in laravel way of coding
+  ✔ Issue 23: Go to this line and find a way to make it in laravel way of coding @done(2017-07-16 14:30) @project(To Do)
   ☐ Issue 22: Create a function which handle the ajax request, because ajax request code are redundunt
   ☐ Issue 21: Remove the master.js because all of its code are transfered to app.js
-  ☐ Issue 20: Go to this line, i think its not needed anymore
+  ✔ Issue 20: Go to this line, i think its not needed anymore @done(2017-07-16 14:29) @project(To Do)
   ☐ Issue 19: The current loggedin user should not cross the pages of the other user_account_type
   ✔ Issue 18: No data in admin table @done(2017-07-07 15:31)
   ☐ Issue 17: Find the right icon for super admin info box

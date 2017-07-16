@@ -208,14 +208,15 @@ function getDate($id, $event = false, $time = false, default_date = false) {
  * @return json
  */
 function getEvents() {
-    var id = $('#my-calendar').data('org-id');
+    // Organization ID
+    var oid = $('#my-organization').data('org-id');
 
     var json = "";
     $.ajax({
       type: 'POST',
       url: '/users/event/gets',
       data: {
-        id: id == undefined ? 0 : id
+        id: oid == undefined ? 0 : oid
       },
       dataType: 'json',
       beforeSend: function(request) {
