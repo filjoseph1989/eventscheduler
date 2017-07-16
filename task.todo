@@ -10,11 +10,11 @@ To Do:
         ☐ List Events - view event from organization
     ☐ Manage Schedule:
       ☐ My Personal Calendar
-      ☐ My Organization Calendar
-        ☐ Display the list of organization first
-        ☐ When the use click on organization
-          ☐ Display the event on the calendar only
-          ☐ Remove the add functionality of event
+      ✔ My Organization Calendar @done(2017-07-17 01:40)
+        ✔ Display the list of organization first @done(2017-07-17 01:39)
+        ✔ When the user click on organization @done(2017-07-17 01:40)
+          ✔ Display the event on the calendar only @done(2017-07-17 01:40)
+          ✔ Remove the add functionality of event @done(2017-07-17 01:40)
   ☐ Task 35 - Transfer the master.js to app.js
   ☐ Task 34 - Login as Organization HEAD:
     ☐ Generate User Attendance:

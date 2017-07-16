@@ -5,7 +5,12 @@
   </a>
   <ul class="ml-menu">
     <li>
-      <a href="{{ route('member.org-calendar') }}">
+      {{--
+        <a href="{{ route('member.org-calendar') }}">
+          <span>My Organization Calendar</span>
+        </a>
+      --}}
+      <a href="{{ route('member.org-list') }}">
         <span>My Organization Calendar</span>
       </a>
     </li>

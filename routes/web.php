@@ -183,8 +183,8 @@ Route::group(['middleware' => 'revalidate'], function()
 
     # Create event
     Route::prefix('org-member')->group(function() {
-      Route::name('event.show')->get('/show', 'OrganizationHead\Events\EventController@showEvents');
-      Route::name('member.org-calendar')->get('/my-organization-calendar', 'OrganizationMember\ManageSchedule\CalendarController@myOrgCalendar');
+      Route::name('member.org-list')->get('/org-list', 'OrganizationMember\OrgMemberAccountController@DisplayMyOrganization');
+      Route::name('member.org-calendar')->get('/my-organization-calendar/{id}', 'OrganizationMember\ManageSchedule\CalendarController@myOrgCalendar');
     });
 
     /**

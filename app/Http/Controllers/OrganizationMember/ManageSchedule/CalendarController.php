@@ -8,6 +8,7 @@ use App\Models\Calendar;
 use App\Models\EventType;
 use Illuminate\Http\Request;
 use App\Models\EventCategory;
+use App\Models\Organization;
 use App\Http\Controllers\Controller;
 
 class CalendarController extends Controller
@@ -42,7 +43,19 @@ class CalendarController extends Controller
    * Display the organization calendar the user belong to
    * @return void
    */
-  public function myOrgCalendar()
+  public function myOrgCalendar($id)
+  {
+    $org = Organization::find($id);
+
+    # Display the calendar
+    return view(
+      'pages.users.organization-member.calendars.my-org-calendar',
+      compact(
+        'org'
+      )
+    );
+  }
+  public function _myOrgCalendar($id)
   {
     $event_type       = EventType::all();
     $event_categories = EventCategory::all();

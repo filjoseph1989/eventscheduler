@@ -5,6 +5,8 @@
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/fullcalendar.css') }}?v=0.1">
   <link rel="stylesheet" href="{{ asset('css/fullcalendar.print.css') }}?v=0.1">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap-material-datetimepicker.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/sweetalert.css') }}">
   <link rel="stylesheet" href="{{ asset('css/all-themes.css') }}">
 @endsection
 
@@ -19,11 +21,27 @@
 
     <section class="content">
       <div class="container-fluid">
+        @if (session('status'))
+          <div class="alert alert-success">
+            {!! session('status') !!}
+          </div>
+        @endif
+
+        @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
+
         <div class="row clearfix">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> {{ ucfirst($org->name) }} Calendar </h2>
+                <h2> My Organization Calendar </h2>
                 <ul class="header-dropdown m-r--5">
                   <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -36,9 +54,21 @@
                   </li>
                 </ul>
               </div>
-              <div class="body">
-                <div id='my-organization' data-org-id="{{ $org->id }}"></div>
-                <div id='calendar'></div>
+              <div class="body table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Organization Name</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach ($OrgList as $key => $value)
+                      <tr>
+                        <td><a href="{{ route('member.org-calendar', $value->organization->id ) }}">{{ $value->organization->name }}</a></td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
