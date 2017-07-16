@@ -150,20 +150,38 @@ class OsaAccountController extends Controller
 
   public function approve($id, $orgg_uid)
   {
-    $all_event_approval_monitors = EventApprovalMonitor::all();
     $approved_event = Event::find($id);
     if($approved_event->event_category_id == 1 || $approved_event->event_category_id == 3 && $approved_event->approver_count < 3){
       if(EventApprovalMonitor::where('event_id', '=', $id)->where('approvers_id', '=', $orgg_uid)->exists()){
         return redirect()->route('osa.event.approval')
-        ->with('status', "You already approved this event ({$approved_event->event}). Press the UNAPPROVE button to disable your approval.");
+        ->with('status', "You already approved this event ( {$approved_event->event} ). Press the UNAPPROVE button to disable your approval.");
       } else{
         EventApprovalMonitor::create(['event_id' => $id, 'approvers_id' => $orgg_uid]);
         $approved_event->approver_count++;
         if($approved_event->save() ){
           return redirect()->route('osa.event.approval')
-          ->with('status', "Successfuly approved the event {$approved_event->event}.");
+          ->with('status', "Successfuly approved the event ( {$approved_event->event} ).");
         }
       }
+    }
+    // if($approved_event->event_category_id == 1 || $approved_event->event_category_id == 3 && $approved_event->approver_count == 3){
+    //   //call notify function
+    // }
+  }
+  public function disapprove($id, $orgg_uid)
+  {
+    $approved_event = Event::find($id);
+    if(EventApprovalMonitor::where('event_id', '=', $id)->where('approvers_id', '=', $orgg_uid)->exists()){
+      $delete_record = EventApprovalMonitor::where('event_id', '=', $id)->where('approvers_id', '=', $orgg_uid);
+      $delete_record->delete();
+      $approved_event->approver_count--;
+    } else{
+      return redirect()->route('osa.event.approval')
+      ->with('status', "You can't disapprove this event ( {$approved_event->event} ) because you have not approved it yet.");
+    }
+    if($approved_event->save() ){
+      return redirect()->route('osa.event.approval')
+      ->with('status', "Successfuly disapproved the event ( {$approved_event->event} ).");
     }
   }
 }

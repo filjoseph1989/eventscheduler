@@ -73,6 +73,7 @@
                           <td>
                             <a href="{{ route('osa.event.osa-approve', [$value->id, $value->orgg_uid] ) }}" class="" title="approve this event"> <i class="material-icons">thumb_up</i> </a>
                             <a href="#" class="view-event" title="further details" data-id="{{ $value->id }}" data-toggle="modal" data-target="#view-event"> <i class="material-icons">visibility</i></a>
+                            <a href="{{ route('osa.event.osa-disapprove', [$value->id, $value->orgg_uid] ) }}" class="" title="disapprove this event"> <i class="material-icons">thumb_down</i> </a>
                           </td>
                         </tr>
                       <?php endforeach; ?>

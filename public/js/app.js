@@ -294,6 +294,10 @@ $('.view-event').click(function() {
       var event = data.event;
       event.whole_day = event.whole_day == 1 ? 'Yes' : 'No';
       event.status    = event.status == 1 ? "Approved" : "Unapproved";
+      event.notify_via_twitter    = event.notify_via_twitter == 1 ? "on" : "off";
+      event.notify_via_facebook   = event.notify_via_facebook == 1 ? "on" : "off";
+      event.notify_via_sms        = event.notify_via_sms == 1 ? "on" : "off";
+      event.notify_via_email      = event.notify_via_email == 1 ? "on" : "off";
 
       $('#view-event-title').html(event.event);
       var html =
@@ -332,7 +336,35 @@ $('.view-event').click(function() {
       '<tr>' +
         '<td>Status:</td>' +
         '<td>'+ event.status + '</td>' +
+      '</tr>'+
+      '<tr>' +
+        '<td>Notify Via Twitter:</td>' +
+        '<td>'+ event.notify_via_twitter + '</td>' +
+      '</tr>'+
+      '<tr>' +
+        '<td>Notify Via Facebook:</td>' +
+        '<td>'+ event.notify_via_facebook + '</td>' +
+      '</tr>'+
+      '<tr>' +
+        '<td>Notify Via Sms:</td>' +
+        '<td>'+ event.notify_via_sms + '</td>' +
+      '</tr>'+
+      '<tr>' +
+        '<td>Notify Via Email:</td>' +
+        '<td>'+ event.notify_via_email + '</td>' +
+      '</tr>'+
+      '<tr>' +
+        '<td> <b>List of who already approved this event: </b></td>' +
+        '<td>&nbsp;</td>' +
       '</tr>';
+'<tr>'
+      for (var i = 0; i < data.event_monitor.length; i++) {
+        html +=
+        '<tr>' +
+          '<td>'+' '+data.event_monitor[i].fname+' '+data.event_monitor[i].mname +' '+data.event_monitor[i].lname+' '+data.event_monitor[i].sname+'</td>' +
+          '<td>&nbsp;</td>' +
+        '</tr>';
+      }
       $('#event-details').html(html);
     },
     error: function(data) {

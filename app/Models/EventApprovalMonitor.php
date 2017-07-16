@@ -10,4 +10,12 @@ class EventApprovalMonitor extends Model
     'event_id',
     'approvers_id'
   ];
+
+  public function user(){
+    return $this->belongsTo('App\Models\User');
+  }
+
+  public function event(){
+    return $this->belongsTo('App\Models\Event');
+  }
 }

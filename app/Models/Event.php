@@ -94,5 +94,9 @@ class Event extends Model
   {
     return $this->hasMany('App\Models\OrganizationGroup');
   }
+  public function event_approval_monitors()
+  {
+    return $this->hasMany('App\Models\EventApprovalMonitor');
+  }
 
 }

@@ -12,6 +12,7 @@ use App\Models\EventCategory;
 use App\Models\Organization;
 use Illuminate\Http\Request;
 use App\Models\OrganizationGroup;
+use App\Models\EventApprovalMonitor;
 use App\Http\Controllers\Controller;
 
 /**
@@ -203,8 +204,27 @@ class EventController extends Controller
     $event->load('organization');
     $event->load('user');
 
+    $event_monitor = new EventApprovalMonitor();
+    $em = $event_monitor->select(
+      'event_approval_monitors.event_id',
+      'event_approval_monitors.approvers_id',
+      'users.first_name as fname',
+      'users.middle_name as mname',
+      'users.last_name as lname',
+      'users.suffix_name as sname'
+    )
+    ->join('users', 'event_approval_monitors.approvers_id', '=', 'users.id')
+    ->where('event_approval_monitors.event_id', '=', $data->id)
+    ->get();
+
+
+    // $event_monitor = EventApprovalMonitor::with(['user','event'])
+    // ->where('event_id', '=', $data->id)
+    // ->get();
+
     echo json_encode([
-      'event' => $event
+      'event' => $event,
+      'event_monitor' => $em
     ]);
   }
 }
