@@ -19,11 +19,11 @@ To Do:
                 ☐ twitter
                 ☐ email
                 ☐ phone
-              ☐ Chose which calendar it should display
-                ☐ Personal calendar
-                ☐ Organization calendar
-                ☐ if the user chose a calendar, is he/she allowed to create event on that calendar?
-                ✔ if chosen calendar is organization display organization dropdown else no dropdown @done(2017-07-16 02:20)
+            ☐ Chose which calendar the event should display
+              ☐ Personal calendar
+              ✔ Organization calendar @done(2017-07-16 02:28)
+              ☐ if the user chose a calendar, is he/she allowed to create event on that calendar?
+              ✔ if chosen calendar is organization display organization dropdown else no dropdown @done(2017-07-16 02:20)
             ☐ List Events
               ✔ All events of the current year @done(2017-07-14 21:20)
               ✔ Display the full details of the events @done(2017-07-14 21:20)

@@ -188,3 +188,4 @@ Route::group(['middleware' => 'revalidate'], function()
 */
 Route::name('notify.via.sms')->get('/notify_via_sms', 'smsNotifierController@index');
 Route::name('faceboo.notification')->get('/fb/post', 'HomeController@sendNotification');
+Route::name('simulate')->get('/simulate', 'EventController@simulate');

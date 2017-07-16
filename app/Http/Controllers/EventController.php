@@ -155,6 +155,14 @@ class EventController extends Controller
 
     echo json_encode( $event );
   }
+  public function simulate()
+  {
+    $event = Event::whereRaw('year(date_start) = year(now())')
+      ->whereRaw("organization_id = ". 1)
+      ->get();
+
+      d($event->count());
+  }
 
   /**
    * Return the list of event within a year

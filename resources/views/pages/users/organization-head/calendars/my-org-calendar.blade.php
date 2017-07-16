@@ -61,7 +61,9 @@
                 </ul>
               </div>
               <div class="body">
-                <div class="" id="my-calendar" data-org-id="{{ $user[0]->organization_id }}"></div>
+                @if (isset($user[0]->organization_id))
+                  <div class="" id="my-calendar" data-org-id="{{ $user[0]->organization_id }}"></div>
+                @endif
                 <div id='calendar'></div>
               </div>
             </div>
@@ -207,5 +209,5 @@
   <script src="{{ asset('js/basic-form-elements.js') }}?v=0.2" charset="utf-8"></script>
   <script src="{{ asset('js/fullcalendar.min.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/calendar.js') }}?v=0.2" charset="utf-8"></script>
+  <script src="{{ asset('js/calendar.js') }}?v=0.3" charset="utf-8"></script>
 @endsection

@@ -215,7 +215,7 @@ function getEvents() {
       type: 'POST',
       url: '/users/event/gets',
       data: {
-        id: id
+        id: id == undefined ? 0 : id
       },
       dataType: 'json',
       beforeSend: function(request) {
