@@ -69,7 +69,7 @@ class GenerateAttendanceController extends Controller
       $data['reason']       = '';
       $data['status']       = 1;
 
-      $result = UserAttendance::create($data);
+      $result = UserAttendance::updateOrCreate($data);
       if ($result->wasRecentlyCreated) {
         echo json_encode([
           'status' =>  true
