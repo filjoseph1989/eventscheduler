@@ -35,6 +35,7 @@ class Event extends Model
     'whole_day',
     'venue',
     'status',
+    'approver_count'
   ];
 
   /**

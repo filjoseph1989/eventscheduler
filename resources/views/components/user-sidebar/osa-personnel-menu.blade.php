@@ -19,30 +19,25 @@
         <span>Add an organization</span>
       </a>
     </li>
-    <li>
-      <a href="#">
-        <span>Assign positions in organizations</span>
-      </a>
-    </li>
   </ul>
   <a href="#" class="menu-toggle">
     <i class="material-icons">event</i>
-    <span>Events</span>
+    <span>Manage Events</span>
   </a>
   <ul class="ml-menu">
     <li>
-      <a href="#">
-        <span>List of Events</span>
+      <a href="{{ route('osa.event.get') }}">
+        <span>List of events</span>
       </a>
     </li>
     <li>
-      <a href="#">
+      <a href="{{ route('osa.event.new') }}">
         <span>Create an event</span>
       </a>
     </li>
     <li>
-      <a href="#">
-        <span>Generate Event Attendance</span>
+      <a href="{{ route('osa.event.approval') }}">
+        <span>Approve events</span>
       </a>
     </li>
   </ul>
@@ -98,10 +93,10 @@
       </a>
     </li>
     <li>
-      <a href="#">
+      <a href="{{ route('event.get') }}">
         <span>All Events</span>
       </a>
     </li>
-    <li>
+
   </ul>
 </li>

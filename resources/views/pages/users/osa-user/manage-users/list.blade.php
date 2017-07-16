@@ -70,6 +70,7 @@
                       <th>Mobile</th>
                       <th>Status</th>
                       <th>Account Type</th>
+                      <th>Approver</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -84,12 +85,16 @@
                           <td>{{ $usersvalue->mobile_number }}</td>
                           <td>{{ $usersvalue->status == 1 ? 'active' : 'inactive'  }}</td>
                           <td>{{ $usersvalue->u_acc_name }}</td>
+                          <td>{{ $usersvalue->approver_or_not == 1 ? 'YES' : 'NO'  }}</td>
                           <td>
-                            <a href="#" class="osa-add-org" data-orgs="{{$organizations}}" title="add organization" data-positions="{{$positions}}" data-id="{{ $usersvalue->user_id }}" data-toggle="modal" data-target="#change-position">
+                            <a href="#" class="osa-add-org" data-orgs="{{$organizations}}" title="add organization to this user" data-positions="{{$positions}}" data-id="{{ $usersvalue->user_id }}" data-toggle="modal" data-target="#change-position">
                               <i class="material-icons">bubble_chart</i>
                             </a>
                             <a href="#" class="osa-user-account-edit" data-orgs="{{$org_grps}}" title="edit user account type" data-user-accounts="{{$user_accounts}}" data-id="{{ $usersvalue->user_id }}" data-toggle="modal" data-target="#change-user-account">
                               <i class="material-icons">mode_edit</i>
+                            </a>
+                            <a href="{{ route('user.update.user_approver_status', $usersvalue->user_id ) }}" class="" title="make this user an approver" data-toggle="modal" data-target="">
+                              <i class="material-icons">fingerprint</i>
                             </a>
                           </td>
                         </tr>
@@ -105,7 +110,7 @@
                       <th>Mobile</th>
                       <th>Status</th>
                       <th>Account Type</th>
-                      <th>Position</th>
+                      <th>Approver</th>
                       <th>Action</th>
                     </tr>
                   </tfoot>

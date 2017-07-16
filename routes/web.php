@@ -112,6 +112,7 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('user.register')->post('/user/register', 'UserController@adminCreate');
     Route::name('user.update.position')->post('/user/update/position', 'UserController@updatePosition');
     Route::name('user.update.user_account')->post('/user/update/user_account', 'UserController@updateUserAccount');
+    Route::name('user.update.user_approver_status')->get('/user/update/user-approver-status/{user_id}', 'UserController@updateUserApproverStatus');
     Route::name('user.get')->post('/user/get', 'UserController@gets');
 
     # Course Crud
@@ -170,7 +171,9 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('osa.user.list')->get('osa/list_of_users','OsaAccountController@showAllUserList');
     Route::name('osa.org.list')->get('osa/list_of_organizations','OsaAccountController@showAllOrganizationList');
     Route::name('osa.org.add')->get('osa/organization/add', 'OsaAccountController@showOrganizationAddForm');
-
+    Route::name('osa.event.get')->get('osa/event/get', 'OsaAccountController@getEventOfTheMonthList');
+    Route::name('osa.event.new')->get('osa/event/new', 'OsaAccountController@createNewEventForm');
+    Route::name('osa.event.approval')->get('osa/event/approval', 'OsaAccountController@approveEvents');
     /**
      * Admin User Account Type
      */

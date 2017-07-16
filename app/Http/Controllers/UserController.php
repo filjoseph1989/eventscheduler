@@ -214,7 +214,7 @@ class UserController extends Controller
         ->get();
 
       echo json_encode(
-        'result' => $orgs
+        ['result' => $orgs]
       );
     }
 
@@ -249,7 +249,7 @@ class UserController extends Controller
 
       if ( $organization_group->save() && $user->save() ) {
         return redirect()->route('osa.user.list')
-          ->with('status', "Successfuly added {$user->first_name}'s organization/s with corresponding positions");
+          ->with('status', "Successfuly added the organization/s of {$user->first_name} {$user->last_name} with corresponding positions");
       }
     }
 
@@ -262,8 +262,27 @@ class UserController extends Controller
 
       if ($user->save() ) {
         return redirect()->route('osa.user.list')
-          ->with('status', "Successfuly changed {$user->first_name}'s account type");
+          ->with('status', "Successfuly changed the account type of {$user->first_name} {$user->last_name}");
       }
+    }
+
+    public function updateUserApproverStatus($user_id)
+    {
+      #Note: Need validation i think
+      $user = User::find($user_id);
+      if($user->approver_or_not == 0)  $user->approver_or_not = 1; else $user->approver_or_not = 0;
+
+        if($user->approver_or_not == 1){
+          if($user->save() ){
+            return redirect()->route('osa.user.list')
+            ->with('status', "Successfuly made {$user->first_name} {$user->last_name} as an approver of an event");
+          }
+        } else {
+          if($user->save() ){
+            return redirect()->route('osa.user.list')
+            ->with('status', "Successfuly deleted {$user->first_name} {$user->last_name} as an approver of an event");
+          }
+        }
     }
 
     /**
