@@ -150,15 +150,20 @@ class OsaAccountController extends Controller
 
   public function approve($id, $orgg_uid)
   {
-    $event_approval_monitor = EventApprovalMonitor::where('event_id', '=', 1)->get();
-    dd($event_approval_monitor);
+    $all_event_approval_monitors = EventApprovalMonitor::all();
     $approved_event = Event::find($id);
     if($approved_event->event_category_id == 1 || $approved_event->event_category_id == 3 && $approved_event->approver_count < 3){
+      if(EventApprovalMonitor::where('event_id', '=', $id)->where('approvers_id', '=', $orgg_uid)->exists()){
+        return redirect()->route('osa.event.approval')
+        ->with('status', "You already approved this event ({$approved_event->event}). Press the UNAPPROVE button to disable your approval.");
+      } else{
+        EventApprovalMonitor::create(['event_id' => $id, 'approvers_id' => $orgg_uid]);
         $approved_event->approver_count++;
         if($approved_event->save() ){
           return redirect()->route('osa.event.approval')
           ->with('status', "Successfuly approved the event {$approved_event->event}.");
         }
+      }
     }
   }
 }
