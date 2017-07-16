@@ -55,7 +55,9 @@
                 </ul>
               </div>
               <div class="body">
-                <div class="" id="my-organization" data-org-id="{{ $user->first()->organization_id }}"></div>
+                @if (isset($user->first()->organization_id))
+                  <div class="" id="my-organization" data-org-id="{{ $user->first()->organization_id }}"></div>
+                @endif
                 <div id='calendar'></div>
               </div>
             </div>

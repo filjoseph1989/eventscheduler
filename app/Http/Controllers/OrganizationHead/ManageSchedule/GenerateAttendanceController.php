@@ -29,9 +29,17 @@ class GenerateAttendanceController extends Controller
      */
     public function index($id, $eid)
     {
+      # Get the user belong to an organization
       $attendance = OrganizationGroup::with(['user', 'organization'])
         ->where('organization_id', '=', $id)
         ->get();
+
+      # Get the status of the user attendance
+      $att_sheet = UserAttendance::where('event_id', '=', $eid)->get();
+      $att       = [];
+      foreach ($att_sheet as $key => $value) {
+        $att[$value->user_id] = $value->confirmation;
+      }
 
       $login_type = 'user';
       return view(
@@ -39,7 +47,8 @@ class GenerateAttendanceController extends Controller
         compact(
           'login_type',
           'attendance',
-          'eid'
+          'eid',
+          'att'
         )
       );
     }
@@ -70,7 +79,7 @@ class GenerateAttendanceController extends Controller
       $data['status']       = 1;
 
       $result = UserAttendance::updateOrCreate($data);
-      if ($result->wasRecentlyCreated) {
+      if ($result) {
         echo json_encode([
           'status' =>  true
         ]);

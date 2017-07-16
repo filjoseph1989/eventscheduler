@@ -58,7 +58,9 @@
                         <td>
                           <button type="button" class="btn btn-primary waves-effect confirmed"
                             data-user-id="{{ $value->user->id }}"
-                            data-event-id="{{ $eid }}">Confirmed</button>
+                            data-event-id="{{ $eid }}">
+                              {{ (isset($att[$value->user->id]) && $att[$value->user->id] == 1) ? "Confirmed" : "Confirm" }}
+                          </button>
                         </td>
                       </tr>
                     @endforeach
@@ -82,5 +84,5 @@
 @endsection
 
 @section('footer')
-  <script src="{{ asset('js/app.js') }}?v=0.13" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.14" charset="utf-8"></script>
 @endsection

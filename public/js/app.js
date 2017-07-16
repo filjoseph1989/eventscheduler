@@ -383,12 +383,13 @@ $('#event-calendar').click(function() {
 $('.confirmed').click(function() {
   var id = $(this).data('user-id');
   var eid = $(this).data('event-id');
+  var _this = $(this);
 
   $.ajax({
     type: 'POST',
     url: '/users/attendance/store',
     data: {
-      id: id,
+      id:  id,
       eid: eid
     },
     dataType: 'json',
@@ -397,6 +398,9 @@ $('.confirmed').click(function() {
     },
     success: function(data) {
       console.log(data);
+      if (data.status == true) {
+        _this.html('Confirmed');
+      }
     },
     error: function(data) {
       console.log('Error:');
