@@ -165,6 +165,11 @@ Route::group(['middleware' => 'revalidate'], function()
       Route::name('my-personal-calendar')->get('/my-personal-calendar', 'OrganizationHead\ManageSchedule\CalendarController@myPersonalCalendar');
     });
 
+    # Attendance
+    Route::prefix('attendance')->group(function() {
+      Route::name('attendance')->get('/new', 'OrganizationHead\ManageSchedule\GenerateAttendanceController@index');
+    });
+
     # Create event
     Route::prefix('event')->group(function() {
       Route::name('event.new')->get('/new', 'OrganizationHead\Events\EventController@createNewEventForm');
@@ -172,7 +177,6 @@ Route::group(['middleware' => 'revalidate'], function()
       Route::name('event.get')->get('/get', 'OrganizationHead\Events\EventController@getEventOfTheMonthList');
       Route::name('event.gets')->post('/gets', 'OrganizationHead\Events\EventController@getEventOfTheMonth');
       Route::name('event.ajax.get')->post('/ajax/get', 'OrganizationHead\Events\EventController@getEvent');
-      Route::prefix('event')->group(function() {
     });
 
     /**

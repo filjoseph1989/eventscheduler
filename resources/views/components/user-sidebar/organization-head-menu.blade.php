@@ -17,7 +17,7 @@
           </ul>
         </li>
         <li>
-          <a href="#">Generate Attendance</a>
+          <a href="{{ route('attendance') }}">Generate Attendance</a>
         </li>
       </ul>
     </li>

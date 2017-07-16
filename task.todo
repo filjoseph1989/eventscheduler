@@ -1,6 +1,4 @@
 To Do:
-  ☐ Task 36 - Remove the following files:
-    ☐ 
   ☐ Task 35 - Transfer the master.js to app.js
   ☐ Task 34 - Login as Organization HEAD:
     ☐ Events:
@@ -27,8 +25,10 @@ To Do:
           ☐ twitter
           ☐ email
           ☐ phone
-    ☐ Generate User Attendance
     ☐ Manage Schedule:
+      ☐ Generate User Attendance:
+        ☐ Chose organization
+        ☐ Display the attendance sheet base on the organization
       ☐ Show calendar
         ☐ My Personal Calendar
         ☐ My Organization Calendar:
@@ -41,27 +41,27 @@ To Do:
             ☐ Edit the schedule within the calendar via modal prompt
             ☐ Need a validation of entry on the following fields, title, description
 
-            Archive:
-            ✔ Add event in the database @done(2017-07-14 21:38)
-            ✔ Alter the events table @done(2017-07-09 20:25)
-            ✔ What are the process of adding calendar data to the database @done(2017-07-13 15:43)
-              ✔ When the user click on save button on event modal, get the data and pass to controller, while at same time, update the calendar in view @done(2017-07-10 11:14)
-              ✔ The event should only display on calendar once the data successfully inserted into the database @done(2017-07-10 14:47)
-            ✔ Getting the data from the database @done(2017-07-13 10:26)
-              ✔ Get all event of the current month where user equal to current loggedin user id and chosen calendar @done(2017-07-13 10:26)
-            ✔ Get the calendar organization ID, for identifying what organization a calendar belongs to. @done(2017-07-16 14:38)
-            ✔ Display again the events setted previously from the calendar. @done(2017-07-13 15:37)
-            ✔ When the user click on the calendar date, then try to chose date and time, it should match the clicked date @done(2017-07-13 15:41)
-            ✔ During the insert of new event in the database, include the organization ID. @done(2017-07-16 14:39)
-            ✔ Get the type and categories of events, and user id @done(2017-07-09 21:09)
-            ✔ Add new events on the calendar @done(2017-07-10 00:34)
-              ✔ Capture the events data in javascript @done(2017-07-10 00:34)
-                ✔ The event will not display since the end date is not yet correct in coding @done(2017-07-10 00:34)
-                ✔ whole day? @done(2017-07-09 19:37)
-                ✔ title @done(2017-07-09 14:12)
-                ✔ desription of the event @done(2017-07-09 18:36)
-                ✔ day start and day end @done(2017-07-09 14:12)
-                ✔ what time in the day? @done(2017-07-09 14:12)
+          Archive:
+          ✔ Add event in the database @done(2017-07-14 21:38)
+          ✔ Alter the events table @done(2017-07-09 20:25)
+          ✔ What are the process of adding calendar data to the database @done(2017-07-13 15:43)
+            ✔ When the user click on save button on event modal, get the data and pass to controller, while at same time, update the calendar in view @done(2017-07-10 11:14)
+            ✔ The event should only display on calendar once the data successfully inserted into the database @done(2017-07-10 14:47)
+          ✔ Getting the data from the database @done(2017-07-13 10:26)
+            ✔ Get all event of the current month where user equal to current loggedin user id and chosen calendar @done(2017-07-13 10:26)
+          ✔ Get the calendar organization ID, for identifying what organization a calendar belongs to. @done(2017-07-16 14:38)
+          ✔ Display again the events setted previously from the calendar. @done(2017-07-13 15:37)
+          ✔ When the user click on the calendar date, then try to chose date and time, it should match the clicked date @done(2017-07-13 15:41)
+          ✔ During the insert of new event in the database, include the organization ID. @done(2017-07-16 14:39)
+          ✔ Get the type and categories of events, and user id @done(2017-07-09 21:09)
+          ✔ Add new events on the calendar @done(2017-07-10 00:34)
+            ✔ Capture the events data in javascript @done(2017-07-10 00:34)
+              ✔ The event will not display since the end date is not yet correct in coding @done(2017-07-10 00:34)
+              ✔ whole day? @done(2017-07-09 19:37)
+              ✔ title @done(2017-07-09 14:12)
+              ✔ desription of the event @done(2017-07-09 18:36)
+              ✔ day start and day end @done(2017-07-09 14:12)
+              ✔ what time in the day? @done(2017-07-09 14:12)
   ☐ Task 33 - Change the profile background according to the user type
   ☐ Task 32 - Try View Composers to manage the rendering of two sidebar for user and for admin
   ☐ Task 31 - Create a manage notification - This will be a setting what to notify or what kind of notification should be if org adviser will create a event

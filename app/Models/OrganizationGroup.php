@@ -21,4 +21,15 @@ class OrganizationGroup extends Model
     {
       return $this->belongsTo('App\Models\User');
     }
+
+    /**
+     * Define the relationship between organization group
+     * and organization
+     *
+     * @return object
+     */
+    public function organization()
+    {
+      return $this->belongsTo('App\Models\Organization');
+    }
 }
