@@ -78,25 +78,4 @@
       </a>
     </li>
   </ul>
-  <a href="#">
-    <i class="material-icons">people_outline</i>
-    <span>Generate Attendance</span>
-  </a>
-  <a href="#" class="menu-toggle">
-    <i class="material-icons">info_outline</i>
-    <span>Manage Notifications</span>
-  </a>
-  <ul class="ml-menu">
-    <li>
-      <a href="{{ route('event.show') }}">
-        <span>Events You Created</span>
-      </a>
-    </li>
-    <li>
-      <a href="{{ route('org-head.event.get') }}">
-        <span>All Events</span>
-      </a>
-    </li>
-
-  </ul>
 </li>

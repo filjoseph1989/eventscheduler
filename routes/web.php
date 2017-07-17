@@ -176,37 +176,10 @@ Route::group(['middleware' => 'revalidate'], function()
       Route::name('event.show')->get('/show', 'OrganizationHead\Events\EventController@showEvents');
       Route::name('event.new')->get('/new', 'OrganizationHead\Events\EventController@createNewEventForm');
       Route::name('event.new')->post('/new', 'OrganizationHead\Events\EventController@createNewEvent');
+      Route::name('event.get')->get('/get', 'OrganizationHead\Events\EventController@getEventOfTheMonthList');
       Route::name('event.gets')->post('/gets', 'OrganizationHead\Events\EventController@getEventOfTheMonth');
       Route::name('event.ajax.get')->post('/ajax/get', 'OrganizationHead\Events\EventController@getEvent');
     });
-
-    # Route for organization head
-    Route::prefix('org-head')->group(function() {
-      Route::name('org-head.event.get')->get('/get', 'OrganizationHead\Events\EventController@getEventOfTheMonthList');
-      Route::name('org-head.event.get.ajax')->post('/ajax/get', 'OrganizationHead\Events\EventController@getEvent');
-      Route::name('org-head.event.edit')->post('/edit', 'OrganizationHead\Events\EventController@editEvent');
-      Route::name('org-head.org-list')->get('/org-list', 'OrganizationHead\OrgHeadAccountController@myOrganization');
-      Route::name('org-head.calendar')->get('/calendar/{id}', 'OrganizationHead\ManageSchedule\CalendarController@myOrgCalendar');
-      Route::name('org-head.personal-calendar')->get('/org-personal-calendar', 'OrganizationHead\ManageSchedule\CalendarController@myPersonalCalendar');
-      Route::name('org-head.personal-calendar-post')->post('/ajax/personal-event', 'OrganizationHead\Events\EventController@getPersonalEvent');
-    });
-
-    # Route for organization member
-    Route::prefix('org-member')->group(function() {
-      Route::name('org-member.event.get')->get('/get', 'OrganizationMember\Events\EventController@getEventOfTheMonthList');
-      Route::name('org-member.event.get.ajax')->post('/ajax/get', 'OrganizationMember\Events\EventController@getEvent');
-      Route::name('org-member.event.edit')->post('/edit', 'OrganizationMember\Events\EventController@editEvent');
-      Route::name('org-member.org-list')->get('/org-list', 'OrganizationMember\OrgHeadAccountController@myOrganization');
-      Route::name('org-member.calendar')->get('/calendar/{id}', 'OrganizationMember\ManageSchedule\CalendarController@myOrgCalendar');
-      Route::name('org-member.personal-calendar')->get('/org-personal-calendar', 'OrganizationMember\ManageSchedule\CalendarController@myPersonalCalendar');
-      Route::name('org-member.personal-calendar-post')->post('/ajax/personal-event', 'OrganizationMember\Events\EventController@getPersonalEvent');
-    });
-
-    # Route for organization member
-    // Route::prefix('org-member')->group(function() {
-    //   Route::name('member.org-list')->get('/org-list', 'OrganizationMember\OrgMemberAccountController@DisplayMyOrganization');
-    //   Route::name('member.org-calendar')->get('/my-organization-calendar/{id}', 'OrganizationMember\ManageSchedule\CalendarController@myOrgCalendar');
-    // });
 
     /**
      * OSA User Account Type
@@ -217,6 +190,8 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('osa.event.get')->get('osa/event/get', 'OsaAccountController@getEventOfTheMonthList');
     Route::name('osa.event.new')->get('osa/event/new', 'OsaAccountController@createNewEventForm');
     Route::name('osa.event.approval')->get('osa/event/approval', 'OsaAccountController@approveEvents');
+    Route::name('osa.event.osa-approve')->get('osa/event/approved/{id}/{orgg_uid}', 'OsaAccountController@approve');
+    Route::name('osa.event.osa-disapprove')->get('osa/event/disapproved/{id}/{orgg_uid}', 'OsaAccountController@disapprove');
 
     /**
      * Admin User Account Type

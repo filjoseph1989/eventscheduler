@@ -40,11 +40,11 @@
             <span>Manage Users</span>
           </a>
         </li>
-        <li>
+        <!-- <li>
           <a href="{{ route('admin.user.account.list') }}">
             <span>User Accounts</span>
           </a>
-        </li>
+        </li> -->
         <li>
           <a href="{{ route('admin.course.list') }}">
             <span>Courses</span>

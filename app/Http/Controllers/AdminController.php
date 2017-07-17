@@ -56,7 +56,7 @@ class AdminController extends Controller
         'users.last_name',
         'users.email',
         'users.mobile_number',
-        'users.status',
+        'users.status'
       )
       ->join('user_accounts', 'users.user_account_id', '=', 'user_accounts.id')
       ->get();
