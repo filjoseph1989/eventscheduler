@@ -10,7 +10,7 @@
       </a>
     </li>
     <li>
-      <a href="{{ route('my-personal-calendar') }}">
+      <a href="{{ route('org-head.personal-calendar') }}">
         <span>My Personal</span>
       </a>
     </li>

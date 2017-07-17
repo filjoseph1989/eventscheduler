@@ -184,7 +184,9 @@ Route::group(['middleware' => 'revalidate'], function()
     # Route for organization head
     Route::prefix('org-head')->group(function() {
       Route::name('org-head.org-list')->get('/org-list', 'OrganizationHead\OrgHeadAccountController@myOrganization');
-      Route::name('org-head.calendar')->get('/calendar/{id}', 'OrganizationHead\Events\EventController@myOrgCalendar');
+      Route::name('org-head.calendar')->get('/calendar/{id}', 'OrganizationHead\ManageSchedule\CalendarController@myOrgCalendar');
+      Route::name('org-head.personal-calendar')->get('/org-personal-calendar', 'OrganizationHead\ManageSchedule\CalendarController@myPersonalCalendar');
+      Route::name('org-head.personal-calendar-post')->post('/ajax/personal-event', 'OrganizationHead\Events\EventController@getPersonalEvent');
     });
 
     # Route for organization member

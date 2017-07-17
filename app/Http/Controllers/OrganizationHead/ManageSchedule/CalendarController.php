@@ -40,9 +40,12 @@ class CalendarController extends Controller
 
   /**
    * Display the organization calendar the user belong to
+   *
+   * ! Depracated function
+   *
    * @return void
    */
-  public function myOrgCalendar()
+  public function _myOrgCalendar()
   {
     $event_type       = EventType::all();
     $event_categories = EventCategory::all();
@@ -69,10 +72,48 @@ class CalendarController extends Controller
   }
 
   /**
+   * Display the calendar based on the clicked organization
+   * in the list of organization.
+   *
+   * Using organization ID to get the event from the events
+   * table
+   *
+   * @param  int $id Organization ID
+   * @return \Illuminate\Response
+   */
+  public function myOrgCalendar($id)
+  {
+    # Check if the user is loggedin
+    if (! Auth::check()) {
+      return redirect()->route('login');
+    }
+
+    if (parent::isOrgHead()) {
+      # To get the organization name
+      $org = Organization::find($id);
+
+      # Display the calendar
+      return view(
+        'pages.users.organization-head.calendars.my-org-calendar',
+        compact( 'org' )
+      );
+    } else {
+      return redirect()->route('home');
+    }
+  }
+
+  /**
    * Display the user personal calendar
    * @return
    */
-  public function myPersonalCalendar(){
-    return view('pages.users.organization-head.calendars.my-personal-calendar');
+  public function myPersonalCalendar() {
+    # Check if the user is loggedin
+    if (! Auth::check()) {
+      return redirect()->route('login');
+    }
+
+    if (parent::isOrgHead()) {
+      return view('pages.users.organization-head.calendars.my-personal-calendar');
+    }
   }
 }

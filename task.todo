@@ -37,10 +37,11 @@ To Do:
           ☐ Check if event already exist?
           ☐ Remove among organization in the dropdown of whos audience
     ☐ Manage Schedule:
-      ☐ My Personal Calendar
+      ☐ My Personal Calendar:
+        ☐ Display personal event on calendar
       ☐ My Organization Calendar:
-        ☐ Display the list of organization
-        ☐ Display the calendar of the organization
+        ✔ Display the list of organization @done(2017-07-17 17:00)
+        ✔ Display the calendar of the organization @done(2017-07-17 17:01)
         ☐ Edit Events:
           ☐ List the events first then edit
   ☐ Task 33 - Change the profile background according to the user type

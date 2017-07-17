@@ -40,21 +40,9 @@
             <div class="card">
               <div class="header">
                 <h2> My Personal Calendar </h2>
-                <ul class="header-dropdown m-r--5">
-                  <li class="dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                      <i class="material-icons">more_vert</i>
-                    </a>
-                    <ul class="dropdown-menu pull-right">
-                      <li><a href="{{ route('university-calendar') }}">University Calendar</a></li>
-                      <li><a href="{{ route('all-organization-calendar') }}">All Organizations Calendar</a></li>
-                      <li><a href="{{ route('my-organization-calendar') }}">My Organization Calendar</a></li>
-                      <li><a href="{{ route('my-personal-calendar') }}">My Personal Calendar</a></li>
-                    </ul>
-                  </li>
-                </ul>
               </div>
               <div class="body">
+                <div id='personal-calendar' data-user-id="{{ Auth::user()->id }}"></div>
                 <div id='calendar'></div>
               </div>
             </div>
@@ -76,5 +64,5 @@
 @section('footer')
   <script src="{{ asset('js/jquery-ui-1.10.2.custom.min.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/fullcalendar.min.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/master.js') }}?v=0.5" charset="utf-8"></script>
+  <script src="{{ asset('js/calendar0.js') }}?v=0.2" charset="utf-8"></script>
 @endsection

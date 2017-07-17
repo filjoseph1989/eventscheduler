@@ -20,13 +20,17 @@ class OrgHeadAccountController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a list of organization.
      *
      * @return \Illuminate\Http\Response
      */
     public function myOrganization()
     {
-      if (Auth::check()) {
+      if (! Auth::check()) {
+        return redirect()->route('login');
+      }
+
+      if (parent::isOrgHead()) {
         # Issue 31: Change this to eloquent way of getting data
         # Get the organization base onn the user's ID
         $organization = OrganizationGroup::select(
@@ -46,7 +50,7 @@ class OrgHeadAccountController extends Controller
           )
         );
       } else {
-        return redirect()->route('login');
+        return redirect()->route('home');
       }
     }
 

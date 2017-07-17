@@ -8,9 +8,10 @@ use App\Models\Event;
 use App\Models\Calendar;
 use App\Models\Category;
 use App\Models\EventType;
-use App\Models\EventCategory;
 use App\Models\Organization;
 use Illuminate\Http\Request;
+use App\Models\EventCategory;
+use App\Models\PersonalEvent;
 use App\Models\OrganizationGroup;
 use App\Http\Controllers\Controller;
 
@@ -31,28 +32,6 @@ class EventController extends Controller
   public function __construct()
   {
     $this->middleware('web');
-  }
-
-  /**
-   * Display the calendar based on the clicked organization
-   * in the list of organization.
-   *
-   * Using organization ID to get the event from the events
-   * table
-   *
-   * @param  int $id Organization ID
-   * @return \Illuminate\Response
-   */
-  public function myOrgCalendar($id)
-  {
-    # To get the organization name
-    $org = Organization::find($id);
-
-    # Display the calendar
-    return view(
-      'pages.users.organization-head.calendars.my-org-calendar',
-      compact( 'org' )
-    );
   }
 
   public function showEvents()
@@ -225,6 +204,28 @@ class EventController extends Controller
     $event->load('organization');
     $event->load('user');
 
+    echo json_encode([
+      'event' => $event
+    ]);
+  }
+
+  /**
+   * Return response to request of getting personal events
+   * @param  Request $data
+   * @return json
+   */
+  public function getPersonalEvent(Request $data)
+  {
+    # get the event from personal event table
+    $event = PersonalEvent::where('user_id', '=', 1)
+      ->get();
+
+    # Load the relationship
+    $event->load('eventCategory')
+      ->load('eventType')
+      ->load('user');
+
+    # Send back to ajax
     echo json_encode([
       'event' => $event
     ]);

@@ -1,4 +1,5 @@
 To Do:
+  ☐ Issue 32: Develop a readable, maintainable code in calendar0.js and calendar.js
   ☐ Issue 31: Go to this line
   ☐ Issue 30: Check the unused routing
   ☐ Issue 29: On visiting the "users/calendar/my-organization-calendar" the system should automatically determine what type of calendar the user visiting
