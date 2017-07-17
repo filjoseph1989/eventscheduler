@@ -7,6 +7,6 @@
     </title>
   </head>
   <body>
-    <h1>Hi. Event Scheduler would like to inform you for a upcoming event......</h1>
+    <h1>Congratulations, your event has been approved.</h1>
   </body>
 </html>

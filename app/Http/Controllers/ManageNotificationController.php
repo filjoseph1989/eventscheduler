@@ -8,6 +8,7 @@ use App\Models\Event;
 use App\Mail\Mailtrap;
 use App\Models\EventType;
 use App\Models\Organization;
+use App\Models\OrganizationGroup;
 use Illuminate\Http\Request;
 use App\Models\EventCategory;
 use Nexmo\Laravel\Facade\Nexmo;
@@ -78,53 +79,211 @@ class ManageNotificationController extends Controller
    * @param  Request $data [description]
    * @return
    */
-  public function notify(Request $data){
-    if( isset($data['facebook']) ){
-      self::notifyViaFacebook($data);
+  public function notify($approved_event){
+    $events = Event::find($approved_event->id);
+    $ev     = $events->select(
+      'events.id',
+      'events.user_id',
+      'events.event_type_id',
+      'events.event_category_id',
+      'events.organization_id',
+      'events.event',
+      'events.description',
+      'events.venue',
+      'events.date_start',
+      'events.date_end',
+      'events.date_start_time',
+      'events.date_end_time',
+      'events.whole_day',
+      'events.status',
+      'events.approver_count',
+      'organization_groups.user_id as orgg_uid',
+      'organizations.name as org_name',
+      'users.first_name as fname',
+      'events.notify_via_facebook',
+      'events.notify_via_twitter',
+      'events.notify_via_sms',
+      'events.notify_via_email',
+      'events.additional_msg_facebook',
+      'events.additional_msg_sms',
+      'events.additional_msg_email',
+      'events.picture_facebook',
+      'events.picture_twitter',
+      'events.picture_email'
+    )
+    ->join('organization_groups', 'events.organization_id', '=', 'organization_groups.organization_id')
+    ->join('organizations', 'events.organization_id', '=', 'organizations.id')
+    ->join('users', 'events.user_id', '=', 'users.id')
+    ->where('organization_groups.user_id', '=', Auth::user()->id)
+    ->get();
+
+    foreach ($ev as $key => $value) {
+      # Make a formatted date
+      $value->date_start = date("d M Y",strtotime($value->date_start));
+      $value->date_end   = date("d M Y",strtotime($value->date_end));
+
+      if( $value->notify_via_facebook == 1 ){
+        self::notifyViaFacebook($value);
+      }
+
+      if( $value->notify_via_twitter == 1  ){
+        self::notifyViaTwitter($value);
+      }
+
+      if( $value->notify_via_email == 1 ) {
+        self::notifyViaEmail($value);
+      }
+
+      if( $value->notify_via_sms == 1 ){
+        self::notifyViaSms($value);
+      }
     }
-
-     if( isset($data['twitter']) ){
-       self::notifyViaTwitter($data);
-     }
-     if( isset($data['email']) ){
-       self::notifyViaEmail($data);
-     }
-     if( isset($data['sms']) ){
-       self::notifyViaSms($data);
-     }
-
   }
 
-  private function notifyViaSms (Request $data){
-      // $message = "The event ".$events->name."  is on ".$events->date.", ".$events->time." at the ".$events->venue.".";
-    if( isset($data['sms']) ){
+  private function notifyViaSms ($value){
+
+    if( $value->notify_via_sms == 1 ) {
+
+      if($value->event_category_id == 1){
+        $notification_message = "Hello UP Mindanao! You have an upcoming event!
+        \n{$value->event} headed by {$value->org_name}.
+        \nDescription: {$value->description}
+        \nVenue: {$value->description}
+        \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}
+        \nPlease be guided accordingly. Thank You!";
+      }
+
+      if($value->event_category_id == 2){
+        $notification_message = "Hello {$value->org_name}! You have an upcoming event!
+        \n{$value->event}
+        \nDescription: {$value->description}
+        \nVenue: {$value->description}
+        \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}
+        \nPlease be guided accordingly. Thank You!";
+      }
+
+      if($value->event_category_id == 3){
+        $notification_message = "Hello Student Leaders! You have an upcoming event!
+        \n{$value->event} headed by {$value->org_name}.
+        \nDescription: {$value->description}
+        \nVenue: {$value->description}
+        \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}
+        \nPlease be guided accordingly. Thank You!";
+      }
+
+      if($value->event_category_id == 4){
+        $notification_message = "Hello {$value->fname}! Your {$value->event} event has been approved.
+        \nDescription: {$value->description}
+        \nVenue: {$value->description}
+        \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}
+        \nPlease be guided accordingly. Thank You!";
+      }
+
       $result =
         Nexmo::message()->send([
           'to'   => '639958633866',
           'from' => '639124918787',
-          'text' => 'Your event has been approved oimlmkmjnjnkjbkjblbjklk;.'
+          'text' => $notification_message
         ]);
     }
   }
 
-  private function notifyViaEmail (Request $data) {
-    if( isset($data['email']) ){
-      Mail::to('janicalizdeguzman@gmail.com')->send(new Mailtrap());
+  /**
+   * Send emails for notification
+   *
+   * @param  object $value
+   * @return
+   */
+  private function notifyViaEmail ($value) {
+    // Demo
+    // Mail::to('janicalizdeguzman@gmail.com')->send(new Mailtrap());
+    $org = OrganizationGroup::where('organization_id', '=', $value->organization_id)->get();
+
+    $old = [];
+    foreach ($org as $key => $value) {
+      // d(User::find($value->user_id)->email);
+      if ( ! isset($old[$value->user_id])) {
+        $old[$value->user_id] = $value->user_id;
+        if( $value->notify_via_email == 1 ){
+          Mail::to(User::find($value->user_id)->email)->send(new Mailtrap());
+        }
+      }
     }
   }
 
-  private function notifyViaFacebook (Request $data) {
-    if( isset($data['facebook']) ){
+  private function notifyViaFacebook ($value) {
+    if( $value->notify_via_facebook == 1 ){
+      if($value->event_category_id == 1){
+        $notification_message = "Hello UP Mindanao! You have an upcoming event!
+        \n{$value->event} headed by {$value->org_name}.
+        \nDescription: {$value->description}
+        \nVenue: {$value->description}
+        \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}
+        \nPlease be guided accordingly. Thank You!";
+      }
+
+      if($value->event_category_id == 2){
+        $notification_message = "Hello {$value->org_name}! You have an upcoming event!
+        \n{$value->event}
+        \nDescription: {$value->description}
+        \nVenue: {$value->description}
+        \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}
+        \nPlease be guided accordingly. Thank You!";
+      }
+
+      if($value->event_category_id == 3){
+        $notification_message = "Hello Student Leaders! You have an upcoming event!
+        \n{$value->event} headed by {$value->org_name}.
+        \nDescription: {$value->description}
+        \nVenue: {$value->description}
+        \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}
+        \nPlease be guided accordingly. Thank You!";
+      }
+
+      if($value->event_category_id == 4){
+        $notification_message = "Hello {$value->fname}! Your {$value->event} event has been approved.
+        \nDescription: {$value->description}
+        \nVenue: {$value->description}
+        \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}
+        \nPlease be guided accordingly. Thank You!";
+      }
+      $data['fb_message'] = $notification_message;
       $result = User::send($data['fb_message']);
-      // $result = User::send("This is a test message");
-      echo "Good Job, you poster on facebook!! yeeeeey";
     }
   }
 
-  private function notifyViaTwitter (Request $data) {
-      // $message = "The event ".$events->name."  is on ".$events->date.", ".$events->time." at the ".$events->venue.".";
-    if( isset($data['twitter']) ){
-      return Twitter::postTweet(['status' => 'hi Event Schedulerscacassacijnkknjhhjkjbk', 'format' => 'json']);
+  private function notifyViaTwitter ($value) {
+    if( $value->notify_via_twitter == 1  ){
+
+      if($value->event_category_id == 1){
+        $notification_message = "Hello UP Mindanao! You have an upcoming event! ".
+        "{$value->event} headed by {$value->org_name}.".
+        " Venue: {$value->description}".
+        " Duration: {$value->date_start}, {$value->date_start_time}";
+      }
+
+      if($value->event_category_id == 2){
+        $notification_message = "Hello {$value->org_name}! You have an upcoming event! ".
+        "{$value->event}".
+        " Venue: {$value->description}".
+        " Duration: {$value->date_start}, {$value->date_start_time}";
+      }
+
+      if($value->event_category_id == 3){
+        $notification_message = "Hello Student Leaders! You have an upcoming event!".
+        "{$value->event} headed by {$value->org_name}".
+        " Venue: {$value->description}".
+        " Duration: {$value->date_start}, {$value->date_start_time}";
+      }
+
+      if($value->event_category_id == 4){
+        $notification_message = "Hello {$value->fname}! Your {$value->event} event has been approved. ".
+        " Venue: {$value->description}".
+        " Duration: {$value->date_start}, {$value->date_start_time}";
+      }
+      // dd($notification_message);
+      // if($notification_message.length < 160)
+      return Twitter::postTweet(['status' => $notification_message, 'format' => 'json']);
     }
   }
 }

@@ -91,35 +91,25 @@ class EventController extends Controller
         'organization_id',
         'calendar_id'
       );
-    }
 
+        if ($data->facebook == 'on') {
+          $request['notify_via_facebook'] = 1;
+        }
+        if ($data->twitter == 'on') {
+            $request['notify_via_twitter'] = 1;
+        }
+        if ($data->email == 'on') {
+          $request['notify_via_email'] = 1;
+        }
+        if ($data->phone == 'on') {
+          $request['notify_via_sms'] = 1;
+        }
+    }
     # Update the table events
     $result = Event::create($request);
 
     # Make notification here after successfull insert of event
-    if ($result->wasRecentlyCreated) {
-      # Make notification here
-      if ($data->facebook == 'on') {
-        /*
-          facebook notification here
-         */
-      }
-      if ($data->twitter == 'on') {
-        /*
-          twitter notification here
-         */
-      }
-      if ($data->email == 'on') {
-        /*
-          email notification here
-         */
-      }
-      if ($data->phone == 'on') {
-        /*
-          phone notification here
-         */
-      }
-    }
+
 
     if (isset($fromCalendar)) {
       return redirect()->route('event.get')

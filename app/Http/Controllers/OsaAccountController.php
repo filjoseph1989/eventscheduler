@@ -14,6 +14,7 @@ use App\Models\Calendar;
 use App\Models\Category;
 use App\Models\EventType;
 use App\Models\EventApprovalMonitor;
+use App\Http\Controllers\ManageNotificationController;
 
 
 class OsaAccountController extends Controller
@@ -123,6 +124,7 @@ class OsaAccountController extends Controller
     $events = new Event();
     $ev = $events->select(
        'events.id',
+       'events.user_id',
        'events.event_type_id',
        'events.event_category_id',
        'events.organization_id',
@@ -137,10 +139,12 @@ class OsaAccountController extends Controller
        'events.status',
        'events.approver_count',
        'organization_groups.user_id as orgg_uid',
-       'organizations.name as org_name'
+       'organizations.name as org_name',
+       'users.first_name as fname'
       )
       ->join('organization_groups', 'events.organization_id', '=', 'organization_groups.organization_id')
       ->join('organizations', 'events.organization_id', '=', 'organizations.id')
+      ->join('users', 'events.user_id', '=', 'users.id')
       ->where('organization_groups.user_id', '=', Auth::user()->id)
       ->get();
 
@@ -152,13 +156,23 @@ class OsaAccountController extends Controller
   {
     $approved_event = Event::find($id);
     if($approved_event->event_category_id == 1 || $approved_event->event_category_id == 3 && $approved_event->approver_count < 3){
+
       if(EventApprovalMonitor::where('event_id', '=', $id)->where('approvers_id', '=', $orgg_uid)->exists()){
         return redirect()->route('osa.event.approval')
         ->with('status', "You already approved this event ( {$approved_event->event} ). Press the UNAPPROVE button to disable your approval.");
       } else{
         EventApprovalMonitor::create(['event_id' => $id, 'approvers_id' => $orgg_uid]);
         $approved_event->approver_count++;
+
         if($approved_event->save() ){
+
+          if($approved_event->event_category_id == 1 || $approved_event->event_category_id == 3 && $approved_event->approver_count == 3){
+            // return redirect()->route('osa.event.notify')->with('approved_event', $approved_event);
+            $notify = new ManageNotificationController();
+            $notify->notify($approved_event);
+            return redirect()->route('osa.event.approval')
+            ->with('status', "Successfuly approved the event ( {$approved_event->event} ) and notified the info regarding this event.");
+          }
           return redirect()->route('osa.event.approval')
           ->with('status', "Successfuly approved the event ( {$approved_event->event} ).");
         }
