@@ -37,9 +37,9 @@ To Do:
           ☐ Check if event already exist?
           ☐ Remove among organization in the dropdown of whos audience
     ☐ Manage Schedule:
-      ☐ My Personal Calendar:
-        ☐ Display personal event on calendar
-      ☐ My Organization Calendar:
+      ✔ My Personal Calendar @done(2017-07-17 18:50)
+        ✔ Display personal event on calendar @done(2017-07-17 18:50)
+      ✔ My Organization Calendar @done(2017-07-17 18:50)
         ✔ Display the list of organization @done(2017-07-17 17:00)
         ✔ Display the calendar of the organization @done(2017-07-17 17:01)
         ☐ Edit Events:

@@ -48,8 +48,8 @@
                       <i class="material-icons">more_vert</i>
                     </a>
                     <ul class="dropdown-menu pull-right">
-                      <li><a href="{{ route('my-organization-calendar') }}">My Organization Calendar</a></li>
-                      <li><a href="{{ route('my-personal-calendar') }}">My Personal Calendar</a></li>
+                      <li><a href="{{ route('org-head.org-list') }}">My Organization Calendar</a></li>
+                      <li><a href="{{ route('org-head.personal-calendar') }}">My Personal Calendar</a></li>
                     </ul>
                   </li>
                 </ul>
