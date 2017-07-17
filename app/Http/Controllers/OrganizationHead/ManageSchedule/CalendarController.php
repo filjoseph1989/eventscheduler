@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Calendar;
 use App\Models\EventType;
 use Illuminate\Http\Request;
+use App\Models\Organization;
 use App\Models\EventCategory;
 use App\Http\Controllers\Controller;
 
