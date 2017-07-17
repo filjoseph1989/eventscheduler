@@ -63,5 +63,5 @@
 @endsection
 
 @section('footer')
-  <script src="{{ asset('js/app.js') }}?v=0.14" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.16" charset="utf-8"></script>
 @endsection

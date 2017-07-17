@@ -4,41 +4,6 @@
 var global_start, global_end;
 
 /**
- * Change the status
- * @return
- */
-$('.user-status').click(function() {
-  var id = $(this).data('id');
-
-  if ($(this).is(":checked")) {
-    var check = "on";
-    $('#user-status-label-'+id).html('Active');
-  } else {
-    var check = "off";
-    $('#user-status-label-'+id).html('Inactive');
-  }
-
-  $.ajax({
-    type: 'POST',
-    url: '/admin/users/set/status',
-    data: {
-      status_: check,
-      id: id
-    },
-    dataType: 'json',
-    beforeSend: function(request) {
-      request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
-    },
-    success: function(data) {
-      console.log(data);
-    },
-    error: function(data) {
-      console.log('Error:');
-    }
-  });
-});
-
-/**
  * Display data on the edit modal
  * Issue 6
  *
@@ -156,41 +121,39 @@ $(document).on('click', '.users-edit', function() {
 });
 
 /**
- * ------------------------------------------------------------------
- * This part mange the calendar even creation
- * ------------------------------------------------------------------
- * @type function
- * @return {[type]} [description]
- */
-
-/**
- * Form validation
- *
- * @param  {int} id
+ * Change the status
  * @return
  */
-function form_validation(id) {
-  $(id).validate({
-    rules: {
-      'terms': {
-        required: true
-      },
-      'confirm': {
-        equalTo: '[name="password"]'
-      }
+$('.user-status').click(function() {
+  var id = $(this).data('id');
+
+  if ($(this).is(":checked")) {
+    var check = "on";
+    $('#user-status-label-'+id).html('Active');
+  } else {
+    var check = "off";
+    $('#user-status-label-'+id).html('Inactive');
+  }
+
+  $.ajax({
+    type: 'POST',
+    url: '/admin/users/set/status',
+    data: {
+      status_: check,
+      id: id
     },
-    highlight: function (input) {
-      $(input).parents('.form-line').addClass('error');
+    dataType: 'json',
+    beforeSend: function(request) {
+      request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
     },
-    unhighlight: function (input) {
-      $(input).parents('.form-line').removeClass('error');
+    success: function(data) {
+      console.log(data);
     },
-    errorPlacement: function (error, element) {
-      $(element).parents('.input-group').append(error);
-      $(element).parents('.form-group').append(error);
+    error: function(data) {
+      console.log('Error:');
     }
   });
-}
+});
 
 $('.organization-edit').click(function(){
   var id = $(this).data('id');
@@ -374,6 +337,33 @@ $('#event-calendar').click(function() {
     $('#form-event-organization').addClass('hidden');
   }
 });
+$('#edit-event-calendar').click(function() {
+  var value = $(this).val();
+  if (value == 2) {
+    $.ajax({
+        type: 'POST',
+        url: '/users/organization/gets',
+        dataType: 'json',
+        beforeSend: function(request) {
+          request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
+        },
+        success: function(data) {
+          var $temp, html = '<option value="0">-- Select Organization for this event --</option>';
+          for (var i = 0; i < data.length; i++) {
+            $temp = data[i];
+            html += '<option value="'+$temp.id+'">'+$temp.name+'</option>';
+          }
+          $('#edit-event-organization').html(html);
+        },
+        error: function(data) {
+          console.log('Error:');
+        }
+    });
+    $('#edit-form-event-organization').removeClass('hidden');
+  } else {
+    $('#edit-form-event-organization').addClass('hidden');
+  }
+});
 
 /**
  * Submit the confirmation of attendance to the database
@@ -407,3 +397,73 @@ $('.confirmed').click(function() {
     }
   });
 });
+
+/**
+ * Edit the event on org head account
+ * @return
+ */
+$('.edit-event').click(function() {
+  var eid   = $(this).data('event-id');
+  var ename = $(this).data('event-name');
+  $('#edit-event-title').html("Edit " + ename);
+
+  $.ajax({
+    type: 'POST',
+    url: '/users/org-head/ajax/get',
+    data: {
+      id: eid
+    },
+    dataType: 'json',
+    beforeSend: function(request) {
+      request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
+    },
+    success: function(data) {
+      event = data.event;
+
+      $('#event-id').val(eid);
+      $('#edit-event-input-title').val(event.event);
+      $('#edit-description').html(event.description);
+      $('#edit-venue').val(event.venue);
+      $('#edit-date_start').val(event.date_start);
+      $('#edit-date_start_time').val(event.date_start_time);
+      $('#edit-date_end').val(event.date_end);
+      $('#edit-date_end_time').val(event.date_end_time);
+      $('#edit-event-category').val(event.event_category_id);
+      $('#edit-event-calendar').val(event.calendar_id);
+      $('#edit-event-organization').val(event.organization_id);
+    },
+    error: function(data) {
+      console.log('Error:');
+    }
+  });
+
+});
+
+/**
+ * Form validation
+ *
+ * @param  {int} id
+ * @return
+ */
+function form_validation(id) {
+  $(id).validate({
+    rules: {
+      'terms': {
+        required: true
+      },
+      'confirm': {
+        equalTo: '[name="password"]'
+      }
+    },
+    highlight: function (input) {
+      $(input).parents('.form-line').addClass('error');
+    },
+    unhighlight: function (input) {
+      $(input).parents('.form-line').removeClass('error');
+    },
+    errorPlacement: function (error, element) {
+      $(element).parents('.input-group').append(error);
+      $(element).parents('.form-group').append(error);
+    }
+  });
+}

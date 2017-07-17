@@ -170,9 +170,17 @@ class EventController extends Controller
    */
   public function getEventOfTheMonth(Request $data)
   {
-    $event = Event::whereRaw('year(date_start) = year(now())')
-      ->whereRaw("organization_id = ". $data->id)
-      ->get();
+    if (! Auth::check()) {
+      return redirect()->route('login');
+    }
+
+    if (parent::isOrgHead()) {
+      $event = Event::whereRaw('year(date_start) = year(now())')
+        ->whereRaw("organization_id = ". $data->id)
+        ->get();
+    } else {
+      $event = null;
+    }
 
     echo json_encode( $event );
   }
@@ -183,11 +191,19 @@ class EventController extends Controller
    */
   public function getEventOfTheMonthList()
   {
-    $event = Event::whereRaw('year(date_start) = year(now())')->get();
+    if (! Auth::check()) {
+      return redirect()->route('login');
+    }
 
-    $login_type = 'user';
-    $calendar   = Calendar::all();
-    return view('pages.users.organization-head.calendars.events.list', compact('login_type', 'event', 'calendar'));
+    if (parent::isOrgHead()) {
+      $event = Event::whereRaw('year(date_start) = year(now())')->get();
+
+      $login_type = 'user';
+      $calendar   = Calendar::all();
+      return view('pages.users.organization-head.calendars.events.list', compact('login_type', 'event', 'calendar'));
+    } else {
+      return redirect()->route('home');
+    }
   }
 
   /**
@@ -229,5 +245,55 @@ class EventController extends Controller
     echo json_encode([
       'event' => $event
     ]);
+  }
+
+  /**
+   * Edit the event
+   *
+   * @param  Request $data
+   * @return
+   */
+  public function editEvent(Request $data)
+  {
+    if (! Auth::check()) {
+      return redirect()->route('login');
+    }
+
+    if (parent::isOrgHead()) {
+      $request = $data->only([
+        'user_id',
+        'event_type_id',
+        'event_category_id',
+        'calendar_id',
+        'organization_id',
+        'event',
+        'description',
+        'venue',
+        'date_start',
+        'date_start_time',
+        'date_end',
+        'date_end_time',
+        'whole_day'
+        // 'facebook',
+        // 'twitter',
+        // 'email',
+        // 'phone'
+      ]);
+
+      if ( $request['event_type_id'] == 0 ) unset($request['event_type_id']);
+      if ( $request['event_category_id'] == 0 ) unset($request['event_category_id']);
+      if ( $request['calendar_id'] == 0 ) unset($request['calendar_id']);
+      if ( ! isset($request['organization_id']) || $request['organization_id'] == 0 ) unset($request['organization_id']);
+
+      $event = Event::find($data->event_id);
+      $name  = $event->event;
+      $event = $event->update($request);
+      if ($event) {
+        return redirect()->route('event.get')
+          ->with('status', "Successfully change from <strong>{$name}</strong> to <strong>{$request['event']}</strong>");
+      }
+    } else {
+      return redirect()->route('event.get');
+    }
   }
 }
