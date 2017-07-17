@@ -93,7 +93,7 @@
       </a>
     </li>
     <li>
-      <a href="{{ route('event.get') }}">
+      <a href="{{ route('org-head.event.get') }}">
         <span>All Events</span>
       </a>
     </li>

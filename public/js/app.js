@@ -297,6 +297,7 @@ $('.view-event').click(function() {
         '<td>'+ event.status + '</td>' +
       '</tr>';
       $('#event-details').html(html);
+      $('#click-approve').attr('data-event-id', id);
     },
     error: function(data) {
       console.log('Error:');

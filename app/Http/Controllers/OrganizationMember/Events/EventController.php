@@ -1,14 +1,11 @@
 <?php
 
-namespace app\Http\Controllers\OrganizationHead\Events;
+namespace app\Http\Controllers\OrganizationMember\Events;
 
 use Auth;
-use App\Models\User;
 use App\Models\Event;
 use App\Models\Calendar;
-use App\Models\Category;
 use App\Models\EventType;
-use App\Models\Organization;
 use Illuminate\Http\Request;
 use App\Models\EventCategory;
 use App\Models\PersonalEvent;
@@ -34,6 +31,11 @@ class EventController extends Controller
     $this->middleware('web');
   }
 
+  /**
+   * Display the event
+   *
+   * @return
+   */
   public function showEvents()
   {
     # Get the user organization ID
@@ -174,7 +176,7 @@ class EventController extends Controller
       return redirect()->route('login');
     }
 
-    if (parent::isOrgHead()) {
+    if (parent::isOrgMember()) {
       $event = Event::whereRaw('year(date_start) = year(now())')
         ->whereRaw("organization_id = ". $data->id)
         ->get();
@@ -195,7 +197,7 @@ class EventController extends Controller
       return redirect()->route('login');
     }
 
-    if (parent::isOrgHead()) {
+    if (parent::isOrgMember()) {
       $event = Event::whereRaw('year(date_start) = year(now())')->get();
 
       $login_type = 'user';
@@ -259,7 +261,7 @@ class EventController extends Controller
       return redirect()->route('login');
     }
 
-    if (parent::isOrgHead()) {
+    if (parent::isOrgMember()) {
       $request = $data->only([
         'user_id',
         'event_type_id',

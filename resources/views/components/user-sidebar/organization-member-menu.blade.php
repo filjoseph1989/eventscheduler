@@ -5,18 +5,13 @@
   </a>
   <ul class="ml-menu">
     <li>
-      {{--
-        <a href="{{ route('member.org-calendar') }}">
-          <span>My Organization Calendar</span>
-        </a>
-      --}}
-      <a href="{{ route('member.org-list') }}">
-        <span>My Organization Calendar</span>
+      <a href="{{ route('org-member.org-list') }}">
+        <span>My Organization</span>
       </a>
     </li>
     <li>
-      <a href="{{ route('my-personal-calendar') }}">
-        <span>My Personal Calendar</span>
+      <a href="{{ route('org-member.personal-calendar') }}">
+        <span>My Personal</span>
       </a>
     </li>
   </ul>
@@ -30,14 +25,14 @@
     <li>
       <a href="#" class="menu-toggle">My Organization</a>
       <ul class="ml-menu">
-        <li><a href="{{ route('event.get') }}">List</a></li>
+        <li><a href="{{ route('org-member.event.get') }}">List</a></li>
         <li><a href="{{ route('event.new') }}">Create</a></li>
       </ul>
     </li>
     <li>
       <a href="#" class="menu-toggle">My Personal</a>
       <ul class="ml-menu">
-        <li><a href="{{ route('event.get') }}">List</a></li>
+        <li><a href="{{ route('org-member.event.get') }}">List</a></li>
         <li><a href="{{ route('event.new') }}">Create</a></li>
       </ul>
     </li>
@@ -46,6 +41,6 @@
 <li>
   <a href="{{ route('event.show')}}">
     <i class="material-icons">list</i>
-    <span>Check My Attendance</span>
+    <span>Generate Attendance</span>
   </a>
 </li>

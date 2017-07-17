@@ -1,4 +1,5 @@
 To Do:
+  ☐ Task 37 - Create notification on facebook, twitter, email, sms
   ☐ Task 36 - Login as Organization Members:
     ☐ Check my attendance:
     ☐ Events:
@@ -22,16 +23,11 @@ To Do:
       ☐ My Personal:
       ☐ My Organization:
         ☐ List Events
-          ☐ Display event in the table with status approved or not
+          ✔ Display event in the table with status approved or not @done(2017-07-17 22:00)
             ✔ Display the event @done(2017-07-15 12:27)
-            ☐ Approved, Unapproved
+            ✔ Edit event @done(2017-07-17 22:00)
         ☐ Create Event
           ☐ within personnal
-          ☐ Notification - the notificaion need approval first before it will execute
-            ☐ facebook
-            ☐ twitter
-            ☐ email
-            ☐ phone
           Issue:
           ☐ What if there's no entry?
           ☐ Check if event already exist?
@@ -42,8 +38,8 @@ To Do:
       ✔ My Organization Calendar @done(2017-07-17 18:50)
         ✔ Display the list of organization @done(2017-07-17 17:00)
         ✔ Display the calendar of the organization @done(2017-07-17 17:01)
-        ☐ Edit Events:
-          ☐ List the events first then edit
+        ✔ Edit Events @done(2017-07-17 21:20)
+          ✔ List the events first then edit @done(2017-07-17 21:20)
   ☐ Task 33 - Change the profile background according to the user type
   ☐ Task 32 - Try View Composers to manage the rendering of two sidebar for user and for admin
   ☐ Task 31 - Create a manage notification - This will be a setting what to notify or what kind of notification should be if org adviser will create a event

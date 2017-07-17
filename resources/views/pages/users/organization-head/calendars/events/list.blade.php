@@ -131,8 +131,11 @@
           </div>
         </div>
         <div class="modal-footer">
+          <button type="button" class="btn btn-success" id="click-approve" data-event-id="">
+            <i class="material-icons">thumb_up</i> Approve
+          </button>
           <button type="button" class="btn btn-default" data-dismiss="modal">
-            <i class="material-icons"></i> Close
+            <i class="material-icons">close</i> Close
           </button>
         </div>
       </div>
@@ -295,7 +298,7 @@
   <div class="modal fade" id="edit-event" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <form class="" id="add-event-form" action="{{ route('event.edit') }}" method="POST">
+        <form class="" id="add-event-form" action="{{ route('org-head.event.edit') }}" method="POST">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="edit-event-title">{{-- Event title here --}}</h4>
