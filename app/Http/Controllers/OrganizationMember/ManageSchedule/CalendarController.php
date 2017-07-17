@@ -55,31 +55,6 @@ class CalendarController extends Controller
       )
     );
   }
-  public function _myOrgCalendar($id)
-  {
-    $event_type       = EventType::all();
-    $event_categories = EventCategory::all();
-    $calendar         = Calendar::all();
-
-    # get organization name and id
-    $user = new User();
-    $user = $user->select('organization_groups.organization_id', 'organizations.name')
-      ->join('organization_groups', 'organization_groups.user_id', '=', 'users.id')
-      ->join('organizations', 'organization_groups.organization_id', '=', 'organizations.id')
-      ->where('organization_groups.user_id', '=', Auth::user()->id)
-      ->get();
-
-    # Display the calendar
-    return view(
-      'pages.users.organization-member.calendars.my-org-calendar',
-      compact(
-        'event_type',
-        'event_categories',
-        'calendar',
-        'user'
-      )
-    );
-  }
 
   /**
    * Display the user personal calendar

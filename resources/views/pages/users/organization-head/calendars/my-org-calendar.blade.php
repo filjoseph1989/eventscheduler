@@ -41,7 +41,7 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> My Organization Calendar </h2>
+                <h2> {{ $org->name }} Calendar </h2>
                 <ul class="header-dropdown m-r--5">
                   <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -55,9 +55,7 @@
                 </ul>
               </div>
               <div class="body">
-                @if (isset($user->first()->organization_id))
-                  <div class="" id="my-organization" data-org-id="{{ $user->first()->organization_id }}"></div>
-                @endif
+                <div class="" id="my-organization" data-org-id="{{ $org->id }}"></div>
                 <div id='calendar'></div>
               </div>
             </div>
@@ -74,148 +72,6 @@
 @endsection
 
 @section('modal')
-  <div class="modal fade" id="add-event" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form class="" id="add-event-form" action="{{ route('event.new') }}" method="POST">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="">Create Event</h4>
-          </div>
-          <div class="modal-body">
-            <div class="row clearfix">
-              <div class="col-sm-8 col-sm-offset-2">
-                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                <div class="form-group form-float form-group{{ $errors->has('event') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <input type="text" class="form-control" id="event" name="event" placeholder="Name of the event" value="{{ old('event') }}" required="true" autofocus>
-                    @if ($errors->has('event'))
-                      <span class="help-block"> <strong>{{ $errors->first('event') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
-                <div class="form-group form-float form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <textarea rows="4" class="form-control no-resize" id="description" name="description" placeholder="Description of the event">{{ old('description') }}</textarea>
-                    @if ($errors->has('description'))
-                      <span class="help-block"> <strong>{{ $errors->first('description') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
-                <div class="form-group form-float form-group{{ $errors->has('venue') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <input type="text" class="form-control" id="venue" name="venue" placeholder="Venue" value="{{ old('venue') }}">
-                    @if ($errors->has('venue'))
-                      <span class="help-block"> <strong>{{ $errors->first('venue') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
-                <div class="form-group form-float form-group{{ $errors->has('date_start') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <input type="text" class="form-control event-datepicker" id="date_start" name="date_start" placeholder="Select Date Start" value="{{ old('date_start') }}">
-                    @if ($errors->has('date_start'))
-                      <span class="help-block"> <strong>{{ $errors->first('date_start') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
-                <div class="form-group form-float form-group{{ $errors->has('date_start_time') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <input type="text" class="form-control event-timepicker" id="date_start_time" name="date_start_time" placeholder="Select Time Start" value="{{ old('date_start_time') }}">
-                    @if ($errors->has('date_start_time'))
-                      <span class="help-block"> <strong>{{ $errors->first('date_start_time') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
-                <div class="form-group form-float form-group{{ $errors->has('date_end') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <input type="text" class="form-control event-datepicker" id="date_end" name="date_end" placeholder="Select Date End" value="{{ old('date_end') }}">
-                    @if ($errors->has('date_end'))
-                      <span class="help-block"> <strong>{{ $errors->first('date_end') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
-                <div class="form-group form-float form-group{{ $errors->has('date_end_time') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <input type="text" class="form-control event-timepicker" id="date_end_time" name="date_end_time" placeholder="Select Time End" value="{{ old('date_end_time') }}">
-                    @if ($errors->has('date_end_time'))
-                      <span class="help-block"> <strong>{{ $errors->first('date_end_time') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
-                <div class="form-group form-float">
-                  <div class="form-line">
-                    <select class="form-control show-tick" id="whole-day" name="whole_day">
-                      <option value="0">-- Whole day? --</option>
-                      <option value="1">YES</option>
-                      <option value="0">NO</option>
-                    </select>
-                    @if ($errors->has('event_type'))
-                      <span class="help-block"> <strong>{{ $errors->first('event_type') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
-                <div class="form-group form-float form-group{{ $errors->has('event_type') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <select class="form-control show-tick" id="event-type" name="event_type_id">
-                      <option value="0">-- Select type of event--</option>
-                      @foreach ($event_type as $key => $value)
-                        <option value="{{ $value->id }}">{{ $value->name }}</option>
-                      @endforeach
-                    </select>
-                    @if ($errors->has('event_type_id'))
-                      <span class="help-block"> <strong>{{ $errors->first('event_type_id') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
-                <div class="form-group form-float form-group{{ $errors->has('event_categories') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <select class="form-control show-tick" id="event-category" name="event_category_id">
-                      <option value="0">-- Select audience for this event--</option>
-                      @foreach ($event_categories as $key => $value)
-                        <option value="{{ $value->id }}">{{ $value->name }}</option>
-                      @endforeach
-                    </select>
-                    @if ($errors->has('event_category_id'))
-                      <span class="help-block"> <strong>{{ $errors->first('event_category_id') }}</strong></span>
-                    @endif
-                  </div>
-                </div>
-                <div class="form-group form-float form-group{{ $errors->has('calendar_id') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <select class="form-control show-tick" id="event-calendar" name="calendar_id">
-                      <option value="0">-- Select What calendar --</option>
-                      @foreach ($calendar as $key => $value)
-                        <option value="{{ $value->id }}">{{ $value->name }}</option>
-                      @endforeach
-                    </select>
-                    @if ($errors->has('calendar_id'))
-                      <span class="help-block"> <strong>{{ $errors->first('calendar_id') }}</strong></span>
-                    @endif
-                  </div>
-                </div>
-                <div class="form-group form-float form-group{{ $errors->has('organization_id') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <select class="form-control show-tick" id="event-category" name="organization_id">
-                      <option value="{{ $user->first()->organization_id }}">{{ $user->first()->name }} Organization</option>
-                    </select>
-                    @if ($errors->has('organization_id'))
-                      <span class="help-block"> <strong>{{ $errors->first('organization_id') }}</strong></span>
-                    @endif
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" id="save-event" class="btn btn-primary"> <i class="material-icons">save</i> Save</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">
-              <i class="material-icons">close</i>
-              Close</button>
-            </div>
-        </form>
-      </div>
-    </div>
-  </div>
 @endsection
 
 @section('footer')

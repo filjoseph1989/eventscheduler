@@ -181,7 +181,13 @@ Route::group(['middleware' => 'revalidate'], function()
       Route::name('event.ajax.get')->post('/ajax/get', 'OrganizationHead\Events\EventController@getEvent');
     });
 
-    # Create event
+    # Route for organization head
+    Route::prefix('org-head')->group(function() {
+      Route::name('org-head.org-list')->get('/org-list', 'OrganizationHead\OrgHeadAccountController@myOrganization');
+      Route::name('org-head.calendar')->get('/calendar/{id}', 'OrganizationHead\Events\EventController@myOrgCalendar');
+    });
+
+    # Route for organization member
     Route::prefix('org-member')->group(function() {
       Route::name('member.org-list')->get('/org-list', 'OrganizationMember\OrgMemberAccountController@DisplayMyOrganization');
       Route::name('member.org-calendar')->get('/my-organization-calendar/{id}', 'OrganizationMember\ManageSchedule\CalendarController@myOrgCalendar');

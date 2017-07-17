@@ -5,13 +5,13 @@
   </a>
   <ul class="ml-menu">
     <li>
-      <a href="{{ route('org-head.org-list') }}">
-        <span>My Organization</span>
+      <a href="{{ route('my-organization-calendar') }}">
+        <span>My Organization Calendar</span>
       </a>
     </li>
     <li>
       <a href="{{ route('my-personal-calendar') }}">
-        <span>My Personal</span>
+        <span>My Personal Calendar</span>
       </a>
     </li>
   </ul>
