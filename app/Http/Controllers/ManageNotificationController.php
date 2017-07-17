@@ -143,23 +143,77 @@ class ManageNotificationController extends Controller
   private function notifyViaSms ($value){
 
     if( $value->notify_via_sms == 1 ) {
-
+      //where event_category == public view
       if($value->event_category_id == 1){
-        $notification_message = "Hello UP Mindanao! You have an upcoming event!
-        \n{$value->event} headed by {$value->org_name}.
-        \nDescription: {$value->description}
-        \nVenue: {$value->description}
-        \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}
-        \nPlease be guided accordingly. Thank You!";
+          $notification_message = "Hello UP Mindanao! You have an upcoming event!
+          \n{$value->event} headed by {$value->org_name}.
+          \nDescription: {$value->description}
+          \nVenue: {$value->description}
+          \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}
+          \nPlease be guided accordingly. Thank You!";
+
+          // Demo
+          // $result =
+          //   Nexmo::message()->send([
+          //     'to'   => '639958633866',
+          //     'from' => '639124918787',
+          //     'text' => $notification_message
+          //   ]);
+          $all_users = User::all();
+          $old = [];
+          foreach ($all_users as $key => $value) {
+            d($value->mobile_number);
+
+            // if( $value->notify_via_sms == 1 ){
+            //   $result =
+            //     Nexmo::message()->send([
+            //       'to'   => $value->mobile_number,
+            //       'from' => '639124918787',
+            //       'text' => $notification_message
+            //   ]);
+            // }
+          }
+        }
+        // exit();
       }
 
       if($value->event_category_id == 2){
+      //where event_category == within organization
         $notification_message = "Hello {$value->org_name}! You have an upcoming event!
         \n{$value->event}
         \nDescription: {$value->description}
         \nVenue: {$value->description}
         \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}
         \nPlease be guided accordingly. Thank You!";
+
+          // Demo
+          // $result =
+          //   Nexmo::message()->send([
+          //     'to'   => '639958633866',
+          //     'from' => '639124918787',
+          //     'text' => $notification_message
+          //   ]);
+          $org = OrganizationGroup::where('organization_id', '=', $value->organization_id)->get();
+          dd($org);
+          $old = [];
+          foreach ($org as $key => $value) {
+            d(User::find($value->user_id)->mobile_number);
+
+            // if ( ! isset($old[$value->user_id])) {
+            //   $old[$value->user_id] = $value->user_id;
+            //   if( $value->notify_via_sms == 1 ){
+            //     $result =
+            //         Nexmo::message()->send([
+            //           'to'   => $value->mobile_number,
+            //           'from' => '639124918787',
+            //           'text' => $notification_message
+            //       ]);
+            //   }
+            // }
+
+          }
+        }
+        exit();
       }
 
       if($value->event_category_id == 3){
@@ -179,13 +233,7 @@ class ManageNotificationController extends Controller
         \nPlease be guided accordingly. Thank You!";
       }
 
-      $result =
-        Nexmo::message()->send([
-          'to'   => '639958633866',
-          'from' => '639124918787',
-          'text' => $notification_message
-        ]);
-    }
+
   }
 
   /**
@@ -209,6 +257,7 @@ class ManageNotificationController extends Controller
         }
       }
     }
+
   }
 
   private function notifyViaFacebook ($value) {
