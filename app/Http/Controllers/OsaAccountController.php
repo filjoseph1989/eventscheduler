@@ -31,7 +31,7 @@ class OsaAccountController extends Controller
     $positions           = Position::all();
     $user_accounts       = UserAccount::all();
 
-    $user                = new User();
+    $user = new User();
     $data = $user->select(
       'users.id as user_id',
       'users.user_account_id as u_acc_id',
@@ -69,12 +69,19 @@ class OsaAccountController extends Controller
     return view('pages.users.osa-user.manage-users.list', compact('login_type','data', 'organizations', 'positions', 'org_grps', 'user_accounts'));
   }
 
+
+  /**
+   * Display the list of organization
+   *
+   * @return
+   */
   public function showAllOrganizationList()
   {
       $organizations = Organization::all();
       $login_type = 'user';
       return view('pages.users.osa-user.organization.list', compact('login_type','organizations'));
   }
+
   public function showOrganizationAddForm()
   {
     return view('pages.users.osa-user.organization.add');

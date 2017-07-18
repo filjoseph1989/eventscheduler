@@ -206,13 +206,15 @@ $('.organization-edit').click(function(){
       request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
     },
     success: function(data) {
-      $('#name').val(data.organization.name);
-      $('#url').val(data.organization.url);
-      $('#date_started').val(data.organization.date_started);
-      $('#date_expired').val(data.organization.date_expired);
-      $('#option-edit-status').val(data.organization.status);
-      var status = data.organization.status == 1 ? 'Active' : 'Inactive';
-      $('#option-edit-status').html(status);
+      var org = data.organization;
+
+      $('#name').val(org.name);
+      $('#url').val(org.url);
+      $('#date_started').val(org.date_started);
+      $('#date_expired').val(org.date_expired);
+
+      var status = org.status == 1 ? 'Active' : 'Inactive';
+      $('#option-edit-status').val(org.status);
     },
     error: function(data) {
       console.log('Error:');

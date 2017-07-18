@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace app\Http\Controllers\OsaPersonnel\Organization;
 
 use Auth;
 use App\Models\Organization;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 /**
  * This class controller handles the request related to
@@ -13,7 +14,7 @@ use Illuminate\Http\Request;
  * @author jlvoice777
  * @author Janica Liz De Guzman
  * @version 0.1
- * @updated 7/13/2017
+ * @created 7/18/2017
  */
 class OrganizationController extends Controller
 {
@@ -21,6 +22,41 @@ class OrganizationController extends Controller
     {
         $this->middleware('web');
     }
+
+    /**
+     * The Osa make update on organization details in his/her
+     * list of organization
+     *
+     * @param  Request $data
+     * @return \Illuminate\Response
+     */
+    public function osaEditOrganization(Request $data)
+    {
+      # Check if login or not
+      parent::loginCheck();
+
+      if (parent::isOrgOsa()) {
+        $organization               = Organization::find($data->id);
+        $name                       = $organization->name;
+        $organization->name         = $data->name;
+        $organization->status       = $data->status;
+        $organization->url          = $data->url;
+        $organization->date_started = $data->date_started;
+        $organization->date_expired = $data->date_expired;
+
+        if ($organization->save()) {
+          return redirect()->route('osa.org.list')
+          ->with('status', "Successfuly Updated from <b>{$name}</b> to <b>{$data['name']}</b>");
+        }
+      }
+    }
+
+    /**
+     * -------------------------------------------
+     * Subject for evaluation to keep or not
+     * -------------------------------------------
+     */
+
 
     /**
      * Display the registration form for courses
@@ -107,34 +143,6 @@ class OrganizationController extends Controller
           # User account
           return redirect()->route('osa.org.list')
             ->with('status', "Successfuly Updated from <b>{$name}</b> to <b>{$data['name']}</b>");
-        }
-      }
-    }
-
-    /**
-     * The Osa make update on organization details in his/her
-     * list of organization
-     *
-     * @param  Request $data
-     * @return \Illuminate\Response
-     */
-    public function osaEditOrganization(Request $data)
-    {
-      # Check if login or not
-      parent::loginCheck();
-
-      if (parent::isOrgOsa()) {
-        $organization               = Organization::find($data->id);
-        $name                       = $organization->name;
-        $organization->name         = $data->name;
-        $organization->status       = $data->status;
-        $organization->url          = $data->url;
-        $organization->date_started = $data->date_started;
-        $organization->date_expired = $data->date_expired;
-
-        if ($organization->save()) {
-          return redirect()->route('osa.org.list')
-          ->with('status', "Successfuly Updated from <b>{$name}</b> to <b>{$data['name']}</b>");
         }
       }
     }

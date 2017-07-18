@@ -14,6 +14,24 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     /**
+     * Check if the user is currently login or not
+     *
+     * @return
+     */
+    public function loginCheck()
+    {
+      # Check if the user is loggedin
+      if (! Auth::check()) {
+        return redirect()->route('login');
+      }
+
+      # Check if login as admin or user
+      if (! Auth::guard('web')->check()) {
+        return redirect()->route('login');
+      }
+    }
+
+    /**
      * Check if the user account type of the loggedin
      * user in adviser
      *
