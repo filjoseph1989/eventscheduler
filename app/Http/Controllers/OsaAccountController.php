@@ -69,7 +69,6 @@ class OsaAccountController extends Controller
     return view('pages.users.osa-user.manage-users.list', compact('login_type','data', 'organizations', 'positions', 'org_grps', 'user_accounts'));
   }
 
-
   /**
    * Display the list of organization
    *
@@ -167,23 +166,50 @@ class OsaAccountController extends Controller
       return redirect()->route('home');
     }
   }
+  public function _approveEvents()
+  {
+    # Check the authentication of this account
+    parent::loginCheck();
 
+    # Check if the account is an OSA
+    if (parent::isOrgOsa()) {
+      # Check if the account is an approver
+      if (parent::isApprover()) {
+        $login_type = 'user';
+
+        # Get all event that need the OSA approval.
+        # This method is declare below as private.
+        $ev = self::getEventsThatNeedOsaApproval();
+
+        # Pass the result to the view
+        return view('pages.users.osa-user.events.approve-events', compact('login_type','ev'));
+      }
+    } else {
+      return redirect()->route('home');
+    }
+  }
+
+  /**
+   * Approve event
+   *
+   * @param  int $id event ID
+   * @param  int $orgg_uid user ID
+   * @return
+   */
   public function approve($id, $orgg_uid)
   {
     $approved_event = Event::find($id);
     if($approved_event->event_category_id == 1 || $approved_event->event_category_id == 3 && $approved_event->approver_count < 3){
 
-      if(EventApprovalMonitor::where('event_id', '=', $id)->where('approvers_id', '=', $orgg_uid)->exists()){
+      if(EventApprovalMonitor::where('event_id', '=', $id)->where('approvers_id', '=', $orgg_uid)->exists()) {
         return redirect()->route('osa.event.approval')
         ->with('status', "You already approved this event ( {$approved_event->event} ). Press the UNAPPROVE button to disable your approval.");
       } else{
         EventApprovalMonitor::create(['event_id' => $id, 'approvers_id' => $orgg_uid]);
         $approved_event->approver_count++;
 
-        if($approved_event->save() ){
-
+        if($approved_event->save() ) {
           if($approved_event->event_category_id == 1 || $approved_event->event_category_id == 3 && $approved_event->approver_count == 3){
-            // return redirect()->route('osa.event.notify')->with('approved_event', $approved_event);
             $notify = new ManageNotificationController();
             $notify->notify($approved_event);
             return redirect()->route('osa.event.approval')
@@ -198,6 +224,7 @@ class OsaAccountController extends Controller
     //   //call notify function
     // }
   }
+
   public function disapprove($id, $orgg_uid)
   {
     $approved_event = Event::find($id);
