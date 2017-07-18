@@ -217,4 +217,54 @@ class EventController extends Controller
       'event_monitor' => $em
     ]);
   }
+
+  /**
+   * Approve events
+   * @return
+   */
+  public function approveEvents()
+  {
+    # Check the authentication of this account
+    parent::loginCheck();
+
+    # Check if the account is an OSA
+    if (parent::isOrgHead()) {
+      # Check if the account is an approver
+      if (parent::isApprover()) {
+        $login_type = 'user';
+
+        # Get all event that need the Org Head's approval
+        # This method is declare below as private.
+        $ev = self::getGetEventsNeedApproval();
+
+        return view('pages.users.osa-user.events.approve-events', compact('login_type','ev'));
+      }
+    } else {
+      return redirect()->route('home');
+    }
+  }
+
+  /**
+   * Return the list of events that the organization head's
+   * approval
+   *
+   * @return
+   */
+  private function getGetEventsNeedApproval()
+  {
+    return Event::select(
+      'events.*',
+      'organizations.id as org_id',
+      'organizations.name as org_name',
+      'organization_groups.user_id as orgg_uid',
+      'organizations.name as org_name',
+      'users.first_name as fname'
+    )
+    ->join('organization_groups', 'events.organization_id', '=', 'organization_groups.organization_id')
+    ->join('organizations', 'events.organization_id', '=', 'organizations.id')
+    ->join('users', 'events.user_id', '=', 'users.id')
+    ->where('approver_count', '<', 3)
+    ->where('organization_groups.user_id', '=', Auth::user()->id)
+    ->get();
+  }
 }

@@ -78,4 +78,18 @@ class Controller extends BaseController
       $user = User::find(Auth::user()->id);
       return ($user->user_account_id == 5) ? true : false;
     }
+
+    /**
+     * Check if the account is an approver
+     *
+     * @return boolean
+     */
+    protected function isApprover()
+    {
+      # Check if this OSA account is an approver
+      if (User::find(Auth::user()->id)->approver_or_not)
+        return true;
+
+      return false;
+    }
 }

@@ -126,42 +126,46 @@ class OsaAccountController extends Controller
    */
   public function createNewEventForm()
   {
-    $login_type = 'user';
-    $calendar   = Calendar::all();
-    return view('pages.users.osa-user.events.new_event', compact('login_type', 'calendar'));
+    parent::loginCheck();
+
+    if (parent::isOrgOsa()) {
+      $login_type = 'user';
+      $calendar   = Calendar::all();
+      return view('pages.users.osa-user.events.new_event', compact('login_type', 'calendar'));
+    } else {
+      return redirect()->route('home');
+    }
   }
 
+  /**
+   * Method for approving events
+   *
+   * Note: Those who have prefix parent::
+   *  are the methods declared in Apps\Http\Controller\Controller class
+   *
+   * @return Illuminate\Response
+   */
   public function approveEvents()
   {
-    $events = new Event();
-    $ev = $events->select(
-       'events.id',
-       'events.user_id',
-       'events.event_type_id',
-       'events.event_category_id',
-       'events.organization_id',
-       'events.event',
-       'events.description',
-       'events.venue',
-       'events.date_start',
-       'events.date_end',
-       'events.date_start_time',
-       'events.date_end_time',
-       'events.whole_day',
-       'events.status',
-       'events.approver_count',
-       'organization_groups.user_id as orgg_uid',
-       'organizations.name as org_name',
-       'users.first_name as fname'
-      )
-      ->join('organization_groups', 'events.organization_id', '=', 'organization_groups.organization_id')
-      ->join('organizations', 'events.organization_id', '=', 'organizations.id')
-      ->join('users', 'events.user_id', '=', 'users.id')
-      ->where('organization_groups.user_id', '=', Auth::user()->id)
-      ->get();
+    # Check the authentication of this account
+    parent::loginCheck();
 
-      $login_type = 'user';
-      return view('pages.users.osa-user.events.approve-events', compact('login_type','ev'));
+    # Check if the account is an OSA
+    if (parent::isOrgOsa()) {
+      # Check if the account is an approver
+      if (parent::isApprover()) {
+        $login_type = 'user';
+
+        # Get all event that need the OSA approval.
+        # This method is declare below as private.
+        $ev = self::getEventsThatNeedOsaApproval();
+
+        # Pass the result to the view
+        return view('pages.users.osa-user.events.approve-events', compact('login_type','ev'));
+      }
+    } else {
+      return redirect()->route('home');
+    }
   }
 
   public function approve($id, $orgg_uid)
@@ -209,5 +213,29 @@ class OsaAccountController extends Controller
       return redirect()->route('osa.event.approval')
       ->with('status', "Successfuly disapproved the event ( {$approved_event->event} ).");
     }
+  }
+
+  /**
+   * return the events that needs the approval of the OSA
+   * personnel
+   *
+   * @return object
+   */
+  private function getEventsThatNeedOsaApproval()
+  {
+    return Event::select(
+      'events.*',
+      'organizations.id as org_id',
+      'organizations.name as org_name',
+      'organization_groups.user_id as orgg_uid',
+      'organizations.name as org_name',
+      'users.first_name as fname'
+    )
+    ->join('organization_groups', 'events.organization_id', '=', 'organization_groups.organization_id')
+    ->join('organizations', 'events.organization_id', '=', 'organizations.id')
+    ->join('users', 'events.user_id', '=', 'users.id')
+    ->where('organization_groups.user_id', '=', Auth::user()->id)
+    ->where('approver_count', '<', 3)
+    ->get();
   }
 }

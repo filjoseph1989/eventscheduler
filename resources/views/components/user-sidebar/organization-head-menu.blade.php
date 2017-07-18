@@ -27,6 +27,7 @@
       <ul class="ml-menu">
         <li><a href="{{ route('org-head.event.get') }}">List</a></li>
         <li><a href="{{ route('event.new') }}">Create</a></li>
+        <li><a href="{{ route('org-head.approval') }}">Approve events</a></li>
       </ul>
     </li>
     <li>

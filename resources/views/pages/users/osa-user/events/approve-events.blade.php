@@ -33,18 +33,6 @@
             <div class="card">
               <div class="header">
                 <h2> LIST OF EVENTS that needs your approval </h2>
-                <ul class="header-dropdown m-r--5">
-                  <li class="dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                      <i class="material-icons">more_vert</i>
-                    </a>
-                    <ul class="dropdown-menu pull-right">
-                      <li><a href="javascript:void(0);">Action</a></li>
-                      <li><a href="javascript:void(0);">Another action</a></li>
-                      <li><a href="javascript:void(0);">Something else here</a></li>
-                    </ul>
-                  </li>
-                </ul>
               </div>
               <div class="body">
                 <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
@@ -61,7 +49,8 @@
                     </tr>
                   </thead>
                   <tbody class="js-sweetalert">
-                      <?php foreach ($ev as $key => $value): ?>
+                    @if (isset($ev))
+                      @foreach ($ev as $key => $value)
                         <tr>
                           <td>{{ $value->org_name }}</td>
                           <td>{{ $value->event }}</td>
@@ -76,7 +65,8 @@
                             <a href="{{ route('osa.event.osa-disapprove', [$value->id, $value->orgg_uid] ) }}" class="" title="disapprove this event"> <i class="material-icons">thumb_down</i> </a>
                           </td>
                         </tr>
-                      <?php endforeach; ?>
+                      @endforeach
+                    @endif
                   </tbody>
                   <tfoot>
                     <tr>

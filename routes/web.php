@@ -190,6 +190,7 @@ Route::group(['middleware' => 'revalidate'], function()
       Route::name('org-head.calendar')->get('/calendar/{id}', 'OrganizationHead\ManageSchedule\CalendarController@myOrgCalendar');
       Route::name('org-head.personal-calendar')->get('/org-personal-calendar', 'OrganizationHead\ManageSchedule\CalendarController@myPersonalCalendar');
       Route::name('org-head.personal-calendar-post')->post('/ajax/personal-event', 'OrganizationHead\Events\EventController@getPersonalEvent');
+      Route::name('org-head.approval')->get('/event/approval', 'OrganizationHead\Events\EventController@approveEvents');
     });
 
     # Route for organization member

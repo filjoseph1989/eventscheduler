@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\OsaPersonnel\ManageEvents;
 
 use Auth;
-use App\Models\User;
 use App\Models\Event;
 use App\Models\Calendar;
-use App\Models\Category;
 use App\Models\EventType;
 use App\Models\EventCategory;
-use App\Models\Organization;
 use Illuminate\Http\Request;
 use App\Models\OrganizationGroup;
 use App\Models\EventApprovalMonitor;
@@ -32,27 +29,6 @@ class EventController extends Controller
   public function __construct()
   {
     $this->middleware('web');
-  }
-
-  public function showEvents()
-  {
-    # Get the user organization ID
-    $organization = OrganizationGroup::where('user_id', '=', Auth::user()->id)
-      ->take(1)
-      ->get();
-
-    foreach ($organization as $key => $value) {
-      $id = $value->organization_id;
-    }
-
-    # Get the events from organiation ID
-    $event      = Event::where('organization_id', '=', $id)->get();
-    $login_type = 'user';
-
-    return view(
-      'pages.users.organization-head.calendars.events.list_for_attendance',
-      compact('event', 'login_type')
-    );
   }
 
   /**
@@ -103,26 +79,28 @@ class EventController extends Controller
   }
 
   /**
-   * Create new event as a response to event page
+   * ! Deprecated method
    *
-   * @param  Request $data
-   * @return \Response
+   * @return
    */
-  public function createNewEventForm()
+  public function showEvents()
   {
-    $login_type     = 'user';
-    $calendar       = Calendar::all();
-    $event_type     = EventType::all();
-    $event_category = EventCategory::all();
+    # Get the user organization ID
+    $organization = OrganizationGroup::where('user_id', '=', Auth::user()->id)
+      ->take(1)
+      ->get();
+
+    foreach ($organization as $key => $value) {
+      $id = $value->organization_id;
+    }
+
+    # Get the events from organiation ID
+    $event      = Event::where('organization_id', '=', $id)->get();
+    $login_type = 'user';
 
     return view(
-      'pages.users.organization-head.calendars.events.new_event',
-      compact(
-        'login_type',
-        'calendar',
-        'event_type',
-        'event_category'
-      )
+      'pages.users.organization-head.calendars.events.list_for_attendance',
+      compact('event', 'login_type')
     );
   }
 
