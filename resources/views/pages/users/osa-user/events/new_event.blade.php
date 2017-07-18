@@ -17,11 +17,11 @@
         @include('pages.users.sidebar')
     @endif
 
-    <?php if (session('status')): ?>
+    @if (session('status'))
       <div class="alert alert-success">
         {{ session('status') }}
       </div>
-    <?php endif; ?>
+    @endif
 
     <section class="content">
       <div class="container-fluid">
@@ -32,7 +32,7 @@
                 <h2> NEW EVENTS </h2>
               </div>
               <div class="body">
-                <form class="" id="add-event-form" action="{{ route('event.new') }}" method="POST">
+                <form class="" id="add-event-form" action="{{ route('osa-personnel.event.new') }}" method="POST">
                   <div class="row clearfix">
                     <div class="col-sm-8 col-sm-offset-2">
                       {{ csrf_field() }}

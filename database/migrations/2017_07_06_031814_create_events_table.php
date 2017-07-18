@@ -34,12 +34,12 @@ class CreateEventsTable extends Migration
             $table->integer('notify_via_facebook')->default(0);
             $table->integer('notify_via_sms')->default(0);
             $table->integer('notify_via_email')->default(0);
-            $table->string('additional_msg_facebook');
-            $table->string('additional_msg_sms');
-            $table->string('additional_msg_email');
-            $table->string('picture_facebook');
-            $table->string('picture_twitter');
-            $table->string('picture_email');
+            $table->string('additional_msg_facebook')->nullable();
+            $table->string('additional_msg_sms')->nullable();
+            $table->string('additional_msg_email')->nullable();
+            $table->string('picture_facebook')->nullable();
+            $table->string('picture_twitter')->nullable();
+            $table->string('picture_email')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

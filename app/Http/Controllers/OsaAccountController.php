@@ -119,6 +119,11 @@ class OsaAccountController extends Controller
     return view('pages.users.osa-user.events.list', compact('login_type', 'event', 'calendar'));
   }
 
+  /**
+   * Display the create event form
+   *
+   * @return \Illuminate\Response
+   */
   public function createNewEventForm()
   {
     $login_type = 'user';
