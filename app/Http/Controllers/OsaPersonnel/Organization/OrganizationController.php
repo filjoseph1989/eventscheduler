@@ -64,15 +64,15 @@ class OrganizationController extends Controller
       if (parent::isOrgOsa()) {
         # Insert the receive data
         $organization = Organization::create([
-          'name'         => $data->name;
-          'status'       => $data->status;
-          'url'          => $data->url;
-          'date_started' => $data->date_started;
-          'date_expired' => $data->date_expired;
+          'name'         => $data->name,
+          'status'       => $data->status,
+          'url'          => $data->url,
+          'date_started' => $data->date_started,
+          'date_expired' => $data->date_expired
         ]);
 
         if ($organization->save()) {
-          return redirect()->route('organization.list')
+          return redirect()->route('osa.org.list')
           ->with('status', "Successfuly Added New Organization <b>{$data['name']}</b>");
         }
       } else {

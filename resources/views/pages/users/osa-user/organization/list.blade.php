@@ -59,18 +59,15 @@
                         <tr data-id="{{ $usersvalue->id }}">
                           <td>{{ $usersvalue->name }}</td>
                           <td>{{ $usersvalue->url }}</td>
-                          <td>{{ $usersvalue->date_started }}</td>
-                          <td>{{ $usersvalue->date_expired }}</td>
+                          <td>{{ date('M d, Y', strtotime($usersvalue->date_started)) }}</td>
+                          <td>{{ date('M d, Y', strtotime($usersvalue->date_expired)) }}</td>
                           <td>{{ $usersvalue->status == 1 ? 'active' : 'inactive' }}</td>
                           <td>
-                            <a href="#" class="organization-delete delete" data-url="/users/organization/delete" data-type="cancel">
+                            <a href="#" class="organization-delete delete" data-url="/users/organization/delete" title="Delete Organization" data-type="cancel">
                               <i class="material-icons">delete</i>
                             </a>
-                            <a href="#" class="organization-edit" data-id="{{ $usersvalue->id }}" data-toggle="modal" data-target="#edit-organization">
+                            <a href="#" class="organization-edit" title="Edit Organization" data-id="{{ $usersvalue->id }}" data-toggle="modal" data-target="#edit-organization">
                               <i class="material-icons">mode_edit</i>
-                            </a>
-                            <a href="#" class="#" data-id="{{ $usersvalue->id }}" data-toggle="modal" data-target="">
-                              <i class="material-icons">assignment_ind</i>
                             </a>
                           </td>
                         </tr>
