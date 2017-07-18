@@ -81,6 +81,17 @@ class OrganizationController extends Controller
     }
 
     /**
+     * Display the organization list
+     * @return [type] [description]
+     */
+    public function showAllOrganizationList()
+    {
+      $organizations = Organization::all();
+      $login_type = 'user';
+      return view('pages.users.admin-user.organization.list', compact('login_type','organizations'));
+    }
+
+    /**
      * -------------------------------------------
      * Subject for evaluation to keep or not
      * -------------------------------------------
@@ -160,13 +171,6 @@ class OrganizationController extends Controller
         'id'  => $data
       ];
       echo json_encode($data);
-    }
-
-    public function showAllOrganizationList()
-    {
-        $organizations = Organization::all();
-        $login_type = 'user';
-        return view('pages.users.admin-user.organization.list', compact('login_type','organizations'));
     }
 
     /**

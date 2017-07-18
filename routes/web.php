@@ -143,7 +143,7 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('position.get')->post('/position/get/positions', 'PositionController@getPositions');
 
     # Organization Crud
-    Route::name('organization.list')->get('/organization/list', 'OrganizationController@showAllOrganizationList');
+    Route::name('organization.list')->get('/organization/list', 'OrganizationController@showAllOrganizationList'); # Remove me soon
     Route::name('organization.register')->post('/organization/register', 'OrganizationController@adminCreate'); # Remve me soon
     Route::name('organization.edit')->post('/organization/edit', 'OrganizationController@edit'); # Remove me soon
     Route::name('organization.delete')->post('/organization/delete', 'OrganizationController@delete');
@@ -205,6 +205,7 @@ Route::group(['middleware' => 'revalidate'], function()
 
     # OSA account routes
     Route::prefix('osa-personnel')->group(function() {
+      Route::name('osa-personnel.organization.list')->get('/organization/list', 'OsaPersonnel\Organization\OrganizationController@showAllOrganizationList'); # Remove me soon
       Route::name('osa-personnel.organization.edit')->post('/organization/edit', 'OsaPersonnel\Organization\OrganizationController@osaEditOrganization');
       Route::name('osa-personnel.organization.register')->post('/organization/register', 'OsaPersonnel\Organization\OrganizationController@adminCreate');
     });
