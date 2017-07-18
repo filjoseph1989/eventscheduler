@@ -14,6 +14,24 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     /**
+     * Check if the user is currently login or not
+     *
+     * @return
+     */
+    public function loginCheck()
+    {
+      # Check if the user is loggedin
+      if (! Auth::check()) {
+        return redirect()->route('login');
+      }
+
+      # Check if login as admin or user
+      if (! Auth::guard('web')->check()) {
+        return redirect()->route('login');
+      }
+    }
+
+    /**
      * Check if the user account type of the loggedin
      * user in adviser
      *
@@ -59,5 +77,19 @@ class Controller extends BaseController
     {
       $user = User::find(Auth::user()->id);
       return ($user->user_account_id == 5) ? true : false;
+    }
+
+    /**
+     * Check if the account is an approver
+     *
+     * @return boolean
+     */
+    protected function isApprover()
+    {
+      # Check if this OSA account is an approver
+      if (User::find(Auth::user()->id)->approver_or_not)
+        return true;
+
+      return false;
     }
 }

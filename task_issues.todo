@@ -1,9 +1,10 @@
 To Do:
+  ☐ Issue 33: Remove me "resources\views\pages\users\admin-user\organization\list.blade.php" soon
   ☐ Issue 32: Develop a readable, maintainable code in calendar0.js and calendar.js
   ☐ Issue 31: Go to this line
   ☐ Issue 30: Check the unused routing
   ☐ Issue 29: On visiting the "users/calendar/my-organization-calendar" the system should automatically determine what type of calendar the user visiting
-  ☐ Issue 28: There should be a login checker in almost every method
+  ☐ Issue 28: There should be a login checker in almost every method { working on it}
   ☐ Issue 27: The title here is wrong "users/calendar/my-organization-calendar"
   ✔ Issue 26: Go to this line and do the description in there @done(2017-07-16 14:31) @project(To Do)
   ☐ Issue 25: When the user is in any page, then it happens that the loggedin session already expired, redirect the user to login page

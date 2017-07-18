@@ -92,4 +92,9 @@ class User extends Authenticatable
     public function userHasOneUserAccount(){
       return $this->hasOne('App\Models\UserAccount');
     }
+
+    public function event_approval_monitors()
+    {
+      return $this->hasMany('App\Models\EventApprovalMonitor');
+    }
 }

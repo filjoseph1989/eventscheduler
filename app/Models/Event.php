@@ -35,7 +35,17 @@ class Event extends Model
     'whole_day',
     'venue',
     'status',
-    'approver_count'
+    'approver_count',
+    'notify_via_facebook',
+    'notify_via_twitter',
+    'notify_via_sms',
+    'notify_via_email',
+    'additional_msg_facebook',
+    'additional_msg_sms',
+    'additional_msg_email',
+    'picture_facebook',
+    'picture_twitter',
+    'picture_email'
   ];
 
   /**
@@ -89,4 +99,15 @@ class Event extends Model
   {
     return $this->belongsTo('App\Models\Calendar');
   }
+
+  public function organizationGroup()
+  {
+    return $this->hasMany('App\Models\OrganizationGroup');
+  }
+
+  public function event_approval_monitors()
+  {
+    return $this->hasMany('App\Models\EventApprovalMonitor');
+  }
+
 }

@@ -8,11 +8,11 @@ use App\Models\Event;
 use App\Models\Calendar;
 use App\Models\Category;
 use App\Models\EventType;
+use App\Models\EventCategory;
 use App\Models\Organization;
 use Illuminate\Http\Request;
-use App\Models\EventCategory;
-use App\Models\PersonalEvent;
 use App\Models\OrganizationGroup;
+use App\Models\EventApprovalMonitor;
 use App\Http\Controllers\Controller;
 
 /**
@@ -91,38 +91,28 @@ class EventController extends Controller
         'organization_id',
         'calendar_id'
       );
-    }
 
+        if ($data->facebook == 'on') {
+          $request['notify_via_facebook'] = 1;
+        }
+        if ($data->twitter == 'on') {
+            $request['notify_via_twitter'] = 1;
+        }
+        if ($data->email == 'on') {
+          $request['notify_via_email'] = 1;
+        }
+        if ($data->phone == 'on') {
+          $request['notify_via_sms'] = 1;
+        }
+    }
     # Update the table events
     $result = Event::create($request);
 
     # Make notification here after successfull insert of event
-    if ($result->wasRecentlyCreated) {
-      # Make notification here
-      if ($data->facebook == 'on') {
-        /*
-          facebook notification here
-         */
-      }
-      if ($data->twitter == 'on') {
-        /*
-          twitter notification here
-         */
-      }
-      if ($data->email == 'on') {
-        /*
-          email notification here
-         */
-      }
-      if ($data->phone == 'on') {
-        /*
-          phone notification here
-         */
-      }
-    }
+
 
     if (isset($fromCalendar)) {
-      return redirect()->route('org-head.event.get')
+      return redirect()->route('event.get')
         ->with('status', 'Successfuly Added new event');
     } else {
       # This part here is used to reponse the ajax method of request
@@ -170,17 +160,9 @@ class EventController extends Controller
    */
   public function getEventOfTheMonth(Request $data)
   {
-    if (! Auth::check()) {
-      return redirect()->route('login');
-    }
-
-    if (parent::isOrgHead()) {
-      $event = Event::whereRaw('year(date_start) = year(now())')
-        ->whereRaw("organization_id = ". $data->id)
-        ->get();
-    } else {
-      $event = null;
-    }
+    $event = Event::whereRaw('year(date_start) = year(now())')
+      ->whereRaw("organization_id = ". $data->id)
+      ->get();
 
     echo json_encode( $event );
   }
@@ -191,19 +173,11 @@ class EventController extends Controller
    */
   public function getEventOfTheMonthList()
   {
-    if (! Auth::check()) {
-      return redirect()->route('login');
-    }
+    $event = Event::whereRaw('year(date_start) = year(now())')->get();
 
-    if (parent::isOrgHead()) {
-      $event = Event::whereRaw('year(date_start) = year(now())')->get();
-
-      $login_type = 'user';
-      $calendar   = Calendar::all();
-      return view('pages.users.organization-head.calendars.events.list', compact('login_type', 'event', 'calendar'));
-    } else {
-      return redirect()->route('home');
-    }
+    $login_type = 'user';
+    $calendar   = Calendar::all();
+    return view('pages.users.organization-head.calendars.events.list', compact('login_type', 'event', 'calendar'));
   }
 
   /**
@@ -241,80 +215,77 @@ class EventController extends Controller
     $event->load('organization');
     $event->load('user');
 
+    $event_monitor = new EventApprovalMonitor();
+    $em = $event_monitor->select(
+      'event_approval_monitors.event_id',
+      'event_approval_monitors.approvers_id',
+      'users.first_name as fname',
+      'users.middle_name as mname',
+      'users.last_name as lname',
+      'users.suffix_name as sname'
+    )
+    ->join('users', 'event_approval_monitors.approvers_id', '=', 'users.id')
+    ->where('event_approval_monitors.event_id', '=', $data->id)
+    ->get();
+
+
+    // $event_monitor = EventApprovalMonitor::with(['user','event'])
+    // ->where('event_id', '=', $data->id)
+    // ->get();
+
     echo json_encode([
-      'event' => $event
+      'event' => $event,
+      'event_monitor' => $em
     ]);
   }
 
   /**
-   * Return response to request of getting personal events
-   * @param  Request $data
-   * @return json
-   */
-  public function getPersonalEvent(Request $data)
-  {
-    # get the event from personal event table
-    $event = PersonalEvent::where('user_id', '=', 1)
-      ->get();
-
-    # Load the relationship
-    $event->load('eventCategory')
-      ->load('eventType')
-      ->load('user');
-
-    # Send back to ajax
-    echo json_encode([
-      'event' => $event
-    ]);
-  }
-
-  /**
-   * Edit the event
-   *
-   * @param  Request $data
+   * Approve events
    * @return
    */
-  public function editEvent(Request $data)
+  public function approveEvents()
   {
-    if (! Auth::check()) {
-      return redirect()->route('login');
-    }
+    # Check the authentication of this account
+    parent::loginCheck();
 
+    # Check if the account is an OSA
     if (parent::isOrgHead()) {
-      $request = $data->only([
-        'user_id',
-        'event_type_id',
-        'event_category_id',
-        'calendar_id',
-        'organization_id',
-        'event',
-        'description',
-        'venue',
-        'date_start',
-        'date_start_time',
-        'date_end',
-        'date_end_time',
-        'whole_day'
-        // 'facebook',
-        // 'twitter',
-        // 'email',
-        // 'phone'
-      ]);
+      # Check if the account is an approver
+      if (parent::isApprover()) {
+        $login_type = 'user';
 
-      if ( $request['event_type_id'] == 0 ) unset($request['event_type_id']);
-      if ( $request['event_category_id'] == 0 ) unset($request['event_category_id']);
-      if ( $request['calendar_id'] == 0 ) unset($request['calendar_id']);
-      if ( ! isset($request['organization_id']) || $request['organization_id'] == 0 ) unset($request['organization_id']);
+        # Get all event that need the Org Head's approval
+        # This method is declare below as private.
+        $ev = self::getGetEventsNeedApproval();
 
-      $event = Event::find($data->event_id);
-      $name  = $event->event;
-      $event = $event->update($request);
-      if ($event) {
-        return redirect()->route('org-head.event.get')
-          ->with('status', "Successfully change from <strong>{$name}</strong> to <strong>{$request['event']}</strong>");
+        return view('pages.users.osa-user.events.approve-events', compact('login_type','ev'));
       }
     } else {
-      return redirect()->route('org-head.event.get');
+      return redirect()->route('home');
     }
+  }
+
+  /**
+   * Return the list of events that the organization head's
+   * approval
+   *
+   * @return
+   */
+  private function getGetEventsNeedApproval()
+  {
+    return Event::select(
+      'events.*',
+      'organizations.id as org_id',
+      'organizations.name as org_name',
+      'organization_groups.user_id as orgg_uid',
+      'organizations.name as org_name',
+      'users.first_name as fname'
+    )
+    ->join('organization_groups', 'events.organization_id', '=', 'organization_groups.organization_id')
+    ->join('organizations', 'events.organization_id', '=', 'organizations.id')
+    ->join('users', 'events.user_id', '=', 'users.id')
+    ->where('approver_count', '<', 3)
+    ->where('organization_groups.user_id', '=', Auth::user()->id)
+    ->get();
   }
 }

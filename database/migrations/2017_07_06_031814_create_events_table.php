@@ -30,6 +30,16 @@ class CreateEventsTable extends Migration
             $table->integer('whole_day');
             $table->tinyInteger('status')->default(0);
             $table->integer('approver_count')->default(0);
+            $table->integer('notify_via_twitter')->default(0);
+            $table->integer('notify_via_facebook')->default(0);
+            $table->integer('notify_via_sms')->default(0);
+            $table->integer('notify_via_email')->default(0);
+            $table->string('additional_msg_facebook')->nullable();
+            $table->string('additional_msg_sms')->nullable();
+            $table->string('additional_msg_email')->nullable();
+            $table->string('picture_facebook')->nullable();
+            $table->string('picture_twitter')->nullable();
+            $table->string('picture_email')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

@@ -143,9 +143,9 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('position.get')->post('/position/get/positions', 'PositionController@getPositions');
 
     # Organization Crud
-    Route::name('organization.list')->get('/organization/list', 'OrganizationController@showAllOrganizationList');
-    Route::name('organization.register')->post('/organization/register', 'OrganizationController@adminCreate');
-    Route::name('organization.edit')->post('/organization/edit', 'OrganizationController@edit');
+    Route::name('organization.list')->get('/organization/list', 'OrganizationController@showAllOrganizationList'); # Remove me soon
+    Route::name('organization.register')->post('/organization/register', 'OrganizationController@adminCreate'); # Remve me soon
+    Route::name('organization.edit')->post('/organization/edit', 'OrganizationController@edit'); # Remove me soon
     Route::name('organization.delete')->post('/organization/delete', 'OrganizationController@delete');
     Route::name('organization.add')->get('/organization/add', 'OrganizationController@showOrganizationAddForm');
     Route::name('organization.get')->post('/organization/get', 'OrganizationController@getOrganization');
@@ -176,6 +176,7 @@ Route::group(['middleware' => 'revalidate'], function()
       Route::name('event.show')->get('/show', 'OrganizationHead\Events\EventController@showEvents');
       Route::name('event.new')->get('/new', 'OrganizationHead\Events\EventController@createNewEventForm');
       Route::name('event.new')->post('/new', 'OrganizationHead\Events\EventController@createNewEvent');
+      Route::name('event.get')->get('/get', 'OrganizationHead\Events\EventController@getEventOfTheMonthList');
       Route::name('event.gets')->post('/gets', 'OrganizationHead\Events\EventController@getEventOfTheMonth');
       Route::name('event.ajax.get')->post('/ajax/get', 'OrganizationHead\Events\EventController@getEvent');
     });
@@ -190,6 +191,7 @@ Route::group(['middleware' => 'revalidate'], function()
       Route::name('org-head.calendar')->get('/calendar/{id}', 'OrganizationHead\ManageSchedule\CalendarController@myOrgCalendar');
       Route::name('org-head.personal-calendar')->get('/org-personal-calendar', 'OrganizationHead\ManageSchedule\CalendarController@myPersonalCalendar');
       Route::name('org-head.personal-calendar-post')->post('/ajax/personal-event', 'OrganizationHead\Events\EventController@getPersonalEvent');
+      Route::name('org-head.approval')->get('/event/approval', 'OrganizationHead\Events\EventController@approveEvents');
     });
 
     # Route for organization member
@@ -203,11 +205,14 @@ Route::group(['middleware' => 'revalidate'], function()
       Route::name('org-member.personal-calendar-post')->post('/ajax/personal-event', 'OrganizationMember\Events\EventController@getPersonalEvent');
     });
 
-    # Route for organization member
-    // Route::prefix('org-member')->group(function() {
-    //   Route::name('member.org-list')->get('/org-list', 'OrganizationMember\OrgMemberAccountController@DisplayMyOrganization');
-    //   Route::name('member.org-calendar')->get('/my-organization-calendar/{id}', 'OrganizationMember\ManageSchedule\CalendarController@myOrgCalendar');
-    // });
+    # OSA account routes
+    Route::prefix('osa-personnel')->group(function() {
+      Route::name('osa-personnel.organization.list')->get('/organization/list', 'OsaPersonnel\Organization\OrganizationController@showAllOrganizationList'); # Remove me soon
+      Route::name('osa-personnel.organization.edit')->post('/organization/edit', 'OsaPersonnel\Organization\OrganizationController@osaEditOrganization');
+      Route::name('osa-personnel.organization.register')->post('/organization/register', 'OsaPersonnel\Organization\OrganizationController@adminCreate');
+      Route::name('osa-personnel.event.get')->get('/get', 'OsaPersonnel\ManageEvents\EventController@getEventOfTheMonthList');
+      Route::name('osa-personnel.event.new')->post('/new', 'OsaPersonnel\ManageEvents\EventController@createNewEvent');
+    });
 
     /**
      * OSA User Account Type
@@ -218,6 +223,9 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('osa.event.get')->get('osa/event/get', 'OsaAccountController@getEventOfTheMonthList');
     Route::name('osa.event.new')->get('osa/event/new', 'OsaAccountController@createNewEventForm');
     Route::name('osa.event.approval')->get('osa/event/approval', 'OsaAccountController@approveEvents');
+    Route::name('osa.event.osa-approve')->get('osa/event/approved/{id}/{orgg_uid}', 'OsaAccountController@approve');
+    Route::name('osa.event.osa-disapprove')->get('osa/event/disapproved/{id}/{orgg_uid}', 'OsaAccountController@disapprove');
+    Route::name('osa.event.notify')->get('osa/event/notify', 'ManageNotificationController@notify');
 
     /**
      * Admin User Account Type

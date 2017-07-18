@@ -13,6 +13,8 @@ use App\Models\Event;
 use App\Models\Calendar;
 use App\Models\Category;
 use App\Models\EventType;
+use App\Models\EventApprovalMonitor;
+use App\Http\Controllers\ManageNotificationController;
 
 
 class OsaAccountController extends Controller
@@ -28,8 +30,8 @@ class OsaAccountController extends Controller
     $organization_groups = new OrganizationGroup();
     $positions           = Position::all();
     $user_accounts       = UserAccount::all();
-    $user                = new User();
 
+    $user = new User();
     $data = $user->select(
       'users.id as user_id',
       'users.user_account_id as u_acc_id',
@@ -67,12 +69,18 @@ class OsaAccountController extends Controller
     return view('pages.users.osa-user.manage-users.list', compact('login_type','data', 'organizations', 'positions', 'org_grps', 'user_accounts'));
   }
 
+  /**
+   * Display the list of organization
+   *
+   * @return
+   */
   public function showAllOrganizationList()
   {
       $organizations = Organization::all();
       $login_type = 'user';
       return view('pages.users.osa-user.organization.list', compact('login_type','organizations'));
   }
+
   public function showOrganizationAddForm()
   {
     return view('pages.users.osa-user.organization.add');
@@ -110,40 +118,151 @@ class OsaAccountController extends Controller
     return view('pages.users.osa-user.events.list', compact('login_type', 'event', 'calendar'));
   }
 
+  /**
+   * Display the create event form
+   *
+   * @return \Illuminate\Response
+   */
   public function createNewEventForm()
   {
-    $login_type = 'user';
-    $calendar   = Calendar::all();
-    return view('pages.users.osa-user.events.new_event', compact('login_type', 'calendar'));
+    parent::loginCheck();
+
+    if (parent::isOrgOsa()) {
+      $login_type = 'user';
+      $calendar   = Calendar::all();
+      return view('pages.users.osa-user.events.new_event', compact('login_type', 'calendar'));
+    } else {
+      return redirect()->route('home');
+    }
   }
 
+  /**
+   * Method for approving events
+   *
+   * Note: Those who have prefix parent::
+   *  are the methods declared in Apps\Http\Controller\Controller class
+   *
+   * @return Illuminate\Response
+   */
   public function approveEvents()
   {
-    $events = new Event();
-    $ev = $events->select(
-       'events.id',
-       'events.event_type_id',
-       'events.event_category_id',
-       'events.organization_id',
-       'events.event',
-       'events.description',
-       'events.venue',
-       'events.date_start',
-       'events.date_end',
-       'events.date_start_time',
-       'events.date_end_time',
-       'events.whole_day',
-       'events.status',
-       'events.approver_count',
-       'organization_groups.user_id as orgg_uid',
-       'organizations.name as org_name'
-      )
-      ->join('organization_groups', 'events.organization_id', '=', 'organization_groups.id')
-      ->join('organizations', 'events.organization_id', '=', 'organizations.id')
-      ->where('organization_groups.user_id', '=', Auth::user()->id)
-      ->get();
-      dd($events);
-      $login_type = 'user';
-      return view('pages.users.osa-user.events.approve-events', compact('login_type','ev'));
+    # Check the authentication of this account
+    parent::loginCheck();
+
+    # Check if the account is an OSA
+    if (parent::isOrgOsa()) {
+      # Check if the account is an approver
+      if (parent::isApprover()) {
+        $login_type = 'user';
+
+        # Get all event that need the OSA approval.
+        # This method is declare below as private.
+        $ev = self::getEventsThatNeedOsaApproval();
+
+        # Pass the result to the view
+        return view('pages.users.osa-user.events.approve-events', compact('login_type','ev'));
+      }
+    } else {
+      return redirect()->route('home');
+    }
+  }
+  public function _approveEvents()
+  {
+    # Check the authentication of this account
+    parent::loginCheck();
+
+    # Check if the account is an OSA
+    if (parent::isOrgOsa()) {
+      # Check if the account is an approver
+      if (parent::isApprover()) {
+        $login_type = 'user';
+
+        # Get all event that need the OSA approval.
+        # This method is declare below as private.
+        $ev = self::getEventsThatNeedOsaApproval();
+
+        # Pass the result to the view
+        return view('pages.users.osa-user.events.approve-events', compact('login_type','ev'));
+      }
+    } else {
+      return redirect()->route('home');
+    }
+  }
+
+  /**
+   * Approve event
+   *
+   * @param  int $id event ID
+   * @param  int $orgg_uid user ID
+   * @return
+   */
+  public function approve($id, $orgg_uid)
+  {
+    $approved_event = Event::find($id);
+    if($approved_event->event_category_id == 1 || $approved_event->event_category_id == 3 && $approved_event->approver_count < 3){
+
+      if(EventApprovalMonitor::where('event_id', '=', $id)->where('approvers_id', '=', $orgg_uid)->exists()) {
+        return redirect()->route('osa.event.approval')
+        ->with('status', "You already approved this event ( {$approved_event->event} ). Press the UNAPPROVE button to disable your approval.");
+      } else{
+        EventApprovalMonitor::create(['event_id' => $id, 'approvers_id' => $orgg_uid]);
+        $approved_event->approver_count++;
+
+        if($approved_event->save() ) {
+          if($approved_event->event_category_id == 1 || $approved_event->event_category_id == 3 && $approved_event->approver_count == 3){
+            $notify = new ManageNotificationController();
+            $notify->notify($approved_event);
+            return redirect()->route('osa.event.approval')
+            ->with('status', "Successfuly approved the event ( {$approved_event->event} ) and notified the info regarding this event.");
+          }
+          return redirect()->route('osa.event.approval')
+          ->with('status', "Successfuly approved the event ( {$approved_event->event} ).");
+        }
+      }
+    }
+    // if($approved_event->event_category_id == 1 || $approved_event->event_category_id == 3 && $approved_event->approver_count == 3){
+    //   //call notify function
+    // }
+  }
+
+  public function disapprove($id, $orgg_uid)
+  {
+    $approved_event = Event::find($id);
+    if(EventApprovalMonitor::where('event_id', '=', $id)->where('approvers_id', '=', $orgg_uid)->exists()){
+      $delete_record = EventApprovalMonitor::where('event_id', '=', $id)->where('approvers_id', '=', $orgg_uid);
+      $delete_record->delete();
+      $approved_event->approver_count--;
+    } else{
+      return redirect()->route('osa.event.approval')
+      ->with('status', "You can't disapprove this event ( {$approved_event->event} ) because you have not approved it yet.");
+    }
+    if($approved_event->save() ){
+      return redirect()->route('osa.event.approval')
+      ->with('status', "Successfuly disapproved the event ( {$approved_event->event} ).");
+    }
+  }
+
+  /**
+   * return the events that needs the approval of the OSA
+   * personnel
+   *
+   * @return object
+   */
+  private function getEventsThatNeedOsaApproval()
+  {
+    return Event::select(
+      'events.*',
+      'organizations.id as org_id',
+      'organizations.name as org_name',
+      'organization_groups.user_id as orgg_uid',
+      'organizations.name as org_name',
+      'users.first_name as fname'
+    )
+    ->join('organization_groups', 'events.organization_id', '=', 'organization_groups.organization_id')
+    ->join('organizations', 'events.organization_id', '=', 'organizations.id')
+    ->join('users', 'events.user_id', '=', 'users.id')
+    ->where('organization_groups.user_id', '=', Auth::user()->id)
+    ->where('approver_count', '<', 3)
+    ->get();
   }
 }
