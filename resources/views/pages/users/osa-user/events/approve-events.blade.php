@@ -60,7 +60,9 @@
                           <td>{{ $value->date_end_time }}</td>
                           <td>{{ $value->approver_count }}</td>
                           <td>
-                            <a href="{{ route('osa.event.osa-approve', [$value->id, $value->orgg_uid] ) }}" class="" title="approve this event"> <i class="material-icons">thumb_up</i> </a>
+                            <a href="{{ route('osa.event.osa-approve', [$value->id] ) }}" title="approve this event"> 
+                              <i class="material-icons">thumb_up</i>
+                            </a>
                             <a href="#" class="view-event" title="further details" data-id="{{ $value->id }}" data-toggle="modal" data-target="#view-event"> <i class="material-icons">visibility</i></a>
                             <a href="{{ route('osa.event.osa-disapprove', [$value->id, $value->orgg_uid] ) }}" class="" title="disapprove this event"> <i class="material-icons">thumb_down</i> </a>
                           </td>
@@ -91,7 +93,6 @@
       </div>
     </section>
 @endsection
-
 
 @section('modal')
   <div class="modal fade" id="view-event" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">

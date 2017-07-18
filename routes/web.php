@@ -212,6 +212,8 @@ Route::group(['middleware' => 'revalidate'], function()
       Route::name('osa-personnel.organization.register')->post('/organization/register', 'OsaPersonnel\Organization\OrganizationController@adminCreate');
       Route::name('osa-personnel.event.get')->get('/get', 'OsaPersonnel\ManageEvents\EventController@getEventOfTheMonthList');
       Route::name('osa-personnel.event.new')->post('/new', 'OsaPersonnel\ManageEvents\EventController@createNewEvent');
+      Route::name('osa-personnel.event.approval.within')->get('osa/event/approval/within', 'OsaPersonnel\ManageEvents\EventController@approveEventWithin');
+      Route::name('osa-personnel.osa-approve')->get('/event/approved/{id}/{orgg_uid}', 'OsaPersonnel\ManageEvents\EventController@approve');
     });
 
     /**
@@ -223,7 +225,7 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::name('osa.event.get')->get('osa/event/get', 'OsaAccountController@getEventOfTheMonthList');
     Route::name('osa.event.new')->get('osa/event/new', 'OsaAccountController@createNewEventForm');
     Route::name('osa.event.approval')->get('osa/event/approval', 'OsaAccountController@approveEvents');
-    Route::name('osa.event.osa-approve')->get('osa/event/approved/{id}/{orgg_uid}', 'OsaAccountController@approve');
+    Route::name('osa.event.osa-approve')->get('osa/event/approved/{id}', 'OsaAccountController@approve');
     Route::name('osa.event.osa-disapprove')->get('osa/event/disapproved/{id}/{orgg_uid}', 'OsaAccountController@disapprove');
     Route::name('osa.event.notify')->get('osa/event/notify', 'ManageNotificationController@notify');
 

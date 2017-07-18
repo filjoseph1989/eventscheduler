@@ -182,4 +182,67 @@ class EventController extends Controller
       'event_monitor' => $em
     ]);
   }
+
+  /**
+   * Displaay events within organization that need
+   * OSA approval
+   *
+   * @return Illuminate\Response
+   */
+  public function approveEventWithin()
+  {
+    # Check the authentication
+    parent::loginCheck();
+
+    if (parent::isOrgOsa()) {
+      # Check if the account is an approver
+      if (parent::isApprover()) {
+        $login_type = 'user';
+
+        # Get events within OSA that need approval.
+        $ev = self::getEventWithin();
+
+        # Pass the result to the view
+        return view('pages.users.osa-user.events.approve-events', compact('login_type','ev'));
+      }
+    } else {
+      return redirect()->route('home');
+    }
+  }
+
+  /**
+   * Execute the approving function
+   *
+   * @param  int $id       Event ID
+   * @param  int $orgg_uid
+   * @return
+   */
+  public function approve($id, $orgg_uid)
+  {
+    ddd($id, $orgg_uid);
+  }
+
+  /**
+   * Return all event that need OSA approval
+   * within the OSA organization
+   *
+   * @return object
+   */
+  private function getEventWithin()
+  {
+    return Event::select(
+      'events.*',
+      'organizations.id as org_id',
+      'organizations.name as org_name',
+      'organization_groups.user_id as orgg_uid',
+      'organizations.name as org_name',
+      'users.first_name as fname'
+    )
+    ->join('organization_groups', 'events.organization_id', '=', 'organization_groups.organization_id')
+    ->join('organizations', 'events.organization_id', '=', 'organizations.id')
+    ->join('users', 'events.user_id', '=', 'users.id')
+    ->where('organization_groups.user_id', '=', Auth::user()->id)
+    ->where('approver_count', '<', 3)
+    ->get();
+  }
 }

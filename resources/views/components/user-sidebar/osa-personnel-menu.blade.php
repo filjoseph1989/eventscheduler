@@ -1,8 +1,3 @@
-<?php
-/**
- * This will display the menus for the user account
- */
-?>
 <li>
   <a href="#" class="menu-toggle">
     <i class="material-icons">supervisor_account</i>
@@ -37,7 +32,12 @@
     </li>
     <li>
       <a href="{{ route('osa.event.approval') }}">
-        <span>Approve events</span>
+        <span>Approve Events</span>
+      </a>
+    </li>
+    <li>
+      <a href="{{ route('osa-personnel.event.approval.within') }}">
+        <span>Approve Events within OSA</span>
       </a>
     </li>
   </ul>

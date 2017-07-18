@@ -6,7 +6,9 @@ To Do:
     ☐ Manage Events:
       ✔ List of Events @done(2017-07-18 19:19)
       ✔ Create an Events @done(2017-07-18 19:13)
-      ☐ Approve Events
+      ☐ Approve Events:
+        if events is under the OSA he can then approve
+        else display all event
     ☐ Manage Users:
       ☐ List of Users
     ☐ Manage Schedule:

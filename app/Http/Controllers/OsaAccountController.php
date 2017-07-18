@@ -16,7 +16,6 @@ use App\Models\EventType;
 use App\Models\EventApprovalMonitor;
 use App\Http\Controllers\ManageNotificationController;
 
-
 class OsaAccountController extends Controller
 {
   /**
@@ -81,6 +80,11 @@ class OsaAccountController extends Controller
       return view('pages.users.osa-user.organization.list', compact('login_type','organizations'));
   }
 
+  /**
+   * Show organization
+   *
+   * @return
+   */
   public function showOrganizationAddForm()
   {
     return view('pages.users.osa-user.organization.add');
@@ -90,7 +94,8 @@ class OsaAccountController extends Controller
     //
   }
 
-  public function addMemberToOrganization(){
+  public function addMemberToOrganization()
+  {
 
   }
 
@@ -166,60 +171,73 @@ class OsaAccountController extends Controller
       return redirect()->route('home');
     }
   }
-  public function _approveEvents()
-  {
-    # Check the authentication of this account
-    parent::loginCheck();
-
-    # Check if the account is an OSA
-    if (parent::isOrgOsa()) {
-      # Check if the account is an approver
-      if (parent::isApprover()) {
-        $login_type = 'user';
-
-        # Get all event that need the OSA approval.
-        # This method is declare below as private.
-        $ev = self::getEventsThatNeedOsaApproval();
-
-        # Pass the result to the view
-        return view('pages.users.osa-user.events.approve-events', compact('login_type','ev'));
-      }
-    } else {
-      return redirect()->route('home');
-    }
-  }
 
   /**
    * Approve event
    *
    * @param  int $id event ID
-   * @param  int $orgg_uid user ID
    * @return
    */
-  public function approve($id, $orgg_uid)
+  public function approve($id)
   {
-    $approved_event = Event::find($id);
-    if($approved_event->event_category_id == 1 || $approved_event->event_category_id == 3 && $approved_event->approver_count < 3){
+    # is User login?
+    parent::loginCheck();
 
-      if(EventApprovalMonitor::where('event_id', '=', $id)->where('approvers_id', '=', $orgg_uid)->exists()) {
-        return redirect()->route('osa.event.approval')
-        ->with('status', "You already approved this event ( {$approved_event->event} ). Press the UNAPPROVE button to disable your approval.");
-      } else{
-        EventApprovalMonitor::create(['event_id' => $id, 'approvers_id' => $orgg_uid]);
-        $approved_event->approver_count++;
+    # is user an osa staff? and approver?
+    if (parent::isOrgOsa() and parent::isApprover()) {
+      # Get a single row of event
+      $approved_event = Event::find($id);
 
-        if($approved_event->save() ) {
-          if($approved_event->event_category_id == 1 || $approved_event->event_category_id == 3 && $approved_event->approver_count == 3){
+      /*
+       Issue 34: What they want more than (3) approvers?
+        There should be another column on event ot determent how many shoud approve
+
+       If the the event is not yet approved by 3
+       Do the approving
+       */
+      if ($approved_event->approver_count >= 0 and $approved_event->approver_count < 3) {
+        # Before confirming the approve,
+        # we need to check if the user already approved the event
+        $done = EventApprovalMonitor::where('event_id', '=', $id)->where('approvers_id', '=', Auth::user()->id)->exists();
+        if ($done) {
+          return redirect()->route('osa.event.approval')
+            ->with('status', "You already approved this event ( {$approved_event->event} ). Press the UNAPPROVE button to disable your approval.");
+        } else {
+          # Increment approver count on events table.
+          # This determine how many already approved the event
+          $approved_event->approver_count++;
+          $approved_event->save();
+
+          # Save users ID to prevent performing more approval
+          # when the user already did it.
+          EventApprovalMonitor::create([
+            'event_id'     => $id,
+            'approvers_id' => Auth::user()->id
+          ]);
+
+          # With notification message
+          if ($approved_event->approver_count >= 3) {
+            # Update the status of event
+            $approved_event->status = 1;
+            $approved_event->save();
+
+            # Notification
             $notify = new ManageNotificationController();
             $notify->notify($approved_event);
+
+            # message
+            # I think no need here
             return redirect()->route('osa.event.approval')
-            ->with('status', "Successfuly approved the event ( {$approved_event->event} ) and notified the info regarding this event.");
+              ->with('status', "Successfuly approved the event ( {$approved_event->event} ) and Notified");
           }
+
+          # with no notification message
           return redirect()->route('osa.event.approval')
-          ->with('status', "Successfuly approved the event ( {$approved_event->event} ).");
+            ->with('status', "Successfuly approved the event ( {$approved_event->event} )");
         }
       }
     }
+
     // if($approved_event->event_category_id == 1 || $approved_event->event_category_id == 3 && $approved_event->approver_count == 3){
     //   //call notify function
     // }
@@ -254,14 +272,9 @@ class OsaAccountController extends Controller
       'events.*',
       'organizations.id as org_id',
       'organizations.name as org_name',
-      'organization_groups.user_id as orgg_uid',
-      'organizations.name as org_name',
-      'users.first_name as fname'
+      'organizations.name as org_name'
     )
-    ->join('organization_groups', 'events.organization_id', '=', 'organization_groups.organization_id')
     ->join('organizations', 'events.organization_id', '=', 'organizations.id')
-    ->join('users', 'events.user_id', '=', 'users.id')
-    ->where('organization_groups.user_id', '=', Auth::user()->id)
     ->where('approver_count', '<', 3)
     ->get();
   }
