@@ -262,7 +262,7 @@
   <script src="{{ asset('js/moment.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/autosize.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/app.js') }}?v=0.16" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.17" charset="utf-8"></script>
   <script src="{{ asset('js/osa/osa.js') }}?v=0.1" charset="utf-8"></script>
   <script type="text/javascript">
     $('.datepicker').bootstrapMaterialDatePicker({

@@ -7,8 +7,11 @@ To Do:
       ✔ List of Events @done(2017-07-18 19:19)
       ✔ Create an Events @done(2017-07-18 19:13)
       ☐ Approve Events:
-        if events is under the OSA he can then approve
-        else display all event
+        ✔ approve  @done(2017-07-19 02:02)
+        ☐ disapprove
+      ☐ Approve Events with OSa:
+        ☐ Approve
+        ☐ Disapprove
     ☐ Manage Users:
       ☐ List of Users
     ☐ Manage Schedule:
@@ -42,7 +45,8 @@ To Do:
         ☐ List Events
           ✔ Display event in the table with status approved or not @done(2017-07-17 22:00)
             ✔ Display the event @done(2017-07-15 12:27)
-            ✔ Edit event @done(2017-07-17 22:00)
+            ☐ Edit event:
+              ☐ if the user edit the date of the schedule, reset the approver count and status
         ☐ Create Event
           ☐ within personnal
           Issue:
