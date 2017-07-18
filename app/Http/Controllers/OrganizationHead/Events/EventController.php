@@ -207,6 +207,27 @@ class EventController extends Controller
   }
 
   /**
+   * Get personal event of the month
+   * @return
+   */
+  public function getPersonalEventOfTheMonthList()
+  {
+    if (! Auth::check()) {
+      return redirect()->route('login');
+    }
+
+    if (parent::isOrgHead()) {
+      $event = Event::whereRaw('year(date_start) = year(now())')->get();
+
+      $login_type = 'user';
+      $calendar   = Calendar::all();
+      return view('pages.users.organization-head.calendars.events.list', compact('login_type', 'event', 'calendar'));
+    } else {
+      return redirect()->route('home');
+    }
+  }
+
+  /**
    * Used to response the http request for a single event
    * information
    *

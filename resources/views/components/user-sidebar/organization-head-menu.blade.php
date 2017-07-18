@@ -32,7 +32,7 @@
     <li>
       <a href="#" class="menu-toggle">My Personal</a>
       <ul class="ml-menu">
-        <li><a href="{{ route('org-head.event.get') }}">List</a></li>
+        <li><a href="{{ route('org-head.event.get.personal') }}">List</a></li>
         <li><a href="{{ route('event.new') }}">Create</a></li>
       </ul>
     </li>

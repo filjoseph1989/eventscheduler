@@ -183,6 +183,7 @@ Route::group(['middleware' => 'revalidate'], function()
     # Route for organization head
     Route::prefix('org-head')->group(function() {
       Route::name('org-head.event.get')->get('/get', 'OrganizationHead\Events\EventController@getEventOfTheMonthList');
+      Route::name('org-head.event.get.personal')->get('/get/personal', 'OrganizationHead\Events\EventController@getPersonalEventOfTheMonthList');
       Route::name('org-head.event.get.ajax')->post('/ajax/get', 'OrganizationHead\Events\EventController@getEvent');
       Route::name('org-head.event.edit')->post('/edit', 'OrganizationHead\Events\EventController@editEvent');
       Route::name('org-head.org-list')->get('/org-list', 'OrganizationHead\OrgHeadAccountController@myOrganization');
