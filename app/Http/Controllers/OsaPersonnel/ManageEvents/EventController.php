@@ -155,7 +155,7 @@ class EventController extends Controller
 
       # Sent to browser
       return view(
-        'pages.users.organization-head.calendars.events.list',
+        'pages.users.osa-user.events.list',
         compact(
           'login_type',
           'event',
