@@ -111,34 +111,6 @@ class OrganizationController extends Controller
       }
     }
 
-    /**
-     * The Osa make update on organization details in his/her
-     * list of organization
-     *
-     * @param  Request $data
-     * @return \Illuminate\Response
-     */
-    public function osaEditOrganization(Request $data)
-    {
-      # Check if login or not
-      parent::loginCheck();
-
-      if (parent::isOrgOsa()) {
-        $organization               = Organization::find($data->id);
-        $name                       = $organization->name;
-        $organization->name         = $data->name;
-        $organization->status       = $data->status;
-        $organization->url          = $data->url;
-        $organization->date_started = $data->date_started;
-        $organization->date_expired = $data->date_expired;
-
-        if ($organization->save()) {
-          return redirect()->route('osa.org.list')
-          ->with('status', "Successfuly Updated from <b>{$name}</b> to <b>{$data['name']}</b>");
-        }
-      }
-    }
-
     public function delete(Request $data)
     {
       $organization = Organization::find($data->id);

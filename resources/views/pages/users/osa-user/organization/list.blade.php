@@ -178,7 +178,7 @@
   <div class="modal fade" id="add-organization" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form class="" id="organization-registration" role="form" method="POST" action="{{ route('organization.register') }}">
+        <form class="" id="organization-registration" role="form" method="POST" action="{{ route('osa-personnel.organization.register') }}">
           {{ csrf_field() }}
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

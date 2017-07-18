@@ -52,6 +52,35 @@ class OrganizationController extends Controller
     }
 
     /**
+     * Store the new organization in organization table
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function adminCreate(Request $data)
+    {
+      # check authentication
+      parent::loginCheck();
+
+      if (parent::isOrgOsa()) {
+        # Insert the receive data
+        $organization = Organization::create([
+          'name'         => $data->name;
+          'status'       => $data->status;
+          'url'          => $data->url;
+          'date_started' => $data->date_started;
+          'date_expired' => $data->date_expired;
+        ]);
+
+        if ($organization->save()) {
+          return redirect()->route('organization.list')
+          ->with('status', "Successfuly Added New Organization <b>{$data['name']}</b>");
+        }
+      } else {
+        return redirect()->route('login');
+      }
+    }
+
+    /**
      * -------------------------------------------
      * Subject for evaluation to keep or not
      * -------------------------------------------
@@ -77,33 +106,6 @@ class OrganizationController extends Controller
     public function getOrganizationList()
     {
         return Organization::All();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function adminCreate(Request $data)
-    {
-        $organization = Organization::create([
-            'name'         => $data['name'],
-            'status'       => $data['status'],
-            'url'          => $data['url'],
-            'date_started' => $data['date_started'],
-            'date_expired' => $data['date_expired'],
-        ]);
-
-        if ($organization->save()) {
-          if (Auth::guard('admin')->check()){
-            return redirect()->route('admin.organization.list')
-            ->with('status', "Successfuly Added New Organization <b>{$data['name']}</b>");
-          }
-          if (Auth::guard('web')->check()){
-            return redirect()->route('organization.list')
-            ->with('status', "Successfuly Added New Organization <b>{$data['name']}</b>");
-          }
-        }
     }
 
     /**
