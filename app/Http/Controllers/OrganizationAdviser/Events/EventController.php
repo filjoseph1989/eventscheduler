@@ -160,11 +160,15 @@ class EventController extends Controller
    */
   public function getEventOfTheMonth(Request $data)
   {
-    $event = Event::whereRaw('year(date_start) = year(now())')
+    parent::loginCheck();
+
+    if (parent::isOrgAdviser()) {
+      $event = Event::whereRaw('year(date_start) = year(now())')
       ->whereRaw("organization_id = ". $data->id)
       ->get();
 
-    echo json_encode( $event );
+      echo json_encode( $event );
+    }
   }
 
   /**

@@ -17,19 +17,13 @@
         @include('pages.users.sidebar')
     @endif
 
-    @if (session('status'))
-      <div class="alert alert-success">
-        {{ session('status') }}
-      </div>
-    @endif
-
     <section class="content">
       <div class="container-fluid">
         <div class="row clearfix">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> LIST OF ORGANIZTION </h2>
+                <h2> LIST OF ORGANIZATION </h2>
               </div>
               <div class="body table-responsive">
                 <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
@@ -50,7 +44,7 @@
                     @else
                       @foreach ($organization as $key => $value)
                         <tr>
-                          <td><a href="{{ route('org-head.calendar', [$value->id]) }}">{{ $value->name }}</a></td>
+                          <td><a href="{{ route('org-adviser.calendar', [$value->id]) }}">{{ $value->name }}</a></td>
                           <td><a href="{{ $value->url }}">{{ $value->url }}</a></td>
                           <td>{{ date('M d, Y', strtotime($value->date_started)) }}</td>
                           <td>{{ date('M d, Y', strtotime($value->date_expired)) }}</td>

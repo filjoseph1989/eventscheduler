@@ -21,22 +21,6 @@
 
     <section class="content">
       <div class="container-fluid">
-        @if (session('status'))
-          <div class="alert alert-success">
-            {!! session('status') !!}
-          </div>
-        @endif
-
-        @if ($errors->any())
-          <div class="alert alert-danger">
-            <ul>
-              @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-              @endforeach
-            </ul>
-          </div>
-        @endif
-
         <div class="row clearfix">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
@@ -55,7 +39,7 @@
                 </ul>
               </div>
               <div class="body">
-                <div class="" id="my-organization" data-org-id="{{ $org->id }}"></div>
+                <div class="" id="my-organization" data-org-id="{{ $org->id }}" data-ajax-url="/users/org-adviser/event/gets"></div>
                 <div id='calendar'></div>
               </div>
             </div>
@@ -82,5 +66,5 @@
   <script src="{{ asset('js/basic-form-elements.js') }}?v=0.2" charset="utf-8"></script>
   <script src="{{ asset('js/fullcalendar.min.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/calendar.js') }}?v=0.3" charset="utf-8"></script>
+  <script src="{{ asset('js/calendar.js') }}?v=0.4" charset="utf-8"></script>
 @endsection
