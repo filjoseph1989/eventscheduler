@@ -12,6 +12,12 @@
 Route::get('/', function () {
   return redirect()->route('login');
 });
+
+/*
+|--------------------------------------------------------------------------
+| Authentication Routes
+|--------------------------------------------------------------------------
+*/
 Auth::routes();
 
 #revalidation of back history
@@ -22,81 +28,14 @@ Route::group(['middleware' => 'revalidate'], function()
   | Admin Dashboard Routes
   |--------------------------------------------------------------------------
   */
-  Route::prefix('admin')->group(function() {
-    # Users
-    Route::name('admin.user.list')->get('/users/list', 'AdminController@showAllUserList');
-    Route::name('admin.user.add')->get('/users/add', 'AdminUserController@showUserAddForm');
-    Route::name('admin.user.set.status')->post('/users/set/status', 'AdminUserController@setStatus');
-    Route::name('admin.user.register')->post('/user/register', 'UserController@adminCreate');
-    Route::name('admin.user.edit')->post('/user/edit', 'UserController@edit');
-    Route::name('admin.user.get')->post('/user/get', 'UserController@getUserData');
-    Route::name('admin.user.gets')->get('/user/gets', 'UserController@gets');
-    Route::name('admin.user.delete')->post('/user/delete', 'UserController@delete');
+  require_once "system_route/admin.php";
 
-    # User Accounts
-    Route::name('admin.user.account.list')->get('/user-account/list', 'AdminController@showAllUserAccountList');
-    Route::name('admin.user.account.add')->get('/user-account/add', 'UserAccountController@showUserAccountAddForm');
-    Route::name('admin.user-account.register')->post('/user-account/register', 'UserAccountController@useAccountCreate');
-    Route::name('admin.user-account.edit')->post('/user-account/edit', 'UserAccountController@edit');
-    Route::name('admin.user-account.delete')->post('/user-account/delete', 'UserAccountController@delete');
-
-    # Course
-    Route::name('admin.course.list')->get('/course/list', 'AdminController@showAllCourseList');
-    Route::name('admin.course.add')->get('/course/add', 'CourseController@showCourseAddForm');
-    Route::name('admin.course.register')->post('/course/register', 'CourseController@courseCreate');
-    Route::name('admin.course.edit')->post('/course/edit', 'CourseController@edit');
-    Route::name('admin.course.delete')->post('/course/delete', 'CourseController@delete');
-
-    # Department
-    Route::name('admin.department.list')->get('/department/list', 'AdminController@showAllDepartmentList');
-    Route::name('admin.department.add')->get('/department/add', 'DepartmentController@showDepartmentAddForm');
-    Route::name('admin.department.register')->post('/department/register', 'DepartmentController@adminCreate');
-    Route::name('admin.department.edit')->post('/department/edit', 'DepartmentController@edit');
-    Route::name('admin.department.delete')->post('/department/delete', 'DepartmentController@delete');
-
-    # Position
-    Route::name('admin.position.list')->get('/position/list', 'AdminController@showAllPositionList');
-    Route::name('admin.position.add')->get('/position/add', 'PositionController@showPositionAddForm');
-    Route::name('admin.position.register')->post('/position/register', 'PositionController@positionCreate');
-    Route::name('admin.position.edit')->post('/position/edit', 'PositionController@edit');
-    Route::name('admin.position.delete')->post('/position/delete', 'PositionController@delete');
-
-    # Organization
-    Route::name('admin.organization.list')->get('/organization/list', 'AdminController@showAllOrganizationList');
-    Route::name('admin.organization.add')->get('/organization/add', 'OrganizationController@showOrganizationAddForm');
-    Route::name('admin.organization.register')->post('/organization/register', 'OrganizationController@adminCreate');
-    Route::name('admin.organization.edit')->post('/organization/edit', 'OrganizationController@edit');
-    Route::name('admin.organization.delete')->post('/organization/delete', 'OrganizationController@delete');
-
-    #event-category
-    Route::name('admin.event-category.list')->get('/event-category/list', 'AdminController@showAllEvenCategoriesList');
-    Route::name('admin.event-category.register')->post('/event-category/register', 'EventCategoryController@adminCreate');
-    Route::name('admin.event-category.edit')->post('/event-category/edit', 'EventCategoryController@edit');
-    Route::name('admin.event-category.delete')->post('/event-category/delete', 'EventCategoryController@delete');
-
-    #event-type
-    Route::name('admin.event-type.list')->get('/event-type/list', 'AdminController@showAllEventTypeList');
-    Route::name('admin.event-type.register')->post('/event-type/register', 'EventTypeController@adminCreate');
-    Route::name('admin.event-type.edit')->post('/event-type/edit', 'EventTypeController@edit');
-    Route::name('admin.event-type.delete')->post('/event-type/delete', 'EventTypeController@delete');
-
-    #approvers
-    Route::name('admin.approvers.list')->get('/approvers/list', 'AdminController@showAllApprovers');
-
-    # Authentication
-    Route::name('admin.login')->get('/admin-login', 'Auth\AdminLoginController@showLoginForm');
-    Route::name('admin.login.submit')->post('/login', 'Auth\AdminLoginController@login');
-    Route::name('admin.logout')->get('/logout', 'Auth\AdminLoginController@adminLogout');
-
-    # Password reset for admin
-    Route::name('admin.password.request')->get('/forgot/password', 'Auth\AdminForgotPasswordController@showAdminLinkRequestForm');
-    Route::name('admin.password.email')->post('/forgot/password/link', 'Auth\AdminForgotPasswordController@sendResetLinkEmail');
-    Route::name('admin.password.reset')->get('/forgot/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm');
-    Route::name('admin.password.set')->post('/forgot/password/reset', 'Auth\AdminResetPasswordController@reset');
-
-    # Dashboard
-    Route::name('admin.dashboard')->get('/', 'AdminController@index');
-  });
+  /*
+  |--------------------------------------------------------------------------
+  | Users Dashboard Routes
+  |--------------------------------------------------------------------------
+  */
+  require_once "system_route/user.php";
 
   /*
   |--------------------------------------------------------------------------
@@ -104,158 +43,13 @@ Route::group(['middleware' => 'revalidate'], function()
   |--------------------------------------------------------------------------
   */
   Route::name('home')->get('/home', 'HomeController@index');
-
-  /*
-  |--------------------------------------------------------------------------
-  | Users Dashboard Routes
-  |--------------------------------------------------------------------------
-  */
-  Route::prefix('users')->group(function() {
-    Route::name('user.logout')->post('/logout', 'Auth\LoginController@userLogout');
-
-    # User Crud
-    Route::name('user.list')->get('/users/list', 'UserController@showAllUserList');
-    Route::name('user.edit')->post('/user/edit', 'UserController@edit');
-    Route::name('user.delete')->post('/user/delete', 'UserController@delete');
-    Route::name('user.register')->post('/user/register', 'UserController@adminCreate');
-    Route::name('user.update.position')->post('/user/update/position', 'UserController@updatePosition');
-    Route::name('user.update.user_account')->post('/user/update/user_account', 'UserController@updateUserAccount');
-    Route::name('user.update.user_approver_status')->get('/user/update/user-approver-status/{user_id}', 'UserController@updateUserApproverStatus');
-    Route::name('user.get')->post('/user/get', 'UserController@gets');
-
-    # Course Crud
-    Route::name('course.list')->get('/course/list', 'CourseController@showAllCourseList');
-    Route::name('course.edit')->post('/course/edit', 'CourseController@edit');
-    Route::name('course.delete')->post('/course/delete', 'CourseController@delete');
-    Route::name('course.register')->post('/course/register', 'CourseController@courseCreate');
-
-    # Department Crud
-    Route::name('department.list')->get('/department/list', 'DepartmentController@showAllDepartmentList');
-    Route::name('department.edit')->post('/department/edit', 'DepartmentController@edit');
-    Route::name('department.delete')->post('/department/delete', 'DepartmentController@delete');
-    Route::name('department.register')->post('/department/register', 'DepartmentController@adminCreate');
-
-    # Position Crud
-    Route::name('position.list')->get('/position/list', 'PositionController@showAllPositionList');
-    Route::name('position.register')->post('/position/register', 'PositionController@positionCreate');
-    Route::name('position.edit')->post('/position/edit', 'PositionController@edit');
-    Route::name('position.delete')->post('/position/delete', 'PositionController@delete');
-    Route::name('position.get')->post('/position/get/positions', 'PositionController@getPositions');
-
-    # Organization Crud
-    Route::name('organization.list')->get('/organization/list', 'OrganizationController@showAllOrganizationList'); # Remove me soon
-    Route::name('organization.register')->post('/organization/register', 'OrganizationController@adminCreate'); # Remve me soon
-    Route::name('organization.edit')->post('/organization/edit', 'OrganizationController@edit'); # Remove me soon
-    Route::name('organization.delete')->post('/organization/delete', 'OrganizationController@delete');
-    Route::name('organization.add')->get('/organization/add', 'OrganizationController@showOrganizationAddForm');
-    Route::name('organization.get')->post('/organization/get', 'OrganizationController@getOrganization');
-    Route::name('organization.gets')->post('/organization/gets', 'OrganizationController@getOrganizationList');
-
-    # Manage Notifications
-    Route::name('notification.show')->get('/notification/show', 'ManageNotificationController@showNotificationPage'); //unpassed events data
-    Route::name('event.show')->get('notifications/events/show', 'ManageNotificationController@showEventList');
-    Route::name('event.notify')->post('/events/notify', 'ManageNotificationController@notify');
-    Route::name('email')->get('/email', 'MailController@index'); //test for email notif
-
-    # Attendance
-    Route::prefix('attendance')->group(function() {
-      Route::name('attendance')->get('/new/{id}/{eid}', 'OrganizationHead\ManageSchedule\GenerateAttendanceController@index');
-      Route::name('attendance.store')->post('/store', 'OrganizationHead\ManageSchedule\GenerateAttendanceController@store');
-    });
-
-    # Route for organization adviser
-    Route::prefix('org-adviser')->group(function() {
-      Route::name('org.adviser.org-list')->get('/list_of_organizations','OrganizationAdviser\Organization\OrganizationController@showAllOrganizationList');
-      Route::name('org-adviser.my-org-list')->get('/org-list', 'OrganizationAdviser\OrgAdviserAccountController@myOrganization');
-      Route::name('org-adviser.calendar')->get('/calendar/{id}', 'OrganizationAdviser\ManageSchedule\CalendarController@myOrgCalendar');
-      Route::name('org-adviser.personal-calendar')->get('/personal-calendar', 'OrganizationAdviser\OrgAdviserAccountController@myPersonalCalendar');
-      Route::name('org-adviser.personal-calendar-post')->post('/ajax/personal-event', 'OrganizationAdviser\Events\EventController@getPersonalEvent');
-      Route::name('org-adviser.event.get')->get('/get', 'OrganizationAdviser\Events\EventController@getEventOfTheMonthList');
-      Route::name('event.gets')->post('/event/gets', 'OrganizationAdviser\Events\EventController@getEventOfTheMonth');
-    });
-
-    # Route for organization head
-    Route::prefix('org-head')->group(function() {
-      Route::name('org-head.event.get')->get('/get', 'OrganizationHead\Events\EventController@getEventOfTheMonthList');
-      Route::name('org-head.event.get.personal')->get('/get/personal', 'OrganizationHead\Events\EventController@getPersonalEventOfTheMonthList');
-      Route::name('org-head.event.get.ajax')->post('/ajax/get', 'OrganizationHead\Events\EventController@getEvent');
-      Route::name('org-head.event.edit')->post('/edit', 'OrganizationHead\Events\EventController@editEvent');
-      Route::name('org-head.org-list')->get('/org-list', 'OrganizationHead\OrgHeadAccountController@myOrganization');
-      Route::name('org-head.calendar')->get('/calendar/{id}', 'OrganizationHead\ManageSchedule\CalendarController@myOrgCalendar');
-      Route::name('org-head.personal-calendar')->get('/org-personal-calendar', 'OrganizationHead\ManageSchedule\CalendarController@myPersonalCalendar');
-      Route::name('org-head.personal-calendar-post')->post('/ajax/personal-event', 'OrganizationHead\Events\EventController@getPersonalEvent');
-      Route::name('org-head.approval')->get('/event/approval', 'OrganizationHead\Events\EventController@approveEvents');
-
-      # Display calendar
-      Route::prefix('calendar')->group(function() {
-        Route::name('university-calendar')->get('/university-calendar', 'OrganizationHead\ManageSchedule\CalendarController@universityCalendar');
-        Route::name('all-organization-calendar')->get('/all-organization-calendar', 'OrganizationHead\ManageSchedule\CalendarController@allOrgsCalendar');
-        Route::name('my-organization-calendar')->get('/my-organization-calendar', 'OrganizationHead\ManageSchedule\CalendarController@myOrgCalendar');
-        Route::name('my-personal-calendar')->get('/my-personal-calendar', 'OrganizationHead\ManageSchedule\CalendarController@myPersonalCalendar');
-      });
-
-      # Create event
-      Route::prefix('event')->group(function() {
-        Route::name('event.show')->get('/show', 'OrganizationHead\Events\EventController@showEvents');
-        Route::name('event.new')->get('/new', 'OrganizationHead\Events\EventController@createNewEventForm');
-        Route::name('event.new')->post('/new', 'OrganizationHead\Events\EventController@createNewEvent');
-        Route::name('event.get')->get('/get', 'OrganizationHead\Events\EventController@getEventOfTheMonthList');
-        Route::name('event.gets')->post('/gets', 'OrganizationHead\Events\EventController@getEventOfTheMonth');
-        Route::name('event.ajax.get')->post('/ajax/get', 'OrganizationHead\Events\EventController@getEvent'); # Remove me soon
-      });
-    });
-
-    # Route for organization member
-    Route::prefix('org-member')->group(function() {
-      Route::name('org-member.event.get')->get('/get', 'OrganizationMember\Events\EventController@getEventOfTheMonthList');
-      Route::name('org-member.event.get.ajax')->post('/ajax/get', 'OrganizationMember\Events\EventController@getEvent');
-      Route::name('org-member.event.edit')->post('/edit', 'OrganizationMember\Events\EventController@editEvent');
-      Route::name('org-member.org-list')->get('/org-list', 'OrganizationMember\OrgHeadAccountController@myOrganization');
-      Route::name('org-member.calendar')->get('/calendar/{id}', 'OrganizationMember\ManageSchedule\CalendarController@myOrgCalendar');
-      Route::name('org-member.personal-calendar')->get('/org-personal-calendar', 'OrganizationMember\ManageSchedule\CalendarController@myPersonalCalendar');
-      Route::name('org-member.personal-calendar-post')->post('/ajax/personal-event', 'OrganizationMember\Events\EventController@getPersonalEvent');
-    });
-
-    # OSA account routes
-    Route::prefix('osa-personnel')->group(function() {
-      Route::name('osa-personnel.organization.list')->get('/organization/list', 'OsaPersonnel\Organization\OrganizationController@showAllOrganizationList'); # Remove me soon
-      Route::name('osa-personnel.organization.edit')->post('/organization/edit', 'OsaPersonnel\Organization\OrganizationController@osaEditOrganization');
-      Route::name('osa-personnel.organization.register')->post('/organization/register', 'OsaPersonnel\Organization\OrganizationController@adminCreate'); # remove me soon
-      Route::name('osa-personnel.event.get')->get('/get', 'OsaPersonnel\ManageEvents\EventController@getEventOfTheMonthList');
-      Route::name('osa-personnel.event.new')->post('/new', 'OsaPersonnel\ManageEvents\EventController@createNewEvent');
-      Route::name('osa-personnel.event.approval.within')->get('osa/event/approval/within', 'OsaPersonnel\ManageEvents\EventController@approveEventWithin');
-      Route::name('osa-personnel.osa-approve')->get('/event/approved/{id}/{orgg_uid}', 'OsaPersonnel\ManageEvents\EventController@approve');
-      Route::name('osa-personnel.org-list')->get('/org-list', 'OsaPersonnel\OsaAccountController@myOrganization');
-      Route::name('osa-personnel.calendar')->get('/calendar/{id}', 'OsaPersonnel\ManageSchedule\CalendarController@myOrgCalendar');
-    });
-
-    /**
-     * OSA User Account Type
-     */
-    Route::name('osa.user.list')->get('osa/list_of_users','OsaAccountController@showAllUserList');
-    Route::name('osa.org.list')->get('osa/list_of_organizations','OsaAccountController@showAllOrganizationList');
-    Route::name('osa.org.add')->get('osa/organization/add', 'OsaAccountController@showOrganizationAddForm');
-    Route::name('osa.event.get')->get('osa/event/get', 'OsaAccountController@getEventOfTheMonthList');
-    Route::name('osa.event.new')->get('osa/event/new', 'OsaAccountController@createNewEventForm');
-    Route::name('osa.event.approval')->get('osa/event/approval', 'OsaAccountController@approveEvents');
-    Route::name('osa.event.osa-approve')->get('osa/event/approved/{id}', 'OsaAccountController@approve');
-    Route::name('osa.event.osa-disapprove')->get('osa/event/disapproved/{id}/{orgg_uid}', 'OsaAccountController@disapprove');
-    Route::name('osa.event.notify')->get('osa/event/notify', 'ManageNotificationController@notify');
-
-    /**
-     * Admin User Account Type
-     */
-    Route::name('administrator.user.list')->get('administrator/users/list', 'AdminAccountController@showAllUserList');
-    Route::name('administrator.course.list')->get('administrator/course/list', 'AdminAccountController@showAllCourseList');
-    Route::name('administrator.department.list')->get('administrator/department/list', 'AdminAccountController@showAllDepartmentList');
-    Route::name('administrator.position.list')->get('administrator/position/list', 'AdminAccountController@showAllPositionList');
-    Route::name('administrator.organization.list')->get('administrator/organization/list', 'AdminAccountController@showAllOrganizationList');
-  });
 });
 
 /*
 |--------------------------------------------------------------------------
 | Notification route
+|
+| ! Deprecated
 |--------------------------------------------------------------------------
 */
 Route::name('notify.via.sms')->get('/notify_via_sms', 'smsNotifierController@index');
