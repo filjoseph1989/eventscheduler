@@ -214,6 +214,8 @@ Route::group(['middleware' => 'revalidate'], function()
       Route::name('osa-personnel.event.new')->post('/new', 'OsaPersonnel\ManageEvents\EventController@createNewEvent');
       Route::name('osa-personnel.event.approval.within')->get('osa/event/approval/within', 'OsaPersonnel\ManageEvents\EventController@approveEventWithin');
       Route::name('osa-personnel.osa-approve')->get('/event/approved/{id}/{orgg_uid}', 'OsaPersonnel\ManageEvents\EventController@approve');
+      Route::name('osa-personnel.org-list')->get('/org-list', 'OsaPersonnel\OsaAccountController@myOrganization');
+      Route::name('osa-personnel.calendar')->get('/calendar/{id}', 'OsaPersonnel\ManageSchedule\CalendarController@myOrgCalendar');
     });
 
     /**

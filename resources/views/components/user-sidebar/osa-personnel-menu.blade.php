@@ -58,6 +58,16 @@
   </a>
   <ul class="ml-menu">
     <li>
+      <a href="{{ route('osa-personnel.org-list') }}">
+        <span>My Organization</span>
+      </a>
+    </li>
+    <li>
+      <a href="{{ route('org-head.personal-calendar') }}">
+        <span>My Personal</span>
+      </a>
+    </li>
+    <li>
       <a href="{{ route('university-calendar') }}">
         <span>University Calendar</span>
       </a>
