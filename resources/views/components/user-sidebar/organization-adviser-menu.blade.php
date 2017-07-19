@@ -39,7 +39,7 @@
       <a href="#" class="menu-toggle">My Organization</a>
       <ul class="ml-menu">
         <li><a href="{{ route('org-adviser.event.get') }}">List</a></li>
-        <li><a href="{{ route('event.new') }}">Create</a></li>
+        <li><a href="{{ route('org-adviser.event.new') }}">Create</a></li>
         <li><a href="{{ route('org-head.approval') }}">Approve events</a></li>
       </ul>
     </li>

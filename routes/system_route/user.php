@@ -17,6 +17,8 @@ Route::prefix('users')->group(function() {
     Route::name('org-adviser.personal-calendar')->get('/personal-calendar', 'OrganizationAdviser\OrgAdviserAccountController@myPersonalCalendar');
     Route::name('org-adviser.personal-calendar-post')->post('/ajax/personal-event', 'OrganizationAdviser\Events\EventController@getPersonalEvent');
     Route::name('org-adviser.event.get')->get('/get', 'OrganizationAdviser\Events\EventController@getEventOfTheMonthList');
+    Route::name('org-adviser.event.new')->get('/new', 'OrganizationAdviser\Events\EventController@createNewEventForm');
+    Route::name('org-adviser.event.new')->post('/new', 'OrganizationAdviser\Events\EventController@createNewEvent');
     Route::name('event.gets')->post('/event/gets', 'OrganizationAdviser\Events\EventController@getEventOfTheMonth');
   });
 

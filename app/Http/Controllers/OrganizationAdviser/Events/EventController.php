@@ -61,74 +61,47 @@ class EventController extends Controller
    *
    * @return json
    */
-  public function createNewEvent(Request $data)
-  {
-    $fromCalendar = isset($data->from_calendar) ? $data->from_calendar : null;
+   public function createNewEvent(Request $data)
+   {
+     parent::loginCheck();
 
-    # Reformat submitted date to mysql compatible format
-    if (isset($data->form)) {
-      $request = [];
-      foreach ($data->form as $key => $value) {
-        if (($value['name'] == 'date_start' or $value['name'] == 'date_end') and ! empty($value['value'])) {
-          $request[$value['name']] = date( "Y/m/d", strtotime($value['value']));
-        } else {
-          $request[$value['name']] = $value['value'];
-        }
-      }
-    } else {
-      $request = $data->only(
-        'user_id',
-        'from_calendar',
-        'event',
-        'description',
-        'venue',
-        'date_start',
-        'date_start_time',
-        'date_end',
-        'date_end_time',
-        'whole_day',
-        'event_type_id',
-        'event_category_id',
-        'organization_id',
-        'calendar_id'
-      );
+     if (parent::isOrgAdviser()) {
+       $request = $data->only(
+         'user_id',
+         'event_type_id',
+         'event_category_id',
+         'organization_id',
+         'calendar_id',
+         'event',
+         'description',
+         'venue',
+         'date_start',
+         'date_start_time',
+         'date_end',
+         'date_end_time',
+         'whole_day'
+       );
 
-        if ($data->facebook == 'on') {
-          $request['notify_via_facebook'] = 1;
-        }
-        if ($data->twitter == 'on') {
-            $request['notify_via_twitter'] = 1;
-        }
-        if ($data->email == 'on') {
-          $request['notify_via_email'] = 1;
-        }
-        if ($data->phone == 'on') {
-          $request['notify_via_sms'] = 1;
-        }
-    }
-    # Update the table events
-    $result = Event::create($request);
+       # Set additional fields if the following is on
+       $request['notify_via_facebook'] = ($data->facebook == 'on') ? 1 : null;
+       $request['notify_via_twitter']  = ($data->twitter  == 'on') ? 1 : null;
+       $request['notify_via_email']    = ($data->email    == 'on') ? 1 : null;
+       $request['notify_via_sms']      = ($data->phone    == 'on') ? 1 : null;
 
-    # Make notification here after successfull insert of event
+       # Set default value for organization ID to 1 if not given
+       $request['organization_id'] = ($data->only('organization_id')['organization_id'] == null) ? 1 : $data->only('organization_id')['organization_id'];
 
+       # Finally create events
+       $result = Event::create($request);
 
-    if (isset($fromCalendar)) {
-      return redirect()->route('event.get')
-        ->with('status', 'Successfuly Added new event');
-    } else {
-      # This part here is used to reponse the ajax method of request
-
-      # Format date for calendar display
-      $request['date_start'] = str_replace('/', '-', $request['date_start']);
-      $request['date_end']   = str_replace('/', '-', $request['date_end']);
-
-      # Response to HTTP request (ajax)
-      echo json_encode([
-        'request'            => $request,
-        'wasRecentlyCreated' => $result->wasRecentlyCreated
-      ]);
-    }
-  }
+       if ($result->wasRecentlyCreated) {
+         return redirect()->route('org-adviser.event.new')
+           ->with('status', 'Successfuly added new event');
+       }
+     } else {
+       return redirect()->route('home');
+     }
+   }
 
   /**
    * Create new event as a response to event page
@@ -138,20 +111,24 @@ class EventController extends Controller
    */
   public function createNewEventForm()
   {
-    $login_type     = 'user';
-    $calendar       = Calendar::all();
-    $event_type     = EventType::all();
-    $event_category = EventCategory::all();
+    parent::loginCheck();
 
-    return view(
-      'pages.users.organization-head.calendars.events.new_event',
-      compact(
-        'login_type',
-        'calendar',
-        'event_type',
-        'event_category'
-      )
-    );
+    if (parent::isOrgAdviser()) {
+      $login_type     = 'user';
+      $calendar       = Calendar::all();
+      $event_type     = EventType::all();
+      $event_category = EventCategory::all();
+
+      return view(
+        'pages/users/organization-head/calendars/events/new_event',
+        compact(
+          'login_type',
+          'calendar',
+          'event_type',
+          'event_category'
+        )
+      );
+    }
   }
 
   /**
