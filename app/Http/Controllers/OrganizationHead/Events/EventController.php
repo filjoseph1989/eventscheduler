@@ -173,11 +173,17 @@ class EventController extends Controller
    */
   public function getEventOfTheMonthList()
   {
-    $event = Event::whereRaw('year(date_start) = year(now())')->get();
+    parent::loginCheck();
 
-    $login_type = 'user';
-    $calendar   = Calendar::all();
-    return view('pages.users.organization-head.calendars.events.list', compact('login_type', 'event', 'calendar'));
+    if (parent::isOrgHead()) {
+      $event = Event::whereRaw('year(date_start) = year(now())')->get();
+
+      $login_type = 'user';
+      $calendar   = Calendar::all();
+      return view('pages.users.organization-head.calendars.events.list', compact('login_type', 'event', 'calendar'));
+    } else {
+      return redirect()->route('home');
+    }
   }
 
   /**

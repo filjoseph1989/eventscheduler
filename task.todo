@@ -1,15 +1,22 @@
 To Do:
   ☐ Task 39 - Login as organization adviser:
     ☐ Generate Attendance
-    ☐ Events
+    ☐ Events:
+      ☐ My Organization:
+        ☐ list:
+          ☐ View:
+          ☐ Delete:
+            ☐ This account should not be able to delete event if he/she's not the creator of the event.
+            ☐ This account should not be able to delete event if event already has approved
+            ☐ This account should not be able to delete event if event contain atleast 1 approved
+          ☐ Edit:
+            ☐ The event may need approval again if reschedule
+            ☐ This account should not not be able to edit event if he/she's not the creator of the event.
     ☐ Manage Schedule:
-      ☐ My Organization
-      ☐ My Personal
-    ☐ Organizations:
-      ☐ List:
-        ☐ Name
-        ☐ Adviser
-
+      ✔ My Organization @done(2017-07-19 18:03)
+      ✔ My Personal @done(2017-07-19 18:03)
+    ✔ Organizations @done(2017-07-19 17:58)
+      ✔ List of organization @done(2017-07-19 17:58)
   ☐ Task 38 - Login as OSA:
     ☐ Organization (OSA):
       ☐ List of Organization:
