@@ -85,9 +85,6 @@
                     </tr>
                   </tfoot>
                 </table>
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-organization">
-                  <i class="material-icons">add</i> Add New
-                </button>
               </div>
             </div>
           </div>
@@ -165,81 +162,6 @@
           <div class="modal-footer">
               <button type="submit" class="btn btn-link waves-effect">SAVE CHANGES</button>
               <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  {{-- for adding organizations --}}
-  <div class="modal fade" id="add-organization" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form class="" id="organization-registration" role="form" method="POST" action="{{ route('osa-personnel.organization.register') }}">
-          {{ csrf_field() }}
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="">Add New Organization</h4>
-          </div>
-          <div class="modal-body">
-            <div class="row clearfix">
-              <div class="col-sm-8 col-sm-offset-2">
-                <div class="form-group form-float form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <input type="text" class="form-control" name="name" value="{{ old('name') }}" required="true" autofocus>
-                    <label class="form-label">Organization Name</label>
-                    @if ($errors->has('name'))
-                        <span class="help-block"> <strong>{{ $errors->first('name') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
-                <div class="form-group form-float form-group{{ $errors->has('url') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <input type="text" class="form-control" name="url" value="{{ old('url') }}" required="true" autofocus>
-                    <label class="form-label">Url</label>
-                    @if ($errors->has('url'))
-                        <span class="help-block"> <strong>{{ $errors->first('url') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
-                <div class="form-group form-float form-group{{ $errors->has('date_started') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <input type="text" class="datepicker form-control" name="date_started" value="{{ old('date_started') }}" required="true" placeholder="Date Started">
-                    @if ($errors->has('date_started'))
-                      <span class="help-block"> <strong>{{ $errors->first('date_started') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
-                <div class="form-group form-float form-group{{ $errors->has('date_expired') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <input type="text" class="datepicker form-control" name="date_expired" value="{{ old('date_expired') }}" required="true" placeholder="Date Expired">
-                    @if ($errors->has('date_expired'))
-                    <span class="help-block"> <strong>{{ $errors->first('date_expired') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
-                <div class="form-group form-float form-group{{ $errors->has('status') ? ' has-error' : '' }}">
-                  <div class="form-line">
-                    <select class="form-control" name="status">
-                      <option value="0">-- Status --</option>
-                      <option value="1">Active</option>
-                      <option value="0">Inactive</option>
-                    </select>
-                    @if ($errors->has('status'))
-                    <span class="help-block"> <strong>{{ $errors->first('status') }}</strong> </span>
-                    @endif
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-success">
-              <i class="material-icons">save</i> Save
-            </button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">
-              <i class="material-icons">close</i> Close
-            </button>
           </div>
         </form>
       </div>

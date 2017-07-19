@@ -284,7 +284,7 @@ $('.view-event').click(function() {
 
   $.ajax({
     type: 'POST',
-    url: '/users/event/ajax/get',
+    url: '/users/org-head/event/ajax/get',
     data: {
       id: id
     },
