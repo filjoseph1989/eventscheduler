@@ -1,7 +1,19 @@
 To Do:
+  ☐ Task 39 - Login as organization adviser:
+    ☐ Generate Attendance
+    ☐ Events
+    ☐ Manage Schedule:
+      ☐ My Organization
+      ☐ My Personal
+    ☐ Organizations:
+      ☐ List:
+        ☐ Name
+        ☐ Adviser
+
   ☐ Task 38 - Login as OSA:
     ☐ Organization (OSA):
-      ✔ List of Organization @done(2017-07-18 19:13)
+      ☐ List of Organization:
+        ☐ With adviser
       ✔ Add Organization @done(2017-07-18 19:13)
     ☐ Manage Events:
       ☐ List of Events

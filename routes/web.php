@@ -163,6 +163,11 @@ Route::group(['middleware' => 'revalidate'], function()
       Route::name('attendance.store')->post('/store', 'OrganizationHead\ManageSchedule\GenerateAttendanceController@store');
     });
 
+    Route::prefix('org-adviser')->group(function() {
+      Route::name('org.adviser.org-list')->get('/list_of_organizations','OrganizationAdviser\Organization\OrganizationController@showAllOrganizationList');
+      Route::name('org-adviser.my-org-list')->get('/org-list', 'OrganizationAdviser\OrgAdviserAccountController@myOrganization');
+    });
+
     # Route for organization head
     Route::prefix('org-head')->group(function() {
       Route::name('org-head.event.get')->get('/get', 'OrganizationHead\Events\EventController@getEventOfTheMonthList');
