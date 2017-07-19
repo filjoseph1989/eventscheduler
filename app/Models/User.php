@@ -85,16 +85,45 @@ class User extends Authenticatable
       return $this->hasMany('App\Models\OrganizationGroup');
     }
 
+    /**
+     * Defines the relationship between user account and
+     * this account
+     *
+     * @return object
+     */
     public function userAccount(){
       return $this->belongsTo('App\Models\UserAccount');
     }
 
+    /**
+     * Defines the relationship between user account and
+     * this account
+     *
+     * @return object
+     */
     public function userHasOneUserAccount(){
       return $this->hasOne('App\Models\UserAccount');
     }
 
+    /**
+     * Defines the relationship between user approval monitor and
+     * this account
+     *
+     * @return object
+     */
     public function event_approval_monitors()
     {
       return $this->hasMany('App\Models\EventApprovalMonitor');
+    }
+
+    /**
+     * Defines the relationship between user approval monitor and
+     * this account
+     *
+     * @return object
+     */
+    public function organizationAdviserGroup()
+    {
+      return $this->hasMany('App\Models\OrganizationAdviserGroup');
     }
 }

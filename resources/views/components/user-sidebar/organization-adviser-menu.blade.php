@@ -36,6 +36,9 @@
   </a>
   <ul class="ml-menu">
     <li>
+      <a href="#">All Events</a>
+    </li>
+    <li>
       <a href="#" class="menu-toggle">My Organization</a>
       <ul class="ml-menu">
         <li><a href="{{ route('org-adviser.event.get') }}">List</a></li>

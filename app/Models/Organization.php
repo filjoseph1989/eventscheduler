@@ -8,12 +8,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Organization extends Model
 {
     use SoftDeletes;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-     protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at'];
+
     protected $fillable = [
       'name', 'status', 'url', 'date_started', 'date_expired',
     ];
@@ -30,5 +32,16 @@ class Organization extends Model
     public function events()
     {
       return $this->hasMany('App\Models\Organization');
+    }
+
+    /**
+     * Defines the relationship between the this model and
+     * OrganizationAdviserGroup model
+     *
+     * @return object
+     */
+    public function OrganizationAdviserGroup()
+    {
+      return $this->hasMany('App\Models\OrganizationAdviserGroup');
     }
 }

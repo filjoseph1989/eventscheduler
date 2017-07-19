@@ -120,7 +120,7 @@ class EventController extends Controller
       $event_category = EventCategory::all();
 
       return view(
-        'pages/users/organization-head/calendars/events/new_event',
+        'pages/users/organization-adviser/calendars/events/new_event',
         compact(
           'login_type',
           'calendar',
@@ -158,10 +158,23 @@ class EventController extends Controller
     parent::loginCheck();
 
     if (parent::isOrgAdviser()) {
-      $event = Event::whereRaw('year(date_start) = year(now())')->get();
-
       $login_type = 'user';
+
+      # type of calendar
+      # Issue 35: This should be automatically determined by the system
       $calendar   = Calendar::all();
+
+      # Get all events where this account is an adviser
+      $event = Event::select(
+        '*',
+        'organizations.id as org_id',
+        'organizations.name as org_name'
+      )
+      ->join('organization_adviser_groups', 'organization_adviser_groups.organization_id', '=', 'events.organization_id')
+      ->join('organizations', 'organizations.id', '=', 'events.organization_id')
+      ->whereRaw('year(date_start) = year(now())')
+      ->get();
+
       return view(
         'pages/users/organization-adviser/calendars/events/list',
         compact(

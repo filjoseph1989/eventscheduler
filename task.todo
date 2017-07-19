@@ -2,9 +2,11 @@ To Do:
   ☐ Task 39 - Login as organization adviser:
     ☐ Generate Attendance
     ☐ Events:
+      ☐ All events
       ☐ My Organization:
         ☐ list:
-          ☐ View:
+          This events are filtered by organization where this account is an adviser
+          ✔ View @done(2017-07-19 21:49)
           ☐ Delete:
             ☐ This account should not be able to delete event if he/she's not the creator of the event.
             ☐ This account should not be able to delete event if event already has approved
@@ -12,6 +14,8 @@ To Do:
           ☐ Edit:
             ☐ The event may need approval again if reschedule
             ☐ This account should not not be able to edit event if he/she's not the creator of the event.
+          ☐ Mode Details:
+            This is where the user click on eye icon
     ☐ Manage Schedule:
       ✔ My Organization @done(2017-07-19 18:03)
       ✔ My Personal @done(2017-07-19 18:03)

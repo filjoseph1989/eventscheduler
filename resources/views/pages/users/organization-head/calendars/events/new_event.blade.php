@@ -17,13 +17,14 @@
         @include('pages.users.sidebar')
     @endif
 
+    <?php if (session('status')): ?>
+      <div class="alert alert-success">
+        {{ session('status') }}
+      </div>
+    <?php endif; ?>
+
     <section class="content">
       <div class="container-fluid">
-        @if (session('status'))
-          <div class="alert alert-success">
-            {{ session('status') }}
-          </div>
-        @endif
         <div class="row clearfix">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
@@ -31,7 +32,7 @@
                 <h2> NEW EVENTS </h2>
               </div>
               <div class="body">
-                <form class="" id="add-event-form" action="{{ route('org-adviser.event.new') }}" method="POST">
+                <form class="" id="add-event-form" action="{{ route('event.new') }}" method="POST">
                   <div class="row clearfix">
                     <div class="col-sm-8 col-sm-offset-2">
                       {{ csrf_field() }}
@@ -314,17 +315,4 @@
   <script src="{{ asset('js/moment.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/app.js') }}?v=0.14" charset="utf-8"></script>
-  <script type="text/javascript">
-    $('.event-datepicker').bootstrapMaterialDatePicker({
-      format: 'YYYY/MM/DD',
-      clearButton: true,
-      weekStart: 1,
-      time: false
-    });
-    $('.event-timepicker').bootstrapMaterialDatePicker({
-      format: 'HH:mm',
-      clearButton: true,
-      date: false
-    });
-  </script>
 @endsection

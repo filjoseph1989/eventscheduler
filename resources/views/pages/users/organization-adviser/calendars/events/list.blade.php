@@ -37,6 +37,7 @@
                 <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                   <thead>
                     <tr>
+                      <th>Org</th>
                       <th>Title</th>
                       <th>Venue</th>
                       <th>Date Start</th>
@@ -51,6 +52,7 @@
                     @if (isset($event))
                       @foreach ($event as $key => $value)
                         <tr>
+                          <td data-org-id="{{ $value->org_id }}">{{ $value->org_name }}</td>
                           <td>{{ $value->event }}</td>
                           <td>{{ $value->venue }}</td>
                           <td>{{ date("M d, Y", strtotime($value->date_start)) }}</td>
@@ -73,6 +75,7 @@
                   </tbody>
                   <tfoot>
                     <tr>
+                      <th>Org</th>
                       <th>Title</th>
                       <th>Venue</th>
                       <th>Date Start</th>
