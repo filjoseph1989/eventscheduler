@@ -56,4 +56,14 @@ class OrgAdviserAccountController extends Controller
       return redirect()->route('home');
     }
   }
+
+  public function myPersonalCalendar()
+  {
+    # Check if the user is loggedin
+    parent::loginCheck();
+
+    if (parent::isOrgAdviser()) {
+      return view('pages/users/organization-adviser/calendars/my-personal-calendar');
+    }
+  }
 }

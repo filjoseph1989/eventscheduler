@@ -42,7 +42,7 @@
                 <h2> My Personal Calendar </h2>
               </div>
               <div class="body">
-                <div id='personal-calendar' data-user-id="{{ Auth::user()->id }}"></div>
+                <div id='personal-calendar' data-user-id="{{ Auth::user()->id }}" data-ajax-url="/users/org-adviser/ajax/personal-event"></div>
                 <div id='calendar'></div>
               </div>
             </div>
@@ -64,5 +64,5 @@
 @section('footer')
   <script src="{{ asset('js/jquery-ui-1.10.2.custom.min.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/fullcalendar.min.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/calendar0.js') }}?v=0.2" charset="utf-8"></script>
+  <script src="{{ asset('js/calendar0.js') }}?v=0.3" charset="utf-8"></script>
 @endsection

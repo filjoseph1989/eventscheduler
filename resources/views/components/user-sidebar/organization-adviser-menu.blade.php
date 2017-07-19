@@ -23,7 +23,7 @@
       </a>
     </li>
     <li>
-      <a href="{{ route('org-head.personal-calendar') }}">
+      <a href="{{ route('org-adviser.personal-calendar') }}">
         <span>My Personal</span>
       </a>
     </li>

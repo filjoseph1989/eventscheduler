@@ -120,10 +120,11 @@ function getDate($id, $event = false, $time = false, default_date = false) {
 function getEvents() {
     // User ID
     var uid = $('#personal-calendar').data('user-id');
+    var url = $('#personal-calendar').data('ajax-url');
 
     $.ajax({
       type: 'POST',
-      url: '/users/org-head/ajax/personal-event',
+      url: url,
       data: {
         id: uid == undefined ? 0 : uid
       },

@@ -8,9 +8,10 @@ use App\Models\Event;
 use App\Models\Calendar;
 use App\Models\Category;
 use App\Models\EventType;
-use App\Models\EventCategory;
 use App\Models\Organization;
 use Illuminate\Http\Request;
+use App\Models\PersonalEvent;
+use App\Models\EventCategory;
 use App\Models\OrganizationGroup;
 use App\Models\EventApprovalMonitor;
 use App\Http\Controllers\Controller;
@@ -291,5 +292,28 @@ class EventController extends Controller
     ->where('approver_count', '<', 3)
     ->where('organization_groups.user_id', '=', Auth::user()->id)
     ->get();
+  }
+
+  /**
+   * return event stored in personal event table
+   *
+   * @param  Request $data
+   * @return
+   */
+  public function getPersonalEvent(Request $data)
+  {
+    # get the event from personal event table
+    $event = PersonalEvent::where('user_id', '=', 1)
+      ->get();
+
+    # Load the relationship
+    $event->load('eventCategory')
+      ->load('eventType')
+      ->load('user');
+
+    # Send back to ajax
+    echo json_encode([
+      'event' => $event
+    ]);
   }
 }
