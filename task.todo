@@ -5,20 +5,27 @@ To Do:
       ☐ All events
       ☐ My Organization:
         ☐ list:
-          This events are filtered by organization where this account is an adviser
-          ✔ View @done(2017-07-19 21:49)
+          ☐ View - This events are filtered by organization where this account is an adviser
+          ☐ View - Filter by public {{ all members }}
+            ☐ Other member of the system can view the events in calendar or list
+          ☐ View - Filter within organization { one organization is involve }
+            ☐ Display the organization list first
+              ☐ To view the events, the account should be a member of an organization
+              ☐ Display all events base on the chosen organization
+          ☐ View - Filter among organization { one or more organization is involve }
           ☐ Delete:
             ☐ This account should not be able to delete event if he/she's not the creator of the event.
             ☐ This account should not be able to delete event if event already has approved
             ☐ This account should not be able to delete event if event contain atleast 1 approved
           ☐ Edit:
-            ☐ The event may need approval again if reschedule
+            ☐ The event may need approval again if reschedule|Change in start date
             ☐ This account should not not be able to edit event if he/she's not the creator of the event.
           ☐ Mode Details:
             This is where the user click on eye icon
     ☐ Manage Schedule:
       ✔ My Organization @done(2017-07-19 18:03)
-      ✔ My Personal @done(2017-07-19 18:03)
+      ☐ My Personal
+        ☐ Must have list version of display aside from calendar
     ✔ Organizations @done(2017-07-19 17:58)
       ✔ List of organization @done(2017-07-19 17:58)
   ☐ Task 38 - Login as OSA:

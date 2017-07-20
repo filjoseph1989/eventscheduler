@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Models\PersonalEvent;
 use App\Models\EventCategory;
 use App\Models\OrganizationGroup;
+use App\Models\OrganizationAdviserGroup;
 use App\Models\EventApprovalMonitor;
 use App\Http\Controllers\Controller;
 
@@ -61,47 +62,51 @@ class EventController extends Controller
    *
    * @return json
    */
-   public function createNewEvent(Request $data)
-   {
-     parent::loginCheck();
+  public function createNewEvent(Request $data)
+  {
+    # is the user login?
+    parent::loginCheck();
 
-     if (parent::isOrgAdviser()) {
-       $request = $data->only(
-         'user_id',
-         'event_type_id',
-         'event_category_id',
-         'organization_id',
-         'calendar_id',
-         'event',
-         'description',
-         'venue',
-         'date_start',
-         'date_start_time',
-         'date_end',
-         'date_end_time',
-         'whole_day'
-       );
+    self::thisAdviser();
 
-       # Set additional fields if the following is on
-       $request['notify_via_facebook'] = ($data->facebook == 'on') ? 1 : null;
-       $request['notify_via_twitter']  = ($data->twitter  == 'on') ? 1 : null;
-       $request['notify_via_email']    = ($data->email    == 'on') ? 1 : null;
-       $request['notify_via_sms']      = ($data->phone    == 'on') ? 1 : null;
+    # is the user an adviser?
+    if (parent::isOrgAdviser()) {
+      $request = $data->only(
+        'user_id',
+        'event_type_id',
+        'event_category_id',
+        'organization_id',
+        'calendar_id',
+        'event',
+        'description',
+        'venue',
+        'date_start',
+        'date_start_time',
+        'date_end',
+        'date_end_time',
+        'whole_day'
+      );
 
-       # Set default value for organization ID to 1 if not given
-       $request['organization_id'] = ($data->only('organization_id')['organization_id'] == null) ? 1 : $data->only('organization_id')['organization_id'];
+      # Set additional fields if the following is on
+      $request['notify_via_facebook'] = ($data->facebook == 'on') ? 1 : null;
+      $request['notify_via_twitter']  = ($data->twitter  == 'on') ? 1 : null;
+      $request['notify_via_email']    = ($data->email    == 'on') ? 1 : null;
+      $request['notify_via_sms']      = ($data->phone    == 'on') ? 1 : null;
 
-       # Finally create events
-       $result = Event::create($request);
+      # Set default value for organization ID to 1 if not given
+      $request['organization_id'] = ($data->only('organization_id')['organization_id'] == null) ? 1 : $data->only('organization_id')['organization_id'];
 
-       if ($result->wasRecentlyCreated) {
-         return redirect()->route('org-adviser.event.new')
-           ->with('status', 'Successfuly added new event');
-       }
-     } else {
-       return redirect()->route('home');
-     }
-   }
+      # Finally create events
+      $result = Event::create($request);
+
+      if ($result->wasRecentlyCreated) {
+        return redirect()->route('org-adviser.event.new')
+        ->with('status', 'Successfuly added new event');
+      }
+    } else {
+      return redirect()->route('home');
+    }
+  }
 
   /**
    * Create new event as a response to event page
@@ -153,16 +158,17 @@ class EventController extends Controller
    * Return the list of event within a year
    * @return
    */
-  public function getEventOfTheMonthList()
+  public function getEventList()
   {
     parent::loginCheck();
 
     if (parent::isOrgAdviser()) {
       $login_type = 'user';
+      $title      = 'My Advisory Organization Events';
 
       # type of calendar
       # Issue 35: This should be automatically determined by the system
-      $calendar   = Calendar::all();
+      $calendar = Calendar::all();
 
       # Get all events where this account is an adviser
       $event = Event::select(
@@ -172,6 +178,7 @@ class EventController extends Controller
       )
       ->join('organization_adviser_groups', 'organization_adviser_groups.organization_id', '=', 'events.organization_id')
       ->join('organizations', 'organizations.id', '=', 'events.organization_id')
+      ->where('organization_adviser_groups.user_id', '=', Auth::user()->id)
       ->whereRaw('year(date_start) = year(now())')
       ->get();
 
@@ -180,7 +187,164 @@ class EventController extends Controller
         compact(
           'login_type',
           'event',
-          'calendar'
+          'calendar',
+          'title'
+        )
+      );
+    } else {
+      return redirect()->route('home');
+    }
+  }
+
+  public function getEventListPublic()
+  {
+    parent::loginCheck();
+
+    if (parent::isOrgAdviser()) {
+      $login_type = 'user';
+      $title      = 'Public Events';
+
+      # type of calendar
+      # Issue 35: This should be automatically determined by the system
+      $calendar = Calendar::all();
+
+      # Get all events where this account is an adviser
+      $event = Event::select(
+        '*',
+        'organizations.id as org_id',
+        'organizations.name as org_name'
+      )
+      ->join('organization_adviser_groups', 'organization_adviser_groups.organization_id', '=', 'events.organization_id')
+      ->join('organizations', 'organizations.id', '=', 'events.organization_id')
+      ->where('organization_adviser_groups.user_id', '=', Auth::user()->id)
+      ->where('events.event_category_id', '=', 1)
+      ->whereRaw('year(date_start) = year(now())')
+      ->get();
+
+      return view(
+        'pages/users/organization-adviser/calendars/events/list',
+        compact(
+          'login_type',
+          'event',
+          'calendar',
+          'title'
+        )
+      );
+    } else {
+      return redirect()->route('home');
+    }
+  }
+
+  public function getEventListWithin()
+  {
+    parent::loginCheck();
+
+    if (parent::isOrgAdviser()) {
+      $login_type = 'user';
+      $title      = 'Events within organization';
+
+      # type of calendar
+      # Issue 35: This should be automatically determined by the system
+      $calendar = Calendar::all();
+
+      # Get all events where this account is an adviser
+      $event = Event::select(
+        '*',
+        'organizations.id as org_id',
+        'organizations.name as org_name'
+      )
+      ->join('organization_adviser_groups', 'organization_adviser_groups.organization_id', '=', 'events.organization_id')
+      ->join('organizations', 'organizations.id', '=', 'events.organization_id')
+      ->where('organization_adviser_groups.user_id', '=', Auth::user()->id)
+      ->where('events.event_category_id', '=', 1)
+      ->whereRaw('year(date_start) = year(now())')
+      ->get();
+
+      return view(
+        'pages/users/organization-adviser/calendars/events/list',
+        compact(
+          'login_type',
+          'event',
+          'calendar',
+          'title'
+        )
+      );
+    } else {
+      return redirect()->route('home');
+    }
+  }
+
+  public function getEventListAmong()
+  {
+    parent::loginCheck();
+
+    if (parent::isOrgAdviser()) {
+      $login_type = 'user';
+      $title      = 'Organizations Events';
+
+      # type of calendar
+      # Issue 35: This should be automatically determined by the system
+      $calendar = Calendar::all();
+
+      # Get all events where this account is an adviser
+      $event = Event::select(
+        '*',
+        'organizations.id as org_id',
+        'organizations.name as org_name'
+      )
+      ->join('organization_adviser_groups', 'organization_adviser_groups.organization_id', '=', 'events.organization_id')
+      ->join('organizations', 'organizations.id', '=', 'events.organization_id')
+      ->where('organization_adviser_groups.user_id', '=', Auth::user()->id)
+      ->where('events.event_category_id', '=', 1)
+      ->whereRaw('year(date_start) = year(now())')
+      ->get();
+
+      return view(
+        'pages/users/organization-adviser/calendars/events/list',
+        compact(
+          'login_type',
+          'event',
+          'calendar',
+          'title'
+        )
+      );
+    } else {
+      return redirect()->route('home');
+    }
+  }
+
+  public function getEventListOwn()
+  {
+    parent::loginCheck();
+
+    if (parent::isOrgAdviser()) {
+      $login_type = 'user';
+      $title      = 'My Personal Events';
+
+      # type of calendar
+      # Issue 35: This should be automatically determined by the system
+      $calendar = Calendar::all();
+
+      # Get all events where this account is an adviser
+      $event = Event::select(
+        '*',
+        'organizations.id as org_id',
+        'organizations.name as org_name'
+      )
+      ->join('organization_adviser_groups', 'organization_adviser_groups.organization_id', '=', 'events.organization_id')
+      ->join('organizations', 'organizations.id', '=', 'events.organization_id')
+      ->where('organization_adviser_groups.user_id', '=', Auth::user()->id)
+      ->where('events.event_category_id', '=', 1)
+      ->whereRaw('year(date_start) = year(now())')
+      ->get();
+
+      return view(
+        'pages/users/organization-adviser/calendars/events/list',
+        compact(
+          'login_type',
+          'event',
+          'calendar',
+          'title'
         )
       );
     } else {
@@ -190,6 +354,8 @@ class EventController extends Controller
 
   /**
    * Get personal event of the month
+   *
+   * ! Deprecated method
    * @return
    */
   public function getPersonalEventOfTheMonthList()
@@ -274,6 +440,29 @@ class EventController extends Controller
   }
 
   /**
+   * return event stored in personal event table
+   *
+   * @param  Request $data
+   * @return
+   */
+  public function getPersonalEvent(Request $data)
+  {
+    # get the event from personal event table
+    $event = PersonalEvent::where('user_id', '=', 1)
+      ->get();
+
+    # Load the relationship
+    $event->load('eventCategory')
+      ->load('eventType')
+      ->load('user');
+
+    # Send back to ajax
+    echo json_encode([
+      'event' => $event
+    ]);
+  }
+
+  /**
    * Return the list of events that the organization head's
    * approval
    *
@@ -298,25 +487,13 @@ class EventController extends Controller
   }
 
   /**
-   * return event stored in personal event table
+   * return true if this account is an adviser to the
+   * given organization ID
    *
-   * @param  Request $data
    * @return
    */
-  public function getPersonalEvent(Request $data)
+  private function thisAdviser($id)
   {
-    # get the event from personal event table
-    $event = PersonalEvent::where('user_id', '=', 1)
-      ->get();
-
-    # Load the relationship
-    $event->load('eventCategory')
-      ->load('eventType')
-      ->load('user');
-
-    # Send back to ajax
-    echo json_encode([
-      'event' => $event
-    ]);
+    $adviser = OrganizationAdviserGroup::where('organization_id', '=', $id)->get();
   }
 }

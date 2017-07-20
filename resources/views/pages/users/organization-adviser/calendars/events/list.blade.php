@@ -31,7 +31,20 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> LIST EVENTS </h2>
+                <h2> {{ $title }} </h2>
+                <ul class="header-dropdown m-r--5">
+                  <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                      <i class="material-icons">more_vert</i>
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+                      <li><a href="{{ route('org-adviser.event.public') }}">Public View</a></li>
+                      <li><a href="{{ route('org-adviser.event.within') }}">Within Organization</a></li>
+                      <li><a href="{{ route('org-adviser.event.among') }}">Among Organization</a></li>
+                      <li><a href="{{ route('org-adviser.event.own') }}">My Own Event</a></li>
+                    </ul>
+                  </li>
+                </ul>
               </div>
               <div class="body">
                 <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
@@ -61,13 +74,19 @@
                           <td>{{ $value->date_end_time }}</td>
                           <td>{{ $value->status == 1 ? "Approved" : "Unapproved" }}</td>
                           <td>
-                            <a href="#" class=""> <i class="material-icons">delete</i> </a>
+                            {{--<a href="#" class=""> <i class="material-icons">delete</i> </a>--}}
+                            {{--
                             <a href="#" class="edit-event"
-                            data-event-id="{{ $value->id }}"
-                            data-event-name="{{ $value->event }}"
-                            data-toggle="modal"
-                            data-target="#edit-event"><i class="material-icons">edit</i> </a>
-                            <a href="#" class="view-event" data-id="{{ $value->id }}" data-toggle="modal" data-target="#view-event"> <i class="material-icons">visibility</i></a>
+                              data-event-id="{{ $value->id }}"
+                              data-event-name="{{ $value->event }}"
+                              data-toggle="modal"
+                              data-target="#edit-event">
+                                <i class="material-icons">edit</i>
+                            </a>
+                            --}}
+                            <a href="#" class="view-event" data-id="{{ $value->id }}" data-toggle="modal" data-target="#view-event">
+                              <i class="material-icons">visibility</i>
+                            </a>
                           </td>
                         </tr>
                       @endforeach
