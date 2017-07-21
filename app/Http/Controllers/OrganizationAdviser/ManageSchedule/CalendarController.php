@@ -33,6 +33,7 @@ class CalendarController extends Controller
     # Check if the user is loggedin
     parent::loginCheck();
 
+    # Is the user an organization adviser?
     if (parent::isOrgAdviser()) {
       # To get the organization name
       $org = Organization::find($id);

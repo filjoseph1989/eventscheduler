@@ -26,12 +26,14 @@ To Do:
       ✔ My Organization @done(2017-07-19 18:03)
       ☐ My Personal
         ☐ Must have list version of display aside from calendar
-    ✔ Organizations @done(2017-07-19 17:58)
-      ✔ List of organization @done(2017-07-19 17:58)
+    ☐ Organizations:
+      ☐ List of organization:
+        ☐ If the organization name is clicked, display the orgazation simple profile
   ☐ Task 38 - Login as OSA:
     ☐ Organization (OSA):
+      ☐ Edit organization:
       ☐ List of Organization:
-        ☐ With adviser
+        ☐ With adviser field
       ✔ Add Organization @done(2017-07-18 19:13)
     ☐ Manage Events:
       ☐ List of Events
