@@ -28,20 +28,28 @@ class HomeController extends Controller
    */
   public function index()
   {
-    # Check if the status of the user who loggedin is active
-    if (self::getIdentity()['status'] == 1) {
+    # Is the user loggedin?
+    parent::loginCheck();
+
+    # Does the user is active?
+    if (self::isIdStatus()) {
+      # Prepare session
       session([
         'name'       => self::getIdentity()['name'],
         'class'      => self::getIdentity()['theme'],
         'color'      => self::getIdentity()['color'],
-        'sidebar'    => "components.user-sidebar.".str_replace(' ', '-', self::getIdentity()['name'])."-menu",
-        'info_box'   => "components.info-box.".str_replace(' ', '-', self::getIdentity()['name'])."",
+        'sidebar'    => self::getSideBar(),
+        'info_box'   => self::getInfoBox(),
         'login_type' => 'user',
       ]);
-      return view('pages.home');
-    } else { # redirect to register page if status is not active
+
+      # Render View
+      return view('pages/home');
+    } else {
+      # logout and redirect to register page if status is not active
       Auth::guard('web')->logout();
-      return redirect()->route('register')->with('status', 'Your registration is not yet complete. </br> Please wait for the confirmation of your account of the administrator');
+      return redirect()->route('register')
+        ->with('status', 'Your registration is not yet complete. </br> Please wait for the confirmation of your account of the administrator');
     }
   }
 
@@ -71,5 +79,36 @@ class HomeController extends Controller
       'theme'  => $userAccount->theme,
       'color'  => $userAccount->color,
     ];
+  }
+
+  /**
+   * Is the user who tried to login the system
+   * is an active user?
+   *
+   * @return boolean
+   */
+  private function isIdStatus()
+  {
+    return (self::getIdentity()['status'] == 1) ? true : false;
+  }
+
+  /**
+   * Return the sidebar name, base on the account type
+   *
+   * @return string
+   */
+  private function getSideBar()
+  {
+    return "components.user-sidebar.".str_replace(' ', '-', self::getIdentity()['name'])."-menu";
+  }
+
+  /**
+   * Return the info box name, base on the user account type
+   *
+   * @return string
+   */
+  private function getInfoBox()
+  {
+    return "components.info-box.".str_replace(' ', '-', self::getIdentity()['name'])."";
   }
 }

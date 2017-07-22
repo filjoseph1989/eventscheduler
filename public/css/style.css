@@ -11048,3 +11048,17 @@ a:focus {
 .event-whole-day {
   color: #00BCD4;
 }
+.org-logo {
+  width: 100%;
+  max-width: 300px;
+}
+.org-description {
+  text-indent: 20px;
+}
+#org-date-start,
+#org-date-end {
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-right: 0px;
+}
