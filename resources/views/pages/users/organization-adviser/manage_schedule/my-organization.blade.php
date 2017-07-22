@@ -44,7 +44,7 @@
                     @else
                       @foreach ($organization as $key => $value)
                         <tr>
-                          <td><a href="{{ route('org-adviser.calendar', [$value->id]) }}">{{ $value->name }}</a></td>
+                          <td><a href="{{ route('org-adviser.org-profile', [$value->id]) }}">{{ $value->name }}</a></td>
                           <td><a href="{{ $value->url }}">{{ $value->url }}</a></td>
                           <td>{{ date('M d, Y', strtotime($value->date_started)) }}</td>
                           <td>{{ date('M d, Y', strtotime($value->date_expired)) }}</td>

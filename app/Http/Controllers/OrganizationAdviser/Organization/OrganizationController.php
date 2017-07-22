@@ -33,16 +33,67 @@ class OrganizationController extends Controller
      */
     public function showAllOrganizationList()
     {
-      $organization = Organization::all();
+      # Is the adviser loggedin?
+      parent::loginCheck();
 
-      $login_type = 'user';
-      return view(
-        'pages/users/organization-adviser/manage_schedule/my-organization',
-        compact(
-          'login_type',
-          'organization'
-        )
-      );
+      # Is the current user an organization adviser?
+      if (parent::isOrgAdviser()) {
+        $login_type   = 'user';
+
+        /*
+        We do not include the ID 1 in getting organization list,
+        because that used only to user wherein not a member to an organization yet
+        but is active to system.
+         */
+        $organization = Organization::all()->where('id', '!=', 1);
+
+        # Render view
+        return view(
+          'pages/users/organization-adviser/manage_schedule/my-organization',
+          compact(
+            'login_type',
+            'organization'
+          )
+        );
+      } else {
+        return redirect()->route('home');
+      }
     }
 
+    /**
+     * Display the organization profile
+     *
+     * @param  int $id Organization ID
+     * @return Illuminate\Response
+     */
+    public function orgProfile($id)
+    {
+      /*
+      ID 1 is the "Organization" ID.
+      We do not include the "Organization" name since this
+      stands for no organization yet.
+       */
+      if ($id == 1) {
+        return redirect()->route('home');
+      }
+
+      # Is the user loggedin?
+      parent::loginCheck();
+
+      # Is the user an organization adiviser?
+      if (parent::isOrgAdviser()) {
+        $login_type   = 'user';
+        $organization = Organization::find($id);
+
+        return view(
+          'pages/users/organization-adviser/organization/org-profile',
+          compact(
+            'login_type',
+            'organization'
+          )
+        );
+      } else {
+        return redirect()->route('home');
+      }
+    }
 }
