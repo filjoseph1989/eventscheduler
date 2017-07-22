@@ -18,7 +18,7 @@ class CreateOrganizationsTable extends Migration
           $table->string('name')->unique();
           $table->tinyInteger('status')->default(0);
           $table->string('url')->nullable();
-          $table->string('logo')->nullable();
+          $table->string('logo')->default('ship.jpg');
           $table->string('color')->nullable();
           $table->text('description')->nullable();
           $table->int('number_of_members')->default('0');

@@ -1,16 +1,38 @@
 To Do:
   ☐ Task 39 - Login as organization adviser:
+    ☐ User:
+      ☐ List of all registered users
+        It must consiste of the following columns
+          ☐ name
+          ☐ department
+            ☐ If click show all user under this department (optiona|advance)
+          ☐ course
+            ☐ If click show all user under this course (optiona|advance)
+          ☐ position
+            ☐ If click show all user under this position (optiona|advance)
+          ☐ organization
+            ☐ If click, show all members of this organization (optiona|advance)
+          ☐ member since?
+            ☐ If click, show all members since this date (optiona|advance)
+        ☐ If happend that a user is a member of many organization, merge the information
+      ☐ List of all user belongs to an organization
+      ☐ List of all users who has no organization yet
+    ☐ Setting:
+      ☐ Change password
+      ☐ Change profile pic
+      ☐ View Profile
     ☐ Organizations:
       ☐ List of organization:
         ☐ If the organization name is clicked, display the orgazation simple profile
           ✔ logo default @done(2017-07-22 21:17)
           ✔ Organization info @done(2017-07-22 21:18)
           ✔ Card Layout @done(2017-07-22 21:18)
-          ☐ Change logo
+          ✔ Change logo @done(2017-07-22 22:59)
           ☐ organization color (optional)
     ☐ Generate Attendance
     ☐ Events:
-      ☐ All events
+      ☐ All events as a list
+      ☐ All events within a calendar
       ☐ My Organization:
         ☐ list:
           ☐ View - This events are filtered by organization where this account is an adviser

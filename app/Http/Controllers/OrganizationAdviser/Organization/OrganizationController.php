@@ -96,4 +96,34 @@ class OrganizationController extends Controller
         return redirect()->route('home');
       }
     }
+
+    /**
+     * Uploa image or logo related to organization
+     *
+     * Issue 36: This method should have a common method to be called
+     * to upload image
+     *
+     * @return
+     */
+    public function uploadLogo(Request $request)
+    {
+      $this->validate($request, [
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+      ]);
+
+      $imageName = time().'.'.$request->image->getClientOriginalExtension();
+      $request->image->move(public_path('images'), $imageName);
+
+      # Save to database
+      $organization = Organization::find($request->id);
+      $logo = $organization->logo;
+      $organization->logo = $imageName;
+      if ($organization->save()) {
+        unlink("images/$logo");
+      }
+
+    	return back()
+    		->with('success','Image Uploaded successfully.')
+    		->with('path',$imageName);
+    }
 }
