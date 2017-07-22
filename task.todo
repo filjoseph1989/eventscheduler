@@ -1,7 +1,7 @@
 To Do:
   ☐ Task 39 - Login as organization adviser:
-    ☐ User:
-      ☐ List of all registered users
+    ☐ Members:
+      ☐ List of all registered members
         It must consiste of the following columns
           ☐ name
           ☐ department
@@ -18,40 +18,42 @@ To Do:
       ☐ List of all user belongs to an organization
       ☐ List of all users who has no organization yet
     ☐ Setting:
+      ✔ View Profile @done(2017-07-23 03:04)
+        ✔ What if there are many organization? @done(2017-07-23 03:04)
       ☐ Change password
       ☐ Change profile pic
-      ☐ View Profile
     ☐ Organizations:
       ☐ List of organization:
-        ☐ If the organization name is clicked, display the orgazation simple profile
+        ✔ If the organization name is clicked, display the orgazation simple profile @done(2017-07-22 23:18)
           ✔ logo default @done(2017-07-22 21:17)
           ✔ Organization info @done(2017-07-22 21:18)
           ✔ Card Layout @done(2017-07-22 21:18)
           ✔ Change logo @done(2017-07-22 22:59)
-          ☐ organization color (optional)
     ☐ Generate Attendance
     ☐ Events:
-      ☐ All events as a list
-      ☐ All events within a calendar
-      ☐ My Organization:
-        ☐ list:
-          ☐ View - This events are filtered by organization where this account is an adviser
-          ☐ View - Filter by public {{ all members }}
-            ☐ Other member of the system can view the events in calendar or list
-          ☐ View - Filter within organization { one organization is involve }
-            ☐ Display the organization list first
-              ☐ To view the events, the account should be a member of an organization
-              ☐ Display all events base on the chosen organization
-          ☐ View - Filter among organization { one or more organization is involve }
-          ☐ Delete:
-            ☐ This account should not be able to delete event if he/she's not the creator of the event.
-            ☐ This account should not be able to delete event if event already has approved
-            ☐ This account should not be able to delete event if event contain atleast 1 approved
-          ☐ Edit:
-            ☐ The event may need approval again if reschedule|Change in start date
-            ☐ This account should not not be able to edit event if he/she's not the creator of the event.
-          ☐ Mode Details:
-            This is where the user click on eye icon
+      ☐ All events as a list - this events are display in table
+        ☐ View - This events are filtered by organization where this account is an adviser
+        ☐ View - Filter by public {{ all members }}
+          ☐ Other member of the system can view the events in calendar or list
+        ☐ View - Filter within organization { one organization is involve }
+          ☐ Display the organization list first
+            ☐ To view the events, the account should be a member of an organization
+            ☐ Display all events base on the chosen organization
+        ☐ View - Filter among organization { one or more organization is involve }
+        ☐ Delete:
+          ☐ This account should not be able to delete event if he/she's not the creator of the event.
+          ☐ This account should not be able to delete event if event already has approved
+          ☐ This account should not be able to delete event if event contain atleast 1 approved
+        ☐ Edit:
+          ☐ The event may need approval again if reschedule|Change in start date
+          ☐ This account should not not be able to edit event if he/she's not the creator of the event.
+        ☐ Mode Details:
+          This is where the user click on eye icon
+      ☐ All events within a calendar - Just display the calendar to view all events
+      ☐ All events within a Personal calendar - Just display the calendar to view all events in personal calendar
+
+      Wala na ni dapat
+      ☐ My Organization: - remove na ni
     ☐ Manage Schedule:
       ✔ My Organization @done(2017-07-19 18:03)
       ☐ My Personal

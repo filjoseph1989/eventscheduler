@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
           $table->string('twitter_username')->nullable()->unique();
           $table->string('instagram_username')->nullable()->unique();
           $table->string('mobile_number', '12');
+          $table->string('picture')->default('profile.png');
           $table->tinyInteger('status')->default(0);
           $table->tinyInteger('approver_or_not')->default(0);
           $table->softDeletes();

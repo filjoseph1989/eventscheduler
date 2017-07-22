@@ -1,6 +1,4 @@
 <?php
-Route::name('user.logout')->post('/logout', 'Auth\LoginController@userLogout');
-
 # User Crud
 Route::name('user.list')->get('/users/list', 'UserController@showAllUserList');
 Route::name('user.edit')->post('/user/edit', 'UserController@edit');

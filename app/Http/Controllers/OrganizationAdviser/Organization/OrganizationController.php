@@ -69,9 +69,9 @@ class OrganizationController extends Controller
     public function orgProfile($id)
     {
       /*
-      ID 1 is the "Organization" ID.
-      We do not include the "Organization" name since this
-      stands for no organization yet.
+        ID 1 is the "Organization" ID.
+        We do not include the "Organization" name since this
+        stands for no organization yet.
        */
       if ($id == 1) {
         return redirect()->route('home');

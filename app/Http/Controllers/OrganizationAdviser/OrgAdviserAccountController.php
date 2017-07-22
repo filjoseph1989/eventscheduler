@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Models\OrganizationGroup;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\UserController as User;
 
 class OrgAdviserAccountController extends Controller
 {
@@ -19,6 +20,10 @@ class OrgAdviserAccountController extends Controller
     $this->middleware('web');
   }
 
+  /*
+    Issue 38: Review methods below if still in use
+   */
+
   /**
    * Display a list of organization.
    *
@@ -27,9 +32,7 @@ class OrgAdviserAccountController extends Controller
   public function myOrganization()
   {
     # Is the user login?
-    if (! Auth::check()) {
-      return redirect()->route('login');
-    }
+    parent::loginCheck();
 
     # Is the user an organization adviser?
     if (parent::isOrgAdviser()) {
@@ -57,6 +60,11 @@ class OrgAdviserAccountController extends Controller
     }
   }
 
+  /**
+   * Display the personal calendar
+   *
+   * @return
+   */
   public function myPersonalCalendar()
   {
     # Check if the user is loggedin

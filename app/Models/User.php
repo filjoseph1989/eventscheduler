@@ -56,7 +56,8 @@ class User extends Authenticatable
     }
 
     /**
-     * This mean that the user has only one position
+     * Define the relationship between user and course
+     *
      * @return object
      */
     public function course()

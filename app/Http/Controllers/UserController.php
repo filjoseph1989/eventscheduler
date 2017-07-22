@@ -37,6 +37,71 @@ class UserController extends Controller
     }
 
     /**
+     * Return the view profile page for org adviser
+     *
+     * @return
+     */
+    public function viewProfile()
+    {
+      # Is the organization adviser loggedin?
+      parent::loginCheck();
+
+      $login_type = "user";
+
+      # Unlike the typical return which object, here is different
+      # an array
+      $originUser = OrganizationGroup::userProfile(Auth::user())->toArray();
+      $user       = $originUser[0];
+
+      return view(
+        'pages/users/user-profile',
+        compact(
+          'login_type',
+          'originUser',
+          'user'
+        )
+      );
+    }
+
+    /**
+     * Get the single row of user base on the given ID
+     * Used by Ajax request in the admin panel
+     *
+     * @param  Request $data
+     * @return json
+     */
+    public function getUserData(Request $data)
+    {
+      $department = User::find($data->id)->department()->getResults();
+      $user_account   = User::find($data->id)->userAccount()->getResults();
+      $course     = User::find($data->id)->course()->getResults();
+
+      $data               = [
+        'allDepartments' => $department->all(),
+        'allUserAccounts'=> $user_account->all(),
+        'allCourses'     => $course->all(),
+        'departmentName' => $department->name,
+        'UserAccountName'   => $user_account->name,
+        'courseName'     => $course->name,
+        // 'user_account' => UserAccount::all(),
+        // 'position'     => Position::all(),
+        // 'course'       => Course::all(),
+        // 'user'         => User::find($data->id),
+      ];
+
+        echo json_encode($data);
+
+        # next time use Illuminate\Response to return json
+        // return User::find($data->id);
+    }
+
+    /**
+     * Issue 37:
+     * Methods below is subject for review
+     * if still in use or not
+     */
+
+    /**
      * validate the incoming data
      *
      * @param  array  $data
@@ -168,37 +233,6 @@ class UserController extends Controller
     }
 
     /**
-     * Get the single row of user base on the given ID
-     *
-     * @param  Request $data
-     * @return json
-     */
-    public function getUserData(Request $data)
-    {
-      $department = User::find($data->id)->department()->getResults();
-      $user_account   = User::find($data->id)->userAccount()->getResults();
-      $course     = User::find($data->id)->course()->getResults();
-
-      $data               = [
-        'allDepartments' => $department->all(),
-        'allUserAccounts'=> $user_account->all(),
-        'allCourses'     => $course->all(),
-        'departmentName' => $department->name,
-        'UserAccountName'   => $user_account->name,
-        'courseName'     => $course->name,
-        // 'user_account' => UserAccount::all(),
-        // 'position'     => Position::all(),
-        // 'course'       => Course::all(),
-        // 'user'         => User::find($data->id),
-      ];
-
-        echo json_encode($data);
-
-        # next time use Illuminate\Response to return json
-        // return User::find($data->id);
-    }
-
-    /**
      * [gets description]
      * @return [type] [description]
      */
@@ -305,11 +339,23 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * Display the list of users
+     *
+     * @return
+     */
     public function showAllUserList()
     {
-        $users      = User::all();
-        $login_type = 'user';
-        return view('pages.users.admin-user.users.list', compact('login_type','users'));
+      $users      = User::all();
+      $login_type = 'user';
+
+      return view(
+        'pages/users/admin-user/users/list',
+        compact(
+          'login_type',
+          'users'
+        )
+      );
     }
 
     public function addOrgGroup(){

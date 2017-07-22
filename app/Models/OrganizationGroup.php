@@ -32,4 +32,40 @@ class OrganizationGroup extends Model
     {
       return $this->belongsTo('App\Models\Organization');
     }
+
+    public function getItems()
+    {
+      return $this->items;
+    }
+
+    /**
+     * Return the user profile information
+     *
+     * @return object
+     */
+    public static function userProfile($auth)
+    {
+      $orgGroup = new OrganizationGroup();
+      return $orgGroup->select(
+          '*',
+          'organizations.id as organization_id',
+          'organizations.name as organization_name',
+          'departments.id as department_id',
+          'departments.name as department_name',
+          'courses.id as course_id',
+          'courses.name as course_name',
+          'user_accounts.id as user_account_id',
+          'user_accounts.name as user_account_name',
+          'positions.id as position_id',
+          'positions.name as position_name'
+        )
+        ->join('users', 'users.id', '=', 'organization_groups.user_id')
+        ->join('departments', 'users.department_id', '=', 'departments.id')
+        ->join('courses', 'users.course_id', '=', 'courses.id')
+        ->join('user_accounts', 'users.user_account_id', '=', 'user_accounts.id')
+        ->join('organizations', 'organization_groups.organization_id', '=', 'organizations.id')
+        ->join('positions', 'organization_groups.position_id', '=', 'positions.id')
+        ->where('user_id', '=', $auth->id)
+        ->get();
+    }
 }

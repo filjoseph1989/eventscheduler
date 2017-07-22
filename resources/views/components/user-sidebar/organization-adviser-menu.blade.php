@@ -56,6 +56,17 @@
   </ul>
 </li>
 <li>
+  <a href="javascript:void(0);" class="menu-toggle">
+    <i class="material-icons">person</i>
+    <span>Members</span>
+  </a>
+  <ul class="ml-menu">
+    <li><a href="#">All Members</a></li>
+    <li><a href="#">Members with organization</a></li>
+    <li><a href="#">Members without organization</a></li>
+  </ul>
+</li>
+<li>
   <a href="{{ route('event.show')}}">
     <i class="material-icons">list</i>
     <span>Generate Attendance</span>

@@ -1,6 +1,10 @@
 <?php
 Route::prefix('users')->group(function() {
   # Subject for re-evaluation
+  Route::name('user.logout')->post('/logout', 'Auth\LoginController@userLogout');
+  Route::name('user.profile')->get('/profile', 'UserController@viewProfile');
+
+  # Include other routing in "routes\system_route\user\user-sub.php"
   require_once 'user/user-sub.php';
 
   # Attendance

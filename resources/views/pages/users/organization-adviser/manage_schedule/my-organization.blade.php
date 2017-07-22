@@ -45,7 +45,7 @@
                       @foreach ($organization as $key => $value)
                         <tr>
                           <td><a href="{{ route('org-adviser.org-profile', [$value->id]) }}">{{ $value->name }}</a></td>
-                          <td><a href="{{ $value->url }}">{{ $value->url }}</a></td>
+                          <td><a href="{{ $value->url }}" target="_blank">{{ $value->url }}</a></td>
                           <td>{{ date('M d, Y', strtotime($value->date_started)) }}</td>
                           <td>{{ date('M d, Y', strtotime($value->date_expired)) }}</td>
                           <td>{{ ($value->status == 1) ? "Active" : "Inactive" }}</td>

@@ -2,6 +2,7 @@
   <ul class="nav nav-tabs tab-nav-right" role="tablist">
     <li role="presentation" class="active"><a href="#settings" data-toggle="tab">SETTINGS</a></li>
   </ul>
+  {{--
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane fade in active in active" id="settings">
       <div class="demo-settings">
@@ -59,4 +60,5 @@
       </div>
     </div>
   </div>
+  --}}
 </aside>
