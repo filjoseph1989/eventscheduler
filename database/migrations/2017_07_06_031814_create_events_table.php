@@ -15,11 +15,10 @@ class CreateEventsTable extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned()->index();
             $table->integer('event_type_id')->unsigned()->index();
             $table->integer('event_category_id')->unsigned()->index();
             $table->integer('organization_id')->unsigned()->index();
-            $table->integer('user_id')->unsigned()->index();
-            $table->integer('calendar_id')->unsigned()->index();
             $table->string('event');
             $table->text('description');
             $table->string('venue');
@@ -44,11 +43,10 @@ class CreateEventsTable extends Migration
             $table->softDeletes();
 
             # Foreign keys
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('event_type_id')->references('id')->on('event_types');
             $table->foreign('event_category_id')->references('id')->on('event_categories');
             $table->foreign('organization_id')->references('id')->on('organizations');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('calendar_id')->references('id')->on('calendars');
         });
     }
 

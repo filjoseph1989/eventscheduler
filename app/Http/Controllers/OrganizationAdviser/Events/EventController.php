@@ -36,38 +36,18 @@ class EventController extends Controller
     $this->middleware('web');
   }
 
-  public function showEvents()
-  {
-    # Get the user organization ID
-    $organization = OrganizationGroup::where('user_id', '=', Auth::user()->id)
-      ->take(1)
-      ->get();
-
-    foreach ($organization as $key => $value) {
-      $id = $value->organization_id;
-    }
-
-    # Get the events from organiation ID
-    $event      = Event::where('organization_id', '=', $id)->get();
-    $login_type = 'user';
-
-    return view(
-      'pages.users.organization-head.calendars.events.list_for_attendance',
-      compact('event', 'login_type')
-    );
-  }
-
   /**
    * Receive passed data and create new event
    *
-   * @return json
+   * @return Illuminate\Response
    */
   public function createNewEvent(Request $data)
   {
     # is the user login?
     parent::loginCheck();
 
-    self::thisAdviser();
+    # is this user and adviser to an organization?
+    self::thisAdviser($data->organization_id);
 
     # is the user an adviser?
     if (parent::isOrgAdviser()) {
@@ -76,7 +56,6 @@ class EventController extends Controller
         'event_type_id',
         'event_category_id',
         'organization_id',
-        'calendar_id',
         'event',
         'description',
         'venue',
@@ -100,7 +79,7 @@ class EventController extends Controller
       $result = Event::create($request);
 
       if ($result->wasRecentlyCreated) {
-        return redirect()->route('org-adviser.event.new')
+        return back()
         ->with('status', 'Successfuly added new event');
       }
     } else {
@@ -116,24 +95,58 @@ class EventController extends Controller
    */
   public function createNewEventForm()
   {
+    # Is the user loggedin?
     parent::loginCheck();
 
+    # Is the user an adviser?
     if (parent::isOrgAdviser()) {
       $login_type     = 'user';
-      $calendar       = Calendar::all();
       $event_type     = EventType::all();
       $event_category = EventCategory::all();
+      $organization   = OrganizationAdviserGroup::with('organization')
+        ->where('organization_adviser_groups.user_id', '=', Auth::user()->id)
+        ->get();
 
       return view(
         'pages/users/organization-adviser/calendars/events/new_event',
         compact(
           'login_type',
-          'calendar',
           'event_type',
-          'event_category'
+          'event_category',
+          'organization'
         )
       );
     }
+  }
+
+  /*
+    Evaluate below if what method is still in use
+   */
+
+  /**
+   * Display events
+   *
+   * @return void
+   */
+  public function showEvents()
+  {
+    # Get the user organization ID
+    $organization = OrganizationGroup::where('user_id', '=', Auth::user()->id)
+      ->take(1)
+      ->get();
+
+    foreach ($organization as $key => $value) {
+      $id = $value->organization_id;
+    }
+
+    # Get the events from organiation ID
+    $event      = Event::where('organization_id', '=', $id)->get();
+    $login_type = 'user';
+
+    return view(
+      'pages.users.organization-head.calendars.events.list_for_attendance',
+      compact('event', 'login_type')
+    );
   }
 
   /**

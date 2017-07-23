@@ -17,8 +17,9 @@ To Do:
       ☐ Change password
       ☐ Change profile pic
         ✔ Upload photo @done(2017-07-23 13:03)
-        ✔ Do not delete the default picture @done(2017-07-23 13:03) @project(To Do / ☐ Task 40 - Setting / ☐ if click the following)
-        ☐ Update also the sidebar picture
+        ✔ Do not delete the default picture @done(2017-07-23 13:03)
+        ✔ Update also the sidebar picture @done(2017-07-23 15:18)
+      ☐ Change profile pic (Version 2)
         ☐ Create a thumbnails for profile pricture (Low Priority)
   ☐ Task 39 - Login as organization adviser:
     ☐ Members:
@@ -47,34 +48,46 @@ To Do:
           ✔ Change logo @done(2017-07-22 22:59)
     ☐ Generate Attendance
     ☐ Events:
-      ☐ All events as a list - this events are display in table
-        ☐ View - This events are filtered by organization where this account is an adviser
-        ☐ View - Filter by public {{ all members }}
-          ☐ Other member of the system can view the events in calendar or list
-        ☐ View - Filter within organization { one organization is involve }
-          ☐ Display the organization list first
-            ☐ To view the events, the account should be a member of an organization
-            ☐ Display all events base on the chosen organization
-        ☐ View - Filter among organization { one or more organization is involve }
-        ☐ Delete:
-          ☐ This account should not be able to delete event if he/she's not the creator of the event.
-          ☐ This account should not be able to delete event if event already has approved
-          ☐ This account should not be able to delete event if event contain atleast 1 approved
-        ☐ Edit:
-          ☐ The event may need approval again if reschedule|Change in start date
-          ☐ This account should not not be able to edit event if he/she's not the creator of the event.
-        ☐ Mode Details:
-          This is where the user click on eye icon
+      ☐ Create Events
+        ☐ Chose organization
+          ☐ Categories as public
+          ☐ Categories as private
+          ☐ Categories as Among Organization
+        ☐ Determine if her/she is the adviser of the organization
+        ☐ In what way that this event should be valid
+      ☐ All Events
+        ☐ Display the info box
+          ☐ All events as a list - this are the public events set by different organizations categories as public view
+          ☐ All events as a list within organization- this are the public events set by an organization categories as public view
+          ☐ All events as a list within organization that an account is an adviser- this are the public events set by an organization where the account is an adiviser and categories as public view
+          ☐ All events as a list within organization that an account is an adviser- this are the events set by an organization where the account is an adiviser and categories as within organization
+        ☐ Table of events:
+          Table of events should have the following options to switch
+            ☐ View - This events are filtered by organization where this account is an adviser
+            ☐ View - Filter by public {{ all members }}
+              ☐ Other member of the system can view the events in calendar or list
+            ☐ View - Filter within organization { one organization is involve }
+              ☐ Display the organization list first
+                ☐ To view the events, the account should be a member of an organization
+                ☐ Display all events base on the chosen organization
+            ☐ View - Filter among organization { one or more organization is involve }
+          ☐ Delete:
+            ☐ This account should not be able to delete event if he/she's not the creator of the event.
+            ☐ This account should not be able to delete event if event already has approved
+            ☐ This account should not be able to delete event if event contain atleast 1 approved
+          ☐ Edit:
+            ☐ The event may need approval again if reschedule|Change in start date
+            ☐ This account should not not be able to edit event if he/she's not the creator of the event.
+          ☐ Mode Details:
+            This is where the user click on eye icon
       ☐ All events within a calendar - Just display the calendar to view all events
       ☐ All events within a Personal calendar - Just display the calendar to view all events in personal calendar
-
-      Wala na ni dapat
-      ☐ My Organization: - remove na ni
     ☐ Manage Schedule:
       ✔ My Organization @done(2017-07-19 18:03)
       ☐ My Personal
         ☐ Must have list version of display aside from calendar
   ☐ Task 38 - Login as OSA:
+    ☐ Assign an adviser for an organization
     ☐ Organization (OSA):
       ☐ Edit organization:
       ☐ List of Organization:

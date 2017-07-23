@@ -101,20 +101,22 @@
                           </select>
                         </div>
                       </div>
-                      <div class="form-group form-float form-group">
+                      <div class="form-group form-float form-group" id="form-event-organization">
                         <div class="form-line focused">
-                          <select class="form-control show-tick" id="event-calendar" name="calendar_id">
-                            <option value="0">-- Select Calendar for this event --</option>
-                            @foreach ($calendar as $key => $value)
-                              <option value="{{ $value->id }}">{{ $value->name }}</option>
+                          <select class="form-control show-tick" id="event-organization" name="organization_id">
+                            <option value="0">-- Select Organization --</option>
+                            @foreach ($organization as $key => $value)
+                              <option value="{{ $value->organization->id }}">{{ $value->organization->name }}</option>
                             @endforeach
                           </select>
                         </div>
                       </div>
-                      <div class="form-group form-float form-group hidden" id="form-event-organization">
+                      <div class="form-group form-float form-group" id="form-event-semester">
                         <div class="form-line focused">
-                          <select class="form-control show-tick" id="event-organization" name="organization_id">
-                            {{-- This part here is manage by ajax --}}
+                          <select class="form-control show-tick" id="event-organization" name="semester_id">
+                            <option value="0">-- Select Semester --</option>
+                            <option value="1">First Semester</option>
+                            <option value="2">Second Semester</option>
                           </select>
                         </div>
                       </div>

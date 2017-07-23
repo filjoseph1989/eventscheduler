@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class OrganizationAdviserGroup extends Model
 {
@@ -36,8 +37,15 @@ class OrganizationAdviserGroup extends Model
    *
    * @return object
    */
-  public function organizations()
+  public function organization()
   {
     return $this->belongsTo('App\Models\Organization');
   }
+
+  public function getItems()
+  {
+    return $this->items;
+  }
+
+
 }
