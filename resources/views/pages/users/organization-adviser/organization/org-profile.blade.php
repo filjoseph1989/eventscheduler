@@ -47,8 +47,6 @@
                       <img class="org-logo" src="{{ asset("images/org_profile/{$organization->logo}") }}" alt="Credit https://www.askideas.com/media/87/Black-Ink-Pirate-Ship-In-Rope-Frame-With-Banner-And-Anchor-Tattoo-Design.jpg">
                     @else
                       <img class="org-logo" src="{{ asset("images/ship.jpg") }}" alt="Credit https://www.askideas.com/media/87/Black-Ink-Pirate-Ship-In-Rope-Frame-With-Banner-And-Anchor-Tattoo-Design.jpg">
-                    @endif
-                    @if ($organization->logo == 'ship.jpg')
                       <small>Credit: <a href="https://www.askideas.com/media/87/Black-Ink-Pirate-Ship-In-Rope-Frame-With-Banner-And-Anchor-Tattoo-Design.jpg" target="_blank">Here</a></small>
                     @endif
                     <form action="{{ route('org-adviser.org-logo') }}" enctype="multipart/form-data" method="POST">
