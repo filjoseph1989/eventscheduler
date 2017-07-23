@@ -6,6 +6,7 @@ use Auth;
 use App\Models\Organization;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Library\ImageLibrary;
 
 /**
  * This class controller handles the request related to
@@ -107,23 +108,25 @@ class OrganizationController extends Controller
      */
     public function uploadLogo(Request $request)
     {
-      $this->validate($request, [
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-      ]);
+      # Is user loggedin?
+      parent::loginCheck();
 
-      $imageName = time().'.'.$request->image->getClientOriginalExtension();
-      $request->image->move(public_path('images'), $imageName);
+      # Upload image
+      $imageName = ImageLibrary::uploadImage($request);
 
       # Save to database
       $organization = Organization::find($request->id);
-      $logo = $organization->logo;
+      $logo         = $organization->logo;
       $organization->logo = $imageName;
-      if ($organization->save()) {
+
+      # Delete old pic except default
+      if ($organization->save() and $logo != 'ship.jpg' and file_exists("images/$logo")) {
         unlink("images/$logo");
       }
 
-    	return back()
-    		->with('success','Image Uploaded successfully.')
-    		->with('path',$imageName);
+      $sucessOrFailed = "Image Uploaded successfully.";
+
+      # Return to uploader page
+      return back()->with('success', $sucessOrFailed);
     }
 }

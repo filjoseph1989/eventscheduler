@@ -1,4 +1,25 @@
 To Do:
+  ☐ Task 40 - Setting:
+    ☐ View Profile
+      ✔ What if there are many organization? @done(2017-07-23 03:04)
+      ☐ if click the following:
+        ☐ Course
+          ☐ List all members having this course (Optional|Advance|Low Priority)
+        ☐ Department
+          ☐ List all members within this department (Optional|Advance|Low Priority)
+        ☐ Position
+          ☐ List all members having this position (Optional|Advance|Low Priority)
+        ☐ Organization
+          ☐ List all members of this organization (Optional|Advance|Low Priority)
+        ☐ Account Type
+          ☐ List all staff with same account type (Optional|Advance|Low Priority)
+          ☐ Is it okay to view other adviser profile? (Optional|Advance|Low Priority)
+      ☐ Change password
+      ☐ Change profile pic
+        ☐ Upload photo
+        ☐ Do not delete the default picture
+        ☐ Update also the sidebar picture
+        ☐ Create a thumbnails for profile pricture (Low Priority)
   ☐ Task 39 - Login as organization adviser:
     ☐ Members:
       ☐ List of all registered members
@@ -17,11 +38,6 @@ To Do:
         ☐ If happend that a user is a member of many organization, merge the information
       ☐ List of all user belongs to an organization
       ☐ List of all users who has no organization yet
-    ☐ Setting:
-      ✔ View Profile @done(2017-07-23 03:04)
-        ✔ What if there are many organization? @done(2017-07-23 03:04)
-      ☐ Change password
-      ☐ Change profile pic
     ☐ Organizations:
       ☐ List of organization:
         ✔ If the organization name is clicked, display the orgazation simple profile @done(2017-07-22 23:18)
