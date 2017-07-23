@@ -23,7 +23,8 @@ Route::prefix('users')->group(function() {
     Route::name('org-adviser.org-logo')->post('/change-logo', 'OrganizationAdviser\Organization\OrganizationController@uploadLogo');
     Route::name('org-adviser.personal-calendar')->get('/personal-calendar', 'OrganizationAdviser\OrgAdviserAccountController@myPersonalCalendar');
     Route::name('org-adviser.personal-calendar-post')->post('/ajax/personal-event', 'OrganizationAdviser\Events\EventController@getPersonalEvent');
-    Route::name('org-adviser.event.get')->get('/get', 'OrganizationAdviser\Events\EventController@getEventList');
+    Route::name('org-adviser.event.eventtype')->get('/get/event-type', 'OrganizationAdviser\Events\EventController@getEventType');
+    Route::name('org-adviser.event.get')->get('/get/{id?}', 'OrganizationAdviser\Events\EventController@getEventList');
     Route::name('org-adviser.event.public')->get('/get/public', 'OrganizationAdviser\Events\EventController@getEventListPublic');
     Route::name('org-adviser.event.within')->get('/get/within', 'OrganizationAdviser\Events\EventController@getEventListWithin');
     Route::name('org-adviser.event.among')->get('/get/among', 'OrganizationAdviser\Events\EventController@getEventListAmong');

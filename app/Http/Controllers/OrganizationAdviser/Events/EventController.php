@@ -119,6 +119,76 @@ class EventController extends Controller
     }
   }
 
+  /**
+   * Return the list of event type
+   * @return
+   */
+  public function getEventType()
+  {
+    # is the user loggedin?
+    parent::loginCheck();
+
+    # is the user an adviser?
+    if (parent::isOrgAdviser()) {
+      $login_type     = 'user';
+      $event_category = EventCategory::all();
+
+      # Render table of event category
+      return view(
+        'pages/users/organization-adviser/calendars/events/category',
+        compact(
+          'login_type',
+          'event_category'
+        )
+      );
+    } else {
+      return redirect()->route('home');
+    }
+  }
+
+  /**
+   * Return the list of event from the given event type
+   *
+   * @param  int $id Event Type ID
+   * @return Illuminate\Response
+   */
+  public function getEventList($id = null)
+  {
+    # is the user loggedin?
+    parent::loginCheck();
+
+    # is the user an adviser?
+    if (parent::isOrgAdviser()) {
+      $login_type = 'user';
+      $title      = 'My Advisory Organization Events';
+
+      # type of calendar
+      # Issue 35: This should be automatically determined by the system
+      $calendar = Calendar::all();
+
+      /*
+        Get all events from the given category
+       */
+      $event = Event::with('EventType')
+        ->with('organization')
+        ->where('events.event_type_id', '=', $id)
+        ->whereRaw('year(date_start) = year(now())')
+        ->get();
+
+      return view(
+        'pages/users/organization-adviser/calendars/events/list',
+        compact(
+          'login_type',
+          'event',
+          'calendar',
+          'title'
+        )
+      );
+    } else {
+      return redirect()->route('home');
+    }
+  }
+
   /*
     Evaluate below if what method is still in use
    */
@@ -164,48 +234,6 @@ class EventController extends Controller
       ->get();
 
       echo json_encode( $event );
-    }
-  }
-
-  /**
-   * Return the list of event within a year
-   * @return
-   */
-  public function getEventList()
-  {
-    parent::loginCheck();
-
-    if (parent::isOrgAdviser()) {
-      $login_type = 'user';
-      $title      = 'My Advisory Organization Events';
-
-      # type of calendar
-      # Issue 35: This should be automatically determined by the system
-      $calendar = Calendar::all();
-
-      # Get all events where this account is an adviser
-      $event = Event::select(
-        '*',
-        'organizations.id as org_id',
-        'organizations.name as org_name'
-      )
-      ->join('organization_adviser_groups', 'organization_adviser_groups.organization_id', '=', 'events.organization_id')
-      ->join('organizations', 'organizations.id', '=', 'events.organization_id')
-      ->where('organization_adviser_groups.user_id', '=', Auth::user()->id)
-      ->whereRaw('year(date_start) = year(now())')
-      ->get();
-
-      return view(
-        'pages/users/organization-adviser/calendars/events/list',
-        compact(
-          'login_type',
-          'event',
-          'calendar',
-          'title'
-        )
-      );
-    } else {
-      return redirect()->route('home');
     }
   }
 

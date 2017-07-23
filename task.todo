@@ -40,23 +40,34 @@ To Do:
       ☐ List of all user belongs to an organization
       ☐ List of all users who has no organization yet
     ☐ Organizations:
-      ☐ List of organization:
+      ☐ Edit organization
+      ☐ List of organization
         ✔ If the organization name is clicked, display the orgazation simple profile @done(2017-07-22 23:18)
+          ☐ Card Layout for simple organization profile
+            ☐ Who are they? - Should have default description if not given
+            ☐ If the adivser view his organization as an adviser he must have option for editing few information
+              ☐ Notify the organization officers for the changes made by the adviser
           ✔ logo default @done(2017-07-22 21:17)
-          ✔ Organization info @done(2017-07-22 21:18)
-          ✔ Card Layout @done(2017-07-22 21:18)
           ✔ Change logo @done(2017-07-22 22:59)
     ☐ Generate Attendance
     ☐ Events:
+      ☐ Approve Events
+        ☐ How to gather approval on adviser side
+          ☐ The adviser if an approver, he can then approve plus other 3 and the organization head,
+          ☐ If the adviser is not an approver, there should be 3 person nee to approve plus head of the organization
       ☐ Create Events
-        ☐ Chose organization
-          ☐ Categories as public
-          ☐ Categories as private
-          ☐ Categories as Among Organization
-        ☐ Determine if her/she is the adviser of the organization
-        ☐ In what way that this event should be valid
+        ✔ Chose organization @done(2017-07-24 00:28)
+          ✔ Categories as public @done(2017-07-23 23:43)
+          ✔ Categories as private (within organization) @done(2017-07-23 23:43)
+          ✔ Categories as Among Organization @done(2017-07-23 23:43)
+          ✔ Categories as personal @done(2017-07-23 23:43)
+        ✔ Determine if her/she is the adviser of the organization @done(2017-07-23 23:30)
+        ☐ In what way that this event should be valid? Goto Approve events
+          ☐ Add person to approve
+          ☐ Check if the person is authorize to approve the said events
+            ☐ Who is these persons?
       ☐ All Events
-        ☐ Display the info box
+        ☐ Display the table
           ☐ All events as a list - this are the public events set by different organizations categories as public view
           ☐ All events as a list within organization- this are the public events set by an organization categories as public view
           ☐ All events as a list within organization that an account is an adviser- this are the public events set by an organization where the account is an adiviser and categories as public view
@@ -135,6 +146,9 @@ To Do:
   ☐ Task 34 - Login as Organization HEAD:
     ☐ Generate User Attendance:
     ☐ Events:
+      ☐ Approve events
+        ☐ If the creator of events is an organization adviser, automatically, me as org-head should be an approver plus other approver
+        ☐ Event if I'm not an approver for all events, I could be the approver to my organization
       ☐ My Personal:
       ☐ My Organization:
         ☐ List Events

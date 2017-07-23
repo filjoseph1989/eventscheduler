@@ -65,7 +65,7 @@
                     @if (isset($event))
                       @foreach ($event as $key => $value)
                         <tr>
-                          <td data-org-id="{{ $value->org_id }}">{{ $value->org_name }}</td>
+                          <td data-org-id="{{ $value->org_id }}">{{ $value->organization->name }}</td>
                           <td>{{ $value->event }}</td>
                           <td>{{ $value->venue }}</td>
                           <td>{{ date("M d, Y", strtotime($value->date_start)) }}</td>
