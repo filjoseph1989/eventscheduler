@@ -5,8 +5,8 @@ namespace App\Http\Controllers\OrganizationAdviser\Organization;
 use Auth;
 use App\Models\Organization;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Library\ImageLibrary;
+use App\Http\Controllers\Controller;
 
 /**
  * This class controller handles the request related to
@@ -112,7 +112,7 @@ class OrganizationController extends Controller
       parent::loginCheck();
 
       # Upload image
-      $imageName = ImageLibrary::uploadImage($request);
+      $imageName = ImageLibrary::uploadImage($request, 'images/org_profile');
 
       # Save to database
       $organization = Organization::find($request->id);
@@ -120,8 +120,8 @@ class OrganizationController extends Controller
       $organization->logo = $imageName;
 
       # Delete old pic except default
-      if ($organization->save() and $logo != 'ship.jpg' and file_exists("images/$logo")) {
-        unlink("images/$logo");
+      if ($organization->save() and file_exists("images/org_profile/$logo")) {
+        unlink("images/org_profile/$logo");
       }
 
       $sucessOrFailed = "Image Uploaded successfully.";

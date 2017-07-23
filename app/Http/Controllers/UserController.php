@@ -10,8 +10,9 @@ use App\Models\Position;
 use App\Models\Department;
 use App\Models\UserAccount;
 use App\Models\Organization;
-use App\Models\OrganizationGroup;
 use Illuminate\Http\Request;
+use App\Library\ImageLibrary;
+use App\Models\OrganizationGroup;
 
 /**
  * The user controller is reponsible for
@@ -93,6 +94,36 @@ class UserController extends Controller
 
         # next time use Illuminate\Response to return json
         // return User::find($data->id);
+    }
+
+    /**
+     * Upload a user profile photo
+     *
+     * @param  Request $request
+     * @return Illuminate\Response
+     */
+    public function uploadPhoto(Request $request)
+    {
+      # Is user loggedin?
+      parent::loginCheck();
+
+      # Upload image
+      $imageName = ImageLibrary::uploadImage($request, 'images/profiles');
+
+      # Save to database
+      $user = User::find($request->id);
+      $picture       = $user->picture;
+      $user->picture = $imageName;
+
+      # Delete old pic except default
+      if ($user->save() and file_exists("images/profiles/$picture")) {
+        unlink("images/profiles/$picture");
+      }
+
+      $sucessOrFailed = "Image Uploaded successfully.";
+
+      # Return to uploader page
+      return back()->with('success', $sucessOrFailed);
     }
 
     /**

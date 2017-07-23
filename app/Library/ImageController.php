@@ -8,10 +8,13 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class ImageLibrary extends Controller
 {
-  public function __construct()
-  {
-  }
-
+  /**
+   * Upload image to a path
+   *
+   * @param  Object $request
+   * @param  string $path
+   * @return string
+   */
   public static function uploadImage($request, $path = 'images')
   {
     $image = new ImageLibrary();
@@ -22,7 +25,7 @@ class ImageLibrary extends Controller
 
     # Get image, rename and save to images folder
     $imageName = time().'.'.$request->image->getClientOriginalExtension();
-    $request->image->move(public_path('images'), $imageName);
+    $request->image->move(public_path($path), $imageName);
 
     return $imageName;
   }

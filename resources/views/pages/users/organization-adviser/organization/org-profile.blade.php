@@ -43,7 +43,11 @@
               <div class="body table-responsive">
                 <div class="row">
                   <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <img class="org-logo" src="{{ asset("images/{$organization->logo}") }}" alt="Credit https://www.askideas.com/media/87/Black-Ink-Pirate-Ship-In-Rope-Frame-With-Banner-And-Anchor-Tattoo-Design.jpg">
+                    @if (file_exists("images/org_profile/{$organization->logo}"))
+                      <img class="org-logo" src="{{ asset("images/org_profile/{$organization->logo}") }}" alt="Credit https://www.askideas.com/media/87/Black-Ink-Pirate-Ship-In-Rope-Frame-With-Banner-And-Anchor-Tattoo-Design.jpg">
+                    @else
+                      <img class="org-logo" src="{{ asset("images/ship.jpg") }}" alt="Credit https://www.askideas.com/media/87/Black-Ink-Pirate-Ship-In-Rope-Frame-With-Banner-And-Anchor-Tattoo-Design.jpg">
+                    @endif
                     @if ($organization->logo == 'ship.jpg')
                       <small>Credit: <a href="https://www.askideas.com/media/87/Black-Ink-Pirate-Ship-In-Rope-Frame-With-Banner-And-Anchor-Tattoo-Design.jpg" target="_blank">Here</a></small>
                     @endif

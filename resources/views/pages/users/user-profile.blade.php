@@ -48,8 +48,12 @@
                       unlike the typical object, to avoid subtituting $user to a loop
                   --}}
                   <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <img class="org-logo" src="{{ asset("images/{$user['picture'] }") }}" alt="Profile Picture">
-                    <form action="#" enctype="multipart/form-data" method="POST">
+                    @if (file_exists("images/profiles/{$user['picture']}"))
+                      <img class="org-logo" src="{{ asset("images/profiles/{$user['picture'] }") }}" alt="Profile Picture">
+                    @else
+                      <img class="org-logo" src="{{ asset("images/profile.png") }}" alt="Profile Picture">
+                    @endif
+                    <form action="{{ route('user.profile.upload') }}" enctype="multipart/form-data" method="POST">
                       {{ csrf_field() }}
                       <div class="row">&nbsp;</div>
                       <div class="row">
