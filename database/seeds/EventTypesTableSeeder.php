@@ -14,6 +14,11 @@ class EventTypesTableSeeder extends Seeder
     {
         DB::table('event_types')->insert([
             array(
+                'name'           => 'Personal',
+                'created_at'     => Carbon::now()->toDateTimeString(),
+                'updated_at'     => Carbon::now()->toDateTimeString(),
+            ),
+            array(
                 'name'           => 'Conference',
                 'created_at'     => Carbon::now()->toDateTimeString(),
                 'updated_at'     => Carbon::now()->toDateTimeString(),
