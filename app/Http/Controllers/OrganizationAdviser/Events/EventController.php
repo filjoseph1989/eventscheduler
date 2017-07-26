@@ -120,6 +120,74 @@ class EventController extends Controller
   }
 
   /**
+   * Return form for creating personal event in
+   * adviser account
+   *
+   * @return Illuminate\Response
+   */
+  public function createMyNewEventForm()
+  {
+    # Is the user loggedin?
+    parent::loginCheck();
+
+    # Is the user an adviser?
+    if (parent::isOrgAdviser()) {
+      $login_type     = 'user';
+      $event_type     = EventType::all();
+      $organization   = OrganizationAdviserGroup::with('organization')
+        ->where('organization_adviser_groups.user_id', '=', Auth::user()->id)
+        ->get();
+
+      return view(
+        'pages/users/organization-adviser/calendars/events/my_new_event',
+        compact(
+          'login_type',
+          'event_type',
+          'organization'
+        )
+      );
+    }
+  }
+
+  /**
+   * Store new event information to table personal_events
+   *
+   * @param  Request $data
+   * @return Object
+   */
+  public function myNewEvent(Request $data)
+  {
+    $event = $data->only([
+      "user_id",
+      "title",
+      "description",
+      "venue",
+      "date_start",
+      "date_start_time",
+      "date_end",
+      "date_end_time",
+      "whole_day",
+      "event_type_id",
+      "category",
+      "semester"
+      // "facebook",
+      // "twitter",
+      // "email",
+      // "phone"
+    ]);
+
+    empty($event['date_end']) ? "0000-00-00" : $event['date_end'];
+    empty($event['date_end_time']) ? "00:00" : $event['date_end_time'];
+
+    $event = PersonalEvent::create($event);
+    if ($event->wasRecentlyCreated) {
+      return back()->with('status', 'Successfuly Saved');
+    } else {
+      return back()->with('status', "Sorry, there's a problem on saving");
+    }
+  }
+
+  /**
    * Return the list of event type
    * @return
    */

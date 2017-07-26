@@ -8,20 +8,32 @@ class PersonalEvent extends Model
 {
   protected $dates = ['deleted_at'];
 
+  protected $table = 'personal_events';
+
   protected $fillable = [
-    'event_type_id',
-    'event_category_id',
-    'calendar_id',
-    'user_id',
-    'event',
-    'description',
-    'date_start',
-    'date_end',
-    'date_start_time',
-    'date_end_time',
-    'whole_day',
-    'venue',
-    'status',
+    "user_id",
+    "title",
+    "description",
+    "venue",
+    "date_start",
+    "date_start_time",
+    "date_end",
+    "date_end_time",
+    "whole_day",
+    "event_type_id",
+    "category",
+    "semester",
+    "notify_via_facebook",
+    "notify_via_twitter",
+    "notify_via_sms",
+    "notify_via_email",
+    "additional_msg_facebook",
+    "additional_msg_sms",
+    "additional_msg_email",
+    "picture_facebook",
+    "picture_twitter",
+    "picture_email",
+    'status'
   ];
 
   /**

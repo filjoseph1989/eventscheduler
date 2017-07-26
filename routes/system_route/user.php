@@ -29,6 +29,8 @@ Route::prefix('users')->group(function() {
     Route::name('org-adviser.event.within')->get('/get/within', 'OrganizationAdviser\Events\EventController@getEventListWithin');
     Route::name('org-adviser.event.among')->get('/get/among', 'OrganizationAdviser\Events\EventController@getEventListAmong');
     Route::name('org-adviser.event.own')->get('/get/own', 'OrganizationAdviser\Events\EventController@getEventListOwn');
+    Route::name('org-adviser.my.event.new')->get('/my/new', 'OrganizationAdviser\Events\EventController@createMyNewEventForm');
+    Route::name('org-adviser.my.event.new.new')->post('/store/new', 'OrganizationAdviser\Events\EventController@myNewEvent');
     Route::name('org-adviser.event.new')->get('/new', 'OrganizationAdviser\Events\EventController@createNewEventForm');
     Route::name('org-adviser.event.new')->post('/new', 'OrganizationAdviser\Events\EventController@createNewEvent');
     Route::name('event.gets')->post('/event/gets', 'OrganizationAdviser\Events\EventController@getEventOfTheMonth');

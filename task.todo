@@ -51,10 +51,12 @@ To Do:
           ✔ Change logo @done(2017-07-22 22:59)
     ☐ Generate Attendance
     ☐ Events:
-      ☐ Approve Events
-        ☐ How to gather approval on adviser side
-          ☐ The adviser if an approver, he can then approve plus other 3 and the organization head,
-          ☐ If the adviser is not an approver, there should be 3 person nee to approve plus head of the organization
+      ☐ Notification:
+        ☐ Facebook
+        ☐ Twitter
+        ☐ Email
+        ☐ Phone
+      ☐ Create My Events
       ☐ Create Events
         ✔ Chose organization @done(2017-07-24 00:28)
           ✔ Categories as public @done(2017-07-23 23:43)
@@ -66,6 +68,10 @@ To Do:
           ☐ Add person to approve
           ☐ Check if the person is authorize to approve the said events
             ☐ Who is these persons?
+      ☐ Approve Events
+        ☐ How to gather approval on adviser side
+          ☐ The adviser if an approver, he can then approve plus other 3 and the organization head,
+          ☐ If the adviser is not an approver, there should be 3 person nee to approve plus head of the organization
       ☐ All Events
         ☐ Display the table
           ☐ All events as a list - this are the public events set by different organizations categories as public view
