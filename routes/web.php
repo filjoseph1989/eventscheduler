@@ -19,6 +19,7 @@ Route::get('/', function () {
 |--------------------------------------------------------------------------
 */
 Auth::routes();
+Route::name('change.password')->post('/change/password', 'Auth\ChangePassword@changePassword');
 
 #revalidation of back history
 Route::group(['middleware' => 'revalidate'], function()
