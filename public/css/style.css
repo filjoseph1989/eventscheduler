@@ -11062,3 +11062,6 @@ a:focus {
   text-transform: uppercase;
   margin-right: 0px;
 }
+tr > td:nth-child(2) {
+  padding-left: 30px;
+}

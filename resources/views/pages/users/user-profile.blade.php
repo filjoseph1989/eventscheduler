@@ -66,29 +66,78 @@
                     </form>
                   </div>
                   <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
-                    <p><strong>Name:</strong> {{ "{$user['first_name']} {$user['middle_name']}, {$user['last_name']} {$user['suffix_name']}" }}</p>
-                    <p><strong>Email:</strong> {{ $user['email'] }}</p>
-                    <p><strong>Mobile Number:</strong> {{ $user['mobile_number'] }}</p>
-                    <p><strong>Course:</strong> <a href="#" data-id="{{ $user['course_id'] }}">{{ $user['course_name'] }}</a></p>
-                    <p><strong>Department:</strong> <a href="#" data-id="{{ $user['department_id'] }}">{{ $user['department_name'] }}</a></p>
-                    <p><strong>Position:</strong> <a href="#" data-id="{{ $user['position_id'] }}">{{ $user['position_name'] }}</a></p>
-                    <p>
-                      <strong>Organization:</strong>
-                      @if (count($originUser) > 1)
-                        @foreach ($originUser as $key => $value)
-                          <br><a href="#" data-id="{{ $value['organization_id'] }}">{{ $value['organization_name'] }}</a>
-                        @endforeach
-                      @else
-                        <a href="#" data-id="{{ $user['organization_id'] }}">{{ $user['organization_name'] }}</a><br>
-                      @endif
-                    </p>
-                    <p><strong>Account Type:</strong> <a href="#" data-id="{{ $user['user_account_id'] }}">{{ ucwords(str_replace('-', ' ', $user['user_account_name'])) }}</a></p>
-                    <p><strong>Facebook:</strong> {{ $user['facebook_username'] }}</p>
-                    <p><strong>Twitter:</strong> {{ $user['twitter_username'] }}</p>
-                    <p><strong>Instagram:</strong> {{ $user['instagram_username'] }} <small style="font-size: 10px; color: red;">Note: No Notification on this</small></p>
-                    <p><strong>Status:</strong> {{ $user['status'] == 1 ? "Active" : "Inactive" }}</p>
-                    <p><strong>Approver?</strong> {{ $user['approver_or_not'] == 1 ? "Yes" : "No" }}</p>
-                    <p><strong>Member Since:</strong> {{ date('M d, Y', strtotime($user['created_at'])) }}</p>
+                    <table class="table">
+                      <thead>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><strong>Name: </strong></td>
+                          <td>{{ "{$user['first_name']} {$user['middle_name']}, {$user['last_name']} {$user['suffix_name']}" }}</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Email: </strong></td>
+                          <td>{{ $user['email'] }}</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Mobile Number: </strong></td>
+                          <td>{{ $user['mobile_number'] }}</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Course: </strong></td>
+                          <td><a href="#" data-id="{{ $user['course_id'] }}">{{ $user['course_name'] }}</a></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Department: </strong></td>
+                          <td><a href="#" data-id="{{ $user['department_id'] }}">{{ $user['department_name'] }}</a></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Position: </strong></td>
+                          <td><a href="#" data-id="{{ $user['position_id'] }}">{{ $user['position_name'] }}</a></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Organization:</strong></td>
+                          <td>
+                            @if (count($originUser) > 1)
+                              @foreach ($originUser as $key => $value)
+                                <br><a href="#" data-id="{{ $value['organization_id'] }}">{{ $value['organization_name'] }}</a>
+                              @endforeach
+                            @else
+                              <a href="#" data-id="{{ $user['organization_id'] }}">{{ $user['organization_name'] }}</a><br>
+                            @endif
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><strong>Account Type: </strong></td>
+                          <td><a href="#" data-id="{{ $user['user_account_id'] }}">{{ ucwords(str_replace('-', ' ', $user['user_account_name'])) }}</a></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Facebook: </strong></td>
+                          <td>{{ $user['facebook_username'] }}</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Twitter: </strong></td>
+                          <td>{{ $user['twitter_username'] }}</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Instagram: </strong></td>
+                          <td>{{ $user['instagram_username'] }} <small style="font-size: 10px; color: red;">Note: No Notification on this</small></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Status: </strong></td>
+                          <td>{{ $user['status'] == 1 ? "Active" : "Inactive" }}</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Approver: </strong></td>
+                          <td>{{ $user['approver_or_not'] == 1 ? "Yes" : "No" }}</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Member Since: </strong></td>
+                          <td>{{ date('M d, Y', strtotime($user['created_at'])) }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
