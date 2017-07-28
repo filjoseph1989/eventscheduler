@@ -23,7 +23,7 @@ class CreatePersonalEventsTable extends Migration
             $table->text('description');
             $table->string('venue');
             $table->date('date_start')->useCurrent();
-            $table->date('date_end')->useCurrent();
+            $table->date('date_end')->nullable();
             $table->time('date_start_time')->default('00:00:00');
             $table->time('date_end_time')->default('00:00:00');
             $table->integer('whole_day');
