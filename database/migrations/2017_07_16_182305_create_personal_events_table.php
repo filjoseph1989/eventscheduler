@@ -27,17 +27,17 @@ class CreatePersonalEventsTable extends Migration
             $table->time('date_start_time')->default('00:00:00');
             $table->time('date_end_time')->default('00:00:00');
             $table->integer('whole_day');
-            $table->integer('notify_via_twitter')->default(0);
-            $table->integer('notify_via_facebook')->default(0);
-            $table->integer('notify_via_sms')->default(0);
-            $table->integer('notify_via_email')->default(0);
+            $table->enum('notify_via_twitter', ['on', 'off'])->default('off');
+            $table->enum('notify_via_facebook', ['on', 'off'])->default('off');
+            $table->enum('notify_via_sms', ['on', 'off'])->default('off');
+            $table->enum('notify_via_email', ['on', 'off'])->default('off');
             $table->string('additional_msg_facebook')->nullable();
             $table->string('additional_msg_sms')->nullable();
             $table->string('additional_msg_email')->nullable();
             $table->string('picture_facebook')->nullable();
             $table->string('picture_twitter')->nullable();
             $table->string('picture_email')->nullable();
-            $table->tinyInteger('status')->default(0);
+            $table->enum('status', ['upcoming', 'canceled', 'archived'])->default('upcoming');
             $table->softDeletes();
             $table->timestamps();
 
