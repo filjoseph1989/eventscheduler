@@ -56,7 +56,8 @@ To Do:
         ☐ Twitter
         ☐ Email
         ☐ Phone
-      ☐ Create My Events
+      ☐ Create My Events:
+        ☐ Set event status
       ☐ Create Events
         ✔ Chose organization @done(2017-07-24 00:28)
           ✔ Categories as public @done(2017-07-23 23:43)
@@ -72,6 +73,10 @@ To Do:
         ☐ How to gather approval on adviser side
           ☐ The adviser if an approver, he can then approve plus other 3 and the organization head,
           ☐ If the adviser is not an approver, there should be 3 person nee to approve plus head of the organization
+      ☐ List of my events:
+        ☐ Edit my events
+        ☐ Set status of my events
+          ☐ Set notification functionality
       ☐ All Events
         ☐ Display the table
           ☐ All events as a list - this are the public events set by different organizations categories as public view

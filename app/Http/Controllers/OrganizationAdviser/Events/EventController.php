@@ -132,9 +132,9 @@ class EventController extends Controller
 
     # Is the user an adviser?
     if (parent::isOrgAdviser()) {
-      $login_type     = 'user';
-      $event_type     = EventType::all();
-      $organization   = OrganizationAdviserGroup::with('organization')
+      $login_type   = 'user';
+      $event_type   = EventType::all();
+      $organization = OrganizationAdviserGroup::with('organization')
         ->where('organization_adviser_groups.user_id', '=', Auth::user()->id)
         ->get();
 
@@ -157,27 +157,36 @@ class EventController extends Controller
    */
   public function myNewEvent(Request $data)
   {
+    parent::loginCheck();
+
+    $message = [
+      'regex' => "Time should be valid format",
+    ];
+
+    $this->validate($data, [
+      'title'           => 'Required',
+      'description'     => 'Required',
+      'venue'           => 'Required',
+      'date_start'      => 'required|date|after_or_equal:today',
+      'date_end'        => 'nullable|date|after_or_equal:date_start',
+      'date_start_time' => 'filled|date_format:H:i',
+      'date_end_time'   => 'nullable|date_format:H:i',
+    ], $message);
+
     $event = $data->only([
-      "user_id",
-      "title",
-      "description",
-      "venue",
-      "date_start",
-      "date_start_time",
-      "date_end",
-      "date_end_time",
-      "whole_day",
-      "event_type_id",
-      "category",
-      "semester"
-      // "facebook",
-      // "twitter",
-      // "email",
-      // "phone"
+      "user_id", "title", "description", "venue",
+      "date_start", "date_start_time", "date_end", "date_end_time",
+      "whole_day", "event_type_id", "category", "semester",
+      "facebook", "twitter", "email", "phone"
     ]);
 
-    empty($event['date_end']) ? "0000-00-00" : $event['date_end'];
-    empty($event['date_end_time']) ? "00:00" : $event['date_end_time'];
+    $event['date_end']      = ($event['date_end'] == null) ? $event['date_start'] : $event['date_end'];
+    $event['date_end_time'] = ($event['date_end_time'] == null) ? "00:00" : $event['date_end_time'];
+
+    # the user chose a kind of event?
+    if ($event['event_type_id'] == 0) {
+      return back()->withInput()->with('status_warning', "You need to chose type of event");
+    }
 
     $event = PersonalEvent::create($event);
     if ($event->wasRecentlyCreated) {

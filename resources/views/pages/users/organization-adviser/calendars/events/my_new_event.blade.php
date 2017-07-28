@@ -12,9 +12,9 @@
     @include('pages.top-nav')
 
     @if (isset($login_type) and $login_type == 'admin')
-        @include('pages.admin.sidebar')
+      @include('pages.admin.sidebar')
     @elseif (isset($login_type) and $login_type == 'user')
-        @include('pages.users.sidebar')
+      @include('pages.users.sidebar')
     @endif
 
     <section class="content">
@@ -24,6 +24,11 @@
             {{ session('status') }}
           </div>
         @endif
+        @if (session('status_warning'))
+          <div class="alert alert-warning">
+            {{ session('status_warning') }}
+          </div>
+        @endif
         <div class="row clearfix">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
@@ -31,44 +36,65 @@
                 <h2> CREATE MY EVENT </h2>
               </div>
               <div class="body">
-                <form class="" id="add-event-form" action="{{ route('org-adviser.my.event.new.new') }}" method="POST">
+                <form class="" id="add-event-form" action="{{ route('org-adviser.my.event.submit') }}" method="POST">
                   <div class="row clearfix">
                     <div class="col-sm-8 col-sm-offset-2">
                       {{ csrf_field() }}
                       <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                       <div class="form-group form-float form-group">
                         <div class="form-line">
-                          <input type="text" class="form-control" id="title" name="title" placeholder="Name of the event" value="" required="true" autofocus="">
+                          <input type="text" class="form-control" id="title" name="title" placeholder="Name of the event" value="{{ old('title') }}" required="true" autofocus="">
+                          @if ($errors->has('title'))
+                            <span class="help-block"> <strong>{{ $errors->first('title') }}</strong> </span>
+                          @endif
                         </div>
                       </div>
                       <div class="form-group form-float form-group">
                         <div class="form-line">
-                          <textarea rows="4" class="form-control no-resize" id="description" name="description" placeholder="Description of the event"></textarea>
+                          <textarea rows="4" class="form-control no-resize" id="description" name="description" placeholder="Description of the event" required>{{ old('description') }}</textarea>
+                          @if ($errors->has('description'))
+                            <span class="help-block"> <strong>{{ $errors->first('description') }}</strong> </span>
+                          @endif
                         </div>
                       </div>
                       <div class="form-group form-float form-group">
                         <div class="form-line">
-                          <input type="text" class="form-control" id="venue" name="venue" placeholder="Venue" value="">
+                          <input type="text" class="form-control" id="venue" name="venue" placeholder="Venue" value="{{ old('venue') }}" required>
+                          @if ($errors->has('venue'))
+                            <span class="help-block"> <strong>{{ $errors->first('venue') }}</strong> </span>
+                          @endif
                         </div>
                       </div>
                       <div class="form-group form-float form-group">
                         <div class="form-line">
-                          <input type="text" class="form-control event-datepicker" id="date_start" name="date_start" placeholder="Select Date Start" value="" data-dtp="dtp_mR6wO">
+                          <input type="text" class="form-control event-datepicker" id="date_start" name="date_start" placeholder="Select Date Start" value="{{ old('date_start') }}" data-dtp="dtp_mR6wO" required>
+                          @if ($errors->has('date_start'))
+                            <span class="help-block"> <strong>{{ $errors->first('date_start') }}</strong> </span>
+                          @endif
                         </div>
                       </div>
                       <div class="form-group form-float form-group">
                         <div class="form-line">
-                          <input type="text" class="form-control event-timepicker" id="date_start_time" name="date_start_time" placeholder="Select Time Start" value="" data-dtp="dtp_Ty5Ak">
+                          <input type="text" class="form-control event-timepicker" id="date_start_time" name="date_start_time" placeholder="Select Time Start" value="{{ old('date_start_time') }}" data-dtp="dtp_Ty5Ak" required>
+                          @if ($errors->has('date_start_time'))
+                            <span class="help-block"> <strong>{{ $errors->first('date_start_time') }}</strong> </span>
+                          @endif
                         </div>
                       </div>
                       <div class="form-group form-float form-group">
                         <div class="form-line">
-                          <input type="text" class="form-control event-datepicker" id="date_end" name="date_end" placeholder="Select Date End" value="" data-dtp="dtp_WVmA7">
+                          <input type="text" class="form-control event-datepicker" id="date_end" name="date_end" placeholder="Select Date End" value="{{ old('date_end') }}" data-dtp="dtp_WVmA7">
+                          @if ($errors->has('date_end'))
+                            <span class="help-block"> <strong>{{ $errors->first('date_end') }}</strong> </span>
+                          @endif
                         </div>
                       </div>
                       <div class="form-group form-float form-group">
                         <div class="form-line">
-                          <input type="text" class="form-control event-timepicker" id="date_end_time" name="date_end_time" placeholder="Select Time End" value="" data-dtp="dtp_Cymge">
+                          <input type="text" class="form-control event-timepicker" id="date_end_time" name="date_end_time" placeholder="Select Time End" value="{{ old('date_end_time') }}" data-dtp="dtp_Cymge">
+                          @if ($errors->has('date_end_time'))
+                            <span class="help-block"> <strong>{{ $errors->first('date_end_time') }}</strong> </span>
+                          @endif
                         </div>
                       </div>
                       <div class="form-group form-float">

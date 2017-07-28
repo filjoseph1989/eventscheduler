@@ -25,7 +25,7 @@ class CreatePersonalEventsTable extends Migration
             $table->date('date_start')->useCurrent();
             $table->date('date_end')->nullable();
             $table->time('date_start_time')->default('00:00:00');
-            $table->time('date_end_time')->default('00:00:00');
+            $table->time('date_end_time')->nullable()->default('00:00:00');
             $table->integer('whole_day');
             $table->enum('notify_via_twitter', ['on', 'off'])->default('off');
             $table->enum('notify_via_facebook', ['on', 'off'])->default('off');
