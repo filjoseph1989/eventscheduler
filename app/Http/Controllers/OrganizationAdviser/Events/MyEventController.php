@@ -23,6 +23,8 @@ use App\Models\OrganizationAdviserGroup;
  */
 class MyEventController extends Controller
 {
+    private $adviser;
+
     /**
      * Create a new controller instance.
      *
@@ -31,6 +33,7 @@ class MyEventController extends Controller
     public function __construct()
     {
       $this->middleware('web');
+      $this->adviser = new Adviser();
     }
 
     /**
@@ -55,7 +58,7 @@ class MyEventController extends Controller
       parent::loginCheck();
 
       # return home if not an organization adviser
-      self::_isAdviser();
+      $this->adviser->isAdviser();
 
       $login_type   = 'user';
       $event_type   = EventType::all();
@@ -82,11 +85,12 @@ class MyEventController extends Controller
       parent::loginCheck();
 
       # return home if not an adviser
-      self::_isAdviser();
+      $this->adviser->isAdviser();
 
       # is data valid entry?
-      self::_isValid($data);
+      $this->adviser->isValid($data);
 
+      # Get data from the submitted entry
       $event = $data->only([
         "user_id", "title", "description", "venue",
         "date_start", "date_start_time", "date_end", "date_end_time",
@@ -94,6 +98,7 @@ class MyEventController extends Controller
         "notify_via_facebook", "notify_via_twitter", "notify_via_email", "notify_via_sms"
       ]);
 
+      # Set default date for end date if not given
       $event['date_end']      = ($event['date_end'] == null) ? $event['date_start'] : $event['date_end'];
       $event['date_end_time'] = ($event['date_end_time'] == null) ? "00:00" : $event['date_end_time'];
 
@@ -102,8 +107,10 @@ class MyEventController extends Controller
         return back()->withInput()->with('status_warning', "You need to chose type of event");
       }
 
-      # Save the event
+      # Finally create event
       $event = PersonalEvent::create($event);
+
+      # inform the user of what happend
       if ($event->wasRecentlyCreated) {
         return back()->with('status', 'Successfuly Saved');
       } else {
@@ -154,42 +161,5 @@ class MyEventController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    /**
-     * A private method where it determine if the user currently
-     * loggedin in the system is an adviser, return home if not.
-     *
-     * @return boolean
-     */
-    private function _isAdviser()
-    {
-      if (! parent::isOrgAdviser()) {
-        return redirect()->route('home');
-      }
-    }
-
-    /**
-     * Determine if the event information is valid for
-     * database storage
-     *
-     * @param  object  $data
-     * @return boolean
-     */
-    private function _isValid($data)
-    {
-      $message = [
-        'regex' => "Time should be valid format",
-      ];
-
-      $this->validate($data, [
-        'title'           => 'Required',
-        'description'     => 'Required',
-        'venue'           => 'Required',
-        'date_start'      => 'required|date|after_or_equal:today',
-        'date_end'        => 'nullable|date|after_or_equal:date_start',
-        'date_start_time' => 'filled|date_format:H:i',
-        'date_end_time'   => 'nullable|date_format:H:i',
-      ], $message);
     }
 }

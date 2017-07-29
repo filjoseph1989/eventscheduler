@@ -84,13 +84,19 @@ class EventController extends Controller
 
       # return to form if the following does not satisfy
       if ($data->event_type_id == 0) {
-        return back()->with('status_warning', 'You must chose type of event');
+        return back()
+          ->withInput()
+          ->with('status_warning', 'You must chose type of event');
       }
       if ($data->event_category_id == 0) {
-        return back()->with('status_warning', 'You must chose the audience for this event');
+        return back()
+          ->withInput()
+          ->with('status_warning', 'You must chose the audience for this event');
       }
-      if ($data->semester == 0) {
-        return back()->with('status_warning', 'You must chose for what semester this event');
+      if ($data->semester == '0') {
+        return back()
+          ->withInput()
+          ->with('status_warning', 'You must chose for what semester this event');
       }
 
       # Get the data from form
