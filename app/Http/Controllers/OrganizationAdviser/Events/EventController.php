@@ -5,6 +5,7 @@ namespace app\Http\Controllers\OrganizationAdviser\Events;
 use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\OrganizationAdviser\OrgAdviserAccountController as Adviser;
 
 # Models
 use App\Models\Event;
@@ -14,6 +15,14 @@ use App\Models\OrganizationAdviserGroup;
 
 class EventController extends Controller
 {
+    private $adviser;
+
+    public function __construct()
+    {
+      $this->middleware('web');
+      $this->adviser = new Adviser();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -35,7 +44,7 @@ class EventController extends Controller
       parent::loginCheck();
 
       # Is the user an adviser?
-      self::_isAdviser();
+      $this->adviser->isAdviser();
 
       $login_type     = 'user';
       $event_type     = EventType::all();
@@ -64,14 +73,25 @@ class EventController extends Controller
       # is the user login?
       parent::loginCheck();
 
-      # is the user rank an adivser
-      self::_isAdviser();
+      # is the user rank as adivser?
+      $this->adviser->isAdviser();
 
       # is data entry valid?
-      self::_isValid($data);
+      $this->adviser->isValid($data);
 
-      # is this user and adviser to an organization?
-      self::_isAdviserInGivenOrganization($data->organization_id);
+      # is the user an adviser to an organization?
+      $this->adviser->isAdviserInGivenOrganization($data->organization_id);
+
+      # return to form if the following does not satisfy
+      if ($data->event_type_id == 0) {
+        return back()->with('status_warning', 'You must chose type of event');
+      }
+      if ($data->event_category_id == 0) {
+        return back()->with('status_warning', 'You must chose the audience for this event');
+      }
+      if ($data->semester == 0) {
+        return back()->with('status_warning', 'You must chose for what semester this event');
+      }
 
       # Get the data from form
       $request = $data->only(
@@ -80,7 +100,7 @@ class EventController extends Controller
         'venue', 'date_start', 'date_start_time',
         'date_end', 'date_end_time', 'whole_day',
         'notify_via_facebook', 'notify_via_twitter',
-        'notify_via_email', 'notify_via_sms'
+        'notify_via_email', 'notify_via_sms', 'semeter'
       );
 
       # Set default value for organization ID to 1 if not given
@@ -89,6 +109,7 @@ class EventController extends Controller
       # Finally create events
       $result = Event::create($request);
 
+      # inform the user what happend
       if ($result->wasRecentlyCreated) {
         return back()->with('status', 'Successfuly added new event');
       } else {
@@ -142,50 +163,24 @@ class EventController extends Controller
     }
 
     /**
-     * A private method where it determine if the user currently
-     * loggedin in the system is an adviser, return home if not.
-     *
-     * @return boolean
-     */
-    private function _isAdviser()
-    {
-      if (! parent::isOrgAdviser()) {
-        return redirect()->route('home');
-      }
-    }
-
-    /**
-     * Determine if the event information is valid for
-     * database storage
-     *
-     * @param  object  $data
-     * @return boolean
-     */
-    private function _isValid($data)
-    {
-      $message = [
-        'regex' => "Time should be valid format",
-      ];
-
-      $this->validate($data, [
-        'title'           => 'Required',
-        'description'     => 'Required',
-        'venue'           => 'Required',
-        'date_start'      => 'required|date|after_or_equal:today',
-        'date_end'        => 'nullable|date|after_or_equal:date_start',
-        'date_start_time' => 'filled|date_format:H:i',
-        'date_end_time'   => 'nullable|date_format:H:i',
-      ], $message);
-    }
-
-    /**
-     * return true if this account is an adviser to the
-     * given organization ID
-     *
+     * Return the list of event type
      * @return
      */
-    private function _isAdviserInGivenOrganization($id)
+    public function getEventType()
     {
-      $adviser = OrganizationAdviserGroup::where('organization_id', '=', $id)->get();
+      # is the user loggedin?
+      parent::loginCheck();
+
+      $this->adviser->isAdviser();
+
+      # is the user an adviser?
+      $login_type     = 'user';
+      $event_category = EventCategory::all();
+
+      # Render table of event category
+      return view('pages/users/organization-adviser/calendars/events/category', compact(
+        'login_type',
+        'event_category'
+      ));
     }
 }

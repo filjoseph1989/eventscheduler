@@ -137,10 +137,10 @@
                       </div>
                       <div class="form-group form-float form-group" id="form-event-semester">
                         <div class="form-line focused">
-                          <select class="form-control show-tick" id="event-organization" name="semester_id">
+                          <select class="form-control show-tick" id="event-organization" name="semester">
                             <option value="0">-- Select Semester --</option>
-                            <option value="1">First Semester</option>
-                            <option value="2">Second Semester</option>
+                            <option value="first">First Semester</option>
+                            <option value="second">Second Semester</option>
                           </select>
                         </div>
                       </div>

@@ -36,6 +36,7 @@ class Event extends Model
     'whole_day',
     'venue',
     'status',
+    'semester',
     'approver_count',
     'notify_via_facebook',
     'notify_via_twitter',
