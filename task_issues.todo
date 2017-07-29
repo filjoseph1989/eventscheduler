@@ -1,4 +1,5 @@
 To Do:
+  ☐ Issue 40: Go to this line
   ☐ Issue 39: make or move this to common place to all accounts {resources\views\pages\users\organization-adviser\organization\org-profile.blade.php}
   ☐ Issue 38: Go to this line
   ☐ Issue 37: Go to this line
@@ -27,7 +28,7 @@ To Do:
   ✔ Issue 14: How to switch guards on some controllers generated @done(2017-07-03 00:41)
   ✔ Issue 13: $login_type = 'admin'; in some controller could be replace by auth::check() @done(2017-07-03 00:42)
   ✔ Issue 12: The admin page is not rendering properly @done(2017-06-23 10:17) @project(To Do)
-  ☐ Issue 11: (This issue will be applied next) how to send invitation on facebook, twitter, instagram?
+  ✔ Issue 11: (This issue will be applied next) how to send invitation on facebook, twitter, instagram? @done(2017-07-29 19:35)
   ✔ Issue 10: title when in home page is wrong format @done(2017-06-21 21:04) @project(To Do)
   ✔ Issue 9: Home page has an error @done(2017-06-21 18:02) @project(To Do)
   ✔ Issue 8: Status field in the user should be 1 in length @done(2017-06-23 09:24) @project(To Do)

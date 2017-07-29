@@ -56,7 +56,7 @@ To Do:
         ☐ Twitter
         ☐ Email
         ☐ Phone
-      ☐ Create My Events:
+      ✔ Create My Events @done(2017-07-29 18:28)
       ☐ Create Events
         ✔ Chose organization @done(2017-07-24 00:28)
           ✔ Categories as public @done(2017-07-23 23:43)
@@ -73,7 +73,9 @@ To Do:
           ☐ The adviser if an approver, he can then approve plus other 3 and the organization head,
           ☐ If the adviser is not an approver, there should be 3 person nee to approve plus head of the organization
       ☐ List of my events:
+        ☐ Display info box
         ☐ Edit my events
+        ☐ Add custom message
         ☐ Set status of my events
           ☐ Set notification functionality
       ☐ All Events

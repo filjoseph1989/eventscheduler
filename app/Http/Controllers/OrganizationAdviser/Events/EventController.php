@@ -13,9 +13,9 @@ use Illuminate\Http\Request;
 use App\Models\PersonalEvent;
 use App\Models\EventCategory;
 use App\Models\OrganizationGroup;
-use App\Models\OrganizationAdviserGroup;
 use App\Models\EventApprovalMonitor;
 use App\Http\Controllers\Controller;
+use App\Models\OrganizationAdviserGroup;
 
 /**
  * Manage the events
@@ -38,6 +38,7 @@ class EventController extends Controller
 
   /**
    * Receive passed data and create new event
+   * Issue 40: This method can be combine with self::myNewEvent()
    *
    * @return Illuminate\Response
    */
@@ -46,44 +47,42 @@ class EventController extends Controller
     # is the user login?
     parent::loginCheck();
 
+    # is the user rank an adivser
+    self::_isAdviser();
+
     # is this user and adviser to an organization?
-    self::thisAdviser($data->organization_id);
+    self::_isAdviserInGivenOrganization($data->organization_id);
 
-    # is the user an adviser?
-    if (parent::isOrgAdviser()) {
-      $request = $data->only(
-        'user_id',
-        'event_type_id',
-        'event_category_id',
-        'organization_id',
-        'event',
-        'description',
-        'venue',
-        'date_start',
-        'date_start_time',
-        'date_end',
-        'date_end_time',
-        'whole_day'
-      );
+    # Get the data from form
+    $request = $data->only(
+      'user_id',
+      'event_type_id',
+      'event_category_id',
+      'organization_id',
+      'event',
+      'description',
+      'venue',
+      'date_start',
+      'date_start_time',
+      'date_end',
+      'date_end_time',
+      'whole_day'
+    );
 
-      # Set additional fields if the following is on
-      $request['notify_via_facebook'] = ($data->facebook == 'on') ? 1 : null;
-      $request['notify_via_twitter']  = ($data->twitter  == 'on') ? 1 : null;
-      $request['notify_via_email']    = ($data->email    == 'on') ? 1 : null;
-      $request['notify_via_sms']      = ($data->phone    == 'on') ? 1 : null;
+    # Set additional fields if the following is on
+    $request['notify_via_facebook'] = ($data->facebook == 'on') ? 1 : null;
+    $request['notify_via_twitter']  = ($data->twitter  == 'on') ? 1 : null;
+    $request['notify_via_email']    = ($data->email    == 'on') ? 1 : null;
+    $request['notify_via_sms']      = ($data->phone    == 'on') ? 1 : null;
 
-      # Set default value for organization ID to 1 if not given
-      $request['organization_id'] = ($data->only('organization_id')['organization_id'] == null) ? 1 : $data->only('organization_id')['organization_id'];
+    # Set default value for organization ID to 1 if not given
+    $request['organization_id'] = ($data->only('organization_id')['organization_id'] == null) ? 1 : $data->only('organization_id')['organization_id'];
 
-      # Finally create events
-      $result = Event::create($request);
+    # Finally create events
+    $result = Event::create($request);
 
-      if ($result->wasRecentlyCreated) {
-        return back()
-        ->with('status', 'Successfuly added new event');
-      }
-    } else {
-      return redirect()->route('home');
+    if ($result->wasRecentlyCreated) {
+      return back()->with('status', 'Successfuly added new event');
     }
   }
 
@@ -99,101 +98,21 @@ class EventController extends Controller
     parent::loginCheck();
 
     # Is the user an adviser?
-    if (parent::isOrgAdviser()) {
-      $login_type     = 'user';
-      $event_type     = EventType::all();
-      $event_category = EventCategory::all();
-      $organization   = OrganizationAdviserGroup::with('organization')
-        ->where('organization_adviser_groups.user_id', '=', Auth::user()->id)
-        ->get();
+    self::_isAdviser();
 
-      return view(
-        'pages/users/organization-adviser/calendars/events/new_event',
-        compact(
-          'login_type',
-          'event_type',
-          'event_category',
-          'organization'
-        )
-      );
-    }
-  }
+    $login_type     = 'user';
+    $event_type     = EventType::all();
+    $event_category = EventCategory::all();
+    $organization   = OrganizationAdviserGroup::with('organization')
+      ->where('organization_adviser_groups.user_id', '=', Auth::user()->id)
+      ->get();
 
-  /**
-   * Return form for creating personal event in
-   * adviser account
-   *
-   * @return Illuminate\Response
-   */
-  public function createMyNewEventForm()
-  {
-    # Is the user loggedin?
-    parent::loginCheck();
-
-    # Is the user an adviser?
-    if (parent::isOrgAdviser()) {
-      $login_type   = 'user';
-      $event_type   = EventType::all();
-      $organization = OrganizationAdviserGroup::with('organization')
-        ->where('organization_adviser_groups.user_id', '=', Auth::user()->id)
-        ->get();
-
-      return view(
-        'pages/users/organization-adviser/calendars/events/my_new_event',
-        compact(
-          'login_type',
-          'event_type',
-          'organization'
-        )
-      );
-    }
-  }
-
-  /**
-   * Store new event information to table personal_events
-   *
-   * @param  Request $data
-   * @return Object
-   */
-  public function myNewEvent(Request $data)
-  {
-    parent::loginCheck();
-
-    $message = [
-      'regex' => "Time should be valid format",
-    ];
-
-    $this->validate($data, [
-      'title'           => 'Required',
-      'description'     => 'Required',
-      'venue'           => 'Required',
-      'date_start'      => 'required|date|after_or_equal:today',
-      'date_end'        => 'nullable|date|after_or_equal:date_start',
-      'date_start_time' => 'filled|date_format:H:i',
-      'date_end_time'   => 'nullable|date_format:H:i',
-    ], $message);
-
-    $event = $data->only([
-      "user_id", "title", "description", "venue",
-      "date_start", "date_start_time", "date_end", "date_end_time",
-      "whole_day", "event_type_id", "category", "semester",
-      "facebook", "twitter", "email", "phone"
-    ]);
-
-    $event['date_end']      = ($event['date_end'] == null) ? $event['date_start'] : $event['date_end'];
-    $event['date_end_time'] = ($event['date_end_time'] == null) ? "00:00" : $event['date_end_time'];
-
-    # the user chose a kind of event?
-    if ($event['event_type_id'] == 0) {
-      return back()->withInput()->with('status_warning', "You need to chose type of event");
-    }
-
-    $event = PersonalEvent::create($event);
-    if ($event->wasRecentlyCreated) {
-      return back()->with('status', 'Successfuly Saved');
-    } else {
-      return back()->with('status', "Sorry, there's a problem on saving");
-    }
+    return view('pages/users/organization-adviser/events/form', compact(
+      'login_type',
+      'event_type',
+      'event_category',
+      'organization'
+    ));
   }
 
   /**
@@ -262,6 +181,19 @@ class EventController extends Controller
         )
       );
     } else {
+      return redirect()->route('home');
+    }
+  }
+
+  /**
+   * A private method where it determine if the user currently
+   * loggedin in the system is an adviser, return home if not.
+   *
+   * @return boolean
+   */
+  private function _isAdviser()
+  {
+    if (! parent::isOrgAdviser()) {
       return redirect()->route('home');
     }
   }
@@ -610,7 +542,7 @@ class EventController extends Controller
    *
    * @return
    */
-  private function thisAdviser($id)
+  private function _isAdviserInGivenOrganization($id)
   {
     $adviser = OrganizationAdviserGroup::where('organization_id', '=', $id)->get();
   }

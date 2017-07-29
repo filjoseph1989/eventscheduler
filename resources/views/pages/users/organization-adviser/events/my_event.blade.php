@@ -36,7 +36,7 @@
                 <h2> CREATE MY EVENT </h2>
               </div>
               <div class="body">
-                <form class="" id="add-event-form" action="{{ route('org-adviser.my.event.submit') }}" method="POST">
+                <form class="" id="add-event-form" action="{{ route('org-adviser.my.new.event.submit') }}" method="POST">
                   <div class="row clearfix">
                     <div class="col-sm-8 col-sm-offset-2">
                       {{ csrf_field() }}
@@ -145,7 +145,7 @@
                     <div class="col-sm-8 col-sm-offset-2">
                       <div class="demo-switch">
                           <div class="switch" id="facebook">
-                            <label>OFF<input type="checkbox" name="facebook" checked><span class="lever switch-col-indigo"></span>ON</label> Facebook
+                            <label>OFF<input type="checkbox" name="notify_via_facebook" checked><span class="lever switch-col-indigo"></span>ON</label> Facebook
                           </div>
                       </div>
                     </div>
@@ -154,7 +154,7 @@
                     <div class="col-sm-8 col-sm-offset-2">
                       <div class="demo-switch">
                           <div class="switch" id="twitter">
-                            <label>OFF<input type="checkbox" name="twitter" checked><span class="lever switch-col-blue"></span>ON</label> Twitter
+                            <label>OFF<input type="checkbox" name="notify_via_twitter" checked><span class="lever switch-col-blue"></span>ON</label> Twitter
                           </div>
                       </div>
                     </div>
@@ -163,7 +163,7 @@
                     <div class="col-sm-8 col-sm-offset-2">
                       <div class="demo-switch">
                           <div class="switch" id="email">
-                            <label>OFF<input type="checkbox" name="email" checked><span class="lever switch-col-teal"></span>ON</label> Email
+                            <label>OFF<input type="checkbox" name="notify_via_email" checked><span class="lever switch-col-teal"></span>ON</label> Email
                           </div>
                       </div>
                     </div>
@@ -172,7 +172,7 @@
                     <div class="col-sm-8 col-sm-offset-2">
                       <div class="demo-switch">
                         <div class="switch" id="phone">
-                          <label>OFF<input type="checkbox" name="phone" checked><span class="lever switch-col-pink"></span>ON</label> Phone
+                          <label>OFF<input type="checkbox" name="notify_via_sms" checked><span class="lever switch-col-pink"></span>ON</label> Phone
                         </div>
                       </div>
                     </div>
