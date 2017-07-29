@@ -37,7 +37,7 @@ class CreatePersonalEventsTable extends Migration
             $table->string('picture_facebook')->nullable();
             $table->string('picture_twitter')->nullable();
             $table->string('picture_email')->nullable();
-            $table->enum('status', ['upcoming', 'canceled', 'archived'])->default('upcoming');
+            $table->enum('status', ['upcoming', 'on-going', 'canceled', 'archived'])->default('upcoming');
             $table->softDeletes();
             $table->timestamps();
 
