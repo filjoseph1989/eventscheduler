@@ -24,6 +24,9 @@
             {{ session('status') }}
           </div>
         @endif
+        @if (session('status_warning'))
+          <div class="alert alert-warning">{{ session('status_warning') }}</div>
+        @endif
         <div class="row clearfix">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
@@ -39,37 +42,58 @@
                       <input type="hidden" name="from_calendar" value="1">
                       <div class="form-group form-float form-group">
                         <div class="form-line">
-                          <input type="text" class="form-control" id="event" name="event" placeholder="Name of the event" value="" required="true" autofocus="">
+                          <input type="text" class="form-control" id="title" name="title" placeholder="Title of the event" value="{{ old('title') }}" required autofocus>
+                          @if ($errors->has('title'))
+                            <span class="help-block"> <strong>{{ $errors->first('title') }}</strong> </span>
+                          @endif
                         </div>
                       </div>
                       <div class="form-group form-float form-group">
                         <div class="form-line">
-                          <textarea rows="4" class="form-control no-resize" id="description" name="description" placeholder="Description of the event"></textarea>
+                          <textarea rows="4" class="form-control no-resize" id="description" name="description" required placeholder="Description of the event">{{ old('description') }}</textarea>
+                          @if ($errors->has('description'))
+                            <span class="help-block"> <strong>{{ $errors->first('description') }}</strong> </span>
+                          @endif
                         </div>
                       </div>
                       <div class="form-group form-float form-group">
                         <div class="form-line">
-                          <input type="text" class="form-control" id="venue" name="venue" placeholder="Venue" value="">
+                          <input type="text" class="form-control" id="venue" name="venue" placeholder="Venue" value="{{ old('venue') }}" required>
+                          @if ($errors->has('venue'))
+                            <span class="help-block"> <strong>{{ $errors->first('venue') }}</strong> </span>
+                          @endif
                         </div>
                       </div>
                       <div class="form-group form-float form-group">
                         <div class="form-line">
-                          <input type="text" class="form-control event-datepicker" id="date_start" name="date_start" placeholder="Select Date Start" value="" data-dtp="dtp_mR6wO">
+                          <input type="text" class="form-control event-datepicker" id="date_start" name="date_start" placeholder="Select Date Start" value="{{ old('date_start') }}" data-dtp="dtp_mR6wO">
+                          @if ($errors->has('date_start'))
+                            <span class="help-block"> <strong>{{ $errors->first('date_start') }}</strong> </span>
+                          @endif
                         </div>
                       </div>
                       <div class="form-group form-float form-group">
                         <div class="form-line">
-                          <input type="text" class="form-control event-timepicker" id="date_start_time" name="date_start_time" placeholder="Select Time Start" value="" data-dtp="dtp_Ty5Ak">
+                          <input type="text" class="form-control event-timepicker" id="date_start_time" name="date_start_time" placeholder="Select Time Start" value="{{ old('date_start_time') }}" data-dtp="dtp_Ty5Ak">
+                          @if ($errors->has('date_start_time'))
+                            <span class="help-block"> <strong>{{ $errors->first('date_start_time') }}</strong> </span>
+                          @endif
                         </div>
                       </div>
                       <div class="form-group form-float form-group">
                         <div class="form-line">
-                          <input type="text" class="form-control event-datepicker" id="date_end" name="date_end" placeholder="Select Date End" value="" data-dtp="dtp_WVmA7">
+                          <input type="text" class="form-control event-datepicker" id="date_end" name="date_end" placeholder="Select Date End" value="{{ old('date_end') }}" data-dtp="dtp_WVmA7">
+                          @if ($errors->has('date_end'))
+                            <span class="help-block"> <strong>{{ $errors->first('date_end') }}</strong> </span>
+                          @endif
                         </div>
                       </div>
                       <div class="form-group form-float form-group">
                         <div class="form-line">
-                          <input type="text" class="form-control event-timepicker" id="date_end_time" name="date_end_time" placeholder="Select Time End" value="" data-dtp="dtp_Cymge">
+                          <input type="text" class="form-control event-timepicker" id="date_end_time" name="date_end_time" placeholder="Select Time End" value="{{ old('date_end_time') }}" data-dtp="dtp_Cymge">
+                          @if ($errors->has('date_end_time'))
+                            <span class="help-block"> <strong>{{ $errors->first('date_end_time') }}</strong> </span>
+                          @endif
                         </div>
                       </div>
                       <div class="form-group form-float">
@@ -131,7 +155,7 @@
                     <div class="col-sm-8 col-sm-offset-2">
                       <div class="demo-switch">
                           <div class="switch" id="facebook">
-                            <label>OFF<input type="checkbox" name="facebook" checked><span class="lever switch-col-indigo"></span>ON</label> Facebook
+                            <label>OFF<input type="checkbox" name="notify_via_facebook" checked><span class="lever switch-col-indigo"></span>ON</label> Facebook
                           </div>
                       </div>
                     </div>
@@ -140,7 +164,7 @@
                     <div class="col-sm-8 col-sm-offset-2">
                       <div class="demo-switch">
                           <div class="switch" id="twitter">
-                            <label>OFF<input type="checkbox" name="twitter" checked><span class="lever switch-col-blue"></span>ON</label> Twitter
+                            <label>OFF<input type="checkbox" name="notify_via_twitter" checked><span class="lever switch-col-blue"></span>ON</label> Twitter
                           </div>
                       </div>
                     </div>
@@ -149,7 +173,7 @@
                     <div class="col-sm-8 col-sm-offset-2">
                       <div class="demo-switch">
                           <div class="switch" id="email">
-                            <label>OFF<input type="checkbox" name="email" checked><span class="lever switch-col-teal"></span>ON</label> Email
+                            <label>OFF<input type="checkbox" name="notify_via_email" checked><span class="lever switch-col-teal"></span>ON</label> Email
                           </div>
                       </div>
                     </div>
@@ -158,7 +182,7 @@
                     <div class="col-sm-8 col-sm-offset-2">
                       <div class="demo-switch">
                         <div class="switch" id="phone">
-                          <label>OFF<input type="checkbox" name="phone" checked><span class="lever switch-col-pink"></span>ON</label> Phone
+                          <label>OFF<input type="checkbox" name="notify_via_sms" checked><span class="lever switch-col-pink"></span>ON</label> Phone
                         </div>
                       </div>
                     </div>

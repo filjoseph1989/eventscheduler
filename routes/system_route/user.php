@@ -31,8 +31,8 @@ Route::prefix('users')->group(function() {
     Route::name('org-adviser.event.own')->get('/get/own', 'OrganizationAdviser\Events\EventController@getEventListOwn');
     Route::name('org-adviser.my.new.event')->get('/my/new/event', 'OrganizationAdviser\Events\MyEventController@create');
     Route::name('org-adviser.my.new.event.submit')->post('/store/new', 'OrganizationAdviser\Events\MyEventController@store');
-    Route::name('org-adviser.event.new')->get('/new', 'OrganizationAdviser\Events\EventController@createNewEventForm');
-    Route::name('org-adviser.event.new')->post('/new', 'OrganizationAdviser\Events\EventController@createNewEvent');
+    Route::name('org-adviser.event.new')->get('/new', 'OrganizationAdviser\Events\EventController@create');
+    Route::name('org-adviser.event.new')->post('/new', 'OrganizationAdviser\Events\EventController@store');
     Route::name('event.gets')->post('/event/gets', 'OrganizationAdviser\Events\EventController@getEventOfTheMonth');
   });
 

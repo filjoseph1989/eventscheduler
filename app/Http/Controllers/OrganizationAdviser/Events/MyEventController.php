@@ -83,19 +83,8 @@ class MyEventController extends Controller
       # return home if not an adviser
       self::_isAdviser();
 
-      $message = [
-        'regex' => "Time should be valid format",
-      ];
-
-      $this->validate($data, [
-        'title'           => 'Required',
-        'description'     => 'Required',
-        'venue'           => 'Required',
-        'date_start'      => 'required|date|after_or_equal:today',
-        'date_end'        => 'nullable|date|after_or_equal:date_start',
-        'date_start_time' => 'filled|date_format:H:i',
-        'date_end_time'   => 'nullable|date_format:H:i',
-      ], $message);
+      # is data valid entry?
+      self::_isValid($data);
 
       $event = $data->only([
         "user_id", "title", "description", "venue",
@@ -112,6 +101,7 @@ class MyEventController extends Controller
         return back()->withInput()->with('status_warning', "You need to chose type of event");
       }
 
+      # Save the event
       $event = PersonalEvent::create($event);
       if ($event->wasRecentlyCreated) {
         return back()->with('status', 'Successfuly Saved');
@@ -176,5 +166,29 @@ class MyEventController extends Controller
       if (! parent::isOrgAdviser()) {
         return redirect()->route('home');
       }
+    }
+
+    /**
+     * Determine if the event information is valid for
+     * database storage
+     *
+     * @param  object  $data
+     * @return boolean
+     */
+    private function _isValid($data)
+    {
+      $message = [
+        'regex' => "Time should be valid format",
+      ];
+
+      $this->validate($data, [
+        'title'           => 'Required',
+        'description'     => 'Required',
+        'venue'           => 'Required',
+        'date_start'      => 'required|date|after_or_equal:today',
+        'date_end'        => 'nullable|date|after_or_equal:date_start',
+        'date_start_time' => 'filled|date_format:H:i',
+        'date_end_time'   => 'nullable|date_format:H:i',
+      ], $message);
     }
 }
