@@ -16,7 +16,7 @@ class CreateOrganizationsTable extends Migration
         Schema::create('organizations', function (Blueprint $table) {
           $table->increments('id');
           $table->string('name')->unique();
-          $table->tinyInteger('status')->default(0);
+          $table->enum('status', ['active', 'inactive'])->default('active');
           $table->string('url')->nullable();
           $table->string('logo')->default('ship.jpg');
           $table->string('color')->nullable();
