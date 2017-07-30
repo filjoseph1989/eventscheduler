@@ -24,8 +24,13 @@
             {{ session('status') }}
           </div>
         @endif
+
         @if (session('status_warning'))
           <div class="alert alert-warning">{{ session('status_warning') }}</div>
+        @endif
+
+        @if (count($organization) == 0)
+          <div class="alert alert-warning">You cannot create event since your are not a member of an organization</div>
         @endif
 
         <div class="row clearfix">

@@ -34,7 +34,7 @@ class EventController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new event.
      *
      * @return \Illuminate\Http\Response
      */
@@ -47,8 +47,8 @@ class EventController extends Controller
       $this->adviser->isAdviser();
 
       $login_type     = 'user';
-      $event_type     = EventType::all();
-      $event_category = EventCategory::all();
+      $event_type     = EventType::all()->except(1);
+      $event_category = EventCategory::all()->except(4);
       $organization   = OrganizationAdviserGroup::with('organization')
         ->where('organization_adviser_groups.user_id', '=', Auth::user()->id)
         ->get();
