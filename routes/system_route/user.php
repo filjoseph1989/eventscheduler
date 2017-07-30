@@ -16,11 +16,12 @@ Route::prefix('users')->group(function() {
 
   # Route for organization adviser
   Route::prefix('org-adviser')->group(function() {
-    Route::name('org.adviser.org-list')->get('/list_of_organizations','OrganizationAdviser\Organization\OrganizationController@showAllOrganizationList');
-    Route::name('org-adviser.my-org-list')->get('/org-list', 'OrganizationAdviser\OrgAdviserAccountController@myOrganization');
+    Route::name('org.adviser.org-list')->get('/list_of_organizations','OrganizationAdviser\OrganizationController@index');
+    Route::name('org-adviser.org-profile')->get('/profile/{id}', 'OrganizationAdviser\OrganizationController@show');
+    Route::name('org-adviser.org-logo')->post('/change-logo', 'OrganizationAdviser\OrganizationController@uploadLogo');
+    Route::name('org-adviser.org-edit')->get('/edit-org/{id}', 'OrganizationAdviser\OrganizationController@edit');
+    Route::name('org-adviser.org-update')->post('/update-org', 'OrganizationAdviser\OrganizationController@update');
     Route::name('org-adviser.calendar')->get('/calendar/{id}', 'OrganizationAdviser\ManageSchedule\CalendarController@myOrgCalendar');
-    Route::name('org-adviser.org-profile')->get('/profile/{id}', 'OrganizationAdviser\Organization\OrganizationController@orgProfile');
-    Route::name('org-adviser.org-logo')->post('/change-logo', 'OrganizationAdviser\Organization\OrganizationController@uploadLogo');
     Route::name('org-adviser.personal-calendar')->get('/personal-calendar', 'OrganizationAdviser\OrgAdviserAccountController@myPersonalCalendar');
     Route::name('org-adviser.personal-calendar-post')->post('/ajax/personal-event', 'OrganizationAdviser\Events\EventController@getPersonalEvent');
     Route::name('org-adviser.event.eventtype')->get('/get/event-type', 'OrganizationAdviser\Events\EventController@getEventType');
