@@ -99,7 +99,9 @@
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <button type="button" class="btn btn-success" name="button">Request Membership</button>
+                        @if ($adviser == 'no')
+                          <button type="button" class="btn btn-success" name="button">Request Membership</button>
+                        @endif
                       </div>
                     </div>
                   </div>

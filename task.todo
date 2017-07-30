@@ -23,16 +23,16 @@ To Do:
       ☐ Create a thumbnails for profile pricture (Low Priority)
   ☐ Task 39 - Login as organization adviser:
     ☐ Organizations:
-      ☐ Edit organization
       ☐ List of organization
+        ☐ Notify the organization officers for the changes made by the adviser
+        ☐ Request for membership
+          ✔ If the adviser is not a member of the organization display this button @done(2017-07-31 01:15)
         ✔ If the organization name is clicked, display the orgazation simple profile @done(2017-07-22 23:18)
-          ☐ Card Layout for simple organization profile
-            ☐ Who are they? - Should have default description if not given
-            ☐ If the adivser view his organization as an adviser he must have option for editing few information
-              ☐ Notify the organization officers for the changes made by the adviser
-          ☐ Request for membership
-          ✔ logo default @done(2017-07-22 21:17)
-          ✔ Change logo @done(2017-07-22 22:59)
+        ✔ Card Layout for simple organization profile @done(2017-07-31 01:11)
+        ✔ Who are they? - Should have default description if not given @done(2017-07-31 01:10)
+        ✔ If the adivser view his organization as an adviser he must have option for editing few information @done(2017-07-31 01:11)
+        ✔ logo default @done(2017-07-22 21:17)
+        ✔ Change logo @done(2017-07-22 22:59)
     ☐ Members:
       ☐ List of all registered members
         It must consiste of the following columns
