@@ -39,12 +39,26 @@
             <div class="card">
               <div class="header">
                 <h2> ORGANIZATION PROFILE </h2>
+                <ul class="header-dropdown m-r--5">
+                  <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                      <i class="material-icons">more_vert</i>
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+                      @if ($adviser == 'yes')
+                        <li><a href="{{ route('org-adviser.org-edit', $organization->id) }}"><i class="material-icons">create</i> Edit</a></li>
+                      @else
+                        <li><a href="#">No Options</a></li>
+                      @endif
+                    </ul>
+                  </li>
+                </ul>
               </div>
               <div class="body table-responsive">
                 <div class="row">
                   <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     @if (file_exists("images/org_profile/{$organization->logo}"))
-                      <img class="org-logo" src="{{ asset("images/org_profile/{$organization->logo}") }}" alt="Credit https://www.askideas.com/media/87/Black-Ink-Pirate-Ship-In-Rope-Frame-With-Banner-And-Anchor-Tattoo-Design.jpg">
+                      <img class="org-logo" src="{{ asset("images/org_profile/{$organization->logo}") }}" alt="Organization Logo">
                     @else
                       <img class="org-logo" src="{{ asset("images/ship.jpg") }}" alt="Credit https://www.askideas.com/media/87/Black-Ink-Pirate-Ship-In-Rope-Frame-With-Banner-And-Anchor-Tattoo-Design.jpg">
                       <small>Credit: <a href="https://www.askideas.com/media/87/Black-Ink-Pirate-Ship-In-Rope-Frame-With-Banner-And-Anchor-Tattoo-Design.jpg" target="_blank">Here</a></small>
@@ -62,23 +76,32 @@
                     </form>
                   </div>
                   <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
-                    <article class="">
-                      <strong>Name of the organization:</strong>
-                      <p>{{ $organization->name }}</p>
-                      <strong>School Status</strong>
-                      <p>{{ $organization->status == 1 ? 'Active' : 'Inactive' }}</p>
-                      <strong>Official Website</strong>
-                      <p><a href="{{ $organization->url }}" target="_blank">{{ $organization->url }}</a></p>
-                      <strong>Who are they?</strong>
-                      <p class="org-description">{{ $organization->description }}</p>
-                      <strong>School Registration</strong>
-                      <p>
-                        <span id="org-date-start">Start</span>: {{ date('M d, Y', strtotime($organization->date_started)) }}
-                        <span id="org-date-end">Expire</span>: {{ date('M d, Y', strtotime($organization->date_expired)) }}
-                      </p>
-                      <strong>Number of Members</strong>
-                      <p>{{ $organization->number_of_members }} Students</p>
-                    </article>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <article class="">
+                          <strong>Name of the organization:</strong>
+                          <p>{{ $organization->name }}</p>
+                          <strong>School Status</strong>
+                          <p>{{ $organization->status == 1 ? 'Active' : 'Inactive' }}</p>
+                          <strong>Official Website</strong>
+                          <p><a href="{{ $organization->url }}" target="_blank">{{ $organization->url }}</a></p>
+                          <strong>Who are they?</strong>
+                          <p class="org-description">{{ $organization->description }}</p>
+                          <strong>School Registration</strong>
+                          <p>
+                            <span id="org-date-start">Start</span>: {{ date('M d, Y', strtotime($organization->date_started)) }}
+                            <span id="org-date-end">Expire</span>: {{ date('M d, Y', strtotime($organization->date_expired)) }}
+                          </p>
+                          <strong>Number of Members</strong>
+                          <p>{{ $organization->number_of_members }} Students</p>
+                        </article>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <button type="button" class="btn btn-success" name="button">Request Membership</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
