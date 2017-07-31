@@ -9,6 +9,7 @@ use App\Http\Controllers\OrganizationAdviser\OrgAdviserAccountController as Advi
 
 # Models
 use App\Models\Organization;
+use App\Models\OrganizationGroup;
 use App\Models\OrganizationAdviserGroup;
 
 /**
@@ -108,12 +109,11 @@ class OrganizationController extends Controller
 
       $login_type   = 'user';
       $organization = Organization::find($id);
-      $adviser      = (self::_adviserOfThisOrganization($id) == 1) ? 'yes' : 'no';
+      $adviser      = self::_adviserOfThisOrganization($id);
+      $isMember     = self::_isAmember($id);
 
       return view('pages/users/organization-adviser/organization/org-profile', compact(
-        'login_type',
-        'organization',
-        'adviser'
+        'login_type', 'organization', 'adviser', 'isMember'
       ));
     }
 
@@ -234,10 +234,31 @@ class OrganizationController extends Controller
      */
     private function _adviserOfThisOrganization($id)
     {
-      return OrganizationAdviserGroup::where('user_id', '=', Auth::user()->id)
+      $result = OrganizationAdviserGroup::where('user_id', '=', Auth::user()->id)
         ->where('organization_id', '=', $id)
         ->get()
         ->count();
+
+      return ($result == 1) ? true : false;
+    }
+
+    /**
+     * Check wether the loggedin account is a member of the organization
+     *
+     * # Issue: 43 - This method can comnine with _isAlreadyRequested()
+     *
+     * @param  int  $id Organization ID
+     * @return boolean
+     */
+    private function _isAmember($id)
+    {
+      $result =  OrganizationGroup::where('user_id', '=', Auth::user()->id)
+        ->where('organization_id', '=', $id)
+        ->where('membership_status', '=', 'yes')
+        ->get()
+        ->count();
+
+      return ($result == 1) ? true : false;
     }
 
     /**

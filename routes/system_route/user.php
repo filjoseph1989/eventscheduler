@@ -21,20 +21,21 @@ Route::prefix('users')->group(function() {
     Route::name('org-adviser.org-logo')->post('/change-logo', 'OrganizationAdviser\OrganizationController@uploadLogo');
     Route::name('org-adviser.org-edit')->get('/edit-org/{id}', 'OrganizationAdviser\OrganizationController@edit');
     Route::name('org-adviser.org-update')->post('/update-org', 'OrganizationAdviser\OrganizationController@update');
+    Route::name('org-adviser.org-membership')->post('/org-membership', 'OrganizationAdviser\OrganizationGroupController@store');
     Route::name('org-adviser.calendar')->get('/calendar/{id}', 'OrganizationAdviser\ManageSchedule\CalendarController@myOrgCalendar');
     Route::name('org-adviser.personal-calendar')->get('/personal-calendar', 'OrganizationAdviser\OrgAdviserAccountController@myPersonalCalendar');
-    Route::name('org-adviser.personal-calendar-post')->post('/ajax/personal-event', 'OrganizationAdviser\Events\EventController@getPersonalEvent');
-    Route::name('org-adviser.event.eventtype')->get('/get/event-type', 'OrganizationAdviser\Events\EventController@getEventType');
-    Route::name('org-adviser.event.get')->get('/get/{id?}', 'OrganizationAdviser\Events\EventController@getEventList');
-    Route::name('org-adviser.event.public')->get('/get/public', 'OrganizationAdviser\Events\EventController@getEventListPublic');
-    Route::name('org-adviser.event.within')->get('/get/within', 'OrganizationAdviser\Events\EventController@getEventListWithin');
-    Route::name('org-adviser.event.among')->get('/get/among', 'OrganizationAdviser\Events\EventController@getEventListAmong');
-    Route::name('org-adviser.event.own')->get('/get/own', 'OrganizationAdviser\Events\EventController@getEventListOwn');
-    Route::name('org-adviser.my.new.event')->get('/my/new/event', 'OrganizationAdviser\Events\MyEventController@create');
-    Route::name('org-adviser.my.new.event.submit')->post('/store/new', 'OrganizationAdviser\Events\MyEventController@store');
-    Route::name('org-adviser.event.new')->get('/new', 'OrganizationAdviser\Events\EventController@create');
-    Route::name('org-adviser.event.new')->post('/new', 'OrganizationAdviser\Events\EventController@store');
-    Route::name('event.gets')->post('/event/gets', 'OrganizationAdviser\Events\EventController@getEventOfTheMonth');
+    Route::name('org-adviser.personal-calendar-post')->post('/ajax/personal-event', 'OrganizationAdviser\EventController@getPersonalEvent');
+    Route::name('org-adviser.event.eventtype')->get('/get/event-type', 'OrganizationAdviser\EventController@getEventType');
+    Route::name('org-adviser.event.get')->get('/get/{id?}', 'OrganizationAdviser\EventController@getEventList');
+    Route::name('org-adviser.event.public')->get('/get/public', 'OrganizationAdviser\EventController@getEventListPublic');
+    Route::name('org-adviser.event.within')->get('/get/within', 'OrganizationAdviser\EventController@getEventListWithin');
+    Route::name('org-adviser.event.among')->get('/get/among', 'OrganizationAdviser\EventController@getEventListAmong');
+    Route::name('org-adviser.event.own')->get('/get/own', 'OrganizationAdviser\EventController@getEventListOwn');
+    Route::name('org-adviser.my.new.event')->get('/my/new/event', 'OrganizationAdviser\MyEventController@create');
+    Route::name('org-adviser.my.new.event.submit')->post('/store/new', 'OrganizationAdviser\MyEventController@store');
+    Route::name('org-adviser.event.new')->get('/new', 'OrganizationAdviser\EventController@create');
+    Route::name('org-adviser.event.new')->post('/new', 'OrganizationAdviser\EventController@store');
+    Route::name('event.gets')->post('/event/gets', 'OrganizationAdviser\EventController@getEventOfTheMonth');
   });
 
   # Route for organization head

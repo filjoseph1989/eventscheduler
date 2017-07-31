@@ -11,6 +11,10 @@ class OrganizationGroup extends Model
 
     protected $dates = ['deleted_at'];
 
+    protected $fillable = [
+      'user_id', 'organization_id', 'membership_status'
+    ];
+
     /**
      * Define the relationship between
      * user and organization group

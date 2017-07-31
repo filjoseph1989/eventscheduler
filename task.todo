@@ -25,7 +25,7 @@ To Do:
     ☐ Organizations:
       ☐ List of organization
         ☐ Notify the organization officers for the changes made by the adviser
-        ☐ Request for membership
+        ✔ Request for membership @done(2017-07-31 16:38)
           ✔ If the adviser is not a member of the organization display this button @done(2017-07-31 01:15)
         ✔ If the organization name is clicked, display the orgazation simple profile @done(2017-07-22 23:18)
         ✔ Card Layout for simple organization profile @done(2017-07-31 01:11)

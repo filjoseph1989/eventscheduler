@@ -29,8 +29,13 @@
           </div>
         @endif
 
-    		@if ($message = Session::get('success'))
+    		@if ($message = Session::get('status'))
       		<div class="alert alert-success">
+  	        <strong>{{ $message }}</strong>
+      		</div>
+    		@endif
+    		@if ($message = Session::get('status_warning'))
+      		<div class="alert alert-warning">
   	        <strong>{{ $message }}</strong>
       		</div>
     		@endif
@@ -45,7 +50,7 @@
                       <i class="material-icons">more_vert</i>
                     </a>
                     <ul class="dropdown-menu pull-right">
-                      @if ($adviser == 'yes')
+                      @if ($adviser === true AND $isMember === true)
                         <li><a href="{{ route('org-adviser.org-edit', $organization->id) }}"><i class="material-icons">create</i> Edit</a></li>
                       @else
                         <li><a href="#">No Options</a></li>
@@ -99,8 +104,14 @@
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        @if ($adviser == 'no')
-                          <button type="button" class="btn btn-success" name="button">Request Membership</button>
+                        @if ($isMember == false)
+                          <form class="" action="{{ route('org-adviser.org-membership', $organization->id ) }}" method="post">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                            <input type="hidden" name="organization_id" value="{{ $organization->id }}">
+                            <input type="hidden" name="membership_status" value="no">
+                            <button type="submit" class="btn btn-success" name="button">Request Membership</button>
+                          </form>
                         @endif
                       </div>
                     </div>
