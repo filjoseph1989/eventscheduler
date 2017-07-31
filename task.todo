@@ -1,4 +1,5 @@
 To Do:
+  ☐ Task 41 - Create live notification in any changes in the database
   ☐ Task 40 - Setting:
     ☐ View Profile
       ✔ What if there are many organization? @done(2017-07-23 03:04)
@@ -159,6 +160,8 @@ To Do:
   ☐ Task 35 - Transfer the master.js to app.js
   ☐ Task 34 - Login as Organization HEAD:
     ☐ Accept new member
+      ☐ Check for new membership request live
+      ☐ Check for if an edit happend about the organization live
     ☐ Generate User Attendance:
     ☐ Events:
       ☐ Approve events

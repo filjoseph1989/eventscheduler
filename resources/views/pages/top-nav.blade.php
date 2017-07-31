@@ -35,7 +35,7 @@
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
         <!-- <li><a href="#" class="js-search" data-close="true"><i class="material-icons">search</i></a></li> -->
-        <!-- <li class="dropdown">
+        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
             <i class="material-icons">notifications</i>
             <span class="label-count">7</span>
@@ -141,7 +141,7 @@
               <a href="#">View All Notifications</a>
             </li>
           </ul>
-        </li> -->
+        </li>
         <!-- <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
             <i class="material-icons">flag</i>
