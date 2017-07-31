@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http\Controllers\OrganizationAdviser\Events;
+namespace app\Http\Controllers\OrganizationAdviser;
 
 use Auth;
 use Illuminate\Http\Request;
