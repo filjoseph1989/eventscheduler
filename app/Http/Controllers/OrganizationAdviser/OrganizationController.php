@@ -173,7 +173,9 @@ class OrganizationController extends Controller
 
       # Inform user about the changes
       if ($result) {
-        return back()->withInput()->with('status', 'Successfully updated');
+        return redirect()
+          ->route('org-adviser.org-profile', $request->id)
+          ->with('success', 'Successfully updated');
       } else {
         return back()->withInput()->with('status_warning', "Sorry, we have problem updating {$organization->name} information, please try again later");
       }
