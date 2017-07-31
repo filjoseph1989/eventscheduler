@@ -24,7 +24,6 @@ class CreateOrganizationGroupsTable extends Migration
           #foreign keys
           $table->foreign('user_id')->references('id')->on('users');
           $table->foreign('organization_id')->references('id')->on('organizations');
-          $table->foreign('position_id')->references('id')->on('positions');
         });
     }
 
