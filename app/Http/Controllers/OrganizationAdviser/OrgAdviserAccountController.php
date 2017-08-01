@@ -61,13 +61,18 @@ class OrgAdviserAccountController extends Controller
     ];
 
     $this->validate($data, [
-      'title'           => 'Required',
-      'description'     => 'Required',
-      'venue'           => 'Required',
-      'date_start'      => 'required|date|after_or_equal:today',
-      'date_end'        => 'nullable|date|after_or_equal:date_start',
-      'date_start_time' => 'filled|date_format:H:i',
-      'date_end_time'   => 'nullable|date_format:H:i',
+      'title'             => 'Required',
+      'description'       => 'Required',
+      'venue'             => 'Required',
+      'date_start'        => 'required|date|after_or_equal:today',
+      'date_end'          => 'nullable|date|after_or_equal:date_start',
+      'date_start_time'   => 'filled|date_format:H:i',
+      'date_end_time'     => 'nullable|date_format:H:i',
+      'whole_day'         => 'nullable',
+      'event_type_id'     => 'Required',
+      'event_category_id' => 'Required',
+      'organization_id'   => 'Required',
+      'semester'          => 'Required',
     ], $message);
   }
 

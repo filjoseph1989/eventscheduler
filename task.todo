@@ -36,7 +36,7 @@ To Do:
         ✔ Change logo @done(2017-07-22 22:59)
     ☐ Members:
       ☐ List of all registered members
-        It must consiste of the following columns
+        It must consist of the following columns
           ☐ name
           ☐ department
             ☐ If click show all user under this department (optiona|advance)
@@ -60,6 +60,8 @@ To Do:
         ☐ Phone
       ✔ Create My Events @done(2017-07-29 18:28)
       ☐ Create Events
+        ☐ Can customize message for notification
+        ☐ Can upload image for notification
         ✔ Chose organization @done(2017-07-24 00:28)
           ✔ Categories as public @done(2017-07-23 23:43)
           ✔ Categories as private (within organization) @done(2017-07-23 23:43)

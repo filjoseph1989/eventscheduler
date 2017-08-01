@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http\Controllers\OrganizationAdviser;
+namespace App\Http\Controllers\OrganizationAdviser;
 
 use Auth;
 use Illuminate\Http\Request;
@@ -11,6 +11,7 @@ use App\Http\Controllers\OrganizationAdviser\OrgAdviserAccountController as Advi
 use App\Models\Event;
 use App\Models\EventType;
 use App\Models\EventCategory;
+use App\Models\OrganizationGroup;
 use App\Models\OrganizationAdviserGroup;
 
 class EventController extends Controller
@@ -76,12 +77,6 @@ class EventController extends Controller
       # is the user rank as adivser?
       $this->adviser->isAdviser();
 
-      # is data entry valid?
-      $this->adviser->isValid($data);
-
-      # is the user an adviser to an organization?
-      $this->adviser->isAdviserInGivenOrganization($data->organization_id);
-
       # return to form if the following does not satisfy
       if ($data->event_type_id == 0) {
         return back()
@@ -98,6 +93,24 @@ class EventController extends Controller
           ->withInput()
           ->with('status_warning', 'You must chose for what semester this event');
       }
+      if ($data->organization_id == 0) {
+        return back()
+          ->withInput()
+          ->with('status_warning', "Sorry you cannot create event because you are not yet a member of any organization");
+      }
+
+      # is the user a member of the given organization?
+      if ( ! self::_isMember($data->organization_id)) {
+        return back()
+          ->withInput()
+          ->with('status_warning', "Sorry you are not yet a member of any organization.<br>You need to be a member first");
+      }
+
+      # is data entry valid?
+      $this->adviser->isValid($data);
+
+      # is the user an adviser to an organization?
+      $this->adviser->isAdviserInGivenOrganization($data->organization_id);
 
       # Get the data from form
       $request = $data->only(
@@ -108,9 +121,6 @@ class EventController extends Controller
         'notify_via_facebook', 'notify_via_twitter',
         'notify_via_email', 'notify_via_sms', 'semeter'
       );
-
-      # Set default value for organization ID to 1 if not given
-      $request['organization_id'] = ($data->only('organization_id')['organization_id'] == 0) ? 1 : $data->only('organization_id')['organization_id'];
 
       # Finally create events
       $result = Event::create($request);
@@ -188,5 +198,23 @@ class EventController extends Controller
         'login_type',
         'event_category'
       ));
+    }
+
+    /**
+     * Determined if this loggedin user
+     * is a member of the given organization ID
+     *
+     * @param  int  $id Organization ID
+     * @param boolean $get Used to determine if need to return boolean or redirect
+     * @return boolean
+     */
+    private function _isMember($id)
+    {
+      $result = OrganizationGroup::where('user_id', '=', Auth::user()->id)
+      ->where('organization_id', '=', $id)
+      ->where('membership_status', '=', 'yes')
+      ->count();
+
+      return $result == 1 ? true : false;
     }
 }

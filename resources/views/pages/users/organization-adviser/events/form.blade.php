@@ -26,11 +26,11 @@
         @endif
 
         @if (session('status_warning'))
-          <div class="alert alert-warning">{{ session('status_warning') }}</div>
+          <div class="alert alert-warning">{!! session('status_warning') !!}</div>
         @endif
 
         @if (count($organization) == 0)
-          <div class="alert alert-warning">You cannot create event since your are not a member of an organization</div>
+          <div class="alert alert-warning">You cannot create event because your are not an adviser of any organization</div>
         @endif
 
         <div class="row clearfix">
@@ -105,11 +105,7 @@
                       <div class="form-group form-float">
                         <div class="form-line focused">
                           <select class="form-control show-tick" id="whole-day" name="whole_day">
-                            @if (session()->has('whole_day'))
-                              <option value="{{ old('whole_day') }}">{{ (old('whole_day') == 1) ? 'yes' : 'no' }}</option>
-                            @else
-                              <option value="0">-- Whole day? --</option>
-                            @endif
+                            <option value="{{ old('whole_day') == null ? 0 : old('whole_day') }}" id="whole_day-option">-- Whole day? --</option>
                             <option value="1">YES</option>
                             <option value="0">NO</option>
                           </select>
@@ -117,8 +113,8 @@
                       </div>
                       <div class="form-group form-float form-group">
                         <div class="form-line focused">
-                          <select class="form-control show-tick" id="event-type" name="event_type_id">
-                            <option value="0">-- Select type of event--</option>
+                          <select class="form-control show-tick" id="event_type_id" name="event_type_id">
+                            <option value="{{ old('event_type_id') == null ? 0 : old('event_type_id') }}" id="event_type_id-option">-- Select type of event--</option>
                             @foreach ($event_type as $key => $value)
                               <option value="{{ $value->id }}">{{ $value->name }}</option>
                             @endforeach
@@ -127,8 +123,8 @@
                       </div>
                       <div class="form-group form-float form-group">
                         <div class="form-line focused">
-                          <select class="form-control show-tick" id="event-category" name="event_category_id">
-                            <option value="0">-- Select audience for this event--</option>
+                          <select class="form-control show-tick" id="event_category_id" name="event_category_id">
+                            <option value="{{ old('event_category_id') == null ? 0 : old('event_category_id') }}" id="event_category_id-option">-- Select audience for this event --</option>
                             @foreach ($event_category as $key => $value)
                               <option value="{{ $value->id }}">{{ $value->name }}</option>
                             @endforeach
@@ -137,8 +133,8 @@
                       </div>
                       <div class="form-group form-float form-group" id="form-event-organization">
                         <div class="form-line focused">
-                          <select class="form-control show-tick" id="event-organization" name="organization_id">
-                            <option value="0">-- Select Organization --</option>
+                          <select class="form-control show-tick" id="organization_id" name="organization_id">
+                            <option value="{{ old('organization_id') == null ? 0 : old('organization_id') }}" id="organization-option">-- Select Organization --</option>
                             @foreach ($organization as $key => $value)
                               <option value="{{ $value->organization->id }}">{{ $value->organization->name }}</option>
                             @endforeach
@@ -148,7 +144,7 @@
                       <div class="form-group form-float form-group" id="form-event-semester">
                         <div class="form-line focused">
                           <select class="form-control show-tick" id="semester" name="semester">
-                            <option value="0">-- Select Semester --</option>
+                            <option value="{{ old('semester') == null ? 0 : old('semester') }}" id="semester-option">-- Select Semester --</option>
                             <option value="first">First Semester</option>
                             <option value="second">Second Semester</option>
                           </select>
@@ -223,7 +219,7 @@
   <script src="{{ asset('js/autosize.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/moment.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/app.js') }}?v=0.14" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.15" charset="utf-8"></script>
   <script type="text/javascript">
     $('.event-datepicker').bootstrapMaterialDatePicker({
       format: 'YYYY/MM/DD',
@@ -236,5 +232,6 @@
       clearButton: true,
       date: false
     });
+
   </script>
 @endsection

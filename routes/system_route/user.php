@@ -36,6 +36,9 @@ Route::prefix('users')->group(function() {
     Route::name('org-adviser.event.new')->get('/new', 'OrganizationAdviser\EventController@create');
     Route::name('org-adviser.event.new')->post('/new', 'OrganizationAdviser\EventController@store');
     Route::name('event.gets')->post('/event/gets', 'OrganizationAdviser\EventController@getEventOfTheMonth');
+    Route::name('ajax.get.event-type')->post('/get/event-type', 'OrganizationAdviser\AdviserJsonController@getEventType');
+    Route::name('ajax.get.event-category')->post('/get/event-category', 'OrganizationAdviser\AdviserJsonController@getEventCategory');
+    Route::name('ajax.get.organization')->post('/get/organization', 'OrganizationAdviser\AdviserJsonController@getOrganization');
   });
 
   # Route for organization head
