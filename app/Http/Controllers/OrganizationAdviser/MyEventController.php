@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\OrganizationAdviser\Events;
+namespace App\Http\Controllers\OrganizationAdviser;
 
 use Auth;
 use Illuminate\Http\Request;
@@ -57,7 +57,7 @@ class MyEventController extends Controller
       # Is the user loggedin?
       parent::loginCheck();
 
-      # return home if not an organization adviser
+      # return home if not an organization adviser 
       $this->adviser->isAdviser();
 
       $login_type   = 'user';

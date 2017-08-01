@@ -51,7 +51,7 @@ To Do:
         ☐ If happend that a user is a member of many organization, merge the information
       ☐ List of all user belongs to an organization
       ☐ List of all users who has no organization yet
-    ☐ Generate Attendance
+    ☐ Generate Attendance:
     ☐ Events:
       ☐ Notification:
         ☐ Facebook
@@ -60,18 +60,20 @@ To Do:
         ☐ Phone
       ✔ Create My Events @done(2017-07-29 18:28)
       ☐ Create Events
+        ☐ Change the semester dropdown into season such (quarter, holidays, christmas) {Enterprise version}
+          ☐ customizable by the user
         ☐ Can customize message for notification
         ☐ Can upload image for notification
+        ☐ In what way that this event should be valid? Goto Approve events
+          ☐ Add person to approve
+          ☐ Check if the person is authorize to approve the said events
+            ☐ Who is these persons?
         ✔ Chose organization @done(2017-07-24 00:28)
           ✔ Categories as public @done(2017-07-23 23:43)
           ✔ Categories as private (within organization) @done(2017-07-23 23:43)
           ✔ Categories as Among Organization @done(2017-07-23 23:43)
           ✔ Categories as personal @done(2017-07-23 23:43)
         ✔ Determine if her/she is the adviser of the organization @done(2017-07-23 23:30)
-        ☐ In what way that this event should be valid? Goto Approve events
-          ☐ Add person to approve
-          ☐ Check if the person is authorize to approve the said events
-            ☐ Who is these persons?
       ☐ Approve Events
         ☐ How to gather approval on adviser side
           ☐ The adviser if an approver, he can then approve plus other 3 and the organization head,
@@ -83,6 +85,7 @@ To Do:
         ☐ Add custom message
         ☐ Set status of my events
           ☐ Set notification functionality
+      ☐ Event Profile - A simple card layout wher it shows the event details
       ☐ All Events
         ☐ Display the table
           ☐ All events as a list - this are the public events set by different organizations categories as public view
