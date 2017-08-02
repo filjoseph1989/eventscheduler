@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\OrganizationAdviser;
+namespace App\Library;
 
 use Auth;
 use Illuminate\Http\Request;
@@ -22,7 +22,7 @@ use App\Models\OrganizationAdviserGroup;
  * @version 0.2
  * @updated 2017-07-29
  */
-class OrgAdviserAccountController extends Controller
+class OrgAdviserLibrary extends Controller
 {
   /**
    * Create a new controller instance.
