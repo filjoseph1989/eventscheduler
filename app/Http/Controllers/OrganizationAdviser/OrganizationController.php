@@ -5,7 +5,7 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Library\ImageLibrary;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\OrganizationAdviser\OrgAdviserAccountController as Adviser;
+use App\Library\OrgAdviserLibrary as Adviser;
 
 # Models
 use App\Models\Organization;
@@ -112,7 +112,7 @@ class OrganizationController extends Controller
       $adviser      = self::_adviserOfThisOrganization($id);
       $isMember     = self::_isAmember($id);
 
-      return view('pages/users/organization-adviser/organization/org-profile', compact(
+      return view('pages/users/organization-adviser/organization/profile', compact(
         'login_type', 'organization', 'adviser', 'isMember'
       ));
     }

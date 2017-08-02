@@ -5,7 +5,7 @@ namespace App\Http\Controllers\OrganizationAdviser;
 use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\OrganizationAdviser\OrgAdviserAccountController as Adviser;
+use App\Library\OrgAdviserLibrary as Adviser;
 
 # Models
 use App\Models\Event;

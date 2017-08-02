@@ -90,6 +90,8 @@
                           <p>{{ $organization->status == 1 ? 'Active' : 'Inactive' }}</p>
                           <strong>Official Website</strong>
                           <p><a href="{{ $organization->url }}" target="_blank">{{ $organization->url }}</a></p>
+                          <strong>Color</strong>
+                          <div class="" style="width:30px; height:30px;background-color:{{ $organization->color }}">&nbsp;</div>
                           <strong>Who are they?</strong>
                           <p class="org-description">{{ $organization->description }}</p>
                           <strong>School Registration</strong>

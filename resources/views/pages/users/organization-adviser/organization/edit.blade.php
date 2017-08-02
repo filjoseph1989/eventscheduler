@@ -5,6 +5,7 @@
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/bootstrap-material-datetimepicker.css') }}">
   <link rel="stylesheet" href="{{ asset('css/all-themes.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap-colorpicker.css') }}">
 @endsection
 
 @section('content')
@@ -126,6 +127,7 @@
 @endsection
 
 @section('footer')
+  <script src="{{ asset('js/bootstrap-colorpicker.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/jquery.slimscroll.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/autosize.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/moment.js') }}" charset="utf-8"></script>
@@ -143,5 +145,6 @@
       clearButton: true,
       date: false
     });
+    $('#color').colorpicker();
   </script>
 @endsection
