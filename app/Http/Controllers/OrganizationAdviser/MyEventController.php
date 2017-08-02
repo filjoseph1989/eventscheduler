@@ -10,6 +10,7 @@ use App\Library\OrgAdviserLibrary as Adviser;
 # models
 use App\Models\EventType;
 use App\Models\PersonalEvent;
+use App\Models\OrganizationGroup;
 use App\Models\OrganizationAdviserGroup;
 
 /**
@@ -81,40 +82,47 @@ class MyEventController extends Controller
      */
     public function store(Request $data)
     {
-      # is the user currently login?
+      # is the user login?
       parent::loginCheck();
 
-      # return home if not an adviser
+      # is the user rank as adivser?
       $this->adviser->isAdviser();
 
-      # is data valid entry?
+      # return to form if the following does not satisfy
+      if ($data->event_type_id == 0) {
+        return back()
+          ->withInput()
+          ->with('status_warning', 'You must chose type of event');
+      }
+      if ($data->semester == '0') {
+        return back()
+          ->withInput()
+          ->with('status_warning', 'You must chose for what semester this event');
+      }
+
+      # is data entry valid?
       $this->adviser->isValid($data);
 
-      # Get data from the submitted entry
-      $event = $data->only([
+      # Get the data from form
+      $request = $data->only(
         "user_id", "title", "description", "venue",
         "date_start", "date_start_time", "date_end", "date_end_time",
         "whole_day", "event_type_id", "category", "semester",
         "notify_via_facebook", "notify_via_twitter", "notify_via_email", "notify_via_sms"
-      ]);
+      );
 
       # Set default date for end date if not given
-      $event['date_end']      = ($event['date_end'] == null) ? $event['date_start'] : $event['date_end'];
-      $event['date_end_time'] = ($event['date_end_time'] == null) ? "00:00" : $event['date_end_time'];
+      $request['date_end']      = ($request['date_end'] == null) ? $request['date_start'] : $request['date_end'];
+      $request['date_end_time'] = ($request['date_end_time'] == null) ? "00:00" : $request['date_end_time'];
 
-      # the user chose a kind of event?
-      if ($event['event_type_id'] == 0) {
-        return back()->withInput()->with('status_warning', "You need to chose type of event");
-      }
+      # Finally create events
+      $result = PersonalEvent::create($request);
 
-      # Finally create event
-      $event = PersonalEvent::create($event);
-
-      # inform the user of what happend
-      if ($event->wasRecentlyCreated) {
-        return back()->with('status', 'Successfuly Saved');
+      # inform the user what happend
+      if ($result->wasRecentlyCreated) {
+        return back()->with('status', 'Successfuly added new event');
       } else {
-        return back()->with('status', "Sorry, there's a problem on saving");
+        return back()->with('status_warning', 'Sorry, we have problem saving the event');
       }
     }
 

@@ -12,9 +12,9 @@
     @include('pages.top-nav')
 
     @if (isset($login_type) and $login_type == 'admin')
-      @include('pages.admin.sidebar')
+        @include('pages.admin.sidebar')
     @elseif (isset($login_type) and $login_type == 'user')
-      @include('pages.users.sidebar')
+        @include('pages.users.sidebar')
     @endif
 
     <section class="content">
@@ -24,16 +24,20 @@
             {{ session('status') }}
           </div>
         @endif
+
         @if (session('status_warning'))
-          <div class="alert alert-warning">
-            {{ session('status_warning') }}
-          </div>
+          <div class="alert alert-warning">{!! session('status_warning') !!}</div>
         @endif
+
+        @if (count($organization) == 0)
+          <div class="alert alert-warning">You cannot create event because your are not an adviser of any organization</div>
+        @endif
+
         <div class="row clearfix">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> CREATE MY EVENT </h2>
+                <h2> NEW EVENTS </h2>
               </div>
               <div class="body">
                 <form class="" id="add-event-form" action="{{ route('org-adviser.my.new.event.submit') }}" method="POST">
@@ -41,9 +45,10 @@
                     <div class="col-sm-8 col-sm-offset-2">
                       {{ csrf_field() }}
                       <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                      <input type="hidden" name="from_calendar" value="1">
                       <div class="form-group form-float form-group">
                         <div class="form-line">
-                          <input type="text" class="form-control" id="title" name="title" placeholder="Name of the event" value="{{ old('title') }}" required="true" autofocus="">
+                          <input type="text" class="form-control" id="title" name="title" placeholder="Title of the event" value="{{ old('title') }}" required autofocus>
                           @if ($errors->has('title'))
                             <span class="help-block"> <strong>{{ $errors->first('title') }}</strong> </span>
                           @endif
@@ -51,7 +56,7 @@
                       </div>
                       <div class="form-group form-float form-group">
                         <div class="form-line">
-                          <textarea rows="4" class="form-control no-resize" id="description" name="description" placeholder="Description of the event" required>{{ old('description') }}</textarea>
+                          <textarea rows="4" class="form-control no-resize" id="description" name="description" required placeholder="Description of the event">{{ old('description') }}</textarea>
                           @if ($errors->has('description'))
                             <span class="help-block"> <strong>{{ $errors->first('description') }}</strong> </span>
                           @endif
@@ -67,7 +72,7 @@
                       </div>
                       <div class="form-group form-float form-group">
                         <div class="form-line">
-                          <input type="text" class="form-control event-datepicker" id="date_start" name="date_start" placeholder="Select Date Start" value="{{ old('date_start') }}" data-dtp="dtp_mR6wO" required>
+                          <input type="text" class="form-control event-datepicker" id="date_start" name="date_start" placeholder="Select Date Start" value="{{ old('date_start') }}" data-dtp="dtp_mR6wO">
                           @if ($errors->has('date_start'))
                             <span class="help-block"> <strong>{{ $errors->first('date_start') }}</strong> </span>
                           @endif
@@ -75,7 +80,7 @@
                       </div>
                       <div class="form-group form-float form-group">
                         <div class="form-line">
-                          <input type="text" class="form-control event-timepicker" id="date_start_time" name="date_start_time" placeholder="Select Time Start" value="{{ old('date_start_time') }}" data-dtp="dtp_Ty5Ak" required>
+                          <input type="text" class="form-control event-timepicker" id="date_start_time" name="date_start_time" placeholder="Select Time Start" value="{{ old('date_start_time') }}" data-dtp="dtp_Ty5Ak">
                           @if ($errors->has('date_start_time'))
                             <span class="help-block"> <strong>{{ $errors->first('date_start_time') }}</strong> </span>
                           @endif
@@ -100,7 +105,7 @@
                       <div class="form-group form-float">
                         <div class="form-line focused">
                           <select class="form-control show-tick" id="whole-day" name="whole_day">
-                            <option value="0">-- Whole day? --</option>
+                            <option value="{{ old('whole_day') == null ? 0 : old('whole_day') }}" id="whole_day-option">-- Whole day? --</option>
                             <option value="1">YES</option>
                             <option value="0">NO</option>
                           </select>
@@ -108,8 +113,8 @@
                       </div>
                       <div class="form-group form-float form-group">
                         <div class="form-line focused">
-                          <select class="form-control show-tick" id="event-type" name="event_type_id">
-                            <option value="0">-- Select type of event--</option>
+                          <select class="form-control show-tick" id="event_type_id" name="event_type_id">
+                            <option value="{{ old('event_type_id') == null ? 0 : old('event_type_id') }}" id="event_type_id-option">-- Select type of event--</option>
                             @foreach ($event_type as $key => $value)
                               <option value="{{ $value->id }}">{{ $value->name }}</option>
                             @endforeach
@@ -118,8 +123,8 @@
                       </div>
                       <div class="form-group form-float form-group">
                         <div class="form-line focused">
-                          <select class="form-control show-tick" id="event-category" name="category">
-                            <option value="0">-- Select audience for this event--</option>
+                          <select class="form-control show-tick" id="category" name="category">
+                            <option value="{{ old('category') == null ? 0 : old('category') }}" id="category-option">-- Select audience for this event --</option>
                             <option value="Public">Public</option>
                             <option value="Private">Private</option>
                           </select>
@@ -128,9 +133,9 @@
                       <div class="form-group form-float form-group" id="form-event-semester">
                         <div class="form-line focused">
                           <select class="form-control show-tick" id="semester" name="semester">
-                            <option value="0">-- Select Semester --</option>
-                            <option value="First Semester">First Semester</option>
-                            <option value="Second Semester">Second Semester</option>
+                            <option value="{{ old('semester') == null ? 0 : old('semester') }}" id="semester-option">-- Select Semester --</option>
+                            <option value="first">First Semester</option>
+                            <option value="second">Second Semester</option>
                           </select>
                         </div>
                       </div>
@@ -203,7 +208,7 @@
   <script src="{{ asset('js/autosize.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/moment.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/app.js') }}?v=0.15" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.16" charset="utf-8"></script>
   <script type="text/javascript">
     $('.event-datepicker').bootstrapMaterialDatePicker({
       format: 'YYYY/MM/DD',

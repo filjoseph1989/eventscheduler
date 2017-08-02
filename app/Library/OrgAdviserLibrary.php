@@ -70,8 +70,8 @@ class OrgAdviserLibrary extends Controller
       'date_end_time'     => 'nullable|date_format:H:i',
       'whole_day'         => 'nullable',
       'event_type_id'     => 'Required',
-      'event_category_id' => 'Required',
-      'organization_id'   => 'Required',
+      'event_category_id' => 'Filled',
+      'organization_id'   => 'Filled',
       'semester'          => 'Required',
     ], $message);
   }
