@@ -28,6 +28,7 @@ class CreateEventsTable extends Migration
             $table->time('date_end_time')->nullable()->default('00:00:00');
             $table->integer('whole_day');
             $table->enum('status', ['upcoming', 'on-going', 'canceled', 'archived'])->default('upcoming');
+            $table->enum('approve_status', ['approved', 'unapproved'])->default('unapproved');
             $table->enum('semester', ['first', 'second']);
             $table->integer('approver_count')->default(0);
             $table->enum('notify_via_twitter', ['on','off'])->default('off');
