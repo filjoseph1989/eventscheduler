@@ -60,4 +60,15 @@ class AdviserJsonController extends Controller
       return Organization::find($data->id);
     }
   }
+
+  /**
+   * Return a single event row
+   *
+   * @param  Request $data
+   * @return json
+   */
+  public function getEventList(Request $data)
+  {
+    return Event::find($data->id);
+  }
 }

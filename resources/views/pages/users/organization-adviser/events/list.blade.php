@@ -53,9 +53,13 @@
                     </thead>
                     <tbody>
                       @foreach ($event as $key => $value)
-                        <tr>
-                          <td>{{ str_limit($value->title, 12) }}</td>
-                          <td>{{ str_limit($value->venue, 12) }}</td>
+                        <tr data-id="{{ $value->id }}">
+                          <td>
+                            <a href="#" class="event-details" data-toggle="modal" data-target="#event-details">{{ str_limit($value->title, 12) }}</a>
+                          </td>
+                          <td>
+                            <a href="#" class="event-details">{{ str_limit($value->venue, 12) }}</a>
+                          </td>
                           <td>{{ ($value->date_start != null) ? date('Y M d', strtotime($value->date_start)) : "" }}</td>
                           <td>{{ $value->date_start_time != null ? date('h:i A', strtotime($value->date_start_time)) : "" }}</td>
                           <td>{{ ($value->date_end != null) ? date('Y M d', strtotime($value->date_end)) : "" }}</td>
@@ -90,26 +94,30 @@
 @endsection
 
 @section('modal')
+  <div class="modal fade" id="event-details" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="event-details-title">Event Details</h4>
+        </div>
+        <div class="modal-body table-responsive" id="event-details-body">
+          <table class="table table-striped">
+            <thead>
+              <th>Details</th>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal"><i class="material-icons">close</i>Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection
 
 @section('footer')
   <script src="{{ asset('js/jquery.slimscroll.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/autosize.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/moment.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/app.js') }}?v=0.16" charset="utf-8"></script>
-  <script type="text/javascript">
-    $('.event-datepicker').bootstrapMaterialDatePicker({
-      format: 'YYYY/MM/DD',
-      clearButton: true,
-      weekStart: 1,
-      time: false
-    });
-    $('.event-timepicker').bootstrapMaterialDatePicker({
-      format: 'HH:mm',
-      clearButton: true,
-      date: false
-    });
-
-  </script>
+  <script src="{{ asset('js/app.js') }}?v=0.17" charset="utf-8"></script>
 @endsection
