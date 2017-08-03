@@ -29,9 +29,35 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    /**
+     * Display the list of event
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
+    public function index($id = null)
     {
-        //
+      # is adviser loggedin?
+      parent::loginCheck();
+
+      # Is the user an adviser?
+      $this->adviser->isAdviser();
+
+      $login_type = "user";
+      if ($id == null) {
+        return view('pages/users/organization-adviser/events/choices', compact(
+          'login_type'
+        ));
+      } else {
+        if ($id != 4) {
+          $eventCategory = EventCategory::find($id);
+          $event         = Event::where('event_category_id', '=', $id)->with('organization')->get();
+          return view('pages/users/organization-adviser/events/list', compact(
+            'login_type', 'eventCategory', 'event'
+          ));
+        } else {
+          return back();
+        }
+      }
     }
 
     /**
@@ -180,6 +206,8 @@ class EventController extends Controller
 
     /**
      * Return the list of event type
+     * ! Depracated
+     *
      * @return
      */
     public function getEventType()
