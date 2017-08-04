@@ -39,6 +39,7 @@ To Do:
     ☐ Events:
       ✔ Create My Events @done(2017-08-03 15:53)
       ☐ Create Events
+        ☐ Use textarea for description
         ☐ Change the semester dropdown into season such (quarter, holidays, christmas) {Enterprise version}
           ☐ customizable by the user
         ☐ Can customize message for notification
