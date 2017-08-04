@@ -69,6 +69,12 @@ class AdviserJsonController extends Controller
    */
   public function getEventList(Request $data)
   {
-    return Event::find($data->id);
+    return Event::where('id', '=', $data->id)
+      ->with('user')
+      ->with('eventType')
+      ->with('eventCategory')
+      ->with('organization')
+      ->get()
+      ->toJson();
   }
 }

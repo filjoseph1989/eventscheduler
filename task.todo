@@ -60,12 +60,13 @@ To Do:
         ✔ Determine if her/she is the adviser of the organization @done(2017-07-23 23:30)
       ☐ List of my events:
         ✔ Display info box @done(2017-08-03 17:41)
-          ☐ Modal for more details
+          ✔ Modal for more details @done(2017-08-04 15:06)
+          ☐ Show the approver of the event
+          ☐ Edit event if the view is the creator
+          ☐ Edit my personal events
+          ☐ Delete event
+          ☐ Add custom message
         ☐ Automatically change the status of the event base on the given date
-        ☐ Edit my events
-        ☐ Edit event if creator
-        ☐ Delete event
-        ☐ Add custom message
         ☐ Set status of my events
           ☐ Set notification functionality
       ☐ Event Profile - A simple card layout wher it shows the event details

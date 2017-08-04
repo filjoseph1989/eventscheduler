@@ -84,5 +84,5 @@
 @endsection
 
 @section('footer')
-  <script src="{{ asset('js/app.js') }}?v=0.17" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.18" charset="utf-8"></script>
 @endsection

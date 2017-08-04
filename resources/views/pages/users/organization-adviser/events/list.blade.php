@@ -49,7 +49,6 @@
                       <th>Organizer</th>
                       <th>Status</th>
                       <th>Approved?</th>
-                      <th>Action</th>
                     </thead>
                     <tbody>
                       @foreach ($event as $key => $value)
@@ -57,9 +56,7 @@
                           <td>
                             <a href="#" class="event-details" data-toggle="modal" data-target="#event-details">{{ str_limit($value->title, 12) }}</a>
                           </td>
-                          <td>
-                            <a href="#" class="event-details">{{ str_limit($value->venue, 12) }}</a>
-                          </td>
+                          <td>{{ str_limit($value->venue, 12) }}</td>
                           <td>{{ ($value->date_start != null) ? date('Y M d', strtotime($value->date_start)) : "" }}</td>
                           <td>{{ $value->date_start_time != null ? date('h:i A', strtotime($value->date_start_time)) : "" }}</td>
                           <td>{{ ($value->date_end != null) ? date('Y M d', strtotime($value->date_end)) : "" }}</td>
@@ -67,7 +64,6 @@
                           <td>{{ $value->organization->name }}</td>
                           <td>{{ $value->status }}</td>
                           <td>{{ $value->approve_status }}</td>
-                          <td>Action</td>
                         </tr>
                       @endforeach
                     </tbody>
@@ -81,7 +77,6 @@
                       <th>Organizer</th>
                       <th>Status</th>
                       <th>Approved?</th>
-                      <th>Action</th>
                     </tfoot>
                   </table>
                 @endif
@@ -119,5 +114,5 @@
 
 @section('footer')
   <script src="{{ asset('js/jquery.slimscroll.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/app.js') }}?v=0.17" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.18" charset="utf-8"></script>
 @endsection
