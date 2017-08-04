@@ -22,14 +22,13 @@ Auth::routes();
 Route::name('change.password')->post('/change/password', 'Auth\ChangePassword@changePassword');
 
 #revalidation of back history
-Route::group(['middleware' => 'revalidate'], function()
-{
+Route::group(['middleware' => 'revalidate'], function() {
   /*
   |--------------------------------------------------------------------------
   | Admin Dashboard Routes
   |--------------------------------------------------------------------------
   */
-  require_once "system_route/admin.php";
+  // require_once "system_route/admin.php";
 
   /*
   |--------------------------------------------------------------------------
@@ -55,4 +54,3 @@ Route::group(['middleware' => 'revalidate'], function()
 */
 Route::name('notify.via.sms')->get('/notify_via_sms', 'smsNotifierController@index');
 Route::name('faceboo.notification')->get('/fb/post', 'HomeController@sendNotification');
-Route::name('simulate')->get('/simulate', 'EventController@simulate');
