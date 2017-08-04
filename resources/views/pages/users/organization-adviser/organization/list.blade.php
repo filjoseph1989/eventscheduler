@@ -26,7 +26,7 @@
                 <h2> LIST OF ORGANIZATION </h2>
               </div>
               <div class="body table-responsive">
-                <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                <table class="table table-striped table-hover js-basic-example dataTable">
                   <thead>
                     <tr>
                       <th>Name</th>

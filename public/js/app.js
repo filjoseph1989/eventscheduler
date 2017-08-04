@@ -54,6 +54,11 @@ $(document).ready(function() {
   }
 });
 
+/**
+ * Manage the event details
+ *
+ * @return void
+ */
 $(document).on('click', '.event-details', function() {
   var url = '/users/org-adviser/get/event';
   var id = $(this).parents('tr').data('id');
@@ -135,6 +140,12 @@ function UpCaseFirst(str) {
   });
 }
 
+/**
+ * Format Date
+ *
+ * @param  {date} date
+ * @return {date}
+ */
 function formatDate(date) {
   var date = date.split('-');
   var monthNames = [
@@ -151,6 +162,12 @@ function formatDate(date) {
   return day + ' ' + monthNames[monthIndex] + ' ' + year;
 }
 
+/**
+ * Format time
+ *
+ * @param  {time} time
+ * @return {time}
+ */
 function formatTime(time) {
   var time = time.split(':');
 

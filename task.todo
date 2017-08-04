@@ -61,6 +61,7 @@ To Do:
       ☐ List of my events:
         ✔ Display info box @done(2017-08-03 17:41)
           ✔ Modal for more details @done(2017-08-04 15:06)
+          ✔ DataTables @done(2017-08-04 15:31)
           ☐ Show the approver of the event
           ☐ Edit event if the view is the creator
           ☐ Edit my personal events

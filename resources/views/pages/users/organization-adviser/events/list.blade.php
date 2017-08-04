@@ -3,6 +3,7 @@
 @section('page-title', 'List Of Event')
 
 @section('style')
+  <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('css/all-themes.css') }}">
 @endsection
 
@@ -38,14 +39,14 @@
                 @if ($event->count() == 0)
                   <p>No entry yet</p>
                 @else
-                  <table class="table table-striped">
+                  <table class="table table-striped table-hover js-basic-example dataTable">
                     <thead>
                       <th>Title</th>
                       <th>Venue</th>
                       <th>Date Start</th>
-                      <th>Time</th>
+                      <th>Time Start</th>
+                      <th>Time End</th>
                       <th>Date End</th>
-                      <th>Time</th>
                       <th>Organizer</th>
                       <th>Status</th>
                       <th>Approved?</th>
@@ -59,8 +60,8 @@
                           <td>{{ str_limit($value->venue, 12) }}</td>
                           <td>{{ ($value->date_start != null) ? date('Y M d', strtotime($value->date_start)) : "" }}</td>
                           <td>{{ $value->date_start_time != null ? date('h:i A', strtotime($value->date_start_time)) : "" }}</td>
-                          <td>{{ ($value->date_end != null) ? date('Y M d', strtotime($value->date_end)) : "" }}</td>
                           <td>{{ $value->date_end_time != null ? date('h:i A', strtotime($value->date_end_time)) : "" }}</td>
+                          <td>{{ ($value->date_end != null) ? date('Y M d', strtotime($value->date_end)) : "" }}</td>
                           <td>{{ $value->organization->name }}</td>
                           <td>{{ $value->status }}</td>
                           <td>{{ $value->approve_status }}</td>
@@ -71,9 +72,9 @@
                       <th>Title</th>
                       <th>Venue</th>
                       <th>Date Start</th>
-                      <th>Time</th>
+                      <th>Time Start</th>
+                      <th>Time End</th>
                       <th>Date End</th>
-                      <th>Time</th>
                       <th>Organizer</th>
                       <th>Status</th>
                       <th>Approved?</th>
@@ -113,6 +114,8 @@
 @endsection
 
 @section('footer')
-  <script src="{{ asset('js/jquery.slimscroll.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/jquery.dataTables.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/dataTables.bootstrap.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/jquery-datatable.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/app.js') }}?v=0.18" charset="utf-8"></script>
 @endsection
