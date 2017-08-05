@@ -8,6 +8,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\RedirectResponse;
 
 class Controller extends BaseController
 {
@@ -22,12 +23,14 @@ class Controller extends BaseController
     {
       # Check if the user is loggedin
       if (! Auth::check()) {
-        return redirect()->route('login');
+        header('Location: '.action('Auth\LoginController@login'));
+        exit;
       }
 
       # Check if login as admin or user
       if (! Auth::guard('web')->check()) {
-        return redirect()->route('login');
+        header('Location: '.action('Auth\LoginController@login'));
+        exit;
       }
     }
 
@@ -39,8 +42,10 @@ class Controller extends BaseController
      */
     public function isOrgAdviser()
     {
-      $user = User::find(Auth::user()->id);
-      return ($user->user_account_id == 2) ? true : false;
+      if (Auth::check()) {
+        $user = User::find(Auth::user()->id);
+        return ($user->user_account_id == 2) ? true : false;
+      }
     }
 
     /**
@@ -51,8 +56,10 @@ class Controller extends BaseController
      */
     public function isOrgHead()
     {
-      $user = User::find(Auth::user()->id);
-      return ($user->user_account_id == 3) ? true : false;
+      if (Auth::check()) {
+        $user = User::find(Auth::user()->id);
+        return ($user->user_account_id == 3) ? true : false;
+      }
     }
 
     /**
@@ -63,8 +70,10 @@ class Controller extends BaseController
      */
     public function isOrgMember()
     {
-      $user = User::find(Auth::user()->id);
-      return ($user->user_account_id == 4) ? true : false;
+      if (Auth::check()) {
+        $user = User::find(Auth::user()->id);
+        return ($user->user_account_id == 4) ? true : false;
+      }
     }
 
     /**
@@ -75,8 +84,10 @@ class Controller extends BaseController
      */
     public function isOrgOsa()
     {
-      $user = User::find(Auth::user()->id);
-      return ($user->user_account_id == 5) ? true : false;
+      if (Auth::check()) {
+        $user = User::find(Auth::user()->id);
+        return ($user->user_account_id == 5) ? true : false;
+      }
     }
 
     /**

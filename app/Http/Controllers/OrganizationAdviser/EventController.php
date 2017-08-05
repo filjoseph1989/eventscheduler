@@ -10,6 +10,7 @@ use App\Library\OrgAdviserLibrary as Adviser;
 # Models
 use App\Models\Event;
 use App\Models\EventType;
+use App\Models\PersonalEvent;
 use App\Models\EventCategory;
 use App\Models\OrganizationGroup;
 use App\Models\OrganizationAdviserGroup;
@@ -24,11 +25,6 @@ class EventController extends Controller
       $this->adviser = new Adviser();
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     /**
      * Display the list of event
      * @param  [type] $id [description]
@@ -53,6 +49,15 @@ class EventController extends Controller
           $event         = Event::where('event_category_id', '=', $id)->with('organization')->get();
           return view('pages/users/organization-adviser/events/list', compact(
             'login_type', 'eventCategory', 'event'
+          ));
+        } elseif ($id == 4) {
+          # Note: Set some event to archive when date is before the current date
+
+          $event = PersonalEvent::where('date_start', '>=', date('m'))
+            ->where('user_id', '=', Auth::user()->id)
+            ->get();
+          return view('pages/users/organization-adviser/events/mylist', compact(
+            'login_type', 'event'
           ));
         } else {
           return back();

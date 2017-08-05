@@ -11,6 +11,7 @@ use App\Models\Event;
 use App\Models\EventType;
 use App\Models\Organization;
 use App\Models\EventCategory;
+use App\Models\PersonalEvent;
 
 class AdviserJsonController extends Controller
 {
@@ -74,6 +75,20 @@ class AdviserJsonController extends Controller
       ->with('eventType')
       ->with('eventCategory')
       ->with('organization')
+      ->get()
+      ->toJson();
+  }
+
+  /**
+   * Return a row of personal event
+   *
+   * @param  Request $data
+   * @return json
+   */
+  public function getPersonalEvent(Request $data)
+  {
+    return PersonalEvent::where('id', '=', $data->id)
+      ->with('eventType')
       ->get()
       ->toJson();
   }

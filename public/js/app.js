@@ -60,21 +60,13 @@ $(document).ready(function() {
  * @return void
  */
 $(document).on('click', '.event-details', function() {
-  var url = '/users/org-adviser/get/event';
-  var id = $(this).parents('tr').data('id');
+  var url  = '/users/org-adviser/get/event';
+  var id   = $(this).parents('tr').data('id');
   var html = "";
 
   getData(url, id, function(data) {
-    data                     = data[0];
-    data.whole_day           = data.whole_day     == 0 ? "No":       "Yes";
-    data.status              = UpCaseFirst(data.status);
-    data.approve_status      = UpCaseFirst(data.approve_status);
-    data.semester            = UpCaseFirst(data.semester);
-    data.event_category.name = UpCaseFirst(data.event_category.name);
-    data.date_start          = formatDate(data.date_start);
-    data.date_start_time     = formatTime(data.date_start_time);
-    data.date_end            = data.date_end      == undefined ? "": formatDate(data.date_end);
-    data.date_end_time       = data.date_end_time == undefined ? "": formatTime(data.date_end_time);
+    data = data[0];
+    data = editEventData(data);
 
     html =
     "<tr><td>Title</td><td>" + data.title + "</td></tr>" +
@@ -91,14 +83,41 @@ $(document).on('click', '.event-details', function() {
     "<tr><td>Whole Day?</td><td>" + data.whole_day + "</td></tr>" +
     "<tr><td>Event Status</td><td>" + data.status + "</td></tr>" +
     "<tr><td>Approve?</td><td>" + data.approve_status + "</td></tr>" +
-    "<tr><td>Semester</td><td>" + data.semester + " Semester</td></tr>" +
-    "<tr><td>Twitter Notification</td><td>" + data.notify_via_twitter + "</td></tr>" +
-    "<tr><td>Facebook Notification</td><td>" + data.notify_via_facebook + "</td></tr>" +
-    "<tr><td>SMS Notification</td><td>" + data.notify_via_sms + "</td></tr>" +
-    "<tr><td>Email Notification</td><td>" + data.notify_via_email + "</td></tr>";
+    "<tr><td>Semester</td><td>" + data.semester + " Semester</td></tr>";
     $('#event-details-body tbody').html(html);
   });
 });
+
+$(document).on('click', '.my-event-details', function() {
+  var url  = '/users/org-adviser/get/personal/event';
+  var id   = $(this).parents('tr').data('id');
+  var html = "";
+
+
+  getData(url, id, function(data) {
+    data = data[0];
+    data = editEventData(data);
+
+    html =
+    "<tr><td>Title:</td><td>"+data.title+"</td></tr>" +
+    "<tr><td>Description:</td><td>" + data.description + "</td></tr>" +
+    "<tr><td>Venue:</td><td>" + data.venue + "</td></tr>" +
+    "<tr><td>Whole Day?</td><td>" + data.whole_day + "</td></tr>" +
+    "<tr><td>Date Start:</td><td>" + data.date_start + "</td></tr>" +
+    "<tr><td>Time Start:</td><td>" + data.date_start_time + "</td></tr>" +
+    "<tr><td>Date End:</td><td>" + data.date_end + "</td></tr>" +
+    "<tr><td>Time End:</td><td>" + data.date_end_time + "</td></tr>" +
+    "<tr><td>Category:</td><td>" + data.category + "</td></tr>" +
+    "<tr><td>Event Type:</td><td>" + data.event_type.name + "</td></tr>" +
+    "<tr><td>Semester:</td><td>" + data.semester + " Semester</td></tr>" +
+    "<tr><td>Status:</td><td>" + data.status + "</td></tr>" +
+    "<tr><td>Email Message: </td><td>" + data.additional_msg_email + "</td></tr>" +
+    "<tr><td>Facebook Message: </td><td>" + data.additional_msg_facebook + "</td></tr>" +
+    "<tr><td>SMS message:</td><td>" + data.additional_msg_sms + "</td></tr>";
+
+    $('#event-details-body tbody').html(html);
+  });
+})
 
 /**
  * Get specific rows from the given ID
@@ -180,4 +199,35 @@ function formatTime(time) {
   var min = time[1];
 
   return hour + ":" + min + " " + unit;
+}
+
+/**
+ * Modify some information regarding the event
+ *
+ * @param  {object} data
+ * @return {object}
+ */
+function editEventData(data) {
+  data.whole_day               = data.whole_day == 0 ? "No" : "Yes";
+  data.status                  = UpCaseFirst(data.status);
+  data.semester                = UpCaseFirst(data.semester);
+  data.date_start              = formatDate(data.date_start);
+  data.date_start_time         = formatTime(data.date_start_time);
+  data.date_end                = data.date_end == undefined ? "" : formatDate(data.date_end);
+  data.date_end_time           = data.date_end_time == undefined ? "" : formatTime(data.date_end_time);
+  data.additional_msg_email    = data.additional_msg_email == undefined ? "" : data.additional_msg_email;
+  data.additional_msg_facebook = data.additional_msg_facebook == undefined ? "" : data.additional_msg_facebook;
+  data.additional_msg_sms      = data.additional_msg_sms == undefined ? "" : data.additional_msg_sms;
+
+  if (data.approve_status != undefined) {
+    data.approve_status = UpCaseFirst(data.approve_status);
+  }
+  if (data.event_category != undefined) {
+    data.event_category.name = UpCaseFirst(data.event_category.name);
+  }
+  if (data.event_type != undefined) {
+    data.event_type.name = UpCaseFirst(data.event_type.name);
+  }
+
+  return data;
 }

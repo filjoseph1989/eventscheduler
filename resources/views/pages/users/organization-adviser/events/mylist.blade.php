@@ -33,7 +33,7 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> LIST OF <strong>{{ strtoupper($eventCategory->name) }}</strong> EVENTS </h2>
+                <h2> LIST OF MY EVENTS </h2>
               </div>
               <div class="body table-responsive">
                 @if ($event->count() == 0)
@@ -47,24 +47,20 @@
                       <th>Time Start</th>
                       <th>Time End</th>
                       <th>Date End</th>
-                      <th>Organizer</th>
                       <th>Status</th>
-                      <th>Approved?</th>
                     </thead>
                     <tbody>
                       @foreach ($event as $key => $value)
                         <tr data-id="{{ $value->id }}">
                           <td>
-                            <a href="#" class="event-details" data-toggle="modal" data-target="#event-details">{{ str_limit($value->title, 12) }}</a>
+                            <a href="#" class="my-event-details" data-toggle="modal" data-target="#event-details">{{ str_limit($value->title, 15) }}</a>
                           </td>
-                          <td>{{ str_limit($value->venue, 12) }}</td>
-                          <td>{{ ($value->date_start != null) ? date('Y M d', strtotime($value->date_start)) : "" }}</td>
-                          <td>{{ $value->date_start_time != null ? date('h:i A', strtotime($value->date_start_time)) : "" }}</td>
-                          <td>{{ $value->date_end_time != null ? date('h:i A', strtotime($value->date_end_time)) : "" }}</td>
-                          <td>{{ ($value->date_end != null) ? date('Y M d', strtotime($value->date_end)) : "" }}</td>
-                          <td>{{ $value->organization->name }}</td>
-                          <td>{{ $value->status }}</td>
-                          <td>{{ $value->approve_status }}</td>
+                          <td>{{ $value->venue }}</td>
+                          <td>{{ date('Y M d', strtotime($value->date_start)) }}</td>
+                          <td>{{ date('h:s A', strtotime($value->date_start_time)) }}</td>
+                          <td>{{ ($value->date_end_time == null) ? "" : date('h:s A', strtotime($value->date_end_time)) }}</td>
+                          <td>{{ ($value->date_end == null) ? "" : date('Y M d', strtotime($value->date_end)) }}</td>
+                          <td>{{ ucfirst($value->status) }}</td>
                         </tr>
                       @endforeach
                     </tbody>
@@ -75,9 +71,7 @@
                       <th>Time Start</th>
                       <th>Time End</th>
                       <th>Date End</th>
-                      <th>Organizer</th>
                       <th>Status</th>
-                      <th>Approved?</th>
                     </tfoot>
                   </table>
                 @endif
@@ -99,7 +93,8 @@
         </div>
         <div class="modal-body table-responsive" id="event-details-body">
           <table class="table table-striped">
-            <tbody></tbody>
+            <tbody>
+            </tbody>
           </table>
         </div>
         <div class="modal-footer">
