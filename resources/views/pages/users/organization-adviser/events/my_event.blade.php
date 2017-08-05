@@ -29,10 +29,6 @@
           <div class="alert alert-warning">{!! session('status_warning') !!}</div>
         @endif
 
-        @if (count($organization) == 0)
-          <div class="alert alert-warning">You cannot create event because your are not an adviser of any organization</div>
-        @endif
-
         <div class="row clearfix">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">

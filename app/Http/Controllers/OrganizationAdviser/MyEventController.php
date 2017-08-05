@@ -61,16 +61,11 @@ class MyEventController extends Controller
       # return home if not an organization adviser
       $this->adviser->isAdviser();
 
-      $login_type   = 'user';
-      $event_type   = EventType::all();
-      $organization = OrganizationAdviserGroup::with('organization')
-        ->where('organization_adviser_groups.user_id', '=', Auth::user()->id)
-        ->get();
+      $login_type = 'user';
+      $event_type = EventType::all();
 
       return view('pages/users/organization-adviser/events/my_event', compact(
-        'login_type',
-        'event_type',
-        'organization'
+        'login_type', 'event_type'
       ));
     }
 
