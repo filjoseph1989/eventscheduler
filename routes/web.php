@@ -18,11 +18,16 @@ Route::get('/', function () {
 | Authentication Routes
 |--------------------------------------------------------------------------
 */
-Auth::routes();
-Route::name('change.password')->post('/change/password', 'Auth\ChangePassword@changePassword');
 
 #revalidation of back history
 Route::group(['middleware' => 'revalidate'], function() {
+  /*
+  |--------------------------------------------------------------------------
+  | Authentication route
+  |--------------------------------------------------------------------------
+  */
+  Auth::routes();
+  Route::name('change.password')->post('/change/password', 'Auth\ChangePassword@changePassword');
   /*
   |--------------------------------------------------------------------------
   | Admin Dashboard Routes
