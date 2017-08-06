@@ -96,11 +96,21 @@ class AdviserJsonController extends Controller
   /**
    * Update the personal event
    *
-   * @return object
+   * @return void
    */
   public function updatePersonalEvent(Request $data)
   {
-    $result = PersonalEvent::find($data->id)->update([$data->name => $data->value]);
-    var_dump($result);
+    PersonalEvent::find($data->id)->update([$data->name => $data->value]);
+  }
+
+  /**
+   * Update the organization event
+   *
+   * @param  Request $data
+   * @return void
+   */
+  public function updateEvent(Request $data)
+  {
+    Event::find($data->id)->update([$data->name => $data->value]);
   }
 }

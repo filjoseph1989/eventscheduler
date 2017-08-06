@@ -63,10 +63,22 @@ To Do:
         ✔ List with DataTables @done(2017-08-04 15:31)
           ✔ Modal for more details @done(2017-08-04 15:06)
           ✔ Upcoming events @done(2017-08-05 17:24)
-          ☐ Edit event if the view is the creator
-          ☐ Edit my personal events
+          ✔ Edit my personal events @done(2017-08-06 23:43)
+            ☐ Time should be valid format when editing
+            ☐ Remove PM|AM unit when editing
+            ☐ Validate the input
+            ☐ Should have an indication what happend after the event in updated
+            ☐ What to do to update event type?
+            ☐ When closing the modal, update the table
+            ☐ Add custom message
+          ✔ Edit event of the organization @done(2017-08-07 00:13)
+            ☐ Edit event if the view is the creator
+            ☐ Should edit the user - is it the current loggedin automatically the assign user|creator of the event?
+              ☐ This current loggedin user should not be allowed to update other event not he owned
+            ☐ How to get the of organization the current user belong?
+            ☐ When closing the modal, update the table
+            ☐ Add custom message
           ☐ Delete event when not yet reach the date_start
-          ☐ Add custom message
           ☐ Show the approver of the event
         ☐ Archive events
         ☐ Automatically change the status of the event base on the given date

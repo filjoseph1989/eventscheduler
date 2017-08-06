@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page-title', 'List Of Event')
+@section('page-title', 'list my of events')
 
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.css') }}">
@@ -91,7 +91,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h4 class="modal-title" id="event-details-title">Event Details</h4>
         </div>
-        <div class="modal-body table-responsive" id="event-details-body">
+        <div class="modal-body table-responsive event-table" id="my-event-details-body">
           <table class="table table-striped" id="mainTable">
             <tbody>&nbsp;</tbody>
           </table>

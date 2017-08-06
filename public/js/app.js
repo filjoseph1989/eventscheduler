@@ -69,21 +69,21 @@ $(document).on('click', '.event-details', function() {
     data = editEventData(data);
 
     html =
-    "<tr><td>Title</td><td>" + data.title + "</td></tr>" +
-    "<tr><td>Description</td><td>" + data.description + "</td></tr>" +
-    "<tr><td>Event Creator</td><td>" + data.user.first_name + " " + data.user.last_name + "</td></tr>" +
-    "<tr><td>Event Organizer</td><td>" + data.organization.name + "</td></tr>" +
-    "<tr><td>Venue</td><td>" + data.venue + "</td></tr>" +
-    "<tr><td>Date Start</td><td>" + data.date_start + "</td></tr>" +
-    "<tr><td>Time Start</td><td>" + data.date_start_time + "</td></tr>" +
-    "<tr><td>Date End</td><td>" + data.date_end + "</td></tr>" +
-    "<tr><td>Time End</td><td>" + data.date_end_time + "</td></tr>" +
-    "<tr><td>Event Type</td><td>" + data.event_type.name + "</td></tr>" +
-    "<tr><td>Event Category</td><td>" + data.event_category.name + "</td></tr>" +
-    "<tr><td>Whole Day?</td><td>" + data.whole_day + "</td></tr>" +
-    "<tr><td>Event Status</td><td>" + data.status + "</td></tr>" +
-    "<tr><td>Approve?</td><td>" + data.approve_status + "</td></tr>" +
-    "<tr><td>Semester</td><td>" + data.semester + " Semester</td></tr>";
+    "<tr><td>Title</td><td data-name='title' data-event-id='"+id+"'>" + data.title + "</td></tr>" +
+    "<tr><td>Description</td><td data-name='description' data-event-id='"+id+"'>" + data.description + "</td></tr>" +
+    "<tr><td>Event Creator</td><td data-name='user_id' data-user-id='"+data.user.id+"' data-event-id='"+id+"'>" + data.user.first_name + " " + data.user.last_name + "</td></tr>" +
+    "<tr><td>Event Organizer</td><td data-name='organization_id' data-user-id='"+data.user.id+"' data-event-id='"+id+"'>" + data.organization.name + "</td></tr>" +
+    "<tr><td>Venue</td><td data-name='vanue' data-event-id='"+id+"'>" + data.venue + "</td></tr>" +
+    "<tr><td>Date Start</td><td data-name='date_start' data-event-id='"+id+"'>" + data.date_start + "</td></tr>" +
+    "<tr><td>Time Start</td><td data-name='date_start_time' data-event-id='"+id+"'>" + data.date_start_time + "</td></tr>" +
+    "<tr><td>Date End</td><td data-name='date_end' data-event-id='"+id+"'>" + data.date_end + "</td></tr>" +
+    "<tr><td>Time End</td><td data-name='date_end_time' data-event-id='"+id+"'>" + data.date_end_time + "</td></tr>" +
+    "<tr><td>Event Type</td><td data-name='event_type_id' data-event-id='"+id+"'>" + data.event_type.name + "</td></tr>" +
+    "<tr><td>Event Category</td><td data-name='event_category_id' data-event-id='"+id+"'>" + data.event_category.name + "</td></tr>" +
+    "<tr><td>Whole Day?</td><td data-name='whole_day' data-event-id='"+id+"'>" + data.whole_day + "</td></tr>" +
+    "<tr><td>Event Status</td><td data-name='status' data-event-id='"+id+"'>" + data.status + "</td></tr>" +
+    "<tr><td>Approve?</td><td data-name='approve' data-event-id='"+id+"'>" + data.approve_status + "</td></tr>" +
+    "<tr><td>Semester</td><td data-name='semester' data-event-id='"+id+"'>" + data.semester + " Semester</td></tr>";
     $('#event-details-body tbody').html(html);
   });
 });
@@ -120,19 +120,24 @@ $(document).on('click', '.my-event-details', function() {
     "<tr><td>Facebook Message: </td><td data-name='additional_msg_facebook'"+attributes+">" + data.additional_msg_facebook + "</td></tr>" +
     "<tr><td>SMS message:</td><td data-name='additional_msg_sms'"+attributes+">" + data.additional_msg_sms + "</td></tr>";
 
-    $('#event-details-body tbody').html(html);
+    $('#my-event-details-body tbody').html(html);
   });
 
 })
 
 /* To make the table editable */
-$(document).on('click', '#event-details-body tbody td', function() {
+$(document).on('click', '.event-table tbody td', function() {
   $('#mainTable').editableTableWidget();
 });
 
-$(document).on('change', '#event-details-body tbody td', function(evt, newValue) {
-  console.log(evt);
-  console.log(newValue);
+/**
+ * Updathe personal event
+ *
+ * @param  {object} evt
+ * @param  {mixed} newValue
+ * @return {void}
+ */
+$(document).on('change', '#my-event-details-body tbody td', function(evt, newValue) {
   var name = $(this).data('name');
   var id = $(this).data('event-id');
 
@@ -141,6 +146,29 @@ $(document).on('change', '#event-details-body tbody td', function(evt, newValue)
   }
 
   url = '/users/org-adviser/update/personal/event';
+
+  updateData(url, id, name, newValue, function(data) {
+    //
+  })
+
+});
+
+/**
+ * Update organization event
+ *
+ * @param  {object} evt
+ * @param  {mixed} newValue
+ * @return {void}
+ */
+$(document).on('change', '#event-details-body tbody td', function(evt, newValue) {
+  var name = $(this).data('name');
+  var id = $(this).data('event-id');
+
+  if (name == 'event_type') {
+    var event_id = $(this).data('event-type-id');
+  }
+
+  url = '/users/org-adviser/update/event';
 
   updateData(url, id, name, newValue, function(data) {
     //
@@ -176,6 +204,15 @@ function getData(url, id, callback) {
   });
 }
 
+/**
+ * Update the event
+ * @param  {string}  url
+ * @param  {int} id
+ * @param  {string} name
+ * @param  {mixed} value
+ * @param  {Function} callback
+ * @return {void}
+ */
 function updateData(url, id, name, value, callback) {
   $.ajax({
     type: 'POST',

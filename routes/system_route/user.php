@@ -38,6 +38,7 @@ Route::prefix('users')->group(function() {
     Route::name('ajax.get.event.list')->post('/get/event', 'OrganizationAdviser\AdviserJsonController@getEventList');
     Route::name('ajax.get.event.personal.list')->post('/get/personal/event', 'OrganizationAdviser\AdviserJsonController@getPersonalEvent');
     Route::name('ajax.update.event.personal.list')->post('/update/personal/event', 'OrganizationAdviser\AdviserJsonController@updatePersonalEvent');
+    Route::name('ajax.update.event.list')->post('/update/event', 'OrganizationAdviser\AdviserJsonController@updateEvent');
   });
 
   # Attendance
