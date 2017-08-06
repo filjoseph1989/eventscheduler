@@ -114,5 +114,5 @@
   <script src="{{ asset('js/jquery.dataTables.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/dataTables.bootstrap.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/jquery-datatable.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/app.js') }}?v=0.19" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.20" charset="utf-8"></script>
 @endsection

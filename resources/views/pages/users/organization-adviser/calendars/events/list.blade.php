@@ -314,7 +314,7 @@
   <script src="{{ asset('js/autosize.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/moment.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/app.js') }}?v=0.19" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.20" charset="utf-8"></script>
   <script type="text/javascript">
   /**
    * If the user click on the input that has class
