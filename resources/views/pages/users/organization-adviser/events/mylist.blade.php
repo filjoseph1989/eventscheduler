@@ -92,9 +92,8 @@
           <h4 class="modal-title" id="event-details-title">Event Details</h4>
         </div>
         <div class="modal-body table-responsive" id="event-details-body">
-          <table class="table table-striped">
-            <tbody>
-            </tbody>
+          <table class="table table-striped" id="mainTable">
+            <tbody>&nbsp;</tbody>
           </table>
         </div>
         <div class="modal-footer">
@@ -107,7 +106,8 @@
 
 @section('footer')
   <script src="{{ asset('js/jquery.dataTables.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/mindmup-editabletable.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/dataTables.bootstrap.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/jquery-datatable.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/app.js') }}?v=0.19" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.20" charset="utf-8"></script>
 @endsection

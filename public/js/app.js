@@ -88,6 +88,10 @@ $(document).on('click', '.event-details', function() {
   });
 });
 
+/**
+ * Reruen table row of personal event
+ * @return {[type]} [description]
+ */
 $(document).on('click', '.my-event-details', function() {
   var url  = '/users/org-adviser/get/personal/event';
   var id   = $(this).parents('tr').data('id');
@@ -97,27 +101,52 @@ $(document).on('click', '.my-event-details', function() {
   getData(url, id, function(data) {
     data = data[0];
     data = editEventData(data);
+    var attributes = ' data-event-id="'+id+'"';
 
     html =
-    "<tr><td>Title:</td><td>"+data.title+"</td></tr>" +
-    "<tr><td>Description:</td><td>" + data.description + "</td></tr>" +
-    "<tr><td>Venue:</td><td>" + data.venue + "</td></tr>" +
-    "<tr><td>Whole Day?</td><td>" + data.whole_day + "</td></tr>" +
-    "<tr><td>Date Start:</td><td>" + data.date_start + "</td></tr>" +
-    "<tr><td>Time Start:</td><td>" + data.date_start_time + "</td></tr>" +
-    "<tr><td>Date End:</td><td>" + data.date_end + "</td></tr>" +
-    "<tr><td>Time End:</td><td>" + data.date_end_time + "</td></tr>" +
-    "<tr><td>Category:</td><td>" + data.category + "</td></tr>" +
-    "<tr><td>Event Type:</td><td>" + data.event_type.name + "</td></tr>" +
-    "<tr><td>Semester:</td><td>" + data.semester + " Semester</td></tr>" +
-    "<tr><td>Status:</td><td>" + data.status + "</td></tr>" +
-    "<tr><td>Email Message: </td><td>" + data.additional_msg_email + "</td></tr>" +
-    "<tr><td>Facebook Message: </td><td>" + data.additional_msg_facebook + "</td></tr>" +
-    "<tr><td>SMS message:</td><td>" + data.additional_msg_sms + "</td></tr>";
+    "<tr><td>Title:</td><td data-name='title'"+attributes+">"+data.title+"</td></tr>" +
+    "<tr><td>Description:</td><td data-name='description'"+attributes+">" + data.description + "</td></tr>" +
+    "<tr><td>Venue:</td><td data-name='venue'"+attributes+">" + data.venue + "</td></tr>" +
+    "<tr><td>Whole Day?</td><td data-name='whole_day'"+attributes+">" + data.whole_day + "</td></tr>" +
+    "<tr><td>Date Start:</td><td data-name='date_start'"+attributes+">" + data.date_start + "</td></tr>" +
+    "<tr><td>Time Start:</td><td data-name='date_start_time'"+attributes+">" + data.date_start_time + "</td></tr>" +
+    "<tr><td>Date End:</td><td data-name='date_end'"+attributes+">" + data.date_end + "</td></tr>" +
+    "<tr><td>Time End:</td><td data-name='date_end_time'"+attributes+">" + data.date_end_time + "</td></tr>" +
+    "<tr><td>Category:</td><td data-name='category'"+attributes+">" + data.category + "</td></tr>" +
+    "<tr><td>Event Type:</td><td date-event-type-id='"+data.event_type.id+"' data-name='event_type'"+attributes+">" + data.event_type.name + "</td></tr>" +
+    "<tr><td>Semester:</td><td data-name='semester'"+attributes+">" + data.semester + " Semester</td></tr>" +
+    "<tr><td>Status:</td><td data-name='status'"+attributes+">" + data.status + "</td></tr>" +
+    "<tr><td>Email Message: </td><td data-name='additional_msg_email'"+attributes+">" + data.additional_msg_email + "</td></tr>" +
+    "<tr><td>Facebook Message: </td><td data-name='additional_msg_facebook'"+attributes+">" + data.additional_msg_facebook + "</td></tr>" +
+    "<tr><td>SMS message:</td><td data-name='additional_msg_sms'"+attributes+">" + data.additional_msg_sms + "</td></tr>";
 
     $('#event-details-body tbody').html(html);
   });
+
 })
+
+/* To make the table editable */
+$(document).on('click', '#event-details-body tbody td', function() {
+  $('#mainTable').editableTableWidget();
+});
+
+$(document).on('change', '#event-details-body tbody td', function(evt, newValue) {
+  console.log(evt);
+  console.log(newValue);
+  var name = $(this).data('name');
+  var id = $(this).data('event-id');
+
+  if (name == 'event_type') {
+    var event_id = $(this).data('event-type-id');
+  }
+
+  url = '/users/org-adviser/update/personal/event';
+
+  updateData(url, id, name, newValue, function(data) {
+    //
+  })
+
+});
 
 /**
  * Get specific rows from the given ID
@@ -133,6 +162,28 @@ function getData(url, id, callback) {
     url: url,
     data: {
       id: id
+    },
+    dataType: 'json',
+    beforeSend: function(request) {
+      request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
+    },
+    success: function(data) {
+      callback(data);
+    },
+    error: function(data) {
+      console.log('Error:');
+    }
+  });
+}
+
+function updateData(url, id, name, value, callback) {
+  $.ajax({
+    type: 'POST',
+    url: url,
+    data: {
+      id: id,
+      name: name,
+      value: value
     },
     dataType: 'json',
     beforeSend: function(request) {

@@ -51,7 +51,8 @@ class EventController extends Controller
             'login_type', 'eventCategory', 'event'
           ));
         } elseif ($id == 4) {
-          # Note: Set some event to archive when date is before the current date
+          # Issue: 45
+          #  Note: Set some event to archive when date is before the current date
 
           $event = PersonalEvent::where('date_start', '>=', date('m'))
             ->where('user_id', '=', Auth::user()->id)

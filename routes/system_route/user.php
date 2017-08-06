@@ -8,12 +8,6 @@ Route::prefix('users')->group(function() {
   # Include other routing in "routes\system_route\user\user-sub.php"
   require_once 'user/user-sub.php';
 
-  # Attendance
-  // Route::prefix('attendance')->group(function() {
-  //   Route::name('attendance')->get('/new/{id}/{eid}', 'OrganizationHead\ManageSchedule\GenerateAttendanceController@index');
-  //   Route::name('attendance.store')->post('/store', 'OrganizationHead\ManageSchedule\GenerateAttendanceController@store');
-  // });
-
   # Route for organization adviser
   Route::prefix('org-adviser')->group(function() {
     Route::name('org.adviser.org-list')->get('/list_of_organizations','OrganizationAdviser\OrganizationController@index');
@@ -21,6 +15,10 @@ Route::prefix('users')->group(function() {
     Route::name('org-adviser.org-profile')->get('/profile/{id}', 'OrganizationAdviser\OrganizationController@show');
     Route::name('org-adviser.org-logo')->post('/change-logo', 'OrganizationAdviser\OrganizationController@uploadLogo');
     Route::name('org-adviser.org-membership')->post('/org-membership', 'OrganizationAdviser\OrganizationGroupController@store');
+    Route::name('org-adviser.my.new.event')->get('/my/new/event', 'OrganizationAdviser\MyEventController@create');
+    Route::name('org-adviser.my.new.event.submit')->post('/store/new', 'OrganizationAdviser\MyEventController@store');
+    Route::name('org-adviser.event.new')->get('/new', 'OrganizationAdviser\EventController@create');
+    Route::name('org-adviser.event.new')->post('/new', 'OrganizationAdviser\EventController@store');
     // Route::name('org-adviser.org-edit')->get('/edit-org/{id}', 'OrganizationAdviser\OrganizationController@edit');
     // Route::name('org-adviser.org-update')->post('/update-org', 'OrganizationAdviser\OrganizationController@update');
     // Route::name('org-adviser.calendar')->get('/calendar/{id}', 'OrganizationAdviser\ManageSchedule\CalendarController@myOrgCalendar');
@@ -31,10 +29,6 @@ Route::prefix('users')->group(function() {
     // Route::name('org-adviser.event.within')->get('/get/within', 'OrganizationAdviser\EventController@getEventListWithin');
     // Route::name('org-adviser.event.among')->get('/get/among', 'OrganizationAdviser\EventController@getEventListAmong');
     // Route::name('org-adviser.event.own')->get('/get/own', 'OrganizationAdviser\EventController@getEventListOwn');
-    Route::name('org-adviser.my.new.event')->get('/my/new/event', 'OrganizationAdviser\MyEventController@create');
-    Route::name('org-adviser.my.new.event.submit')->post('/store/new', 'OrganizationAdviser\MyEventController@store');
-    Route::name('org-adviser.event.new')->get('/new', 'OrganizationAdviser\EventController@create');
-    Route::name('org-adviser.event.new')->post('/new', 'OrganizationAdviser\EventController@store');
     // Route::name('event.gets')->post('/event/gets', 'OrganizationAdviser\EventController@getEventOfTheMonth');
 
     # Issue 44: This part can be improve by creating a method that accept id and model name
@@ -43,7 +37,14 @@ Route::prefix('users')->group(function() {
     Route::name('ajax.get.organization')->post('/get/organization', 'OrganizationAdviser\AdviserJsonController@getOrganization');
     Route::name('ajax.get.event.list')->post('/get/event', 'OrganizationAdviser\AdviserJsonController@getEventList');
     Route::name('ajax.get.event.personal.list')->post('/get/personal/event', 'OrganizationAdviser\AdviserJsonController@getPersonalEvent');
+    Route::name('ajax.update.event.personal.list')->post('/update/personal/event', 'OrganizationAdviser\AdviserJsonController@updatePersonalEvent');
   });
+
+  # Attendance
+  // Route::prefix('attendance')->group(function() {
+  //   Route::name('attendance')->get('/new/{id}/{eid}', 'OrganizationHead\ManageSchedule\GenerateAttendanceController@index');
+  //   Route::name('attendance.store')->post('/store', 'OrganizationHead\ManageSchedule\GenerateAttendanceController@store');
+  // });
 
   # Route for organization head
   // Route::prefix('org-head')->group(function() {

@@ -92,4 +92,15 @@ class AdviserJsonController extends Controller
       ->get()
       ->toJson();
   }
+
+  /**
+   * Update the personal event
+   *
+   * @return object
+   */
+  public function updatePersonalEvent(Request $data)
+  {
+    $result = PersonalEvent::find($data->id)->update([$data->name => $data->value]);
+    var_dump($result);
+  }
 }

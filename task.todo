@@ -60,21 +60,20 @@ To Do:
         ✔ Determine if her/she is the adviser of the organization @done(2017-07-23 23:30)
       ☐ List of my events:
         ✔ Display info box @done(2017-08-03 17:41)
+        ✔ List with DataTables @done(2017-08-04 15:31)
           ✔ Modal for more details @done(2017-08-04 15:06)
-          ✔ DataTables @done(2017-08-04 15:31)
           ✔ Upcoming events @done(2017-08-05 17:24)
-          ☐ Archive events
           ☐ Edit event if the view is the creator
           ☐ Edit my personal events
           ☐ Delete event when not yet reach the date_start
           ☐ Add custom message
           ☐ Show the approver of the event
+        ☐ Archive events
         ☐ Automatically change the status of the event base on the given date
         ☐ Set status of my events
           ☐ if the status changed, Set notification functionality
-      ✔ Event Profile - A simple card layout wher it shows the event details @done(2017-08-05 17:18)
-      ☐ All events within a calendar - Just display the calendar to view all events
-      ☐ All events within a Personal calendar - Just display the calendar to view all events in personal calendar
+      ☐ Approve events
+      ☐ Calendar of events
       ☐ Notification:
         ☐ Facebook
         ☐ Twitter
