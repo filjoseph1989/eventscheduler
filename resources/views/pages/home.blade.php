@@ -23,6 +23,10 @@
         <h2>WELCOME <span class="font-10">{{ Auth::user()->first_name }}</span></h2>
       </div>
 
+      @if (session('status_warning'))
+        <div class="alert alert-warning">{{ session('status_warning') }}</div>
+      @endif
+
       @component( session('info_box') )
       @endcomponent
     </div>

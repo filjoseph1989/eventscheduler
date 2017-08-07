@@ -275,6 +275,9 @@ class EventController extends Controller
    * Return the list of events that the organization head's
    * approval
    *
+   * ! Deprecated
+   * Please use ApproverLibrary@getGetEventsNeedApproval
+   *
    * @return
    */
   private function getGetEventsNeedApproval()

@@ -21,6 +21,7 @@ class Event extends Model
    * @var array
    */
   protected $dates = ['deleted_at'];
+
   protected $fillable = [
     'event_type_id',
     'event_category_id',

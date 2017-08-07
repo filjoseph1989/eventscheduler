@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Library\OrgAdviserLibrary as Adviser;
+use App\Library\ApproverLibrary;
 
 # Models
 use App\Models\Event;
@@ -211,27 +212,29 @@ class EventController extends Controller
     }
 
     /**
-     * Return the list of event type
-     * ! Depracated
-     *
-     * @return
+     * Approve events
+     * @return [type] [description]
      */
-    public function getEventType()
+    public function approveEvents()
     {
-      # is the user loggedin?
+      # Check the authentication of this account
       parent::loginCheck();
 
+      # Check if user is an adviser
       $this->adviser->isAdviser();
 
-      # is the user an adviser?
-      $login_type     = 'user';
-      $event_category = EventCategory::all();
+      # Check if the account is an approver
+      if (parent::isApprover()) {
+        $login_type = 'user';
 
-      # Render table of event category
-      return view('pages/users/organization-adviser/calendars/events/category', compact(
-        'login_type',
-        'event_category'
-      ));
+        $ev = ApproverLibrary::getGetEventsNeedApproval();
+
+        return view('pages/users/organization-adviser/events/approve-events', compact(
+          'login_type','ev'
+        ));
+      } else {
+        return back()->with('status_warning', "Sorry, that page is for approver only");
+      }
     }
 
     /**

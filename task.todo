@@ -72,6 +72,7 @@ To Do:
             ☐ When closing the modal, update the table
             ☐ Add custom message
           ✔ Edit event of the organization @done(2017-08-07 00:13)
+            ☐ Use the EventController@update to update event in organization
             ☐ Edit event if the view is the creator
             ☐ Should edit the user - is it the current loggedin automatically the assign user|creator of the event?
               ☐ This current loggedin user should not be allowed to update other event not he owned
