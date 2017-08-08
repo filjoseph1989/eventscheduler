@@ -44,7 +44,7 @@
                       <th>Time</th>
                       <th>Date End</th>
                       <th>Time</th>
-                      <th>Approve Count</th>
+                      <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -58,15 +58,19 @@
                           <td>{{ $value->date_start_time }}</td>
                           <td>{{ date("M d, Y", strtotime($value->date_end)) }}</td>
                           <td>{{ $value->date_end_time }}</td>
-                          <td>{{ $value->approver_count }}</td>
+                          <td>{{ $value->approve_status }}</td>
                           <td>
-                            {{--
-                            <a href="{{ route('osa.event.osa-approve', [$value->id] ) }}" title="approve this event">
+                            <a href="{{ route('org-adviser.approved.event', [$value->id] ) }}" title="approve this event">
                               <i class="material-icons">thumb_up</i>
                             </a>
-                            <a href="#" class="view-event" title="further details" data-id="{{ $value->id }}" data-toggle="modal" data-target="#view-event"> <i class="material-icons">visibility</i></a>
-                            <a href="{{ route('osa.event.osa-disapprove', [$value->id, $value->orgg_uid] ) }}" class="" title="disapprove this event"> <i class="material-icons">thumb_down</i> </a>
+                            {{--
+                            <a href="" class="view-event" title="further details" data-id="{{ $value->id }}" data-toggle="modal" data-target="#view-event">
+                              <i class="material-icons">visibility</i>
+                            </a>
                             --}}
+                            <a href="{{ route('org-adviser.disapproved.event', [$value->id, $value->orgg_uid] ) }}" class="" title="disapprove this event">
+                              <i class="material-icons">thumb_down</i>
+                            </a>
                           </td>
                         </tr>
                       @endforeach
@@ -80,14 +84,11 @@
                       <th>Time</th>
                       <th>Date End</th>
                       <th>Time</th>
-                      <th>Approve Count</th>
+                      <th>status</th>
                       <th>Action</th>
                     </tr>
                   </tfoot>
                 </table>
-                <a href="#" type="button" class="btn btn-success" name="button" data-toggle="modal" data-target="#add-event">
-                  <i class="material-icons">add</i> Add New
-                </a>
               </div>
             </div>
           </div>

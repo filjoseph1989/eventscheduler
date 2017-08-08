@@ -189,8 +189,8 @@ class OsaAccountController extends Controller
       $approved_event = Event::find($id);
 
       /*
-       Issue 34: What they want more than (3) approvers?
-        There should be another column on event ot determent how many shoud approve
+       Issue 34: What if they want more than (3) approvers?
+        There should be another column on event to determine how many shoud approve
 
        If the the event is not yet approved by 3
        Do the approving

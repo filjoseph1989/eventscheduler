@@ -17,6 +17,7 @@ class CreateEventApprovalMonitorsTable extends Migration
             $table->increments('id');
             $table->integer('event_id')->unsigned()->index();
             $table->integer('approvers_id')->unsigned()->index();
+            $table->enum('status', ['true', 'false'])->default('false');
             $table->timestamps();
 
             #foreign keys
