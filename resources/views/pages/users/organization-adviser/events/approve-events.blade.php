@@ -27,6 +27,11 @@
             {{ session('status') }}
           </div>
         @endif
+        @if (session('status_warning'))
+          <div class="alert alert-warning">
+            {{ session('status_warning') }}
+          </div>
+        @endif
 
         <div class="row clearfix">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -51,9 +56,9 @@
                   <tbody class="js-sweetalert">
                     @if (isset($ev))
                       @foreach ($ev as $key => $value)
-                        <tr>
+                        <tr data-id="{{ $value->id }}">
                           <td>{{ $value->org_name }}</td>
-                          <td>{{ $value->event }}</td>
+                          <td>{{ $value->title }}</td>
                           <td>{{ date("M d, Y", strtotime($value->date_start)) }}</td>
                           <td>{{ $value->date_start_time }}</td>
                           <td>{{ date("M d, Y", strtotime($value->date_end)) }}</td>
@@ -63,12 +68,10 @@
                             <a href="{{ route('org-adviser.approved.event', [$value->id] ) }}" title="approve this event">
                               <i class="material-icons">thumb_up</i>
                             </a>
-                            {{--
-                            <a href="" class="view-event" title="further details" data-id="{{ $value->id }}" data-toggle="modal" data-target="#view-event">
+                            <a href="#" class="event-details" title="further details" data-toggle="modal" data-target="#event-details">
                               <i class="material-icons">visibility</i>
                             </a>
-                            --}}
-                            <a href="{{ route('org-adviser.disapproved.event', [$value->id, $value->orgg_uid] ) }}" class="" title="disapprove this event">
+                            <a href="{{ route('org-adviser.disapproved.event', [$value->id] ) }}" class="" title="disapprove this event">
                               <i class="material-icons">thumb_down</i>
                             </a>
                           </td>
@@ -98,23 +101,17 @@
 @endsection
 
 @section('modal')
-  <div class="modal fade" id="view-event" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal fade" id="event-details" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="view-event-title">{{-- Events title goes here --}}</h4>
+          <h4 class="modal-title" id="view-event-title">Event Details</h4>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" id="event-details-body">
           <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>Column</th>
-                    <th>Details</th>
-                  </tr>
-                </thead>
                 <tbody id="event-details">
                   {{-- Event Content Here --}}
                 </tbody>
@@ -139,5 +136,5 @@
   <script src="{{ asset('js/autosize.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/moment.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/app.js') }}?v=0.13" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.21" charset="utf-8"></script>
 @endsection

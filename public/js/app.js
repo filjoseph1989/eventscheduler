@@ -173,8 +173,8 @@ $(document).on('change', '#event-details-body tbody td', function(evt, newValue)
   updateData(url, id, name, newValue, function(data) {
     //
   })
-
 });
+
 
 /**
  * Get specific rows from the given ID
