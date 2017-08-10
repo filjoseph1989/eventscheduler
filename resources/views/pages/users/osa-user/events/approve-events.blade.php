@@ -60,7 +60,7 @@
                           <td>{{ $value->date_end_time }}</td>
                           <td>{{ $value->approver_count }}</td>
                           <td>
-                            <a href="{{ route('osa.event.osa-approve', [$value->id] ) }}" title="approve this event"> 
+                            <a href="{{ route('osa.event.osa-approve', [$value->id] ) }}" title="approve this event">
                               <i class="material-icons">thumb_up</i>
                             </a>
                             <a href="#" class="view-event" title="further details" data-id="{{ $value->id }}" data-toggle="modal" data-target="#view-event"> <i class="material-icons">visibility</i></a>
@@ -136,5 +136,5 @@
   <script src="{{ asset('js/autosize.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/moment.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/app.js') }}?v=0.13" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.21" charset="utf-8"></script>
 @endsection

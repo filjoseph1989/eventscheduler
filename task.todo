@@ -43,9 +43,6 @@ To Do:
           ☐ customizable by the user
         ☐ Can customize message for notification
         ☐ Can upload image for notification
-        ☐ If whole day, should have time start/end
-        ☐ If Date Start, should have time start/end
-        ☐ If Date End, should have time end
         ☐ In what way that this event should be valid? Goto Approve events
           ☐ Add approvers:
             ☐ There should be a default approvers - This approvers are crucial for approving the said event
@@ -87,7 +84,7 @@ To Do:
           ☐ if the status changed, Set notification functionality
       ☐ Approval of event functionality
         ✔ Approve events @done(2017-08-08 19:03)
-        ☐ disapprove event
+        ✔ disapprove event @done(2017-08-11 00:30)
       ☐ Calendar of events
       ☐ Notification:
         ☐ Facebook
