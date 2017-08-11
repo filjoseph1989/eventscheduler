@@ -84,13 +84,9 @@ To Do:
           ☐ if the status changed, Set notification functionality
       ☐ Approval of event functionality
         ✔ Approve events @done(2017-08-08 19:03)
+          ✔ Notification: (Facebook, Twitter, Email, Phone) @done(2017-08-11 19:11)
         ✔ disapprove event @done(2017-08-11 00:30)
       ☐ Calendar of events
-      ☐ Notification:
-        ☐ Facebook
-        ☐ Twitter
-        ☐ Email
-        ☐ Phone
     ☐ Members:
       ☐ List of all registered members
         It must consist of the following columns

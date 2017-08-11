@@ -21,7 +21,7 @@
     <li><a href="{{ route('org-adviser.my.new.event') }}">Create My Events</a></li>
     <li><a href="{{ route('org-adviser.event.list') }}">List of Events</a></li>
     <li><a href="{{ route('org-adviser.approve.event') }}">Approve Events</a></li>
-    <li><a href="#">Calendar of Events</a></li>
+    <li><a href="{{ route('org-adviser.calendar', 1) }}">Calendar of Events</a></li>
   </ul>
 </li>
 <li>
