@@ -23,6 +23,7 @@
 
   @yield('modal')
 
+  @routes
   <script src="{{asset('js/jquery.min.js')}}?v=3.2.1"></script>
   <script src="{{asset('js/bootstrap.js')}}?v=3.3.7"></script>
   <script src="{{asset('js/waves.js')}}"></script>
