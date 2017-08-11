@@ -32,14 +32,14 @@
                       <i class="material-icons">more_vert</i>
                     </a>
                     <ul class="dropdown-menu pull-right">
-                      <li><a href="{{ route('org-head.org-list') }}">My Organization Calendar</a></li>
-                      <li><a href="{{ route('org-head.personal-calendar') }}">My Personal Calendar</a></li>
+                      <li><a href="#"></a></li>
+                      <li><a href="#"></a></li>
                     </ul>
                   </li>
                 </ul>
               </div>
               <div class="body">
-                <div class="" id="my-organization" data-org-id="{{ $org->id }}" data-ajax-url="/users/org-adviser/event/gets"></div>
+                <div class="" id="my-organization" data-org-id="{{ $org->id }}" data-route="{{ route('ajax.get.events') }}"></div>
                 <div id='calendar'></div>
               </div>
             </div>
@@ -66,5 +66,5 @@
   <script src="{{ asset('js/basic-form-elements.js') }}?v=0.2" charset="utf-8"></script>
   <script src="{{ asset('js/fullcalendar.min.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/calendar.js') }}?v=0.4" charset="utf-8"></script>
+  <script src="{{ asset('js/calendar.js') }}?v=0.5" charset="utf-8"></script>
 @endsection
