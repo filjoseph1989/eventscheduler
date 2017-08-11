@@ -17,77 +17,7 @@ var global_start, global_end, calendar;
  * @return {[type]} [description]
  */
 $(document).ready(function() {
-    /*
-      date store today date.
-      d store today date.
-      m store current month.
-      y store current year.
-    */
-    var date = new Date();
-    var d = date.getDate();
-    var m = date.getMonth();
-    var y = date.getFullYear();
-
-    /*
-      Initialize fullCalendar and store into variable.
-      Why in variable?
-      Because doing so we can use it inside other function.
-      In order to modify its option later.
-    */
-
-    calendar = $('#calendar').fullCalendar({
-        /*
-          header option will define our calendar header.
-          left define what will be at left position in calendar
-          center define what will be at center position in calendar
-          right define what will be at right position in calendar
-        */
-        header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
-        },
-
-        /*
-          defaultView option used to define which view to show by default,
-          for example we have used agendaWeek.
-        */
-        defaultView: 'month',
-
-        /*
-          selectable:true will enable user to select datetime slot
-          selectHelper will add helpers for selectable.
-        */
-        navLinks: true, // can click day/week names to navigate views
-        selectable: true,
-        selectHelper: true,
-
-        /*
-          when user select timeslot this option code will execute.
-          It has three arguments. Start,end and allDay.
-          Start means starting time of event.
-          End means ending time of event.
-          allDay means if events is for entire day or not.
-        */
-        select: function(start, end, allDay) {
-            global_start = start;
-            global_end   = end;
-
-            // Display the modal afted selection
-            $('#add-event').modal('show');
-        },
-
-        /* editable: true allow user to edit events. */
-        editable: true,
-        eventLimit: true, // allow "more" link when too many events
-
-        /*
-          events is the main option for calendar.
-          for demo we have added predefined events in json object.
-        */
-        events: getEvents()
-    });
-
+    displayEvent();
     /**
      * If the user click on the input that has class
      *    event-datepicker
@@ -111,6 +41,73 @@ $(document).ready(function() {
 });
 
 /**
+ * Display the event on the calendar
+ *
+ * @return {[type]} [description]
+ */
+function displayEvent() {
+  /*
+    Initialize fullCalendar and store into variable.
+    Why in variable?
+    Because doing so we can use it inside other function.
+    In order to modify its option later.
+  */
+  calendar = $('#calendar').fullCalendar({
+      /*
+        header option will define our calendar header.
+        left define what will be at left position in calendar
+        center define what will be at center position in calendar
+        right define what will be at right position in calendar
+      */
+      header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'month,agendaWeek,agendaDay'
+      },
+
+      /*
+        defaultView option used to define which view to show by default,
+        for example we have used agendaWeek.
+      */
+      defaultView: 'month',
+
+      /*
+        selectable:true will enable user to select datetime slot
+        selectHelper will add helpers for selectable.
+      */
+      navLinks: true, // can click day/week names to navigate views
+      selectable: true,
+      selectHelper: true,
+
+      /*
+        when user select timeslot this option code will execute.
+        It has three arguments. Start,end and allDay.
+        Start means starting time of event.
+        End means ending time of event.
+        allDay means if events is for entire day or not.
+      */
+      select: function(start, end, allDay) {
+          global_start = start;
+          global_end   = end;
+
+          // Display the modal afted selection
+          $('#add-event').modal('show');
+      },
+
+      /* editable: true allow user to edit events. */
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
+
+      /*
+        events is the main option for calendar.
+        for demo we have added predefined events in json object.
+      */
+      events: getEvents()
+  });
+
+}
+
+/**
  * Fetch the events of the current month
  * @return json
  */
@@ -119,7 +116,6 @@ function getEvents() {
     var oid = $('#my-organization').data('org-id');
     var url = $('#my-organization').data('route');
 
-    var json = "";
     $.ajax({
       type: 'POST',
       url: url,
@@ -147,8 +143,6 @@ function getEvents() {
         swal("Opps!", "We cannot process that", "error");
       }
     });
-
-    return json;
 }
 
 /**
@@ -179,6 +173,13 @@ function _getDate($id, $event = false, $time = false, default_date = false) {
   return global_start;
 }
 
+/**
+ * Return the formatted date for event
+ * @param  {[type]}  $id           [description]
+ * @param  {Boolean} [$date=false] [description]
+ * @param  {Boolean} [$time=false] [description]
+ * @return {[type]}                [description]
+ */
 function getDate($id, $date = false, $time = false) {
   if ($date != null) {
     var date = $date.split('-');
@@ -188,6 +189,41 @@ function getDate($id, $date = false, $time = false) {
     return global_start;
   }
 }
+
+$('.calendar-options > #public').click(function() {
+  var date = new Date();
+  var d = date.getDate();
+  var m = date.getMonth();
+  var y = date.getFullYear();
+  calendar = $('#calendar').fullCalendar({
+      header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'month,agendaWeek,agendaDay'
+      },
+      defaultView: 'month',
+      navLinks: true, // can click day/week names to navigate views
+      selectable: true,
+      selectHelper: true,
+      select: function(start, end, allDay) {
+          global_start = start;
+          global_end   = end;
+          $('#add-event').modal('show');
+      },
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
+      events: getEvents()
+  });
+});
+$('.calendar-options > #within').click(function() {
+
+});
+$('.calendar-options > #among').click(function() {
+
+});
+$('.calendar-options > #personal').click(function() {
+
+});
 
 /*
   When the user click the save button when setting events in

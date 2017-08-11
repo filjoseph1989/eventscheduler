@@ -31,9 +31,11 @@
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                       <i class="material-icons">more_vert</i>
                     </a>
-                    <ul class="dropdown-menu pull-right">
-                      <li><a href="#"></a></li>
-                      <li><a href="#"></a></li>
+                    <ul class="dropdown-menu pull-right calendar-options">
+                      <li><a href="#" id="public">Public View</a></li>
+                      <li><a href="#" id="within">Within Organization</a></li>
+                      <li><a href="#" id="among">Among Organization</a></li>
+                      <li><a href="#" id="personal">Personal Event</a></li>
                     </ul>
                   </li>
                 </ul>
