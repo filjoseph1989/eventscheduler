@@ -15,14 +15,12 @@ $(document).ready(function() {
     $('#whole_day-option').html('Yes');
   }
   if ($eventTypeID != undefined) {
-    var url = '/users/org-adviser/get/event-type';
-    getData(url, $eventTypeID, function(data) {
+    getData(route('ajax.get.event-type'), $eventTypeID, function(data) {
       $('#event_type_id-option').html(data.name);
     });
   }
   if ($eventCategoryID != undefined) {
-    var url = '/users/org-adviser/get/event-category';
-    getData(url, $eventCategoryID, function(data) {
+    getData(route('ajax.get.event-category'), $eventCategoryID, function(data) {
       $('#event_category_id-option').html(data.name);
     });
   }
@@ -37,8 +35,7 @@ $(document).ready(function() {
     }
   }
   if ($organizationID != undefined) {
-    var url = '/users/org-adviser/get/organization';
-    getData(url, $organizationID, function(data) {
+    getData(route('ajax.get.organization'), $organizationID, function(data) {
       $('#organization-option').html(data.name);
     });
   }
@@ -60,14 +57,14 @@ $(document).ready(function() {
  * @return void
  */
 $(document).on('click', '.event-details', function() {
-  var url  = '/users/org-adviser/get/event';
   var id   = $(this).parents('tr').data('id');
   var html = "";
 
-  getData(url, id, function(data) {
+  getData(route('ajax.get.event.list'), id, function(data) {
     data = data[0];
     data = editEventData(data);
 
+    // Issue 46: This two can be combine
     html =
     "<tr><td>Title</td><td data-name='title' data-event-id='"+id+"'>" + data.title + "</td></tr>" +
     "<tr><td>Description</td><td data-name='description' data-event-id='"+id+"'>" + data.description + "</td></tr>" +
@@ -93,16 +90,15 @@ $(document).on('click', '.event-details', function() {
  * @return {[type]} [description]
  */
 $(document).on('click', '.my-event-details', function() {
-  var url  = '/users/org-adviser/get/personal/event';
   var id   = $(this).parents('tr').data('id');
   var html = "";
 
-
-  getData(url, id, function(data) {
+  getData(route('ajax.get.event.personal.list'), id, function(data) {
     data = data[0];
     data = editEventData(data);
     var attributes = ' data-event-id="'+id+'"';
 
+    // Issue 46: This two can be combine
     html =
     "<tr><td>Title:</td><td data-name='title'"+attributes+">"+data.title+"</td></tr>" +
     "<tr><td>Description:</td><td data-name='description'"+attributes+">" + data.description + "</td></tr>" +
@@ -145,12 +141,9 @@ $(document).on('change', '#my-event-details-body tbody td', function(evt, newVal
     var event_id = $(this).data('event-type-id');
   }
 
-  url = '/users/org-adviser/update/personal/event';
-
-  updateData(url, id, name, newValue, function(data) {
+  updateData(route('ajax.update.event.personal.list'), id, name, newValue, function(data) {
     //
   })
-
 });
 
 /**
@@ -168,9 +161,7 @@ $(document).on('change', '#event-details-body tbody td', function(evt, newValue)
     var event_id = $(this).data('event-type-id');
   }
 
-  url = '/users/org-adviser/update/event';
-
-  updateData(url, id, name, newValue, function(data) {
+  updateData(route('ajax.update.event.list'), id, name, newValue, function(data) {
     //
   })
 });
@@ -185,6 +176,8 @@ $(document).on('change', '#event-details-body tbody td', function(evt, newValue)
  * @return {json}
  */
 function getData(url, id, callback) {
+  // Issue 47: Update this part, because this can lead problem during deployment
+  url = url.replace('localhost', 'liz.dev');
   $.ajax({
     type: 'POST',
     url: url,
@@ -214,6 +207,8 @@ function getData(url, id, callback) {
  * @return {void}
  */
 function updateData(url, id, name, value, callback) {
+  // Issue 47: Update this part, because this can lead problem during deployment
+  url = url.replace('localhost', 'liz.dev');
   $.ajax({
     type: 'POST',
     url: url,

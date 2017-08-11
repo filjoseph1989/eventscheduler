@@ -183,6 +183,7 @@ return [
         NotificationChannels\FacebookPoster\FacebookPosterServiceProvider::class,
         // Twitter notification
         Thujohn\Twitter\TwitterServiceProvider::class,
+        Tightenco\Ziggy\ZiggyServiceProvider::class
     ],
 
     /*
