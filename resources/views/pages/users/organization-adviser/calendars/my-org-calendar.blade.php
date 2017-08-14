@@ -35,7 +35,8 @@
                       <li><a href="#" id="public">Public View</a></li>
                       <li><a href="#" id="within">Within Organization</a></li>
                       <li><a href="#" id="among">Among Organization</a></li>
-                      <li><a href="#" id="personal">Personal Event</a></li>
+                      <li><a href="#" id="personal-public">Personal Event (Public)</a></li>
+                      <li><a href="#" id="personal-private">Personal Event (Private)</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -68,5 +69,5 @@
   <script src="{{ asset('js/basic-form-elements.js') }}?v=0.2" charset="utf-8"></script>
   <script src="{{ asset('js/fullcalendar.min.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/calendar.js') }}?v=0.6" charset="utf-8"></script>
+  <script src="{{ asset('js/calendar.js') }}?v=0.7" charset="utf-8"></script>
 @endsection

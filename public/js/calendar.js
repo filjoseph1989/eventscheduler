@@ -45,7 +45,7 @@ $(document).ready(function() {
  *
  * @return {[type]} [description]
  */
-function displayEvent() {
+function displayEvent($id = false, option = false) {
   /*
     Initialize fullCalendar and store into variable.
     Why in variable?
@@ -102,7 +102,7 @@ function displayEvent() {
         events is the main option for calendar.
         for demo we have added predefined events in json object.
       */
-      events: getEvents()
+      events: getEvents($id, option)
   });
 
 }
@@ -111,16 +111,20 @@ function displayEvent() {
  * Fetch the events of the current month
  * @return json
  */
-function getEvents() {
+function getEvents($id, option) {
+    if ($id != false) {
+      calendar.fullCalendar('removeEvents');
+    }
+
     // Organization ID
-    var oid = $('#my-organization').data('org-id');
     var url = route('ajax.get.events').replace('localhost', window.location.hostname);
 
     $.ajax({
       type: 'POST',
       url: url,
       data: {
-        id: oid == undefined ? 0 : oid
+        id: $id,
+        option: option
       },
       dataType: 'json',
       beforeSend: function(request) {
@@ -162,39 +166,25 @@ function getDate($id, $date = false, $time = false) {
   }
 }
 
-$('.calendar-options > #public').click(function() {
-  var date = new Date();
-  var d = date.getDate();
-  var m = date.getMonth();
-  var y = date.getFullYear();
-  calendar = $('#calendar').fullCalendar({
-      header: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'month,agendaWeek,agendaDay'
-      },
-      defaultView: 'month',
-      navLinks: true, // can click day/week names to navigate views
-      selectable: true,
-      selectHelper: true,
-      select: function(start, end, allDay) {
-          global_start = start;
-          global_end   = end;
-          $('#add-event').modal('show');
-      },
-      editable: true,
-      eventLimit: true, // allow "more" link when too many events
-      events: getEvents()
-  });
+$('.calendar-options #public').click(function() {
+  $('.header h2').html('Organization Calendar');
+  displayEvent(1);
 });
-$('.calendar-options > #within').click(function() {
-
+$('.calendar-options #within').click(function() {
+  $('.header h2').html('Organization Calendar');
+  displayEvent(2);
 });
-$('.calendar-options > #among').click(function() {
-
+$('.calendar-options #among').click(function() {
+  $('.header h2').html('Organization Calendar');
+  displayEvent(3);
 });
-$('.calendar-options > #personal').click(function() {
-
+$('.calendar-options #personal-public').click(function() {
+  $('.header h2').html('Personal Calendar');
+  displayEvent(4, 'public');
+});
+$('.calendar-options #personal-private').click(function() {
+  $('.header h2').html('Personal Calendar');
+  displayEvent(4, 'private');
 });
 
 /*

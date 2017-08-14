@@ -86,6 +86,21 @@ class AdviserJsonController extends Controller
    */
   public function getEventList(Request $data)
   {
+    # Return Personal Event
+    if ($data->option != 'false') {
+      return PersonalEvent::where('category', '=', $data->option)
+        ->get()
+        ->toJson();
+    }
+
+    # Return event that are not public
+    if ($data->id > 1 ) {
+      return Event::where('event_category_id', '=', $data->id)
+        ->get()
+        ->toJson();
+    }
+
+    # Return public events
     return Event::where('event_category_id', '=', 1)
       ->get()
       ->toJson();
