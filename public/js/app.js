@@ -15,12 +15,12 @@ $(document).ready(function() {
     $('#whole_day-option').html('Yes');
   }
   if ($eventTypeID != undefined) {
-    getData(route('ajax.get.event-type'), $eventTypeID, function(data) {
+    getData(route('ajax.get.event-type').replace('localhost', window.location.hostname), $eventTypeID, function(data) {
       $('#event_type_id-option').html(data.name);
     });
   }
   if ($eventCategoryID != undefined) {
-    getData(route('ajax.get.event-category'), $eventCategoryID, function(data) {
+    getData(route('ajax.get.event-category').replace('localhost', window.location.hostname), $eventCategoryID, function(data) {
       $('#event_category_id-option').html(data.name);
     });
   }
@@ -35,7 +35,7 @@ $(document).ready(function() {
     }
   }
   if ($organizationID != undefined) {
-    getData(route('ajax.get.organization'), $organizationID, function(data) {
+    getData(route('ajax.get.organization').replace('localhost', window.location.hostname), $organizationID, function(data) {
       $('#organization-option').html(data.name);
     });
   }
@@ -60,7 +60,7 @@ $(document).on('click', '.event-details', function() {
   var id   = $(this).parents('tr').data('id');
   var html = "";
 
-  getData(route('ajax.get.event.list'), id, function(data) {
+  getData(route('ajax.get.event.list').replace('localhost', window.location.hostname), id, function(data) {
     data = data[0];
     data = editEventData(data);
 
@@ -93,7 +93,7 @@ $(document).on('click', '.my-event-details', function() {
   var id   = $(this).parents('tr').data('id');
   var html = "";
 
-  getData(route('ajax.get.event.personal.list'), id, function(data) {
+  getData(route('ajax.get.event.personal.list').replace('localhost', window.location.hostname), id, function(data) {
     data = data[0];
     data = editEventData(data);
     var attributes = ' data-event-id="'+id+'"';
@@ -141,7 +141,7 @@ $(document).on('change', '#my-event-details-body tbody td', function(evt, newVal
     var event_id = $(this).data('event-type-id');
   }
 
-  updateData(route('ajax.update.event.personal.list'), id, name, newValue, function(data) {
+  updateData(route('ajax.update.event.personal.list')..replace('localhost', window.location.hostname), id, name, newValue, function(data) {
     //
   })
 });
@@ -161,7 +161,7 @@ $(document).on('change', '#event-details-body tbody td', function(evt, newValue)
     var event_id = $(this).data('event-type-id');
   }
 
-  updateData(route('ajax.update.event.list'), id, name, newValue, function(data) {
+  updateData(route('ajax.update.event.list').replace('localhost', window.location.hostname), id, name, newValue, function(data) {
     //
   })
 });

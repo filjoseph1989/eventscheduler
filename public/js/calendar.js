@@ -114,7 +114,7 @@ function displayEvent() {
 function getEvents() {
     // Organization ID
     var oid = $('#my-organization').data('org-id');
-    var url = $('#my-organization').data('route');
+    var url = route('ajax.get.events').replace('localhost', window.location.hostname);
 
     $.ajax({
       type: 'POST',
@@ -151,34 +151,6 @@ function getEvents() {
  *
  * @param  {string} $id
  * @return object Date
- */
-function _getDate($id, $event = false, $time = false, default_date = false) {
-  if ($event == false) {
-    var date = $($id).val() != "" ? $($id).val().split('/') : default_date;
-    var time = $($id + '_time').val() != "" ? $($id + '_time').val().split(':') : "";
-  } else {
-    date = $event.split('-');
-    time = $time.split(':');
-  }
-
-  if (date != "" && time == "") {
-    return new Date(date[0], (date[1] - 1), date[2]);
-  } else if (date == "" && time != "") {
-    date = new Date(global_start);
-    return new Date(date.getFullYear(), date.getMonth(), date.getDate(), time[0], time[1]);
-  } else if (date != "" && time != "") {
-    return new Date(date[0], (date[1] - 1), date[2], time[0], time[1]);
-  }
-
-  return global_start;
-}
-
-/**
- * Return the formatted date for event
- * @param  {[type]}  $id           [description]
- * @param  {Boolean} [$date=false] [description]
- * @param  {Boolean} [$time=false] [description]
- * @return {[type]}                [description]
  */
 function getDate($id, $date = false, $time = false) {
   if ($date != null) {

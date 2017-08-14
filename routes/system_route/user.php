@@ -22,7 +22,7 @@ Route::prefix('users')->group(function() {
     Route::name('org-adviser.approve.event')->get('/approve/event', 'OrganizationAdviser\EventController@approveEvents');
     Route::name('org-adviser.approved.event')->get('/approved/event/{id}', 'OrganizationAdviser\EventController@setApprove');
     Route::name('org-adviser.disapproved.event')->get('/disapproved/event/{id}', 'OrganizationAdviser\EventController@setDisApprove');
-    Route::name('org-adviser.calendar')->get('/calendar/{id}', 'OrganizationAdviser\ManageSchedule\CalendarController@myOrgCalendar');
+    Route::name('org-adviser.calendar')->get('/calendar', 'OrganizationAdviser\CalendarController@calendar');
     // Route::name('org-adviser.org-edit')->get('/edit-org/{id}', 'OrganizationAdviser\OrganizationController@edit');
     // Route::name('org-adviser.org-update')->post('/update-org', 'OrganizationAdviser\OrganizationController@update');
     // Route::name('org-adviser.personal-calendar')->get('/personal-calendar', 'OrganizationAdviser\OrgAdviserAccountController@myPersonalCalendar');

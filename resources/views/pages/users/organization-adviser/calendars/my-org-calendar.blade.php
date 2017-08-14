@@ -25,7 +25,7 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> {{ $org->name }} Calendar </h2>
+                <h2> Organization Calendar </h2>
                 <ul class="header-dropdown m-r--5">
                   <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -41,7 +41,7 @@
                 </ul>
               </div>
               <div class="body">
-                <div class="" id="my-organization" data-org-id="{{ $org->id }}" data-route="{{ route('ajax.get.events') }}"></div>
+                <div class="" id="my-organization"></div>
                 <div id='calendar'></div>
               </div>
             </div>
@@ -68,5 +68,5 @@
   <script src="{{ asset('js/basic-form-elements.js') }}?v=0.2" charset="utf-8"></script>
   <script src="{{ asset('js/fullcalendar.min.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/calendar.js') }}?v=0.5" charset="utf-8"></script>
+  <script src="{{ asset('js/calendar.js') }}?v=0.6" charset="utf-8"></script>
 @endsection
