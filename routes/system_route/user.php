@@ -25,6 +25,7 @@ Route::prefix('users')->group(function() {
     Route::name('org-adviser.calendar')->get('/calendar', 'OrganizationAdviser\CalendarController@calendar');
     Route::name('org-adviser.org-edit')->get('/edit-org/{id}', 'OrganizationAdviser\OrganizationController@edit');
     Route::name('org-adviser.org-update')->post('/update-org', 'OrganizationAdviser\OrganizationController@update');
+    Route::name('org-adviser.members.list')->get('/members/list', 'OrganizationAdviser\OrganizationGroupController@index');
 
     # Issue 44: This part can be improve by creating a method that accept id and model name
     Route::name('ajax.get.event-type')->post('/get/event-type', 'OrganizationAdviser\AdviserJsonController@getEventType');

@@ -37,11 +37,6 @@ class OrganizationGroup extends Model
       return $this->belongsTo('App\Models\Organization');
     }
 
-    public function getItems()
-    {
-      return $this->items;
-    }
-
     /**
      * Return the user profile information
      *
@@ -70,6 +65,24 @@ class OrganizationGroup extends Model
         ->join('organizations', 'organization_groups.organization_id', '=', 'organizations.id')
         ->join('positions', 'organization_groups.position_id', '=', 'positions.id')
         ->where('user_id', '=', $auth->id)
+        ->get();
+    }
+
+    /**
+     * return member from the given organization ID
+     *
+     * @param  int $id Organization ID
+     * @return object
+     */
+    public static function getMembers($id)
+    {
+      $org = new OrganizationGroup();
+      return $org->select(
+          '*',
+          'users.id as user_id'
+        )
+        ->join('users', 'users.id', '=', 'organization_groups.user_id')
+        ->where('organization_groups.organization_id', '=', $id)
         ->get();
     }
 }

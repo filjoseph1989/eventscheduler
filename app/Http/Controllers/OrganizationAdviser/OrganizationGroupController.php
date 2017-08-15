@@ -34,7 +34,12 @@ class OrganizationGroupController extends Controller
      */
     public function index()
     {
-        //
+      $org = OrganizationGroup::getMembers(2);
+      $login_type = 'users';
+
+      return view('pages/users/organization-adviser/organization/members', compact(
+        'org', 'login_type'
+      ));
     }
 
     /**
@@ -44,7 +49,6 @@ class OrganizationGroupController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**

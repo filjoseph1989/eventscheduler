@@ -1,4 +1,9 @@
 /**
+ * App.js
+ * @version 0.23
+ */
+
+/**
  * Filled up back the data into the create event form
  *
  * @return html
@@ -141,7 +146,7 @@ $(document).on('change', '#my-event-details-body tbody td', function(evt, newVal
     var event_id = $(this).data('event-type-id');
   }
 
-  updateData(route('ajax.update.event.personal.list')..replace('localhost', window.location.hostname), id, name, newValue, function(data) {
+  updateData(route('ajax.update.event.personal.list').replace('localhost', window.location.hostname), id, name, newValue, function(data) {
     //
   })
 });

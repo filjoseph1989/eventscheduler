@@ -92,7 +92,8 @@ To Do:
         ✔ Within  @done(2017-08-15 20:32)
         ✔ Personal @done(2017-08-15 20:32)
     ☐ Members:
-      ☐ List of all registered members
+      ☐ List of members within the organization of adviser
+      ☐ List of all registered members (this feature is for administrator)
         It must consist of the following columns
           ☐ name
           ☐ department
@@ -106,8 +107,8 @@ To Do:
           ☐ member since?
             ☐ If click, show all members since this date (optiona|advance)
         ☐ If happend that a user is a member of many organization, merge the information
-      ☐ List of all user belongs to an organization
-      ☐ List of all users who has no organization yet
+      ☐ List of all user belongs to an organization (this feature is for administrator)
+      ☐ List of all users who has no organization yet (this feature is for administrator)
     ☐ Generate Attendance:
     ☐ Manage Schedule:
       ✔ My Organization @done(2017-07-19 18:03)
