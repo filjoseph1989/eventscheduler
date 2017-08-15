@@ -82,11 +82,15 @@ To Do:
         ☐ Automatically change the status of the event base on the given date
         ☐ Set status of my events
           ☐ if the status changed, Set notification functionality
-      ☐ Approval of event functionality
+      ✔ Approval of event functionality @done(2017-08-15 20:34) @project(To Do / ☐ Task 39 - Login as organization adviser / ☐ Events)
         ✔ Approve events @done(2017-08-08 19:03)
           ✔ Notification: (Facebook, Twitter, Email, Phone) @done(2017-08-11 19:11)
         ✔ disapprove event @done(2017-08-11 00:30)
-      ☐ Calendar of events
+      ✔ Calendar of events @done(2017-08-15 20:34)
+        ✔ Public @done(2017-08-15 20:32)
+        ✔ Among  @done(2017-08-15 20:32)
+        ✔ Within  @done(2017-08-15 20:32)
+        ✔ Personal @done(2017-08-15 20:32)
     ☐ Members:
       ☐ List of all registered members
         It must consist of the following columns

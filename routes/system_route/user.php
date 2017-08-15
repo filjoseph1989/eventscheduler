@@ -25,14 +25,6 @@ Route::prefix('users')->group(function() {
     Route::name('org-adviser.calendar')->get('/calendar', 'OrganizationAdviser\CalendarController@calendar');
     Route::name('org-adviser.org-edit')->get('/edit-org/{id}', 'OrganizationAdviser\OrganizationController@edit');
     Route::name('org-adviser.org-update')->post('/update-org', 'OrganizationAdviser\OrganizationController@update');
-    // Route::name('org-adviser.personal-calendar')->get('/personal-calendar', 'OrganizationAdviser\OrgAdviserAccountController@myPersonalCalendar');
-    // Route::name('org-adviser.personal-calendar-post')->post('/ajax/personal-event', 'OrganizationAdviser\EventController@getPersonalEvent');
-    // Route::name('org-adviser.event.get')->get('/get/{id?}', 'OrganizationAdviser\EventController@getEventList');
-    // Route::name('org-adviser.event.public')->get('/get/public', 'OrganizationAdviser\EventController@getEventListPublic');
-    // Route::name('org-adviser.event.within')->get('/get/within', 'OrganizationAdviser\EventController@getEventListWithin');
-    // Route::name('org-adviser.event.among')->get('/get/among', 'OrganizationAdviser\EventController@getEventListAmong');
-    // Route::name('org-adviser.event.own')->get('/get/own', 'OrganizationAdviser\EventController@getEventListOwn');
-    // Route::name('event.gets')->post('/event/gets', 'OrganizationAdviser\EventController@getEventOfTheMonth');
 
     # Issue 44: This part can be improve by creating a method that accept id and model name
     Route::name('ajax.get.event-type')->post('/get/event-type', 'OrganizationAdviser\AdviserJsonController@getEventType');
