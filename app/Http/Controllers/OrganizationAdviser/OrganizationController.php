@@ -41,8 +41,6 @@ class OrganizationController extends Controller
      */
     public function index()
     {
-      return redirect()->route('login');
-
       # Is the adviser loggedin?
       parent::loginCheck();
 

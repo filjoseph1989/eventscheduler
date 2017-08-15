@@ -54,14 +54,9 @@ class UserController extends Controller
       $originUser = OrganizationGroup::userProfile(Auth::user())->toArray();
       $user       = $originUser[0];
 
-      return view(
-        'pages/users/user-profile',
-        compact(
-          'login_type',
-          'originUser',
-          'user'
-        )
-      );
+      return view('pages/users/user-profile', compact(
+          'login_type', 'originUser', 'user'
+        ));
     }
 
     /**
