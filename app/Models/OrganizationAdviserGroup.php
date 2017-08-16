@@ -46,6 +46,4 @@ class OrganizationAdviserGroup extends Model
   {
     return $this->items;
   }
-
-
 }

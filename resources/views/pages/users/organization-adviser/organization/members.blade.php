@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page-title', 'List of members')
+@section('page-title', 'List of organization')
 
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.css') }}">
@@ -23,20 +23,33 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> LIST OF MEMBERS </h2>
+                <h2> LIST OF {{ ucwords($org->organization->name) }} </h2>
               </div>
               <div class="body table-responsive">
                 <table class="table table-striped table-hover js-basic-example dataTable">
                   <thead>
                     <tr>
                       <th>Name</th>
+                      <th>Status</th>
                     </tr>
                   </thead>
                   <tbody>
+                    @if ($member->count() == 0)
+                      <tr>
+                        <td>No Entry Yet</td>
+                      </tr>
+                    @else
+                      @foreach ($member as $key => $value)
+                        <tr>
+                          <td>{{ $value->last_name . " " . $value->first_name }}</td>
+                        </tr>
+                      @endforeach
+                    @endif
                   </tbody>
                   <tfoot>
                     <tr>
                       <th>Name</th>
+                      <th>Status</th>
                     </tr>
                   </tfoot>
                 </table>
@@ -52,5 +65,8 @@
 @endsection
 
 @section('footer')
-  <script src="{{ asset('js/app.js') }}?v=0.23" charset="utf-8"></script>
+  <script src="{{ asset('js/jquery.dataTables.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/dataTables.bootstrap.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/jquery-datatable.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.22" charset="utf-8"></script>
 @endsection

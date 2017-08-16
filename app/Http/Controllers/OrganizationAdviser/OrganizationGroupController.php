@@ -9,6 +9,7 @@ use App\Library\OrgAdviserLibrary as Adviser;
 
 # Models
 use App\Models\OrganizationGroup;
+use App\Models\OrganizationAdviserGroup;
 
 /**
  * This class controller handles all the Http request
@@ -34,11 +35,19 @@ class OrganizationGroupController extends Controller
      */
     public function index()
     {
-      $org = OrganizationGroup::getMembers(2);
-      $login_type = 'users';
+      # Get user organization
+      $org = OrganizationAdviserGroup::with('organization')
+        ->where('user_id', Auth::user()->id)
+        ->get();
+
+      $org = $org[0];
+
+      # Get members
+      $member     = OrganizationGroup::getMembers($org->organization_id);
+      $login_type = 'user';
 
       return view('pages/users/organization-adviser/organization/members', compact(
-        'org', 'login_type'
+        'org', 'login_type', 'member'
       ));
     }
 
