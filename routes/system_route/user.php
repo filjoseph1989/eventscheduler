@@ -2,7 +2,7 @@
 Route::prefix('users')->group(function() {
   # Subject for re-evaluation
   Route::name('user.logout')->post('/logout', 'Auth\LoginController@userLogout');
-  Route::name('user.profile')->get('/profile', 'UserController@viewProfile');
+  Route::name('user.profile')->get('/profile/{id?}', 'UserController@viewProfile');
   Route::name('user.profile.upload')->post('/profile/upload', 'UserController@uploadPhoto');
 
   # Include other routing in "routes\system_route\user\user-sub.php"

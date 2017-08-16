@@ -42,8 +42,13 @@ class OrganizationGroup extends Model
      *
      * @return object
      */
-    public static function userProfile($auth)
+    public static function userProfile($auth, $id = false)
     {
+      # Use the given ID instead if not false
+      if ($id != false) {
+        $auth->id = $id;
+      }
+
       $orgGroup = new OrganizationGroup();
       return $orgGroup->select(
           '*',

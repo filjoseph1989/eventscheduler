@@ -42,7 +42,7 @@ class UserController extends Controller
      *
      * @return
      */
-    public function viewProfile()
+    public function viewProfile($id = false)
     {
       # Is the organization adviser loggedin?
       parent::loginCheck();
@@ -51,11 +51,12 @@ class UserController extends Controller
 
       # Unlike the typical return which object, here is different
       # an array
-      $originUser = OrganizationGroup::userProfile(Auth::user())->toArray();
-      $user       = $originUser[0];
+      $originUser      = OrganizationGroup::userProfile(Auth::user(), $id)->toArray();
+      $user            = $originUser[0];
+      $current_user = ($id === false) ? true: false;
 
       return view('pages/users/user-profile', compact(
-          'login_type', 'originUser', 'user'
+          'login_type', 'originUser', 'user', 'current_user'
         ));
     }
 

@@ -42,8 +42,4 @@ class OrganizationAdviserGroup extends Model
     return $this->belongsTo('App\Models\Organization');
   }
 
-  public function getItems()
-  {
-    return $this->items;
-  }
 }

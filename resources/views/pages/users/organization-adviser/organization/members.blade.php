@@ -40,8 +40,10 @@
                       </tr>
                     @else
                       @foreach ($member as $key => $value)
+                        <?php $value->status = ($value->status == 1) ? 'Active' : 'Inactive' ?>
                         <tr>
-                          <td>{{ $value->last_name . " " . $value->first_name }}</td>
+                          <td><a href="{{ route('user.profile', $value->user_id) }}">{{ $value->last_name . " " . $value->first_name }}</a></td>
+                          <td>{{ $value->status }}</td>
                         </tr>
                       @endforeach
                     @endif
