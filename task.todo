@@ -93,6 +93,7 @@ To Do:
         ✔ Personal @done(2017-08-15 20:32)
     ☐ Members:
       ✔ List of members within the organization of adviser @done(2017-08-16 20:02)
+        ✔ View members profile @done(2017-08-16 20:28)
       ☐ List of all registered members (this feature is for administrator)
         It must consist of the following columns
           ☐ name
