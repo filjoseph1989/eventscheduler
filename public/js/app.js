@@ -1,6 +1,6 @@
 /**
  * App.js
- * @version 0.23
+ * @version 0.24
  */
 
 /**
@@ -171,6 +171,34 @@ $(document).on('change', '#event-details-body tbody td', function(evt, newValue)
   })
 });
 
+/**
+ * Submit the confirmation of attendance to the database
+ *
+ * @return {}
+ */
+$('.confirmed').click(function() {
+  var id = $(this).data('user-id');
+  var eid = $(this).data('event-id');
+
+  $.ajax({
+    type: 'POST',
+    url: route('org-adviser.attendance.store').replace('localhost', window.location.hostname),
+    data: {
+      id: id,
+      eid: eid
+    },
+    dataType: 'json',
+    beforeSend: function(request) {
+      request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
+    },
+    success: function(data) {
+      console.log(data);
+    },
+    error: function(data) {
+      console.log('Error:');
+    }
+  });
+});
 
 /**
  * Get specific rows from the given ID

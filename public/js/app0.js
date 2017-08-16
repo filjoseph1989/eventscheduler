@@ -270,35 +270,6 @@ $('.osa-user-account-edit').click(function() {
 });
 
 /**
- * Submit the confirmation of attendance to the database
- *
- * @return {}
- */
-$('.confirmed').click(function() {
-  var id = $(this).data('user-id');
-  var eid = $(this).data('event-id');
-
-  $.ajax({
-    type: 'POST',
-    url: '/users/attendance/store',
-    data: {
-      id: id,
-      eid: eid
-    },
-    dataType: 'json',
-    beforeSend: function(request) {
-      request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
-    },
-    success: function(data) {
-      console.log(data);
-    },
-    error: function(data) {
-      console.log('Error:');
-    }
-  });
-});
-
-/**
  * Edit the event on org head account
  * @return
  */

@@ -36,7 +36,7 @@
   </ul>
 </li>
 <li>
-  <a href="{{ route('event.show')}}">
+  <a href="{{ route('org-adviser.event.show')}}">
     <i class="material-icons">list</i>
     <span>Generate Attendance</span>
   </a>

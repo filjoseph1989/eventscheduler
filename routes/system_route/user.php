@@ -26,6 +26,9 @@ Route::prefix('users')->group(function() {
     Route::name('org-adviser.org-edit')->get('/edit-org/{id}', 'OrganizationAdviser\OrganizationController@edit');
     Route::name('org-adviser.org-update')->post('/update-org', 'OrganizationAdviser\OrganizationController@update');
     Route::name('org-adviser.members.list')->get('/members/list', 'OrganizationAdviser\OrganizationGroupController@index');
+    Route::name('org-adviser.event.show')->get('/show', 'OrganizationAdviser\EventController@show');
+    Route::name('org-adviser.attendance')->get('/new/{id}/{eid}', 'OrganizationAdviser\GenerateAttendanceController@index');
+    Route::name('org-adviser.attendance.store')->post('/store', 'OrganizationAdviser\GenerateAttendanceController@store');
 
     # Issue 44: This part can be improve by creating a method that accept id and model name
     Route::name('ajax.get.event-type')->post('/get/event-type', 'OrganizationAdviser\AdviserJsonController@getEventType');
@@ -39,9 +42,20 @@ Route::prefix('users')->group(function() {
   });
 
   # Attendance
-  // Route::prefix('attendance')->group(function() {
-  //   Route::name('attendance')->get('/new/{id}/{eid}', 'OrganizationHead\ManageSchedule\GenerateAttendanceController@index');
-  //   Route::name('attendance.store')->post('/store', 'OrganizationHead\ManageSchedule\GenerateAttendanceController@store');
+  Route::prefix('attendance')->group(function() {
+    Route::name('attendance')->get('/new/{id}/{eid}', 'OrganizationHead\ManageSchedule\GenerateAttendanceController@index');
+    Route::name('attendance.store')->post('/store', 'OrganizationHead\ManageSchedule\GenerateAttendanceController@store');
+  });
+
+  //   # Create event
+  //   Route::prefix('event')->group(function() {
+      // Route::name('event.show')->get('/show', 'OrganizationHead\Events\EventController@showEvents');
+      // Route::name('event.new')->get('/new', 'OrganizationHead\Events\EventController@createNewEventForm');
+      // Route::name('event.new')->post('/new', 'OrganizationHead\Events\EventController@createNewEvent');
+  //     Route::name('event.get')->get('/get', 'OrganizationHead\Events\EventController@getEventOfTheMonthList');
+  //     Route::name('event.gets')->post('/gets', 'OrganizationHead\Events\EventController@getEventOfTheMonth');
+  //     Route::name('event.ajax.get')->post('/ajax/get', 'OrganizationHead\Events\EventController@getEvent'); # Remove me soon
+  //   });
   // });
 
   # Route for organization head
@@ -55,7 +69,7 @@ Route::prefix('users')->group(function() {
   //   Route::name('org-head.personal-calendar')->get('/org-personal-calendar', 'OrganizationHead\ManageSchedule\CalendarController@myPersonalCalendar');
   //   Route::name('org-head.personal-calendar-post')->post('/ajax/personal-event', 'OrganizationHead\Events\EventController@getPersonalEvent');
     // Route::name('org-head.approval')->get('/event/approval', 'OrganizationHead\Events\EventController@approveEvents');
-  //
+
   //   # Display calendar
   //   Route::prefix('calendar')->group(function() {
   //     Route::name('university-calendar')->get('/university-calendar', 'OrganizationHead\ManageSchedule\CalendarController@universityCalendar');
@@ -63,17 +77,7 @@ Route::prefix('users')->group(function() {
   //     Route::name('my-organization-calendar')->get('/my-organization-calendar', 'OrganizationHead\ManageSchedule\CalendarController@myOrgCalendar');
   //     Route::name('my-personal-calendar')->get('/my-personal-calendar', 'OrganizationHead\ManageSchedule\CalendarController@myPersonalCalendar');
   //   });
-  //
-  //   # Create event
-  //   Route::prefix('event')->group(function() {
-  //     Route::name('event.show')->get('/show', 'OrganizationHead\Events\EventController@showEvents');
-      // Route::name('event.new')->get('/new', 'OrganizationHead\Events\EventController@createNewEventForm');
-      // Route::name('event.new')->post('/new', 'OrganizationHead\Events\EventController@createNewEvent');
-  //     Route::name('event.get')->get('/get', 'OrganizationHead\Events\EventController@getEventOfTheMonthList');
-  //     Route::name('event.gets')->post('/gets', 'OrganizationHead\Events\EventController@getEventOfTheMonth');
-  //     Route::name('event.ajax.get')->post('/ajax/get', 'OrganizationHead\Events\EventController@getEvent'); # Remove me soon
-  //   });
-  // });
+
 
   # Route for organization member
   Route::prefix('org-member')->group(function() {
