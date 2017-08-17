@@ -36,14 +36,19 @@ To Do:
         ✔ logo default @done(2017-07-22 21:17)
         ✔ Change logo @done(2017-07-22 22:59)
     ☐ Events:
-      ✔ Create My Events @done(2017-08-03 15:53)
-      ☐ Create Events
+      ☐ Create My Events:
+        ✔ Display form to create event @done(2017-08-17 16:37)
+        ☐ Use textarea for description
+        ☐ Can customize message for notification
+        ☐ Can upload image for notification
+      ☐ Create Events:
+        ✔ Display form to create event @done(2017-08-17 16:35)
         ☐ Use textarea for description
         ☐ Change the semester dropdown into season such (quarter, holidays, christmas) {Enterprise version}
           ☐ customizable by the user
         ☐ Can customize message for notification
         ☐ Can upload image for notification
-        ☐ In what way that this event should be valid? Goto Approve events
+        ☐ In what way that this event should be valid? Goto Approve events (Advance)
           ☐ Add approvers:
             ☐ There should be a default approvers - This approvers are crucial for approving the said event
             ☐ Browse to the list of approvers
@@ -55,6 +60,11 @@ To Do:
           ✔ Categories as private (within organization) @done(2017-07-23 23:43)
           ✔ Categories as Among Organization @done(2017-07-23 23:43)
         ✔ Determine if her/she is the adviser of the organization @done(2017-07-23 23:30)
+      ☐ List of events:
+        ✔ Display the info box of events base on category @done(2017-08-17 16:38)
+        ☐ Attend this event - A button for user if he wants to attend this event (For regulart users and non member of the organization)
+        ☐ Archive events
+        ☐ Automatically change the status of the event base on the given date
       ☐ List of my events:
         ✔ Display info box @done(2017-08-03 17:41)
         ✔ List with DataTables @done(2017-08-04 15:31)
@@ -110,7 +120,11 @@ To Do:
         ☐ If happend that a user is a member of many organization, merge the information
       ☐ List of all user belongs to an organization (this feature is for administrator)
       ☐ List of all users who has no organization yet (this feature is for administrator)
-    ✔ Generate Attendance @done(2017-08-17 15:56)
+    ☐ Generate Attendance:
+      ☐ Display the list of organization, advise by the loggedin adviser
+      ☐ Display the list of event from the given organization
+      ☐ Display the list of organization member of the organization
+        ☐  including non-member who wants to attend the event
   ☐ Task 38 - Login as OSA:
     ☐ Assign an approvers
     ☐ Assign an adviser for an organization

@@ -1,6 +1,6 @@
 /**
  * App.js
- * @version 0.24
+ * @version 0.25
  */
 
 /**
@@ -176,29 +176,47 @@ $(document).on('change', '#event-details-body tbody td', function(evt, newValue)
  *
  * @return {}
  */
-$('.confirmed').click(function() {
-  var id = $(this).data('user-id');
-  var eid = $(this).data('event-id');
+$(document).on('click', '.confirmed', function() {
+  var id   = $(this).data('user-id');
+  var eid  = $(this).data('event-id');
+  var url  = route('org-adviser.attendance.store').replace('localhost', window.location.hostname);
+  var data = {
+    id:  id,
+    eid: eid
+  }
 
+  submit(data, url, function(data) {
+    if (data.status == true) {
+      $('#confirm').html('Comfirmed');
+    }
+  });
+
+});
+
+/**
+ * This will be used in sumitting request
+ *
+ * @param  {object} data
+ * @param {string} url
+ * @return {void}
+ */
+function submit(data, url, callback) {
   $.ajax({
     type: 'POST',
-    url: route('org-adviser.attendance.store').replace('localhost', window.location.hostname),
-    data: {
-      id: id,
-      eid: eid
-    },
+    url: url,
+    data: data,
     dataType: 'json',
     beforeSend: function(request) {
       request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
     },
     success: function(data) {
-      console.log(data);
+      callback(data);
     },
     error: function(data) {
       console.log('Error:');
     }
   });
-});
+}
 
 /**
  * Get specific rows from the given ID

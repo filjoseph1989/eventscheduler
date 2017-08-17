@@ -25,9 +25,9 @@ To Do:
   ✔ Issue 24: go to this line and use eloquent @done(2017-07-13 10:21)
   ✔ Issue 23: Go to this line and find a way to make it in laravel way of coding @done(2017-07-16 14:30) @project(To Do)
   ☐ Issue 22: Create a function which handle the ajax request, because ajax request code are redundunt
-  ☐ Issue 21: Remove the master.js because all of its code are transfered to app.js
+  ✔ Issue 21: Remove the master.js because all of its code are transfered to app.js @done(2017-08-17 16:14)
   ✔ Issue 20: Go to this line, i think its not needed anymore @done(2017-07-16 14:29) @project(To Do)
-  ☐ Issue 19: The current loggedin user should not cross the pages of the other user_account_type
+  ✔ Issue 19: The current loggedin user should not cross the pages of the other user_account_type @done(2017-08-17 16:13)
   ✔ Issue 18: No data in admin table @done(2017-07-07 15:31)
   ☐ Issue 17: Find the right icon for super admin info box
   ☐ Issue 16: Date expired should not less than the day of date started in {admin/organization/list} same on add organization form
