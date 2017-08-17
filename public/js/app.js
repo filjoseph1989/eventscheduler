@@ -190,7 +190,6 @@ $(document).on('click', '.confirmed', function() {
       $('#confirm').html('Confirmed');
     }
   });
-
 });
 
 /**
@@ -227,25 +226,7 @@ function submit(data, url, callback) {
  * @return {json}
  */
 function getData(url, id, callback) {
-  // Issue 47: Update this part, because this can lead problem during deployment
-  url = url.replace('localhost', 'liz.dev');
-  $.ajax({
-    type: 'POST',
-    url: url,
-    data: {
-      id: id
-    },
-    dataType: 'json',
-    beforeSend: function(request) {
-      request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
-    },
-    success: function(data) {
-      callback(data);
-    },
-    error: function(data) {
-      console.log('Error:');
-    }
-  });
+  submit({ id: id }, url, callback);
 }
 
 /**
@@ -258,27 +239,12 @@ function getData(url, id, callback) {
  * @return {void}
  */
 function updateData(url, id, name, value, callback) {
-  // Issue 47: Update this part, because this can lead problem during deployment
-  url = url.replace('localhost', 'liz.dev');
-  $.ajax({
-    type: 'POST',
-    url: url,
-    data: {
-      id: id,
-      name: name,
-      value: value
-    },
-    dataType: 'json',
-    beforeSend: function(request) {
-      request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
-    },
-    success: function(data) {
-      callback(data);
-    },
-    error: function(data) {
-      console.log('Error:');
-    }
-  });
+  data = {
+    id:    id,
+    name:  name,
+    value: value
+  };
+  submit(data, url, callback);
 }
 
 /**
