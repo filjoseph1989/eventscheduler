@@ -187,7 +187,7 @@ $(document).on('click', '.confirmed', function() {
 
   submit(data, url, function(data) {
     if (data.status == true) {
-      $('#confirm').html('Comfirmed');
+      $('#confirm').html('Confirmed');
     }
   });
 
