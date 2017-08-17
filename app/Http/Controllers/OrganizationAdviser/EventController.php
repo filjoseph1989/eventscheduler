@@ -171,21 +171,15 @@ class EventController extends Controller
     /**
      * Display events
      *
-     * @param  int  $id
+     * @param  int  $id Organization ID
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-      # Get the user organization ID
-      $login_type = 'user';
-      $org = OrganizationGroup::where('user_id', '=', Auth::user()->id)
-        ->take(1)
-        ->get()[0];
-
-
       # Get the events from organiation ID
-      $event = Event::where('organization_id', '=', $org->organization_id)->get();
+      $event = Event::where('organization_id', '=', $id)->get();
 
+      $login_type = 'user';
       return view('pages/users/organization-adviser/calendars/events/list_for_attendance', compact(
         'event', 'login_type'
       ));

@@ -59,7 +59,7 @@
                           <button type="button" class="btn btn-primary waves-effect confirmed" id="confirm"
                             data-user-id="{{ $value->user->id }}"
                             data-event-id="{{ $eid }}">
-                              {{ (isset($att[$value->user->id]) && $att[$value->user->id] == 1) ? "Confirmed" : "Confirm" }}
+                              {{ (isset($att[$value->user->id]) AND $att[$value->user->id] == 'true') ? "Confirmed" : "Confirm" }}
                           </button>
                         </td>
                       </tr>

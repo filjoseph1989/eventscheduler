@@ -3,14 +3,19 @@
 namespace app\Http\Controllers\OrganizationAdviser;
 
 use Auth;
+use Illuminate\Http\Request;
+use App\Library\OrgAdviserLibrary;
+use App\Http\Controllers\Controller;
+
+# Models
 use App\Models\User;
 use App\Models\UserAttendance;
-use Illuminate\Http\Request;
 use App\Models\OrganizationGroup;
-use App\Http\Controllers\Controller;
 
 class GenerateAttendanceController extends Controller
 {
+    private $adviser;
+
     /**
      * Create a new controller instance.
      *
@@ -19,37 +24,25 @@ class GenerateAttendanceController extends Controller
     public function __construct()
     {
       $this->middleware('web');
+      $this->adviser = new OrgAdviserLibrary();
     }
 
     /**
-     * Display the Attendance sheet
+     * Display the organization list of the adviser
      * .
-     * @param  int $id Organization ID
-     * @return Object Response
+     * @return Illuminate\Response
      */
-    public function index($id, $eid)
+    public function index()
     {
-      # Get the user belong to an organization
-      $attendance = OrganizationGroup::with(['user', 'organization'])
-        ->where('organization_id', '=', $id)
+      # Get the organization of the adviser
+      $org = OrganizationGroup::with('organization')
+        ->where('user_id', '=', Auth::user()->id)
         ->get();
 
-      # Get the status of the user attendance
-      $att_sheet = UserAttendance::where('event_id', '=', $eid)->get();
-      $att       = [];
-      foreach ($att_sheet as $key => $value) {
-        $att[$value->user_id] = $value->confirmation;
-      }
-
       $login_type = 'user';
-      return view('pages/users/organization-adviser/calendars/events/attendance',
-        compact(
-          'login_type',
-          'attendance',
-          'eid',
-          'att'
-        )
-      );
+      return view('pages/users/organization-adviser/events/org-list', compact(
+        'org', 'login_type'
+      ));
     }
 
     /**
@@ -86,12 +79,38 @@ class GenerateAttendanceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $id Organization ID
+     * @param int $eid Event ID
+     * 
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $eid)
     {
+      parent::loginCheck();
 
+      $this->adviser->isAdviser();
+
+      # Get the user belong to an organization
+      $attendance = OrganizationGroup::with(['user', 'organization'])
+        ->where('organization_id', '=', $id)
+        ->get();
+
+      # Get the status of the user attendance
+      $att       = [];
+      $att_sheet = UserAttendance::where('event_id', '=', $eid)->get();
+      foreach ($att_sheet as $key => $value) {
+        $att[$value->user_id] = $value->status;
+      }
+
+      $login_type = 'user';
+      return view('pages/users/organization-adviser/calendars/events/attendance',
+        compact(
+          'login_type',
+          'attendance',
+          'eid',
+          'att'
+        )
+      );
     }
 
     /**

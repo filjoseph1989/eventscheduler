@@ -26,8 +26,9 @@ Route::prefix('users')->group(function() {
     Route::name('org-adviser.org-edit')->get('/edit-org/{id}', 'OrganizationAdviser\OrganizationController@edit');
     Route::name('org-adviser.org-update')->post('/update-org', 'OrganizationAdviser\OrganizationController@update');
     Route::name('org-adviser.members.list')->get('/members/list', 'OrganizationAdviser\OrganizationGroupController@index');
-    Route::name('org-adviser.event.show')->get('/show', 'OrganizationAdviser\EventController@show');
-    Route::name('org-adviser.attendance')->get('/new/{id}/{eid}', 'OrganizationAdviser\GenerateAttendanceController@index');
+    Route::name('org-adviser.event.show')->get('/show/{id}', 'OrganizationAdviser\EventController@show');
+    Route::name('org-adviser.attendance')->get('/attendance', 'OrganizationAdviser\GenerateAttendanceController@index');
+    Route::name('org-adviser.attendance.show')->get('/new/{id}/{eid}', 'OrganizationAdviser\GenerateAttendanceController@show');
     Route::name('org-adviser.attendance.store')->post('/store', 'OrganizationAdviser\GenerateAttendanceController@store');
 
     # Issue 44: This part can be improve by creating a method that accept id and model name
