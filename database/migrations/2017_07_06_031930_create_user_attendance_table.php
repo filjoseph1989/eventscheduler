@@ -17,16 +17,14 @@ class CreateUserAttendanceTable extends Migration
           $table->increments('id');
           $table->integer('event_id')->unsigned()->index();
           $table->integer('user_id')->unsigned()->index();
-          $table->tinyInteger('confirmation')->default(0);
           $table->string('reason')->nullable();
-          $table->tinyInteger('status')->default(0);
+          $table->enum('status', ['true', 'false'])->default('false');
           $table->softDeletes();
           $table->timestamps();
 
           #foreign keys
           $table->foreign('user_id')->references('id')->on('users');
           $table->foreign('event_id')->references('id')->on('events');
-
         });
     }
 
