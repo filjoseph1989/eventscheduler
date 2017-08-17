@@ -110,11 +110,7 @@ To Do:
         ☐ If happend that a user is a member of many organization, merge the information
       ☐ List of all user belongs to an organization (this feature is for administrator)
       ☐ List of all users who has no organization yet (this feature is for administrator)
-    ☐ Generate Attendance:
-    ☐ Manage Schedule:
-      ✔ My Organization @done(2017-07-19 18:03)
-      ☐ My Personal
-        ☐ Must have list version of display aside from calendar
+    ✔ Generate Attendance @done(2017-08-17 15:56)
   ☐ Task 38 - Login as OSA:
     ☐ Assign an approvers
     ☐ Assign an adviser for an organization
