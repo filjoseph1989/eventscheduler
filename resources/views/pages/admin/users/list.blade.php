@@ -487,7 +487,7 @@
   <script src="{{ asset('js/sweetalert.min.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/jquery.validate.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/dialogs.js') }}?v=0.1" charset="utf-8"></script>
-  <script src="{{ asset('js/app.js') }}?v=0.22" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.25" charset="utf-8"></script>
   <script type="text/javascript">
     $(function () {
       /**
