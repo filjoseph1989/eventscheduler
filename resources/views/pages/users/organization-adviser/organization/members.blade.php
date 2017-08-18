@@ -23,7 +23,11 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> LIST OF {{ ucwords($org->organization->name) }} </h2>
+                @if ($org != null)
+                  <h2> LIST OF {{ ucwords($org->organization->name) }} MEMBERS</h2>
+                @else
+                  <h2>LIST OF MEMBERS</h2>
+                @endif
               </div>
               <div class="body table-responsive">
                 <table class="table table-striped table-hover js-basic-example dataTable">
@@ -34,7 +38,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @if ($member->count() == 0)
+                    @if (isset($member) && $member->count() == 0 || $org === false)
                       <tr>
                         <td>No Entry Yet</td>
                       </tr>

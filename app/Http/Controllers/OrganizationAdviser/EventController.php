@@ -174,7 +174,7 @@ class EventController extends Controller
      * @param  int  $id Organization ID
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id = null)
     {
       # Get the events from organiation ID
       $event = Event::where('organization_id', '=', $id)->get();

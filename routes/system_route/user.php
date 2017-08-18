@@ -26,7 +26,7 @@ Route::prefix('users')->group(function() {
     Route::name('org-adviser.org-edit')->get('/edit-org/{id}', 'OrganizationAdviser\OrganizationController@edit');
     Route::name('org-adviser.org-update')->post('/update-org', 'OrganizationAdviser\OrganizationController@update');
     Route::name('org-adviser.members.list')->get('/members/list', 'OrganizationAdviser\OrganizationGroupController@index');
-    Route::name('org-adviser.event.show')->get('/show/{id}', 'OrganizationAdviser\EventController@show');
+    Route::name('org-adviser.event.show')->get('/show/{id?}', 'OrganizationAdviser\EventController@show');
     Route::name('org-adviser.attendance')->get('/attendance', 'OrganizationAdviser\GenerateAttendanceController@index');
     Route::name('org-adviser.attendance.show')->get('/new/{id}/{eid}', 'OrganizationAdviser\GenerateAttendanceController@show');
     Route::name('org-adviser.attendance.store')->post('/store', 'OrganizationAdviser\GenerateAttendanceController@store');
@@ -84,12 +84,12 @@ Route::prefix('users')->group(function() {
   # Route for organization member
   Route::prefix('org-member')->group(function() {
     // Route::name('org-member.org-list')->get('/org-list', 'OrganizationMember\OrgHeadAccountController@myOrganization');
-  //   Route::name('org-member.event.get')->get('/get', 'OrganizationMember\Events\EventController@getEventOfTheMonthList');
-  //   Route::name('org-member.event.get.ajax')->post('/ajax/get', 'OrganizationMember\Events\EventController@getEvent');
-  //   Route::name('org-member.event.edit')->post('/edit', 'OrganizationMember\Events\EventController@editEvent');
-  //   Route::name('org-member.calendar')->get('/calendar/{id}', 'OrganizationMember\ManageSchedule\CalendarController@myOrgCalendar');
-  //   Route::name('org-member.personal-calendar')->get('/org-personal-calendar', 'OrganizationMember\ManageSchedule\CalendarController@myPersonalCalendar');
-  //   Route::name('org-member.personal-calendar-post')->post('/ajax/personal-event', 'OrganizationMember\Events\EventController@getPersonalEvent');
+    // Route::name('org-member.event.get')->get('/get', 'OrganizationMember\Events\EventController@getEventOfTheMonthList');
+    // Route::name('org-member.event.get.ajax')->post('/ajax/get', 'OrganizationMember\Events\EventController@getEvent');
+    // Route::name('org-member.event.edit')->post('/edit', 'OrganizationMember\Events\EventController@editEvent');
+    // Route::name('org-member.calendar')->get('/calendar/{id}', 'OrganizationMember\ManageSchedule\CalendarController@myOrgCalendar');
+    // Route::name('org-member.personal-calendar')->get('/org-personal-calendar', 'OrganizationMember\ManageSchedule\CalendarController@myPersonalCalendar');
+    // Route::name('org-member.personal-calendar-post')->post('/ajax/personal-event', 'OrganizationMember\Events\EventController@getPersonalEvent');
   });
 
   # OSA account routes

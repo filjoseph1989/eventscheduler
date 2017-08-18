@@ -40,12 +40,15 @@ class OrganizationGroupController extends Controller
         ->where('user_id', Auth::user()->id)
         ->get();
 
-      $org = $org[0];
-
       # Get members
-      $member     = OrganizationGroup::getMembers($org->organization_id);
-      $login_type = 'user';
+      if (isset($org[0])) {
+        $org    = $org[0];
+        $member = OrganizationGroup::getMembers($org->organization_id);
+      } else {
+        $org = false;
+      }
 
+      $login_type = 'user';
       return view('pages/users/organization-adviser/organization/members', compact(
         'org', 'login_type', 'member'
       ));
