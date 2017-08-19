@@ -121,7 +121,7 @@ To Do:
       ☐ List of all user belongs to an organization (this feature is for administrator)
       ☐ List of all users who has no organization yet (this feature is for administrator)
     ☐ Generate Attendance:
-      ☐ Display the list of organization, advise by the loggedin adviser
+      ✔ Display the list of organization, advise by the loggedin adviser @done(2017-08-19 15:08)
       ☐ Display the list of event from the given organization
       ☐ Display the list of organization member of the organization
         ☐  including non-member who wants to attend the event
