@@ -11,16 +11,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        if (App::environment() === 'production') exit();
-
-        Eloquent::unguard();
-
-        $classes = require base_path().'/vendor/composer/autoload_classmap.php';
-        foreach ($classes as $class) {
-          if (strpos($class, 'TableSeeder') !== false) {
-            $seederClass = substr(last(explode('/', $class)), 0, -4);
-            $this->call($seederClass);
-          }
-        }
+      $this->call(CalendarsTableSeeder::class);
+      $this->call(CoursesTableSeeder::class);
+      $this->call(DepartmentsTableSeeder::class);
+      $this->call(EventCategoriesTableSeeder::class);
+      $this->call(EventTypesTableSeeder::class);
+      $this->call(OrganizationsTableSeeder::class);
+      $this->call(PositionsTableSeeder::class);
+      $this->call(SAdminsTableSeeder::class);
+      $this->call(UserAccountsTableSeeder::class);
+      $this->call(UsersTableSeeder::class);
+      $this->call(EventsTableSeeder::class);
     }
 }
