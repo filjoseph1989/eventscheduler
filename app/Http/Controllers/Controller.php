@@ -42,10 +42,7 @@ class Controller extends BaseController
      */
     public function isOrgAdviser()
     {
-      if (Auth::check()) {
-        $user = User::find(Auth::user()->id);
-        return ($user->user_account_id == 2) ? true : false;
-      }
+      return self::accountCheck(2);
     }
 
     /**
@@ -56,10 +53,7 @@ class Controller extends BaseController
      */
     public function isOrgHead()
     {
-      if (Auth::check()) {
-        $user = User::find(Auth::user()->id);
-        return ($user->user_account_id == 3) ? true : false;
-      }
+      return self::accountCheck(3);
     }
 
     /**
@@ -70,10 +64,7 @@ class Controller extends BaseController
      */
     public function isOrgMember()
     {
-      if (Auth::check()) {
-        $user = User::find(Auth::user()->id);
-        return ($user->user_account_id == 4) ? true : false;
-      }
+      return self::accountCheck(4);
     }
 
     /**
@@ -84,10 +75,7 @@ class Controller extends BaseController
      */
     public function isOrgOsa()
     {
-      if (Auth::check()) {
-        $user = User::find(Auth::user()->id);
-        return ($user->user_account_id == 5) ? true : false;
-      }
+      return self::accountCheck(5);
     }
 
     /**
@@ -102,5 +90,19 @@ class Controller extends BaseController
         return true;
 
       return false;
+    }
+
+    /**
+     * Look for user account
+     *
+     * @param  int $id User Account ID
+     * @return boolean
+     */
+    private function accountCheck($id)
+    {
+      if (Auth::check()) {
+        $user = User::find(Auth::user()->id);
+        return ($user->user_account_id == $id) ? true : false;
+      }
     }
 }
