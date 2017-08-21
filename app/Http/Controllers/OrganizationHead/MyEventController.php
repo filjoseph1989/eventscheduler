@@ -32,7 +32,7 @@ class MyEventController extends Controller
     public function __construct()
     {
       $this->middleware('web');
-      $this->$org_head = new OrgHead();
+      $this->org_head = new OrgHead();
     }
 
     /**
@@ -147,7 +147,7 @@ class MyEventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
+     */ 
     public function update(Request $request, $id)
     {
         //
