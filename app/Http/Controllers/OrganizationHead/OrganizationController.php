@@ -133,7 +133,7 @@ class OrganizationController extends Controller
       $login_type   = 'user';
 
       # Display to browser
-      return view('pages/users/organization-adviser/organization/edit', compact(
+      return view('pages/users/organization-head/organization/edit', compact(
         'organization', 'login_type'
       ));
     }
@@ -171,7 +171,7 @@ class OrganizationController extends Controller
       # Inform user about the changes
       if ($result) {
         return redirect()
-          ->route('org-adviser.org-profile', $request->id)
+          ->route('org-head.org-profile', $request->id)
           ->with('success', 'Successfully updated');
       } else {
         return back()->withInput()->with('status_warning', "Sorry, we have problem updating {$organization->name} information, please try again later");

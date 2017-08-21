@@ -37,7 +37,7 @@
                 <h2> Update {{ $organization->name }} Information</h2>
               </div>
               <div class="body">
-                <form class="" action="{{ route('org-adviser.org-update') }}" method="post">
+                <form class="" action="{{ route('org-head.org-update') }}" method="post">
                   <div class="row clearfix">
                     <div class="col-sm-8 col-sm-offset-2">
                       {{ csrf_field() }}

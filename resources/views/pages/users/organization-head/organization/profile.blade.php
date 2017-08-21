@@ -51,7 +51,7 @@
                     </a>
                     <ul class="dropdown-menu pull-right">
                       @if ($orgHead === true AND $isMember === true)
-                        <li><a href="{{ route('org-adviser.org-edit', $organization->id) }}"><i class="material-icons">create</i> Edit</a></li>
+                        <li><a href="{{ route('org-head.org-edit', $organization->id) }}"><i class="material-icons">create</i> Edit</a></li>
                       @else
                         <li><a href="#">No Options</a></li>
                       @endif
