@@ -43,8 +43,9 @@ class OrgAdviserLibrary extends Controller
    */
   public function isAdviser()
   {
-    if (! parent::isOrgAdviser()) {
-      return redirect()->route('home');
+    if ( ! parent::isOrgAdviser()) {
+      header('Location: '.action('HomeController@index'));
+      exit;
     }
   }
 
