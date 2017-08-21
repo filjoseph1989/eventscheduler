@@ -1,6 +1,26 @@
 To Do:
-  ☐ Task 41 - Create live notification in any changes in the database
-  ☐ Task 40 - Setting:
+  ☐ Task 6: System administrator:
+    ☐ Manage Event Types:
+      ☐ BREAD
+    ☐ Manage Event Categories:
+      ☐ BREAD
+    ☐ Manage Organization:
+      ☐ BREAD
+    ☐ Manage Position:
+      ☐ BREAD
+    ☐ Manage Department:
+      ☐ BREAD
+    ☐ Manage Courses:
+      ☐ BREAD
+    ☐ Manage Users Account:
+      ☐ BREAD
+      ☐ Approve user sytem membership
+    ☐ Create a filtering in list of user in the admin dashboard (admin/users/list):
+      ☐ Filter by Course
+      ☐ Filter by Department
+      ☐ Filter by Position
+      ☐ Filter by Status
+  ☐ Task 5: Setting:
     ☐ View Profile
       ✔ What if there are many organization? @done(2017-07-23 03:04)
       ☐ if click the following:
@@ -22,7 +42,194 @@ To Do:
         ✔ Update also the sidebar picture @done(2017-07-23 15:18)
       ✔ Change profile pic @done(2017-07-27 21:48)
       ☐ Create a thumbnails for profile pricture (Low Priority)
-  ☐ Task 39 - Login as organization adviser:
+
+  ☐ Task 5: User admin account:
+    ☐ Approve user sytem membership
+    ☐ List of all registered members (this feature is for administrator)
+      It must consist of the following columns
+        ☐ name
+        ☐ department
+          ☐ If click show all user under this department (optiona|advance)
+        ☐ course
+          ☐ If click show all user under this course (optiona|advance)
+        ☐ position
+          ☐ If click show all user under this position (optiona|advance)
+        ☐ organization
+          ☐ If click, show all members of this organization (optiona|advance)
+        ☐ member since?
+          ☐ If click, show all members since this date (optiona|advance)
+      ☐ If happend that a user is a member of many organization, merge the information
+    ☐ List of all user belongs to an organization (this feature is for administrator)
+    ☐ List of all users who has no organization yet (this feature is for administrator)
+
+  ☐ Task 4: Office of the student affairs account:
+    ☐ Assign an approvers:
+    ☐ Assign an adviser for an organization:
+    ☐ Organization:
+      ☐ List all organization, include who is the adviser of the organization
+      ☐ Add organization
+    ☐ Events:
+      ☐ Delete events that not approve and already due
+      ☐ Create My Events:
+        ☐ Display form to create event
+        ☐ Use textarea for description
+        ☐ Can customize message for notification
+        ☐ Can upload image for notification
+      ☐ Create Events:
+        ☐ Display form to create event
+        ☐ Use textarea for description
+        ☐ Change the semester dropdown into season such (quarter, holidays, christmas) {Enterprise version}
+          ☐ customizable by the user
+        ☐ Can customize message for notification
+        ☐ Can upload image for notification
+        ☐ In what way that this event should be valid? Goto Approve events (Advance)
+          ☐ Add approvers:
+            ☐ There should be a default approvers - This approvers are crucial for approving the said event
+            ☐ Browse to the list of approvers
+            ☐ If the adviser is an approver, display a button within the form to approve the created event
+            ☐ Include the president as approver for this event
+        ☐ Chose organization
+          ☐ Categories as public
+            ☐ Is outside the campus? - This part doesnt need for approval from the people in university (Advance)
+          ☐ Categories as private (within organization)
+          ☐ Categories as Among Organization
+        ☐ Determine if her/she is the adviser of the organization
+      ☐ List of events:
+        ☐ Display the info box of events base on category
+        ☐ Attend this event - A button for user if he wants to attend this event (For regulart users and non member of the organization)
+        ☐ Archive events
+        ☐ Automatically change the status of the event base on the given date
+        ☐ Set status of my events
+          ☐ if the status changed, Set notification functionality
+      ☐ Approval of event functionality
+        ☐ Approve events
+          ☐ Notification: (Facebook, Twitter, Email, Phone)
+        ☐ Disapprove event
+        ☐ If the creator of events is an organization adviser, automatically, me as org-head should be an approver plus other approver
+        ☐ Event if I'm not an approver for all events, I could be the approver to my organization
+        ☐ Edit event:
+          ☐ If the organization head edit the date of the of the event, reset the approver count and status
+      ☐ Calendar of events
+        ☐ Public
+        ☐ Among
+        ☐ Within
+        ☐ Personal
+    ☐ Members:
+      ☐ Display membership request
+      ☐ Accept new member
+      ☐ Check for new membership request live
+      ☐ Check for if an edit happend about the organization live
+    ☐ Generate Attendance:
+      ☐ Display the list of organization, advise by the loggedin adviser
+      ☐ Display the list of event from the given organization
+      ☐ Display the list of organization member of the organization
+        ☐  Including non-member who wants to attend the event
+
+  ☐ Task 3: Organization Member Account:
+    ☐ Check my attendance:
+    ☐ Organization:
+      ☐ List of organization
+        ☐ Notify the organization officers for the changes made by the organization head
+        ☐ Request for membership
+          ☐ If the organization head is not a member of the organization display this button
+        ☐ If the organization name is clicked, display the orgazation simple profile
+        ☐ Card Layout for simple organization profile
+        ☐ Who are they? - Should have default description if not given
+        ☐ If the adivser view his organization as an adviser he must have option for editing few information
+          ☐ Color picker
+        ☐ logo default
+        ☐ Change logo
+    ☐ Events:
+      ☐ Create My Events:
+        ☐ Display form to create event
+        ☐ Use textarea for description
+        ☐ Can customize message for notification
+        ☐ Can upload image for notification
+      ☐ List of events:
+        ☐ Display the info box of events base on category
+        ☐ Attend this event - A button for user if he wants to attend this event (For regulart users and non member of the organization)
+        ☐ Archive events
+        ☐ Automatically change the status of the event base on the given date
+        ☐ Set status of my events
+          ☐ if the status changed, Set notification functionality
+      ☐ Calendar of events
+        ☐ Public
+        ☐ Among
+        ☐ Within
+        ☐ Personal
+    ☐ Members:
+      ☐ Display membership request
+
+    ☐ Task 2: Organization HEAD Account:
+      ☐ Organization:
+        ☐ List of organization
+          ☐ Notify the organization officers for the changes made by the organization head
+          ☐ Request for membership
+            ☐ If the organization head is not a member of the organization display this button
+          ☐ If the organization name is clicked, display the orgazation simple profile
+          ☐ Card Layout for simple organization profile
+          ☐ Who are they? - Should have default description if not given
+          ☐ If the adivser view his organization as an adviser he must have option for editing few information
+            ☐ Color picker
+          ☐ logo default
+          ☐ Change logo
+      ☐ Events:
+        ☐ Create My Events:
+          ☐ Display form to create event
+          ☐ Use textarea for description
+          ☐ Can customize message for notification
+          ☐ Can upload image for notification
+        ☐ Create Events:
+          ☐ Display form to create event
+          ☐ Use textarea for description
+          ☐ Change the semester dropdown into season such (quarter, holidays, christmas) {Enterprise version}
+            ☐ customizable by the user
+          ☐ Can customize message for notification
+          ☐ Can upload image for notification
+          ☐ In what way that this event should be valid? Goto Approve events (Advance)
+            ☐ Add approvers:
+              ☐ There should be a default approvers - This approvers are crucial for approving the said event
+              ☐ Browse to the list of approvers
+              ☐ If the adviser is an approver, display a button within the form to approve the created event
+              ☐ Include the president as approver for this event
+          ☐ Chose organization
+            ☐ Categories as public
+              ☐ Is outside the campus? - This part doesnt need for approval from the people in university (Advance)
+            ☐ Categories as private (within organization)
+            ☐ Categories as Among Organization
+          ☐ Determine if her/she is the adviser of the organization
+        ☐ List of events:
+          ☐ Display the info box of events base on category
+          ☐ Attend this event - A button for user if he wants to attend this event (For regulart users and non member of the organization)
+          ☐ Archive events
+          ☐ Automatically change the status of the event base on the given date
+          ☐ Set status of my events
+            ☐ if the status changed, Set notification functionality
+        ☐ Approval of event functionality
+          ☐ Approve events
+            ☐ Notification: (Facebook, Twitter, Email, Phone)
+          ☐ Disapprove event
+          ☐ If the creator of events is an organization adviser, automatically, me as org-head should be an approver plus other approver
+          ☐ Event if I'm not an approver for all events, I could be the approver to my organization
+          ☐ Edit event:
+            ☐ If the organization head edit the date of the of the event, reset the approver count and status
+        ☐ Calendar of events
+          ☐ Public
+          ☐ Among
+          ☐ Within
+          ☐ Personal
+      ☐ Members:
+        ☐ Display membership request
+        ☐ Accept new member
+        ☐ Check for new membership request live
+        ☐ Check for if an edit happend about the organization live
+      ☐ Generate Attendance:
+        ☐ Display the list of organization, advise by the loggedin adviser
+        ☐ Display the list of event from the given organization
+        ☐ Display the list of organization member of the organization
+          ☐  Including non-member who wants to attend the event
+
+  ☐ Task 1: Organization Adviser Account:
     ☐ Organizations:
       ☐ List of organization
         ☐ Notify the organization officers for the changes made by the adviser
@@ -65,31 +272,6 @@ To Do:
         ☐ Attend this event - A button for user if he wants to attend this event (For regulart users and non member of the organization)
         ☐ Archive events
         ☐ Automatically change the status of the event base on the given date
-      ☐ List of my events:
-        ✔ Display info box @done(2017-08-03 17:41)
-        ✔ List with DataTables @done(2017-08-04 15:31)
-          ✔ Modal for more details @done(2017-08-04 15:06)
-          ✔ Upcoming events @done(2017-08-05 17:24)
-          ✔ Edit my personal events @done(2017-08-06 23:43)
-            ☐ Time should be valid format when editing
-            ☐ Remove PM|AM unit when editing
-            ☐ Validate the input
-            ☐ Should have an indication what happend after the event in updated
-            ☐ What to do to update event type?
-            ☐ When closing the modal, update the table
-            ☐ Add custom message
-          ✔ Edit event of the organization @done(2017-08-07 00:13)
-            ☐ Use the EventController@update to update event in organization
-            ☐ Edit event if the view is the creator
-            ☐ Should edit the user - is it the current loggedin automatically the assign user|creator of the event?
-              ☐ This current loggedin user should not be allowed to update other event not he owned
-            ☐ How to get the of organization the current user belong?
-            ☐ When closing the modal, update the table
-            ☐ Add custom message
-          ☐ Delete event when not yet reach the date_start
-          ☐ Show the approver of the event
-        ☐ Archive events
-        ☐ Automatically change the status of the event base on the given date
         ☐ Set status of my events
           ☐ if the status changed, Set notification functionality
       ✔ Approval of event functionality @done(2017-08-15 20:34) @project(To Do / ☐ Task 39 - Login as organization adviser / ☐ Events)
@@ -104,196 +286,8 @@ To Do:
     ☐ Members:
       ✔ List of members within the organization of adviser @done(2017-08-16 20:02)
         ✔ View members profile @done(2017-08-16 20:28)
-      ☐ List of all registered members (this feature is for administrator)
-        It must consist of the following columns
-          ☐ name
-          ☐ department
-            ☐ If click show all user under this department (optiona|advance)
-          ☐ course
-            ☐ If click show all user under this course (optiona|advance)
-          ☐ position
-            ☐ If click show all user under this position (optiona|advance)
-          ☐ organization
-            ☐ If click, show all members of this organization (optiona|advance)
-          ☐ member since?
-            ☐ If click, show all members since this date (optiona|advance)
-        ☐ If happend that a user is a member of many organization, merge the information
-      ☐ List of all user belongs to an organization (this feature is for administrator)
-      ☐ List of all users who has no organization yet (this feature is for administrator)
     ☐ Generate Attendance:
-      ✔ Display the list of organization, advise by the loggedin adviser @done(2017-08-19 15:08)
-      ☐ Display the list of event from the given organization
-      ☐ Display the list of organization member of the organization
-        ☐  including non-member who wants to attend the event
-  ☐ Task 38 - Login as OSA:
-    ☐ Assign an approvers
-    ☐ Assign an adviser for an organization
-    ☐ Organization (OSA):
-      ☐ Edit organization:
-      ☐ List of Organization:
-        ☐ With adviser field
-      ✔ Add Organization @done(2017-07-18 19:13)
-    ☐ Manage Events:
-      ☐ List of Events
-        ☐ Archive events if already done
-        ☐ Delete:
-          ☐ Delete events if there's zero approve
-          ☐ Or have an option for "Request Cancel events" so that approver will be inform first before and event being deleted
-        ✔ View Details @done(2017-07-19 08:17)
-      ✔ Create an Events @done(2017-07-18 19:13)
-      ☐ Approve Events:
-        ✔ approve  @done(2017-07-19 02:02)
-        ☐ disapprove
-      ☐ Approve Events with OSa:
-        ☐ Approve
-        ☐ Disapprove
-    ☐ Manage Users:
-      ☐ List of Users
-    ☐ Manage Schedule:
-      ☐ University Calendar
-      ☐ All organization calendar
-      ☐ My Organization Calendar
-      ☐ My Personal Calendar
-  ☐ Task 37 - Create notification on facebook, twitter, email, sms
-  ☐ Task 36 - Login as Organization Members:
-    ☐ Check my attendance:
-    ☐ Events:
-      ☐ My Personal:
-        ☐ Create Event
-        ☐ List Events
-      ☐ My Organization:
-        ☐ Create Event - remove the create functionality
-        ☐ List Events - view event from organization
-    ☐ Manage Schedule:
-      ☐ My Personal Calendar
-      ✔ My Organization Calendar @done(2017-07-17 01:40)
-        ✔ Display the list of organization first @done(2017-07-17 01:39)
-        ✔ When the user click on organization @done(2017-07-17 01:40)
-          ✔ Display the event on the calendar only @done(2017-07-17 01:40)
-          ✔ Remove the add functionality of event @done(2017-07-17 01:40)
-  ☐ Task 35 - Transfer the master.js to app.js
-  ☐ Task 34 - Login as Organization HEAD:
-    ☐ Accept new member
-      ☐ Check for new membership request live
-      ☐ Check for if an edit happend about the organization live
-    ☐ Generate User Attendance:
-    ☐ Events:
-      ☐ Approve events
-        ☐ If the creator of events is an organization adviser, automatically, me as org-head should be an approver plus other approver
-        ☐ Event if I'm not an approver for all events, I could be the approver to my organization
-      ☐ My Personal:
-      ☐ My Organization:
-        ☐ List Events
-          ✔ Display event in the table with status approved or not @done(2017-07-17 22:00)
-            ✔ Display the event @done(2017-07-15 12:27)
-            ☐ Edit event:
-              ☐ if the user edit the date of the schedule, reset the approver count and status
-        ☐ Create Event
-          ☐ within personnal
-          Issue:
-          ☐ What if there's no entry?
-          ☐ Check if event already exist?
-          ☐ Remove among organization in the dropdown of whos audience
-    ☐ Manage Schedule:
-      ✔ My Personal Calendar @done(2017-07-17 18:50)
-        ✔ Display personal event on calendar @done(2017-07-17 18:50)
-      ✔ My Organization Calendar @done(2017-07-17 18:50)
-        ✔ Display the list of organization @done(2017-07-17 17:00)
-        ✔ Display the calendar of the organization @done(2017-07-17 17:01)
-        ✔ Edit Events @done(2017-07-17 21:20)
-          ✔ List the events first then edit @done(2017-07-17 21:20)
-  ☐ Task 33 - Change the profile background according to the user type
-  ☐ Task 32 - Try View Composers to manage the rendering of two sidebar for user and for admin
-  ☐ Task 31 - Create a manage notification - This will be a setting what to notify or what kind of notification should be if org adviser will create a event
-  ☐ Task 30 - Give functionality the super admin dashboard info-box:
-    ✔ Add Organization @done(2017-07-03 23:11)
-    ✔ Add user  @done(2017-07-03 00:41)
-  ☐ Task 29 - Different user dashboard:
-    ☐ Define the sidebar details for deffirent type of user
-      ☐ Admin
-      ☐ Organization-head
-      ✔ Organization-adviser @done(2017-07-16 23:35)
-      ☐ Organization-member
-      ☐ OSA Personnel
-    ✔ Defined initial info-box for a Different type of user @done(2017-07-02 15:11)
-  ☐ Task 28 - Login as OSA:
-    ☐ Organization:
-      ☐ Generate Attendance
-      ☐ List of events
-        ☐ On OSA account, display the upnapproved events and then they will be the one to chose who will approve
-          ☐ They can also set personnalities for approving
-          ☐ What if the approver is not available?
-            ☐ On approvers page, he can chose of whom can approve when he not around
-  ☐ Task 27 - Create a function which return an information about css and js version
-  ☐ Task 25 - Manage Event Types:
-    ☐ Browse
-    ☐ Read
-    ☐ Edit
-    ☐ Add
-    ☐ Delete
-  ☐ Task 24 - Manage Event Categories:
-    ☐ Browse
-    ☐ Read
-    ☐ Edit
-    ☐ Add
-    ☐ Delete
-  ☐ Task 23 - Manage Organization:
-    ☐ Browse
-    ☐ Read
-    ☐ Edit
-    ☐ Add
-    ☐ Delete
-  ☐ Task 22 - Manage Position:
-    ☐ Browse
-    ☐ Read
-    ☐ Edit
-    ☐ Add
-    ☐ Delete
-  ☐ Task 21 - Manage Department:
-    ☐ Browse
-    ☐ Read
-    ☐ Edit
-    ☐ Add
-    ☐ Delete
-  ☐ Task 20 - Manage Courses:
-    ☐ Browse
-    ☐ Read
-    ☐ Edit
-    ☐ Add
-    ☐ Delete
-  ☐ Task 19 - Super admin Manage Users Account:
-    ☐ Browse
-    ☐ Read
-    ☐ Edit
-    ☐ Add
-    ☐ Delete
-  ☐ Task 18 - Super Admin Manage Users:
-    ☐ Delete - soft delete
-    ☐ Fetch the dropdown for editing the user:
-      ☐ All Account Type
-      ☐ A users account type
-      ✔ All Courses @done(2017-07-08 02:25)
-      ✔ A users course @done(2017-07-08 02:25)
-      ✔ All departments name @done(2017-07-08 02:25)
-      ✔ A user department belong to @done(2017-07-08 02:25)
-      ✔ All positions @done(2017-07-08 02:25)
-      ✔ A user position @done(2017-07-08 02:25)
-      ☐ Table relationship
-    ✔ Browse @done(2017-06-30 11:26) @project(To Do / ☐ Task 19 - Manage Users Account)
-    ✔ Read @done(2017-06-30 11:26) @project(To Do / ☐ Task 19 - Manage Users Account)
-    ✔ Edit  @done(2017-06-30 11:26) @project(To Do / ☐ Task 19 - Manage Users Account)
-    ✔ Add  @done(2017-06-30 11:26) @project(To Do / ☐ Task 19 - Manage Users Account)
-  ☐ Task 17 - Create a function for deleting user information:
-    ☐ Note that there should be no delete, instead change the status to inactive
-    ☐ But admin can view it
-  ☐ Task 16 - Create a function for editing user information:
-      ☐ Need to validate the input of the editing process
-  ☐ Task 15 - Create add functionality to all
-  ☐ Task 12 - Create a modal which display the user information aka view user profile
-  ☐ Task 11 - Create a filtering in list of user in the admin dashboard (admin/users/list):
-    ☐ Filter by Course
-    ☐ Filter by Department
-    ☐ Filter by Position
-    ☐ Filter by Status
-  ☐ Task 3 - After the registration of the user and the admin display the list of user he/she should be able to change user_account_type
-  ☐ Task 2 - Get the user dropdowns using eloquent relationship
+      ✔ Display the list of organization, advise by the loggedin adviser @done(2017-08-21 10:46)
+      ✔ Display the list of event from the given organization @done(2017-08-21 10:47)
+      ✔ Display the list of organization member of the organization @done(2017-08-21 10:47)
+        ☐  Including non-member who wants to attend the event

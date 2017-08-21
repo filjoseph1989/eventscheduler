@@ -1,4 +1,9 @@
 To Do:
+  ☐ Issue 52: Create live notification in any changes in the database
+  ☐ Issue 51: A user can have dual account? which mean, he can be an OSA or an ordinary user the same time?
+  ☐ Issue 50: Create a function which return an information about css and js version
+  ☐ Issue 49: Change the profile background according to the user type
+  ☐ Issue 48: Try View Composers to manage the rendering of two sidebar for user and for admin
   ✔ Issue 47: Go to this line @done(2017-08-17 21:14) @project(To Do)
   ☐ Issue 46: Go to this line
   ☐ Issue 45: Go to this line
