@@ -5,7 +5,7 @@
   </a>
   <ul class="ml-menu">
     <li>
-      <a href="{{ route('org.adviser.org-list') }}">
+      <a href="{{ route('org-head.org-list') }}">
         <span>List of organizations</span>
       </a>
     </li>

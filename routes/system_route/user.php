@@ -42,23 +42,11 @@ Route::prefix('users')->group(function() {
     Route::name('ajax.update.event.list')->post('/update/event', 'OrganizationAdviser\AdviserJsonController@updateEvent');
   });
 
-  # Attendance
-  # Issue 47: Remove this soon
-  Route::prefix('attendance')->group(function() {
-    Route::name('attendance')->get('/new/{id}/{eid}', 'OrganizationHead\ManageSchedule\GenerateAttendanceController@index');
-    Route::name('attendance.store')->post('/store', 'OrganizationHead\ManageSchedule\GenerateAttendanceController@store');
+  # Route for organization head
+  Route::prefix('org-head')->group(function() {
+    Route::name('org-head.org-list')->get('/list_of_organizations','OrganizationHead\OrganizationController@index');
+    Route::name('org-head.org-profile')->get('/profile/{id}', 'OrganizationHead\OrganizationController@show');
   });
-
-  //   # Create event
-  //   Route::prefix('event')->group(function() {
-      // Route::name('event.show')->get('/show', 'OrganizationHead\Events\EventController@showEvents');
-      // Route::name('event.new')->get('/new', 'OrganizationHead\Events\EventController@createNewEventForm');
-      // Route::name('event.new')->post('/new', 'OrganizationHead\Events\EventController@createNewEvent');
-  //     Route::name('event.get')->get('/get', 'OrganizationHead\Events\EventController@getEventOfTheMonthList');
-  //     Route::name('event.gets')->post('/gets', 'OrganizationHead\Events\EventController@getEventOfTheMonth');
-  //     Route::name('event.ajax.get')->post('/ajax/get', 'OrganizationHead\Events\EventController@getEvent'); # Remove me soon
-  //   });
-  // });
 
   # Route for organization head
   // Route::prefix('org-head')->group(function() {
@@ -80,6 +68,23 @@ Route::prefix('users')->group(function() {
   //     Route::name('my-personal-calendar')->get('/my-personal-calendar', 'OrganizationHead\ManageSchedule\CalendarController@myPersonalCalendar');
   //   });
 
+  # Attendance
+  # Issue 47: Remove this soon
+  Route::prefix('attendance')->group(function() {
+    Route::name('attendance')->get('/new/{id}/{eid}', 'OrganizationHead\ManageSchedule\GenerateAttendanceController@index');
+    Route::name('attendance.store')->post('/store', 'OrganizationHead\ManageSchedule\GenerateAttendanceController@store');
+  });
+
+  //   # Create event
+  //   Route::prefix('event')->group(function() {
+      // Route::name('event.show')->get('/show', 'OrganizationHead\Events\EventController@showEvents');
+      // Route::name('event.new')->get('/new', 'OrganizationHead\Events\EventController@createNewEventForm');
+      // Route::name('event.new')->post('/new', 'OrganizationHead\Events\EventController@createNewEvent');
+  //     Route::name('event.get')->get('/get', 'OrganizationHead\Events\EventController@getEventOfTheMonthList');
+  //     Route::name('event.gets')->post('/gets', 'OrganizationHead\Events\EventController@getEventOfTheMonth');
+  //     Route::name('event.ajax.get')->post('/ajax/get', 'OrganizationHead\Events\EventController@getEvent'); # Remove me soon
+  //   });
+  // });
 
   # Route for organization member
   Route::prefix('org-member')->group(function() {
