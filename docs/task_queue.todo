@@ -1,2 +1,14 @@
 To Do:
+  ☐ Create a sidebar for organization head {refer to task_outline.todo}
+  ☐ List of organization
+    ☐ Notify the organization officers for the changes made by the organization head
+    ☐ Request for membership
+      ☐ If the organization head is not a member of the organization display this button
+    ☐ If the organization name is clicked, display the orgazation simple profile
+    ☐ Card Layout for simple organization profile
+    ☐ Who are they? - Should have default description if not given
+    ☐ If the adivser view his organization as an adviser he must have option for editing few information
+      ☐ Color picker
+    ☐ logo default
+    ☐ Change logo
   ✔ Display the list of organization, advise by the loggedin adviser @done(2017-08-21 10:43)

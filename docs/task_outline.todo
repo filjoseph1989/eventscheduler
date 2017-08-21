@@ -20,6 +20,7 @@ To Do:
       ☐ Filter by Department
       ☐ Filter by Position
       ☐ Filter by Status
+
   ☐ Task 5: Setting:
     ☐ View Profile
       ✔ What if there are many organization? @done(2017-07-23 03:04)
@@ -160,74 +161,74 @@ To Do:
     ☐ Members:
       ☐ Display membership request
 
-    ☐ Task 2: Organization HEAD Account:
-      ☐ Organization:
-        ☐ List of organization
-          ☐ Notify the organization officers for the changes made by the organization head
-          ☐ Request for membership
-            ☐ If the organization head is not a member of the organization display this button
-          ☐ If the organization name is clicked, display the orgazation simple profile
-          ☐ Card Layout for simple organization profile
-          ☐ Who are they? - Should have default description if not given
-          ☐ If the adivser view his organization as an adviser he must have option for editing few information
-            ☐ Color picker
-          ☐ logo default
-          ☐ Change logo
-      ☐ Events:
-        ☐ Create My Events:
-          ☐ Display form to create event
-          ☐ Use textarea for description
-          ☐ Can customize message for notification
-          ☐ Can upload image for notification
-        ☐ Create Events:
-          ☐ Display form to create event
-          ☐ Use textarea for description
-          ☐ Change the semester dropdown into season such (quarter, holidays, christmas) {Enterprise version}
-            ☐ customizable by the user
-          ☐ Can customize message for notification
-          ☐ Can upload image for notification
-          ☐ In what way that this event should be valid? Goto Approve events (Advance)
-            ☐ Add approvers:
-              ☐ There should be a default approvers - This approvers are crucial for approving the said event
-              ☐ Browse to the list of approvers
-              ☐ If the adviser is an approver, display a button within the form to approve the created event
-              ☐ Include the president as approver for this event
-          ☐ Chose organization
-            ☐ Categories as public
-              ☐ Is outside the campus? - This part doesnt need for approval from the people in university (Advance)
-            ☐ Categories as private (within organization)
-            ☐ Categories as Among Organization
-          ☐ Determine if her/she is the adviser of the organization
-        ☐ List of events:
-          ☐ Display the info box of events base on category
-          ☐ Attend this event - A button for user if he wants to attend this event (For regulart users and non member of the organization)
-          ☐ Archive events
-          ☐ Automatically change the status of the event base on the given date
-          ☐ Set status of my events
-            ☐ if the status changed, Set notification functionality
-        ☐ Approval of event functionality
-          ☐ Approve events
-            ☐ Notification: (Facebook, Twitter, Email, Phone)
-          ☐ Disapprove event
-          ☐ If the creator of events is an organization adviser, automatically, me as org-head should be an approver plus other approver
-          ☐ Event if I'm not an approver for all events, I could be the approver to my organization
-          ☐ Edit event:
-            ☐ If the organization head edit the date of the of the event, reset the approver count and status
-        ☐ Calendar of events
-          ☐ Public
-          ☐ Among
-          ☐ Within
-          ☐ Personal
-      ☐ Members:
-        ☐ Display membership request
-        ☐ Accept new member
-        ☐ Check for new membership request live
-        ☐ Check for if an edit happend about the organization live
-      ☐ Generate Attendance:
-        ☐ Display the list of organization, advise by the loggedin adviser
-        ☐ Display the list of event from the given organization
-        ☐ Display the list of organization member of the organization
-          ☐  Including non-member who wants to attend the event
+  ☐ Task 2: Organization HEAD Account:
+    ☐ Organization:
+      ☐ List of organization
+        ☐ Notify the organization officers for the changes made by the organization head
+        ☐ Request for membership
+          ☐ If the organization head is not a member of the organization display this button
+        ☐ If the organization name is clicked, display the orgazation simple profile
+        ☐ Card Layout for simple organization profile
+        ☐ Who are they? - Should have default description if not given
+        ☐ If the adivser view his organization as an adviser he must have option for editing few information
+          ☐ Color picker
+        ☐ logo default
+        ☐ Change logo
+    ☐ Events:
+      ☐ Create My Events:
+        ☐ Display form to create event
+        ☐ Use textarea for description
+        ☐ Can customize message for notification
+        ☐ Can upload image for notification
+      ☐ Create Events:
+        ☐ Display form to create event
+        ☐ Use textarea for description
+        ☐ Change the semester dropdown into season such (quarter, holidays, christmas) {Enterprise version}
+          ☐ customizable by the user
+        ☐ Can customize message for notification
+        ☐ Can upload image for notification
+        ☐ In what way that this event should be valid? Goto Approve events (Advance)
+          ☐ Add approvers:
+            ☐ There should be a default approvers - This approvers are crucial for approving the said event
+            ☐ Browse to the list of approvers
+            ☐ If the adviser is an approver, display a button within the form to approve the created event
+            ☐ Include the president as approver for this event
+        ☐ Chose organization
+          ☐ Categories as public
+            ☐ Is outside the campus? - This part doesnt need for approval from the people in university (Advance)
+          ☐ Categories as private (within organization)
+          ☐ Categories as Among Organization
+        ☐ Determine if her/she is the adviser of the organization
+      ☐ List of events:
+        ☐ Display the info box of events base on category
+        ☐ Attend this event - A button for user if he wants to attend this event (For regulart users and non member of the organization)
+        ☐ Archive events
+        ☐ Automatically change the status of the event base on the given date
+        ☐ Set status of my events
+          ☐ if the status changed, Set notification functionality
+      ☐ Approval of event functionality
+        ☐ Approve events
+          ☐ Notification: (Facebook, Twitter, Email, Phone)
+        ☐ Disapprove event
+        ☐ If the creator of events is an organization adviser, automatically, me as org-head should be an approver plus other approver
+        ☐ Event if I'm not an approver for all events, I could be the approver to my organization
+        ☐ Edit event:
+          ☐ If the organization head edit the date of the of the event, reset the approver count and status
+      ☐ Calendar of events
+        ☐ Public
+        ☐ Among
+        ☐ Within
+        ☐ Personal
+    ☐ Members:
+      ☐ Display membership request
+      ☐ Accept new member
+      ☐ Check for new membership request live
+      ☐ Check for if an edit happend about the organization live
+    ☐ Generate Attendance:
+      ☐ Display the list of organization, advise by the loggedin adviser
+      ☐ Display the list of event from the given organization
+      ☐ Display the list of organization member of the organization
+        ☐  Including non-member who wants to attend the event
 
   ☐ Task 1: Organization Adviser Account:
     ☐ Organizations:
