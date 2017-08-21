@@ -46,6 +46,7 @@ Route::prefix('users')->group(function() {
   Route::prefix('org-head')->group(function() {
     Route::name('org-head.org-list')->get('/list_of_organizations','OrganizationHead\OrganizationController@index');
     Route::name('org-head.org-profile')->get('/profile/{id}', 'OrganizationHead\OrganizationController@show');
+    Route::name('org-head.org-logo')->post('/change-logo', 'OrganizationHead\OrganizationController@uploadLogo');
   });
 
   # Route for organization head

@@ -56,8 +56,7 @@ class OrganizationController extends Controller
 
       # Render view
       return view('pages/users/organization-head/organization/list', compact(
-        'login_type',
-        'organization'
+        'login_type', 'organization'
       ));
     }
 
@@ -107,7 +106,7 @@ class OrganizationController extends Controller
 
       $login_type   = 'user';
       $organization = Organization::find($id);
-      $orgHead      = self::_headOfThisOrganization($id);
+      $orgHead      = self::_headOfThisOrganization();
       $isMember     = self::_isAmember($id);
 
       return view('pages/users/organization-head/organization/profile', compact(
@@ -230,14 +229,14 @@ class OrganizationController extends Controller
      * @param  int  $id Organizatoin ID
      * @return int
      */
-    private function _headOfThisOrganization($id)
+    private function _headOfThisOrganization()
     {
-      $result = OrganizationAdviserGroup::where('user_id', '=', Auth::user()->id)
-        ->where('organization_id', '=', $id)
-        ->get()
-        ->count();
+      $result = OrganizationGroup::where('user_id', '=', Auth::user()->id)->get()[0];
 
-      return ($result == 1) ? true : false;
+      if ($result->position_id == 5 || $result->position_id == 6) {
+        return true;
+      }
+      return false;
     }
 
     /**

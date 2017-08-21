@@ -68,17 +68,19 @@
                       <img class="org-logo" src="{{ asset("images/ship.jpg") }}" alt="Credit https://www.askideas.com/media/87/Black-Ink-Pirate-Ship-In-Rope-Frame-With-Banner-And-Anchor-Tattoo-Design.jpg">
                       <small>Credit: <a href="https://www.askideas.com/media/87/Black-Ink-Pirate-Ship-In-Rope-Frame-With-Banner-And-Anchor-Tattoo-Design.jpg" target="_blank">Here</a></small>
                     @endif
-                    <form action="{{ route('org-adviser.org-logo') }}" enctype="multipart/form-data" method="POST">
-                      {{ csrf_field() }}
-                      <div class="row">&nbsp;</div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <input type="hidden" name="id" value="{{ $organization->id }}">
-                          <input type="file" name="image">
-                          <button type="submit" class="btn btn-success" style="margin-top: 3px; "><i class="material-icons">file_upload</i> Upload</button>
+                    @if ($adviser === true AND $isMember === true)
+                      <form action="{{ route('org-adviser.org-logo') }}" enctype="multipart/form-data" method="POST">
+                        {{ csrf_field() }}
+                        <div class="row">&nbsp;</div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <input type="hidden" name="id" value="{{ $organization->id }}">
+                            <input type="file" name="image">
+                            <button type="submit" class="btn btn-success" style="margin-top: 3px; "><i class="material-icons">file_upload</i> Upload</button>
+                          </div>
                         </div>
-                      </div>
-                    </form>
+                      </form>
+                    @endif 
                   </div>
                   <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
                     <div class="row">
