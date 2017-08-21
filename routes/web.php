@@ -47,7 +47,7 @@ Route::group(['middleware' => 'revalidate'], function() {
   | Redirect to home page
   |--------------------------------------------------------------------------
   */
-  Route::name('home')->get('/home', 'HomeController@index');
+    Route::name('home')->get('/home', 'HomeController@index');
 });
 
 /*
