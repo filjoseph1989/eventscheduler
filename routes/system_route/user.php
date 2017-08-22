@@ -50,6 +50,7 @@ Route::prefix('users')->group(function() {
     Route::name('org-head.org-edit')->get('/edit-org/{id}', 'OrganizationHead\OrganizationController@edit');
     Route::name('org-head.org-update')->post('/update-org', 'OrganizationHead\OrganizationController@update');
     Route::name('org-head.event.new')->get('/new', 'OrganizationHead\EventController@create');
+    Route::name('org-head.event.new')->post('/new', 'OrganizationHead\EventController@store');
   });
 
   # Route for organization head

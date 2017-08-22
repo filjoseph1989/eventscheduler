@@ -36,7 +36,7 @@
                 <h2> NEW EVENTS </h2>
               </div>
               <div class="body">
-                <form class="" id="add-event-form" action="{{ route('org-adviser.event.new') }}" method="POST">
+                <form class="" id="add-event-form" action="{{ route('org-head.event.new') }}" method="POST">
                   <div class="row clearfix">
                     <div class="col-sm-8 col-sm-offset-2">
                       {{ csrf_field() }}

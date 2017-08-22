@@ -98,7 +98,7 @@ class EventController extends Controller
      * Receive passed data and create new event
      * Issue 40: This method can be combine with self::myNewEvent()
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $data
      * @return \Illuminate\Http\Response
      */
     public function store(Request $data)
@@ -107,7 +107,7 @@ class EventController extends Controller
       parent::loginCheck();
 
       # is the user rank as adivser?
-      $this->adviser->isAdviser();
+      $this->org_head->isOrgHead();
 
       # return to form if the following does not satisfy
       if ($data->event_type_id == 0) {
@@ -139,10 +139,10 @@ class EventController extends Controller
       }
 
       # is data entry valid?
-      $this->adviser->isValid($data);
+      $this->org_head->isValid($data);
 
       # is the user an adviser to an organization?
-      $this->adviser->isAdviserInGivenOrganization($data->organization_id);
+      $this->org_head->isAdviserInGivenOrganization($data->organization_id);
 
       # Get the data from form
       $request = $data->only(
