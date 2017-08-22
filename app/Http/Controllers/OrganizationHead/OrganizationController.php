@@ -226,16 +226,20 @@ class OrganizationController extends Controller
      * Check if the account currently loggedin is the
      * head of the given organization ID
      *
-     * @param  int  $id Organizatoin ID
-     * @return int
+     * @return boolean
      */
     private function _headOfThisOrganization()
     {
-      $result = OrganizationGroup::where('user_id', '=', Auth::user()->id)->get()[0];
+      $result = OrganizationGroup::where('user_id', '=', Auth::user()->id)->get();
+
+      if (! isset($result[0])) {
+        return false;
+      }
 
       if ($result->position_id == 5 || $result->position_id == 6) {
         return true;
       }
+
       return false;
     }
 
