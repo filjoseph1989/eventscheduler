@@ -39,7 +39,7 @@ class EventController extends Controller
       parent::loginCheck();
 
       # Is the user an adviser?
-      $this->adviser->isAdviser();
+      $this->org_head->isOrgHead();
 
       $login_type = "user";
       if ($id == null) {
@@ -140,7 +140,7 @@ class EventController extends Controller
 
       # is data entry valid?
       $this->org_head->isValid($data);
-       
+
       # Get the data from form
       $request = $data->only(
         'user_id', 'event_type_id', 'event_category_id',
