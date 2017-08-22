@@ -140,10 +140,7 @@ class EventController extends Controller
 
       # is data entry valid?
       $this->org_head->isValid($data);
-
-      # is the user an adviser to an organization?
-      $this->org_head->isAdviserInGivenOrganization($data->organization_id);
-
+       
       # Get the data from form
       $request = $data->only(
         'user_id', 'event_type_id', 'event_category_id',
