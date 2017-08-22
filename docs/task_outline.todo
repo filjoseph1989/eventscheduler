@@ -65,11 +65,14 @@ To Do:
 
   ☐ Task 4: Office of the student affairs account:
     ☐ Assign an approvers:
-    ☐ Assign an adviser for an organization:
     ☐ Organization:
       ☐ List all organization, include who is the adviser of the organization 
       ☐ Add organization
+      ☐ Assign an adviser for an organization
       ☐ Activate organization
+      ☐ Display organization structure (Advance|Low Priority)
+        ☐ List of officeer for the current school year (Advance|Low Priority)
+      ☐ Display the organization events (Advance|Low Priority)
     ☐ Events:
       ☐ Delete events that not approve and already due
       ☐ Create My Events:
