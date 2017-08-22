@@ -38,9 +38,10 @@ class UserController extends Controller
     }
 
     /**
-     * Return the view profile page for org adviser
+     * Return the view profile page
      *
-     * @return
+     * @param int $id Users ID
+     * @return Illuminate\Response
      */
     public function viewProfile($id = false)
     {
@@ -51,8 +52,13 @@ class UserController extends Controller
 
       # Unlike the typical return which object, here is different
       # an array
-      $originUser      = OrganizationGroup::userProfile(Auth::user(), $id)->toArray();
-      $user            = $originUser[0];
+      $originUser = OrganizationGroup::userProfile(Auth::user(), $id)->toArray();
+
+      if (! isset($originUser[0])) {
+        return redirect()->route('home');
+      }
+
+      $user         = $originUser[0];
       $current_user = ($id === false) ? true: false;
 
       return view('pages/users/user-profile', compact(

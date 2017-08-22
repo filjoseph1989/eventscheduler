@@ -4,9 +4,9 @@
       <div class="image">
         @if (isset(Auth::user()->picture))
           @if (Auth::user()->picture != 'profile.png')
-          <img src="{{ asset("images/profiles/".Auth::user()->picture) }}" width="48" height="48" alt="User" />
+            <img src="{{ asset("images/profiles/".Auth::user()->picture) }}" width="48" height="48" alt="User" />
           @else
-          <img src="{{ asset("images/".Auth::user()->picture) }}" width="48" height="48" alt="User" />
+            <img src="{{ asset("images/".Auth::user()->picture) }}" width="48" height="48" alt="User" />
           @endif
         @endif
       </div>
