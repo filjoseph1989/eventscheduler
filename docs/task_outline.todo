@@ -181,8 +181,8 @@ To Do:
         ☐ There should be color picker on one field of the edit form
     ☐ Events:
       ☐ Create My Events:
-        ☐ Display form to create event
-        ☐ Use textarea for description
+        ✔ Display form to create event @done (8/22/2017, 7:01:28 PM)
+        ✔ Use textarea for description @done (8/22/2017, 7:01:51 PM)
         ☐ Can customize message for notification
         ☐ Can upload image for notification
       ☐ Create Events:
