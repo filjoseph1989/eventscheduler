@@ -63,6 +63,7 @@ $(document).ready(function() {
  */
 $(document).on('click', '.event-details', function() {
   var id   = $(this).parents('tr').data('id');
+  var uid   = $(this).parents('tr').data('user');
   var html = "";
 
   getData(route('ajax.get.event.list').replace('localhost', window.location.hostname), id, function(data) {
@@ -86,7 +87,28 @@ $(document).on('click', '.event-details', function() {
     "<tr><td>Event Status</td><td data-name='status' data-event-id='"+id+"'>" + data.status + "</td></tr>" +
     "<tr><td>Approve?</td><td data-name='approve' data-event-id='"+id+"'>" + data.approve_status + "</td></tr>" +
     "<tr><td>Semester</td><td data-name='semester' data-event-id='"+id+"'>" + data.semester + " Semester</td></tr>";
+
     $('#event-details-body tbody').html(html);
+    html =
+      '<div class="row">' +
+        '<div class="col-md-offset-3 col-md-6">' +
+        '<button name="status" type="submit" value="true" class="btn bg-green btn-block btn-lg waves-effect">Attend</button>' +
+        '</br>' +
+        '<button name="status" type="submit" value="true" class="btn bg-red btn-block btn-lg waves-effect">Can\'t Attend</button>' +
+        '</div>' +
+      '</div>' +
+      '<div class="row">' +
+        '<div class="col-md-12">' +
+          '<div class="form-group">' +
+            '<div class="form-line">' +
+              '<textarea name="reason" rows="4" class="form-control no-resize" placeholder="Please type the reason why you cannot attend the event."></textarea>' +
+              '<input type="hidden" name="event_id" value="'+id+'">' +
+              '<input type="hidden" name="user_id" value="'+uid+'">' +
+            '</div>'+
+          '</div>' +
+        '</div>'+
+      '</div>' ;
+      $('#user-attendance div').html(html);
   });
 });
 

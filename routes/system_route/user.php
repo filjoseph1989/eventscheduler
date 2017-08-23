@@ -30,6 +30,7 @@ Route::prefix('users')->group(function() {
     Route::name('org-adviser.attendance')->get('/attendance', 'OrganizationAdviser\GenerateAttendanceController@index');
     Route::name('org-adviser.attendance.show')->get('/new/{id}/{eid}', 'OrganizationAdviser\GenerateAttendanceController@show');
     Route::name('org-adviser.attendance.store')->post('/store', 'OrganizationAdviser\GenerateAttendanceController@store');
+    Route::name('org-adviser.userattendance.store')->post('user-attendance/store', 'OrganizationAdviser\UserAttendanceController@store');
 
     # Issue 44: This part can be improve by creating a method that accept id and model name
     Route::name('ajax.get.event-type')->post('/get/event-type', 'OrganizationAdviser\AdviserJsonController@getEventType');

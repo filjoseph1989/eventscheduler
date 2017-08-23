@@ -14,7 +14,6 @@ class UserAttendance extends Model
   protected $fillable = [
   	'event_id',
   	'user_id',
-  	'confirmation',
   	'reason',
   	'status'
   ];
