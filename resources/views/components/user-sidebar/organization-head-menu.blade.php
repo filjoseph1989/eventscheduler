@@ -19,10 +19,18 @@
   <ul class="ml-menu">
     <li><a href="{{ route('org-head.event.new') }}">Create Event</a></li>
     <li><a href="{{ route('org-head.my.new.event') }}">Create My Events</a></li>
+<<<<<<< HEAD
     <li><a href="{{ route('org-head.event.new') }}">Create Event</a></li> 
     <li><a href="{{ route('org-head.my.new.event') }}">Create My Events</a></li>
     <li><a href="{{ route('org-head.event.list') }}">List of Events</a></li>
     <li><a href="{{ route('org-head.approve.event') }}">Approve Events</a></li>
+=======
+    <li><a href="{{ route('org-head.event.list') }}">List of Events</a></li>
+    <li><a href="{{ route('org-head.approve.event') }}">Approve Events</a></li>
+
+    <li><a href="{{ route('org-adviser.my.new.event') }}">Create My Events</a></li>
+    <!-- <li><a href="{{ route('org-adviser.approve.event') }}">Approve Events</a></li> -->
+>>>>>>> feature/Feature-1
     <li><a href="{{ route('org-head.calendar') }}">Event Calendar</a></li>
   </ul>
 </li>

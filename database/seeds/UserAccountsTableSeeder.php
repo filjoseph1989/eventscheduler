@@ -47,6 +47,13 @@ class UserAccountsTableSeeder extends Seeder
            'color'          => 'bg-purple',
            'created_at' => Carbon::now()->toDateTimeString(),
            'updated_at' => Carbon::now()->toDateTimeString(),
+         ),
+         array(
+           'name'           => 'university-staff',
+           'theme'          => 'theme-lime',
+           'color'          => 'bg-lime',
+           'created_at' => Carbon::now()->toDateTimeString(),
+           'updated_at' => Carbon::now()->toDateTimeString(),
          )
        ]);
    }

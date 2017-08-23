@@ -17,8 +17,8 @@ class CreateOrganizationAdviserGroupsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             $table->integer('organization_id')->unsigned()->index();
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
 
             #foreign keys
             $table->foreign('user_id')->references('id')->on('users');
