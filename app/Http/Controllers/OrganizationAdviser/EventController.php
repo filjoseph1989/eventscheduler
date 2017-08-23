@@ -299,6 +299,7 @@ class EventController extends Controller
               # Notification
               $notify = new ManageNotificationController();
               $notify->notify($approved_event);
+              echo "test";exit;
 
               # message
               # I think no need here, hm
