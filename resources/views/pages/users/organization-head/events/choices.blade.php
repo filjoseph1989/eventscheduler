@@ -30,7 +30,7 @@
 
         <div class="row clearfix">
           <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <a href="{{ route('org-adviser.event.list', 1) }}">
+            <a href="{{ route('org-head.event.list', 1) }}">
               <div class="info-box hover-expand-effect">
               <div class="icon bg-teal">
                 <i class="material-icons">date_range</i>
@@ -43,7 +43,7 @@
             </a>
           </div>
           <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <a href="{{ route('org-adviser.event.list', 2) }}">
+            <a href="{{ route('org-head.event.list', 2) }}">
               <div class="info-box hover-expand-effect">
               <div class="icon bg-green">
                 <i class="material-icons">date_range</i>
@@ -56,7 +56,7 @@
             </a>
           </div>
           <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <a href="{{ route('org-adviser.event.list', 3) }}">
+            <a href="{{ route('org-head.event.list', 3) }}">
               <div class="info-box hover-expand-effect">
               <div class="icon bg-light-green">
                 <i class="material-icons">date_range</i>
@@ -69,7 +69,7 @@
             </a>
           </div>
           <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <a href="{{ route('org-adviser.event.list', 4) }}">
+            <a href="{{ route('org-head.event.list', 4) }}">
               <div class="info-box hover-expand-effect">
               <div class="icon bg-lime">
                 <i class="material-icons">date_range</i>
