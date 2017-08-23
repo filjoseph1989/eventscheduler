@@ -43,14 +43,14 @@ class EventController extends Controller
 
       $login_type = "user";
       if ($id == null) {
-        return view('pages/users/organization-adviser/events/choices', compact(
+        return view('pages/users/organization-head/events/choices', compact(
           'login_type'
         ));
       } else {
         if ($id != 4) {
           $eventCategory = EventCategory::find($id);
           $event         = Event::where('event_category_id', '=', $id)->with('organization')->get();
-          return view('pages/users/organization-adviser/events/list', compact(
+          return view('pages/users/organization-head/events/list', compact(
             'login_type', 'eventCategory', 'event'
           ));
         } elseif ($id == 4) {
@@ -60,7 +60,7 @@ class EventController extends Controller
           $event = PersonalEvent::where('date_start', '>=', date('m'))
             ->where('user_id', '=', Auth::user()->id)
             ->get();
-          return view('pages/users/organization-adviser/events/mylist', compact(
+          return view('pages/users/organization-head/events/mylist', compact(
             'login_type', 'event'
           ));
         } else {
