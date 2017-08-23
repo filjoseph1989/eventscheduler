@@ -43,8 +43,9 @@ class OrgHeadLibrary extends Controller
   public function isOrgHead()
   {
     if ( ! parent::isOrgHead()) {
-      header('Location: '.action('HomeController@index'));
+      dd(parent::isOrgHead());
       exit;
+      header('Location: '.action('HomeController@index'));
     }
   }
 
