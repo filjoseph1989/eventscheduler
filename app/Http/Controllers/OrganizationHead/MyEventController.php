@@ -62,7 +62,7 @@ class MyEventController extends Controller
       $login_type = 'user';
       $event_type = EventType::all();
 
-      return view('pages/users/organization-adviser/events/my_event', compact(
+      return view('pages/users/organization-head/events/my_event', compact(
         'login_type', 'event_type'
       ));
     }
@@ -94,7 +94,7 @@ class MyEventController extends Controller
       }
 
       # is data entry valid?
-      $this->adviser->isValid($data);
+      $this->org_head->isValid($data);
 
       # Get the data from form
       $request = $data->only(
@@ -103,6 +103,14 @@ class MyEventController extends Controller
         "whole_day", "event_type_id", "category", "semester",
         "notify_via_facebook", "notify_via_twitter", "notify_via_email", "notify_via_sms"
       );
+
+      # Replace the following field with 'off' if satisfy the condition
+      $index = ['notify_via_facebook', 'notify_via_twitter', 'notify_via_email', 'notify_via_sms'];
+      foreach ($index as $key => $value) {
+        if ($request[$index[$key]] == null) {
+          $request[$index[$key]] = 'off';
+        }
+      }
 
       # Set default date for end date if not given
       $request['date_end']      = ($request['date_end'] == null) ? $request['date_start'] : $request['date_end'];

@@ -52,6 +52,8 @@ Route::prefix('users')->group(function() {
     Route::name('org-head.event.new')->get('/new', 'OrganizationHead\EventController@create');
     Route::name('org-head.event.new')->post('/new', 'OrganizationHead\EventController@store');
     Route::name('org-head.event.list')->get('/get/event-list/{id?}', 'OrganizationHead\EventController@index');
+    Route::name('org-head.my.new.event')->get('/my/new/event', 'OrganizationHead\MyEventController@create');
+    Route::name('org-head.my.new.event.submit')->post('/store/new', 'OrganizationHead\MyEventController@store');
   });
 
   # Route for organization head
