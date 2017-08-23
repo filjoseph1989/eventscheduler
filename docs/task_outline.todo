@@ -219,19 +219,12 @@ To Do:
         ☐ Automatically change the status of the event base on the given date
         ☐ Set status of my events
           ☐ if the status changed, Set notification functionality
-      ☐ Approval of event functionality
-        ☐ Approve events
-          ✔ Show organization and browse events @done (8/23/2017, 4:06:25 PM)
-          ☐ Notification: (Facebook, Twitter, Email, Phone)
-          ☐ If the creator of events is an organization adviser, automatically, me as org-head should be an approver plus other approver
-        ☐ Disapprove event
-        ☐ Edit event:
-          ☐ If the organization head edit the date of the of the event, reset the approver count and status
       ☐ Calendar of events
         ☐ Public
         ☐ Among
         ☐ Within
         ☐ Personal
+      ☐ If the organization head edit the date of the of the event, reset the approver count and status
     ☐ Members:
       ☐ Display membership request
       ☐ Accept new member

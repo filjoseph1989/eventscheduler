@@ -219,47 +219,7 @@ class EventController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    /**
-     * Approve events
-     * @return [type] [description]
-     */
-    public function approveEvents()
-    {
-      # Check the authentication of this account
-      parent::loginCheck();
-
-      # Check if user is an adviser
-      $this->org_head->isOrgHead();
-
-      # Check if the account is an approver
-      if (parent::isApprover()) {
-        $login_type = 'user';
-
-        # Get the organization of the org-head
-        $organization = OrganizationGroup::with('organization')
-          ->where('user_id', '=', Auth::user()->id)
-          ->get(); 
-        if ( ! isset($organization[0])) {
-          return redirect()->route('home');
-        }
-
-        $organization = $organization[0];
-
-        # Get the events of the organization
-        if ($organization->exists) {
-          $event = Event::where('organization_id', '=', $organization->organization_id)->get(); 
-        }
-
-        # Display view
-        return view('pages/users/organization-head/events/approve-events', compact(
-          'login_type', 'organization', 'event'
-        ));
-      } else {
-        return back()->with('status_warning', "Sorry, that page is for approver only");
-      }
-    }
+    } 
 
     /**
      * Process the approval of events
