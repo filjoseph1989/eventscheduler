@@ -37,10 +37,10 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> LIST OF EVENTS that needs your approval </h2>
+                <h2> {{ $organization->organization->name }} </h2>
               </div>
               <div class="body">
-                <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                <table class="table table-bordered table-striped table-hover">
                   <thead>
                     <tr>
                       <th>Organization / Institution</th>
@@ -54,10 +54,10 @@
                     </tr>
                   </thead>
                   <tbody class="js-sweetalert">
-                    @if (isset($ev))
-                      @foreach ($ev as $key => $value)
+                    @if (isset($event))
+                      @foreach ($event as $key => $value)
                         <tr data-id="{{ $value->id }}">
-                          <td>{{ $value->org_name }}</td>
+                          <td>{{ $value->title }}</td>
                           <td>{{ $value->title }}</td>
                           <td>{{ date("M d, Y", strtotime($value->date_start)) }}</td>
                           <td>{{ $value->date_start_time }}</td>
@@ -79,18 +79,20 @@
                       @endforeach
                     @endif
                   </tbody>
-                  <tfoot>
-                    <tr>
-                      <th>Organization / Institution</th>
-                      <th>Event Name</th>
-                      <th>Date Start</th>
-                      <th>Time</th>
-                      <th>Date End</th>
-                      <th>Time</th>
-                      <th>status</th>
-                      <th>Action</th>
-                    </tr>
-                  </tfoot>
+                  {{--
+                    <tfoot>
+                      <tr>
+                        <th>Organization / Institution</th>
+                        <th>Event Name</th>
+                        <th>Date Start</th>
+                        <th>Time</th>
+                        <th>Date End</th>
+                        <th>Time</th>
+                        <th>status</th>
+                        <th>Action</th>
+                      </tr>
+                    </tfoot>
+                  --}}
                 </table>
               </div>
             </div>

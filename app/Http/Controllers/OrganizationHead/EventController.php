@@ -151,6 +151,14 @@ class EventController extends Controller
         'notify_via_email', 'notify_via_sms', 'semeter'
       );
 
+      # Replace with defaults the following
+      $index = ['notify_via_facebook', 'notify_via_twitter', 'notify_via_sms', 'notify_via_email'];
+      foreach ($index as $key => $value) {
+        if ($request[$index[$key]] == null) {
+          $request[$index[$key]] = 'off';
+        }
+      }
+
       # Finally create events
       $result = Event::create($request);
 
@@ -223,16 +231,30 @@ class EventController extends Controller
       parent::loginCheck();
 
       # Check if user is an adviser
-      $this->adviser->isAdviser();
+      $this->org_head->isOrgHead();
 
       # Check if the account is an approver
       if (parent::isApprover()) {
         $login_type = 'user';
 
-        $ev = ApproverLibrary::getGetEventsNeedApproval();
+        # Get the organization of the org-head
+        $organization = OrganizationGroup::with('organization')
+          ->where('user_id', '=', Auth::user()->id)
+          ->get(); 
+        if ( ! isset($organization[0])) {
+          return redirect()->route('home');
+        }
 
-        return view('pages/users/organization-adviser/events/approve-events', compact(
-          'login_type','ev'
+        $organization = $organization[0];
+
+        # Get the events of the organization
+        if ($organization->exists) {
+          $event = Event::where('organization_id', '=', $organization->organization_id)->get(); 
+        }
+
+        # Display view
+        return view('pages/users/organization-head/events/approve-events', compact(
+          'login_type', 'organization', 'event'
         ));
       } else {
         return back()->with('status_warning', "Sorry, that page is for approver only");

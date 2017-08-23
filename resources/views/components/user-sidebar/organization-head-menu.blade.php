@@ -20,7 +20,7 @@
     <li><a href="{{ route('org-head.event.new') }}">Create Event</a></li> 
     <li><a href="{{ route('org-head.my.new.event') }}">Create My Events</a></li>
     <li><a href="{{ route('org-head.event.list') }}">List of Events</a></li>
-    <li><a href="{{ route('org-adviser.approve.event') }}">Approve Events</a></li>
+    <li><a href="{{ route('org-head.approve.event') }}">Approve Events</a></li>
     <li><a href="{{ route('org-adviser.calendar') }}">Event Calendar</a></li>
   </ul>
 </li>
