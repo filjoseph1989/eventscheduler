@@ -39,7 +39,7 @@
                     @else
                       @foreach ($org as $key => $value)
                         <tr>
-                          <td><a href="{{ route('org-head.event.show', $value->organization->id) }}">{{ $value->organization->name }}</a></td>
+                          <td><a href="{{ route('org-adviser.event.show', $value->organization->id) }}">{{ $value->organization->name }}</a></td>
                         </tr>
                       @endforeach
                     @endif

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\OrganizationHead\ManageSchedule;
+namespace App\Http\Controllers\OrganizationHead;
 
 use Auth;
 use App\Models\User;
@@ -10,18 +10,22 @@ use Illuminate\Http\Request;
 use App\Models\Organization;
 use App\Models\EventCategory;
 use App\Http\Controllers\Controller;
+use App\Library\OrgHeadLibrary as OrgHead;
 
 class CalendarController extends Controller
 {
-  /**
-   * Create a new controller instance.
-   *
-   * @return void
-   */
-  public function __construct()
-  {
-    $this->middleware('web');
-  }
+   private $orgHead;
+
+   /**
+    * Create a new controller instance.
+    *
+    * @return void
+    */
+   public function __construct()
+   {
+     $this->middleware('web');
+     $this->orgHead = new OrgHead();
+   }
 
   /**
    * Display the university calendar
@@ -116,5 +120,18 @@ class CalendarController extends Controller
     if (parent::isOrgHead()) {
       return view('pages.users.organization-head.calendars.my-personal-calendar');
     }
+  }
+
+
+  public function calendar()
+  {
+    # Check if the user is loggedin
+    parent::loginCheck();
+
+    # is adviser?
+    $this->orgHead->isOrgHead();
+
+    # Display the calendar
+    return view('pages/users/organization-head/calendars/my-org-calendar');
   }
 }
