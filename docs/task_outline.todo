@@ -228,6 +228,7 @@ To Do:
       ☐ If the organization head edit the date of the of the event, reset the approver count and status
       ☐ Approval of event functionality:
         ☐ Approve events
+          ✔ Approval of event blade @done(2017-08-24 02:50) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ Approval of event functionality)
           ✔ Show organization and browse events @done (8/23/2017, 4:06:25 PM)
           ☐ Notification: (Facebook, Twitter, Email, Phone)
           ☐ If the creator of events is an organization adviser, automatically, me as org-head should be an approver plus other approver
@@ -295,7 +296,9 @@ To Do:
         ☐ Automatically change the status of the event base on the given date
         ☐ Set status of my events
           ☐ if the status changed, Set notification functionality
+      ✔ Show organization and browse events  @done(2017-08-24 02:46) @project(To Do / Task 1: Organization Adviser Account / ☐ Events)
       ✔ Approval of event functionality @done(2017-08-15 20:34) @project(To Do / ☐ Task 39 - Login as organization adviser / ☐ Events)
+      ✔ Approval of event blade @done(2017-08-24 02:50) @project(To Do / Task 1: Organization Adviser Account / ☐ Events)
         ✔ Approve events @done(2017-08-08 19:03)
           ✔ Notification: (Facebook, Twitter, Email, Phone) @done(2017-08-11 19:11)
         ✔ disapprove event @done(2017-08-11 00:30)

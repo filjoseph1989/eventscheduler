@@ -35,10 +35,10 @@ class EventController extends Controller
      */
     public function index($id = null)
     {
-      # is adviser loggedin?
+      # is head loggedin?
       parent::loginCheck();
 
-      # Is the user an adviser?
+      # Is the user an head?
       $this->org_head->isOrgHead();
 
       $login_type = "user";
@@ -79,7 +79,7 @@ class EventController extends Controller
       # Is the user loggedin?
       parent::loginCheck();
 
-      # Is the user an adviser?
+      # Is the user an head?
       $this->org_head->isOrgHead();
 
       $login_type     = 'user';
@@ -182,7 +182,7 @@ class EventController extends Controller
       $event = Event::where('organization_id', '=', $id)->get();
 
       $login_type = 'user';
-      return view('pages/users/organization-adviser/calendars/events/list_for_attendance', compact(
+      return view('pages/users/organization-head/calendars/events/list_for_attendance', compact(
         'event', 'login_type'
       ));
     }
@@ -219,7 +219,7 @@ class EventController extends Controller
     public function destroy($id)
     {
         //
-    } 
+    }
 
         /**
      * Approve events
@@ -230,7 +230,7 @@ class EventController extends Controller
       # Check the authentication of this account
       parent::loginCheck();
 
-      # Check if user is an adviser
+      # Check if user is an head
       $this->org_head->isOrgHead();
 
       # Check if the account is an approver
@@ -240,13 +240,15 @@ class EventController extends Controller
         # Get the organization of the org-head
         $organization = OrganizationGroup::with('organization')
           ->where('user_id', '=', Auth::user()->id)
-          ->get(); 
-      
+          ->get();
+
         # when the account has no organization
         if ( ! isset($organization[0])) {
           return redirect()
             ->route('home')
             ->with('status_warning', 'Sorry, you\'re not a member of any organization');
+        }
+
         if ( ! isset($organization[0])) {
           return redirect()->route('home');
         }
@@ -255,7 +257,7 @@ class EventController extends Controller
 
         # Get the events of the organization
         if ($organization->exists) {
-          $event = Event::where('organization_id', '=', $organization->organization_id)->get(); 
+          $event = Event::where('organization_id', '=', $organization->organization_id)->get();
         }
 
         # Display view
@@ -265,8 +267,8 @@ class EventController extends Controller
       } else {
         return back()->with('status_warning', "Sorry, that page is for approver only");
       }
-    }
 
+    }
     /**
      * Process the approval of events
      *
@@ -278,13 +280,13 @@ class EventController extends Controller
       # is login?
       parent::loginCheck();
 
-      # is an approver & adviser?
-      if (parent::isOrgAdviser() and parent::isApprover()) {
+      # is an approver & head?
+      if (parent::isOrgHead() and parent::isApprover()) {
         $approved_event = Event::find($id);
 
         # is the event exist?
         if ( ! $approved_event->exists) {
-          return redirect()->route('org-adviser.approve.event')
+          return redirect()->route('org-head.approve.event')
             ->with('status_warning', 'There no event yet');
         }
 
@@ -297,7 +299,7 @@ class EventController extends Controller
             ->exists();
 
           if ($done) {
-            return redirect()->route('org-adviser.approve.event')
+            return redirect()->route('org-head.approve.event')
               ->with('status_warning', "You already approved this event ( {$approved_event->title} ). Press the UNAPPROVE button to disable your approval.");
           } else {
             # Increment approver count on events table.
@@ -324,12 +326,12 @@ class EventController extends Controller
 
               # message
               # I think no need here, hm
-              return redirect()->route('org-adviser.approve.event')
+              return redirect()->route('org-head.approve.event')
                 ->with('status', "Successfuly approved the event ( {$approved_event->title} ) and Notified");
             }
 
             # with no notification message
-            return redirect()->route('org-adviser.approve.event')
+            return redirect()->route('org-head.approve.event')
               ->with('status', "Successfuly approved the event ( {$approved_event->title} )");
           }
         }
@@ -347,14 +349,14 @@ class EventController extends Controller
       # is login?
       parent::loginCheck();
 
-      # is an adviser & approver?
-      if (parent::isOrgAdviser() and parent::isApprover()) {
+      # is an head & approver?
+      if (parent::isOrgHead() and parent::isApprover()) {
         # Get one row of event
         $approved_event = Event::find($id);
 
         # is the event exist?
         if ( ! $approved_event->exists) {
-          return redirect()->route('org-adviser.approve.event')
+          return redirect()->route('org-head.approve.event')
             ->with('status_warning', 'There no event yet');
         }
 
@@ -371,11 +373,11 @@ class EventController extends Controller
 
             $approved_event->approver_count--;
             if ($approved_event->save()) {
-              return redirect()->route('org-adviser.approve.event')
+              return redirect()->route('org-head.approve.event')
                 ->with('status', "Successfuly disapproved the event ( {$approved_event->title} )");
             }
           } else {
-            return redirect()->route('org-adviser.approve.event')
+            return redirect()->route('org-head.approve.event')
               ->with('status_warning', "You already disapproved or not yet approve this event ( {$approved_event->title} )");
           }
         }
