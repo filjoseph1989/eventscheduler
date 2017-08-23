@@ -1,10 +1,10 @@
 <?php
 
-namespace app\Http\Controllers\OrganizationAdviser;
+namespace app\Http\Controllers\OrganizationHead;
 
 use Auth;
 use Illuminate\Http\Request;
-use App\Library\OrgAdviserLibrary;
+use App\Library\OrgHeadLibrary;
 use App\Http\Controllers\Controller;
 
 # Models
@@ -14,35 +14,58 @@ use App\Models\OrganizationGroup;
 
 class GenerateAttendanceController extends Controller
 {
-    private $adviser;
+  private $orgHead;
 
+  /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct()
+  {
+    $this->middleware('web');
+    $this->orgHead = new OrgHeadLibrary();
+  }
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-      $this->middleware('web');
-      $this->adviser = new OrgAdviserLibrary();
-    }
-
-    /**
-     * Display the organization list of the adviser
+     * Display the Attendance sheet
      * .
-     * @return Illuminate\Response
+     * @param  int $id Organization ID
+     * @return Object Response
      */
-    public function index()
-    {
-      # Get the organization of the adviser
-      $org = OrganizationGroup::with('organization')
-        ->where('user_id', '=', Auth::user()->id)
-        ->get();
+      public function index()
+      {
+        # Get the organization of the adviser
+        $org = OrganizationGroup::with('organization')
+          ->where('user_id', '=', Auth::user()->id)
+          ->get();
 
-      $login_type = 'user';
-      return view('pages/users/organization-adviser/events/org-list', compact(
-        'org', 'login_type'
-      ));
+        $login_type = 'user';
+        return view('pages/users/organization-head/events/org-list', compact(
+          'org', 'login_type'
+        ));
+
+      // # Get the user belong to an organization
+      // $attendance = OrganizationGroup::with(['user', 'organization'])
+      //   ->where('organization_id', '=', $id)
+      //   ->get();
+      //
+      // # Get the status of the user attendance
+      // $att_sheet = UserAttendance::where('event_id', '=', $eid)->get();
+      // $att       = [];
+      // foreach ($att_sheet as $key => $value) {
+      //   $att[$value->user_id] = $value->confirmation;
+      // }
+      //
+      // $login_type = 'user';
+      // return view(
+      //   'pages.users.organization-head.calendars.generate_attendance.attendance',
+      //   compact(
+      //     'login_type',
+      //     'attendance',
+      //     'eid',
+      //     'att'
+      //   )
+      // );
     }
 
     /**
@@ -79,16 +102,13 @@ class GenerateAttendanceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id Organization ID
-     * @param int $eid Event ID
-     *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id, $eid)
     {
       parent::loginCheck();
-
-      $this->adviser->isAdviser();
+      $this->orgHead->isOrgHead();
 
       # Get the user belong to an organization
       $attendance = OrganizationGroup::with(['user', 'organization'])
@@ -103,7 +123,7 @@ class GenerateAttendanceController extends Controller
       }
 
       $login_type = 'user';
-      return view('pages/users/organization-adviser/calendars/events/attendance',
+      return view('pages/users/organization-head/calendars/events/attendance',
         compact(
           'login_type',
           'attendance',
@@ -111,6 +131,7 @@ class GenerateAttendanceController extends Controller
           'att'
         )
       );
+
     }
 
     /**
