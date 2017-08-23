@@ -87,7 +87,7 @@ class EventController extends Controller
       $event_category = EventCategory::all()->except(4);
       $organization   = OrganizationAdviserGroup::with('organization')
         ->where('organization_adviser_groups.user_id', '=', Auth::user()->id)
-        ->get();
+        ->get(); 
 
       return view('pages/users/organization-adviser/events/form', compact(
         'login_type',
@@ -267,12 +267,12 @@ class EventController extends Controller
         }
 
         # the majority approve already?
-        if ($approved_event->approver_count >= 0 and $approved_event->approver_count < 3) {
+        if ($approved_event->approver_count >= 0 and $approved_event->approver_count < 3) { 
           # Before confirming the approve,
           # we need to check if the user already approved the event
           $done = EventApprovalMonitor::where('event_id', '=', $id)
             ->where('approvers_id', '=', Auth::user()->id)
-            ->exists();
+            ->exists(); 
 
           if ($done) {
             return redirect()->route('org-adviser.approve.event')
@@ -295,10 +295,11 @@ class EventController extends Controller
               # Update the status of event
               $approved_event->approve_status = 'approved';
               $approved_event->save();
-
+              
               # Notification
               $notify = new ManageNotificationController();
               $notify->notify($approved_event);
+              echo "test";exit;
 
               # message
               # I think no need here, hm

@@ -21,6 +21,8 @@ class ManageNotificationController extends Controller
 
   /**
    * This method will send notification on different media
+   * 
+   * Issue Column not found: 1054 Unknown column 'events.event' in 'field list'
    *
    * @param  Request $data [description]
    * @return
