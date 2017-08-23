@@ -167,23 +167,23 @@ function getDate($id, $date = false, $time = false) {
 }
 
 $('.calendar-options #public').click(function() {
-  $('.header h2').html('Organization Calendar');
+  $('.header h2').html('University Calendar');
   displayEvent(1);
 });
 $('.calendar-options #within').click(function() {
-  $('.header h2').html('Organization Calendar');
+  $('.header h2').html("My Organization/s' Calendar");
   displayEvent(2);
 });
 $('.calendar-options #among').click(function() {
-  $('.header h2').html('Organization Calendar');
+  $('.header h2').html("All Organizations' Calendar");
   displayEvent(3);
 });
 $('.calendar-options #personal-public').click(function() {
-  $('.header h2').html('Personal Calendar');
+  $('.header h2').html('Personal Calendar (public)');
   displayEvent(4, 'public');
 });
 $('.calendar-options #personal-private').click(function() {
-  $('.header h2').html('Personal Calendar');
+  $('.header h2').html('Personal Calendar (private)');
   displayEvent(4, 'private');
 });
 

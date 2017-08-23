@@ -52,6 +52,11 @@ Route::prefix('users')->group(function() {
     Route::name('org-head.event.new')->get('/new', 'OrganizationHead\EventController@create');
     Route::name('org-head.event.new')->post('/new', 'OrganizationHead\EventController@store');
     Route::name('org-head.event.list')->get('/get/event-list/{id?}', 'OrganizationHead\EventController@index');
+    Route::name('org-head.calendar')->get('/calendar', 'OrganizationHead\CalendarController@calendar');
+    Route::name('org-head.attendance')->get('/attendance', 'OrganizationHead\GenerateAttendanceController@index');
+    Route::name('org-head.event.show')->get('/show/{id?}', 'OrganizationHead\EventController@show');
+    Route::name('org-head.attendance.store')->post('/store', 'OrganizationHead\GenerateAttendanceController@store');
+    Route::name('org-adviser.attendance.show')->get('/new/{id}/{eid}', 'OrganizationHead\GenerateAttendanceController@show');
   });
 
   # Route for organization head

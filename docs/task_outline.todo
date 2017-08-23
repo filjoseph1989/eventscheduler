@@ -66,7 +66,7 @@ To Do:
   ☐ Task 4: Office of the student affairs account:
     ☐ Assign an approvers:
     ☐ Organization:
-      ☐ List all organization, include who is the adviser of the organization 
+      ☐ List all organization, include who is the adviser of the organization
       ☐ Add organization
       ☐ Assign an adviser for an organization
       ☐ Activate organization
@@ -206,12 +206,13 @@ To Do:
         ☐ Determine if her/she is the adviser of the organization
       ☐ List of events:
         ✔ Display the info box of events base on category @done (8/23/2017, 6:32:48 AM)
+        ✔ Display events table (Public, Among, Within, Personal) @done(2017-08-23 23:49) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
         ☐ Attend this event - A button for user if he wants to attend this event (For regulart users and non member of the organization)
         ☐ Archive events
         ☐ Automatically change the status of the event base on the given date
         ☐ Set status of my events
           ☐ if the status changed, Set notification functionality
-      ☐ Approval of event functionality
+      ☐ Approval of event functionality:
         ☐ Approve events
           ☐ Notification: (Facebook, Twitter, Email, Phone)
         ☐ Disapprove event
@@ -219,20 +220,20 @@ To Do:
         ☐ Event if I'm not an approver for all events, I could be the approver to my organization
         ☐ Edit event:
           ☐ If the organization head edit the date of the of the event, reset the approver count and status
-      ☐ Calendar of events
-        ☐ Public
-        ☐ Among
-        ☐ Within
-        ☐ Personal
+      ✔ Calendar of events:  @done(2017-08-24 00:26) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Events)
+        ✔ Public @done(2017-08-24 00:26) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Events / ☐ Calendar of events)
+        ✔ Among @done(2017-08-24 00:26) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Events / ☐ Calendar of events)
+        ✔ Within @done(2017-08-24 00:26) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Events / ☐ Calendar of events)
+        ✔ Personal @done(2017-08-24 00:26) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Events / ☐ Calendar of events)
     ☐ Members:
       ☐ Display membership request
       ☐ Accept new member
       ☐ Check for new membership request live
       ☐ Check for if an edit happend about the organization live
-    ☐ Generate Attendance:
-      ☐ Display the list of organization, advise by the loggedin adviser
-      ☐ Display the list of event from the given organization
-      ☐ Display the list of organization member of the organization
+    ✔ Generate Attendance: @done(2017-08-24 01:24) @project(To Do / ☐ Task 2: Organization HEAD Account)
+      ✔ Display the list of organization, advise by the loggedin adviser @done(2017-08-24 00:54) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Generate Attendance)
+      ✔ Display the list of event from the given organization @done(2017-08-24 01:05) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Generate Attendance)
+      ✔ Display the list of organization member of the organization @done(2017-08-24 01:23) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Generate Attendance)
         ☐  Including non-member who wants to attend the event
 
   ☐ Task 1: Organization Adviser Account:
@@ -292,7 +293,7 @@ To Do:
     ☐ Members:
       ✔ List of members within the organization of adviser @done(2017-08-16 20:02)
         ✔ View members profile @done(2017-08-16 20:28)
-    ☐ Generate Attendance:
+    ✔ Generate Attendance: @done(2017-08-24 01:24) @project(To Do / ☐ Task 1: Organization Adviser Account)
       ✔ Display the list of organization, advise by the loggedin adviser @done(2017-08-21 10:46)
       ✔ Display the list of event from the given organization @done(2017-08-21 10:47)
       ✔ Display the list of organization member of the organization @done(2017-08-21 10:47)
