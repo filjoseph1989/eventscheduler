@@ -247,6 +247,8 @@ class EventController extends Controller
           return redirect()
             ->route('home')
             ->with('status_warning', 'Sorry, you\'re not a member of any organization');
+        if ( ! isset($organization[0])) {
+          return redirect()->route('home');
         }
 
         $organization = $organization[0];
