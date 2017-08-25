@@ -231,7 +231,7 @@ To Do:
           ✔ Show organization and browse events @done (8/23/2017, 4:06:25 PM)
           ☐ Notification: (Facebook, Twitter, Email, Phone)
           ☐ If the creator of events is an organization adviser, automatically, me as org-head should be an approver plus other approver
-        ☐ Disapprove event
+        ✔ Disapprove event @done (8/25/2017, 3:58:50 PM)
         ☐ Edit event:
           ☐ If the organization head edit the date of the of the event, reset the approver count and status
       ✔ Calendar of events:  @done(2017-08-24 00:26) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Events)

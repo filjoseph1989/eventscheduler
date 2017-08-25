@@ -62,7 +62,7 @@ class EventController extends Controller
             ->get();
           return view('pages/users/organization-head/events/mylist', compact(
             'login_type', 'event'
-          ));
+          )); 
         } else {
           return back();
         }
@@ -360,6 +360,10 @@ class EventController extends Controller
             ->with('status_warning', 'There no event yet');
         }
 
+        if ($approved_event->approver_count >= 3) {
+          return back()->with('status_warning', 'This event is already approved');
+        } 
+
         # is the majority not yet approve?
         if ($approved_event->approver_count >= 0 and $approved_event->approver_count < 3) {
           $done = EventApprovalMonitor::where('event_id', '=', $id)
@@ -373,11 +377,11 @@ class EventController extends Controller
 
             $approved_event->approver_count--;
             if ($approved_event->save()) {
-              return redirect()->route('org-head.approve.event')
+              return back()
                 ->with('status', "Successfuly disapproved the event ( {$approved_event->title} )");
             }
           } else {
-            return redirect()->route('org-head.approve.event')
+            return back()
               ->with('status_warning', "You already disapproved or not yet approve this event ( {$approved_event->title} )");
           }
         }

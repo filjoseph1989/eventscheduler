@@ -29,7 +29,7 @@ To Do:
   ✔ Issue 28: There should be a login checker in almost every method @done(2017-08-03 21:30) @project(To Do)
   ☐ Issue 27: The title here is wrong "users/calendar/my-organization-calendar"
   ✔ Issue 26: Go to this line and do the description in there @done(2017-07-16 14:31) @project(To Do)
-  ☐ Issue 25: When the user is in any page, then it happens that the loggedin session already expired, redirect the user to login page
+  ✔ Issue 25: When the user is in any page, then it happens that the loggedin session already expired, redirect the user to login page @done (8/25/2017, 3:58:44 PM)
   ✔ Issue 24: go to this line and use eloquent @done(2017-07-13 10:21)
   ✔ Issue 23: Go to this line and find a way to make it in laravel way of coding @done(2017-07-16 14:30) @project(To Do)
   ✔ Issue 22: Create a function which handle the ajax request, because ajax request code are redundunt @done(2017-08-17 21:12)
@@ -38,7 +38,7 @@ To Do:
   ✔ Issue 19: The current loggedin user should not cross the pages of the other user_account_type @done(2017-08-17 16:13)
   ✔ Issue 18: No data in admin table @done(2017-07-07 15:31)
   ☐ Issue 17: Find the right icon for super admin info box
-  ☐ Issue 16: Date expired should not less than the day of date started in {admin/organization/list} same on add organization form
+  ✔ Issue 16: Date expired should not less than the day of date started in {admin/organization/list} same on add organization form @done (8/25/2017, 3:10:12 PM)
   ✔ Issue 15: Add icons on sidebar for admin @done(2017-06-25 22:49)
   ✔ Issue 14: How to switch guards on some controllers generated @done(2017-07-03 00:41)
   ✔ Issue 13: $login_type = 'admin'; in some controller could be replace by auth::check() @done(2017-07-03 00:42)
