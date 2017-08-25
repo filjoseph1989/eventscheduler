@@ -42,14 +42,19 @@ class EventController extends Controller
       $this->org_head->isOrgHead();
 
       $login_type = "user";
+      
       if ($id == null) {
         return view('pages/users/organization-head/events/choices', compact(
           'login_type'
         ));
       } else {
+        # Is event not belong to personal event?
         if ($id != 4) {
           $eventCategory = EventCategory::find($id);
-          $event         = Event::where('event_category_id', '=', $id)->with('organization')->get();
+          $event         = Event::where('event_category_id', '=', $id)
+            ->with('organization')
+            ->get();
+
           return view('pages/users/organization-head/events/list', compact(
             'login_type', 'eventCategory', 'event'
           ));
@@ -63,10 +68,10 @@ class EventController extends Controller
           return view('pages/users/organization-head/events/mylist', compact(
             'login_type', 'event'
           )); 
-        } else {
-          return back();
-        }
+        } 
       }
+
+      return back();
     }
 
     /**
@@ -220,10 +225,11 @@ class EventController extends Controller
     {
         //
     }
-
-        /**
-     * Approve events
-     * @return [type] [description]
+    
+    /**
+     * Approve event method
+     *
+     * @return illuminate\Response
      */
     public function approveEvents()
     {
@@ -269,6 +275,7 @@ class EventController extends Controller
       }
 
     }
+
     /**
      * Process the approval of events
      *

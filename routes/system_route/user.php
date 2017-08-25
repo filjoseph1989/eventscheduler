@@ -64,9 +64,8 @@ Route::prefix('users')->group(function() {
     Route::name('org-head.my.new.event')->get('/my/new/event', 'OrganizationHead\MyEventController@create');
     Route::name('org-head.my.new.event.submit')->post('/store/new', 'OrganizationHead\MyEventController@store');
     Route::name('org-head.approved.event')->get('/approved/event/{id}', 'OrganizationHead\EventController@setApprove');
-    Route::name('org-head.disapproved.event')->get('/disapproved/event/{id}', 'OrganizationHead\EventController@setDisApprove');
-
-
+    Route::name('org-head.disapproved.event')->get('/disapproved/event/{id}', 'OrganizationHead\EventController@setDisApprove'); 
+    Route::name('org-head.userattendance.store')->post('user-attendance/store', 'OrganizationHead\UserAttendanceController@store'); 
   });
 
   # Route for organization head

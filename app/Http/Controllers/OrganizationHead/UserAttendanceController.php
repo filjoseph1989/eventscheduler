@@ -1,13 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\OrganizationAdviser;
+namespace App\Http\Controllers\OrganizationHead;
 
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-//models
+# Models
 use App\Models\UserAttendance;
 
+/**
+ * Manage use attendance
+ * 
+ * @author Liz <janicalizdeguzman@email.com>
+ * @since 0.1
+ * @version 0.1
+ * @create 8-25-2017
+ * @update 8-25-2017
+ */
 class UserAttendanceController extends Controller
 {
     /**
@@ -31,13 +41,15 @@ class UserAttendanceController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store attendance. which can attend
+     * Issue 56: This method can be combine with userAttendance@store on
+     * adviser account
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $data
      * @return \Illuminate\Http\Response
      */
     public function store(Request $data)
-    {
+    { 
         # Get the data from form 
         $request = $data->only( 'status', 'reason', 'event_id' );
         $request['user_id'] = Auth::user()->id;
@@ -59,7 +71,7 @@ class UserAttendanceController extends Controller
             } 
             return back()->with('status', 'See you on the event'); 
         } 
-    }
+    } 
 
     /**
      * Display the specified resource.

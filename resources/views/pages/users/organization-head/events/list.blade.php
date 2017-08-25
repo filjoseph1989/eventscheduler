@@ -53,7 +53,7 @@
                     </thead>
                     <tbody>
                       @foreach ($event as $key => $value)
-                        <tr data-id="{{ $value->id }}">
+                        <tr data-id="{{ $value->id }}" data-user-id="{{ Auth::user()->id }}">
                           <td>
                             <a href="#" class="event-details" data-toggle="modal" data-target="#event-details">{{ str_limit($value->title, 12) }}</a>
                           </td>
@@ -101,6 +101,10 @@
           <table class="table table-striped" id="mainTable">
             <tbody>&nbsp;</tbody>
           </table>
+          <form class="" action="{{ route('org-head.userattendance.store') }}" method="post" id="user-attendance">
+            {{ csrf_field() }}
+            <div>&nbsp;</div>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal"><i class="material-icons">close</i>Close</button>
@@ -115,5 +119,5 @@
   <script src="{{ asset('js/mindmup-editabletable.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/dataTables.bootstrap.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/jquery-datatable.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/app.js') }}?v=0.25" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.27" charset="utf-8"></script>
 @endsection
