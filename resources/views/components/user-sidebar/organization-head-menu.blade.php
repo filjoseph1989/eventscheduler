@@ -31,6 +31,7 @@
   </a>
   <ul class="ml-menu">
     <li><a href="{{ route('org-adviser.members.list') }}">All Members</a></li>
+    <li><a href="">Add Members</a></li>
     {{-- <li><a href="#">Members with organization</a></li> --}}
     {{-- <li><a href="#">Members without organization</a></li> --}}
   </ul>

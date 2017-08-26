@@ -109,7 +109,7 @@
                     <div class="row">
                       <div class="col-md-12">
                         @if ($isMember == false)
-                          <form class="" action="{{ route('org-adviser.org-membership', $organization->id ) }}" method="post">
+                          <form class="" action="{{ route('org-head.org-membership', $organization->id ) }}" method="post">
                             {{ csrf_field() }}
                             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                             <input type="hidden" name="organization_id" value="{{ $organization->id }}">

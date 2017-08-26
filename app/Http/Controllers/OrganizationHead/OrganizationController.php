@@ -236,11 +236,13 @@ class OrganizationController extends Controller
         return false;
       }
 
-      if ($result->position_id == 5 || $result->position_id == 6) {
-        return true;
+      $result = $result[0];
+
+      if ($result->position_id != 5 || $result->position_id != 6) {
+        return false;
       }
 
-      return false;
+      return true;
     }
 
     /**

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page-title', 'List Of Event')
+@section('page-title', 'list of event')
 
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/all-themes.css') }}">
