@@ -17,7 +17,7 @@ class CreateOrganizationGroupsTable extends Migration
           $table->increments('id');
           $table->integer('user_id')->unsigned()->index();
           $table->integer('organization_id')->unsigned()->index();
-          $table->integer('position_id')->unsigned()->index();
+          $table->integer('position_id')->default()->unsigned()->index();
           $table->enum('membership_status', ['yes', 'no'])->default('no');
           $table->timestamps();
           $table->softDeletes();
