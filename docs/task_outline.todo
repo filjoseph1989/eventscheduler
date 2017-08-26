@@ -54,7 +54,7 @@ To Do:
       ☐ Create a thumbnails for profile pricture (Low Priority)
 
   Task 5: User admin account:
-    ☐ Approve user sytem membership
+    ☐ Approve user system membership
     ☐ List of all registered members (this feature is for administrator)
       It must consist of the following columns
         ☐ name
@@ -129,10 +129,12 @@ To Do:
         ☐ Within
         ☐ Personal
     ☐ Members:
-      ☐ Display membership request
+      ☐ List of members within the organization of adviser
+        ☐ View members profile
+      ✔ Display membership request @done(2017-08-27 03:16) @project(To Do / Task 4: Office of the student affairs account / ☐ Members)
       ☐ Accept new member
-      ☐ Check for new membership request live
-      ☐ Check for if an edit happend about the organization live
+      ☐ Check for new membership request live(Advance)
+      ☐ Check for if an edit happend about the organization live(Advance)
     ☐ Generate Attendance:
       ☐ Display the list of organization, advise by the loggedin adviser
       ☐ Display the list of event from the given organization
@@ -172,6 +174,7 @@ To Do:
         ☐ Within
         ☐ Personal
     ☐ Members:
+      ☐ Display all members
       ☐ Display membership request
 
   Task 2: Organization HEAD Account:
@@ -242,7 +245,9 @@ To Do:
         ✔ Within @done(2017-08-24 00:26) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Events / ☐ Calendar of events)
         ✔ Personal @done(2017-08-24 00:26) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Events / ☐ Calendar of events)
     ☐ Members:
-      ☐ Display membership request
+      ☐ List of members within the organization of adviser
+        ☐ View members profile
+      ✔ Display membership request @done(2017-08-27 03:19) @project(To Do / Task 2: Organization HEAD Account / ☐ Members)
       ☐ Accept new member
       ☐ Check for new membership request live
       ☐ Check for if an edit happend about the organization live

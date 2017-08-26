@@ -5,8 +5,6 @@
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/fullcalendar.css') }}?v=0.1">
   <link rel="stylesheet" href="{{ asset('css/fullcalendar.print.css') }}?v=0.1">
-  <link rel="stylesheet" href="{{ asset('css/bootstrap-material-datetimepicker.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/sweetalert.css') }}">
   <link rel="stylesheet" href="{{ asset('css/all-themes.css') }}">
 @endsection
 
@@ -21,28 +19,45 @@
 
     <section class="content">
       <div class="container-fluid">
+        @if (session('status'))
+          <div class="alert alert-success">
+            {!! session('status') !!}
+          </div>
+        @endif
+
+        @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
+
         <div class="row clearfix">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> Calendar </h2>
+                <h2>
+                  University Calendar
+                  <small>University of The Philippines Mindanao Calendar of Activities S.Y. 2016-2017</small>
+                </h2>
                 <ul class="header-dropdown m-r--5">
                   <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                       <i class="material-icons">more_vert</i>
                     </a>
-                    <ul class="dropdown-menu pull-right calendar-options">
-                      <li><a href="#" id="public">Public View</a></li>
-                      <li><a href="#" id="within">Within Organization</a></li>
-                      <li><a href="#" id="among">Among Organization</a></li>
-                      <li><a href="#" id="personal-public">Personal Event (Public)</a></li>
-                      <li><a href="#" id="personal-private">Personal Event (Private)</a></li>
+                    <ul class="dropdown-menu pull-right">
+                      <li><a href="{{ route('university-calendar') }}">University Calendar</a></li>
+                      <li><a href="{{ route('all-organization-calendar') }}">All Organizations Calendar</a></li>
+                      <li><a href="{{ route('my-organization-calendar') }}">My Organization Calendar</a></li>
+                      <li><a href="{{ route('my-personal-calendar') }}">My Personal Calendar</a></li>
                     </ul>
                   </li>
                 </ul>
               </div>
               <div class="body">
-                <div class="" id="my-organization"></div>
                 <div id='calendar'></div>
               </div>
             </div>
@@ -63,11 +78,6 @@
 
 @section('footer')
   <script src="{{ asset('js/jquery-ui-1.10.2.custom.min.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/moment.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/autosize.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/basic-form-elements.js') }}?v=0.2" charset="utf-8"></script>
   <script src="{{ asset('js/fullcalendar.min.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/sweetalert.min.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/calendar.js') }}?v=0.8" charset="utf-8"></script>
+  <script src="{{ asset('js/master.js') }}?v=0.5" charset="utf-8"></script>
 @endsection

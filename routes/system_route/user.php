@@ -64,9 +64,24 @@ Route::prefix('users')->group(function() {
     Route::name('org-head.my.new.event')->get('/my/new/event', 'OrganizationHead\MyEventController@create');
     Route::name('org-head.my.new.event.submit')->post('/store/new', 'OrganizationHead\MyEventController@store');
     Route::name('org-head.approved.event')->get('/approved/event/{id}', 'OrganizationHead\EventController@setApprove');
-    Route::name('org-head.disapproved.event')->get('/disapproved/event/{id}', 'OrganizationHead\EventController@setDisApprove'); 
-    Route::name('org-head.userattendance.store')->post('user-attendance/store', 'OrganizationHead\UserAttendanceController@store'); 
+    Route::name('org-head.disapproved.event')->get('/disapproved/event/{id}', 'OrganizationHead\EventController@setDisApprove');
+    Route::name('org-head.userattendance.store')->post('user-attendance/store', 'OrganizationHead\UserAttendanceController@store');
     Route::name('org-head.org-membership')->post('/org-membership', 'OrganizationHead\OrganizationGroupController@store');
+  });
+  # Route for organization member
+  Route::prefix('org-member')->group(function() {
+    Route::name('org-member.org-list')->get('/list_of_organizations','OrganizationMember\OrganizationController@index');
+    Route::name('org-member.event.new')->get('/new', 'OrganizationMember\EventController@create');
+    Route::name('org-member.event.new')->post('/new', 'OrganizationMember\EventController@store');
+    Route::name('org-member.my.new.event')->get('/my/new/event', 'OrganizationMember\MyEventController@create');
+    Route::name('org-member.my.new.event.submit')->post('/store/new', 'OrganizationMember\MyEventController@store');
+    Route::name('org-member.event.list')->get('/get/event-list/{id?}', 'OrganizationMember\EventController@index');
+    Route::name('org-member.approve.event')->get('/approve/event', 'OrganizationMember\EventController@approveEvents');
+    Route::name('org-member.calendar')->get('/calendar', 'OrganizationMember\CalendarController@calendar');
+    Route::name('org-member.members.list')->get('/members/list', 'OrganizationMember\OrganizationGroupController@index');
+    Route::name('org-member.attendance')->get('/attendance', 'OrganizationMember\GenerateAttendanceController@index');
+    Route::name('org-member.event.show')->get('/show/{id?}', 'OrganizationMember\EventController@show');
+    Route::name('org-member.attendance.store')->post('/store', 'OrganizationMember\GenerateAttendanceController@store');
   });
 
   # Route for organization head

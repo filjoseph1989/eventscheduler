@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\OrganizationHead;
+namespace App\Http\Controllers\OrganizationMember;
 
 use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Library\OrgHeadLibrary as OrgHead;
+use App\Library\OrgMemberLibrary as OrgMember;
 
 # Models
 use App\Models\OrganizationGroup;
@@ -17,15 +17,15 @@ use App\Models\OrganizationAdviserGroup;
  */
 class OrganizationGroupController extends Controller
 {
-    private $org_head;
+    private $orgMember;
 
     /**
-     * Construct an object
+     * Guard
      */
     public function __construct()
     {
         $this->middleware('web');
-        $this->org_head = new OrgHead();
+        $this->orgMember = new OrgMember();
     }
 
     /**
@@ -49,7 +49,7 @@ class OrganizationGroupController extends Controller
       }
 
       $login_type = 'user';
-      return view('pages/users/organization-adviser/organization/members', compact(
+      return view('pages/users/organization-member/organization/members', compact(
         'org', 'login_type', 'member'
       ));
     }
@@ -75,7 +75,7 @@ class OrganizationGroupController extends Controller
       parent::loginCheck();
 
       # make the user is an adviser
-      $this->org_head->isOrgHead();
+      $this->orgMember->isOrgMember;
 
       # Check wether this user already requested for membership
       if (self::_isAlreadyRequested($request->organization_id)) {
@@ -88,16 +88,16 @@ class OrganizationGroupController extends Controller
       }
 
       # Store new request
-      $result = OrganizationGroup::create(
-        $request->only( 'user_id', 'organization_id', 'membership_status' )
-      );
+      $result = OrganizationGroup::create($request->only(
+        'user_id', 'organization_id', 'membership_status'
+      ));
 
       # notify the user what happend
       if ($result->wasRecentlyCreated) {
         return back()->with('status', 'Request successfully sent');
+      } else {
+        return back()->with('status_warning', 'Request for membership is not posible for a moment');
       }
-
-      return back()->with('status_warning', 'Request for membership is not posible for a moment');
     }
 
     /**
