@@ -9,7 +9,6 @@ use App\Library\OrgHeadLibrary as OrgHead;
 
 # Models
 use App\Models\OrganizationGroup;
-use App\Models\OrganizationAdviserGroup;
 
 /**
  * This class controller handles all the Http request
@@ -36,7 +35,7 @@ class OrganizationGroupController extends Controller
     public function index()
     {
       # Get user organization
-      $org = OrganizationAdviserGroup::with('organization')
+      $org = OrganizationGroup::with('organization')
         ->where('user_id', Auth::user()->id)
         ->get();
 
@@ -49,7 +48,7 @@ class OrganizationGroupController extends Controller
       }
 
       $login_type = 'user';
-      return view('pages/users/organization-adviser/organization/members', compact(
+      return view('pages/users/organization-head/organization/members', compact(
         'org', 'login_type', 'member'
       ));
     }
@@ -61,6 +60,10 @@ class OrganizationGroupController extends Controller
      */
     public function create()
     {
+      $login_type = 'user';
+      return view('pages/users/organization-head/members/add', compact(
+        'org', 'login_type', 'member'
+      ));
     }
 
     /**
@@ -98,6 +101,55 @@ class OrganizationGroupController extends Controller
       }
 
       return back()->with('status_warning', 'Request for membership is not posible for a moment');
+    }
+
+    /**
+     * Store  new member of the organization
+     *
+     * @param  Request $request
+     * @return Illuminate\Response
+     */
+    public function storeNewMember(Request $request)
+    {
+      # make sure a user is Login
+      parent::loginCheck();
+
+      # make the user is an adviser
+      $this->org_head->isOrgHead();
+
+      $org = OrganizationGroup::where('user_id','=', $request->id)->get();
+
+      # Return when the user already has a request
+      if ($org->count() != 0) {
+        return back()->with('status_warning', 'The user is already a  member or sent a request for membership');
+      }
+
+      # Get the organization of the loggedin user
+      $org = OrganizationGroup::where('user_id', '=', Auth::user()->id)->get();
+
+      # Store new request
+      $result = $request->only( 'user_id' );
+      if ($org->count() != 0 ) {
+        $result['organization_id'] = $org[0]->organization_id;
+        $result = OrganizationGroup::create( $result );
+
+        # notify the user what happend
+        if ($result->wasRecentlyCreated) {
+          return back()->with('status', 'Successfully added..');
+        }
+      }
+
+      return back()->with('status_warning', 'Membership is not posible for a moment');
+    }
+
+    /**
+     * Accept request for  membership
+     *
+     * @return [type] [description]
+     */
+    public function acceptNewMember()
+    {
+
     }
 
     /**

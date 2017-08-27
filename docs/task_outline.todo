@@ -245,12 +245,13 @@ To Do:
         ✔ Within @done(2017-08-24 00:26) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Events / ☐ Calendar of events)
         ✔ Personal @done(2017-08-24 00:26) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Events / ☐ Calendar of events)
     ☐ Members:
-      ☐ List of members within the organization of adviser
+      ☐ List of members within the organization of head
         ☐ View members profile
+      ☐ Add members
+      ☐ Accept 
+      ☐ Check for new membership request live (Advance | Low Priority)
+      ☐ Check for if an edit happend about the organization live (Advance|low Priority)
       ✔ Display membership request @done(2017-08-27 03:19) @project(To Do / Task 2: Organization HEAD Account / ☐ Members)
-      ☐ Accept new member
-      ☐ Check for new membership request live
-      ☐ Check for if an edit happend about the organization live
     ✔ Generate Attendance: @done(2017-08-24 01:24) @project(To Do / ☐ Task 2: Organization HEAD Account)
       ✔ Display the list of organization, advise by the loggedin adviser @done(2017-08-24 00:54) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Generate Attendance)
       ✔ Display the list of event from the given organization @done(2017-08-24 01:05) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Generate Attendance)

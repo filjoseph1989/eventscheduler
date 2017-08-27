@@ -67,7 +67,13 @@ Route::prefix('users')->group(function() {
     Route::name('org-head.disapproved.event')->get('/disapproved/event/{id}', 'OrganizationHead\EventController@setDisApprove');
     Route::name('org-head.userattendance.store')->post('user-attendance/store', 'OrganizationHead\UserAttendanceController@store');
     Route::name('org-head.org-membership')->post('/org-membership', 'OrganizationHead\OrganizationGroupController@store');
+    Route::name('org-head.members.list')->get('/members/list', 'OrganizationHead\OrganizationGroupController@index');
+    Route::name('org-head.members.add')->get('/members/add', 'OrganizationHead\OrganizationGroupController@create');
+    Route::name('org-head.members.search')->post('/members/search', 'OrganizationHead\UserController@search');
+    Route::name('org-head.members.new')->post('/members/new', 'OrganizationHead\OrganizationGroupController@storeNewMember');
+    Route::name('org-head.members.accept')->post('/members/', 'OrganizationHead\OrganizationGroupController@acceptNewMember');
   });
+
   # Route for organization member
   Route::prefix('org-member')->group(function() {
     Route::name('org-member.org-list')->get('/list_of_organizations','OrganizationMember\OrganizationController@index');

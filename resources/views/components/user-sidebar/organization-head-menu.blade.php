@@ -30,15 +30,16 @@
     <span>Members</span>
   </a>
   <ul class="ml-menu">
-    <li><a href="{{ route('org-adviser.members.list') }}">All Members</a></li>
-    <li><a href="">Add Members</a></li>
+    <li><a href="{{ route('org-head.members.list') }}">All Members</a></li>
+    <li><a href="{{ route('org-head.members.add') }}">Add Members</a></li>
+    <li><a href="{{ route('org-head.members.accept') }}">Accept Request</a></li>
     {{-- <li><a href="#">Members with organization</a></li> --}}
     {{-- <li><a href="#">Members without organization</a></li> --}}
   </ul>
 </li>
 <li>
-  {{-- <a href="{{ route('org-adviser.event.show') }}"> --}}
-  <a href="{{ route('org-adviser.attendance') }}">
+  {{-- <a href="{{ route('org-head.event.show') }}"> --}}
+  <a href="{{ route('org-head.attendance') }}">
     <i class="material-icons">list</i>
     <span>Generate Attendance</span>
   </a>
