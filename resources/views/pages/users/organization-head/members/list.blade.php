@@ -38,6 +38,7 @@
                   </thead>
                   <tbody>
                     @foreach ($user as $key => $value)
+                      <?php $user_id = $value->id; ?>
                       <tr>
                         <td><a href="#">{{ $value->first_name }} {{ $value->last_name }}</a></td>
                         <td><a href="#">{{ $value->course->name }}</a></td>
@@ -55,7 +56,7 @@
                           <form class="" action="{{ route('org-head.members.new') }}" method="post">
                             {{ csrf_field() }}
                             <input type="hidden" id="add-new-member-position" name="position_id" value="1">
-                            <input type="hidden" name="user_id" value="{{ $value->id }}">
+                            <input type="hidden" name="user_id" value="{{ $user_id }}">
                             <button type="submit" class="btn btn-success" name="add">Add</button>
                           </form>
                         </td>

@@ -41,7 +41,7 @@ class UserController extends Controller
   {
     $user = User::with(['course', 'department'])
       ->where('account_number', 'LIKE', '%' . $data->search . '%')
-      ->get();
+      ->get(); 
 
     $position = Position::all();
 

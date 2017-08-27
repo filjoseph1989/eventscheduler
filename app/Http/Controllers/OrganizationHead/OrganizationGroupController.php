@@ -117,39 +117,52 @@ class OrganizationGroupController extends Controller
       # make the user is an adviser
       $this->org_head->isOrgHead();
 
-      // $org = OrganizationGroup::where('user_id','=', $request->id)->get();
-      //
-      // # Return when the user already has a request
-      // if ($org->count() != 0) {
-      //   return back()->with('status_warning', 'The user is already a  member or sent a request for membership');
-      // }
-
+      $org = OrganizationGroup::where('user_id','=', $request->user_id)->get();
+      
+      # Return when the user already has a request
+      if ($org->count() > 0) {
+        return redirect()
+        ->route('org-head.members.add')
+        ->with('status_warning', 'The user is already a  member or sent a request for membership');
+      }
+      
       # Get the organization of the loggedin user
       $org = OrganizationGroup::where('user_id', '=', Auth::user()->id)->get();
+      
+      if ($org->count() > 0) {
+        $org = $org[0];
+      } 
 
       # Store new request
-      $result = $request->only( 'user_id' );
+      $result = $request->only('user_id', 'position_id');
+      $result['organization_id']   = $org->organization_id;
+      $result['membership_status'] = "yes";
+      
       if ($org->count() != 0 ) {
-        $result['organization_id'] = $org[0]->organization_id;
         $result = OrganizationGroup::create( $result );
 
         # notify the user what happend
         if ($result->wasRecentlyCreated) {
-          return back()->with('status', 'Successfully added..');
+          return redirect()
+            ->route('org-head.members.add')
+            ->with('status', 'Successfully added..');
         }
       }
 
-      return back()->with('status_warning', 'Membership is not posible for a moment');
+      return redirect()
+        ->route('org-head.members.add')
+        ->with('status_warning', 'Membership is not posible for a moment');
     }
 
     /**
-     * Accept request for  membership
+     * Accept request for new members
      *
-     * @return [type] [description]
+     * @param Request $data
+     * @return void
      */
-    public function acceptNewMember()
+    public function acceptNewMember(Request $data)
     {
-
+      echo "wala pa ni";
     }
 
     /**
