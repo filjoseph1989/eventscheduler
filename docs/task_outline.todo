@@ -128,6 +128,11 @@ To Do:
         ☐ Among
         ☐ Within
         ☐ Personal
+    / ☐ Automatic Successful Event Notifications upon complete approvals:
+        ☐ Public View
+        ☐ Within Org
+        ☐ Among Orgs
+        ☐ Personal
     ☐ Members:
       ☐ List of members within the organization of adviser
         ☐ View members profile
@@ -239,6 +244,11 @@ To Do:
         ✔ Disapprove event @done (8/25/2017, 3:58:50 PM)
         ☐ Edit event:
           ☐ If the organization head edit the date of the of the event, reset the approver count and status
+    / ☐ Automatic Successful Event Notifications upon complete approvals:
+        ☐ Public View
+        ☐ Within Org
+        ☐ Among Orgs
+        ☐ Personal
       ✔ Calendar of events:  @done(2017-08-24 00:26) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Events)
         ✔ Public @done(2017-08-24 00:26) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Events / ☐ Calendar of events)
         ✔ Among @done(2017-08-24 00:26) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Events / ☐ Calendar of events)
@@ -273,11 +283,11 @@ To Do:
         ✔ Change logo @done(2017-07-22 22:59)
     ☐ Events:
       ☐ Create My Events:
-    /    ☐ Can customize message for notification
+    /   ✔ Can customize message for notification @done(2017-08-28 04:31) @project(Task 1: Organization Adviser Account / ☐ Events / ☐ Create My Events)
         ☐ Can upload image for notification (advance)
         ✔ Display form to create event @done(2017-08-17 16:37)
       ☐ Create Events:
-    /    ☐ Can customize message for notification
+    /   ✔ Can customize message for notification @done(2017-08-28 04:32) @project(Task 1: Organization Adviser Account / ☐ Events / ☐ Create Events)
         ☐ Can upload image for notification (advance)
         ✔ Display form to create event @done(2017-08-17 16:35)
         ☐ Change the semester dropdown into season such (quarter, holidays, christmas) {Enterprise version}
@@ -297,11 +307,16 @@ To Do:
       ☐ List of events:
         ✔ Display the info box of events base on category @done(2017-08-17 16:38)
         ✔ Attend this event - A button for user if he wants to attend this event (For regulart users and non member of the organization) @done(2017-08-24 05:10)
-    /    ☐ On the event details, display the name of the approver who already approve the event
+    /   ☐ On the event details, display the name of the approver who already approve the event
         ☐ Archive events (advance)
         ☐ Automatically change the status(oon-going/upcoming/done) of the event base on the given date (advance)
     /    ☐ Set status of my events
     /      ☐ if the status changed, Set notification functionality
+    / ☐ Automatic Successful Event Notifications upon complete approvals:
+        ☐ Public View
+        ☐ Within Org
+        ☐ Among Orgs
+        ☐ Personal
       ✔ Show organization and browse events  @done(2017-08-24 02:46) @project(To Do / Task 1: Organization Adviser Account / ☐ Events)
       ✔ Approval of event functionality @done(2017-08-15 20:34) @project(To Do / ☐ Task 39 - Login as organization adviser / ☐ Events)
       ✔ Approval of event blade @done(2017-08-24 02:50) @project(To Do / Task 1: Organization Adviser Account / ☐ Events)
