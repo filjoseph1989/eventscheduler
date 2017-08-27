@@ -10,7 +10,7 @@ Route::prefix('users')->group(function() {
 
   # Route for organization adviser
   Route::prefix('org-adviser')->group(function() {
-    Route::name('org.adviser.org-list')->get('/list_of_organizations','OrganizationAdviser\OrganizationController@index');
+    Route::name('org.adviser.org-list')->get('/','OrganizationAdviser\OrganizationController@index');
     Route::name('org-adviser.event.list')->get('/get/event-list/{id?}', 'OrganizationAdviser\EventController@index');
     Route::name('org-adviser.org-profile')->get('/profile/{id}', 'OrganizationAdviser\OrganizationController@show');
     Route::name('org-adviser.org-logo')->post('/change-logo', 'OrganizationAdviser\OrganizationController@uploadLogo');
@@ -71,7 +71,7 @@ Route::prefix('users')->group(function() {
     Route::name('org-head.members.add')->get('/members/add', 'OrganizationHead\OrganizationGroupController@create');
     Route::name('org-head.members.search')->post('/members/search', 'OrganizationHead\UserController@search');
     Route::name('org-head.members.new')->post('/members/new', 'OrganizationHead\OrganizationGroupController@storeNewMember');
-    Route::name('org-head.members.accept')->post('/members/', 'OrganizationHead\OrganizationGroupController@acceptNewMember');
+    Route::name('org-head.members.accept')->post('/members/accept', 'OrganizationHead\OrganizationGroupController@acceptNewMember');
   });
 
   # Route for organization member
@@ -88,6 +88,11 @@ Route::prefix('users')->group(function() {
     Route::name('org-member.attendance')->get('/attendance', 'OrganizationMember\GenerateAttendanceController@index');
     Route::name('org-member.event.show')->get('/show/{id?}', 'OrganizationMember\EventController@show');
     Route::name('org-member.attendance.store')->post('/store', 'OrganizationMember\GenerateAttendanceController@store');
+    Route::name('org-member.org-profile')->get('/profile/{id}', 'OrganizationMember\OrganizationController@show');
+    Route::name('org-member.org-edit')->get('/edit-org/{id}', 'OrganizationMember\OrganizationController@edit');
+    Route::name('org-member.org-logo')->post('/change-logo', 'OrganizationMember\OrganizationController@uploadLogo');
+    Route::name('org-member.org-membership')->post('/org-membership', 'OrganizationMember\OrganizationGroupController@store');
+
   });
 
   # Route for organization head
@@ -156,7 +161,7 @@ Route::prefix('users')->group(function() {
 //    * OSA User Account Type
 //    */
 //   Route::name('osa.user.list')->get('osa/list_of_users','OsaAccountController@showAllUserList');
-//   Route::name('osa.org.list')->get('osa/list_of_organizations','OsaAccountController@showAllOrganizationList');
+//   Route::name('osa.org.list')->get('osa/','OsaAccountController@showAllOrganizationList');
 //   Route::name('osa.org.add')->get('osa/organization/add', 'OsaAccountController@showOrganizationAddForm');
 //   Route::name('osa.event.get')->get('osa/event/get', 'OsaAccountController@getEventOfTheMonthList');
 //   Route::name('osa.event.new')->get('osa/event/new', 'OsaAccountController@createNewEventForm');

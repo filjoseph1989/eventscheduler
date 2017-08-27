@@ -36,7 +36,7 @@ class OrganizationGroupController extends Controller
     public function index()
     {
       # Get user organization
-      $org = OrganizationAdviserGroup::with('organization')
+      $org = OrganizationGroup::with('organization')
         ->where('user_id', Auth::user()->id)
         ->get();
 
@@ -75,7 +75,7 @@ class OrganizationGroupController extends Controller
       parent::loginCheck();
 
       # make the user is an adviser
-      $this->orgMember->isOrgMember;
+      $this->orgMember->isOrgMember();
 
       # Check wether this user already requested for membership
       if (self::_isAlreadyRequested($request->organization_id)) {

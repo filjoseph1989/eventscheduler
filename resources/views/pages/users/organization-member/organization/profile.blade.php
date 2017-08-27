@@ -50,8 +50,8 @@
                       <i class="material-icons">more_vert</i>
                     </a>
                     <ul class="dropdown-menu pull-right">
-                      @if ($orgHead === true AND $isMember === true)
-                        <li><a href="{{ route('org-head.org-edit', $organization->id) }}"><i class="material-icons">create</i> Edit</a></li>
+                      @if ($orgMember === true AND $isMember === true)
+                        <li><a href="{{ route('org-member.org-edit', $organization->id) }}"><i class="material-icons">create</i> Edit</a></li>
                       @else
                         <li><a href="#">No Options</a></li>
                       @endif
@@ -68,8 +68,8 @@
                       <img class="org-logo" src="{{ asset("images/ship.jpg") }}" alt="Credit https://www.askideas.com/media/87/Black-Ink-Pirate-Ship-In-Rope-Frame-With-Banner-And-Anchor-Tattoo-Design.jpg">
                       <small>Credit: <a href="https://www.askideas.com/media/87/Black-Ink-Pirate-Ship-In-Rope-Frame-With-Banner-And-Anchor-Tattoo-Design.jpg" target="_blank">Here</a></small>
                     @endif
-                    @if ($orgHead === true AND $isMember === true)
-                      <form action="{{ route('org-head.org-logo') }}" enctype="multipart/form-data" method="POST">
+                    @if ($orgMember === true AND $isMember === true)
+                      <form action="{{ route('org-member.org-logo') }}" enctype="multipart/form-data" method="POST">
                         {{ csrf_field() }}
                         <div class="row">&nbsp;</div>
                         <div class="row">
@@ -109,7 +109,7 @@
                     <div class="row">
                       <div class="col-md-12">
                         @if ($isMember == false)
-                          <form class="" action="{{ route('org-head.org-membership', $organization->id ) }}" method="post">
+                          <form class="" action="{{ route('org-member.org-membership', $organization->id ) }}" method="post">
                             {{ csrf_field() }}
                             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                             <input type="hidden" name="organization_id" value="{{ $organization->id }}">

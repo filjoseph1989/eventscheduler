@@ -30,7 +30,7 @@ To Do:
       ☐ Filter by Position
       ☐ Filter by Status
 
-  Task 5: Setting:
+?
     ☐ View Profile
       ✔ What if there are many organization? @done(2017-07-23 03:04)
       ☐ if click the following:
@@ -174,8 +174,8 @@ To Do:
         ☐ Within
         ☐ Personal
     ☐ Members:
-      ☐ Display all members
-      ☐ Display membership request
+      ✔ Display all members within the organization @done(2017-08-27 22:33) @project(Task 3: Organization Member Account / ☐ Members)
+      ✔ Display membership request @done(2017-08-27 22:52) @project(Task 3: Organization Member Account / ☐ Members)
 
   Task 2: Organization HEAD Account:
     ☐ Organization:
@@ -245,10 +245,10 @@ To Do:
         ✔ Within @done(2017-08-24 00:26) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Events / ☐ Calendar of events)
         ✔ Personal @done(2017-08-24 00:26) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Events / ☐ Calendar of events)
     ☐ Members:
-      ☐ List of members within the organization of head
-        ☐ View members profile
+      ✔ List of members within the organization of head @done(2017-08-27 22:11) @project(To Do / Task 2: Organization HEAD Account / ☐ Members)
+        ✔ View members profile @done(2017-08-27 22:11) @project(To Do / Task 2: Organization HEAD Account / ☐ Members)
       ☐ Add members
-      ☐ Accept 
+      ☐ Accept request
       ☐ Check for new membership request live (Advance | Low Priority)
       ☐ Check for if an edit happend about the organization live (Advance|low Priority)
       ✔ Display membership request @done(2017-08-27 03:19) @project(To Do / Task 2: Organization HEAD Account / ☐ Members)

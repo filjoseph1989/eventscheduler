@@ -111,7 +111,7 @@ class OrganizationController extends Controller
       $orgMember      = self::_orgMemberOfThisOrganization($id);
       $isMember     = self::_isAmember($id);
 
-      return view('pages/users/organization-orgMember/organization/profile', compact(
+      return view('pages/users/organization-member/organization/profile', compact(
         'login_type', 'organization', 'orgMember', 'isMember'
       ));
     }
@@ -233,7 +233,7 @@ class OrganizationController extends Controller
      */
     private function _orgMemberOfThisOrganization($id)
     {
-      $result = OrganizationAdviserGroup::where('user_id', '=', Auth::user()->id)
+      $result = OrganizationGroup::where('user_id', '=', Auth::user()->id)
         ->where('organization_id', '=', $id)
         ->get()
         ->count();

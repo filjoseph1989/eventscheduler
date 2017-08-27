@@ -117,12 +117,12 @@ class OrganizationGroupController extends Controller
       # make the user is an adviser
       $this->org_head->isOrgHead();
 
-      $org = OrganizationGroup::where('user_id','=', $request->id)->get();
-
-      # Return when the user already has a request
-      if ($org->count() != 0) {
-        return back()->with('status_warning', 'The user is already a  member or sent a request for membership');
-      }
+      // $org = OrganizationGroup::where('user_id','=', $request->id)->get();
+      //
+      // # Return when the user already has a request
+      // if ($org->count() != 0) {
+      //   return back()->with('status_warning', 'The user is already a  member or sent a request for membership');
+      // }
 
       # Get the organization of the loggedin user
       $org = OrganizationGroup::where('user_id', '=', Auth::user()->id)->get();
