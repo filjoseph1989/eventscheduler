@@ -293,7 +293,7 @@ To Do:
         ☐ Change the semester dropdown into season such (quarter, holidays, christmas) {Enterprise version}
           ☐ customizable by the user
         ☐ In what way that this event should be valid? Goto Approve events (Advance)
-    /      ☐ Add approvers:
+    /      ☐ Add approvers: (THIS SHOULD BE BASED ON THE EVENT'S CATEGORY AND ORGANIZATION)
     /        ☐ There should be a default approvers - This approvers are crucial for approving the said event
     /        ☐ Browse to the list of approvers
     /        ☐ If the adviser is an approver, display a button within the form to approve the created event
