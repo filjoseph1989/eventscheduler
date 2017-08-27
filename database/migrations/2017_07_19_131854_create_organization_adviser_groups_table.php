@@ -16,7 +16,7 @@ class CreateOrganizationAdviserGroupsTable extends Migration
         Schema::create('organization_adviser_groups', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
-            $table->integer('organization_id')->unsigned()->index();
+            $table->integer('organization_id')->unsigned()->index()->unique();
             $table->timestamps();
             $table->softDeletes();
 

@@ -21,7 +21,7 @@ class ManageNotificationController extends Controller
 
   /**
    * This method will send notification on different media
-   * 
+   *
    * Issue Column not found: 1054 Unknown column 'events.event' in 'field list'
    *
    * @param  Request $data [description]
@@ -35,7 +35,7 @@ class ManageNotificationController extends Controller
       'events.event_type_id',
       'events.event_category_id',
       'events.organization_id',
-      'events.event',
+      'events.title',
       'events.description',
       'events.venue',
       'events.date_start',
@@ -70,20 +70,20 @@ class ManageNotificationController extends Controller
       $value->date_start = date("d M Y",strtotime($value->date_start));
       $value->date_end   = date("d M Y",strtotime($value->date_end));
 
-      if( $value->notify_via_facebook == 1 ){
-        # self::notifyViaFacebook($value);
+      if( $value->notify_via_facebook == 'on' ){
+      //   self::notifyViaFacebook($value);
       }
 
-      if( $value->notify_via_twitter == 1  ){
-        # self::notifyViaTwitter($value);
+      if( $value->notify_via_twitter == 'on'  ){
+      //   self::notifyViaTwitter($value);
       }
 
-      if( $value->notify_via_email == 1 ) {
-        self::notifyViaEmail($value);
+      if( $value->notify_via_email == 'on' ) {
+      //  self::notifyViaEmail($value);
       }
 
-      if( $value->notify_via_sms == 1 ){
-        // self::notifyViaSms($value);
+      if( $value->notify_via_sms == 'on' ){
+        self::notifyViaSms($value);
       }
     }
   }
@@ -180,17 +180,15 @@ class ManageNotificationController extends Controller
       // d(User::find($value->user_id)->email);
       if ( ! isset($old[$value->user_id])) {
         $old[$value->user_id] = $value->user_id;
-        if( $value->notify_via_email == 1 ){
+        if( $value->notify_via_email == 'on' ){
           Mail::to(User::find($value->user_id)->email)->send(new Mailtrap());
         }
       }
     }
-
   }
 
   private function notifyViaSms ($value) {
-    if( $value->notify_via_sms == 1 ) {
-
+    if( $value->notify_via_sms == 'on' ) {
       if ($value->event_category_id == 1) {
         $notification_message =
           "Hello UP Mindanao! You have an upcoming event! " .
@@ -200,29 +198,17 @@ class ManageNotificationController extends Controller
           "\nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time} " .
           "\nPlease be guided accordingly. Thank You!";
 
-          // Demo
-          // $result =
-          //   Nexmo::message()->send([
-          //     'to'   => '639958633866',
-          //     'from' => '639124918787',
-          //     'text' => $notification_message
-          //   ]);
-          //
-        $all_users = User::all();
-        $old       = [];
+        // $all_users = User::all();
+        $all_users = User::all()->take(2);
         foreach ($all_users as $key => $value) {
-          // d($value->mobile_number);
-          // if( $value->notify_via_sms == 1 ){
-          //   $result =
-          //     Nexmo::message()->send([
-          //       'to'   => $value->mobile_number,
-          //       'from' => '639124918787',
-          //       'text' => $notification_message
-          //   ]);
-          // }
+          Nexmo::message()->send([
+            'to'   => $value->mobile_number,
+            'from' => '639778378388',
+            'text' => $notification_message
+          ]);
         }
       }
-      
+
       if($value->event_category_id == 2) {
         //where event_category == within organization
         $notification_message = "Hello {$value->org_name}! You have an upcoming event!
@@ -275,6 +261,8 @@ class ManageNotificationController extends Controller
         \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}
         \nPlease be guided accordingly. Thank You!";
       }
+
+
     }
   }
 }

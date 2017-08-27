@@ -154,7 +154,9 @@ class EventController extends Controller
         'venue', 'date_start', 'date_start_time',
         'date_end', 'date_end_time', 'whole_day',
         'notify_via_facebook', 'notify_via_twitter',
-        'notify_via_email', 'notify_via_sms', 'semeter'
+        'notify_via_email', 'notify_via_sms', 'semester',
+        'additional_msg_facebook', 'additional_msg_sms',
+        'additional_msg_email'
       );
 
       # Finally create events
@@ -263,7 +265,7 @@ class EventController extends Controller
         # is the event exist?
         if ( ! $approved_event->exists) {
           return redirect()->route('org-adviser.approve.event')
-            ->with('status_warning', 'There no event yet');
+            ->with('status_warning', 'There is no event yet');
         }
 
         # the majority approve already?

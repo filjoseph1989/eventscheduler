@@ -168,6 +168,18 @@
                   </div>
                   <div class="row clearfix">
                     <div class="col-sm-8 col-sm-offset-2">
+                      <div class="form-group form-float form-group">
+                        <div class="form-line">
+                          <textarea rows="4" class="form-control no-resize" id="description" name="additional_msg_facebook" required placeholder="Additional message in the facebook notification">{{ old('additional_msg_facebook') }}</textarea>
+                          @if ($errors->has('additional_msg_facebook'))
+                          <span class="help-block"> <strong>{{ $errors->first('additional_msg_facebook') }}</strong> </span>
+                          @endif
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row clearfix">
+                    <div class="col-sm-8 col-sm-offset-2">
                       <div class="demo-switch">
                           <div class="switch" id="twitter">
                             <label>OFF<input type="checkbox" name="notify_via_twitter" checked><span class="lever switch-col-blue"></span>ON</label> Twitter
@@ -186,9 +198,33 @@
                   </div>
                   <div class="row clearfix">
                     <div class="col-sm-8 col-sm-offset-2">
+                      <div class="form-group form-float form-group">
+                        <div class="form-line">
+                          <textarea rows="4" class="form-control no-resize" id="description" name="additional_msg_email" required placeholder="Additional message in the email notification">{{ old('additional_msg_email') }}</textarea>
+                          @if ($errors->has('additional_msg_email'))
+                          <span class="help-block"> <strong>{{ $errors->first('additional_msg_email') }}</strong> </span>
+                          @endif
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row clearfix">
+                    <div class="col-sm-8 col-sm-offset-2">
                       <div class="demo-switch">
                         <div class="switch" id="phone">
                           <label>OFF<input type="checkbox" name="notify_via_sms" checked><span class="lever switch-col-pink"></span>ON</label> Phone
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row clearfix">
+                    <div class="col-sm-8 col-sm-offset-2">
+                      <div class="form-group form-float form-group">
+                        <div class="form-line">
+                          <textarea rows="4" class="form-control no-resize" id="description" name="additional_msg_sms" required placeholder="Additional message in the SMS notification">{{ old('additional_msg_sms') }}</textarea>
+                          @if ($errors->has('additional_msg_sms'))
+                          <span class="help-block"> <strong>{{ $errors->first('additional_msg_sms') }}</strong> </span>
+                          @endif
                         </div>
                       </div>
                     </div>

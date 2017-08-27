@@ -196,7 +196,7 @@ To Do:
       ☐ Create Events:
         ✔ Display form to create event @done (8/22/2017, 7:01:28 PM)
         ☐ Can customize message for notification
-        ☐ Can upload image for notification
+        ☐ Can upload image for notification (advance)
         ☐ In what way that this event should be valid? Goto Approve events (Advance)
           ☐ Add approvers:
             ☐ There should be a default approvers - This approvers are crucial for approving the said event
@@ -260,8 +260,8 @@ To Do:
 
   Task 1: Organization Adviser Account:
     ☐ Organizations:
-      ☐ List of organization
-        ☐ Notify the organization officers for the changes made by the adviser
+      ✔ List of organization @done(2017-08-27 23:01) @project(Task 1: Organization Adviser Account / ☐ Organizations)
+        ☐ Notify the organization officers for the changes made by the adviser (advance)
         ✔ Request for membership @done(2017-07-31 16:38)
           ✔ If the adviser is not a member of the organization display this button @done(2017-07-31 01:15)
         ✔ If the organization name is clicked, display the orgazation simple profile @done(2017-07-22 23:18)
@@ -273,21 +273,21 @@ To Do:
         ✔ Change logo @done(2017-07-22 22:59)
     ☐ Events:
       ☐ Create My Events:
+    /    ☐ Can customize message for notification
+        ☐ Can upload image for notification (advance)
         ✔ Display form to create event @done(2017-08-17 16:37)
-        ☐ Can customize message for notification
-        ☐ Can upload image for notification
       ☐ Create Events:
+    /    ☐ Can customize message for notification
+        ☐ Can upload image for notification (advance)
         ✔ Display form to create event @done(2017-08-17 16:35)
         ☐ Change the semester dropdown into season such (quarter, holidays, christmas) {Enterprise version}
           ☐ customizable by the user
-        ☐ Can customize message for notification
-        ☐ Can upload image for notification
         ☐ In what way that this event should be valid? Goto Approve events (Advance)
-          ☐ Add approvers:
-            ☐ There should be a default approvers - This approvers are crucial for approving the said event
-            ☐ Browse to the list of approvers
-            ☐ If the adviser is an approver, display a button within the form to approve the created event
-            ☐ Include the president as approver for this event
+    /      ☐ Add approvers:
+    /        ☐ There should be a default approvers - This approvers are crucial for approving the said event
+    /        ☐ Browse to the list of approvers
+    /        ☐ If the adviser is an approver, display a button within the form to approve the created event
+    /        ☐ Include the president as approver for this event
         ✔ Chose organization @done(2017-07-24 00:28)
           ☐ Categories as public
             ☐ Is outside the campus? - This part doesnt need for approval from the people in university (Advance)
@@ -297,11 +297,11 @@ To Do:
       ☐ List of events:
         ✔ Display the info box of events base on category @done(2017-08-17 16:38)
         ✔ Attend this event - A button for user if he wants to attend this event (For regulart users and non member of the organization) @done(2017-08-24 05:10)
-        ☐ On the event details, display the name of the approver who already approve the event
-        ☐ Archive events
-        ☐ Automatically change the status of the event base on the given date
-        ☐ Set status of my events
-          ☐ if the status changed, Set notification functionality
+    /    ☐ On the event details, display the name of the approver who already approve the event
+        ☐ Archive events (advance)
+        ☐ Automatically change the status(oon-going/upcoming/done) of the event base on the given date (advance)
+    /    ☐ Set status of my events
+    /      ☐ if the status changed, Set notification functionality
       ✔ Show organization and browse events  @done(2017-08-24 02:46) @project(To Do / Task 1: Organization Adviser Account / ☐ Events)
       ✔ Approval of event functionality @done(2017-08-15 20:34) @project(To Do / ☐ Task 39 - Login as organization adviser / ☐ Events)
       ✔ Approval of event blade @done(2017-08-24 02:50) @project(To Do / Task 1: Organization Adviser Account / ☐ Events)
@@ -313,7 +313,7 @@ To Do:
         ✔ Among  @done(2017-08-15 20:32)
         ✔ Within  @done(2017-08-15 20:32)
         ✔ Personal @done(2017-08-15 20:32)
-    ☐ Members:
+    ✔ Members: @done(2017-08-27 22:58) @project(Task 1: Organization Adviser Account)
       ✔ List of members within the organization of adviser @done(2017-08-16 20:02)
         ✔ View members profile @done(2017-08-16 20:28)
     ✔ Generate Attendance: @done(2017-08-24 01:24) @project(To Do / ☐ Task 1: Organization Adviser Account)
