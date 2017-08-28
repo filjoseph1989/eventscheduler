@@ -248,11 +248,27 @@ To Do:
         ✔ Disapprove event @done (8/25/2017, 3:58:50 PM)
         ☐ Edit event:
           ☐ If the organization head edit the date of the of the event, reset the approver count and status
-    / ☐ Automatic Successful Event Notifications upon complete approvals:
-        ☐ Public View
-        ☐ Within Org
-        ☐ Among Orgs
-        ☐ Personal
+        ☐ Automatic Successful Event Notifications upon complete approvals:
+          ☐ notify_via_facebook
+            ☐ Public View
+            ☐ Within Org
+            ☐ Among org
+            ☐ Personal
+          ☐ notify_via_twitter
+            ☐ Public View
+            ☐ Within Org
+            ☐ Among org
+            ☐ Personal
+          ☐ notify_via_email
+            ☐ Public View
+            ☐ Within Org
+            ☐ Among org
+            ☐ Personal
+          ☐ notify_via_sms
+            ☐ Public View
+            ☐ Within Org
+            ☐ Among org
+            ☐ Personal
       ✔ Calendar of events:  @done(2017-08-24 00:26) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Events)
         ✔ Public @done(2017-08-24 00:26) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Events / ☐ Calendar of events)
         ✔ Among @done(2017-08-24 00:26) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Events / ☐ Calendar of events)
@@ -313,10 +329,26 @@ To Do:
         ✔ Set status of my events @done(2017-08-28 15:06) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ List of events)
           ✔ if the status changed, Set notification functionality @done(2017-08-28 15:06) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ List of events)
       ☐ Automatic Successful Event Notifications upon complete approvals:
-        ✔ Public View @done(2017-08-28 17:40) @project(To Do / Task 1: Organization Adviser Account / / ☐ Automatic Successful Event Notifications upon complete approvals)
-        ✔ Within Org @done(2017-08-28 16:18) @project(To Do / Task 1: Organization Adviser Account / / ☐ Automatic Successful Event Notifications upon complete approvals)
-        ☐ Among Orgs
-        ☐ Personal
+        ☐ notify_via_facebook
+          ☐ Public View
+          ☐ Within Org
+          ☐ Among org
+          ☐ Personal
+        ☐ notify_via_twitter
+          ☐ Public View
+          ☐ Within Org
+          ☐ Among org
+          ☐ Personal
+        ☐ notify_via_email
+          ☐ Public View
+          ☐ Within Org
+          ☐ Among org
+          ☐ Personal
+        ☐ notify_via_sms
+          ✔ Public View @done(2017-08-28 17:40) @project(To Do / Task 1: Organization Adviser Account / / ☐ Automatic Successful Event Notifications upon complete approvals)
+          ✔ Within Org @done(2017-08-28 16:18) @project(To Do / Task 1: Organization Adviser Account / / ☐ Automatic Successful Event Notifications upon complete approvals)
+          ☐ Among org
+          ☐ Personal
       ✔ Show organization and browse events  @done(2017-08-24 02:46) @project(To Do / Task 1: Organization Adviser Account / ☐ Events)
       ✔ Approval of event functionality @done(2017-08-15 20:34) @project(To Do / ☐ Task 39 - Login as organization adviser / ☐ Events)
       ✔ Approval of event blade @done(2017-08-24 02:50) @project(To Do / Task 1: Organization Adviser Account / ☐ Events)
