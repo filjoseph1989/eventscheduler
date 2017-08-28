@@ -77,6 +77,10 @@ class OrganizationGroupController extends Controller
       # make the user is an adviser
       $this->adviser->isAdviser();
 
+      if(self::_isAlreadyAnOrgAdviser()){
+        return back()->with('status_warning', 'You are already an adviser to an organization. One org advisory per faculty only. This system is for enrolled students and organization adviser for the current school year.');
+      }
+
       # Check wether this user already requested for membership
       if (self::_isAlreadyRequested($request->organization_id)) {
         return back()->with('status_warning', 'You already sent a request for membership');
@@ -159,6 +163,16 @@ class OrganizationGroupController extends Controller
       $result =  OrganizationGroup::where('user_id', '=', Auth::user()->id)
         ->where('organization_id', '=', $id)
         ->where('membership_status', '=', 'no')
+        ->get()
+        ->count();
+
+      return ($result == 1) ? true : false;
+    }
+
+    public function _isAlreadyAnOrgAdviser()
+    {
+      $result =  OrganizationGroup::where('user_id', '=', Auth::user()->id)
+        ->where('membership_status', '=', 'yes')
         ->get()
         ->count();
 

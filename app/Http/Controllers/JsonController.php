@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\OrganizationAdviser;
+namespace App\Http\Controllers;
 
 use Auth;
 use Illuminate\Http\Request;
@@ -12,8 +12,9 @@ use App\Models\EventType;
 use App\Models\Organization;
 use App\Models\EventCategory;
 use App\Models\PersonalEvent;
+use App\Models\EventApprovalMonitor;
 
-class AdviserJsonController extends Controller
+class JsonController extends Controller
 {
   /**
    * Middleware
@@ -116,6 +117,14 @@ class AdviserJsonController extends Controller
   {
     return PersonalEvent::where('id', '=', $data->id)
       ->with('eventType')
+      ->get()
+      ->toJson();
+  }
+
+  public function getApprover(Request $data)
+  {
+    return EventApprovalMonitor::join('users', 'users.id', '=', 'event_approval_monitors.approvers_id')
+      ->where('event_approval_monitors.event_id', '=', $data->id)
       ->get()
       ->toJson();
   }

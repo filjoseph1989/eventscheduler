@@ -1,6 +1,6 @@
 /**
  * App.js
- * @version 0.27
+ * @version 0.28
  */
 
 /**
@@ -86,38 +86,56 @@ $(document).on('click', '.event-details', function() {
     "<tr><td>Whole Day?</td><td data-name='whole_day' data-event-id='"+id+"'>" + data.whole_day + "</td></tr>" +
     "<tr><td>Event Status</td><td data-name='status' data-event-id='"+id+"'>" + data.status + "</td></tr>" +
     "<tr><td>Approve?</td><td data-name='approve' data-event-id='"+id+"'>" + data.approve_status + "</td></tr>" +
-    "<tr><td>Semester</td><td data-name='semester' data-event-id='"+id+"'>" + data.semester + " Semester</td></tr>";
+    "<tr><td>Semester</td><td data-name='semester' data-event-id='"+id+"'>" + data.semester + " Semester</td></tr>" +
+    "<tr><td>APPROVERS</td><td></td></tr>";
 
     $('#event-details-body tbody').html(html);
 
-    html =
-    '<div class="row">' +
-      '<div class="col-md-offset-3 col-md-6">' +
-        '<button name="status" type="submit" value="true" class="btn bg-green btn-block btn-lg waves-effect">Attend</button>' +
+    /**
+     * Get approvevers
+     */
+    var url = route('ajax.get.event.approvers').replace('localhost', window.location.hostname);
+    submit( {id:id}, url, function(data) {
+      var html = $('#event-details-body tbody').html();
+
+      for (var i = 0; i < data.length; i++) {
+        var app = data[i];
+        html += "<tr><td>" + app.first_name + " " + app.last_name + "</td><td>&nbsp;</td></tr>";
+      }
+
+      $('#event-details-body tbody').html(html);
+    });
+
+    if (data.approve_status == 'Approved') {
+      html =
+      '<div class="row">' +
+        '<div class="col-md-offset-3 col-md-6">' +
+          '<button name="status" type="submit" value="true" class="btn bg-green btn-block btn-lg waves-effect">Attend</button>' +
+        '</div>' +
       '</div>' +
-    '</div>' +
-    '<div class="row" style="margin-top: 3px;">' +
-      '<div class="col-md-offset-3 col-md-6">' +
-        '<button type="button" id="cant-attend" class="btn bg-red btn-block btn-lg waves-effect">Can\'t Attend</button>' +
+      '<div class="row" style="margin-top: 3px;">' +
+        '<div class="col-md-offset-3 col-md-6">' +
+          '<button type="button" id="cant-attend" class="btn bg-red btn-block btn-lg waves-effect">Can\'t Attend</button>' +
+        '</div>' +
       '</div>' +
-    '</div>' +
-    '<div class="row">' +
-      '<div class="col-md-12">' +
-        '<div class="form-group">' +
-          '<div class="form-line hidden" id="cant-attend-message">' +
-            '<textarea name="reason" rows="4" class="form-control no-resize" placeholder="Please type the reason why you cannot attend the event."></textarea>' +
-            '<input type="hidden" name="event_id" value="' + data.id + '">' +
+      '<div class="row">' +
+        '<div class="col-md-12">' +
+          '<div class="form-group">' +
+            '<div class="form-line hidden" id="cant-attend-message">' +
+              '<textarea name="reason" rows="4" class="form-control no-resize" placeholder="Please type the reason why you cannot attend the event."></textarea>' +
+              '<input type="hidden" name="event_id" value="' + data.id + '">' +
+            '</div>' +
           '</div>' +
         '</div>' +
       '</div>' +
-    '</div>' +
-    '<div class="row">' +
-      '<div class="col-md-offset-3 col-md-6">' +
-        '<button name="status" type="submit" value="false" id="cant-attend-submit" class="btn bg-red btn-block btn-lg waves-effect hidden">Submit</button>' +
-      '</div>' +
-    '</div>';
+      '<div class="row">' +
+        '<div class="col-md-offset-3 col-md-6">' +
+          '<button name="status" type="submit" value="false" id="cant-attend-submit" class="btn bg-red btn-block btn-lg waves-effect hidden">Submit</button>' +
+        '</div>' +
+      '</div>';
 
-    $('#user-attendance div').html(html);
+      $('#user-attendance div').html(html);
+    }
   });
 });
 
@@ -154,26 +172,6 @@ $(document).on('click', '.my-event-details', function() {
 
     $('#my-event-details-body tbody').html(html);
 
-    // html =
-    //   '<div class="row">' +
-    //   '<div class="col-md-offset-3 col-md-6">' +
-    //   '<button name="status" type="submit" value="true" class="btn bg-green btn-block btn-lg waves-effect">Attend</button>' +
-    //   '</br>' +
-    //   '<button name="status" type="submit" value="true" class="btn bg-red btn-block btn-lg waves-effect">Can\'t Attend</button>' +
-    //   '</div>' +
-    //   '</div>' +
-    //   '<div class="row">' +
-    //   '<div class="col-md-12">' +
-    //   '<div class="form-group">' +
-    //   '<div class="form-line">' +
-    //   '<textarea name="reason" rows="4" class="form-control no-resize" placeholder="Please type the reason why you cannot attend the event."></textarea>' +
-    //   '<input type="hidden" name="event_id" value="' + id + '">' +
-    //   '<input type="hidden" name="user_id" value="' + uid + '">' +
-    //   '</div>' +
-    //   '</div>' +
-    //   '</div>' +
-    //   '</div>';
-    // $('#user-attendance div').html(html);
   });
 
 })

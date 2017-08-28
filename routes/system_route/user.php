@@ -31,17 +31,19 @@ Route::prefix('users')->group(function() {
     Route::name('org-adviser.attendance.show')->get('/new/{id}/{eid}', 'OrganizationAdviser\GenerateAttendanceController@show');
     Route::name('org-adviser.attendance.store')->post('/store', 'OrganizationAdviser\GenerateAttendanceController@store');
     Route::name('org-adviser.userattendance.store')->post('user-attendance/store', 'OrganizationAdviser\UserAttendanceController@store');
-
-    # Issue 44: This part can be improve by creating a method that accept id and model name
-    Route::name('ajax.get.event-type')->post('/get/event-type', 'OrganizationAdviser\AdviserJsonController@getEventType');
-    Route::name('ajax.get.event-category')->post('/get/event-category', 'OrganizationAdviser\AdviserJsonController@getEventCategory');
-    Route::name('ajax.get.organization')->post('/get/organization', 'OrganizationAdviser\AdviserJsonController@getOrganization');
-    Route::name('ajax.get.event.list')->post('/get/event', 'OrganizationAdviser\AdviserJsonController@getEvent');
-    Route::name('ajax.get.events')->post('/get/events', 'OrganizationAdviser\AdviserJsonController@getEventList');
-    Route::name('ajax.get.event.personal.list')->post('/get/personal/event', 'OrganizationAdviser\AdviserJsonController@getPersonalEvent');
-    Route::name('ajax.update.event.personal.list')->post('/update/personal/event', 'OrganizationAdviser\AdviserJsonController@updatePersonalEvent');
-    Route::name('ajax.update.event.list')->post('/update/event', 'OrganizationAdviser\AdviserJsonController@updateEvent');
   });
+
+
+  # Issue 44: This part can be improve by creating a method that accept id and model name
+  Route::name('ajax.get.event-type')->post('/get/event-type', 'JsonController@getEventType');
+  Route::name('ajax.get.event-category')->post('/get/event-category', 'JsonController@getEventCategory');
+  Route::name('ajax.get.organization')->post('/get/organization', 'JsonController@getOrganization');
+  Route::name('ajax.get.event.list')->post('/get/event', 'JsonController@getEvent');
+  Route::name('ajax.get.events')->post('/get/events', 'JsonController@getEventList');
+  Route::name('ajax.get.event.personal.list')->post('/get/personal/event', 'JsonController@getPersonalEvent');
+  Route::name('ajax.update.event.personal.list')->post('/update/personal/event', 'JsonController@updatePersonalEvent');
+  Route::name('ajax.update.event.list')->post('/update/event', 'JsonController@updateEvent');
+  Route::name('ajax.get.event.approvers')->post('/get/approver', 'JsonController@getApprover');
 
   # Route for organization head
   Route::prefix('org-head')->group(function() {
