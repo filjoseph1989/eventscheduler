@@ -312,8 +312,8 @@ To Do:
         ☐ Automatically change the status(oon-going/upcoming/done) of the event base on the given date (advance)
         ✔ Set status of my events @done(2017-08-28 15:06) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ List of events)
           ✔ if the status changed, Set notification functionality @done(2017-08-28 15:06) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ List of events)
-    / ☐ Automatic Successful Event Notifications upon complete approvals:
-        ☐ Public View
+      ☐ Automatic Successful Event Notifications upon complete approvals:
+        ✔ Public View @done(2017-08-28 17:40) @project(To Do / Task 1: Organization Adviser Account / / ☐ Automatic Successful Event Notifications upon complete approvals)
         ✔ Within Org @done(2017-08-28 16:18) @project(To Do / Task 1: Organization Adviser Account / / ☐ Automatic Successful Event Notifications upon complete approvals)
         ☐ Among Orgs
         ☐ Personal

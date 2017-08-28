@@ -163,7 +163,7 @@ class ManageNotificationController extends Controller
         $notification_message =
           "Hello UP Mindanao! You have an upcoming event! " .
           "\n{$value->title} headed by {$value->organization->name}." .
-          "\nDescription: {$value->events_description}" .
+          "\nDescription: {$value->description}" .
           "\nVenue: {$value->venue}" .
           "\nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time} " .
           "\n{$value->additional_msg_sms}" .
@@ -184,7 +184,7 @@ class ManageNotificationController extends Controller
         //where event_category == within organization
         $notification_message = "Hello {$value->organization->name}! You have an upcoming event!
           \n{$value->title}
-          \nDescription: {$value->events_description}
+          \nDescription: {$value->description}
           \nVenue: {$value->venue}
           \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}
           \n{$value->additional_msg_sms}
@@ -203,7 +203,7 @@ class ManageNotificationController extends Controller
       if($value->event_category_id == 3){
         $notification_message = "Hello Student Leaders! You have an upcoming event!
         \n{$value->title} headed by {$value->organization->name}.
-        \nDescription: {$value->events_description}
+        \nDescription: {$value->description}
         \nVenue: {$value->venue}
         \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}
         \n{$value->additional_msg_sms}
@@ -212,13 +212,12 @@ class ManageNotificationController extends Controller
 
       if($value->event_category_id == 4){
         $notification_message = "Hello {$value->fname}! Your {$value->title} event has been approved.
-        \nDescription: {$value->events_description}
+        \nDescription: {$value->description}
         \nVenue: {$value->venue}
         \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}
         \n{$value->additional_msg_sms}
         \nPlease be guided accordingly. Thank You!";
       }
-
 
     }
   }

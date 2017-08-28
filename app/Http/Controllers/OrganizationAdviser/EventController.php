@@ -348,7 +348,7 @@ class EventController extends Controller
             if ($event_temp->approver_count >= 2) {
               # Update the status of event
               $event_temp = Event::find($id);
-              $event_temp->approver_count++;
+              $event_temp->approve_status = 'approved';
               $event_temp->save();
 
               # Notification
