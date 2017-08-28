@@ -314,7 +314,7 @@ To Do:
           ✔ if the status changed, Set notification functionality @done(2017-08-28 15:06) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ List of events)
     / ☐ Automatic Successful Event Notifications upon complete approvals:
         ☐ Public View
-        ☐ Within Org
+        ✔ Within Org @done(2017-08-28 16:18) @project(To Do / Task 1: Organization Adviser Account / / ☐ Automatic Successful Event Notifications upon complete approvals)
         ☐ Among Orgs
         ☐ Personal
       ✔ Show organization and browse events  @done(2017-08-24 02:46) @project(To Do / Task 1: Organization Adviser Account / ☐ Events)

@@ -260,13 +260,17 @@ class EventController extends Controller
 
       # is an approver & adviser?
       if (parent::isOrgAdviser() and parent::isApprover()) {
-        $approved_event = Event::find($id);
+        $approved_events = Event::with('organization')
+          ->where('id', '=', $id)
+          ->get();
 
         # is the event exist?
-        if ( ! $approved_event->exists) {
+        if ($approved_events->count() == 0) {
           return redirect()->route('org-adviser.approve.event')
             ->with('status_warning', 'There is no event yet');
         }
+
+        $approved_event = $approved_events[0];
 
         # the majority approve already?
         if ( ($approved_event->event_category_id == 3 || $approved_event->event_category_id == 1 ) && $approved_event->approver_count >= 0 and $approved_event->approver_count < 3) {
@@ -282,8 +286,9 @@ class EventController extends Controller
           } else {
             # Increment approver count on events table.
             # This determine how many already approved the event
-            $approved_event->approver_count++;
-            $approved_event->save();
+            $event_temp = Event::find($id);
+            $event_temp->approver_count++;
+            $event_temp->save();
 
             # Save users ID to prevent performing more approval
             # when the user already did it.
@@ -293,10 +298,11 @@ class EventController extends Controller
             ]);
 
             # With notification message
-            if ($approved_event->approver_count >= 3) {
+            if ($event_temp->approver_count >= 3) {
               # Update the status of event
-              $approved_event->approve_status = 'approved';
-              $approved_event->save();
+              $event_temp = Event::find($id);
+              $event_temp->approve_status = 'approved';
+              $event_temp->save();
 
               # Notification
               $notify = new ManageNotificationController();
@@ -327,8 +333,9 @@ class EventController extends Controller
           } else {
             # Increment approver count on events table.
             # This determine how many already approved the event
-            $approved_event->approver_count++;
-            $approved_event->save();
+            $event_temp = Event::find($id);
+            $event_temp->approver_count++;
+            $event_temp->save();
 
             # Save users ID to prevent performing more approval
             # when the user already did it.
@@ -338,10 +345,11 @@ class EventController extends Controller
             ]);
 
             # With notification message
-            if ($approved_event->approver_count >= 2) {
+            if ($event_temp->approver_count >= 2) {
               # Update the status of event
-              $approved_event->approve_status = 'approved';
-              $approved_event->save();
+              $event_temp = Event::find($id);
+              $event_temp->approver_count++;
+              $event_temp->save();
 
               # Notification
               $notify = new ManageNotificationController();
@@ -358,7 +366,6 @@ class EventController extends Controller
               ->with('status', "Successfuly approved the event ( {$approved_event->title} )");
           }
         }
-
       }
     }
 
