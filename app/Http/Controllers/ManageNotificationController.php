@@ -35,7 +35,7 @@ class ManageNotificationController extends Controller
     $ev->date_end   = date("d M Y",strtotime($ev->date_end));
 
     if( $ev->notify_via_facebook == 'on' ){
-        // self::notifyViaFacebook($ev);
+        self::notifyViaFacebook($ev);
     }
 
     if( $ev->notify_via_twitter == 'on'  ){
@@ -47,10 +47,8 @@ class ManageNotificationController extends Controller
     }
 
     if( $ev->notify_via_sms == 'on' ){
-      self::notifyViaSms($ev);
+      // self::notifyViaSms($ev);
     }
-    // foreach ($ev as $key => $value) {
-    // }
   }
 
   /**
@@ -63,19 +61,19 @@ class ManageNotificationController extends Controller
     if( $value->notify_via_facebook == "on" ){
       if($value->event_category_id == 1){
         $notification_message = "Hello UP Mindanao! You have an upcoming event!
-        \n{$value->title} headed by {$value->org_name}.
+        \n{$value->title} headed by {$value->organization->name}.
         \nDescription: {$value->description}
-        \nVenue: {$value->description}
+        \nVenue: {$value->venue}
         \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time} ".
         "\n{$value->additional_msg_facebook}" .
         "\nPlease be guided accordingly. Thank You!";
       }
 
       if($value->event_category_id == 2){
-        $notification_message = "Hello {$value->org_name}! You have an upcoming event!
+        $notification_message = "Hello {$value->organization->name}! You have an upcoming event!
         \n{$value->title}
         \nDescription: {$value->description}
-        \nVenue: {$value->description}
+        \nVenue: {$value->venue}
         \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}".
         "\n{$value->additional_msg_facebook}" .
         "\nPlease be guided accordingly. Thank You!";
@@ -83,9 +81,9 @@ class ManageNotificationController extends Controller
 
       if($value->event_category_id == 3){
         $notification_message = "Hello Student Leaders! You have an upcoming event!
-        \n{$value->title} headed by {$value->org_name}.
+        \n{$value->title} headed by {$value->organization->name}.
         \nDescription: {$value->description}
-        \nVenue: {$value->description}
+        \nVenue: {$value->venue}
         \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}".
         "\n{$value->additional_msg_facebook}" .
         "\nPlease be guided accordingly. Thank You!";
@@ -94,7 +92,7 @@ class ManageNotificationController extends Controller
       if($value->event_category_id == 4){
         $notification_message = "Hello {$value->fname}! Your {$value->title} event has been approved.
         \nDescription: {$value->description}
-        \nVenue: {$value->description}
+        \nVenue: {$value->venue}
         \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}".
         "\n{$value->additional_msg_facebook}" .
         "\nPlease be guided accordingly. Thank You!";
@@ -158,8 +156,7 @@ class ManageNotificationController extends Controller
 
   private function notifyViaSms ($value) {
     if( $value->notify_via_sms == 'on' ) {
-
-      if ($value->event_category_id == 1) {
+      if($value->event_category_id == 1) {
         $notification_message =
           "Hello UP Mindanao! You have an upcoming event! " .
           "\n{$value->title} headed by {$value->organization->name}." .
