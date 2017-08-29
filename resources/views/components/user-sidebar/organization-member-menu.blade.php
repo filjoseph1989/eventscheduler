@@ -29,15 +29,5 @@
   </a>
   <ul class="ml-menu">
     <li><a href="{{ route('org-member.members.list') }}">All Members</a></li>
-    {{--<li><a href="">Add Members</a></li>--}}
-    {{-- <li><a href="#">Members with organization</a></li> --}}
-    {{-- <li><a href="#">Members without organization</a></li> --}}
   </ul>
-</li>
-<li>
-  {{-- <a href="{{ route('org-member.event.show') }}"> --}}
-  <a href="{{ route('org-member.attendance') }}">
-    <i class="material-icons">list</i>
-    <span>Generate Attendance</span>
-  </a>
 </li>
