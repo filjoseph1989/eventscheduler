@@ -154,29 +154,29 @@ To Do:
     ☐ Check my attendance:
     ☐ Organization:
       ☐ List of organization
-        ☐ Notify the organization officers for the changes made by the organization head
-        ☐ Request for membership
-          ☐ If the organization head is not a member of the organization display this button
-        ☐ If the organization name is clicked, display the orgazation simple profile
-        ☐ Card Layout for simple organization profile
-        ☐ Who are they? - Should have default description if not given
-        ☐ If the adivser view his organization as an adviser he must have option for editing few information
-          ☐ Color picker
-        ☐ logo default
-        ☐ Change logo
+        ☐ Notify the organization officers for the changes made by the organization head (wala ko kagets?)
+        ✔ Request for membership @done(2017-08-30 02:07) @project(To Do / Task 3: Organization Member Account / ☐ Organization)
+          ✔ If the organization member is not a member of the organization display this button @done(2017-08-30 02:07) @project(To Do / Task 3: Organization Member Account / ☐ Organization)
+        ✔ If the organization name is clicked, display the organization simple profile @done(2017-08-30 02:07) @project(To Do / Task 3: Organization Member Account / ☐ Organization)
+        ✔ Card Layout for simple organization profile @done(2017-08-30 02:07) @project(To Do / Task 3: Organization Member Account / ☐ Organization)
+        ✔ Who are they? - Should have default description if not given @done(2017-08-30 02:07) @project(To Do / Task 3: Organization Member Account / ☐ Organization)
     ☐ Events:
       ☐ Create My Events:
-        ☐ Display form to create event
-        ☐ Use textarea for description
+        ✔ Display form to create event @done(2017-08-30 02:18) @project(To Do / Task 3: Organization Member Account / ☐ Events / ☐ Create My Events)
+        ✔ Use textarea for description @done(2017-08-30 02:18) @project(To Do / Task 3: Organization Member Account / ☐ Events / ☐ Create My Events)
         ☐ Can customize message for notification
-        ☐ Can upload image for notification
+        ☐ Can upload image for notification (advance)
       ☐ List of events:
         ☐ Display the info box of events base on category
         ☐ Attend this event - A button for user if he wants to attend this event (For regulart users and non member of the organization)
-        ☐ Archive events
+        ☐ Archive events(advance)
         ☐ Automatically change the status of the event base on the given date
         ☐ Set status of my events
           ☐ if the status changed, Set notification functionality
+        ☐ if the member is an approver, only then can he see the approve menu in its menu-bar ///////////////
+        ☐ Show List of Personal Events
+          ☐ public
+          ☐ private
       ☐ Calendar of events
         ☐ Public
         ☐ Among
@@ -233,6 +233,9 @@ To Do:
         ✔ Automatically change the status of the event base on the given date @done(2017-08-30 01:38) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
         ☐ Set status of my events (advance)
           ☐ if the status changed, Set notification functionality
+        ✔ Show List of Personal Events @done(2017-08-30 02:38) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
+          ✔ public @done(2017-08-30 02:38) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
+          ✔ private @done(2017-08-30 02:38) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
       ✔ Calendar of events @done(2017-08-30 01:39) @project(To Do / Task 2: Organization HEAD Account / ☐ Events)
         ✔ Public @done(2017-08-30 01:40) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
         ✔ Among @done(2017-08-30 01:40) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
@@ -328,6 +331,9 @@ To Do:
         ☐ Automatically change the status(oon-going/upcoming/done) of the event base on the given date (advance)
         ✔ Set status of my events @done(2017-08-28 15:06) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ List of events)
           ✔ if the status changed, Set notification functionality @done(2017-08-28 15:06) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ List of events)
+        ✔ Show List of Personal Events @done(2017-08-30 02:38) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ List of events)
+          ✔public @done(2017-08-30 02:38) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ List of events)
+          ✔private @done(2017-08-30 02:38) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ List of events)
       ☐ Automatic Successful Event Notifications upon complete approvals:
         ☐ notify_via_facebook
           ☐ Public View

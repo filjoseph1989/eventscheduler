@@ -79,8 +79,6 @@ Route::prefix('users')->group(function() {
   # Route for organization member
   Route::prefix('org-member')->group(function() {
     Route::name('org-member.org-list')->get('/list_of_organizations','OrganizationMember\OrganizationController@index');
-    Route::name('org-member.event.new')->get('/new', 'OrganizationMember\EventController@create');
-    Route::name('org-member.event.new')->post('/new', 'OrganizationMember\EventController@store');
     Route::name('org-member.my.new.event')->get('/my/new/event', 'OrganizationMember\MyEventController@create');
     Route::name('org-member.my.new.event.submit')->post('/store/new', 'OrganizationMember\MyEventController@store');
     Route::name('org-member.event.list')->get('/get/event-list/{id?}', 'OrganizationMember\EventController@index');

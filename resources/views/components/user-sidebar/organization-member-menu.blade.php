@@ -17,10 +17,8 @@
     <span>Events</span>
   </a>
   <ul class="ml-menu">
-    <li><a href="{{ route('org-member.event.new') }}">Create Event</a></li>
     <li><a href="{{ route('org-member.my.new.event') }}">Create My Events</a></li>
     <li><a href="{{ route('org-member.event.list') }}">List of Events</a></li>
-    <li><a href="{{ route('org-member.approve.event') }}">Approve Events</a></li>
     <li><a href="{{ route('org-member.calendar') }}">Event Calendar</a></li>
   </ul>
 </li>
