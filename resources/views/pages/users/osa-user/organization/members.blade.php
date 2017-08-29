@@ -23,32 +23,31 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> LIST OF ORGANIZATION </h2>
+                @if ($org != null)
+                  <h2> LIST OF {{ ucwords($org->organization->name) }} MEMBERS</h2>
+                @else
+                  <h2>LIST OF MEMBERS</h2>
+                @endif
               </div>
               <div class="body table-responsive">
                 <table class="table table-striped table-hover js-basic-example dataTable">
                   <thead>
                     <tr>
                       <th>Name</th>
-                      <th>URL</th>
-                      <th>Date Started</th>
-                      <th>Date Expired</th>
                       <th>Status</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @if ($organization->count() == 0)
+                    @if (isset($member) && $member->count() == 0 || $org === false)
                       <tr>
-                        <td>{{ "No entry yet" }}</td>
+                        <td>No Entry Yet</td>
                       </tr>
                     @else
-                      @foreach ($organization as $key => $value)
+                      @foreach ($member as $key => $value)
+                        <?php $value->status = ($value->status == 1) ? 'Active' : 'Inactive' ?>
                         <tr>
-                          <td><a href="{{ route('osa-personnel.org-profile', [$value->id]) }}">{{ $value->name }}</a></td>
-                          <td><a href="{{ $value->url }}" target="_blank">{{ $value->url }}</a></td>
-                          <td>{{ date('M d, Y', strtotime($value->date_started)) }}</td>
-                          <td>{{ date('M d, Y', strtotime($value->date_expired)) }}</td>
-                          <td>{{ ($value->status == 1) ? "Active" : "Inactive" }}</td>
+                          <td><a href="{{ route('user.profile', $value->user_id) }}">{{ $value->last_name . " " . $value->first_name }}</a></td>
+                          <td>{{ $value->status }}</td>
                         </tr>
                       @endforeach
                     @endif
@@ -56,9 +55,6 @@
                   <tfoot>
                     <tr>
                       <th>Name</th>
-                      <th>URL</th>
-                      <th>Date Started</th>
-                      <th>Date Expired</th>
                       <th>Status</th>
                     </tr>
                   </tfoot>

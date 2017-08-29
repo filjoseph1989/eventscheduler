@@ -1,5 +1,5 @@
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-  <a href="{{ route('org-adviser.my.new.event') }}">
+  <a href="{{ route('org-head.my.new.event') }}">
     <div class="info-box {{ session('color') }} hover-expand-effect">
       <div class="icon">
         <i class="material-icons">playlist_add</i>
@@ -12,7 +12,7 @@
   </a>
 </div>
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-  <a href="{{ route('org-adviser.event.new') }}">
+  <a href="{{ route('org-head.event.new') }}">
     <div class="info-box {{ session('color') }} hover-expand-effect">
       <div class="icon">
         <i class="material-icons">playlist_add</i>
@@ -25,7 +25,7 @@
   </a>
 </div>
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-  <a href="{{ route('org-adviser.event.show') }}">
+  <a href="{{ route('org-head.event.show') }}">
     <div class="info-box {{ session('color') }} hover-expand-effect">
       <div class="icon">
         <i class="material-icons">playlist_add_check</i>
@@ -38,7 +38,7 @@
   </a>
 </div>
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-  <a href="{{ route('org-adviser.calendar') }}">
+  <a href="{{ route('org-head.calendar') }}">
     <div class="info-box {{ session('color') }} hover-expand-effect">
       <div class="icon">
         <i class="material-icons">date_range</i>

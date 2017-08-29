@@ -1,99 +1,43 @@
-<?php
-/**
-* This will display the menus for the user account
-*/
-?>
 <li>
-  <li>
-    <a href="#" class="menu-toggle">
-      <i class="material-icons">assignment_turned_in</i>
-      <span>REGISTRATION</span>
-    </a>
-    <ul class="ml-menu">
-      <li>
-        <a href="#">
-          <span>Add an OSA personnel</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span>Add an Organization Head</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span>Add an Organization Adviser</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span>Activate accounts</span>
-        </a>
-      </li>
-    </ul>
-  </li>
- <a href="#" class="menu-toggle">
-   <i class="material-icons">input</i>
-   <span>Manage Data</span>
- </a>
- <ul class="ml-menu">
-   <li>
-     <a href="{{ route('administrator.user.list') }}">
-       <span>USERS</span>
-     </a>
-   </li>
-   <li>
-     <a href="{{ route('administrator.course.list') }}">
-       <span>COURSES</span>
-     </a>
-   </li>
-   <li>
-     <a href="{{ route('administrator.department.list') }}">
-       <span>DEPARTMENTS</span>
-     </a>
-   </li>
-   <li>
-     <a href="{{ route('administrator.position.list') }}">
-       <span>POSITIONS</span>
-     </a>
-   </li>
-   <li>
-     <a href="{{ route('administrator.organization.list') }}">
-       <span>ORGANIZATIONS</span>
-     </a>
-   </li>
- </ul>
-</li>
-<?php
-/**
- * This will display the menus for admin account
- */
-?>
-<li>
-  <a href="#" class="menu-toggle">
-    <i class="material-icons">supervisor_account</i>
+  <a href="javascript:void(0);" class="menu-toggle">
+    <i class="material-icons">date_range</i>
     <span>Organization</span>
   </a>
   <ul class="ml-menu">
     <li>
-      <a href="{{ route('administrator.organization.list') }}">
-        <span>List of Organizations</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <span>Upcoming Events</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <span>Generate Attendance</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <span>Manage Approvers</span>
+      <a href="{{ route('user-admin.org-list') }}">
+        <span>List of organizations</span>
       </a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="javascript:void(0);" class="menu-toggle">
+    <i class="material-icons">event_seat</i>
+    <span>Events</span>
+  </a>
+  <ul class="ml-menu">
+    <li><a href="{{ route('user-admin.event.new') }}">Create Event</a></li>
+    <li><a href="{{ route('user-admin.my.new.event') }}">Create My Events</a></li>
+    <li><a href="{{ route('user-admin.event.list') }}">List of Events</a></li>
+    <li><a href="{{ route('user-admin.calendar') }}">Event Calendar</a></li>
+  </ul>
+</li>
+<li>
+  <a href="javascript:void(0);" class="menu-toggle">
+    <i class="material-icons">person</i>
+    <span>Members</span>
+  </a>
+  <ul class="ml-menu">
+    <li><a href="{{ route('user-admin.members.list') }}">All Members</a></li>
+    <li><a href="{{ route('user-admin.members.add') }}">Add Members</a></li>
+    <li><a href="{{ route('user-admin.members.accept') }}">Accept Request</a></li>
+  </ul>
+</li>
+<li>
+  {{-- <a href="{{ route('user-admin.event.show') }}"> --}}
+  <a href="{{ route('user-admin.attendance') }}">
+    <i class="material-icons">list</i>
+    <span>Generate Attendance</span>
+  </a>
 </li>

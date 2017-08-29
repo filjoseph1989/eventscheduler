@@ -31,3 +31,10 @@
     <li><a href="{{ route('org-member.members.list') }}">All Members</a></li>
   </ul>
 </li>
+<li>
+  {{-- <a href="{{ route('org-member.event.show') }}"> --}}
+  <a href="{{ route('org-member.attendance') }}">
+    <i class="material-icons">list</i>
+    <span>Check My Attendance</span>
+  </a>
+</li>

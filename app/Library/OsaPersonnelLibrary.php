@@ -22,7 +22,7 @@ use App\Models\OrganizationGroup;
  * @version 0.2
  * @updated 2017-07-29
  */
-class OrgHeadLibrary extends Controller
+class OsaPersonnelLibrary extends Controller
 {
   /**
    * Create a new controller instance.
@@ -40,10 +40,10 @@ class OrgHeadLibrary extends Controller
    *
    * @return boolean
    */
-  public function isOrgHead()
+  public function isOsaPersonnel()
   {
-    if ( ! parent::isOrgHead()) {
-      dd(parent::isOrgHead());
+    if ( ! parent::isOsaPersonnel()) {
+      dd(parent::isOsaPersonnel());
       exit;
       header('Location: '.action('HomeController@index'));
     }

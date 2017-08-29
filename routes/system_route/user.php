@@ -95,6 +95,36 @@ Route::prefix('users')->group(function() {
 
   });
 
+  Route::prefix('osa-personnel')->group(function() {
+    Route::name('osa-personnel.org-list')->get('/list_of_organizations','OsaPersonnel\OrganizationController@index');
+    Route::name('osa-personnel.org-profile')->get('/profile/{id}', 'OsaPersonnel\OrganizationController@show');
+    Route::name('osa-personnel.org-logo')->post('/change-logo', 'OsaPersonnel\OrganizationController@uploadLogo');
+    Route::name('osa-personnel.org-edit')->get('/edit-org/{id}', 'OsaPersonnel\OrganizationController@edit');
+    Route::name('osa-personnel.org-update')->post('/update-org', 'OsaPersonnel\OrganizationController@update');
+    Route::name('osa-personnel.event.new')->get('/new', 'OsaPersonnel\EventController@create');
+    Route::name('osa-personnel.event.new')->post('/new', 'OsaPersonnel\EventController@store');
+    Route::name('osa-personnel.event.list')->get('/get/event-list/{id?}', 'OsaPersonnel\EventController@index');
+    Route::name('osa-personnel.my.new.event')->get('/my/new/event', 'OsaPersonnel\MyEventController@create');
+    Route::name('osa-personnel.my.new.event.submit')->post('/store/new', 'OsaPersonnel\MyEventController@store');
+    Route::name('osa-personnel.approve.event')->get('/approve/event', 'OsaPersonnel\EventController@approveEvents');
+    Route::name('osa-personnel.calendar')->get('/calendar', 'OsaPersonnel\CalendarController@calendar');
+    Route::name('osa-personnel.attendance')->get('/attendance', 'OsaPersonnel\GenerateAttendanceController@index');
+    Route::name('osa-personnel.event.show')->get('/show/{id?}', 'OsaPersonnel\EventController@show');
+    Route::name('osa-personnel.attendance.store')->post('/store', 'OsaPersonnel\GenerateAttendanceController@store');
+    Route::name('osa-personnel.attendance.show')->get('/new/{id}/{eid}', 'OsaPersonnel\GenerateAttendanceController@show');
+    Route::name('osa-personnel.my.new.event')->get('/my/new/event', 'OsaPersonnel\MyEventController@create');
+    Route::name('osa-personnel.my.new.event.submit')->post('/store/new', 'OsaPersonnel\MyEventController@store');
+    Route::name('osa-personnel.approved.event')->get('/approved/event/{id}', 'OsaPersonnel\EventController@setApprove');
+    Route::name('osa-personnel.disapproved.event')->get('/disapproved/event/{id}', 'OsaPersonnel\EventController@setDisApprove');
+    Route::name('osa-personnel.userattendance.store')->post('user-attendance/store', 'OsaPersonnel\UserAttendanceController@store');
+    Route::name('osa-personnel.org-membership')->post('/org-membership', 'OsaPersonnel\OrganizationGroupController@store');
+    Route::name('osa-personnel.members.list')->get('/members/list', 'OsaPersonnel\OrganizationGroupController@index');
+    Route::name('osa-personnel.members.add')->get('/members/add', 'OsaPersonnel\OrganizationGroupController@create');
+    Route::name('osa-personnel.members.search')->post('/members/search', 'OsaPersonnel\UserController@search');
+    Route::name('osa-personnel.members.new')->post('/members/new', 'OsaPersonnel\OrganizationGroupController@storeNewMember');
+    Route::name('osa-personnel.members.accept')->post('/members/accept', 'OsaPersonnel\OrganizationGroupController@acceptNewMember');
+  });
+
   # Route for organization head
   // Route::prefix('org-head')->group(function() {
   //   Route::name('org-head.event.get')->get('/get', 'OrganizationHead\Events\EventController@getEventOfTheMonthList');
@@ -160,15 +190,15 @@ Route::prefix('users')->group(function() {
 //   /**
 //    * OSA User Account Type
 //    */
-//   Route::name('osa.user.list')->get('osa/list_of_users','OsaAccountController@showAllUserList');
-//   Route::name('osa.org.list')->get('osa/','OsaAccountController@showAllOrganizationList');
-//   Route::name('osa.org.add')->get('osa/organization/add', 'OsaAccountController@showOrganizationAddForm');
-//   Route::name('osa.event.get')->get('osa/event/get', 'OsaAccountController@getEventOfTheMonthList');
-//   Route::name('osa.event.new')->get('osa/event/new', 'OsaAccountController@createNewEventForm');
-//   Route::name('osa.event.approval')->get('osa/event/approval', 'OsaAccountController@approveEvents');
-//   Route::name('osa.event.osa-approve')->get('osa/event/approved/{id}', 'OsaAccountController@approve');
-//   Route::name('osa.event.osa-disapprove')->get('osa/event/disapproved/{id}/{orgg_uid}', 'OsaAccountController@disapprove');
-//   Route::name('osa.event.notify')->get('osa/event/notify', 'ManageNotificationController@notify');
+  // Route::name('osa.user.list')->get('osa/list_of_users','OsaAccountController@showAllUserList');
+  // Route::name('osa.org.list')->get('osa/','OsaAccountController@showAllOrganizationList');
+  // Route::name('osa.org.add')->get('osa/organization/add', 'OsaAccountController@showOrganizationAddForm');
+  // Route::name('osa.event.get')->get('osa/event/get', 'OsaAccountController@getEventOfTheMonthList');
+  // Route::name('osa.event.new')->get('osa/event/new', 'OsaAccountController@createNewEventForm');
+  // Route::name('osa.event.approval')->get('osa/event/approval', 'OsaAccountController@approveEvents');
+  // Route::name('osa.event.osa-approve')->get('osa/event/approved/{id}', 'OsaAccountController@approve');
+  // Route::name('osa.event.osa-disapprove')->get('osa/event/disapproved/{id}/{orgg_uid}', 'OsaAccountController@disapprove');
+  // Route::name('osa.event.notify')->get('osa/event/notify', 'ManageNotificationController@notify');
 //
 //   /**
 //    * Admin User Account Type

@@ -73,7 +73,7 @@ class Controller extends BaseController
      *
      * @return boolean
      */
-    public function isOrgOsa()
+    public function isOsaPersonnel()
     {
       return self::accountCheck(5);
     }
