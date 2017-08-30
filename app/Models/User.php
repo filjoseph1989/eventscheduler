@@ -86,6 +86,8 @@ class User extends Authenticatable
       return $this->hasMany('App\Models\OrganizationGroup');
     }
 
+
+
     /**
      * Defines the relationship between user account and
      * this account
