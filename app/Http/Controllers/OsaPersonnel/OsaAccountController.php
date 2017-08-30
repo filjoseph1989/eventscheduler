@@ -30,7 +30,6 @@ class OsaAccountController extends Controller
     parent::loginCheck();
 
     if (parent::isOrgOsa()) {
-      # Issue 31: Change this to eloquent way of getting data
       # Get the organization base onn the user's ID
       $organization = OrganizationGroup::select(
         'organizations.id',

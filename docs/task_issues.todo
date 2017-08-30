@@ -23,13 +23,13 @@ To Do:
   ☐ Issue 36: Go to this line
   ☐ Issue 35: Go to this line
   ☐ Issue 34: Go to this line
-  ☐ Issue 33: Remove me "resources\views\pages\users\admin-user\organization\list.blade.php" soon
-  ☐ Issue 32: Develop a readable, maintainable code in calendar0.js and calendar.js
-  ☐ Issue 31: Go to this line
-  ☐ Issue 30: Check the unused routing
-  ☐ Issue 29: On visiting the "users/calendar/my-organization-calendar" the system should automatically determine what type of calendar the user visiting
+  ✔ Issue 33: Remove me "resources\views\pages\users\admin-user\organization\list.blade.php" soon @done (8/30/2017, 11:22:36 AM)
+  ✔ Issue 32: Develop a readable, maintainable code in calendar0.js and calendar.js @done (8/30/2017, 11:21:27 AM)
+  ✔ Issue 31: Go to this line @done (8/30/2017, 11:19:49 AM)
+  ✔ Issue 30: Check the unused routing @done (8/30/2017, 11:16:50 AM)
+  ✔ Issue 29: On visiting the "users/calendar/my-organization-calendar" the system should automatically determine what type of calendar the user visiting @done (8/30/2017, 11:16:47 AM)
   ✔ Issue 28: There should be a login checker in almost every method @done(2017-08-03 21:30) @project(To Do)
-  ☐ Issue 27: The title here is wrong "users/calendar/my-organization-calendar"
+  ✔ Issue 27: The title here is wrong "users/calendar/my-organization-calendar" @done (8/30/2017, 11:16:37 AM)
   ✔ Issue 26: Go to this line and do the description in there @done(2017-07-16 14:31) @project(To Do)
   ✔ Issue 25: When the user is in any page, then it happens that the loggedin session already expired, redirect the user to login page @done (8/25/2017, 3:58:44 PM)
   ✔ Issue 24: go to this line and use eloquent @done(2017-07-13 10:21)
