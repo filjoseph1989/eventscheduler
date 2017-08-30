@@ -1,5 +1,5 @@
 To Do:
-  ☐ Issue 57: Those ajax route in adviser account, make it a separate route from the adviser
+  ✔ Issue 57: Those ajax route in adviser account, make it a separate route from the adviser @done (8/30/2017, 11:31:18 AM)
   ☐ Issue 56: Go to this line
   ☐ Issue 55: Go to this line
   ☐ Issue 54: Remove the calendar table, and add new event type which is university event
@@ -18,11 +18,11 @@ To Do:
   ✔ Issue 41: There should be a shared controller for organiztion advisers controllers @done(2017-07-29 21:47)
   ☐ Issue 40: Go to this line
   ☐ Issue 39: make or move this to common place to all accounts {resources\views\pages\users\organization-adviser\organization\org-profile.blade.php}
-  ☐ Issue 38: Go to this line
+  ✔ Issue 38: Go to this line @done (8/30/2017, 11:34:40 AM)
   ☐ Issue 37: Go to this line
-  ☐ Issue 36: Go to this line
-  ☐ Issue 35: Go to this line
-  ☐ Issue 34: Go to this line
+  ✔ Issue 36: Go to this line @done (8/30/2017, 11:30:18 AM)
+  ✔ Issue 35: Go to this line @done (8/30/2017, 11:28:07 AM)
+  ✔ Issue 34: Go to this line @done (8/30/2017, 11:27:10 AM)
   ✔ Issue 33: Remove me "resources\views\pages\users\admin-user\organization\list.blade.php" soon @done (8/30/2017, 11:22:36 AM)
   ✔ Issue 32: Develop a readable, maintainable code in calendar0.js and calendar.js @done (8/30/2017, 11:21:27 AM)
   ✔ Issue 31: Go to this line @done (8/30/2017, 11:19:49 AM)

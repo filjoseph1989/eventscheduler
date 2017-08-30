@@ -89,22 +89,4 @@ class OrgAdviserLibrary extends Controller
     $adviser = OrganizationAdviserGroup::where('organization_id', '=', $id)->get();
   }
 
-  /*
-    Issue 38: Review methods below if still in use
-   */
-
-  /**
-   * Display the personal calendar
-   *
-   * @return
-   */
-  public function myPersonalCalendar()
-  {
-    # Check if the user is loggedin
-    parent::loginCheck();
-
-    if (parent::isOrgAdviser()) {
-      return view('pages/users/organization-adviser/calendars/my-personal-calendar');
-    }
-  }
 }

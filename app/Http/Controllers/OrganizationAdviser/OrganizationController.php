@@ -195,9 +195,6 @@ class OrganizationController extends Controller
     /**
      * Uploa image or logo related to organization
      *
-     * Issue 36: This method should have a common method to be called
-     * to upload image
-     *
      * @return
      */
     public function uploadLogo(Request $request)

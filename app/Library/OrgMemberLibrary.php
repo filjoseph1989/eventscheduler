@@ -76,30 +76,4 @@ class OrgMemberLibrary extends Controller
       'semester'          => 'Required',
     ], $message);
   }
-
-  /**
-   * return true if this account is an adviser to the
-   * given organization ID
-   *
-   * @return
-   */
-
-  /*
-    Issue 38: Review methods below if still in use
-   */
-
-  /**
-   * Display the personal calendar
-   *
-   * @return
-   */
-  public function myPersonalCalendar()
-  {
-    # Check if the user is loggedin
-    parent::loginCheck();
-
-    if (parent::isOrgMember()) {
-      return view('pages/users/organization-member/calendars/my-personal-calendar');
-    }
-  }
 }
