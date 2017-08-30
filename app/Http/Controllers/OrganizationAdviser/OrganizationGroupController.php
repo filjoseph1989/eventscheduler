@@ -77,11 +77,12 @@ class OrganizationGroupController extends Controller
       # make the user is an adviser
       $this->adviser->isAdviser();
 
+      # Check whether this org-adviser user is already assigned on heading an org
       if(self::_isAlreadyAnOrgAdviser()){
         return back()->with('status_warning', 'You are already an adviser to an organization. One org advisory per faculty only. This system is for enrolled students and organization adviser for the current school year.');
       }
 
-      # Check wether this user already requested for membership
+      # Check whether this user already requested for membership
       if (self::_isAlreadyRequested($request->organization_id)) {
         return back()->with('status_warning', 'You already sent a request for membership');
       }
@@ -150,7 +151,7 @@ class OrganizationGroupController extends Controller
     }
 
     /**
-     * Check wether this member currently loggedin
+     * Check whether this member currently loggedin
      * already requested membership for the organization
      *
      * # Issue: 43 - This method can comnine with _isAmember()

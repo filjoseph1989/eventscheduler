@@ -3,19 +3,21 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\Models\User;
-use App\Models\Event;
-use App\Mail\Mailtrap;
-use App\Models\EventType;
-use App\Models\Organization;
-use App\Models\OrganizationGroup;
-use Illuminate\Http\Request;
-use App\Models\EventCategory;
 use Nexmo\Laravel\Facade\Nexmo;
-use Illuminate\Support\Facades\Mail;
 use Thujohn\Twitter\Facades\Twitter;
 use App\Notifications\FacebookPublished;
 
+use App\Mail\Mailtrap;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+
+#models
+use App\Models\User;
+use App\Models\Event;
+use App\Models\EventType;
+use App\Models\Organization;
+use App\Models\OrganizationGroup;
+use App\Models\EventCategory;
 class ManageNotificationController extends Controller
 {
 
@@ -35,7 +37,7 @@ class ManageNotificationController extends Controller
     $ev->date_end   = date("d M Y",strtotime($ev->date_end));
 
     if( $ev->notify_via_facebook == 'on' ){
-        self::notifyViaFacebook($ev);
+        // self::notifyViaFacebook($ev);
     }
 
     if( $ev->notify_via_twitter == 'on'  ){
@@ -43,7 +45,7 @@ class ManageNotificationController extends Controller
     }
 
     if( $ev->notify_via_email == 'on' ) {
-      //  self::notifyViaEmail($ev);
+       self::notifyViaEmail($ev);
     }
 
     if( $ev->notify_via_sms == 'on' ){
@@ -138,17 +140,37 @@ class ManageNotificationController extends Controller
   }
 
   private function notifyViaEmail($value) {
-    // Demo
-    // Mail::to('janicalizdeguzman@gmail.com')->send(new Mailtrap());
-    $org = OrganizationGroup::where('organization_id', '=', $value->organization_id)->get();
+    if( $value->notify_via_email == 'on' ) {
 
-    $old = [];
-    foreach ($org as $key => $value) {
-      // d(User::find($value->user_id)->email);
-      if ( ! isset($old[$value->user_id])) {
-        $old[$value->user_id] = $value->user_id;
-        if( $value->notify_via_email == 'on' ){
-          Mail::to(User::find($value->user_id)->email)->send(new Mailtrap());
+      if($value->event_category_id == 1) {
+        //where event_category == public view
+        $all_users = User::all()->take(1);
+        foreach ($all_users as $key => $val_users) {
+          Mail::to($val_users->email)->send(new Mailtrap($value));
+        }
+      }
+      if($value->event_category_id == 2) {
+        //where event_category == within organization
+        $all_org_grp = OrganizationGroup::where('organization_id', $value->organization_id)->get();
+        $all_users = User::all()->take(1);
+        foreach ($all_org_grp as $key => $val_orgs){
+          foreach($all_users as $key => $val_users ){
+            if($val_orgs->user_id == $val_users->id){
+              Mail::to($val_users->email)->send(new Mailtrap($value));
+            }
+          }
+        }
+      }
+      if($value->event_category_id == 3){
+        //where event_category == among organization
+        $all_org_grp = OrganizationGroup::all();
+        $all_users = User::all()->take(1);
+        foreach ($all_org_grp as $key => $val_orgs){
+          foreach($all_users as $key => $val_users ){
+            if($val_orgs->user_id == $val_users->id){
+              Mail::to($val_users->email)->send(new Mailtrap($value));
+            }
+          }
         }
       }
     }
@@ -156,7 +178,9 @@ class ManageNotificationController extends Controller
 
   private function notifyViaSms ($value) {
     if( $value->notify_via_sms == 'on' ) {
+
       if($value->event_category_id == 1) {
+        //where event_category == public view
         $notification_message =
           "Hello UP Mindanao! You have an upcoming event! " .
           "\n{$value->title} headed by {$value->organization->name}." .
@@ -165,16 +189,15 @@ class ManageNotificationController extends Controller
           "\nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time} " .
           "\n{$value->additional_msg_sms}" .
           "\nPlease be guided accordingly. Thank You!";
-
-        // $all_users = User::all();
-        $all_users = User::all()->take(1);
-        foreach ($all_users as $key => $value) {
-          Nexmo::message()->send([
-            'to'   => $value->mobile_number,
-            'from' => '639778378388',
-            'text' => $notification_message
-          ]);
-        }
+          // $all_users = User::all();
+          $all_users = User::all()->take(1);
+          foreach ($all_users as $key => $value) {
+            Nexmo::message()->send([
+              'to'   => $value->mobile_number,
+              'from' => '639778378388',
+              'text' => $notification_message
+            ]);
+          }
       }
 
       if($value->event_category_id == 2) {
@@ -187,17 +210,26 @@ class ManageNotificationController extends Controller
           \n{$value->additional_msg_sms}
           \nPlease be guided accordingly. Thank You!";
 
-        $all_users = User::all();
-        foreach ($all_users as $key => $value) {
-          Nexmo::message()->send([
-            'to'   => $value->mobile_number,
-            'from' => '639778378388',
-            'text' => $notification_message
-          ]);
-        }
+          $all_org_grp = OrganizationGroup::where('organization_id', $value->organization_id)->get();
+          $all_users = User::all()->take(2);
+          // dd($all_org_grp);
+          foreach ($all_org_grp as $key => $value){
+            foreach($all_users as $key => $val ){
+              if($value->user_id == $val->id){
+                // $temp = $temp . $val;
+                Nexmo::message()->send([
+                  'to'   => $val->mobile_number,
+                  'from' => '639778378388',
+                  'text' => $notification_message
+                ]);
+              }
+            }
+          }
+          // dd($temp);
       }
 
       if($value->event_category_id == 3){
+        //where event_category == among organization
         $notification_message = "Hello Student Leaders! You have an upcoming event!
         \n{$value->title} headed by {$value->organization->name}.
         \nDescription: {$value->description}
@@ -205,9 +237,26 @@ class ManageNotificationController extends Controller
         \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}
         \n{$value->additional_msg_sms}
         \nPlease be guided accordingly. Thank You!";
+
+        $all_org_grp = OrganizationGroup::all();
+        $all_users = User::all()->take(2);
+        // dd($all_org_grp);
+        foreach ($all_org_grp as $key => $value){
+          foreach($all_users as $key => $val ){
+            if($value->user_id == $val->id){
+              $temp = $temp . $val;
+              Nexmo::message()->send([
+                'to'   => $val->mobile_number,
+                'from' => '639778378388',
+                'text' => $notification_message
+              ]);
+            }
+          }
+        }
       }
 
       if($value->event_category_id == 4){
+        //where event_category == my own event
         $notification_message = "Hello {$value->fname}! Your {$value->title} event has been approved.
         \nDescription: {$value->description}
         \nVenue: {$value->venue}

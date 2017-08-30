@@ -113,7 +113,7 @@ function displayEvent($id = false, option = false) {
  */
 function getEvents($id, option) {
     if ($id != false) {
-      calendar.fullCalendar('removeEvents');
+    calendar.fullCalendar('removeEvents');
     }
 
     // Organization ID

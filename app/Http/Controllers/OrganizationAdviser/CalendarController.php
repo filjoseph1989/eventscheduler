@@ -31,8 +31,15 @@ class CalendarController extends Controller
    * @param  int $id Organization ID
    * @return \Illuminate\Response
    */
+  // public function calendar($id)
   public function calendar()
   {
+    # step to follow:
+    # 1. if $id is 2
+    # 2. get the organizations of the current login user
+    # 3. display the organization table
+
+
     # Check if the user is loggedin
     parent::loginCheck();
 
