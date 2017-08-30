@@ -1,7 +1,7 @@
 /**
  * Calendar JS written by Liz
  *
- * @version 0.5
+ * @version 0.10
  */
 
 /*
@@ -17,7 +17,12 @@ var global_start, global_end, calendar;
  * @return {[type]} [description]
  */
 $(document).ready(function() {
-    displayEvent();
+    $id = $('#my-organization').data('id');
+    if ($id != undefined) {
+      displayEvent($id, 'within'); 
+    } else {
+      displayEvent(); 
+    }
     /**
      * If the user click on the input that has class
      *    event-datepicker
@@ -108,13 +113,19 @@ function displayEvent($id = false, option = false) {
 }
 
 /**
- * Fetch the events of the current month
  * @return json
  */
+/**
+ * Fetch the events of the current month
+ * @param $id Event category ID
+ * @paramt $option 'public', 'private', 'within'
+ */
 function getEvents($id, option) {
-    if ($id != false) {
+    if ($id != false && option != 'within') {
       calendar.fullCalendar('removeEvents');
     }
+
+    option = (option == 'within') ? 'false' : option;
 
     // Organization ID
     var url = route('ajax.get.events').replace('localhost', window.location.hostname);
@@ -166,24 +177,32 @@ function getDate($id, $date = false, $time = false) {
   }
 }
 
+/**
+ * Display different event aside from public
+ */
 $('.calendar-options #public').click(function() {
   $('.header h2').html('University Calendar');
+  $('#calendar').html("");
   displayEvent(1);
 });
-$('.calendar-options #within').click(function() {
-  $('.header h2').html("My Organization/s' Calendar");
-  displayEvent(2);
-});
+// $('.calendar-options #within').click(function() {
+//   $('.header h2').html("My Organization/s' Calendar");
+//   $('#calendar').html("");
+//   displayEvent(2);
+// });
 $('.calendar-options #among').click(function() {
   $('.header h2').html("All Organizations' Calendar");
+  $('#calendar').html("");
   displayEvent(3);
 });
 $('.calendar-options #personal-public').click(function() {
   $('.header h2').html('Personal Calendar (public)');
+  $('#calendar').html("");
   displayEvent(4, 'public');
 });
 $('.calendar-options #personal-private').click(function() {
   $('.header h2').html('Personal Calendar (private)');
+  $('#calendar').html("");
   displayEvent(4, 'private');
 });
 

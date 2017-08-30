@@ -95,7 +95,7 @@ class JsonController extends Controller
     }
 
     # Return event that are not public
-    if ($data->id > 1 ) {
+    if ( $data->id > 1 ) {
       return Event::where('event_category_id', '=', $data->id)
         ->get()
         ->toJson();

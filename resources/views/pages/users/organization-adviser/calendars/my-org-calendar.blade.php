@@ -33,7 +33,7 @@
                     </a>
                     <ul class="dropdown-menu pull-right calendar-options">
                       <li><a href="#" id="public">Public View</a></li>
-                      <li><a href="#" id="within">Within Organization</a></li>
+                      <li><a href="{{ route('org-adviser.calendar.within') }}">Within Organization</a></li>
                       <li><a href="#" id="among">Among Organization</a></li>
                       <li><a href="#" id="personal-public">Personal Event (Public)</a></li>
                       <li><a href="#" id="personal-private">Personal Event (Private)</a></li>
@@ -42,7 +42,11 @@
                 </ul>
               </div>
               <div class="body">
-                <div class="" id="my-organization"></div>
+                @if ($id == null)
+                  <div class="" id="my-organization"></div>
+                @else
+                  <div class="" id="my-organization" data-id="{{ $id }}"></div>
+                @endif
                 <div id='calendar'></div>
               </div>
             </div>
@@ -68,6 +72,5 @@
   <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/basic-form-elements.js') }}?v=0.2" charset="utf-8"></script>
   <script src="{{ asset('js/fullcalendar.min.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/sweetalert.min.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/calendar.js') }}?v=0.8" charset="utf-8"></script>
+  <script src="{{ asset('js/calendar.js') }}?v=0.9" charset="utf-8"></script>
 @endsection
