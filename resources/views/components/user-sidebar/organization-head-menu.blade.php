@@ -33,8 +33,6 @@
     <li><a href="{{ route('org-head.members.list') }}">All Members</a></li>
     <li><a href="{{ route('org-head.members.add') }}">Add Members</a></li>
     <li><a href="{{ route('org-head.members.accept') }}">Accept Request</a></li>
-    {{-- <li><a href="#">Members with organization</a></li> --}}
-    {{-- <li><a href="#">Members without organization</a></li> --}}
   </ul>
 </li>
 <li>
