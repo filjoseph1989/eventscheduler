@@ -342,9 +342,9 @@ To Do:
           ☐ Among org
           ☐ Personal
         ☐ notify_via_twitter
-          ☐ Public View
-          ☐ Within Org
-          ☐ Among org
+          ✔ Public View @done(2017-08-31 15:09) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ Automatic Successful Event Notifications upon complete approvals)
+          ✔ Within Org @done(2017-08-31 15:04) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ Automatic Successful Event Notifications upon complete approvals)
+          ✔ Among org @done(2017-08-31 15:09) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ Automatic Successful Event Notifications upon complete approvals)
           ☐ Personal
         ☐ notify_via_email
           ✔ Public View @done(2017-08-31 06:30) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ Automatic Successful Event Notifications upon complete approvals)
@@ -362,10 +362,10 @@ To Do:
         ✔ Approve events @done(2017-08-08 19:03)
           ✔ Notification: (Facebook, Twitter, Email, Phone) @done(2017-08-11 19:11)
         ✔ disapprove event @done(2017-08-11 00:30)
-      ☐ Calendar of events
+      ✔ Calendar of events @done(2017-08-31 13:35) @project(To Do / Task 1: Organization Adviser Account / ☐ Events)
         ✔ Public @done(2017-08-15 20:32)
         ✔ Among  @done(2017-08-15 20:32)
-        ☐ Within
+        ✔ Within @done(2017-08-31 13:35) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ Automatic Successful Event Notifications upon complete approvals)
         ✔ Personal @done(2017-08-30 02:39) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ Automatic Successful Event Notifications upon complete approvals)
     ✔ Members: @done(2017-08-27 22:58) @project(Task 1: Organization Adviser Account)
       ✔ List of members within the organization of adviser @done(2017-08-16 20:02)
@@ -380,6 +380,9 @@ To Do:
 ☐ Make a migration and seeder for the table organization_head_groups
 ☐ enable the ORG-HEAD to have many orgs but only one org to lead to
 ✔ test within and among org sms notif later after done with changing the nexmo keys in .env @done(2017-08-31 02:39)
-☐ solve problem in rendering many calendars upon switching calendars
-☐ naga-double send ang nexmo sa first number if event category is within and among
-☐ solve nganong kaupat siya musend and notify_via_email among orgs event, kaduha ang public view og within orgs
+✔ solve problem in rendering many calendars upon switching calendars @done(2017-08-31 13:35)
+✔ naga-double send ang notify_via_sms for 1 item @done(2017-08-31 13:35)
+☐ naga-double send siya musend and notify_via_email for 1 item
+☐ you can try to upload picture on fb notif
+☐ you can try to upload picture on twitter notif
+☐ try to use postDm() in twitter for direct message notification
