@@ -337,9 +337,9 @@ To Do:
           ✔private @done(2017-08-30 02:38) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ List of events)
       ☐ Automatic Successful Event Notifications upon complete approvals:
         ☐ notify_via_facebook
-          ☐ Public View
-          ☐ Within Org
-          ☐ Among org
+          ✔ Public View @done(2017-08-31 16:11) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ Automatic Successful Event Notifications upon complete approvals)
+          ✔ Within Org @done(2017-08-31 16:11) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ Automatic Successful Event Notifications upon complete approvals)
+          ✔ Among org @done(2017-08-31 16:11) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ Automatic Successful Event Notifications upon complete approvals)
           ☐ Personal
         ☐ notify_via_twitter
           ✔ Public View @done(2017-08-31 15:09) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ Automatic Successful Event Notifications upon complete approvals)

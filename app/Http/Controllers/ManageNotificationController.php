@@ -37,11 +37,11 @@ class ManageNotificationController extends Controller
     $ev->date_end   = date("d M Y",strtotime($ev->date_end));
 
     if( $ev->notify_via_facebook == 'on' ){
-        // self::notifyViaFacebook($ev);
+        self::notifyViaFacebook($ev);
     }
 
     if( $ev->notify_via_twitter == 'on'  ){
-        self::notifyViaTwitter($ev);
+        // self::notifyViaTwitter($ev);
     }
 
     if( $ev->notify_via_email == 'on' ) {
@@ -60,54 +60,55 @@ class ManageNotificationController extends Controller
    * @return
    */
   private function notifyViaFacebook ($value) {
-    if( $value->notify_via_facebook == "on" ){
-      if($value->event_category_id == 1){
-        $notification_message = "Hello UP Mindanao! You have an upcoming event!
-        \n{$value->title} headed by {$value->organization->name}.
-        \nDescription: {$value->description}
-        \nVenue: {$value->venue}
-        \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time} ".
-        "\n{$value->additional_msg_facebook}" .
-        "\nPlease be guided accordingly. Thank You!";
-      }
-
-      if($value->event_category_id == 2){
-        $notification_message = "Hello {$value->organization->name}! You have an upcoming event!
-        \n{$value->title}
-        \nDescription: {$value->description}
-        \nVenue: {$value->venue}
-        \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}".
-        "\n{$value->additional_msg_facebook}" .
-        "\nPlease be guided accordingly. Thank You!";
-      }
-
-      if($value->event_category_id == 3){
-        $notification_message = "Hello Student Leaders! You have an upcoming event!
-        \n{$value->title} headed by {$value->organization->name}.
-        \nDescription: {$value->description}
-        \nVenue: {$value->venue}
-        \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}".
-        "\n{$value->additional_msg_facebook}" .
-        "\nPlease be guided accordingly. Thank You!";
-      }
-
-      if($value->event_category_id == 4){
-        $notification_message = "Hello {$value->fname}! Your {$value->title} event has been approved.
-        \nDescription: {$value->description}
-        \nVenue: {$value->venue}
-        \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}".
-        "\n{$value->additional_msg_facebook}" .
-        "\nPlease be guided accordingly. Thank You!";
-      }
-      $data['fb_message'] = $notification_message;
-      $result = User::send($data['fb_message']);
+    //if they will like and follow my facebook page,it will show on their feed
+    //backlog or version 2 na tng tagging accounts
+    //as long as naka indicate ang audience sa event in the post
+    if($value->event_category_id == 1){
+      $notification_message = "Hello UP Mindanao! You have an upcoming event!
+      \n{$value->title} headed by {$value->organization->name}.
+      \nDescription: {$value->description}
+      \nVenue: {$value->venue}
+      \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time} ".
+      "\n{$value->additional_msg_facebook}" .
+      "\nPlease be guided accordingly. Thank You!";
     }
+
+    if($value->event_category_id == 2){
+      $notification_message = "Hello {$value->organization->name}! You have an upcoming event!
+      \n{$value->title}
+      \nDescription: {$value->description}
+      \nVenue: {$value->venue}
+      \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}".
+      "\n{$value->additional_msg_facebook}" .
+      "\nPlease be guided accordingly. Thank You!";
+    }
+
+    if($value->event_category_id == 3){
+      $notification_message = "Hello Student Leaders! You have an upcoming event!
+      \n{$value->title} headed by {$value->organization->name}.
+      \nDescription: {$value->description}
+      \nVenue: {$value->venue}
+      \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}".
+      "\n{$value->additional_msg_facebook}" .
+      "\nPlease be guided accordingly. Thank You!";
+    }
+
+    if($value->event_category_id == 4){
+      $notification_message = "Hello {$value->fname}! Your {$value->title} event has been approved.
+      \nDescription: {$value->description}
+      \nVenue: {$value->venue}
+      \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}".
+      "\n{$value->additional_msg_facebook}" .
+      "\nPlease be guided accordingly. Thank You!";
+    }
+    $data['fb_message'] = $notification_message;
+    $result = User::send($data['fb_message']);
   }
 
   private function notifyViaTwitter ($value) {
-//if they will follow my twitter account,it will show on their feed
-//backlog or version 2 na tng tagging accounts
-//as long as naka indicate ang audience sa event in the post
+    //if they will follow my twitter account,it will show on their feed
+    //backlog or version 2 na tng tagging accounts
+    //as long as naka indicate ang audience sa event in the post
 
       if($value->event_category_id == 1){
         //where event_category == public view
