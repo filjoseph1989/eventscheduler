@@ -127,11 +127,10 @@ To Do:
           ☐ If the adviser is an approver, display a button within the form to approve the created event
           ☐ Include the president as approver for this event
         ☐ within org list of events must be events under the org where the user is a member only
-        ☐ Calendar of events
-          ☐ Public
-          ☐ Among
-          ☐ Within
-          ☐ Personal
+      ☐ Calendar of events
+        ☐ Public
+        ☐ Among
+        ☐ Personal
      ☐ Automatic Successful Event Notifications upon complete approvals:
         ☐ Public View
         ☐ Within Org
@@ -234,9 +233,8 @@ To Do:
           ✔ public @done(2017-08-30 02:38) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
           ✔ private @done(2017-08-30 02:38) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
         ☐ within org list of events must be events under the org where the user is a member only
-      ✔ Calendar of events @done(2017-08-30 01:39) @project(To Do / Task 2: Organization HEAD Account / ☐ Events)
+      ☐ Calendar of events
         ✔ Public @done(2017-08-30 01:40) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
-        ✔ Among @done(2017-08-30 01:40) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
         ✔ Within @done(2017-08-30 01:40)
           ✔ Display the organization of the login user @done (8/31/2017, 3:36:01 PM)
           ✔ Display the event within the organization of the user @done (8/31/2017, 3:36:02 PM)
