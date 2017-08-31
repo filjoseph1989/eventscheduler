@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\OrganizationPersonnel;
+namespace App\Http\Controllers\OsaPersonnel;
 
 use Auth;
 use Illuminate\Http\Request;
@@ -11,7 +11,7 @@ use App\Models\UserAttendance;
 
 /**
  * Manage use attendance
- * 
+ *
  * @author Liz <janicalizdeguzman@email.com>
  * @since 0.1
  * @version 0.1
@@ -49,29 +49,29 @@ class UserAttendanceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $data)
-    { 
-        # Get the data from form 
+    {
+        # Get the data from form
         $request = $data->only( 'status', 'reason', 'event_id' );
         $request['user_id'] = Auth::user()->id;
 
         # Lets check if the use exists
-        $result = UserAttendance::where('user_id', '=', Auth::user()->id)->get(); 
-        
-        # Finally create events 
+        $result = UserAttendance::where('user_id', '=', Auth::user()->id)->get();
+
+        # Finally create events
         if ($result->count() == 0) {
-            $result = UserAttendance::create($request); 
-            return back()->with('status', 'See you on the event'); 
+            $result = UserAttendance::create($request);
+            return back()->with('status', 'See you on the event');
         } else {
             $result = UserAttendance::where('user_id', '=', Auth::user()->id);
             $result = $result->update($request);
 
-            # inform the user what happend 
-            if ($data->status == 'false') { 
-                return back()->with('status', 'Thank you for letting us know, yet you can still welcome to attend'); 
-            } 
-            return back()->with('status', 'See you on the event'); 
-        } 
-    } 
+            # inform the user what happend
+            if ($data->status == 'false') {
+                return back()->with('status', 'Thank you for letting us know, yet you can still welcome to attend');
+            }
+            return back()->with('status', 'See you on the event');
+        }
+    }
 
     /**
      * Display the specified resource.
