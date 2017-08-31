@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\OrganizationHead;
+namespace App\Http\Controllers\OrganizationPersonnel;
 
 use Auth;
 use Illuminate\Http\Request;
