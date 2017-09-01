@@ -476,6 +476,18 @@ To Do:
   ☐ solve problem in rendering many calendars upon switching calendars
   ☐ naga-double send ang nexmo sa first number if event category is within and among
   ☐ solve nganong kaupat siya musend and notify_via_email among orgs event, kaduha ang public view og within orgs
+  ☐ Maka detect na ba tuh og conflict of schedule sa tanang calendars/event_category ang system?
+  ☐ Dili pud ba ni pwede na katong parehas sa una sabot nato na dapat mu hatag xa og alert or notification pag hapit na ang event?
+Pwede nto ni ienable sa facebook direct message, twitter direct message og sa text..
+Kaya ra man diba? Bale katong parehas sauna na
+Mu notify xa 1 week before,  then 3 days before,  then 1 day before, then on that event na gyud..
+  ☐ Dili na tuh i set,  bale default nato xa na alert for every event.. Ddto nato xa pwede mabutang sa additional_msg_facebook, additional_msg_twitter(idungag pa nako ni sa migration og seeder),
+additional_msg_sms
+
+Tapos kailangan pa ba magbuhat og another table dili na?
+Unsaon nato pag indicate og kuha sa event para malaman na 1 week to go,  3 days to go,  1 day to go,  og today na tung event? Unsay algorithm nato ana?
+
+
 <<<<<<< HEAD
 >>>>>>> Stashed changes
 =======

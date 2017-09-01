@@ -36,6 +36,7 @@ class CreateEventsTable extends Migration
             $table->enum('notify_via_sms', ['on','off'])->default('off');
             $table->enum('notify_via_email', ['on','off'])->default('off');
             $table->string('additional_msg_facebook')->nullable();
+            $table->string('additional_msg_twitter')->nullable();
             $table->string('additional_msg_sms')->nullable();
             $table->string('additional_msg_email')->nullable();
             $table->string('picture_facebook')->nullable();
