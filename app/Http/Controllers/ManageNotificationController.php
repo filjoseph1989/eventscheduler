@@ -37,7 +37,7 @@ class ManageNotificationController extends Controller
     $ev->date_end   = date("d M Y",strtotime($ev->date_end));
 
     if( $ev->notify_via_facebook == 'on' ){
-        self::notifyViaFacebook($ev);
+        // self::notifyViaFacebook($ev);
     }
 
     if( $ev->notify_via_twitter == 'on'  ){
@@ -49,7 +49,7 @@ class ManageNotificationController extends Controller
     }
 
     if( $ev->notify_via_sms == 'on' ){
-      // self::notifyViaSms($ev);
+      self::notifyViaSms($ev);
     }
   }
 
@@ -64,7 +64,15 @@ class ManageNotificationController extends Controller
     //backlog or version 2 na tng tagging accounts
     //as long as naka indicate ang audience sa event in the post
     if($value->event_category_id == 1){
-      $notification_message = "Hello UP Mindanao! You have an upcoming event!
+      //where event_category == among organization
+      $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      $pin = mt_rand(10, 99)
+          . mt_rand(10, 99)
+          . $characters[rand(0, strlen($characters) - 1)];
+          // generate a pin based on 2 * 2 digits + a random character
+      $fb = str_shuffle($pin);
+        // shuffle the result
+      $notification_message = "{$fb} Hello UP Mindanao!! You have an upcoming event!
       \n{$value->title} headed by {$value->organization->name}.
       \nDescription: {$value->description}
       \nVenue: {$value->venue}
@@ -74,7 +82,14 @@ class ManageNotificationController extends Controller
     }
 
     if($value->event_category_id == 2){
-      $notification_message = "Hello {$value->organization->name}! You have an upcoming event!
+      $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      $pin = mt_rand(10, 99)
+          . mt_rand(10, 99)
+          . $characters[rand(0, strlen($characters) - 1)];
+          // generate a pin based on 2 * 2 digits + a random character
+      $fb = str_shuffle($pin);
+        // shuffle the result
+      $notification_message = "{$fb} Hello {$value->organization->name}! You have an upcoming event!
       \n{$value->title}
       \nDescription: {$value->description}
       \nVenue: {$value->venue}
@@ -84,7 +99,14 @@ class ManageNotificationController extends Controller
     }
 
     if($value->event_category_id == 3){
-      $notification_message = "Hello Student Leaders! You have an upcoming event!
+      $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      $pin = mt_rand(10, 99)
+          . mt_rand(10, 99)
+          . $characters[rand(0, strlen($characters) - 1)];
+          // generate a pin based on 2 * 2 digits + a random character
+      $fb = str_shuffle($pin);
+        // shuffle the result
+      $notification_message = "{$fb} Hello Student Leaders! You have an upcoming event!
       \n{$value->title} headed by {$value->organization->name}.
       \nDescription: {$value->description}
       \nVenue: {$value->venue}
@@ -94,7 +116,14 @@ class ManageNotificationController extends Controller
     }
 
     if($value->event_category_id == 4){
-      $notification_message = "Hello {$value->fname}! Your {$value->title} event has been approved.
+      $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      $pin = mt_rand(10, 99)
+          . mt_rand(10, 99)
+          . $characters[rand(0, strlen($characters) - 1)];
+          // generate a pin based on 2 * 2 digits + a random character
+      $fb = str_shuffle($pin);
+        // shuffle the result
+      $notification_message = "{$fb} Hello {$value->fname}! Your {$value->title} event has been approved.
       \nDescription: {$value->description}
       \nVenue: {$value->venue}
       \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}".
@@ -119,11 +148,11 @@ class ManageNotificationController extends Controller
             // generate a pin based on 2 * 2 digits + a random character
         $tweet = str_shuffle($pin);
           // shuffle the result
-        $notification_message = "{$tweet} Hello UP Mindanao! You have an upcoming event! ".
+        $notification_message = "{$tweet} Hello UP Mindanao!! You have an upcoming event! ".
         "{$value->title} headed by {$value->organization->name}.".
         " Venue: {$value->venue}".
         " Duration: {$value->date_start}, {$value->date_start_time}";
-        $t = str_limit($notification_message, 140);
+        $t = str_limit($notification_message, 139);
       }
 
       if($value->event_category_id == 2){

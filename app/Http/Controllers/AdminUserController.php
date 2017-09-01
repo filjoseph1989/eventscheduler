@@ -76,11 +76,7 @@ class AdminUserController extends Controller
         $course       = Course::all();
         $department   = Department::all();
 
-        return view('pages.admin.users.add', compact(
-            'user_account',
-            'course',
-            'department',
-        ));
+        return view('pages.admin.users.add', compact('user_account','course','department'));
     }
 
     /**

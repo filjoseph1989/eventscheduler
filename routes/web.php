@@ -33,7 +33,7 @@ Route::group(['middleware' => 'revalidate'], function() {
   | Admin Dashboard Routes
   |--------------------------------------------------------------------------
   */
-  // require_once "system_route/admin.php";
+  require_once "system_route/admin.php";
 
   /*
   |--------------------------------------------------------------------------
