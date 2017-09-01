@@ -127,12 +127,10 @@ To Do:
           ☐ If the adviser is an approver, display a button within the form to approve the created event
           ☐ Include the president as approver for this event
         ☐ within org list of events must be events under the org where the user is a member only
-
-        ☐ Calendar of events
-          ☐ Public
-          ☐ Among
-          ☐ Within
-          ☐ Personal
+      ☐ Calendar of events
+        ☐ Public
+        ☐ Among
+        ☐ Personal
      ☐ Automatic Successful Event Notifications upon complete approvals:
         ☐ Public View
         ☐ Within Org
@@ -235,10 +233,11 @@ To Do:
           ✔ public @done(2017-08-30 02:38) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
           ✔ private @done(2017-08-30 02:38) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
         ☐ within org list of events must be events under the org where the user is a member only
-      ✔ Calendar of events @done(2017-08-30 01:39) @project(To Do / Task 2: Organization HEAD Account / ☐ Events)
+      ☐ Calendar of events
         ✔ Public @done(2017-08-30 01:40) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
-        ✔ Among @done(2017-08-30 01:40) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
-        ✔ Within @done(2017-08-30 01:40) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
+        ✔ Within @done(2017-08-30 01:40)
+          ✔ Display the organization of the login user @done (8/31/2017, 3:36:01 PM)
+          ✔ Display the event within the organization of the user @done (8/31/2017, 3:36:02 PM)
         ✔ Personal @done(2017-08-30 02:43) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
       ☐ Approval of event functionality:
         ☐ Approve events
@@ -377,6 +376,7 @@ To Do:
       ✔ Display the list of organization member of the organization @done(2017-08-21 10:47)
         ✔  Including non-member who wants to attend the event @done(2017-08-28 15:13) @project(To Do / Task 1: Organization Adviser Account / / ☐ Automatic Successful Event Notifications upon complete approvals)
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 ☐ Make a migration and seeder for the table organization_head_groups
 ☐ enable the ORG-HEAD to have many orgs but only one org to lead to
@@ -467,6 +467,8 @@ To Do:
               ☐  Including non-member who wants to attend the event
 
 
+=======
+>>>>>>> develop
   Liz Issues:
   ✔ test within and among org sms notif later after done with changing the nexmo keys in .env @done(2017-08-31 02:39)
   ☐ Make a migration and seeder for the table organization_head_groups
@@ -474,4 +476,7 @@ To Do:
   ☐ solve problem in rendering many calendars upon switching calendars
   ☐ naga-double send ang nexmo sa first number if event category is within and among
   ☐ solve nganong kaupat siya musend and notify_via_email among orgs event, kaduha ang public view og within orgs
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> develop

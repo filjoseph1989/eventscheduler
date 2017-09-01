@@ -3,6 +3,7 @@
 @section('page-title', 'List of organization')
 
 @section('style')
+  <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('css/all-themes.css') }}">
 @endsection
 
@@ -25,21 +26,21 @@
                 <h2> LIST OF ORGANIZATION </h2>
               </div>
               <div class="body table-responsive">
-                <table class="table table-striped table-hover js-basic-example dataTable">
+                <table class="table table-striped table-hover">
                   <thead>
                     <tr>
                       <th>Name</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @if ($org->count() == 0)
+                    @if ($organization->count() == 0)
                       <tr>
                         <td>{{ "No entry yet" }}</td>
                       </tr>
                     @else
-                      @foreach ($org as $key => $value)
+                      @foreach ($organization as $key => $value)
                         <tr>
-                          <td><a href="{{ route('org-adviser.event.show', $value->organization->id) }}">{{ $value->organization->name }}</a></td>
+                          <td><a href="{{ route('org-head.calendar', [$value->organization->id]) }}">{{ $value->organization->name }}</a></td>
                         </tr>
                       @endforeach
                     @endif

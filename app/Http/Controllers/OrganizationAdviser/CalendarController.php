@@ -59,6 +59,12 @@ class CalendarController extends Controller
    */
   public function calendarWithin()
   {
+    # Check if the user is loggedin
+    parent::loginCheck();
+
+    # is adviser?
+    $this->adviser->isAdviser();
+
     $organization = OrganizationGroup::with('organization')
       ->where('user_id', '=', Auth::user()->id)
       ->get();

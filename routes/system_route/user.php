@@ -5,8 +5,20 @@ Route::prefix('users')->group(function() {
   Route::name('user.profile')->get('/profile/{id?}', 'UserController@viewProfile');
   Route::name('user.profile.upload')->post('/profile/upload', 'UserController@uploadPhoto');
 
+  # Ajax Request
+  # Issue 44: This part can be improve by creating a method that accept id and model name
+  Route::name('ajax.get.event-type')->post('/get/event-type', 'JsonController@getEventType');
+  Route::name('ajax.get.event-category')->post('/get/event-category', 'JsonController@getEventCategory');
+  Route::name('ajax.get.organization')->post('/get/organization', 'JsonController@getOrganization');
+  Route::name('ajax.get.event.list')->post('/get/event', 'JsonController@getEvent');
+  Route::name('ajax.get.events')->post('/get/events', 'JsonController@getEventList');
+  Route::name('ajax.get.event.personal.list')->post('/get/personal/event', 'JsonController@getPersonalEvent');
+  Route::name('ajax.update.event.personal.list')->post('/update/personal/event', 'JsonController@updatePersonalEvent');
+  Route::name('ajax.update.event.list')->post('/update/event', 'JsonController@updateEvent');
+  Route::name('ajax.get.event.approvers')->post('/get/approver', 'JsonController@getApprover'); 
+
   # Include other routing in "routes\system_route\user\user-sub.php"
-  require_once 'user/user-sub.php';
+  require_once 'user/user-sub.php'; 
 
   # Route for organization adviser
   Route::prefix('org-adviser')->group(function() {
@@ -32,19 +44,7 @@ Route::prefix('users')->group(function() {
     Route::name('org-adviser.userattendance.store')->post('user-attendance/store', 'OrganizationAdviser\UserAttendanceController@store');
     Route::name('org-adviser.calendar.within')->get('/calendar/within', 'OrganizationAdviser\CalendarController@calendarWithin');
     Route::name('org-adviser.calendar')->get('/calendar/{id?}', 'OrganizationAdviser\CalendarController@calendar');
-  });
-
-
-  # Issue 44: This part can be improve by creating a method that accept id and model name
-  Route::name('ajax.get.event-type')->post('/get/event-type', 'JsonController@getEventType');
-  Route::name('ajax.get.event-category')->post('/get/event-category', 'JsonController@getEventCategory');
-  Route::name('ajax.get.organization')->post('/get/organization', 'JsonController@getOrganization');
-  Route::name('ajax.get.event.list')->post('/get/event', 'JsonController@getEvent');
-  Route::name('ajax.get.events')->post('/get/events', 'JsonController@getEventList');
-  Route::name('ajax.get.event.personal.list')->post('/get/personal/event', 'JsonController@getPersonalEvent');
-  Route::name('ajax.update.event.personal.list')->post('/update/personal/event', 'JsonController@updatePersonalEvent');
-  Route::name('ajax.update.event.list')->post('/update/event', 'JsonController@updateEvent');
-  Route::name('ajax.get.event.approvers')->post('/get/approver', 'JsonController@getApprover');
+  }); 
 
   # Route for organization head
   Route::prefix('org-head')->group(function() {
@@ -59,7 +59,6 @@ Route::prefix('users')->group(function() {
     Route::name('org-head.my.new.event')->get('/my/new/event', 'OrganizationHead\MyEventController@create');
     Route::name('org-head.my.new.event.submit')->post('/store/new', 'OrganizationHead\MyEventController@store');
     Route::name('org-head.approve.event')->get('/approve/event', 'OrganizationHead\EventController@approveEvents');
-    Route::name('org-head.calendar')->get('/calendar', 'OrganizationHead\CalendarController@calendar');
     Route::name('org-head.attendance')->get('/attendance', 'OrganizationHead\GenerateAttendanceController@index');
     Route::name('org-head.event.show')->get('/show/{id?}', 'OrganizationHead\EventController@show');
     Route::name('org-head.attendance.store')->post('/store', 'OrganizationHead\GenerateAttendanceController@store');
@@ -75,6 +74,8 @@ Route::prefix('users')->group(function() {
     Route::name('org-head.members.search')->post('/members/search', 'OrganizationHead\UserController@search');
     Route::name('org-head.members.new')->post('/members/new', 'OrganizationHead\OrganizationGroupController@storeNewMember');
     Route::name('org-head.members.accept')->post('/members/accept', 'OrganizationHead\OrganizationGroupController@acceptNewMember');
+    Route::name('org-head.calendar.within')->get('/calendar/within', 'OrganizationHead\CalendarController@calendarWithin');
+    Route::name('org-head.calendar')->get('/calendar/{id?}', 'OrganizationHead\CalendarController@calendar');
   });
 
   # Route for organization member
@@ -92,8 +93,7 @@ Route::prefix('users')->group(function() {
     Route::name('org-member.org-profile')->get('/profile/{id}', 'OrganizationMember\OrganizationController@show');
     Route::name('org-member.org-edit')->get('/edit-org/{id}', 'OrganizationMember\OrganizationController@edit');
     Route::name('org-member.org-logo')->post('/change-logo', 'OrganizationMember\OrganizationController@uploadLogo');
-    Route::name('org-member.org-membership')->post('/org-membership', 'OrganizationMember\OrganizationGroupController@store');
-
+    Route::name('org-member.org-membership')->post('/org-membership', 'OrganizationMember\OrganizationGroupController@store'); 
   });
 
   Route::prefix('osa-personnel')->group(function() {
@@ -108,7 +108,6 @@ Route::prefix('users')->group(function() {
     Route::name('osa-personnel.my.new.event')->get('/my/new/event', 'OsaPersonnel\MyEventController@create');
     Route::name('osa-personnel.my.new.event.submit')->post('/store/new', 'OsaPersonnel\MyEventController@store');
     Route::name('osa-personnel.approve.event')->get('/approve/event', 'OsaPersonnel\EventController@approveEvents');
-    Route::name('osa-personnel.calendar')->get('/calendar', 'OsaPersonnel\CalendarController@calendar');
     Route::name('osa-personnel.attendance')->get('/attendance', 'OsaPersonnel\GenerateAttendanceController@index');
     Route::name('osa-personnel.event.show')->get('/show/{id?}', 'OsaPersonnel\EventController@show');
     Route::name('osa-personnel.attendance.store')->post('/store', 'OsaPersonnel\GenerateAttendanceController@store');
@@ -121,9 +120,10 @@ Route::prefix('users')->group(function() {
     Route::name('osa-personnel.org-membership')->post('/org-membership', 'OsaPersonnel\OrganizationGroupController@store');
     Route::name('osa-personnel.members.list')->get('/members/list', 'OsaPersonnel\OrganizationGroupController@index');
     Route::name('osa-personnel.members.add')->get('/members/add', 'OsaPersonnel\OrganizationGroupController@create');
-    Route::name('osa-personnel.members.search')->post('/members/search', 'OsaPersonnel\UserController@search');
     Route::name('osa-personnel.members.new')->post('/members/new', 'OsaPersonnel\OrganizationGroupController@storeNewMember');
     Route::name('osa-personnel.members.accept')->post('/members/accept', 'OsaPersonnel\OrganizationGroupController@acceptNewMember');
+    Route::name('osa-personnel.calendar')->get('/calendar', 'OsaPersonnel\CalendarController@calendar');
+    // Route::name('osa-personnel.members.search')->post('/members/search', 'OsaPersonnel\UserController@search');
   });
 
 });
