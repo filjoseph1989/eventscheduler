@@ -377,6 +377,7 @@ To Do:
       ✔ Display the list of organization member of the organization @done(2017-08-21 10:47)
         ✔  Including non-member who wants to attend the event @done(2017-08-28 15:13) @project(To Do / Task 1: Organization Adviser Account / / ☐ Automatic Successful Event Notifications upon complete approvals)
 
+<<<<<<< Updated upstream
 ☐ Make a migration and seeder for the table organization_head_groups
 ☐ enable the ORG-HEAD to have many orgs but only one org to lead to
 ✔ test within and among org sms notif later after done with changing the nexmo keys in .env @done(2017-08-31 02:39)
@@ -386,3 +387,91 @@ To Do:
 ☐ you can try to upload picture on fb notif
 ☐ you can try to upload picture on twitter notif
 ☐ try to use postDm() in twitter for direct message notification
+=======
+        Task 7:
+          (easy ra ni, make after the completion of or adviser account)
+          duplicate files and rename to co-adviser just delete some functionalities)
+          Organization Co-Adviser Account:
+          ☐  Organizations:
+            ☐ List of organization
+              ☐ Request for membership
+                ☐ If the co-adviser is not a member of the organization display this button
+              ☐ If the organization name is clicked, display the organization simple profile
+              ☐ Card Layout for simple organization profile
+              ☐ Who are they? - Should have default description if not given
+          ☐ Events:
+            ☐ Create My Events
+              ☐ Can customize message for notification
+              ☐ Can upload image for notification (advance but achievable)
+              ☐ Display form to create event
+            ☐ Create Events:
+              ☐ Can customize message for notification
+              ☐ Can upload image for notification (advance achievable)
+              ☐ Display form to create event
+              ☐ In what way that this event should be valid? Goto Approve events
+              ☐ Choose organization
+                ☐ Categories as public
+                  ☐ Is outside the campus? - This part doesnt need for approval from the people in university (Advance)
+                ☐ Categories as private (within organization)
+                ☐ Categories as Among Organization
+              ☐ Determine if her/she is the co-adviser of the organization
+            ☐ List of events:
+              ☐ Display the info box of events base on category
+              ☐ Attend this event - A button for user if he wants to attend this event (For regulart users and non member of the organization)
+              ☐ On the event details, display the name of the approver who already approve the event
+              ☐ Archive events (advance)
+              ☐ within org list of events must be events under the org where the user is a member only
+              ☐ Automatically change the status(oon-going/upcoming/done) of the event base on the given date (advance)
+              ☐ Set status of my events
+                ☐ if the status changed, Set notification functionality
+              ☐ Show List of Personal Events
+                ☐public
+                ☐private
+            ☐ Automatic Successful Event Notifications upon complete approvals:
+              ☐ notify_via_facebook
+                ☐ Public View
+                ☐ Within Org
+                ☐ Among org
+                ☐ Personal
+              ☐ notify_via_twitter
+                ☐ Public View
+                ☐ Within Org
+                ☐ Among org
+                ☐ Personal
+              ☐ notify_via_email
+                ☐ Public View
+                ☐ Within Org
+                ☐ Among org
+                ☐ Personal
+              ☐ notify_via_sms
+                ☐ Public View
+                ☐ Within Org
+                ☐ Among org
+                ☐ Personal
+            ☐ Show organization and browse events
+            ☐ Approval of event functionality
+            ☐ Approval of event blade
+            ☐ Calendar of events
+              ☐ Public
+              ☐ Among
+              ☐ Within
+              ☐ Personal
+          ☐ Members:
+            ☐ List of members within the organization of adviser
+              ☐ View members profile
+              ☐ no duplication of same user id and organization id at organization_groups table (One org co-advisory per faculty only)
+          ☐  Generate Attendance:
+            ☐ Display the list of organization, advise by the loggedin adviser
+            ☐ Display the list of event from the given organization
+            ☐ Display the list of organization member of the organization
+              ☐  Including non-member who wants to attend the event
+
+
+  Liz Issues:
+  ✔ test within and among org sms notif later after done with changing the nexmo keys in .env @done(2017-08-31 02:39)
+  ☐ Make a migration and seeder for the table organization_head_groups
+  ☐ enable the ORG-HEAD to have many orgs but only one org to lead to
+  ☐ solve problem in rendering many calendars upon switching calendars
+  ☐ naga-double send ang nexmo sa first number if event category is within and among
+  ☐ solve nganong kaupat siya musend and notify_via_email among orgs event, kaduha ang public view og within orgs
+>>>>>>> Stashed changes
