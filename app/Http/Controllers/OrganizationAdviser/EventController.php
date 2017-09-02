@@ -112,6 +112,8 @@ class EventController extends Controller
       # is the user rank as adivser?
       $this->adviser->isAdviser();
 
+      # Issue 59 - Check the data and time if there's a conflict
+
       # return to form if the following does not satisfy
       if ($data->event_type_id == 0) {
         return back()

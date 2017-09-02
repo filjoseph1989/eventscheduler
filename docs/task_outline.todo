@@ -384,3 +384,6 @@ To Do:
   ☐ solve problem in rendering many calendars upon switching calendars
   ☐ naga-double send ang nexmo sa first number if event category is within and among
   ☐ solve nganong kaupat siya musend and notify_via_email among orgs event, kaduha ang public view og within orgs
+  ☐ We should create another table for student classes schedule which will be match to the creation of event to determine if -
+      there is conflict on the student class and the event
+  ☐ If the event of the organization match the class of the student, system will give an alert or message regarding the conflict
