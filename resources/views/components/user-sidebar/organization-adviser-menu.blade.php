@@ -30,7 +30,8 @@
     <span>Members</span>
   </a>
   <ul class="ml-menu">
-    <li><a href="{{ route('org-adviser.members.list') }}">All Members</a></li>
+    <li><a href="{{ route('org-adviser.members.list') }}">My Organization Members</a></li>
+    {{-- <li><a href="{{ route('org-adviser.members.join') }}">Join to Organization</a></li> --}}
   </ul>
 </li>
 <li>
