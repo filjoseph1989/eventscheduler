@@ -58,8 +58,7 @@ class OrganizationController extends Controller
 
       # Render view
       return view('pages/users/organization-adviser/organization/list', compact(
-        'login_type',
-        'organization'
+        'login_type', 'organization'
       ));
     }
 
@@ -190,6 +189,16 @@ class OrganizationController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Join to an organization
+     *
+     * @return void
+     */
+    public function join()
+    {
+      # code for joining organization here
     }
 
     /**

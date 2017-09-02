@@ -22,7 +22,7 @@ Route::prefix('users')->group(function() {
 
   # Route for organization adviser
   Route::prefix('org-adviser')->group(function() {
-    Route::name('org.adviser.org-list')->get('/','OrganizationAdviser\OrganizationController@index');
+    Route::name('org.adviser.org-list')->get('/list-of-organization','OrganizationAdviser\OrganizationController@index');
     Route::name('org-adviser.event.list')->get('/get/event-list/{id?}', 'OrganizationAdviser\EventController@index');
     Route::name('org-adviser.org-profile')->get('/profile/{id}', 'OrganizationAdviser\OrganizationController@show');
     Route::name('org-adviser.org-logo')->post('/change-logo', 'OrganizationAdviser\OrganizationController@uploadLogo');
@@ -37,6 +37,7 @@ Route::prefix('users')->group(function() {
     Route::name('org-adviser.org-edit')->get('/edit-org/{id}', 'OrganizationAdviser\OrganizationController@edit');
     Route::name('org-adviser.org-update')->post('/update-org', 'OrganizationAdviser\OrganizationController@update');
     Route::name('org-adviser.members.list')->get('/members/list', 'OrganizationAdviser\OrganizationGroupController@index');
+    Route::name('org-adviser.members.join')->get('/members/join', 'OrganizationAdviser\OrganizationGroupController@join');
     Route::name('org-adviser.event.show')->get('/show/{id?}', 'OrganizationAdviser\EventController@show');
     Route::name('org-adviser.attendance')->get('/attendance', 'OrganizationAdviser\GenerateAttendanceController@index');
     Route::name('org-adviser.attendance.show')->get('/new/{id}/{eid}', 'OrganizationAdviser\GenerateAttendanceController@show');
