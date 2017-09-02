@@ -292,9 +292,8 @@ To Do:
         ☐  Including non-member who wants to attend the event (for public view or among orgs event)
 
   Task 1: Organization Adviser Account:
-    ✔ Organizations: @done(2017-08-28 15:43) @project(To Do / Task 1: Organization Adviser Account)
-      ✔ List of organization @done(2017-08-27 23:01) @project(Task 1: Organization Adviser Account / ☐ Organizations)
-        ☐ Notify the organization officers for the changes made by the adviser (advance)
+    ✔ Organizations: @done (9/2/2017, 2:38:23 PM)
+      ✔ List of organization @done (9/2/2017, 2:38:19 PM)
         ✔ Request for membership @done(2017-07-31 16:38)
           ✔ If the adviser is not a member of the organization display this button @done(2017-07-31 01:15)
         ✔ If the organization name is clicked, display the orgazation simple profile @done(2017-07-22 23:18)
@@ -304,36 +303,38 @@ To Do:
           ✔ Color picker @done(2017-08-02 20:33)
         ✔ logo default @done(2017-07-22 21:17)
         ✔ Change logo @done(2017-07-22 22:59)
+        ☐ Notify the organization officers for the changes made by the adviser (advance)
     ☐ Events:
       ✔ Create My Events @done(2017-08-28 15:44) @project(To Do / Task 1: Organization Adviser Account / ☐ Events)
         ✔ Can customize message for notification @done(2017-08-28 04:31) @project(Task 1: Organization Adviser Account / ☐ Events / ☐ Create My Events)
-        ☐ Can upload image for notification (advance)
         ✔ Display form to create event @done(2017-08-17 16:37)
+        ☐ Can upload image for notification (advance)
       ☐ Create Events:
         ✔ Can customize message for notification @done(2017-08-28 04:32) @project(Task 1: Organization Adviser Account / ☐ Events / ☐ Create Events)
-        ☐ Can upload image for notification (advance)
         ✔ Display form to create event @done(2017-08-17 16:35)
-        ☐ Change the semester dropdown into season such (quarter, holidays, christmas) {Enterprise version}
-          ☐ customizable by the user
-        ☐ In what way that this event should be valid? Goto Approve events (Advance)
         ✔ Chose organization @done(2017-07-24 00:28)
-          ☐ Categories as public (advance)
-            ☐ Is outside the campus? - This part doesnt need for approval from the people in university (Advance)
           ✔ Categories as private (within organization) @done(2017-07-23 23:43)
           ✔ Categories as Among Organization @done(2017-07-23 23:43)
         ✔ Determine if her/she is the adviser of the organization @done(2017-07-23 23:30)
+        ☐ Chose organization
+          ☐ Categories as public (advance)
+            ☐ Is outside the campus? - This part doesnt need for approval from the people in university (Advance)
+        ☐ Can upload image for notification (advance)
+        ☐ Change the semester dropdown into season such (quarter, holidays, christmas) {Enterprise version}
+          ☐ customizable by the user
+        ☐ In what way that this event should be valid? Goto Approve events (Advance)
       ☐ List of events:
         ✔ Display the info box of events base on category @done(2017-08-17 16:38)
         ✔ Attend this event - A button for user if he wants to attend this event (For regulart users and non member of the organization) @done(2017-08-24 05:10)
         ✔ On the event details, display the name of the approver who already approve the event @done(2017-08-28 15:06) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ List of events)
-        ☐ Archive events (advance)
-        ☐ within org list of events must be events under the org where the user is a member only
-        ☐ Automatically change the status(oon-going/upcoming/done) of the event base on the given date (advance)
         ✔ Set status of my events @done(2017-08-28 15:06) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ List of events)
           ✔ if the status changed, Set notification functionality @done(2017-08-28 15:06) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ List of events)
         ✔ Show List of Personal Events @done(2017-08-30 02:38) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ List of events)
-          ✔public @done(2017-08-30 02:38) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ List of events)
-          ✔private @done(2017-08-30 02:38) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ List of events)
+          ✔ public @done (9/2/2017, 2:34:17 PM)
+          ✔ private @done (9/2/2017, 2:34:19 PM)
+        ☐ Archive events (advance)
+        ☐ within org list of events must be events under the org where the user is a member only
+        ☐ Automatically change the status(oon-going/upcoming/done) of the event base on the given date (advance)
       ☐ Automatic Successful Event Notifications upon complete approvals:
         ☐ notify_via_facebook
           ☐ Public View
@@ -346,14 +347,14 @@ To Do:
           ☐ Among org
           ☐ Personal
         ☐ notify_via_email
-          ✔ Public View @done(2017-08-31 06:30) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ Automatic Successful Event Notifications upon complete approvals)
-          ✔ Within Org @done(2017-08-31 06:30) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ Automatic Successful Event Notifications upon complete approvals)
-          ✔ Among org @done(2017-08-31 06:30) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ Automatic Successful Event Notifications upon complete approvals)
+          ✔ Public View @done (9/2/2017, 2:34:36 PM)
+          ✔ Within Org @done (9/2/2017, 2:34:37 PM)
+          ✔ Among org @done (9/2/2017, 2:34:38 PM)
           ☐ Personal
         ☐ notify_via_sms
-          ✔ Public View @done(2017-08-28 17:40) @project(To Do / Task 1: Organization Adviser Account / / ☐ Automatic Successful Event Notifications upon complete approvals)
-          ✔ Within Org @done(2017-08-31 02:38) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ Automatic Successful Event Notifications upon complete approvals)
-          ✔ Among org @done(2017-08-31 02:38) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ Automatic Successful Event Notifications upon complete approvals)
+          ✔ Public View @done (9/2/2017, 2:34:43 PM)
+          ✔ Within Org @done (9/2/2017, 2:34:46 PM)
+          ✔ Among org @done (9/2/2017, 2:34:49 PM)
           ☐ Personal
       ✔ Show organization and browse events  @done(2017-08-24 02:46) @project(To Do / Task 1: Organization Adviser Account / ☐ Events)
       ✔ Approval of event functionality @done(2017-08-15 20:34) @project(To Do / ☐ Task 39 - Login as organization adviser / ☐ Events)
@@ -361,11 +362,11 @@ To Do:
         ✔ Approve events @done(2017-08-08 19:03)
           ✔ Notification: (Facebook, Twitter, Email, Phone) @done(2017-08-11 19:11)
         ✔ disapprove event @done(2017-08-11 00:30)
-      ☐ Calendar of events
-        ✔ Public @done(2017-08-15 20:32)
-        ✔ Among  @done(2017-08-15 20:32)
-        ☐ Within
-        ✔ Personal @done(2017-08-30 02:39) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ Automatic Successful Event Notifications upon complete approvals)
+    ☐ Calendar of events
+      ✔ Public @done(2017-08-15 20:32)
+      ✔ Among  @done(2017-08-15 20:32)
+      ✔ Within @done (9/2/2017, 2:35:20 PM)
+      ☐ Personal
     ✔ Members: @done(2017-08-27 22:58) @project(Task 1: Organization Adviser Account)
       ✔ List of members within the organization of adviser @done(2017-08-16 20:02)
         ✔ View members profile @done(2017-08-16 20:28)
