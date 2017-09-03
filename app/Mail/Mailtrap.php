@@ -44,24 +44,16 @@ class Mailtrap extends Mailable
         \nDuration: {$this->event->date_start}, {$this->event->date_start_time} to {$this->event->date_end}, {$this->event->date_end_time}
         \n{$this->event->additional_msg_sms}
         \nPlease be guided accordingly. Thank You!";
-
-        return $this->view('emails.mail')
-        ->with(['notification_message' => $notification_message])
-        ->from('ano.user12345@gmail.com');
       }
       if($this->event->event_category_id == 2) {
         //where event_category == within organization
         $notification_message = "Hello {$this->event->organization->name}! You have an upcoming event!
-          \n{$this->event->title}
-          \nDescription: {$this->event->description}
-          \nVenue: {$this->event->venue}
-          \nDuration: {$this->event->date_start}, {$this->event->date_start_time} to {$this->event->date_end}, {$this->event->date_end_time}
-          \n{$this->event->additional_msg_sms}
-          \nPlease be guided accordingly. Thank You!";
-
-          return $this->view('emails.mail')
-          ->with(['notification_message' => $notification_message])
-          ->from('ano.user12345@gmail.com');
+        \n{$this->event->title}
+        \nDescription: {$this->event->description}
+        \nVenue: {$this->event->venue}
+        \nDuration: {$this->event->date_start}, {$this->event->date_start_time} to {$this->event->date_end}, {$this->event->date_end_time}
+        \n{$this->event->additional_msg_sms}
+        \nPlease be guided accordingly. Thank You!";
       }
       if($this->event->event_category_id == 3){
         //where event_category == among organization
@@ -72,9 +64,9 @@ class Mailtrap extends Mailable
         \nDuration: {$this->event->date_start}, {$this->event->date_start_time} to {$this->event->date_end}, {$this->event->date_end_time}
         \n{$this->event->additional_msg_sms}
         \nPlease be guided accordingly. Thank You!";
-        return $this->view('emails.mail')
-        ->with(['notification_message' => $notification_message])
-        ->from('ano.user12345@gmail.com');
       }
+      return $this->view('emails.mail')
+      ->with(['notification_message' => $notification_message])
+      ->from('ano.user12345@gmail.com');
     }
 }

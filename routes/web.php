@@ -33,7 +33,7 @@ Route::group(['middleware' => 'revalidate'], function() {
   | Admin Dashboard Routes
   |--------------------------------------------------------------------------
   */
-  // require_once "system_route/admin.php";
+  require_once "system_route/admin.php";
 
   /*
   |--------------------------------------------------------------------------
@@ -48,6 +48,13 @@ Route::group(['middleware' => 'revalidate'], function() {
   |--------------------------------------------------------------------------
   */
     Route::name('home')->get('/home', 'HomeController@index');
+
+  /*
+  |--------------------------------------------------------------------------
+  | Refreshes artisan
+  |--------------------------------------------------------------------------
+  */
+   Route::get('test','TestController@test');
 });
 
 /*

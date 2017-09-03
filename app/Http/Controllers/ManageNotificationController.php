@@ -45,11 +45,11 @@ class ManageNotificationController extends Controller
     }
 
     if( $ev->notify_via_email == 'on' ) {
-       self::notifyViaEmail($ev);
+      //  self::notifyViaEmail($ev);
     }
 
     if( $ev->notify_via_sms == 'on' ){
-      // self::notifyViaSms($ev);
+      self::notifyViaSms($ev);
     }
   }
 
@@ -60,88 +60,151 @@ class ManageNotificationController extends Controller
    * @return
    */
   private function notifyViaFacebook ($value) {
-    if( $value->notify_via_facebook == "on" ){
-      if($value->event_category_id == 1){
-        $notification_message = "Hello UP Mindanao! You have an upcoming event!
-        \n{$value->title} headed by {$value->organization->name}.
-        \nDescription: {$value->description}
-        \nVenue: {$value->venue}
-        \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time} ".
-        "\n{$value->additional_msg_facebook}" .
-        "\nPlease be guided accordingly. Thank You!";
-      }
-
-      if($value->event_category_id == 2){
-        $notification_message = "Hello {$value->organization->name}! You have an upcoming event!
-        \n{$value->title}
-        \nDescription: {$value->description}
-        \nVenue: {$value->venue}
-        \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}".
-        "\n{$value->additional_msg_facebook}" .
-        "\nPlease be guided accordingly. Thank You!";
-      }
-
-      if($value->event_category_id == 3){
-        $notification_message = "Hello Student Leaders! You have an upcoming event!
-        \n{$value->title} headed by {$value->organization->name}.
-        \nDescription: {$value->description}
-        \nVenue: {$value->venue}
-        \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}".
-        "\n{$value->additional_msg_facebook}" .
-        "\nPlease be guided accordingly. Thank You!";
-      }
-
-      if($value->event_category_id == 4){
-        $notification_message = "Hello {$value->fname}! Your {$value->title} event has been approved.
-        \nDescription: {$value->description}
-        \nVenue: {$value->venue}
-        \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}".
-        "\n{$value->additional_msg_facebook}" .
-        "\nPlease be guided accordingly. Thank You!";
-      }
-      $data['fb_message'] = $notification_message;
-      $result = User::send($data['fb_message']);
+    //if they will like and follow my facebook page,it will show on their feed
+    //backlog or version 2 na tng tagging accounts
+    //as long as naka indicate ang audience sa event in the post
+    if($value->event_category_id == 1){
+      //where event_category == among organization
+      $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      $pin = mt_rand(10, 99)
+          . mt_rand(10, 99)
+          . $characters[rand(0, strlen($characters) - 1)];
+          // generate a pin based on 2 * 2 digits + a random character
+      $fb = str_shuffle($pin);
+        // shuffle the result
+      $notification_message = "{$fb} Hello UP Mindanao!! You have an upcoming event!
+      \n{$value->title} headed by {$value->organization->name}.
+      \nDescription: {$value->description}
+      \nVenue: {$value->venue}
+      \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time} ".
+      "\n{$value->additional_msg_facebook}" .
+      "\nPlease be guided accordingly. Thank You!";
     }
+
+    if($value->event_category_id == 2){
+      $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      $pin = mt_rand(10, 99)
+          . mt_rand(10, 99)
+          . $characters[rand(0, strlen($characters) - 1)];
+          // generate a pin based on 2 * 2 digits + a random character
+      $fb = str_shuffle($pin);
+        // shuffle the result
+      $notification_message = "{$fb} Hello {$value->organization->name}! You have an upcoming event!
+      \n{$value->title}
+      \nDescription: {$value->description}
+      \nVenue: {$value->venue}
+      \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}".
+      "\n{$value->additional_msg_facebook}" .
+      "\nPlease be guided accordingly. Thank You!";
+    }
+
+    if($value->event_category_id == 3){
+      $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      $pin = mt_rand(10, 99)
+          . mt_rand(10, 99)
+          . $characters[rand(0, strlen($characters) - 1)];
+          // generate a pin based on 2 * 2 digits + a random character
+      $fb = str_shuffle($pin);
+        // shuffle the result
+      $notification_message = "{$fb} Hello Student Leaders! You have an upcoming event!
+      \n{$value->title} headed by {$value->organization->name}.
+      \nDescription: {$value->description}
+      \nVenue: {$value->venue}
+      \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}".
+      "\n{$value->additional_msg_facebook}" .
+      "\nPlease be guided accordingly. Thank You!";
+    }
+
+    if($value->event_category_id == 4){
+      $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      $pin = mt_rand(10, 99)
+          . mt_rand(10, 99)
+          . $characters[rand(0, strlen($characters) - 1)];
+          // generate a pin based on 2 * 2 digits + a random character
+      $fb = str_shuffle($pin);
+        // shuffle the result
+      $notification_message = "{$fb} Hello {$value->fname}! Your {$value->title} event has been approved.
+      \nDescription: {$value->description}
+      \nVenue: {$value->venue}
+      \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}".
+      "\n{$value->additional_msg_facebook}" .
+      "\nPlease be guided accordingly. Thank You!";
+    }
+    $data['fb_message'] = $notification_message;
+    $result = User::send($data['fb_message']);
   }
 
   private function notifyViaTwitter ($value) {
-    if( $value->notify_via_twitter == 'on'  ){
+    //if they will follow my twitter account,it will show on their feed
+    //backlog or version 2 na tng tagging accounts
+    //as long as naka indicate ang audience sa event in the post
 
       if($value->event_category_id == 1){
-        $notification_message = "Hello UP Mindanao! You have an upcoming event! ".
-        "{$value->title} headed by {$value->org_name}.".
-        " Venue: {$value->description}".
+        //where event_category == public view
+        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $pin = mt_rand(10, 99)
+            . mt_rand(10, 99)
+            . $characters[rand(0, strlen($characters) - 1)];
+            // generate a pin based on 2 * 2 digits + a random character
+        $tweet = str_shuffle($pin);
+          // shuffle the result
+        $notification_message = "{$tweet} Hello UP Mindanao!! You have an upcoming event! ".
+        "{$value->title} headed by {$value->organization->name}.".
+        " Venue: {$value->venue}".
         " Duration: {$value->date_start}, {$value->date_start_time}";
+        $t = str_limit($notification_message, 139);
       }
 
       if($value->event_category_id == 2){
-        $notification_message = "Hello {$value->org_name}! You have an upcoming event! ".
+        //where event_category == within organization
+        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $pin = mt_rand(10, 99)
+            . mt_rand(10, 99)
+            . $characters[rand(0, strlen($characters) - 1)];
+            // generate a pin based on 2 * 2 digits + a random character
+        $tweet = str_shuffle($pin);
+          // shuffle the result
+        $notification_message = "{$tweet} Hello {$value->organization->name}! You have an upcoming event! ".
         "{$value->title}".
-        " Venue: {$value->description}".
+        " Venue: {$value->venue}".
         " Duration: {$value->date_start}, {$value->date_start_time}";
+        $t = str_limit($notification_message, 140);
       }
 
       if($value->event_category_id == 3){
-        $notification_message = "Hello Student Leaders! You have an upcoming event!".
-        "{$value->title} headed by {$value->org_name}".
-        " Venue: {$value->description}".
+        //where event_category == among organization
+        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $pin = mt_rand(10, 99)
+            . mt_rand(10, 99)
+            . $characters[rand(0, strlen($characters) - 1)];
+            // generate a pin based on 2 * 2 digits + a random character
+        $tweet = str_shuffle($pin);
+          // shuffle the result
+        $notification_message = "{$tweet} Hello Student Leaders! You have an upcoming event!".
+        "{$value->title} headed by {$value->organization->name}".
+        " Venue: {$value->venue}".
         " Duration: {$value->date_start}, {$value->date_start_time}";
+        $t = str_limit($notification_message, 140);
       }
 
       if($value->event_category_id == 4){
-        $notification_message = "Hello {$value->fname}! Your {$value->title} event has been approved. ".
-        " Venue: {$value->description}".
+        //where event_category == my own event
+        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $pin = mt_rand(10, 99)
+            . mt_rand(10, 99)
+            . $characters[rand(0, strlen($characters) - 1)];
+            // generate a pin based on 2 * 2 digits + a random character
+        $tweet = str_shuffle($pin);
+          // shuffle the result
+        $notification_message = "{$tweet} Hello {$value->fname}! Your {$value->title} event has been approved. ".
+        " Venue: {$value->venue}".
         " Duration: {$value->date_start}, {$value->date_start_time}";
+        $t = str_limit($notification_message, 140);
       }
-      // dd($notification_message);
-      // if($notification_message.length < 160)
-      return Twitter::postTweet(['status' => $notification_message, 'format' => 'json']);
-    }
+      return Twitter::postTweet(['status' => $t, 'format' => 'json']);
   }
 
   private function notifyViaEmail($value) {
-    if( $value->notify_via_email == 'on' ) {
-
       if($value->event_category_id == 1) {
         //where event_category == public view
         $all_users = User::all()->take(1);
@@ -150,121 +213,98 @@ class ManageNotificationController extends Controller
         }
       }
       if($value->event_category_id == 2) {
-        //where event_category == within organization
-        $all_org_grp = OrganizationGroup::where('organization_id', $value->organization_id)->get();
-        $all_users = User::all()->take(1);
-        foreach ($all_org_grp as $key => $val_orgs){
-          foreach($all_users as $key => $val_users ){
-            if($val_orgs->user_id == $val_users->id){
-              Mail::to($val_users->email)->send(new Mailtrap($value));
-            }
-          }
+        $all_org_grp = OrganizationGroup::with('user')
+        ->where('organization_id', '=', $value->organization_id )
+        ->take(1) //just take 1 item from the database that matches the condition
+        ->get();
+        foreach($all_org_grp as $key => $val ){
+            Mail::to($val->user->email)->send(new Mailtrap($value));
         }
       }
       if($value->event_category_id == 3){
         //where event_category == among organization
-        $all_org_grp = OrganizationGroup::all();
-        $all_users = User::all()->take(1);
-        foreach ($all_org_grp as $key => $val_orgs){
-          foreach($all_users as $key => $val_users ){
-            if($val_orgs->user_id == $val_users->id){
-              Mail::to($val_users->email)->send(new Mailtrap($value));
-            }
-          }
+        $all_org_grp = OrganizationGroup::with('user')
+        ->take(1) //just take 1 item from the database that matches the condition
+        ->get();
+        foreach($all_org_grp as $key => $val ){
+            Mail::to($val->user->email)->send(new Mailtrap($value));
         }
       }
-    }
   }
 
   private function notifyViaSms ($value) {
-    if( $value->notify_via_sms == 'on' ) {
+    if($value->event_category_id == 1) {
+      //where event_category == public view
+      $notification_message =
+        "Hello UP Mindanao! You have an upcoming event! " .
+        "\n{$value->title} headed by {$value->organization->name}." .
+        "\nDescription: {$value->description}" .
+        "\nVenue: {$value->venue}" .
+        "\nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time} " .
+        "\n{$value->additional_msg_sms}" .
+        "\nPlease be guided accordingly. Thank You!";
+        // $all_users = User::all();
+        $all_users = User::all()->take(1);
+        foreach ($all_users as $key => $value) {
+          Nexmo::message()->send([
+            'to'   => $value->mobile_number,
+            'from' => '639778378388',
+            'text' => $notification_message
+          ]);
+        }
+    }
 
-      if($value->event_category_id == 1) {
-        //where event_category == public view
-        $notification_message =
-          "Hello UP Mindanao! You have an upcoming event! " .
-          "\n{$value->title} headed by {$value->organization->name}." .
-          "\nDescription: {$value->description}" .
-          "\nVenue: {$value->venue}" .
-          "\nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time} " .
-          "\n{$value->additional_msg_sms}" .
-          "\nPlease be guided accordingly. Thank You!";
-          // $all_users = User::all();
-          $all_users = User::all()->take(1);
-          foreach ($all_users as $key => $value) {
-            Nexmo::message()->send([
-              'to'   => $value->mobile_number,
-              'from' => '639778378388',
-              'text' => $notification_message
-            ]);
-          }
-      }
-
-      if($value->event_category_id == 2) {
-        //where event_category == within organization
-        $notification_message = "Hello {$value->organization->name}! You have an upcoming event!
-          \n{$value->title}
-          \nDescription: {$value->description}
-          \nVenue: {$value->venue}
-          \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}
-          \n{$value->additional_msg_sms}
-          \nPlease be guided accordingly. Thank You!";
-
-          $all_org_grp = OrganizationGroup::where('organization_id', $value->organization_id)->get();
-          $all_users = User::all()->take(2);
-          // dd($all_org_grp);
-          foreach ($all_org_grp as $key => $value){
-            foreach($all_users as $key => $val ){
-              if($value->user_id == $val->id){
-                // $temp = $temp . $val;
-                Nexmo::message()->send([
-                  'to'   => $val->mobile_number,
+    if($value->event_category_id == 2) {
+      //where event_category == within organization
+      $notification_message = "Hello {$value->organization->name}! You have an upcoming event!
+        \n{$value->title}
+        \nDescription: {$value->description}
+        \nVenue: {$value->venue}
+        \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}
+        \n{$value->additional_msg_sms}
+        \nPlease be guided accordingly. Thank You!";
+        $all_org_grp = OrganizationGroup::with('user')
+        ->where('organization_id', '=', $value->organization_id )
+        ->take(2) //just take 2 item from the database that matches the condition
+        ->get();
+        foreach($all_org_grp as $key => $val ){
+          Nexmo::message()->send([
+                  'to'   => $val->user->mobile_number,
                   'from' => '639778378388',
                   'text' => $notification_message
                 ]);
-              }
-            }
-          }
-          // dd($temp);
-      }
+        }
+    }
 
-      if($value->event_category_id == 3){
-        //where event_category == among organization
-        $notification_message = "Hello Student Leaders! You have an upcoming event!
-        \n{$value->title} headed by {$value->organization->name}.
-        \nDescription: {$value->description}
-        \nVenue: {$value->venue}
-        \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}
-        \n{$value->additional_msg_sms}
-        \nPlease be guided accordingly. Thank You!";
-
-        $all_org_grp = OrganizationGroup::all();
-        $all_users = User::all()->take(2);
-        // dd($all_org_grp);
-        foreach ($all_org_grp as $key => $value){
-          foreach($all_users as $key => $val ){
-            if($value->user_id == $val->id){
-              $temp = $temp . $val;
-              Nexmo::message()->send([
-                'to'   => $val->mobile_number,
+    if($value->event_category_id == 3){
+      //where event_category == among organization
+      $notification_message = "Hello Student Leaders! You have an upcoming event!
+      \n{$value->title} headed by {$value->organization->name}.
+      \nDescription: {$value->description}
+      \nVenue: {$value->venue}
+      \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}
+      \n{$value->additional_msg_sms}
+      \nPlease be guided accordingly. Thank You!";
+      $all_org_grp = OrganizationGroup::with('user')
+      ->take(3) //just take 1 item from the database that matches the condition
+      ->get();
+      foreach($all_org_grp as $key => $val ){
+        Nexmo::message()->send([
+                'to'   => $val->user->mobile_number,
                 'from' => '639778378388',
                 'text' => $notification_message
               ]);
-            }
-          }
-        }
       }
+    }
 
-      if($value->event_category_id == 4){
-        //where event_category == my own event
-        $notification_message = "Hello {$value->fname}! Your {$value->title} event has been approved.
-        \nDescription: {$value->description}
-        \nVenue: {$value->venue}
-        \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}
-        \n{$value->additional_msg_sms}
-        \nPlease be guided accordingly. Thank You!";
-      }
-
+    if($value->event_category_id == 4){
+      //where event_category == my own event
+      $notification_message = "Hello {$value->fname}! Your {$value->title} event has been approved.
+      \nDescription: {$value->description}
+      \nVenue: {$value->venue}
+      \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}
+      \n{$value->additional_msg_sms}
+      \nPlease be guided accordingly. Thank You!";
     }
   }
 }

@@ -23,15 +23,15 @@ class EventCategoriesTableSeeder extends Seeder
           'updated_at'     => date('Y-m-d H:i:s')
         ),
         array(
-          'name'           => 'among organizations',
+          'name'           => 'all organizations',
           'created_at'     => date('Y-m-d H:i:s'),
           'updated_at'     => date('Y-m-d H:i:s')
         ),
-        array(
-          'name'           => 'my own event',
-          'created_at'     => date('Y-m-d H:i:s'),
-          'updated_at'     => date('Y-m-d H:i:s')
-        ),
+        // array(
+        //   'name'           => 'my own event',
+        //   'created_at'     => date('Y-m-d H:i:s'),
+        //   'updated_at'     => date('Y-m-d H:i:s')
+        // ),
       ]);
     }
 }
