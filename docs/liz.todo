@@ -1,0 +1,108 @@
+Follow Control Flow in the docs
+
+☐Org Adviser Account:
+  ☐ Manage Schedule:
+    ☐ Public View
+      ☐ Calendar
+    ☐ All Organizations
+      ☐ Calendar
+    ☐ Within Organization
+      ☐ Calendar
+    ☐ Personal Schedule
+      ☐ Calendar
+      ☐ Create My Event
+  ☐ Generate Attendance:
+    ☐ List of Events
+      ☐ Generate Expected Attendance
+      ☐ Generate Confirmed Attendance
+      ☐ Confirm My Attendance
+  ☐ Manage Notifications:
+    ☐ List of Events that needs your approval
+      ☐ Approve Events
+      ☐ Edit Event Notifications Settings
+        ☐ Twitter (on/off)
+        ☐ Facebook (on/off)
+        ☐ Email (on/off)
+        ☐ SMS (on/off)
+☐Org Co-Adviser Account:
+  ☐ Manage Schedule:
+    ☐ Public View
+      ☐ Calendar
+    ☐ All Organizations
+      ☐ Calendar
+    ☐ Within Organization
+      ☐ Calendar
+    ☐ Personal Schedule
+      ☐ Calendar
+      ☐ Create My Event
+  ☐ Generate Attendance:
+    ☐ List of Events
+      ☐ Generate Expected Attendance
+      ☐ Generate Confirmed Attendance
+      ☐ Confirm My Attendance
+☐Org Head Account:
+  ☐ Manage Schedule:
+    ☐ Public View
+      ☐ Calendar
+    ☐ All Organizations
+      ☐ Calendar
+      ☐ Create an event
+    ☐ Within Organization
+      ☐ Calendar
+      ☐ Create an event
+    ☐ Personal Schedule
+      ☐ Calendar
+      ☐ Create My Event
+  ☐ Generate Attendance:
+    ☐ List of Events
+      ☐ Generate Expected Attendance
+      ☐ Generate Confirmed Attendance
+      ☐ Confirm My Attendance
+      ☐ Confirm Org Members' Attendance
+  ☐ Manage Notifications:
+    ☐ List of Events that needs your approval
+      ☐ Approve Events
+      ☐ Edit Event Notifications Settings
+        ☐ Twitter (on/off)
+        ☐ Facebook (on/off)
+        ☐ Email (on/off)
+        ☐ SMS (on/off)
+☐Org Member Account:
+  ☐ Manage Schedule:
+    ☐ Public View
+      ☐ Calendar
+    ☐ All Organizations
+      ☐ Calendar
+    ☐ Within Organization
+      ☐ Calendar
+    ☐ Personal Schedule
+      ☐ Calendar
+      ☐ Create My Event
+  ☐ Generate Attendance:
+    ☐ List of Events
+      ☐ Generate Expected Attendance
+      ☐ Generate Confirmed Attendance
+      ☐ Confirm My Attendance
+☐OSA Staff Account:
+  ☐ Manage Schedule:
+    ☐ Public View
+      ☐ Calendar
+      ☐ Create an event
+    ☐ All Organizations
+      ☐ Calendar
+      ☐ Create an event
+    ☐ Within Organization
+      ☐ Calendar
+    ☐ Personal Schedule
+      ☐ Calendar
+      ☐ Create My Event
+  ☐ Generate Attendance:
+    ☐ List of Events
+      ☐ Generate Expected Attendance
+      ☐ Generate Confirmed Attendance
+  ☐ Manage Notifications:
+    ☐ List of Events that needs your approval
+      ☐ Approve Events
+☐Univ Admin/Staff (user_account:admin) Account:
+  
+☐Super Admin
