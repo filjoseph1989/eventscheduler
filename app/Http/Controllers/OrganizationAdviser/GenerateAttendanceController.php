@@ -103,7 +103,7 @@ class GenerateAttendanceController extends Controller
       }
 
       $login_type = 'user';
-      return view('pages/users/organization-adviser/calendars/events/attendance',
+      return view('pages/users/organization-adviser/events/list_for_attendance',
         compact(
           'login_type',
           'attendance',
