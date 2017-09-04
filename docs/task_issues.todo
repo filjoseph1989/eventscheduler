@@ -1,4 +1,5 @@
 To Do:
+  ☐ Issue 65: User attendance on organization head account has problem
   ☐ Issue 64: Generate attendance should be part of the event menu
   ☐ Issue 63: A registered member should also input there academic class schedule to prevent conflict
   ☐ Issue 62: Is it posible for laravel to use those registered facebook account to be automatically added/invited in an organizations facebook page?
