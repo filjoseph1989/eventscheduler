@@ -46,6 +46,7 @@
                       {{ csrf_field() }}
                       <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                       <input type="hidden" name="from_calendar" value="1">
+                      <input type="hidden" name="event_category_id" value="2">
                       <div class="form-group form-float form-group">
                         <div class="form-line">
                           <input type="text" class="form-control" id="title" name="title" placeholder="Title of the event" value="{{ old('title') }}" required autofocus>
@@ -121,7 +122,7 @@
                           </select>
                         </div>
                       </div>
-                      <div class="form-group form-float form-group">
+                      {{-- <div class="form-group form-float form-group">
                         <div class="form-line focused">
                           <select class="form-control show-tick" id="event_category_id" name="event_category_id">
                             <option value="{{ old('event_category_id') == null ? 0 : old('event_category_id') }}" id="event_category_id-option">-- Select audience for this event --</option>
@@ -130,7 +131,7 @@
                             @endforeach
                           </select>
                         </div>
-                      </div>
+                      </div> --}}
                       <div class="form-group form-float form-group" id="form-event-organization">
                         <div class="form-line focused">
                           <select class="form-control show-tick" id="organization_id" name="organization_id">

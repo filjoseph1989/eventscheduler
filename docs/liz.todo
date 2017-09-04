@@ -1,16 +1,23 @@
 Follow Control Flow in the docs
 
 ☐Org Adviser Account:
-  ☐ Manage Schedule:
-    ☐ Public View
-      ☐ Calendar
-    ☐ All Organizations
-      ☐ Calendar
-    ☐ Within Organization
-      ☐ Calendar
-    ☐ Personal Schedule
-      ☐ Calendar
-      ☐ Create My Event
+  ✔ Manage Schedule: @done(2017-09-05 04:13) @project(☐Org Adviser Account)
+    ✔ Public View @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
+      ✔ Calendar @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
+      ✔ Create My Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
+      ✔ Create Within Organization Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
+    ✔ All Organizations @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
+      ✔ Calendar @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
+      ✔ Create My Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
+      ✔ Create Within Organization Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
+    ✔ Within Organization @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
+      ✔ Calendar @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
+      ✔ Create My Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
+      ✔ Create Within Organization Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
+    ✔ Personal Schedule @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
+      ✔ Calendar @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
+      ✔ Create My Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
+      ✔ Create Within Organization Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
   ☐ Generate Attendance:
     ☐ List of Events
       ☐ Generate Expected Attendance
