@@ -56,14 +56,14 @@ return [
     */
 
     'from' => [
-        ['address' => 'ano.user12345@gmail.com', 'name' => 'Event Scheduler'],
-        // 'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        // 'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+        'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
-    'to' => [
-        'address' => 'janicalizdeguzman@gmail.com',
-        'name' => 'Janica Liz de Guzman'
-    ],
+
+    // 'to' => [
+    //     'address' => 'janicalizdeguzman@gmail.com',
+    //     'name' => 'Janica Liz de Guzman'
+    // ],
     /*
     |--------------------------------------------------------------------------
     | E-Mail Encryption Protocol
