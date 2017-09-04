@@ -19,6 +19,7 @@ class CreateUserAttendanceTable extends Migration
           $table->integer('user_id')->unsigned()->index();
           $table->string('reason')->nullable();
           $table->enum('status', ['true', 'false'])->default('false');
+          $table->enum('confirmation', ['true', 'false'])->default('false');
           $table->softDeletes();
           $table->timestamps();
 
