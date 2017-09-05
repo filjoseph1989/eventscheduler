@@ -11,14 +11,16 @@ class EmailNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private $event;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($event)
     {
-        //
+        $this->event = $event;
     }
 
     /**
@@ -28,8 +30,10 @@ class EmailNotification extends Mailable
      */
     public function build()
     {
-      $notification_message = "Sample Email";
-
-      return $this->view('emails.mail', compact('notification_message'));
+        
+      return $this->view('emails.mail')
+        ->with([
+            'event' => $this->event
+        ]);
     }
 }
