@@ -19,6 +19,7 @@ use App\Models\UserAttendance;
 class MailController extends Controller
 {
     private $emails = [];
+    private $name   = [];
 
     /**
      * Build object
@@ -31,6 +32,9 @@ class MailController extends Controller
      * @return
      */
     public function index() {
+      # include class for beatiful mailer
+      $beautymail = app()->make(\Snowfire\Beautymail\Beautymail::class);
+      
       # Get the approve events within this year, this comming month
       # and this coming days with the event organizer (e.g APO)
       $event = Event::with('organization')
@@ -58,11 +62,17 @@ class MailController extends Controller
         self::gatheringEmails($attendance);
 
         # Send an email to user
-        foreach ($this->emails as $key => $email) {
-          Mail::to($email)->send(new EmailNotification());
-        }
+        $beautymail->send('emails.mail', ['event' => $value], function($message)
+        { 
+          foreach ($this->emails as $key => $email) {
+            $message 
+              ->to($email, $this->name[$key]) 
+              ->subject('You have a new event reminder!'); 
+          }
+        });
       }
-
+      
+      // Mail::to($email)->send(new EmailNotification($value));
     }
 
     /**
@@ -74,6 +84,7 @@ class MailController extends Controller
       foreach ($data as $key => $value) {
         if (! isset($this->emails[$value->user->id])) {
           $this->emails[$value->user->id] = $value->user->email;
+          $this->name[$value->user->id] = $value->user->first_name . " " . $value->user->last_name;
         }
       }
     }
