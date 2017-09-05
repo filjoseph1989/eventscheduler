@@ -47,16 +47,17 @@ Route::group(['middleware' => 'revalidate'], function() {
   | Redirect to home page
   |--------------------------------------------------------------------------
   */
-    Route::name('home')->get('/home', 'HomeController@index');
+  Route::name('home')->get('/home', 'HomeController@index');
 
   /*
   |--------------------------------------------------------------------------
   | Refreshes artisan
   |--------------------------------------------------------------------------
   */
-   Route::get('test','TestController@test');
+  Route::get('test','TestController@test');
 
-   Route::get('mail','MailController@index');
+  Route::get('mail','MailController@index');
+
 });
 
 /*
