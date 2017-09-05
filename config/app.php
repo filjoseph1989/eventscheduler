@@ -173,17 +173,21 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        # Used to send sms
         Nexmo\Laravel\NexmoServiceProvider::class,
 
-        // Facebook notification
+        # Facebook notification
         NotificationChannels\FacebookPoster\FacebookPosterServiceProvider::class,
-        // Twitter notification
+
+        # Twitter notification
         Thujohn\Twitter\TwitterServiceProvider::class,
-        Tightenco\Ziggy\ZiggyServiceProvider::class
+        Tightenco\Ziggy\ZiggyServiceProvider::class,
+
+        # Beautiful email
+        Snowfire\Beautymail\BeautymailServiceProvider::class,        
     ],
 
     /*
