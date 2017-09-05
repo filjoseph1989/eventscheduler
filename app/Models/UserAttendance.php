@@ -17,4 +17,25 @@ class UserAttendance extends Model
   	'reason',
   	'status'
   ];
+
+  /**
+   * Define the relationship between
+   * user and organization group
+   *
+   * @return object
+   */
+  public function user()
+  {
+    return $this->belongsTo('App\Models\User');
+  }
+
+  /**
+   * Attendance is belong to avent
+   * @return
+   */
+  public function event()
+  {
+    return $this->belongsTo('App\Models\Event');
+  }
+
 }
