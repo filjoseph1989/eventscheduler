@@ -1,4 +1,8 @@
 To Do:
+  ☐ Issue 71: Go to this line and read the note
+  ☐ Issue 70: Problem karun inig sent sa email, wala siya subject
+  ☐ Issue 69: Remove Route::get('mail','MailController@index');
+  ☐ Issue 68: When attending to an event, that event should be approved already
   ☐ Issue 67: Dapat naa button sa event para mag generate of event attendance sheet, if the user click on list of event, then click on event, the event details
                 should have button in it for generating attendance sheet
   ☐ Issue 66: Email address use to send email which is "janicalizdeguzman@gmail.com" should be replace by official email when live
