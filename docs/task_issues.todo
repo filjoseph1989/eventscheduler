@@ -1,5 +1,5 @@
 To Do:
-  ☐ Issue 71: Dapat dili balik-balik ang ma save nga user and event to user_attendance table
+  ☐ Issue 71: Dapat dili balik-balik ang ma save nga user and event to user_attendance table 
   ☐ Issue 71: Go to this line and read the note
   ☐ Issue 70: Problem karun inig sent sa email, wala siya subject
   ☐ Issue 69: Remove Route::get('mail','MailController@index');
