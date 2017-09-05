@@ -1,4 +1,6 @@
 To Do:
+  ☐ Issue 67: Dapat naa button sa event para mag generate of event attendance sheet, if the user click on list of event, then click on event, the event details
+                should have button in it for generating attendance sheet
   ☐ Issue 66: Email address use to send email which is "janicalizdeguzman@gmail.com" should be replace by official email when live
   ☐ Issue 65: User attendance on organization head account has problem
   ☐ Issue 64: Generate attendance should be part of the event menu

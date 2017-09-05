@@ -32,9 +32,9 @@ class GenerateAttendanceController extends Controller
      * @param  int $id Organization ID
      * @return Object Response
      */
-      public function index()
-      {
-        # Get the organization of the adviser
+    public function index()
+    {
+        # Get the organization of the organization head
         $org = OrganizationGroup::with('organization')
           ->where('user_id', '=', Auth::user()->id)
           ->get();
@@ -42,30 +42,7 @@ class GenerateAttendanceController extends Controller
         $login_type = 'user';
         return view('pages/users/organization-head/events/org-list', compact(
           'org', 'login_type'
-        ));
-
-      // # Get the user belong to an organization
-      // $attendance = OrganizationGroup::with(['user', 'organization'])
-      //   ->where('organization_id', '=', $id)
-      //   ->get();
-      //
-      // # Get the status of the user attendance
-      // $att_sheet = UserAttendance::where('event_id', '=', $eid)->get();
-      // $att       = [];
-      // foreach ($att_sheet as $key => $value) {
-      //   $att[$value->user_id] = $value->confirmation;
-      // }
-      //
-      // $login_type = 'user';
-      // return view(
-      //   'pages.users.organization-head.calendars.generate_attendance.attendance',
-      //   compact(
-      //     'login_type',
-      //     'attendance',
-      //     'eid',
-      //     'att'
-      //   )
-      // );
+        )); 
     }
 
     /**
