@@ -181,7 +181,9 @@ class EventController extends Controller
     public function show($id = null)
     {
       # Get the events from organiation ID
-      $event = Event::where('organization_id', '=', $id)->get();
+      $event = Event::where('organization_id', '=', $id)
+        ->where('approve_status', '=', 'approved')
+        ->get();
 
       $login_type = 'user';
       return view('pages/users/organization-adviser/calendars/events/list_for_attendance', compact(
