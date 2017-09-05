@@ -6,14 +6,14 @@ To Do:
   ☐ Issue 67: Dapat naa button sa event para mag generate of event attendance sheet, if the user click on list of event, then click on event, the event details
                 should have button in it for generating attendance sheet
   ☐ Issue 66: Email address use to send email which is "janicalizdeguzman@gmail.com" should be replace by official email when live
-  ☐ Issue 65: User attendance on organization head account has problem
+  ✔ Issue 65: User attendance on organization head account has problem @done (9/5/2017, 9:36:51 PM)
   ☐ Issue 64: Generate attendance should be part of the event menu
   ☐ Issue 63: A registered member should also input there academic class schedule to prevent conflict
   ☐ Issue 62: Is it posible for laravel to use those registered facebook account to be automatically added/invited in an organizations facebook page?
   ☐ Issue 61: Real time notification or the system notify live for those event that are approved
   ☐ Issue 60: Event to be display in calendar should be limited to the current year
   ☐ Issue 59: Go to this line
-  ☐ Issue 58: When creating an event, and it happens that, social media is turn off, additional message should not be required
+  ☐ Issue 58: When creating an event, and it happens that, social media is turn on, additional message should not be required
   ✔ Issue 57: Those ajax route in adviser account, make it a separate route from the adviser @done (8/30/2017, 11:31:18 AM)
   ☐ Issue 56: Go to this line
   ☐ Issue 55: Go to this line
