@@ -100,7 +100,6 @@ class EventController extends Controller
 
     /**
      * Receive passed data and create new event
-     * Issue 40: This method can be combine with self::myNewEvent()
      *
      * @param  \Illuminate\Http\Request  $data
      * @return \Illuminate\Http\Response
