@@ -74,7 +74,7 @@ class EventCategoryController extends Controller
     public function showRegisterForm()
     {
         $login_type = 'admin';
-        return view('pages.forms.users.event-category-register', compact('login_type'));
+          return view('pages.forms.users.event-category-register', compact('login_type'));
     }
     /**
      * Show the form for editing the specified resource.

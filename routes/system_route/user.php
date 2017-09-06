@@ -46,7 +46,7 @@ Route::prefix('users')->group(function() {
     Route::name('org-adviser.calendar.within')->get('/calendar/within', 'OrganizationAdviser\CalendarController@calendarWithin');
     Route::name('org-adviser.calendar')->get('/calendar/{id?}', 'OrganizationAdviser\CalendarController@calendar');
     Route::name('org-adviser.manage-schedule')->get('/manage-schedule', 'OrganizationAdviser\EventController@manageSchedule');
-    Route::name('org-adviser.manage-notification')->get('/manage-schedule', 'OrganizationAdviser\EventController@manageNotification');
+    Route::name('org-adviser.manage-notification')->get('/manage-notification', 'OrganizationAdviser\EventController@manageNotification');
   });
 
   # Route for organization head
