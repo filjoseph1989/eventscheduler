@@ -89,7 +89,10 @@ $(document).on('click', '.event-details', function() {
     "<tr><td>Approve?</td><td data-name='approve' data-event-id='"+id+"'>" + data.approve_status + "</td></tr>" +
     "<tr><td>Semester</td><td data-name='semester' data-event-id='"+id+"'>" + data.semester + " Semester</td></tr>" +
     "<tr><td>Semester</td><td data-name='semester' data-event-id='"+id+"'>" + data.notify_via_twitter + "</td></tr>" +
-    // "<tr><td>This <button name="nada">button</button> does nothing.</td></tr>" wala na ko kabalo 
+    "<tr><td><button name='notify_via_twitter'>Notify via twitter</button></td></tr>" +
+    "<tr><td><button name='notify_via_facebook'>Notify via facebook</button></td></tr>" +
+    "<tr><td><button name='notify_via_email'>Notify via email</button></td></tr>" +
+    "<tr><td><button name='notify_via_sms'>Notify via sms</button></td></tr>" +
     "<tr><td>APPROVERS</td><td></td></tr>";
 
     $('#event-details-body tbody').html(html);
