@@ -15,10 +15,10 @@ Route::prefix('users')->group(function() {
   Route::name('ajax.get.event.personal.list')->post('/get/personal/event', 'JsonController@getPersonalEvent');
   Route::name('ajax.update.event.personal.list')->post('/update/personal/event', 'JsonController@updatePersonalEvent');
   Route::name('ajax.update.event.list')->post('/update/event', 'JsonController@updateEvent');
-  Route::name('ajax.get.event.approvers')->post('/get/approver', 'JsonController@getApprover'); 
+  Route::name('ajax.get.event.approvers')->post('/get/approver', 'JsonController@getApprover');
 
   # Include other routing in "routes\system_route\user\user-sub.php"
-  require_once 'user/user-sub.php'; 
+  require_once 'user/user-sub.php';
 
   # Route for organization adviser
   Route::prefix('org-adviser')->group(function() {
@@ -46,7 +46,8 @@ Route::prefix('users')->group(function() {
     Route::name('org-adviser.calendar.within')->get('/calendar/within', 'OrganizationAdviser\CalendarController@calendarWithin');
     Route::name('org-adviser.calendar')->get('/calendar/{id?}', 'OrganizationAdviser\CalendarController@calendar');
     Route::name('org-adviser.manage-schedule')->get('/manage-schedule', 'OrganizationAdviser\EventController@manageSchedule');
-  }); 
+    Route::name('org-adviser.manage-notification')->get('/manage-schedule', 'OrganizationAdviser\EventController@manageNotification');
+  });
 
   # Route for organization head
   Route::prefix('org-head')->group(function() {
@@ -95,7 +96,7 @@ Route::prefix('users')->group(function() {
     Route::name('org-member.org-profile')->get('/profile/{id}', 'OrganizationMember\OrganizationController@show');
     Route::name('org-member.org-edit')->get('/edit-org/{id}', 'OrganizationMember\OrganizationController@edit');
     Route::name('org-member.org-logo')->post('/change-logo', 'OrganizationMember\OrganizationController@uploadLogo');
-    Route::name('org-member.org-membership')->post('/org-membership', 'OrganizationMember\OrganizationGroupController@store'); 
+    Route::name('org-member.org-membership')->post('/org-membership', 'OrganizationMember\OrganizationGroupController@store');
   });
 
   Route::prefix('osa-personnel')->group(function() {

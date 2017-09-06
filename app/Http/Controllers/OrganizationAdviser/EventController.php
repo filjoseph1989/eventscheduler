@@ -30,7 +30,7 @@ class EventController extends Controller
 
     /**
      * Display the list of event
-     * 
+     *
      * @param  int $id Event ID
      * @return void
      */
@@ -433,6 +433,24 @@ class EventController extends Controller
         ->with([
           'login_type' => $login_type
         ]);
+    }
+
+    /**
+     * Manage notification
+     *
+     * @return void
+     */
+    public function manageNotification()
+    {
+      # Step to take
+
+      # 1. Get all event where the login user created
+      # 2. Display it in a table
+      # 3. click any of the event on the table
+      # 4. a modal should show up
+      # 5. in the modal, there the adviser should create notification, add custom message
+      #     or turn off event notification
+
     }
 
     /**
