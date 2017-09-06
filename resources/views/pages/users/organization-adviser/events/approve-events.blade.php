@@ -60,6 +60,9 @@
                     @if (isset($ev))
                       @foreach ($ev as $key => $value)
                         <tr data-id="{{ $value->id }}">
+                          <td>
+                            <a href="#" class="event-details" data-toggle="modal" data-target="#event-details">{{ str_limit($value->title, 12) }}</a>
+                          </td>
                           <td>{{ $value->org_name }}</td>
                           <td>{{ $value->title }}</td>
                           <td>{{ date("M d, Y", strtotime($value->date_start)) }}</td>

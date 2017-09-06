@@ -91,7 +91,7 @@ class EventController extends Controller
       return view('pages/users/organization-adviser/events/form', compact(
         'login_type',
         'event_type',
-        'event_category',
+        'event_category', //asa gikan ang unod ani?
         'organization'
       ));
     }

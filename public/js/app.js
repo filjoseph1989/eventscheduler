@@ -70,6 +70,7 @@ $(document).on('click', '.event-details', function() {
     data = data[0];
     data = editEventData(data);
 
+
     // Issue 46: This two can be combine
     html =
     "<tr><td>Title</td><td data-name='title' data-event-id='"+id+"'>" + data.title + "</td></tr>" +
@@ -87,6 +88,8 @@ $(document).on('click', '.event-details', function() {
     "<tr><td>Event Status</td><td data-name='status' data-event-id='"+id+"'>" + data.status + "</td></tr>" +
     "<tr><td>Approve?</td><td data-name='approve' data-event-id='"+id+"'>" + data.approve_status + "</td></tr>" +
     "<tr><td>Semester</td><td data-name='semester' data-event-id='"+id+"'>" + data.semester + " Semester</td></tr>" +
+    "<tr><td>Semester</td><td data-name='semester' data-event-id='"+id+"'>" + data.notify_via_twitter + "</td></tr>" +
+    // "<tr><td>This <button name="nada">button</button> does nothing.</td></tr>" wala na ko kabalo 
     "<tr><td>APPROVERS</td><td></td></tr>";
 
     $('#event-details-body tbody').html(html);
