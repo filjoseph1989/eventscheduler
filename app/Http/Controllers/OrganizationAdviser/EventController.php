@@ -30,8 +30,9 @@ class EventController extends Controller
 
     /**
      * Display the list of event
-     * @param  [type] $id [description]
-     * @return [type]     [description]
+     * 
+     * @param  int $id Event ID
+     * @return void
      */
     public function index($id = null)
     {
@@ -414,6 +415,24 @@ class EventController extends Controller
           }
         }
       }
+    }
+
+    /**
+     * Display the infor box for event management
+     *
+     * @return void
+     */
+    public function manageSchedule()
+    {
+      parent::loginCheck();
+
+      $this->adviser->isAdviser();
+
+      $login_type = "user";
+      return view('pages/users/organization-adviser/events/manange-schedule')
+        ->with([
+          'login_type' => $login_type
+        ]);
     }
 
     /**

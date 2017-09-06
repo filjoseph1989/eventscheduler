@@ -1,5 +1,5 @@
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-  <a href="{{ route('org-adviser.calendar') }}">
+  <a href="{{ route('org-adviser.manage-schedule') }}">
     <div class="info-box {{ session('color') }} hover-expand-effect">
       <div class="icon">
         <i class="material-icons">date_range</i>
