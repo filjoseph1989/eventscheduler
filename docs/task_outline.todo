@@ -486,6 +486,11 @@ Kaya ra man diba? Bale katong parehas sauna na
 Mu notify xa 1 week before,  then 3 days before,  then 1 day before, then on that event na gyud..
   ☐ Dili na tuh i set,  bale default nato xa na alert for every event.. Ddto nato xa pwede mabutang sa additional_msg_facebook, additional_msg_twitter(idungag pa nako ni sa migration og seeder),
 additional_msg_sms
+☐ dapat dili ma edit sa adviser ang pulic view, og among orgs sa list of events
+☐ dapat dili ma edit sa member ang tanan events sa list of events
+☐ dapat dili ma edit sa org head ang events sa public view sa list of events
+☐ dapat dili ma edit sa OSA ang events sa within orgs sa list of events
+
 
 Tapos kailangan pa ba magbuhat og another table dili na?
 Unsaon nato pag indicate og kuha sa event para malaman na 1 week to go,  3 days to go,  1 day to go,  og today na tung event? Unsay algorithm nato ana?
