@@ -89,7 +89,7 @@ class SendNotifications extends Command
 
         # Send an email to user
         # Send an email to user
-        $beautymail->send('emails.mail', ['event' => $value], function($message)
+        $beautymail->send('emails.mail1', ['event' => $value], function($message)
         { 
           foreach ($this->emails as $key => $email) {
             $message 
