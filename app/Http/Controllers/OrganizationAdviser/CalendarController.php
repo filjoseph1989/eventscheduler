@@ -9,6 +9,7 @@ use App\Library\OrgAdviserLibrary as Adviser;
 
 # Model
 use App\Models\OrganizationGroup;
+use App\Models\User;
 use App\Models\Event;
 
 class CalendarController extends Controller
@@ -45,7 +46,6 @@ class CalendarController extends Controller
     $this->adviser->isAdviser();
 
     $login_type = "user";
-
     # Display the calendar
     return view('pages/users/organization-adviser/calendars/my-org-calendar', compact(
       'id', 'login_type'

@@ -40,6 +40,9 @@
                 <h2> LIST OF EVENTS that needs your approval </h2>
               </div>
               <div class="body">
+                <div class="">
+                <p><b>(Click an event to view details and edit notification settings)</b></p>
+              </div>
                 <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                   <thead>
                     <tr>

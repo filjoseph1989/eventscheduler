@@ -84,11 +84,9 @@ class EventController extends Controller
 
       $login_type     = 'user';
       $event_type     = EventType::all()->except(1);
-      $event_category = EventCategory::all()->except(4);
       $organization   = OrganizationAdviserGroup::with('organization')
         ->where('organization_adviser_groups.user_id', '=', Auth::user()->id)
         ->get();
-
       return view('pages/users/organization-adviser/events/form', compact(
         'login_type',
         'event_type',
@@ -185,7 +183,7 @@ class EventController extends Controller
         ->get();
 
       $login_type = 'user';
-      return view('pages/users/organization-adviser/calendars/events/list_for_attendance', compact(
+      return view('pages/users/organization-adviser/events/list_for_attendance', compact(
         'event', 'login_type'
       ));
     }

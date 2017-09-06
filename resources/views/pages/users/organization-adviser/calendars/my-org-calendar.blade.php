@@ -25,17 +25,31 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> Calendar </h2>
+                <h2>
+                  Calendar
+                </h2>
                 <ul class="header-dropdown m-r--5">
+                  <li>
+                    <form class="" action="{{ route('org-adviser.event.new') }}" method="get">
+                      {{ csrf_field() }}
+                      <button type="submit" class="btn btn-success" name="button">Create Within Organization Event</button>
+                    </form>
+                  </li>
+                  <li>
+                    <form class="" action="{{ route('org-adviser.my.new.event') }}" method="get">
+                      {{ csrf_field() }}
+                      <button type="submit" class="btn btn-success" name="button">Create My Event</button>
+                    </form>
+                  </li>
                   <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                       <i class="material-icons">more_vert</i>
                     </a>
                     <ul class="dropdown-menu pull-right calendar-options">
-                      <li><a href="#" id="public">Public View</a></li>
-                      <li><a href="{{ route('org-adviser.calendar.within') }}">Within Organization</a></li>
-                      <li><a href="#" id="personal-public">Personal Event (Public)</a></li>
-                      <li><a href="#" id="personal-private">Personal Event (Private)</a></li>
+                      <li><a name=public href="#" id="public">Public View</a></li>
+                      <li><a name=within href="{{ route('org-adviser.calendar.within') }}">Within Organization</a></li>
+                      <li><a name=ppersonal href="#" id="personal-public">Personal Event (Public)</a></li>
+                      <li><a name=pprivate href="#" id="personal-private">Personal Event (Private)</a></li>
                     </ul>
                   </li>
                 </ul>
