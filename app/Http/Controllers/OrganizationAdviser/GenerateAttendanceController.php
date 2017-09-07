@@ -103,9 +103,20 @@ class GenerateAttendanceController extends Controller
       }
 
       $login_type = 'user';
-      return view('pages/users/organization-adviser/calendars/events/attendance', compact( 
-        'login_type', 'attendance', 'eid', 'att' 
+      return view('pages/users/organization-adviser/calendars/events/attendance', compact(
+        'login_type', 'attendance', 'eid', 'att'
       ));
+    }
+
+    public function generateAttendance(){
+      parent::loginCheck();
+
+      $this->adviser->isAdviser();
+      $login_type = 'user';
+      return view('pages/users/organization-adviser/calendars/events/generate-attendance-menu', compact(
+        'login_type'
+      ));
+
     }
 
     /**

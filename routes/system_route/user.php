@@ -49,6 +49,7 @@ Route::prefix('users')->group(function() {
     Route::name('org-adviser.manage-notification-menu')->get('/manage-notification-menu', 'OrganizationAdviser\EventController@manageNotificationMenu');
     Route::name('org-adviser.manage-notification')->get('/manage-notification', 'OrganizationAdviser\EventController@manageNotification');
     Route::name('org-adviser.update-notification')->post('/update-notification', 'OrganizationAdviser\EventController@updateNotification');
+    Route::name('org-adviser.generate-attendance')->post('/generate-attendance', 'OrganizationAdviser\EventController@generateAttendance');
   });
 
   # Route for organization adviser

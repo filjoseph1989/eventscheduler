@@ -1,8 +1,8 @@
 Follow Control Flow in the docs
 
 ☐Org Adviser Account:
-  ✔ Manage Schedule: @done(2017-09-05 04:13) @project(☐Org Adviser Account)
     ✔ Public View @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
+    ✔ Manage Schedule: @done(2017-09-05 04:13) @project(☐Org Adviser Account)
       ✔ Calendar @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
       ✔ Create My Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
       ✔ Create Within Organization Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
@@ -19,11 +19,12 @@ Follow Control Flow in the docs
       ✔ Create My Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
       ✔ Create Within Organization Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
   ☐ Generate Attendance:
-    ☐ List of Events
-      ☐ Generate Expected Attendance
-      ☐ Generate Confirmed Attendance
-      ☐ Confirm Org Members' Attendance
-      ☐ Confirm My Attendance
+    ✔ my advisee organization @done(2017-09-08 04:08) @project(☐Org Adviser Account / ☐ Generate Attendance)
+      ✔ List of Events @done(2017-09-08 04:08) @project(☐Org Adviser Account / ☐ Generate Attendance)
+        ☐ Generate Expected Attendance
+        ☐ Generate Confirmed Attendance
+        ☐ Confirm Org Members' Attendance
+        ☐ Confirm My Attendance
   ☐ Manage Notifications:
     ☐ List of Events that needs your approval
       ☐ Approve Events
