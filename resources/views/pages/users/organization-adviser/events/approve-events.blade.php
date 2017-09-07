@@ -40,9 +40,6 @@
                 <h2> LIST OF EVENTS that needs your approval </h2>
               </div>
               <div class="body">
-                <div class="">
-                <p><b>(Click an event to view details and edit notification settings)</b></p>
-              </div>
                 <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                   <thead>
                     <tr>
@@ -73,9 +70,6 @@
                           <td>
                             <a href="{{ route('org-adviser.approved.event', [$value->id] ) }}" title="approve this event">
                               <i class="material-icons">thumb_up</i>
-                            </a>
-                            <a href="#" class="event-details" title="further details" data-toggle="modal" data-target="#event-details">
-                              <i class="material-icons">visibility</i>
                             </a>
                             <a href="{{ route('org-adviser.disapproved.event', [$value->id] ) }}" class="" title="disapprove this event">
                               <i class="material-icons">thumb_down</i>
