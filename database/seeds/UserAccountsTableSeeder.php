@@ -28,13 +28,6 @@ class UserAccountsTableSeeder extends Seeder
            'updated_at' => Carbon::now()->toDateTimeString(),
          ),
          array(
-           'name'           => 'organization-co-adviser',
-           'theme'          => 'theme-green',
-           'color'          => 'bg-green',
-           'created_at' => Carbon::now()->toDateTimeString(),
-           'updated_at' => Carbon::now()->toDateTimeString(),
-         ),
-         array(
            'name'           => 'organization-head',
            'theme'          => 'theme-brown',
            'color'          => 'bg-brown',
@@ -52,6 +45,13 @@ class UserAccountsTableSeeder extends Seeder
            'name'           => 'osa-personnel',
            'theme'          => 'theme-purple',
            'color'          => 'bg-purple',
+           'created_at' => Carbon::now()->toDateTimeString(),
+           'updated_at' => Carbon::now()->toDateTimeString(),
+         ),
+         array(
+           'name'           => 'organization-co-adviser',
+           'theme'          => 'theme-green',
+           'color'          => 'bg-green',
            'created_at' => Carbon::now()->toDateTimeString(),
            'updated_at' => Carbon::now()->toDateTimeString(),
          ),
