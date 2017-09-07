@@ -88,11 +88,9 @@ class EventController extends Controller
       $organization   = OrganizationAdviserGroup::with('organization')
         ->where('organization_adviser_groups.user_id', '=', Auth::user()->id)
         ->get();
+
       return view('pages/users/organization-adviser/events/form', compact(
-        'login_type',
-        'event_type',
-        'event_category', //asa gikan ang unod ani?
-        'organization'
+        'login_type', 'event_type', 'organization'
       ));
     }
 
@@ -442,15 +440,48 @@ class EventController extends Controller
      */
     public function manageNotification()
     {
-      # Step to take
+      parent::loginCheck();
 
-      # 1. Get all event where the login user created
-      # 2. Display it in a table
-      # 3. click any of the event on the table
-      # 4. a modal should show up
-      # 5. in the modal, there the adviser should create notification, add custom message
-      #     or turn off event notification
+      # is the adviser logged in?
+      $this->adviser->isAdviser();
 
+      # Get event created by the adiviser
+      $event = Event::where('user_id', Auth::user()->id)->get();
+
+      $login_type = "user";
+      return view('pages/users/organization-adviser/events/list0')->with([
+        'login_type' => $login_type,
+        'event'      => $event
+      ]);
+    }
+
+    /**
+     * Update event notifications
+     *
+     * @param  Request $data Event Informations
+     * @return void
+     */
+    public function updateNotification(Request $data)
+    {
+      parent::loginCheck();
+
+      # is the adviser logged in?
+      $this->adviser->isAdviser();
+
+      $request = $data->only(
+        'notify_via_facebook', 'notify_via_twitter',
+        'notify_via_email', 'notify_via_sms',
+        'additional_msg_facebook', 'additional_msg_sms',
+        'additional_msg_email'
+      );
+
+      # Finally create events
+      $result = Event::find($data->event_id);
+      $result = $result->update($request);
+
+      if ($result) {
+        return back()->with('status', 'Successfuly updated notifications');
+      }
     }
 
     /**

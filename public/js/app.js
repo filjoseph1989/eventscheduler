@@ -1,6 +1,6 @@
 /**
  * App.js
- * @version 0.28
+ * @version 0.29
  */
 
 /**
@@ -145,6 +145,29 @@ $(document).on('click', '.event-details', function() {
 });
 
 /**
+ * Display the required information for
+ * managing notification for each event click
+ *
+ * @return void
+ */
+$(document).on('click', '.event-details-notification', function() {
+  var id = $(this).data('event-id');
+  $('#event_id').val(id);
+
+  var data = {
+    id : id
+  };
+
+  var url = route('ajax.get.event.list').replace('localhost', window.location.hostname);
+  submit(data, url, function(event) {
+    var event = event[0];
+    $('#additional_msg_facebook').html(event.additional_msg_facebook);
+    $('#additional_msg_email').html(event.additional_msg_email);
+    $('#additional_msg_sms').html(event.additional_msg_sms);
+  });
+});
+
+/**
  * Reruen table row of personal event
  * @return {}
  */
@@ -247,6 +270,10 @@ $(document).on('click', '.confirmed', function() {
   });
 });
 
+/**
+ * Can't attend function
+ * @return void
+ */
 $(document).on('click', '#cant-attend', function() {
   $('#cant-attend').hide();
   $('#cant-attend-submit').removeClass('hidden');
