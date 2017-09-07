@@ -88,11 +88,10 @@ $(document).on('click', '.event-details', function() {
     "<tr><td>Event Status</td><td data-name='status' data-event-id='"+id+"'>" + data.status + "</td></tr>" +
     "<tr><td>Approve?</td><td data-name='approve' data-event-id='"+id+"'>" + data.approve_status + "</td></tr>" +
     "<tr><td>Semester</td><td data-name='semester' data-event-id='"+id+"'>" + data.semester + " Semester</td></tr>" +
-    "<tr><td>Semester</td><td data-name='semester' data-event-id='"+id+"'>" + data.notify_via_twitter + "</td></tr>" +
-    "<tr><td><button name='notify_via_twitter'>Notify via twitter</button></td></tr>" +
-    "<tr><td><button name='notify_via_facebook'>Notify via facebook</button></td></tr>" +
-    "<tr><td><button name='notify_via_email'>Notify via email</button></td></tr>" +
-    "<tr><td><button name='notify_via_sms'>Notify via sms</button></td></tr>" +
+    "<tr><td><div class='switch'><label>OFF<input type='checkbox' name='notify_via_facebook' checked><span class='lever switch-col-indigo'></span>ON</label> Facebook</div></td></tr>"+
+    "<tr><td><div class='switch'><label>OFF<input type='checkbox' name='notify_via_twitter' checked><span class='lever switch-col-blue'></span>ON</label> Twitter</div></td></tr>"+
+    "<tr><td><div class='switch'><label>OFF<input type='checkbox' name='notify_via_sms' checked><span class='lever switch-col-pink'></span>ON</label> SMS</div></td></tr>"+
+    "<tr><td><div class='switch'><label>OFF<input type='checkbox' name='notify_via_email' checked><span class='lever switch-col-teal'></span>ON</label> Email</div></td></tr>"+
     "<tr><td>APPROVERS</td><td></td></tr>";
 
     $('#event-details-body tbody').html(html);
@@ -377,6 +376,10 @@ function editEventData(data) {
   data.date_start_time         = formatTime(data.date_start_time);
   data.date_end                = data.date_end == undefined ? "" : formatDate(data.date_end);
   data.date_end_time           = data.date_end_time == undefined ? "" : formatTime(data.date_end_time);
+  data.notify_via_sms          = data.notify_via_sms;
+  data.notify_via_twitter      = data.notify_via_twitter;
+  data.notify_via_facebook     = data.notify_via_facebook;
+  data.notify_via_email        = data.notify_via_email;
   data.additional_msg_email    = data.additional_msg_email == undefined ? "" : data.additional_msg_email;
   data.additional_msg_facebook = data.additional_msg_facebook == undefined ? "" : data.additional_msg_facebook;
   data.additional_msg_sms      = data.additional_msg_sms == undefined ? "" : data.additional_msg_sms;
