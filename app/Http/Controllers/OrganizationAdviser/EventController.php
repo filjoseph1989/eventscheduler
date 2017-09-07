@@ -446,10 +446,27 @@ class EventController extends Controller
       $this->adviser->isAdviser();
 
       # Get event created by the adiviser
-      $event = Event::where('user_id', Auth::user()->id)->get();
+      $event = Event::where('user_id', Auth::user()->id)->where('event_category_id', 2)->get();
 
       $login_type = "user";
       return view('pages/users/organization-adviser/events/list0')->with([
+        'login_type' => $login_type,
+        'event'      => $event,
+      ]);
+    }
+
+    public function manageNotificationMenu()
+    {
+      parent::loginCheck();
+
+      # is the adviser logged in?
+      $this->adviser->isAdviser();
+
+      # Get event created by the adiviser
+      $event = Event::where('user_id', Auth::user()->id)->get();
+
+      $login_type = "user";
+      return view('pages/users/organization-adviser/events/manage-notif-menu')->with([
         'login_type' => $login_type,
         'event'      => $event
       ]);
