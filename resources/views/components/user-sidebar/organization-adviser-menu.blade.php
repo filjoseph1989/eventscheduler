@@ -1,4 +1,3 @@
-
 <li>
   <a href="javascript:void(0);" class="menu-toggle">
     <i class="material-icons">date_range</i>
@@ -6,7 +5,7 @@
   </a>
   <ul class="ml-menu">
     <li>
-      <a href="{{ route('org.adviser.org-list') }}">
+      <a href="{{ route('org-adviser.org-list') }}">
         <span>List of organizations</span>
       </a>
     </li>
