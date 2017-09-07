@@ -43,7 +43,7 @@ class OrgCoAdviserLibrary extends Controller
    */
   public function isCoAdviser()
   {
-    if ( ! parent::isOrgAdviser()) {
+    if ( ! parent::isCoAdviser()) {
       header('Location: '.action('HomeController@index'));
       exit;
     }

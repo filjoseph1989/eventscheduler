@@ -52,18 +52,7 @@ class HomeController extends Controller
         ->with('status', 'Your registration is not yet complete. </br> Please wait for the confirmation of your account of the administrator');
     }
   }
-
-  /**
-   * ! Deprecated
-   *
-   * @return [type] [description]
-   */
-  public function sendNotification()
-  {
-    $result = User::send();
-    echo "Good Job, you poster on facebook!! yeeeeey";
-  }
-
+   
   /**
    * Return the status of the loggedin user
    * @return boolean

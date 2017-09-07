@@ -79,6 +79,17 @@ class Controller extends BaseController
     }
 
     /**
+     * Check if the user who currently loggedin
+     * is the co-adviser
+     *
+     * @return boolean
+     */
+    protected function isCoAdviser()
+    {
+      return self::accountCheck(6);
+    }
+
+    /**
      * Check if the account is an approver
      *
      * @return boolean

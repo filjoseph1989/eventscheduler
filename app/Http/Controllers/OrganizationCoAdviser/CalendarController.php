@@ -5,7 +5,7 @@ namespace App\Http\Controllers\OrganizationCoAdviser;
 use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Library\OrgAdviserLibrary as Adviser;
+use App\Library\OrgCoAdviserLibrary as Adviser;
 
 # Model
 use App\Models\OrganizationGroup;

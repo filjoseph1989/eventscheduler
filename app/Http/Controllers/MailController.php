@@ -62,17 +62,15 @@ class MailController extends Controller
         self::gatheringEmails($attendance);
 
         # Send an email to user
-        $beautymail->send('emails.mail', ['event' => $value], function($message)
+        $result = $beautymail->send('emails.mail', ['event' => $value], function($message)
         { 
           foreach ($this->emails as $key => $email) {
             $message 
               ->to($email, $this->name[$key]) 
               ->subject('You have a new event reminder!'); 
           }
-        });
+        }); 
       }
-      
-      // Mail::to($email)->send(new EmailNotification($value));
     }
 
     /**
