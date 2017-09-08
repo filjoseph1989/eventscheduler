@@ -32,7 +32,8 @@ class Kernel extends ConsoleKernel
       # and we need to determine if the day's difference in start date is
       # 3 days, 2 days and 1 day
 
-      $schedule->command('SendNotifications:notification')->everyMinute();
+      $schedule->command('SendNotifications:notification')->weekly();
+      $schedule->command('SendNotifications:notification')->daily();
     }
 
     /**
