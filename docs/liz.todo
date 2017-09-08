@@ -26,13 +26,13 @@ Follow Control Flow in the docs
         ✔ Generate Declined Attendance @done(2017-09-09 05:51) @project(☐Org Adviser Account / ☐ Generate Attendance)
         ✔ Confirm Org Members' Attendance @done(2017-09-08 04:26) @project(☐Org Adviser Account / ☐ Generate Attendance)
   ☐ Manage Notifications:
-    ☐ List of Events that needs your approval
-      ☐ Approve Events
-      ☐ Edit Within Event Notifications Settings
-        ☐ Twitter (on/off)
-        ☐ Facebook (on/off)
-        ☐ Email (on/off)
-        ☐ SMS (on/off)
+    ✔ List of Events that needs your approval @done(2017-09-09 06:00) @project(☐Org Adviser Account / ☐ Manage Notifications)
+      ✔ Approve Events @done(2017-09-09 06:00) @project(☐Org Adviser Account / ☐ Manage Notifications)
+      ✔ Edit Within Event Notifications Settings @done(2017-09-09 06:00) @project(☐Org Adviser Account / ☐ Manage Notifications)
+        ✔ Twitter (on/off) @done(2017-09-09 06:00) @project(☐Org Adviser Account / ☐ Manage Notifications)
+        ✔ Facebook (on/off) @done(2017-09-09 06:00) @project(☐Org Adviser Account / ☐ Manage Notifications)
+        ✔ Email (on/off) @done(2017-09-09 06:00) @project(☐Org Adviser Account / ☐ Manage Notifications)
+        ✔ SMS (on/off) @done(2017-09-09 06:00) @project(☐Org Adviser Account / ☐ Manage Notifications)
 
 ☐Org Co-Adviser Account:
   ☐ Manage Schedule:
