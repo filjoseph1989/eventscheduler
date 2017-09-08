@@ -49,7 +49,14 @@ Route::prefix('users')->group(function() {
     Route::name('org-adviser.manage-notification-menu')->get('/manage-notification-menu', 'OrganizationAdviser\EventController@manageNotificationMenu');
     Route::name('org-adviser.manage-notification')->get('/manage-notification', 'OrganizationAdviser\EventController@manageNotification');
     Route::name('org-adviser.update-notification')->post('/update-notification', 'OrganizationAdviser\EventController@updateNotification');
-    Route::name('org-adviser.generate-attendance')->post('/generate-attendance', 'OrganizationAdviser\EventController@generateAttendance');
+    Route::name('org-adviser.generate-attendance')->get('/generate-attendance', 'OrganizationAdviser\GenerateAttendanceController@generateAttendance');
+    Route::name('org-adviser.generate-expected-attendance')->get('/generate-expected-attendance/{id?}', 'OrganizationAdviser\GenerateAttendanceController@generateExpectedAttendanceEventList');
+    Route::name('org-adviser.generate-expected-attendance-org-list')->get('/generate-expected-attendance-org-list', 'OrganizationAdviser\GenerateAttendanceController@expectedAttendance');
+    Route::name('org-adviser.generate-confirmed-attendance')->get('/generate-confirmed-attendance/{id?}', 'OrganizationAdviser\GenerateAttendanceController@generateConfirmedAttendanceEventList');
+    Route::name('org-adviser.generate-confirmed-attendance-org-list')->get('/generate-confirmed-attendance-org-list', 'OrganizationAdviser\GenerateAttendanceController@confirmedAttendance');
+    Route::name('org-adviser.expected-attendance')->get('/declined-list/{id}/{eid}', 'OrganizationAdviser\GenerateAttendanceController@expectedList');
+    Route::name('org-adviser.confirmed-attendance')->get('/confirmed-list/{id}/{eid}', 'OrganizationAdviser\GenerateAttendanceController@confirmedList');
+
   });
 
   # Route for organization adviser

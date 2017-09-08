@@ -30,20 +30,20 @@
 
         <div class="row clearfix">
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <a href="#">
+            <a href="{{ route('org-adviser.generate-expected-attendance-org-list') }}">
               <div class="info-box hover-expand-effect">
               <div class="icon bg-teal">
                 <i class="material-icons">date_range</i>
               </div>
               <div class="content">
                 <div class="text">Generate</div>
-                <div class="number">Expected Attendance</div>
+                <div class="number">Declined Attendance</div>
               </div>
             </div>
             </a>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <a href="#">
+            <a href="{{ route('org-adviser.generate-confirmed-attendance-org-list') }}">
               <div class="info-box hover-expand-effect">
               <div class="icon bg-green">
                 <i class="material-icons">date_range</i>
@@ -62,21 +62,8 @@
                 <i class="material-icons">date_range</i>
               </div>
               <div class="content">
-                <div class="text">Confirm</div>
-                <div class="number">Members' Event Attendance/s</div>
-              </div>
-            </div>
-            </a>
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <a href="#">
-              <div class="info-box hover-expand-effect">
-              <div class="icon bg-light-green">
-                <i class="material-icons">date_range</i>
-              </div>
-              <div class="content">
-                <div class="text">Confirm</div>
-                <div class="number">My Event Attendance/s</div>
+                <div class="text">Confirm and View Organization Members'</div>
+                <div class="number">Event Expected Attendance/s</div>
               </div>
             </div>
             </a>

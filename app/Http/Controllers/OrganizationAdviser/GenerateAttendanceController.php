@@ -11,9 +11,10 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserAttendance;
 use App\Models\OrganizationGroup;
+use App\Models\Event;
 
 class GenerateAttendanceController extends Controller
-{
+  {
     private $adviser;
 
     /**
@@ -119,6 +120,152 @@ class GenerateAttendanceController extends Controller
 
     }
 
+    public function expectedAttendance()
+    {
+      # Get the organization of the adviser
+      $org = OrganizationGroup::with('organization')
+        ->where('user_id', '=', Auth::user()->id)
+        ->get();
+
+      $login_type = 'user';
+      return view('pages/users/organization-adviser/generate-attendance/expected-attendance-org-list', compact(
+        'org', 'login_type'
+      ));
+    }
+    public function confirmedAttendance()
+    {
+      # Get the organization of the adviser
+      $org = OrganizationGroup::with('organization')
+        ->where('user_id', '=', Auth::user()->id)
+        ->get();
+
+      $login_type = 'user';
+      return view('pages/users/organization-adviser/generate-attendance/confirmed-attendance-org-list', compact(
+        'org', 'login_type'
+      ));
+    }
+
+
+    public function generateExpectedAttendance(){
+      parent::loginCheck();
+
+      $this->adviser->isAdviser();
+      $login_type = 'user';
+      $org = OrganizationAdviserGroup::with('organization')
+        ->where('user_id', Auth::user()->id)
+        ->get();
+
+      # Get members
+      if (isset($org[0])) {
+        $org    = $org[0];
+        $member = OrganizationGroup::getMembers($org->organization_id);
+      } else {
+        $org = false;
+      }
+
+      $login_type = 'user';
+      return view('pages/users/organization-adviser/generate-attendance/generate-expected-attendance', compact(
+        'org', 'login_type', 'member'
+      ));
+    }
+
+    public function generateConfirmedAttendanceEventList(){
+
+      $event = Event::where('organization_id', '=', $id)
+      ->where('approve_status', '=', 'approved')
+      ->get();
+
+      $login_type = 'user';
+      return view('pages\users\organization-adviser\generate-attendance\confirmed_event_list_for_attendance', compact(
+        'event', 'login_type'
+      ));
+    }
+
+    public function generateExpectedAttendanceEventList($id = null){
+
+      $event = Event::where('organization_id', '=', $id)
+      ->where('approve_status', '=', 'approved')
+      ->get();
+
+      $login_type = 'user';
+      return view('pages\users\organization-adviser\generate-attendance\expected_event_list_for_attendance', compact(
+        'event', 'login_type'
+      ));
+    }
+
+
+    public function generateConfirmedAttendance($id = null){
+      parent::loginCheck();
+
+      $this->adviser->isAdviser();
+      $login_type = 'user';
+      $org = OrganizationAdviserGroup::with('organization')
+        ->where('user_id', Auth::user()->id)
+        ->get();
+
+      # Get members
+      if (isset($org[0])) {
+        $org    = $org[0];
+        $member = OrganizationGroup::getMembers($org->organization_id);
+      } else {
+        $org = false;
+      }
+
+      $login_type = 'user';
+      return view('pages/users/organization-adviser/generate-attendance/generate-confirmed-attendance', compact(
+        'org', 'login_type', 'member'
+      ));
+    }
+
+    public function expectedList($id, $eid)
+    {
+      parent::loginCheck();
+
+      $this->adviser->isAdviser();
+
+      # Get the user belong to an organization
+      $attendance = OrganizationGroup::with(['user', 'organization'])
+        ->where('organization_id', '=', $id)
+        ->get();
+
+
+      # Get the status of the user attendance
+      $att       = [];
+      $att_sheet = UserAttendance::where('event_id', '=', $eid)->where('status', 'false')->get();
+      foreach ($att_sheet as $key => $value) {
+        $att[$value->user_id] = $value->status;
+      }
+
+      $login_type = 'user';
+      return view('pages/users/organization-adviser/generate-attendance/expected-attendance', compact(
+        'login_type', 'attendance', 'eid', 'att'
+      ));
+    }
+    public function confirmedList($id, $eid)
+    {
+      parent::loginCheck();
+
+      $this->adviser->isAdviser();
+
+      # Get the user belong to an organization
+      $attendance = OrganizationGroup::with(['user', 'organization'])
+        ->where('organization_id', '=', $id)
+        ->get();
+
+      # Get the status of the user attendance
+      $att       = [];
+      $att_sheet = UserAttendance::where('event_id', '=', $eid)->where('status', 'true')->get();
+      foreach ($att_sheet as $key => $value) {
+        $att[$value->user_id] = $value->status;
+      }
+
+      $login_type = 'user';
+      return view('pages/users/organization-adviser/generate-attendance/confirmed-attendance', compact(
+        'login_type', 'attendance', 'eid', 'att'
+      ));
+
+      //backlog: include in the blade the date and time that they confirmed
+    }
     /**
      * Show the form for editing the specified resource.
      *
