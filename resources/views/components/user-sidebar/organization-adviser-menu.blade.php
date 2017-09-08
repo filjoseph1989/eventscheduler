@@ -35,7 +35,7 @@
   </ul>
 </li>
 <li>
-  <a href="{{ route('org-adviser.attendance') }}">
+  <a href="{{ route('org-adviser.attendance-org-list') }}">
     <i class="material-icons">list</i>
     <span>Generate Attendance</span>
   </a>

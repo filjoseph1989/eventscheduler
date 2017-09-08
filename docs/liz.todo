@@ -20,8 +20,10 @@ Follow Control Flow in the docs
       ✔ Create Within Organization Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
   ☐ Generate Attendance:
     ✔ my advisee organization @done(2017-09-08 04:08) @project(☐Org Adviser Account / ☐ Generate Attendance)
-        ☐ Generate Expected Attendance
-        ☐ Generate Confirmed Attendance
+        ☐ Generate Expected Attendance (list of names expected to come)
+          ☐ confirmation(which is manipulated by head or adviser during the actual event)
+        ✔ Generate Confirmed Attendance @done(2017-09-09 05:51) @project(☐Org Adviser Account / ☐ Generate Attendance)
+        ✔ Generate Declined Attendance @done(2017-09-09 05:51) @project(☐Org Adviser Account / ☐ Generate Attendance)
         ✔ Confirm Org Members' Attendance @done(2017-09-08 04:26) @project(☐Org Adviser Account / ☐ Generate Attendance)
   ☐ Manage Notifications:
     ☐ List of Events that needs your approval
@@ -31,6 +33,7 @@ Follow Control Flow in the docs
         ☐ Facebook (on/off)
         ☐ Email (on/off)
         ☐ SMS (on/off)
+
 ☐Org Co-Adviser Account:
   ☐ Manage Schedule:
     ☐ Public View

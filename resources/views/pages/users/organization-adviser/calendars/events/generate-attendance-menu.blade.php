@@ -30,7 +30,7 @@
 
         <div class="row clearfix">
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <a href="{{ route('org-adviser.generate-expected-attendance-org-list') }}">
+            <a href="{{ route('org-adviser.generate-declined-attendance-org-list') }}">
               <div class="info-box hover-expand-effect">
               <div class="icon bg-teal">
                 <i class="material-icons">date_range</i>
@@ -56,7 +56,7 @@
             </a>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <a href="{{ route('org-adviser.attendance') }}">
+            <a href="{{ route('org-adviser.attendance-org-list') }}">
               <div class="info-box hover-expand-effect">
               <div class="icon bg-light-green">
                 <i class="material-icons">date_range</i>
