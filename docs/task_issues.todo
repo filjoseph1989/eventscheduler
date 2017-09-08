@@ -1,5 +1,7 @@
 To Do:
-  ☐ Issue 72: When reminding upcoming event, the system also must check if the event notification is turn on
+  ☐ Issue 74: Find alternative to beautymail because it break on laravel 5.5.3
+  ☐ Issue 73: Remove na ang MailController kay okay naman maka send naman event reminder pati sa route
+  ✔ Issue 72: When reminding upcoming event, the system also must check if the event notification is turn on @done(2017-09-08 12:22)
   ☐ Issue 71: Dapat dili balik-balik ang ma save nga user and event to user_attendance table
   ☐ Issue 71: Go to this line and read the note
   ☐ Issue 70: Problem karun inig sent sa email, wala siya subject
