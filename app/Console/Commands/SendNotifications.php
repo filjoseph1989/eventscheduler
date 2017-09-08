@@ -2,21 +2,14 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-// use App\Http\Controllers\MailController;
-
-
-use Auth;
+use Illuminate\Console\Command; 
 use Illuminate\Support\Facades\Mail;
-
-# MAiler
-use App\Mail\EmailNotification;
 
 # Models
 use App\Models\User;
 use App\Models\Event;
-use App\Models\OrganizationGroup;
 use App\Models\UserAttendance;
+use App\Models\OrganizationGroup;
 
 class SendNotifications extends Command
 {
