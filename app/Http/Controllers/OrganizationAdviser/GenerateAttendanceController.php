@@ -94,13 +94,25 @@ class GenerateAttendanceController extends Controller
       // $data['status']   = 'true';
       // $data['confirmation'] = 'true';
 
-      $result = UserAttendance::updateOrCreate(
-        ['event_id' => $request->eid, 'user_id' => $request->id],
-        ['reason' => '', 'status' => 'true', 'confirmation' => 'true']
-      );
-      if ($result) {
+      if($request->cid == 'true'){
+        $result = UserAttendance::updateOrCreate(
+          ['event_id' => $request->eid, 'user_id' => $request->id],
+          ['reason' => '', 'status' => 'false', 'confirmation' => 'false']
+        );
+      } else {
+        $result = UserAttendance::updateOrCreate(
+          ['event_id' => $request->eid, 'user_id' => $request->id],
+          ['reason' => '', 'status' => 'true', 'confirmation' => 'true']
+        );
+      }
+
+      if ($result->confirmation == 'true') {
         echo json_encode([
           'status' => true
+        ]);
+      } else {
+        echo json_encode([
+          'status' => false
         ]);
       }
     }
@@ -126,14 +138,16 @@ class GenerateAttendanceController extends Controller
 
       # Get the status of the user attendance
       $att       = [];
+      $cnf        = [];
       $att_sheet = UserAttendance::where('event_id', '=', $eid)->get();
       foreach ($att_sheet as $key => $value) {
         $att[$value->user_id] = $value->status;
+        $cnf[$value->user_id] = $value->confirmation;
       }
 
       $login_type = 'user';
       return view('pages/users/organization-adviser/calendars/events/attendance', compact(
-        'login_type', 'attendance', 'eid', 'att'
+        'login_type', 'attendance', 'eid', 'att' ,'cnf'
       ));
     }
 

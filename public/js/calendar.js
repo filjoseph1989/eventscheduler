@@ -19,9 +19,9 @@ var global_start, global_end, calendar;
 $(document).ready(function() {
     $id = $('#my-organization').data('id');
     if ($id != undefined) {
-      displayEvent($id, 'within'); 
+      displayEvent($id, 'within');
     } else {
-      displayEvent(); 
+      displayEvent();
     }
     /**
      * If the user click on the input that has class

@@ -22,9 +22,9 @@ Follow Control Flow in the docs
       ✔ Create My Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
       ✔ Create Within Organization Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
   ☐ Generate Attendance:
-    ☐ my advisee organization
-        ☐ Generate Expected Attendance (list of names expected to come)
-          ☐ confirmation(which is manipulated by head or adviser during the actual event)
+    ✔ my advisee organization @done(2017-09-11 00:31) @project(☐Org Adviser Account / ☐ Generate Attendance)
+        ✔ Generate Expected Attendance (list of names expected to come) @done(2017-09-11 00:31) @project(☐Org Adviser Account / ☐ Generate Attendance)
+          ✔ confirmation(which is manipulated by head or adviser during the actual event) @done(2017-09-11 00:30) @project(☐Org Adviser Account / ☐ Generate Attendance)
         ✔ Generate Confirmed Attendance @done(2017-09-09 05:51) @project(☐Org Adviser Account / ☐ Generate Attendance)
         ✔ Generate Declined Attendance @done(2017-09-09 05:51) @project(☐Org Adviser Account / ☐ Generate Attendance)
         ✔ Confirm Org Members' Attendance @done(2017-09-08 04:26) @project(☐Org Adviser Account / ☐ Generate Attendance)
@@ -132,7 +132,10 @@ tasks:
               ✔ public  @done(2017-09-09 09:08) @project(☐Org Adviser Account)
               ☐ private (dapat ang makita lang niya kay iayahang personal private events)
       >  ☐ Generate Attendance:
-          ☐ my advisee organization
-              ☐ Generate Expected Attendance (list of names expected to come)
+          ✔ my advisee organization @done(2017-09-11 00:31) @project(tasks / >  ☐ Generate Attendance)
+              ✔ Generate Expected Attendance (list of names expected to come) @done(2017-09-11 00:31) @project(tasks / >  ☐ Generate Attendance)
                 ✔ confirmation(which is manipulated by head or adviser during the actual event) @done(2017-09-10 21:38) @project(tasks / >  ☐ Generate Attendance)
-                ☐ confirm and confirmed button, debug change right responsibly
+                ✔ confirm and confirmed button, debug change right responsibly @done(2017-09-11 00:30) @project(tasks / >  ☐ Generate Attendance)
+                ☐ unconfirm functionality must also work
+      >Manage Schedule:
+        ☐Calendar (dili clear and details: ang time dili klaro, include org and author) 
