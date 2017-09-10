@@ -118,3 +118,21 @@ Follow Control Flow in the docs
   ☐ Manage Notifications:
     ☐ List of Events that needs your approval
       ☐ Approve Events
+
+
+tasks:
+      next tasks: (Org-adivser account)
+      ✔filter confirm and confirmed button to take effect in confirmation field @done(2017-09-10 21:38) @project(tasks)
+      ☐make personal private calendar to be viewed only by the user
+      >  ☐ All Organizations Calendar
+            ☐ Calendar
+              ☐ include the author and org in the details
+      >  ☐ Personal Schedule Calendar
+            ☐ Calendar
+              ✔ public  @done(2017-09-09 09:08) @project(☐Org Adviser Account)
+              ☐ private (dapat ang makita lang niya kay iayahang personal private events)
+      >  ☐ Generate Attendance:
+          ☐ my advisee organization
+              ☐ Generate Expected Attendance (list of names expected to come)
+                ✔ confirmation(which is manipulated by head or adviser during the actual event) @done(2017-09-10 21:38) @project(tasks / >  ☐ Generate Attendance)
+                ☐ confirm and confirmed button, debug change right responsibly
