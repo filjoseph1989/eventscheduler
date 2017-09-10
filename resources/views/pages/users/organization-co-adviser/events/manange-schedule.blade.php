@@ -30,20 +30,20 @@
 
         <div class="row clearfix">
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <a href="{{ route('org-co-adviser.event.new') }}">
+            <a href="{{ route('org-co-adviser.calendar') }}">
               <div class="info-box hover-expand-effect">
-              <div class="icon bg-teal">
+              <div class="icon bg-light-green">
                 <i class="material-icons">date_range</i>
               </div>
               <div class="content">
-                <div class="text">Within Organization</div>
-                <div class="number">Create Event</div>
+                <div class="text">View</div>
+                <div class="number">Calendar</div>
               </div>
             </div>
             </a>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <a href="{{ route('org-co-adviser.my.new.event') }}">
+            <a href="{{ route('org-co.adviser.my.new.event') }}">
               <div class="info-box hover-expand-effect">
               <div class="icon bg-green">
                 <i class="material-icons">date_range</i>

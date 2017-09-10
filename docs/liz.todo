@@ -6,16 +6,19 @@ Follow Control Flow in the docs
       ✔ Calendar @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
       ✔ Create My Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
       ✔ Create Within Organization Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
-    ✔ All Organizations @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
-      ✔ Calendar @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
+    ☐ All Organizations Calendar
+      ☐ Calendar
+        ☐ include the author and org in the details
       ✔ Create My Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
-      ✔ Create Within Organization Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
+      ✔ Create Organization Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
     ✔ Within Organization @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
-      ✔ Calendar @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
+      ✔ Calendar @done(2017-09-09 09:12) @project(☐Org Adviser Account)
       ✔ Create My Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
       ✔ Create Within Organization Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
-    ✔ Personal Schedule @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
-      ✔ Calendar @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
+    ☐ Personal Schedule Calendar
+      ☐ Calendar
+        ✔ public  @done(2017-09-09 09:08) @project(☐Org Adviser Account)
+        ☐ private (dapat ang makita lang niya kay iayahang personal private events)
       ✔ Create My Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
       ✔ Create Within Organization Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
   ☐ Generate Attendance:
@@ -36,10 +39,11 @@ Follow Control Flow in the docs
 
 ☐Org Co-Adviser Account:
   ☐ Manage Schedule:
-    ☐ Public View
-      ☐ Calendar
+    ✔ Public View @done(2017-09-09 09:13) @project(☐Org Co-Adviser Account / ☐ Manage Schedule)
+      ✔ Calendar @done(2017-09-09 09:13) @project(☐Org Co-Adviser Account / ☐ Manage Schedule)
     ☐ All Organizations
       ☐ Calendar
+        ☐ include the author and org in the details
     ☐ Within Organization
       ☐ Calendar
     ☐ Personal Schedule
@@ -77,6 +81,7 @@ Follow Control Flow in the docs
         ☐ Facebook (on/off)
         ☐ Email (on/off)
         ☐ SMS (on/off)
+
 ☐Org Member Account:
   ☐ Manage Schedule:
     ☐ Public View

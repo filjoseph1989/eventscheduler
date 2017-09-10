@@ -5,7 +5,7 @@ namespace App\Http\Controllers\OrganizationCoAdviser;
 use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Library\OrgCoAdviserLibrary as Adviser;
+use App\Library\OrgCoAdviserLibrary as CoAdviser;
 
 # Model
 use App\Models\OrganizationGroup;
@@ -24,7 +24,7 @@ class CalendarController extends Controller
   public function __construct()
   {
     $this->middleware('web');
-    $this->co_adviser = new Adviser();
+    $this->co_adviser = new CoAdviser();
   }
 
   /**
@@ -43,7 +43,7 @@ class CalendarController extends Controller
     parent::loginCheck();
 
     # is co-adviser?
-    $this->co_adviser->isAdviser();
+    $this->co_adviser->isCoAdviser();
 
     $login_type = "user";
     # Display the calendar
@@ -63,7 +63,7 @@ class CalendarController extends Controller
     parent::loginCheck();
 
     # is co-adviser?
-    $this->co_adviser->isAdviser();
+    $this->co_adviser->isCoAdviser();
 
     $organization = OrganizationGroup::with('organization')
       ->where('user_id', '=', Auth::user()->id)
