@@ -263,15 +263,19 @@ $(document).on('click', '.confirmed', function() {
   _this = $(this);
   var id   = $(this).data('user-id');
   var eid  = $(this).data('event-id');
+  var cid  = $(this).data('cn-id');
   var url  = route('org-adviser.attendance.store').replace('localhost', window.location.hostname);
   var data = {
     id:  id,
-    eid: eid
+    eid: eid,
+    cid: cid
   }
 
   submit(data, url, function(data, _this) {
     if (data.status == true) {
       $(_this).html('Confirmed');
+    } else {
+      $(_this).html('Confirm');
     }
   });
 });
@@ -290,56 +294,23 @@ $(document).on('click', '#cant-attend', function() {
 /**
  * This will be used in sumitting request
  *
- * Explaination.
- *  As you can see, this function has three parameters
- *
- * @param  {object} data Data required for the request
- * @param {string} url Where to submit the request
- * @param {function} callback A function
- *
- * So here where using ajax
+ * @param  {object} data
+ * @param {string} url
+ * @return {void}
  */
 function submit(data, url, callback) {
   $.ajax({
-    type: 'POST', // Type of request
-    url: url, // Where to get the result of the request
-    data: data, // Data need to process a request
-    dataType: 'json', // expected return
+    type: 'POST',
+    url: url,
+    data: data,
+    dataType: 'json',
     beforeSend: function(request) {
-      request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content')); // token required by laravel
+      request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
     },
-    success: function(data) { // the data here is a variable, it can be anything
-      /*
-        This data here, must be a json type, because that's our expected return
-
-        callback is anyfunction that you create.
-        example:
-         1.
-          function print_confirmed(data, _this) {
-            if (data.status == true) {
-              $(_this).html('Confirmed');
-            }
-          }
-
-          submit(data, url, print_confirmed);
-
-          2.
-          same as
-
-          submit(data, url, function(data, _this) {
-            if (data.status == true) {
-              $(_this).html('Confirmed');
-            }
-          });
-      */
+    success: function(data) {
       callback(data, _this);
     },
     error: function(data) {
-      /*
-        If anything unexpected display error in console.log
-
-        ! dapat diay pulihan ni sunod, pag live na
-       */
       console.log('Error:');
     }
   });
