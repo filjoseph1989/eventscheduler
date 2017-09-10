@@ -3,6 +3,8 @@
  * @version 0.29
  */
 
+var _this;
+
 /**
  * Filled up back the data into the create event form
  *
@@ -258,6 +260,7 @@ $(document).on('change', '#event-details-body tbody td', function(evt, newValue)
  * @return {}
  */
 $(document).on('click', '.confirmed', function() {
+  _this = $(this);
   var id   = $(this).data('user-id');
   var eid  = $(this).data('event-id');
   var url  = route('org-adviser.attendance.store').replace('localhost', window.location.hostname);
@@ -266,7 +269,7 @@ $(document).on('click', '.confirmed', function() {
     eid: eid
   }
 
-  submit(data, url, function(data) {
+  submit(data, url, function(data, _this) {
     if (data.status == true) {
       $('#confirm').html('Confirmed');
     }
@@ -301,7 +304,7 @@ function submit(data, url, callback) {
       request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
     },
     success: function(data) {
-      callback(data);
+      callback(data, _this);
     },
     error: function(data) {
       console.log('Error:');
