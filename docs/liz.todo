@@ -22,7 +22,7 @@ Follow Control Flow in the docs
       ✔ Create My Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
       ✔ Create Within Organization Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
   ☐ Generate Attendance:
-    ✔ my advisee organization @done(2017-09-08 04:08) @project(☐Org Adviser Account / ☐ Generate Attendance)
+    ☐ my advisee organization
         ☐ Generate Expected Attendance (list of names expected to come)
           ☐ confirmation(which is manipulated by head or adviser during the actual event)
         ✔ Generate Confirmed Attendance @done(2017-09-09 05:51) @project(☐Org Adviser Account / ☐ Generate Attendance)

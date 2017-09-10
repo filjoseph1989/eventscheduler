@@ -4,7 +4,6 @@ namespace App\Http\Controllers\OrganizationAdviser;
 
 use Auth;
 use Illuminate\Http\Request;
-use App\Library\OrgAdviserLibrary;
 use App\Http\Controllers\Controller;
 
 //models
@@ -12,19 +11,6 @@ use App\Models\UserAttendance;
 
 class UserAttendanceController extends Controller
 {
-  private $adviser;
-
-  /**
-   * Create a new controller instance.
-   *
-   * @return void
-   */
-  public function __construct()
-  {
-    $this->middleware('web');
-    $this->adviser = new OrgAdviserLibrary();
-  }
-
     /**
      * Display a listing of the resource.
      *
@@ -53,11 +39,9 @@ class UserAttendanceController extends Controller
      */
     public function store(Request $data)
     {
-      // parent::loginCheck();
-      //
-      // $this->adviser->isAdviser();
         # Get the data from form
-        $request = $data->only( 'status', 'reason', 'event_id' );
+        $request = $data->only( 'status', 'reason', 'confirmation', 'event_id' );
+        // $request = $data->only( 'status', 'reason', 'event_id' );
         $request['user_id'] = Auth::user()->id;
 
         # Lets check if the use exists
@@ -70,11 +54,12 @@ class UserAttendanceController extends Controller
         } else {
             $result = UserAttendance::where('user_id', '=', Auth::user()->id);
             $result = $result->update($request);
+
             # inform the user what happend
-            if ($result->status == 'false') {
-                return back()->with('status', 'Thank you for letting us know, yet you are still welcome to attend');
+            if ($data->status == 'false') {
+                return back()->with('status', 'Thank you for letting us know, yet you can still welcome to attend');
             }
-            // return back()->with('status', 'See you on the event');
+            return back()->with('status', 'See you on the event');
         }
     }
 

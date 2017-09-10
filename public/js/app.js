@@ -115,7 +115,9 @@ $(document).on('click', '.event-details', function() {
       html =
       '<div class="row">' +
         '<div class="col-md-offset-3 col-md-6">' +
+          '<p name="confirmation" type="hidden">'+
           '<button name="status" type="submit" value="true" class="btn bg-green btn-block btn-lg waves-effect">Attend</button>' +
+          '<input type="hidden" name="confirmation" value = "false">' +
         '</div>' +
       '</div>' +
       '<div class="row" style="margin-top: 3px;">' +
@@ -129,6 +131,7 @@ $(document).on('click', '.event-details', function() {
             '<div class="form-line hidden" id="cant-attend-message">' +
               '<textarea name="reason" rows="4" class="form-control no-resize" placeholder="Please type the reason why you cannot attend the event."></textarea>' +
               '<input type="hidden" name="event_id" value="' + data.id + '">' +
+              '<input type="hidden" name="confirmation" value = "false">' +
             '</div>' +
           '</div>' +
         '</div>' +
@@ -269,6 +272,7 @@ $(document).on('click', '.confirmed', function() {
     }
   });
 });
+
 
 /**
  * Can't attend function
