@@ -51,6 +51,7 @@
                       <th>Family Name</th>
                       <th>Course</th>
                       <th>Position</th>
+                      <th>Organization</th>
                       <th>Mobile Number</th>
                       <th>Facebook</th>
                     </tr>
@@ -62,6 +63,7 @@
                         <td>{{ $value->user->last_name }}</td>
                         <td>{{ $att[$value->user_id] }}</td>
                         <td>{{ $pos2[$value->user_id] }}</td>
+                        <td>{{ $org[$value->user_id] }}</td>
                         <td>{{ $value->user->mobile_number }}</td>
                         <td>{{ $value->user->facebook_username }}</td>
                       </tr>

@@ -37,7 +37,7 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2>Attendance Sheet of Those Who Confirmed</h2>
+                <h2>Official Attendance Sheet</h2>
                 <h2>Event: <b>{{ $event->title }}</b></h2>
                 <h2>Venue: {{ $event->venue }}</h2>
                 <h2>Duration: <b>from</b> {{ $event->date_start_time }}, {{ date('M d, Y', strtotime($event->date_start)) }} <b>to</b> {{ $event->date_end_time }}, {{ date('M d, Y', strtotime($event->date_end)) }}</h2>

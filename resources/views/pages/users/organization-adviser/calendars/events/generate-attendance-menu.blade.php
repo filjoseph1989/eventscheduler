@@ -68,6 +68,19 @@
             </div>
             </a>
           </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <a href="{{ route('org-adviser.official-attendance-org-list') }}">
+              <div class="info-box hover-expand-effect">
+              <div class="icon bg-light-green">
+                <i class="material-icons">date_range</i>
+              </div>
+              <div class="content">
+                <div class="text">Generate</div>
+                <div class="number">Official Attendance</div>
+              </div>
+            </div>
+            </a>
+          </div>
         </div>
       </div>
     </section>

@@ -174,6 +174,18 @@ class GenerateAttendanceController extends Controller
         'org', 'login_type'
       ));
     }
+    public function officialAttendanceOrgList()
+    {
+      # Get the organization of the adviser
+      $org = OrganizationGroup::with('organization')
+        ->where('user_id', '=', Auth::user()->id)
+        ->get();
+
+      $login_type = 'user';
+      return view('pages/users/organization-adviser/generate-attendance/official-attendance-org-list', compact(
+        'org', 'login_type'
+      ));
+    }
 
 
 
@@ -185,6 +197,18 @@ class GenerateAttendanceController extends Controller
 
       $login_type = 'user';
       return view('pages\users\organization-adviser\generate-attendance\confirmed_attendance_event_list', compact(
+        'event', 'login_type'
+      ));
+    }
+
+    public function generateOfficialAttendanceEventList($id = null){
+
+      $event = Event::where('organization_id', '=', $id)
+      ->where('approve_status', '=', 'approved')
+      ->get();
+
+      $login_type = 'user';
+      return view('pages\users\organization-adviser\generate-attendance\official_attendance_event_list', compact(
         'event', 'login_type'
       ));
     }
@@ -239,23 +263,26 @@ class GenerateAttendanceController extends Controller
       # Get the users in the user_attendance table whose status are false
       $att       = []; //the course of user in user_attendance
       $pos2       = []; //position of the user
+      $org       = []; //org of the user
       $att_sheet = UserAttendance::with('user')
       ->where('event_id', '=', $eid)->where('status', 'false')->get();
 
       foreach ($att_sheet as $key => $value) {
         $att[$value->user_id] = $value->user->course->name;
         $pos = OrganizationGroup::with('position')
+        ->with('organization')
         ->where('user_id', '=', $value->user_id)
         ->where('organization_id', '=', $id)
         ->get();
         foreach ($pos as $key => $val) {
           $pos2[$value->user_id] = $val->position->name;
+          $org[$value->user_id] = $val->organization->name;
         }
       }
 
       $login_type = 'user';
       return view('pages/users/organization-adviser/generate-attendance/declined-attendance-member-list', compact(
-        'login_type', 'att_sheet', 'organization', 'event', 'att', 'pos2'
+        'login_type', 'att_sheet', 'organization', 'event', 'att', 'pos2', 'org'
       ));
     }
 
@@ -273,23 +300,64 @@ class GenerateAttendanceController extends Controller
       # Get the users in the user_attendance table whose status are false
       $att       = []; //the course of user in user_attendance
       $pos2       = []; //position of the user
+        $org       = []; //org of the user
       $att_sheet = UserAttendance::with('user')
       ->where('event_id', '=', $eid)->where('status', 'true')->get();
 
       foreach ($att_sheet as $key => $value) {
         $att[$value->user_id] = $value->user->course->name;
         $pos = OrganizationGroup::with('position')
+        ->with('organization')
         ->where('user_id', '=', $value->user_id)
         ->where('organization_id', '=', $id)
         ->get();
         foreach ($pos as $key => $val) {
           $pos2[$value->user_id] = $val->position->name;
+          $org[$value->user_id] = $val->organization->name;
         }
       }
 
       $login_type = 'user';
       return view('pages/users/organization-adviser/generate-attendance/confirmed-attendance-member-list', compact(
-        'login_type', 'att_sheet', 'organization', 'event', 'att', 'pos2'
+        'login_type', 'att_sheet', 'organization', 'event', 'att', 'pos2', 'org'
+      ));
+    }
+
+
+    public function officialAttendanceMemberList($id, $eid)
+    {
+      parent::loginCheck();
+      $this->adviser->isAdviser();
+
+      #get the event details
+      $event = Event::find($eid);
+
+      #get the organization details
+      $organization = Organization::find($id);
+
+      # Get the users in the user_attendance table whose status are false
+      $att       = []; //the course of user in user_attendance
+      $pos2       = []; //position of the user
+      $org       = []; //org of the user
+      $att_sheet = UserAttendance::with('user')
+      ->where('event_id', '=', $eid)->where('status', 'true')->where('confirmation', 'true')->get();
+
+      foreach ($att_sheet as $key => $value) {
+        $att[$value->user_id] = $value->user->course->name;
+        $pos = OrganizationGroup::with('position')
+        ->with('organization')
+        ->where('user_id', '=', $value->user_id)
+        ->where('organization_id', '=', $id)
+        ->get();
+        foreach ($pos as $key => $val) {
+          $pos2[$value->user_id] = $val->position->name;
+          $org[$value->user_id] = $val->organization->name;
+        }
+      }
+
+      $login_type = 'user';
+      return view('pages/users/organization-adviser/generate-attendance/official-attendance-member-list', compact(
+        'login_type', 'att_sheet', 'organization', 'event', 'att', 'pos2', 'org'
       ));
     }
     /**
