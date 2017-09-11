@@ -94,29 +94,34 @@ class GenerateAttendanceController extends Controller
       // $data['status']   = 'true';
       // $data['confirmation'] = 'true';
 
-      if($request->cid == 'true'){
-        $result = UserAttendance::updateOrCreate(
-          ['event_id' => $request->eid, 'user_id' => $request->id],
-          ['reason' => '', 'status' => 'false', 'confirmation' => 'false']
-        );
-      } else {
-        $result = UserAttendance::updateOrCreate(
-          ['event_id' => $request->eid, 'user_id' => $request->id],
-          ['reason' => '', 'status' => 'true', 'confirmation' => 'true']
-        );
-      }
-
-      if ($result->confirmation == 'true') {
+      $result = UserAttendance::updateOrCreate(
+        ['event_id' => $request->eid, 'user_id' => $request->id],
+        ['status' => 'true', 'confirmation' => 'true']
+      );
+      if ($result) {
         echo json_encode([
           'status' => true
         ]);
-      } else {
+      }
+    }
+    public function store2(Request $request)
+    {
+      // $data['event_id'] = $request->eid;
+      // $data['user_id']  = $request->id;
+      // $data['reason']   = '';
+      // $data['status']   = 'true';
+      // $data['confirmation'] = 'true';
+
+      $result = UserAttendance::updateOrCreate(
+        ['event_id' => $request->eid, 'user_id' => $request->id],
+        ['status' => 'false', 'confirmation' => 'false']
+      );
+      if ($result) {
         echo json_encode([
-          'status' => false
+          'status' => true
         ]);
       }
     }
-
     /**
      * Display the specified resource.
      *
@@ -138,16 +143,16 @@ class GenerateAttendanceController extends Controller
 
       # Get the status of the user attendance
       $att       = [];
-      $cnf        = [];
+      $confirm   = [];
       $att_sheet = UserAttendance::where('event_id', '=', $eid)->get();
       foreach ($att_sheet as $key => $value) {
         $att[$value->user_id] = $value->status;
-        $cnf[$value->user_id] = $value->confirmation;
+        $confirm[$value->user_id] = $value->confirmation;
       }
 
       $login_type = 'user';
       return view('pages/users/organization-adviser/calendars/events/attendance', compact(
-        'login_type', 'attendance', 'eid', 'att' ,'cnf'
+        'login_type', 'attendance', 'eid', 'att', 'confirm'
       ));
     }
 

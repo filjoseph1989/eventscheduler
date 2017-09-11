@@ -10,7 +10,6 @@ Follow Control Flow in the docs
       ☐ Calendar
         ☐ include the author and org in the details
       ✔ Create My Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
-      ✔ Create Organization Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
     ✔ Within Organization @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
       ✔ Calendar @done(2017-09-09 09:12) @project(☐Org Adviser Account)
       ✔ Create My Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
@@ -18,7 +17,7 @@ Follow Control Flow in the docs
     ☐ Personal Schedule Calendar
       ☐ Calendar
         ✔ public  @done(2017-09-09 09:08) @project(☐Org Adviser Account)
-        ☐ private (dapat ang makita lang niya kay iayahang personal private events)
+        ✔ private (dapat ang makita lang niya kay iayahang personal private events) @done(2017-09-12 06:41) @project(☐Org Adviser Account)
       ✔ Create My Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
       ✔ Create Within Organization Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
   ☐ Generate Attendance:
@@ -127,15 +126,15 @@ tasks:
       >  ☐ All Organizations Calendar
             ☐ Calendar
               ☐ include the author and org in the details
-      >  ☐ Personal Schedule Calendar
-            ☐ Calendar
+      >  ✔ Personal Schedule Calendar @done(2017-09-12 06:42) @project(tasks)
+            ✔ Calendar @done(2017-09-12 06:41) @project(tasks)
               ✔ public  @done(2017-09-09 09:08) @project(☐Org Adviser Account)
-              ☐ private (dapat ang makita lang niya kay iayahang personal private events)
-      >  ☐ Generate Attendance:
+              ✔ private (dapat ang makita lang niya kay iayahang personal private events) @done(2017-09-12 06:41) @project(tasks)
+      >  ✔ Generate Attendance @done(2017-09-12 06:42) @project(tasks)
           ✔ my advisee organization @done(2017-09-11 00:31) @project(tasks / >  ☐ Generate Attendance)
               ✔ Generate Expected Attendance (list of names expected to come) @done(2017-09-11 00:31) @project(tasks / >  ☐ Generate Attendance)
                 ✔ confirmation(which is manipulated by head or adviser during the actual event) @done(2017-09-10 21:38) @project(tasks / >  ☐ Generate Attendance)
                 ✔ confirm and confirmed button, debug change right responsibly @done(2017-09-11 00:30) @project(tasks / >  ☐ Generate Attendance)
-                ☐ unconfirm functionality must also work
+                ✔ unconfirm functionality must also work @done(2017-09-12 05:22) @project(tasks / >  ☐ Generate Attendance)
       >Manage Schedule:
-        ☐Calendar (dili clear and details: ang time dili klaro, include org and author) 
+        ☐Calendar (dili clear and details: ang time dili klaro, include org and author)

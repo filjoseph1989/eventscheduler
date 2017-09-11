@@ -17,7 +17,7 @@ class CreatePersonalEventsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             $table->integer('event_type_id')->unsigned()->index();
-            $table->enum('category', ['Public', 'Private']);
+            $table->enum('category', ['public', 'private']);
             $table->enum('semester', ['first', 'second']);
             $table->string('title');
             $table->text('description');
