@@ -142,8 +142,8 @@ class GenerateAttendanceController extends Controller
         ->get();
 
       # Get the status of the user attendance
-      $att       = [];
-      $confirm   = [];
+      $att = []; # attendance
+      $cnf = []; # confirmation
       $att_sheet = UserAttendance::where('event_id', '=', $eid)->get();
       foreach ($att_sheet as $key => $value) {
         $att[$value->user_id] = $value->status;

@@ -98,6 +98,21 @@ class UserAttendanceController extends Controller
     }
 
     /**
+     * Update user_attendance table via ajax
+     *
+     * @return void
+     */
+    public function updateUsingAjax(Request $data)
+    {
+        $attendance = UserAttendance::find($data->id);
+        $attendance->status = $data->status;
+        var_dump($attendance->status);
+        if ($attendance->save()) {
+            echo json_encode('true');
+        }
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id

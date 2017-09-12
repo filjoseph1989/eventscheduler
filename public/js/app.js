@@ -1,6 +1,6 @@
 /**
  * App.js
- * @version 0.29
+ * @version 0.30
  */
 
 var _this;
@@ -260,7 +260,7 @@ $(document).on('change', '#event-details-body tbody td', function(evt, newValue)
  * @return {}
  */
 $(document).on('click', '.confirmed', function() {
-  _this = $(this);
+  _this    = $(this);
   var id   = $(this).data('user-id');
   var eid  = $(this).data('event-id');
   var url  = route('org-adviser.attendance.store').replace('localhost', window.location.hostname);
