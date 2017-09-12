@@ -54,7 +54,7 @@ class PersonalEvent extends Model
   {
     return $this->belongsTo('App\Models\EventCategory');
   }
-
+ 
   /**
    * The event has one type
    *
