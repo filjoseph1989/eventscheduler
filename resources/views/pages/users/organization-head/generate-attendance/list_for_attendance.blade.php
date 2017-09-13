@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page-title', 'User Attendance')
+@section('page-title', 'List of events for attendance')
 
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/all-themes.css') }}">
@@ -37,39 +37,19 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> Attendance Sheet </h2>
+                <h2> Expected Member Attendance </h2>
               </div>
               <div class="body table-responsive">
                 <table class="table">
                   <thead>
                     <tr>
-                      <th>Name</th>
-                      <th>Family Name</th>
-                      <th>Organization</th>
-                      <th>Confirmation</th>
-                      <th>Action</th>
+                      <th>Event Title</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($attendance as $key => $value)
+                    @foreach ($event as $key => $value)
                       <tr>
-                        <td>{{ $value->user->first_name }}</td>
-                        <td>{{ $value->user->last_name }}</td>
-                        <td>{{ $value->organization->name }}</td>
-                        <td id="confirm-status-{{ $value->user->id }}">{{ (isset($confirm[$value->user->id]) AND $confirm[$value->user->id] == 'true') ? "Confirmed" : "Unconfirmed" }}</td>
-                        <td>
-                          <button type="button" class="btn btn-primary waves-effect confirmed"
-                            data-user-id="{{ $value->user->id }}"
-                            data-event-id="{{ $eid }}">
-                              Confirm
-                          </button>
-                          <button type="button" class="btn btn-primary waves-effect unconfirmed"
-                            data-user-id="{{ $value->user->id }}"
-                            data-event-id="{{ $eid }}">
-                             Unconfirm
-                          </button>
-                          <div class="preload preloader-{{ $value->user->id }}"></div>
-                        </td>
+                        <td><a href="{{ route('org-adviser.attendance.show', [ $value->organization_id, $value->id] ) }}">{{ $value->title }}</a></td>
                       </tr>
                     @endforeach
                   </tbody>
@@ -92,5 +72,4 @@
 @endsection
 
 @section('footer')
-  <script src="{{ asset('js/app.js') }}?v=0.31" charset="utf-8"></script>
 @endsection

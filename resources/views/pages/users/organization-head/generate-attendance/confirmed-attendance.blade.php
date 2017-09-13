@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page-title', 'List of events for attendance')
+@section('page-title', 'User Attendance')
 
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/all-themes.css') }}">
@@ -37,19 +37,31 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> Expected Member Attendance </h2>
+                <h2> Attendance Sheet </h2>
               </div>
               <div class="body table-responsive">
                 <table class="table">
                   <thead>
                     <tr>
-                      <th>Event Title</th>
+                      <th>Name</th>
+                      <th>Family Name</th>
+                      <th>Organization</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($event as $key => $value)
+                    @foreach ($attendance as $key => $value)
                       <tr>
-                        <td><a href="{{ route('org-adviser.attendance.show', [ $value->organization_id, $value->id] ) }}">{{ $value->title }}</a></td>
+                        <td>{{ $value->user->first_name }}</td>
+                        <td>{{ $value->user->last_name }}</td>
+                        <td>{{ $value->organization->name }}</td>
+                        <td>
+                          <button type="button" class="btn btn-primary waves-effect confirmed" id="confirm"
+                            data-user-id="{{ $value->user->id }}"
+                            data-event-id="{{ $eid }}">
+                              {{ (isset($att[$value->user->id]) AND $att[$value->user->id] == 'true') ? "Confirmed" : "Confirm" }}
+                          </button>
+                        </td>
                       </tr>
                     @endforeach
                   </tbody>
@@ -72,4 +84,5 @@
 @endsection
 
 @section('footer')
+  <script src="{{ asset('js/app.js') }}?v=0.25" charset="utf-8"></script>
 @endsection

@@ -6,7 +6,7 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Library\ApproverLibrary;
 use App\Http\Controllers\Controller;
-use App\Library\OrgCoAdviserLibrary as Adviser;
+use App\Library\OrgCoAdviserLibrary as CoAdviser;
 use App\Http\Controllers\ManageNotificationController;
 
 # Models
@@ -20,12 +20,12 @@ use App\Models\OrganizationAdviserGroup;
 
 class EventController extends Controller
 {
-    private $adviser;
+    private $co_adviser;
 
     public function __construct()
     {
       $this->middleware('web');
-      $this->adviser = new Adviser();
+      $this->co_adviser = new CoAdviser();
     }
 
     /**
@@ -40,7 +40,7 @@ class EventController extends Controller
       parent::loginCheck();
 
       # Is the user an adviser?
-      $this->adviser->isCoAdviser();
+      $this->co_adviser->isCoAdviser();
 
       $login_type = "user";
       if ($id == null) {
@@ -81,7 +81,7 @@ class EventController extends Controller
       parent::loginCheck();
 
       # Is the user an adviser?
-      $this->adviser->isCoAdviser();
+      $this->co_adviser->isCoAdviser();
 
       $login_type     = 'user';
       $event_type     = EventType::all()->except(1);
@@ -106,7 +106,7 @@ class EventController extends Controller
       parent::loginCheck();
 
       # is the user rank as adivser?
-      $this->adviser->isCoAdviser();
+      $this->co_adviser->isCoAdviser();
 
       # Issue 59 - Check the data and time if there's a conflict
 
@@ -140,10 +140,10 @@ class EventController extends Controller
       }
 
       # is data entry valid?
-      $this->adviser->isValid($data);
+      $this->co_adviser->isValid($data);
 
       # is the user an adviser to an organization?
-      $this->adviser->isCoAdviserInGivenOrganization($data->organization_id);
+      $this->co_adviser->isCoAdviserInGivenOrganization($data->organization_id);
 
       # Get the data from form
       $request = $data->only(
@@ -182,7 +182,7 @@ class EventController extends Controller
         ->get();
 
       $login_type = 'user';
-      return view('pages/users/organization-co-adviser/events/list_for_attendance', compact(
+      return view('pages/users/organization-co-adviser/generate-attendance/list_for_attendance', compact(
         'event', 'login_type'
       ));
     }
@@ -231,7 +231,7 @@ class EventController extends Controller
       parent::loginCheck();
 
       # Check if user is an adviser
-      $this->adviser->isCoAdviser();
+      $this->co_adviser->isCoAdviser();
 
       # Check if the account is an approver
       if (parent::isApprover()) {
@@ -424,7 +424,7 @@ class EventController extends Controller
     {
       parent::loginCheck();
 
-      $this->adviser->isCoAdviser();
+      $this->co_adviser->isCoAdviser();
 
       $login_type = "user";
       return view('pages/users/organization-co-adviser/events/manange-schedule')
@@ -443,7 +443,7 @@ class EventController extends Controller
       parent::loginCheck();
 
       # is the adviser logged in?
-      $this->adviser->isCoAdviser();
+      $this->co_adviser->isCoAdviser();
 
       # Get event created by the adiviser
       $event = Event::where('user_id', Auth::user()->id)->where('event_category_id', 2)->get();
@@ -454,14 +454,14 @@ class EventController extends Controller
         'event'      => $event,
       ]);
     }
-    //sd 
+    //sd
 
     public function manageNotificationMenu()
     {
       parent::loginCheck();
 
       # is the adviser logged in?
-      $this->adviser->isCoAdviser();
+      $this->co_adviser->isCoAdviser();
 
       # Get event created by the adiviser
       $event = Event::where('user_id', Auth::user()->id)->get();
@@ -484,7 +484,7 @@ class EventController extends Controller
       parent::loginCheck();
 
       # is the adviser logged in?
-      $this->adviser->isCoAdviser();
+      $this->co_adviser->isCoAdviser();
 
       $request = $data->only(
         'notify_via_facebook', 'notify_via_twitter',

@@ -1,20 +1,16 @@
 Follow Control Flow in the docs
 
 ☐Org Adviser Account:
+  ✔ Manage Schedule: @done(2017-09-13 21:26) @project(☐Org Adviser Account)
     ✔ Public View @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
-    ✔ include the org in the details (study fullcalendar.io for this) @done(2017-09-12 10:26) @project(☐Org Adviser Account)
-    ✔ Manage Schedule: @done(2017-09-05 04:13) @project(☐Org Adviser Account)
+      ✔ include the org in the details (study fullcalendar.io for this) @done(2017-09-12 10:26) @project(☐Org Adviser Account)
       ✔ Calendar @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
-      ✔ Create My Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
-      ✔ Create Within Organization Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
     ✔ All Organizations Calendar @done(2017-09-12 10:25) @project(☐Org Adviser Account)
       ✔ Calendar @done(2017-09-12 10:25) @project(☐Org Adviser Account)
         ✔ include the org in the details (study fullcalendar.io for this) @done(2017-09-12 10:25) @project(☐Org Adviser Account)
-      ✔ Create My Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
     ✔ Within Organization @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
       ✔ include the author in the details (study fullcalendar.io for this) @done(2017-09-12 10:25) @project(☐Org Adviser Account)
       ✔ Calendar @done(2017-09-09 09:12) @project(☐Org Adviser Account)
-      ✔ Create My Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
       ✔ Create Within Organization Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
     ✔ Personal Schedule Calendar @done(2017-09-12 10:25) @project(☐Org Adviser Account)
       ✔ Calendar @done(2017-09-12 06:52) @project(☐Org Adviser Account)
@@ -22,14 +18,13 @@ Follow Control Flow in the docs
           ✔ included author @done(2017-09-12 12:09) @project(☐Org Adviser Account)
         ✔ private (dapat ang makita lang niya kay iayahang personal private events) @done(2017-09-12 06:41) @project(☐Org Adviser Account)
       ✔ Create My Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
-      ✔ Create Within Organization Event @done(2017-09-05 03:19) @project(☐Org Adviser Account / ☐ Manage Schedule)
   ☐ Generate Attendance:
-    ✔ my advisee organization @done(2017-09-11 00:31) @project(☐Org Adviser Account / ☐ Generate Attendance)
-        ✔ Generate Expected Attendance (list of names expected to come) @done(2017-09-11 00:31) @project(☐Org Adviser Account / ☐ Generate Attendance)
-          ✔ confirmation(which is manipulated by head or adviser during the actual event) @done(2017-09-11 00:30) @project(☐Org Adviser Account / ☐ Generate Attendance)
-        ✔ Generate Confirmed Attendance @done(2017-09-09 05:51) @project(☐Org Adviser Account / ☐ Generate Attendance)
-        ✔ Generate Declined Attendance @done(2017-09-09 05:51) @project(☐Org Adviser Account / ☐ Generate Attendance)
-        ✔ Confirm Org Members' Attendance @done(2017-09-08 04:26) @project(☐Org Adviser Account / ☐ Generate Attendance)
+    ✔ my advisee organization @done(2017-09-13 16:52) @project(☐Org Adviser Account / ☐ Generate Attendance)
+        ✔ Generate Expected Attendance (list of names expected to come) @done(2017-09-13 16:52) @project(☐Org Adviser Account / ☐ Generate Attendance)
+          ✔ confirmation(which is manipulated by head or adviser during the actual event) @done(2017-09-13 16:52) @project(☐Org Adviser Account / ☐ Generate Attendance)
+        ✔ Generate Confirmed Attendance @done(2017-09-13 16:52) @project(☐Org Adviser Account / ☐ Generate Attendance)
+        ✔ Generate Declined Attendance @done(2017-09-13 16:52) @project(☐Org Adviser Account / ☐ Generate Attendance)
+        ✔ View and Confirm Org Members' Attendance @done(2017-09-13 16:52) @project(☐Org Adviser Account / ☐ Generate Attendance)
   ☐ Manage Notifications:
     ✔ List of Events that needs your approval @done(2017-09-09 06:00) @project(☐Org Adviser Account / ☐ Manage Notifications)
       ✔ Approve Events @done(2017-09-09 06:00) @project(☐Org Adviser Account / ☐ Manage Notifications)
@@ -43,32 +38,43 @@ Follow Control Flow in the docs
   ☐ Manage Schedule:
     ✔ Public View @done(2017-09-09 09:13) @project(☐Org Co-Adviser Account / ☐ Manage Schedule)
       ✔ Calendar @done(2017-09-09 09:13) @project(☐Org Co-Adviser Account / ☐ Manage Schedule)
-    ☐ All Organizations
-      ☐ Calendar
-        ☐ include the author and org in the details
-    ☐ Within Organization
-      ☐ Calendar
-    ☐ Personal Schedule
-      ☐ Calendar
-      ☐ Create My Event
+    ✔ All Organizations @done(2017-09-13 08:47) @project(☐Org Co-Adviser Account / ☐ Manage Schedule)
+      ✔ Calendar @done(2017-09-13 08:47) @project(☐Org Co-Adviser Account / ☐ Manage Schedule)
+        ✔ include the author and org in the details @done(2017-09-13 08:47) @project(☐Org Co-Adviser Account / ☐ Manage Schedule)
+    ✔ Within Organization @done(2017-09-13 08:47) @project(☐Org Co-Adviser Account / ☐ Manage Schedule)
+      ✔ Calendar @done(2017-09-13 08:47) @project(☐Org Co-Adviser Account / ☐ Manage Schedule)
+    ✔ Personal Schedule @done(2017-09-13 08:48) @project(☐Org Co-Adviser Account / ☐ Manage Schedule)
+      ✔ Calendar @done(2017-09-13 08:48) @project(☐Org Co-Adviser Account / ☐ Manage Schedule)
+      ✔ Create My Event @done(2017-09-13 09:21) @project(☐Org Co-Adviser Account / ☐ Manage Schedule)
   ☐ Generate Attendance:
-    ☐ List of Events
-      ☐ Generate Expected Attendance
-      ☐ Generate Confirmed Attendance
-      ☐ Confirm My Attendance
+  ✔ my co-advisee organization @done(2017-09-13 17:42) @project(☐Org Co-Adviser Account)
+      ✔ Generate Expected Attendance (list of names expected to come) @done(2017-09-13 17:42) @project(☐Org Co-Adviser Account / ☐ Generate Attendance)
+      ✔ Generate Confirmed Attendance @done(2017-09-13 17:42) @project(☐Org Co-Adviser Account / ☐ Generate Attendance)
+      ✔ Generate Declined Attendance @done(2017-09-13 17:42) @project(☐Org Co-Adviser Account / ☐ Generate Attendance)
+      ✔ View Org Members' Attendance @done(2017-09-13 17:42) @project(☐Org Co-Adviser Account / ☐ Generate Attendance)
+      (No more confirm my attendance because she can do it at the list of events if he can attend of not)
 ☐Org Head Account:
-  ☐ Manage Schedule:
-    ☐ Public View
-      ☐ Calendar
-    ☐ All Organizations
-      ☐ Calendar
-      ☐ Create an event
-    ☐ Within Organization
-      ☐ Calendar
-      ☐ Create an event
-    ☐ Personal Schedule
-      ☐ Calendar
-      ☐ Create My Event
+☐   Manage Schedule:
+  ☐ Public View
+    ☐ include the org in the details (study fullcalendar.io for this)
+    ☐ Calendar
+    ☐ Create Public View Event
+  ☐ All Organizations Calendar
+    ☐ Calendar
+      ☐ include the org in the details (study fullcalendar.io for this)
+    ☐ Create Among Org Event
+  ☐ Within Organization
+    ☐ include the author in the details (study fullcalendar.io for this)
+    ☐ Calendar
+    ☐ Create Within Organization Event
+  ☐ Personal Schedule Calendar
+    ☐ Calendar
+      ☐ public
+        ☐ included author
+      ☐ private (dapat ang makita lang niya kay iayahang personal private events)
+    ☐ Create My Event
+      ☐ Public
+      ☐ Private
   ☐ Generate Attendance:
     ☐ List of Events
       ☐ Generate Expected Attendance

@@ -48,28 +48,6 @@ class GenerateAttendanceController extends Controller
       ));
     }
 
-    public function generateExpectedAttendance(){
-      parent::loginCheck();
-
-      $this->adviser->isAdviser();
-      $login_type = 'user';
-      $org = OrganizationAdviserGroup::with('organization')
-      ->where('user_id', Auth::user()->id)
-      ->get();
-
-      # Get members
-      if (isset($org[0])) {
-        $org    = $org[0];
-        $member = OrganizationGroup::getMembers($org->organization_id);
-      } else {
-        $org = false;
-      }
-
-      $login_type = 'user';
-      return view('pages/users/organization-adviser/generate-attendance/generate-expected-attendance', compact(
-        'org', 'login_type', 'member'
-      ));
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -132,7 +110,7 @@ class GenerateAttendanceController extends Controller
       }
 
       $login_type = 'user';
-      return view('pages/users/organization-adviser/calendars/events/attendance', compact(
+      return view('pages/users/organization-adviser/generate-attendance/attendance', compact(
         'login_type', 'attendance', 'eid', 'att', 'confirm'
       ));
     }
@@ -144,7 +122,7 @@ class GenerateAttendanceController extends Controller
 
       $this->adviser->isAdviser();
       $login_type = 'user';
-      return view('pages/users/organization-adviser/calendars/events/generate-attendance-menu', compact(
+      return view('pages/users/organization-adviser/generate-attendance/generate-attendance-menu', compact(
         'login_type'
       ));
     }
@@ -224,29 +202,29 @@ class GenerateAttendanceController extends Controller
       ));
     }
 
-    public function generateConfirmedAttendance($id = null)
-    {
-      parent::loginCheck();
 
-      $this->adviser->isAdviser();
-      $login_type = 'user';
-      $org = OrganizationAdviserGroup::with('organization')
-        ->where('user_id', Auth::user()->id)
-        ->get();
-
-      # Get members
-      if (isset($org[0])) {
-        $org    = $org[0];
-        $member = OrganizationGroup::getMembers($org->organization_id);
-      } else {
-        $org = false;
-      }
-
-      $login_type = 'user';
-      return view('pages/users/organization-adviser/generate-attendance/generate-confirmed-attendance', compact(
-        'org', 'login_type', 'member'
-      ));
-    }
+    // public function generateConfirmedAttendance($id = null){
+    //   parent::loginCheck();
+    //
+    //   $this->adviser->isAdviser();
+    //   $login_type = 'user';
+    //   $org = OrganizationAdviserGroup::with('organization')
+    //     ->where('user_id', Auth::user()->id)
+    //     ->get();
+    //
+    //   # Get members
+    //   if (isset($org[0])) {
+    //     $org    = $org[0];
+    //     $member = OrganizationGroup::getMembers($org->organization_id);
+    //   } else {
+    //     $org = false;
+    //   }
+    //
+    //   $login_type = 'user';
+    //   return view('pages/users/organization-adviser/generate-attendance/generate-confirmed-attendance', compact(
+    //     'org', 'login_type', 'member'
+    //   ));
+    // }
 
     public function declinedAttendanceMemberList($id, $eid)
     {

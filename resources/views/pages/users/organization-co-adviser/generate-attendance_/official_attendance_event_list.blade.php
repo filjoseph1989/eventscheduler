@@ -37,7 +37,7 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> Expected Member Attendance </h2>
+                <h2> Attendance Sheet </h2>
               </div>
               <div class="body table-responsive">
                 <table class="table">
@@ -49,7 +49,7 @@
                   <tbody>
                     @foreach ($event as $key => $value)
                       <tr>
-                        <td><a href="{{ route('org-adviser.attendance.show', [ $value->organization_id, $value->id] ) }}">{{ $value->title }}</a></td>
+                        <td><a href="{{ route('org-adviser.official-attendance-member-list', [ $value->organization_id, $value->id] ) }}">{{ $value->title }}</a></td>
                       </tr>
                     @endforeach
                   </tbody>

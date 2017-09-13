@@ -78,7 +78,7 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createWithinOrgEvent()
     {
       # Is the user loggedin?
       parent::loginCheck();
@@ -104,7 +104,7 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $data
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $data)
+    public function storeWithinOrgEvent(Request $data)
     {
       # is the user login?
       parent::loginCheck();
@@ -289,7 +289,7 @@ class EventController extends Controller
       # is login?
       parent::loginCheck();
 
-      # is an approver & adviser?
+      # is an approver & org_head?
       if (parent::isOrgHead() and parent::isApprover()) {
         $approved_events = Event::with('organization')
           ->where('id', '=', $id)
@@ -447,6 +447,91 @@ class EventController extends Controller
               ->with('status_warning', "You already disapproved or not yet approve this event ( {$approved_event->title} )");
           }
         }
+      }
+    }
+
+    /**
+     * Display the info box for event management
+     *
+     * @return void
+     */
+    public function manageSchedule()
+    {
+      parent::loginCheck();
+
+      $this->org_head->isOrgHead();
+
+      $login_type = "user";
+      return view('pages/users/organization-head/events/manange-schedule')
+        ->with([
+          'login_type' => $login_type
+        ]);
+    }
+    /**
+     * Manage notification
+     *
+     * @return void
+     */
+    public function manageNotification()
+    {
+      parent::loginCheck();
+
+      # is the org_head logged in?
+      $this->org_head->isOrgHead();
+
+      # Get event created by the adiviser
+      $event = Event::where('user_id', Auth::user()->id)->where('event_category_id', 2)->get();
+
+      $login_type = "user";
+      return view('pages/users/organization-head/events/list0')->with([
+        'login_type' => $login_type,
+        'event'      => $event,
+      ]);
+    }
+
+    public function manageNotificationMenu()
+    {
+      parent::loginCheck();
+
+      # is the org_head logged in?
+      $this->org_head->isOrgHead();
+
+      # Get event created by the adiviser
+      $event = Event::where('user_id', Auth::user()->id)->get();
+
+      $login_type = "user";
+      return view('pages/users/organization-head/events/manage-notif-menu')->with([
+        'login_type' => $login_type,
+        'event'      => $event
+      ]);
+    }
+
+    /**
+     * Update event notifications
+     *
+     * @param  Request $data Event Informations
+     * @return void
+     */
+    public function updateNotification(Request $data)
+    {
+      parent::loginCheck();
+
+      # is the org_head logged in?
+      $this->org_head->isOrgHead();
+
+      $request = $data->only(
+        'notify_via_facebook', 'notify_via_twitter',
+        'notify_via_email', 'notify_via_sms',
+        'additional_msg_facebook', 'additional_msg_sms',
+        'additional_msg_email'
+      );
+
+      # Finally create events
+      $result = Event::find($data->event_id);
+      $result = $result->update($request);
+
+      if ($result) {
+        return back()->with('status', 'Successfuly updated notifications');
       }
     }
 
