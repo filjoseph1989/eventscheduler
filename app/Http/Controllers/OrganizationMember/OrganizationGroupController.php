@@ -17,7 +17,7 @@ use App\Models\OrganizationAdviserGroup;
  */
 class OrganizationGroupController extends Controller
 {
-    private $orgMember;
+    private $org_member;
 
     /**
      * Guard
@@ -25,7 +25,7 @@ class OrganizationGroupController extends Controller
     public function __construct()
     {
         $this->middleware('web');
-        $this->orgMember = new OrgMember();
+        $this->org_member = new OrgMember();
     }
 
     /**
@@ -75,7 +75,7 @@ class OrganizationGroupController extends Controller
       parent::loginCheck();
 
       # make the user is an adviser
-      $this->orgMember->isOrgMember();
+      $this->org_member->isOrgMember();
 
       # Check wether this user already requested for membership
       if (self::_isAlreadyRequested($request->organization_id)) {

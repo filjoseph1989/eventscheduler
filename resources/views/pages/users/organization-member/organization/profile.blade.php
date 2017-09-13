@@ -50,7 +50,7 @@
                       <i class="material-icons">more_vert</i>
                     </a>
                     <ul class="dropdown-menu pull-right">
-                      @if ($orgMember === true AND $isMember === true)
+                      @if ($adviser === true AND $isMember === true)
                         <li><a href="{{ route('org-member.org-edit', $organization->id) }}"><i class="material-icons">create</i> Edit</a></li>
                       @else
                         <li><a href="#">No Options</a></li>
@@ -68,7 +68,7 @@
                       <img class="org-logo" src="{{ asset("images/ship.jpg") }}" alt="Credit https://www.askideas.com/media/87/Black-Ink-Pirate-Ship-In-Rope-Frame-With-Banner-And-Anchor-Tattoo-Design.jpg">
                       <small>Credit: <a href="https://www.askideas.com/media/87/Black-Ink-Pirate-Ship-In-Rope-Frame-With-Banner-And-Anchor-Tattoo-Design.jpg" target="_blank">Here</a></small>
                     @endif
-                    @if ($orgMember === true AND $isMember === true)
+                    @if ($adviser === true AND $isMember === true)
                       <form action="{{ route('org-member.org-logo') }}" enctype="multipart/form-data" method="POST">
                         {{ csrf_field() }}
                         <div class="row">&nbsp;</div>

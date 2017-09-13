@@ -30,7 +30,7 @@
         @endif
 
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-  <a href="{{ route('org-adviser.manage-notification') }}">
+  <a href="{{ route('org-co-adviser.manage-notification') }}">
     <div class="info-box {{ session('color') }} hover-expand-effect">
       <div class="icon">
         <i class="material-icons">date_range</i>
@@ -43,7 +43,7 @@
   </a>
 </div>
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-  <a href="{{ route('org-adviser.approve.event') }}">
+  <a href="{{ route('org-co-adviser.approve.event') }}">
     <div class="info-box {{ session('color') }} hover-expand-effect">
       <div class="icon">
         <i class="material-icons">playlist_add_check</i>

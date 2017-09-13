@@ -37,10 +37,10 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> {{ $organization->organization->name }} </h2>
+                <h2> LIST OF EVENTS that needs your approval </h2>
               </div>
               <div class="body">
-                <table class="table table-bordered table-striped table-hover">
+                <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                   <thead>
                     <tr>
                       <th>Organization / Institution</th>
@@ -54,10 +54,13 @@
                     </tr>
                   </thead>
                   <tbody class="js-sweetalert">
-                    @if (isset($event))
-                      @foreach ($event as $key => $value)
+                    @if (isset($ev))
+                      @foreach ($ev as $key => $value)
                         <tr data-id="{{ $value->id }}">
-                          <td>{{ $value->title }}</td>
+                          <td>
+                            <a href="#" class="event-details" data-toggle="modal" data-target="#event-details">{{ str_limit($value->title, 12) }}</a>
+                          </td>
+                          <td>{{ $value->org_name }}</td>
                           <td>{{ $value->title }}</td>
                           <td>{{ date("M d, Y", strtotime($value->date_start)) }}</td>
                           <td>{{ $value->date_start_time }}</td>
@@ -65,13 +68,10 @@
                           <td>{{ $value->date_end_time }}</td>
                           <td>{{ $value->approve_status }}</td>
                           <td>
-                            <a href="{{ route('org-head.approved.event', [$value->id] ) }}" title="approve this event">
+                            <a href="{{ route('org-member.approved.event', [$value->id] ) }}" title="approve this event">
                               <i class="material-icons">thumb_up</i>
                             </a>
-                            <a href="#" class="event-details" title="further details" data-toggle="modal" data-target="#event-details">
-                              <i class="material-icons">visibility</i>
-                            </a>
-                            <a href="{{ route('org-head.disapproved.event', [$value->id] ) }}" class="" title="disapprove this event">
+                            <a href="{{ route('org-member.disapproved.event', [$value->id] ) }}" class="" title="disapprove this event">
                               <i class="material-icons">thumb_down</i>
                             </a>
                           </td>
@@ -79,20 +79,18 @@
                       @endforeach
                     @endif
                   </tbody>
-                  {{--
-                    <tfoot>
-                      <tr>
-                        <th>Organization / Institution</th>
-                        <th>Event Name</th>
-                        <th>Date Start</th>
-                        <th>Time</th>
-                        <th>Date End</th>
-                        <th>Time</th>
-                        <th>status</th>
-                        <th>Action</th>
-                      </tr>
-                    </tfoot>
-                  --}}
+                  <tfoot>
+                    <tr>
+                      <th>Organization / Institution</th>
+                      <th>Event Name</th>
+                      <th>Date Start</th>
+                      <th>Time</th>
+                      <th>Date End</th>
+                      <th>Time</th>
+                      <th>status</th>
+                      <th>Action</th>
+                    </tr>
+                  </tfoot>
                 </table>
               </div>
             </div>

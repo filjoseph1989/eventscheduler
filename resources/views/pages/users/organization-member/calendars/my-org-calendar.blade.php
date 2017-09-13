@@ -25,24 +25,30 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> Calendar </h2>
+                <h2>
+                  Calendar
+                </h2>
                 <ul class="header-dropdown m-r--5">
                   <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                       <i class="material-icons">more_vert</i>
                     </a>
                     <ul class="dropdown-menu pull-right calendar-options">
-                      <li><a href="#" id="public">Public View</a></li>
-                      <li><a href="#" id="within">Within Organization</a></li>
-                      <li><a href="#" id="among">Among Organization</a></li>
-                      <li><a href="#" id="personal-public">Personal Event (Public)</a></li>
-                      <li><a href="#" id="personal-private">Personal Event (Private)</a></li>
+                      <li><a name=public href="#" id="public">Public View</a></li>
+                      <li><a name=among href="#" id="among">Among All Organizations</a></li>
+                      <li><a name=within href="{{ route('org-member.calendar.within') }}">Within Organization</a></li>
+                      <li><a name=ppersonal href="#" id="personal-public">Personal Event (Public)</a></li>
+                      <li><a name=pprivate href="#" id="personal-private">Personal Event (Private)</a></li>
                     </ul>
                   </li>
                 </ul>
               </div>
               <div class="body">
-                <div class="" id="my-organization"></div>
+                @if ($id == null)
+                  <div class="" id="my-organization"></div>
+                @else
+                  <div class="" id="my-organization" data-id="{{ $id }}"></div>
+                @endif
                 <div id='calendar'></div>
               </div>
             </div>
@@ -68,6 +74,5 @@
   <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/basic-form-elements.js') }}?v=0.2" charset="utf-8"></script>
   <script src="{{ asset('js/fullcalendar.min.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/sweetalert.min.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/calendar.js') }}?v=0.8" charset="utf-8"></script>
+  <script src="{{ asset('js/calendar.js') }}?v=0.9" charset="utf-8"></script>
 @endsection

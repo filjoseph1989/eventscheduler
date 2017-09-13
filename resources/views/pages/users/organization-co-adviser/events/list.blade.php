@@ -101,7 +101,7 @@
           <table class="table table-striped" id="mainTable">
             <tbody>&nbsp;</tbody>
           </table>
-          <form class="" action="{{ route('org-adviser.userattendance.store') }}" method="post" id="user-attendance">
+          <form class="" action="{{ route('org-co-adviser.userattendance.store') }}" method="post" id="user-attendance">
             {{ csrf_field() }}
             <div> </div>
           </form>

@@ -225,27 +225,27 @@ class EventController extends Controller
      * Approve events
      * @return [type] [description]
      */
-    public function approveEvents()
-    {
-      # Check the authentication of this account
-      parent::loginCheck();
-
-      # Check if user is an adviser
-      $this->co_adviser->isCoAdviser();
-
-      # Check if the account is an approver
-      if (parent::isApprover()) {
-        $login_type = 'user';
-
-        $ev = ApproverLibrary::getGetEventsNeedApproval();
-
-        return view('pages/users/organization-co-adviser/events/approve-events', compact(
-          'login_type','ev'
-        ));
-      } else {
-        return back()->with('status_warning', "Sorry, that page is for approver only");
-      }
-    }
+    // public function approveEvents()
+    // {
+    //   # Check the authentication of this account
+    //   parent::loginCheck();
+    //
+    //   # Check if user is an adviser
+    //   $this->co_adviser->isCoAdviser();
+    //
+    //   # Check if the account is an approver
+    //   if (parent::isApprover()) {
+    //     $login_type = 'user';
+    //
+    //     $ev = ApproverLibrary::getGetEventsNeedApproval();
+    //
+    //     return view('pages/users/organization-co-adviser/events/approve-events', compact(
+    //       'login_type','ev'
+    //     ));
+    //   } else {
+    //     return back()->with('status_warning', "Sorry, that page is for approver only");
+    //   }
+    // }
 
     /**
      * Process the approval of events
@@ -253,121 +253,121 @@ class EventController extends Controller
      * @param int $id Event ID
      * @return Illuminate\Response
      */
-    public function setApprove($id)
-    {
-      # is login?
-      parent::loginCheck();
-
-      # is an approver & adviser?
-      if (parent::isOrgAdviser() and parent::isApprover()) {
-        $approved_events = Event::with('organization')
-          ->where('id', '=', $id)
-          ->get();
-
-        # is the event exist?
-        if ($approved_events->count() == 0) {
-          return redirect()->route('org-adviser.approve.event')
-            ->with('status_warning', 'There is no event yet');
-        }
-
-        $approved_event = $approved_events[0];
-
-        # the majority approve already?
-        if ( ($approved_event->event_category_id == 3 || $approved_event->event_category_id == 1 ) && $approved_event->approver_count >= 0 and $approved_event->approver_count < 3) {
-          # Before confirming the approve,
-          # we need to check if the user already approved the event
-          $done = EventApprovalMonitor::where('event_id', '=', $id)
-            ->where('approvers_id', '=', Auth::user()->id)
-            ->exists();
-
-          if ($done) {
-            return redirect()->route('org-adviser.approve.event')
-              ->with('status_warning', "You already approved this event ( {$approved_event->title} ). Press the UNAPPROVE button to disable your approval.");
-          } else {
-            # Increment approver count on events table.
-            # This determine how many already approved the event
-            $event_temp = Event::find($id);
-            $event_temp->approver_count++;
-            $event_temp->save();
-
-            # Save users ID to prevent performing more approval
-            # when the user already did it.
-            EventApprovalMonitor::create([
-              'event_id'     => $id,
-              'approvers_id' => Auth::user()->id
-            ]);
-
-            # With notification message
-            if ($event_temp->approver_count >= 3) {
-              # Update the status of event
-              $event_temp = Event::find($id);
-              $event_temp->approve_status = 'approved';
-              $event_temp->save();
-
-              # Notification
-              $notify = new ManageNotificationController();
-              $notify->notify($approved_event);
-
-              # message
-              # I think no need here, hm
-              return redirect()->route('org-adviser.approve.event')
-                ->with('status', "Successfuly approved the event ( {$approved_event->title} ) and Notified");
-            }
-
-            # with no notification message
-            return redirect()->route('org-adviser.approve.event')
-              ->with('status', "Successfuly approved the event ( {$approved_event->title} )");
-          }
-        }
-
-        if ( ($approved_event->event_category_id == 2 ) && $approved_event->approver_count >= 0 and $approved_event->approver_count < 2) {
-          # Before confirming the approve,
-          # we need to check if the user already approved the event
-          $done = EventApprovalMonitor::where('event_id', '=', $id)
-            ->where('approvers_id', '=', Auth::user()->id)
-            ->exists();
-
-          if ($done) {
-            return redirect()->route('org-adviser.approve.event')
-              ->with('status_warning', "You already approved this event ( {$approved_event->title} ). Press the UNAPPROVE button to disable your approval.");
-          } else {
-            # Increment approver count on events table.
-            # This determine how many already approved the event
-            $event_temp = Event::find($id);
-            $event_temp->approver_count++;
-            $event_temp->save();
-
-            # Save users ID to prevent performing more approval
-            # when the user already did it.
-            EventApprovalMonitor::create([
-              'event_id'     => $id,
-              'approvers_id' => Auth::user()->id
-            ]);
-
-            # With notification message
-            if ($event_temp->approver_count >= 2) {
-              # Update the status of event
-              $event_temp = Event::find($id);
-              $event_temp->approve_status = 'approved';
-              $event_temp->save();
-
-              # Notification
-              $notify = new ManageNotificationController();
-              $notify->notify($approved_event);
-
-              # message
-              # I think no need here, hm
-              return redirect()->route('org-adviser.approve.event')
-                ->with('status', "Successfuly approved the event ( {$approved_event->title} ) and Notified");
-            }
-
-            # with no notification message
-            return redirect()->route('org-adviser.approve.event')
-              ->with('status', "Successfuly approved the event ( {$approved_event->title} )");
-          }
-        }
-      }
-    }
+    // public function setApprove($id)
+    // {
+    //   # is login?
+    //   parent::loginCheck();
+    //
+    //   # is an approver & adviser?
+    //   if (parent::isOrgAdviser() and parent::isApprover()) {
+    //     $approved_events = Event::with('organization')
+    //       ->where('id', '=', $id)
+    //       ->get();
+    //
+    //     # is the event exist?
+    //     if ($approved_events->count() == 0) {
+    //       return redirect()->route('org-adviser.approve.event')
+    //         ->with('status_warning', 'There is no event yet');
+    //     }
+    //
+    //     $approved_event = $approved_events[0];
+    //
+    //     # the majority approve already?
+    //     if ( ($approved_event->event_category_id == 3 || $approved_event->event_category_id == 1 ) && $approved_event->approver_count >= 0 and $approved_event->approver_count < 3) {
+    //       # Before confirming the approve,
+    //       # we need to check if the user already approved the event
+    //       $done = EventApprovalMonitor::where('event_id', '=', $id)
+    //         ->where('approvers_id', '=', Auth::user()->id)
+    //         ->exists();
+    //
+    //       if ($done) {
+    //         return redirect()->route('org-adviser.approve.event')
+    //           ->with('status_warning', "You already approved this event ( {$approved_event->title} ). Press the UNAPPROVE button to disable your approval.");
+    //       } else {
+    //         # Increment approver count on events table.
+    //         # This determine how many already approved the event
+    //         $event_temp = Event::find($id);
+    //         $event_temp->approver_count++;
+    //         $event_temp->save();
+    //
+    //         # Save users ID to prevent performing more approval
+    //         # when the user already did it.
+    //         EventApprovalMonitor::create([
+    //           'event_id'     => $id,
+    //           'approvers_id' => Auth::user()->id
+    //         ]);
+    //
+    //         # With notification message
+    //         if ($event_temp->approver_count >= 3) {
+    //           # Update the status of event
+    //           $event_temp = Event::find($id);
+    //           $event_temp->approve_status = 'approved';
+    //           $event_temp->save();
+    //
+    //           # Notification
+    //           $notify = new ManageNotificationController();
+    //           $notify->notify($approved_event);
+    //
+    //           # message
+    //           # I think no need here, hm
+    //           return redirect()->route('org-adviser.approve.event')
+    //             ->with('status', "Successfuly approved the event ( {$approved_event->title} ) and Notified");
+    //         }
+    //
+    //         # with no notification message
+    //         return redirect()->route('org-adviser.approve.event')
+    //           ->with('status', "Successfuly approved the event ( {$approved_event->title} )");
+    //       }
+    //     }
+    //
+    //     if ( ($approved_event->event_category_id == 2 ) && $approved_event->approver_count >= 0 and $approved_event->approver_count < 2) {
+    //       # Before confirming the approve,
+    //       # we need to check if the user already approved the event
+    //       $done = EventApprovalMonitor::where('event_id', '=', $id)
+    //         ->where('approvers_id', '=', Auth::user()->id)
+    //         ->exists();
+    //
+    //       if ($done) {
+    //         return redirect()->route('org-adviser.approve.event')
+    //           ->with('status_warning', "You already approved this event ( {$approved_event->title} ). Press the UNAPPROVE button to disable your approval.");
+    //       } else {
+    //         # Increment approver count on events table.
+    //         # This determine how many already approved the event
+    //         $event_temp = Event::find($id);
+    //         $event_temp->approver_count++;
+    //         $event_temp->save();
+    //
+    //         # Save users ID to prevent performing more approval
+    //         # when the user already did it.
+    //         EventApprovalMonitor::create([
+    //           'event_id'     => $id,
+    //           'approvers_id' => Auth::user()->id
+    //         ]);
+    //
+    //         # With notification message
+    //         if ($event_temp->approver_count >= 2) {
+    //           # Update the status of event
+    //           $event_temp = Event::find($id);
+    //           $event_temp->approve_status = 'approved';
+    //           $event_temp->save();
+    //
+    //           # Notification
+    //           $notify = new ManageNotificationController();
+    //           $notify->notify($approved_event);
+    //
+    //           # message
+    //           # I think no need here, hm
+    //           return redirect()->route('org-adviser.approve.event')
+    //             ->with('status', "Successfuly approved the event ( {$approved_event->title} ) and Notified");
+    //         }
+    //
+    //         # with no notification message
+    //         return redirect()->route('org-adviser.approve.event')
+    //           ->with('status', "Successfuly approved the event ( {$approved_event->title} )");
+    //       }
+    //     }
+    //   }
+    // }
 
     /**
      * Disapprove the event
@@ -375,45 +375,45 @@ class EventController extends Controller
      * @param [int] $id Event ID
      * @return Illuminate\Response
      */
-    public function setDisApprove($id)
-    {
-      # is login?
-      parent::loginCheck();
-
-      # is an adviser & approver?
-      if (parent::isOrgAdviser() and parent::isApprover()) {
-        # Get one row of event
-        $approved_event = Event::find($id);
-
-        # is the event exist?
-        if ( ! $approved_event->exists) {
-          return redirect()->route('org-adviser.approve.event')
-            ->with('status_warning', 'There no event yet');
-        }
-
-        # is the majority not yet approve?
-        if ($approved_event->approver_count >= 0 and $approved_event->approver_count < 3) {
-          $done = EventApprovalMonitor::where('event_id', '=', $id)
-            ->where('approvers_id', '=', Auth::user()->id)
-            ->exists();
-
-          if ($done) {
-            EventApprovalMonitor::where('event_id', '=', $id)
-              ->where('approvers_id', '=', Auth::user()->id)
-              ->delete();
-
-            $approved_event->approver_count--;
-            if ($approved_event->save()) {
-              return redirect()->route('org-adviser.approve.event')
-                ->with('status', "Successfuly disapproved the event ( {$approved_event->title} )");
-            }
-          } else {
-            return redirect()->route('org-adviser.approve.event')
-              ->with('status_warning', "You already disapproved or not yet approve this event ( {$approved_event->title} )");
-          }
-        }
-      }
-    }
+    // public function setDisApprove($id)
+    // {
+    //   # is login?
+    //   parent::loginCheck();
+    //
+    //   # is an adviser & approver?
+    //   if (parent::isOrgAdviser() and parent::isApprover()) {
+    //     # Get one row of event
+    //     $approved_event = Event::find($id);
+    //
+    //     # is the event exist?
+    //     if ( ! $approved_event->exists) {
+    //       return redirect()->route('org-adviser.approve.event')
+    //         ->with('status_warning', 'There no event yet');
+    //     }
+    //
+    //     # is the majority not yet approve?
+    //     if ($approved_event->approver_count >= 0 and $approved_event->approver_count < 3) {
+    //       $done = EventApprovalMonitor::where('event_id', '=', $id)
+    //         ->where('approvers_id', '=', Auth::user()->id)
+    //         ->exists();
+    //
+    //       if ($done) {
+    //         EventApprovalMonitor::where('event_id', '=', $id)
+    //           ->where('approvers_id', '=', Auth::user()->id)
+    //           ->delete();
+    //
+    //         $approved_event->approver_count--;
+    //         if ($approved_event->save()) {
+    //           return redirect()->route('org-adviser.approve.event')
+    //             ->with('status', "Successfuly disapproved the event ( {$approved_event->title} )");
+    //         }
+    //       } else {
+    //         return redirect()->route('org-adviser.approve.event')
+    //           ->with('status_warning', "You already disapproved or not yet approve this event ( {$approved_event->title} )");
+    //       }
+    //     }
+    //   }
+    // }
 
     /**
      * Display the infor box for event management

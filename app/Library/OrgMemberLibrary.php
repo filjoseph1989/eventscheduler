@@ -76,4 +76,8 @@ class OrgMemberLibrary extends Controller
       'semester'          => 'Required',
     ], $message);
   }
+  public function isOrgMemberInGivenOrganization($id)
+  {
+    $adviser = OrganizationGroup::where('organization_id', '=', $id)->get();
+  }
 }

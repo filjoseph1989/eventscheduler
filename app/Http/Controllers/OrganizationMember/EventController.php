@@ -16,16 +16,15 @@ use App\Models\PersonalEvent;
 use App\Models\EventCategory;
 use App\Models\OrganizationGroup;
 use App\Models\EventApprovalMonitor;
-use App\Models\OrganizationAdviserGroup;
 
 class EventController extends Controller
 {
-    private $orgMember;
+    private $org_member;
 
     public function __construct()
     {
       $this->middleware('web');
-      $this->orgMember = new OrgMember();
+      $this->org_member = new OrgMember();
     }
 
     /**
@@ -39,7 +38,7 @@ class EventController extends Controller
       parent::loginCheck();
 
       # Is the user an orgMember?
-      $this->orgMember->isOrgMember();
+      $this->org_member->isOrgMember();
 
       $login_type = "user";
       if ($id == null) {
@@ -80,7 +79,7 @@ class EventController extends Controller
       parent::loginCheck();
 
       # Is the user an orgMember?
-      $this->orgMember->isOrgMember();
+      $this->org_member->isOrgMember();
 
       $login_type     = 'user';
       $event_type     = EventType::all()->except(1);
@@ -109,7 +108,7 @@ class EventController extends Controller
       parent::loginCheck();
 
       # is the user rank as adivser?
-      $this->orgMember->isOrgMember();
+      $this->org_member->isOrgMember();
 
       # return to form if the following does not satisfy
       if ($data->event_type_id == 0) {
@@ -141,10 +140,10 @@ class EventController extends Controller
       }
 
       # is data entry valid?
-      $this->orgMember->isValid($data);
+      $this->org_member->isValid($data);
 
       # is the user an orgMember to an organization?
-      $this->orgMember->isAdviserInGivenOrganization($data->organization_id);
+      $this->org_member->isOrgMemberInGivenOrganization($data->organization_id);
 
       # Get the data from form
       $request = $data->only(
@@ -224,27 +223,27 @@ class EventController extends Controller
      * Approve events
      * @return [type] [description]
      */
-    public function approveEvents()
-    {
-      # Check the authentication of this account
-      parent::loginCheck();
-
-      # Check if user is an orgMember
-      $this->orgMember->isOrgMember();
-
-      # Check if the account is an approver
-      if (parent::isApprover()) {
-        $login_type = 'user';
-
-        $ev = ApproverLibrary::getGetEventsNeedApproval();
-
-        return view('pages/users/organization-member/events/approve-events', compact(
-          'login_type','ev'
-        ));
-      } else {
-        return back()->with('status_warning', "Sorry, that page is for approver only");
-      }
-    }
+    // public function approveEvents()
+    // {
+    //   # Check the authentication of this account
+    //   parent::loginCheck();
+    //
+    //   # Check if user is an orgMember
+    //   $this->org_member->isOrgMember();
+    //
+    //   # Check if the account is an approver
+    //   if (parent::isApprover()) {
+    //     $login_type = 'user';
+    //
+    //     $ev = ApproverLibrary::getGetEventsNeedApproval();
+    //
+    //     return view('pages/users/organization-member/events/approve-events', compact(
+    //       'login_type','ev'
+    //     ));
+    //   } else {
+    //     return back()->with('status_warning', "Sorry, that page is for approver only");
+    //   }
+    // }
 
     /**
      * Process the approval of events
@@ -252,68 +251,68 @@ class EventController extends Controller
      * @param int $id Event ID
      * @return Illuminate\Response
      */
-    public function setApprove($id)
-    {
-      # is login?
-      parent::loginCheck();
-
-      # is an approver & orgMember?
-      if (parent::isOrgMember() and parent::isApprover()) {
-        $approved_event = Event::find($id);
-
-        # is the event exist?
-        if ( ! $approved_event->exists) {
-          return redirect()->route('org-adviser.approve.event')
-            ->with('status_warning', 'There no event yet');
-        }
-
-        # the majority approve already?
-        if ($approved_event->approver_count >= 0 and $approved_event->approver_count < 3) {
-          # Before confirming the approve,
-          # we need to check if the user already approved the event
-          $done = EventApprovalMonitor::where('event_id', '=', $id)
-            ->where('approvers_id', '=', Auth::user()->id)
-            ->exists();
-
-          if ($done) {
-            return redirect()->route('org-adviser.approve.event')
-              ->with('status_warning', "You already approved this event ( {$approved_event->title} ). Press the UNAPPROVE button to disable your approval.");
-          } else {
-            # Increment approver count on events table.
-            # This determine how many already approved the event
-            $approved_event->approver_count++;
-            $approved_event->save();
-
-            # Save users ID to prevent performing more approval
-            # when the user already did it.
-            EventApprovalMonitor::create([
-              'event_id'     => $id,
-              'approvers_id' => Auth::user()->id
-            ]);
-
-            # With notification message
-            if ($approved_event->approver_count >= 3) {
-              # Update the status of event
-              $approved_event->approve_status = 'approved';
-              $approved_event->save();
-
-              # Notification
-              $notify = new ManageNotificationController();
-              $notify->notify($approved_event);
-
-              # message
-              # I think no need here, hm
-              return redirect()->route('org-adviser.approve.event')
-                ->with('status', "Successfuly approved the event ( {$approved_event->title} ) and Notified");
-            }
-
-            # with no notification message
-            return redirect()->route('org-adviser.approve.event')
-              ->with('status', "Successfuly approved the event ( {$approved_event->title} )");
-          }
-        }
-      }
-    }
+    // public function setApprove($id)
+    // {
+    //   # is login?
+    //   parent::loginCheck();
+    //
+    //   # is an approver & orgMember?
+    //   if (parent::isOrgMember() and parent::isApprover()) {
+    //     $approved_event = Event::find($id);
+    //
+    //     # is the event exist?
+    //     if ( ! $approved_event->exists) {
+    //       return redirect()->route('org-adviser.approve.event')
+    //         ->with('status_warning', 'There no event yet');
+    //     }
+    //
+    //     # the majority approve already?
+    //     if ($approved_event->approver_count >= 0 and $approved_event->approver_count < 3) {
+    //       # Before confirming the approve,
+    //       # we need to check if the user already approved the event
+    //       $done = EventApprovalMonitor::where('event_id', '=', $id)
+    //         ->where('approvers_id', '=', Auth::user()->id)
+    //         ->exists();
+    //
+    //       if ($done) {
+    //         return redirect()->route('org-adviser.approve.event')
+    //           ->with('status_warning', "You already approved this event ( {$approved_event->title} ). Press the UNAPPROVE button to disable your approval.");
+    //       } else {
+    //         # Increment approver count on events table.
+    //         # This determine how many already approved the event
+    //         $approved_event->approver_count++;
+    //         $approved_event->save();
+    //
+    //         # Save users ID to prevent performing more approval
+    //         # when the user already did it.
+    //         EventApprovalMonitor::create([
+    //           'event_id'     => $id,
+    //           'approvers_id' => Auth::user()->id
+    //         ]);
+    //
+    //         # With notification message
+    //         if ($approved_event->approver_count >= 3) {
+    //           # Update the status of event
+    //           $approved_event->approve_status = 'approved';
+    //           $approved_event->save();
+    //
+    //           # Notification
+    //           $notify = new ManageNotificationController();
+    //           $notify->notify($approved_event);
+    //
+    //           # message
+    //           # I think no need here, hm
+    //           return redirect()->route('org-adviser.approve.event')
+    //             ->with('status', "Successfuly approved the event ( {$approved_event->title} ) and Notified");
+    //         }
+    //
+    //         # with no notification message
+    //         return redirect()->route('org-adviser.approve.event')
+    //           ->with('status', "Successfuly approved the event ( {$approved_event->title} )");
+    //       }
+    //     }
+    //   }
+    // }
 
     /**
      * Disapprove the event
@@ -321,46 +320,126 @@ class EventController extends Controller
      * @param [int] $id Event ID
      * @return Illuminate\Response
      */
-    public function setDisApprove($id)
+    // public function setDisApprove($id)
+    // {
+    //   # is login?
+    //   parent::loginCheck();
+    //
+    //   # is an adviser & approver?
+    //   if (parent::isOrgMember() and parent::isApprover()) {
+    //     # Get one row of event
+    //     $approved_event = Event::find($id);
+    //
+    //     # is the event exist?
+    //     if ( ! $approved_event->exists) {
+    //       return redirect()->route('org-adviser.approve.event')
+    //         ->with('status_warning', 'There no event yet');
+    //     }
+    //
+    //     # is the majority not yet approve?
+    //     if ($approved_event->approver_count >= 0 and $approved_event->approver_count < 3) {
+    //       $done = EventApprovalMonitor::where('event_id', '=', $id)
+    //         ->where('approvers_id', '=', Auth::user()->id)
+    //         ->exists();
+    //
+    //       if ($done) {
+    //         EventApprovalMonitor::where('event_id', '=', $id)
+    //           ->where('approvers_id', '=', Auth::user()->id)
+    //           ->delete();
+    //
+    //         $approved_event->approver_count--;
+    //         if ($approved_event->save()) {
+    //           return redirect()->route('org-adviser.approve.event')
+    //             ->with('status', "Successfuly disapproved the event ( {$approved_event->title} )");
+    //         }
+    //       } else {
+    //         return redirect()->route('org-adviser.approve.event')
+    //           ->with('status_warning', "You already disapproved or not yet approve this event ( {$approved_event->title} )");
+    //       }
+    //     }
+    //   }
+    // }
+    public function manageSchedule()
     {
-      # is login?
       parent::loginCheck();
 
-      # is an adviser & approver?
-      if (parent::isOrgMember() and parent::isApprover()) {
-        # Get one row of event
-        $approved_event = Event::find($id);
+      $this->org_member->isOrgMember();
 
-        # is the event exist?
-        if ( ! $approved_event->exists) {
-          return redirect()->route('org-adviser.approve.event')
-            ->with('status_warning', 'There no event yet');
-        }
-
-        # is the majority not yet approve?
-        if ($approved_event->approver_count >= 0 and $approved_event->approver_count < 3) {
-          $done = EventApprovalMonitor::where('event_id', '=', $id)
-            ->where('approvers_id', '=', Auth::user()->id)
-            ->exists();
-
-          if ($done) {
-            EventApprovalMonitor::where('event_id', '=', $id)
-              ->where('approvers_id', '=', Auth::user()->id)
-              ->delete();
-
-            $approved_event->approver_count--;
-            if ($approved_event->save()) {
-              return redirect()->route('org-adviser.approve.event')
-                ->with('status', "Successfuly disapproved the event ( {$approved_event->title} )");
-            }
-          } else {
-            return redirect()->route('org-adviser.approve.event')
-              ->with('status_warning', "You already disapproved or not yet approve this event ( {$approved_event->title} )");
-          }
-        }
-      }
+      $login_type = "user";
+      return view('pages/users/organization-member/events/manange-schedule')
+        ->with([
+          'login_type' => $login_type
+        ]);
     }
 
+    /**
+     * Manage notification
+     *
+     * @return void
+     */
+    public function manageNotification()
+    {
+      parent::loginCheck();
+
+      # is the adviser logged in?
+      $this->org_member->isOrgMember();
+
+      # Get event created by the adiviser
+      $event = Event::where('user_id', Auth::user()->id)->where('event_category_id', 2)->get();
+
+      $login_type = "user";
+      return view('pages/users/organization-member/events/list0')->with([
+        'login_type' => $login_type,
+        'event'      => $event,
+      ]);
+    }
+    //sd
+
+    public function manageNotificationMenu()
+    {
+      parent::loginCheck();
+
+      # is the adviser logged in?
+      $this->org_member->isOrgMember();
+
+      # Get event created by the adiviser
+      $event = Event::where('user_id', Auth::user()->id)->get();
+
+      $login_type = "user";
+      return view('pages/users/organization-member/events/manage-notif-menu')->with([
+        'login_type' => $login_type,
+        'event'      => $event
+      ]);
+    }
+
+    /**
+     * Update event notifications
+     *
+     * @param  Request $data Event Informations
+     * @return void
+     */
+    public function updateNotification(Request $data)
+    {
+      parent::loginCheck();
+
+      # is the adviser logged in?
+      $this->org_member->isOrgMember();
+
+      $request = $data->only(
+        'notify_via_facebook', 'notify_via_twitter',
+        'notify_via_email', 'notify_via_sms',
+        'additional_msg_facebook', 'additional_msg_sms',
+        'additional_msg_email'
+      );
+
+      # Finally create events
+      $result = Event::find($data->event_id);
+      $result = $result->update($request);
+
+      if ($result) {
+        return back()->with('status', 'Successfuly updated notifications');
+      }
+    }
     /**
      * Determined if this loggedin user
      * is a member of the given organization ID

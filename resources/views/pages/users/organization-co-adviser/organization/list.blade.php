@@ -28,11 +28,11 @@
               <div class="body table-responsive">
                 @php
                   if ($organization->count() >= 10) {
-                    $class = "js-basic-example dataTable"; 
+                    $class = "js-basic-example dataTable";
                   } else {
-                    $class = ""; 
+                    $class = "";
                   }
-                @endphp 
+                @endphp
                 <table class="table table-striped table-hover @php echo $class; @endphp">
                   <thead>
                     <tr>
@@ -51,7 +51,7 @@
                     @else
                       @foreach ($organization as $key => $value)
                         <tr>
-                          <td><a href="{{ route('org-adviser.org-profile', [$value->id]) }}">{{ $value->name }}</a></td>
+                          <td><a href="{{ route('org-co-adviser.org-profile', [$value->id]) }}">{{ $value->name }}</a></td>
                           <td><a href="{{ $value->url }}" target="_blank">{{ $value->url }}</a></td>
                           <td>{{ date('M d, Y', strtotime($value->date_started)) }}</td>
                           <td>{{ date('M d, Y', strtotime($value->date_expired)) }}</td>

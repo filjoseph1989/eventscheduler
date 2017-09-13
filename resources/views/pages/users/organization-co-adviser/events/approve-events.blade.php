@@ -68,10 +68,10 @@
                           <td>{{ $value->date_end_time }}</td>
                           <td>{{ $value->approve_status }}</td>
                           <td>
-                            <a href="{{ route('org-adviser.approved.event', [$value->id] ) }}" title="approve this event">
+                            <a href="{{ route('org-co-adviser.approved.event', [$value->id] ) }}" title="approve this event">
                               <i class="material-icons">thumb_up</i>
                             </a>
-                            <a href="{{ route('org-adviser.disapproved.event', [$value->id] ) }}" class="" title="disapprove this event">
+                            <a href="{{ route('org-co-adviser.disapproved.event', [$value->id] ) }}" class="" title="disapprove this event">
                               <i class="material-icons">thumb_down</i>
                             </a>
                           </td>

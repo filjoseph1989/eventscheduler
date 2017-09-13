@@ -64,42 +64,20 @@ class GenerateAttendanceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-      // $data['event_id'] = $request->eid;
-      // $data['user_id']  = $request->id;
-      // $data['reason']   = '';
-      // $data['status']   = 'true';
-      // $data['confirmation'] = 'true';
+     public function store(Request $request)
+     {
+       $result = UserAttendance::updateOrCreate(
+         ['event_id'     => $request->eid, 'user_id' => $request->id],
+         ['status'       => $request->status, 'confirmation' => $request->confirmation]
+       );
 
-      $result = UserAttendance::updateOrCreate(
-        ['event_id' => $request->eid, 'user_id' => $request->id],
-        ['status' => 'true', 'confirmation' => 'true']
-      );
-      if ($result) {
-        echo json_encode([
-          'status' => true
-        ]);
-      }
-    }
-    public function store2(Request $request)
-    {
-      // $data['event_id'] = $request->eid;
-      // $data['user_id']  = $request->id;
-      // $data['reason']   = '';
-      // $data['status']   = 'true';
-      // $data['confirmation'] = 'true';
-
-      $result = UserAttendance::updateOrCreate(
-        ['event_id' => $request->eid, 'user_id' => $request->id],
-        ['status' => 'false', 'confirmation' => 'false']
-      );
-      if ($result) {
-        echo json_encode([
-          'status' => true
-        ]);
-      }
-    }
+       if ($result) {
+         echo json_encode([
+           'status' => true,
+           'id'     => $request->id
+         ]);
+       }
+     }
     /**
      * Display the specified resource.
      *
@@ -183,10 +161,8 @@ class GenerateAttendanceController extends Controller
         'org', 'login_type'
       ));
     }
-
-
-
-    public function generateConfirmedAttendanceEventList($id = null){
+    public function generateConfirmedAttendanceEventList($id = null)
+    {
 
       $event = Event::where('organization_id', '=', $id)
       ->where('approve_status', '=', 'approved')
@@ -197,8 +173,8 @@ class GenerateAttendanceController extends Controller
         'event', 'login_type'
       ));
     }
-
-    public function generateOfficialAttendanceEventList($id = null){
+    public function generateOfficialAttendanceEventList($id = null)
+    {
 
       $event = Event::where('organization_id', '=', $id)
       ->where('approve_status', '=', 'approved')
@@ -209,8 +185,8 @@ class GenerateAttendanceController extends Controller
         'event', 'login_type'
       ));
     }
-
-    public function generateDeclinedAttendanceEventList($id = null){
+    public function generateDeclinedAttendanceEventList($id = null)
+    {
 
       $event = Event::where('organization_id', '=', $id)
       ->where('approve_status', '=', 'approved')
@@ -221,7 +197,6 @@ class GenerateAttendanceController extends Controller
         'event', 'login_type'
       ));
     }
-
     public function declinedAttendanceMemberList($id, $eid)
     {
       parent::loginCheck();
@@ -258,7 +233,6 @@ class GenerateAttendanceController extends Controller
         'login_type', 'att_sheet', 'organization', 'event', 'att', 'pos2', 'org'
       ));
     }
-
     public function confirmedAttendanceMemberList($id, $eid)
     {
       parent::loginCheck();
@@ -295,8 +269,6 @@ class GenerateAttendanceController extends Controller
         'login_type', 'att_sheet', 'organization', 'event', 'att', 'pos2', 'org'
       ));
     }
-
-
     public function officialAttendanceMemberList($id, $eid)
     {
       parent::loginCheck();

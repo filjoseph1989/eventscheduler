@@ -22,7 +22,7 @@ use App\Models\OrganizationGroup;
  */
 class OrganizationController extends Controller
 {
-    private $orgMember;
+    private $org_member;
 
     /**
      * Guard
@@ -30,7 +30,7 @@ class OrganizationController extends Controller
     public function __construct()
     {
         $this->middleware('web');
-        $this->orgMember = new OrgMember();
+        $this->org_member = new OrgMember();
     }
 
     /**
@@ -44,7 +44,7 @@ class OrganizationController extends Controller
       parent::loginCheck();
 
       # is the user an orgMember?
-      $this->orgMember->isOrgMember();
+      $this->org_member->isOrgMember();
 
       $login_type = 'user';
 
@@ -57,8 +57,7 @@ class OrganizationController extends Controller
 
       # Render view
       return view('pages/users/organization-member/organization/list', compact(
-        'login_type',
-        'organization'
+        'login_type',  'organization'
       ));
     }
 
@@ -104,7 +103,7 @@ class OrganizationController extends Controller
       parent::loginCheck();
 
       # is the user an orgMember?
-      $this->orgMember->isOrgMember();
+      $this->org_member->isOrgMember();
 
       $login_type   = 'user';
       $organization = Organization::find($id);
@@ -128,7 +127,7 @@ class OrganizationController extends Controller
       parent::loginCheck();
 
       # is the user an orgMember?
-      $this->orgMember->isOrgMember();
+      $this->org_member->isOrgMember();
 
       # Get one row of organization
       $organization = Organization::find($id);
@@ -153,7 +152,7 @@ class OrganizationController extends Controller
       parent::loginCheck();
 
       # make sure user is an orgMember
-      $this->orgMember->isOrgMember();
+      $this->org_member->isOrgMember();
 
       # make sure entry is valid
       self::_isValid($request);
@@ -173,7 +172,7 @@ class OrganizationController extends Controller
       # Inform user about the changes
       if ($result) {
         return redirect()
-          ->route('org-orgMember.org-profile', $request->id)
+          ->route('org-member.org-profile', $request->id)
           ->with('success', 'Successfully updated');
       } else {
         return back()->withInput()->with('status_warning', "Sorry, we have problem updating {$organization->name} information, please try again later");
@@ -202,7 +201,7 @@ class OrganizationController extends Controller
       parent::loginCheck();
 
       # is the user an orgMember?
-      $this->orgMember->isOrgMember();
+      $this->org_member->isOrgMember();
 
       # Upload image
       $imageName = ImageLibrary::uploadImage($request, 'images/org_profile');

@@ -51,7 +51,7 @@
                     </a>
                     <ul class="dropdown-menu pull-right">
                       @if ($adviser === true AND $isMember === true)
-                        <li><a href="{{ route('org-adviser.org-edit', $organization->id) }}"><i class="material-icons">create</i> Edit</a></li>
+                        <li><a href="{{ route('org-co-adviser.org-edit', $organization->id) }}"><i class="material-icons">create</i> Edit</a></li>
                       @else
                         <li><a href="#">No Options</a></li>
                       @endif
@@ -69,7 +69,7 @@
                       <small>Credit: <a href="https://www.askideas.com/media/87/Black-Ink-Pirate-Ship-In-Rope-Frame-With-Banner-And-Anchor-Tattoo-Design.jpg" target="_blank">Here</a></small>
                     @endif
                     @if ($adviser === true AND $isMember === true)
-                      <form action="{{ route('org-adviser.org-logo') }}" enctype="multipart/form-data" method="POST">
+                      <form action="{{ route('org-co-adviser.org-logo') }}" enctype="multipart/form-data" method="POST">
                         {{ csrf_field() }}
                         <div class="row">&nbsp;</div>
                         <div class="row">
@@ -80,7 +80,7 @@
                           </div>
                         </div>
                       </form>
-                    @endif 
+                    @endif
                   </div>
                   <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
                     <div class="row">
@@ -109,7 +109,7 @@
                     <div class="row">
                       <div class="col-md-12">
                         @if ($isMember == false)
-                          <form class="" action="{{ route('org-adviser.org-membership', $organization->id ) }}" method="post">
+                          <form class="" action="{{ route('org-co-adviser.org-membership', $organization->id ) }}" method="post">
                             {{ csrf_field() }}
                             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                             <input type="hidden" name="organization_id" value="{{ $organization->id }}">

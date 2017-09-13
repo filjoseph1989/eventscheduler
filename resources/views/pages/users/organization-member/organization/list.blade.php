@@ -26,7 +26,14 @@
                 <h2> LIST OF ORGANIZATION </h2>
               </div>
               <div class="body table-responsive">
-                <table class="table table-striped table-hover js-basic-example dataTable">
+                @php
+                  if ($organization->count() >= 10) {
+                    $class = "js-basic-example dataTable";
+                  } else {
+                    $class = "";
+                  }
+                @endphp
+                <table class="table table-striped table-hover @php echo $class; @endphp">
                   <thead>
                     <tr>
                       <th>Name</th>

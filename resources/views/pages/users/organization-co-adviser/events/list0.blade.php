@@ -75,7 +75,7 @@
           <h4 class="modal-title" id="event-details-title">Manage Notification for Event <span id="event-name">Name</span></h4>
         </div>
         <div class="modal-body table-responsive event-table" id="event-details-body">
-          <form class="" action="{{ route('org-adviser.update-notification') }}" method="post">
+          <form class="" action="{{ route('org-co-adviser.update-notification') }}" method="post">
             {{ csrf_field() }}
             <input type="hidden" name="event_id" id="event_id" value="">
             <div id="event-notificiation-content">

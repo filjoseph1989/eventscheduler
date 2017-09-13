@@ -22,7 +22,7 @@ use App\Models\OrganizationGroup;
  */
 class MyEventController extends Controller
 {
-    private $orgMember;
+    private $org_member;
 
     /**
      * Create a new controller instance.
@@ -32,7 +32,7 @@ class MyEventController extends Controller
     public function __construct()
     {
       $this->middleware('web');
-      $this->orgMember = new OrgMember();
+      $this->org_member = new OrgMember();
     }
 
     /**
@@ -57,7 +57,7 @@ class MyEventController extends Controller
       parent::loginCheck();
 
       # return home if not an organization adviser
-      $this->orgMember->isOrgMember();
+      $this->org_member->isOrgMember();
 
       $login_type = 'user';
       $event_type = EventType::all();
@@ -79,7 +79,7 @@ class MyEventController extends Controller
       parent::loginCheck();
 
       # is the user rank as adivser?
-      $this->orgMember->isOrgMember();
+      $this->org_member->isOrgMember();
 
       # return to form if the following does not satisfy
       if ($data->event_type_id == 0) {
@@ -94,7 +94,7 @@ class MyEventController extends Controller
       }
 
       # is data entry valid?
-      $this->orgMember->isValid($data);
+      $this->org_member->isValid($data);
 
       # Get the data from form
       $request = $data->only(
