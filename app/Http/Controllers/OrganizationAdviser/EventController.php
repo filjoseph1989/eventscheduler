@@ -416,7 +416,7 @@ class EventController extends Controller
     }
 
     /**
-     * Display the infor box for event management
+     * Display the info box for event management
      *
      * @return void
      */
