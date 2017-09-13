@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command; 
+use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 
 # Models
@@ -50,13 +50,13 @@ class SendNotifications extends Command
      * @return mixed
      */
     public function handle()
-    { 
+    {
       # include class for beatiful mailer
       $beautymail = app()->make(\Snowfire\Beautymail\Beautymail::class);
-      
+
       # Get the approve events within this year, this comming month
       # and this coming days with the event organizer (e.g APO)
-      $event = self::getEvents(); 
+      $event = self::getEvents();
 
       # From the given organization ID for each event
       # get the members
@@ -75,7 +75,7 @@ class SendNotifications extends Command
         if ($month > date('m')) {
           # Send an email to user
           self::sendEmails($beautymail, $value);
-        } 
+        }
       }
     }
 
@@ -125,7 +125,7 @@ class SendNotifications extends Command
         ->where('status', 'true')
         ->get();
 
-      self::gatheringEmails($organizationGroup); 
+      self::gatheringEmails($organizationGroup);
       self::gatheringEmails($attendance);
     }
 
@@ -135,13 +135,13 @@ class SendNotifications extends Command
     private function sendEmails($mail, $value)
     {
       # Send an email to user
-      $mail->send('emails.mail', ['event' => $value], function($message)
-      { 
+      $mail->send('emails.mail1', ['event' => $value], function($message)
+      {
         foreach ($this->emails as $key => $email) {
-          $message 
-            ->to($email, $this->name[$key]) 
-            ->subject('You have a new event reminder!'); 
+          $message
+            ->to($email, $this->name[$key])
+            ->subject('You have a new event reminder!');
         }
-      }); 
+      });
     }
 }
