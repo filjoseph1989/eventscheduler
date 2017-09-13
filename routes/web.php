@@ -55,9 +55,6 @@ Route::group(['middleware' => 'revalidate'], function() {
   |--------------------------------------------------------------------------
   */
   Route::get('test','TestController@test');
-
-  Route::get('mail','MailController@index');
-
 });
 
 /*
