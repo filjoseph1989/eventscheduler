@@ -30,7 +30,7 @@
 
         <div class="row clearfix">
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <a href="{{ route('org-adviser.generate-declined-attendance-org-list') }}">
+            <a href="{{ route('org-head.generate-declined-attendance-org-list') }}">
               <div class="info-box hover-expand-effect">
               <div class="icon bg-teal">
                 <i class="material-icons">date_range</i>
@@ -43,7 +43,7 @@
             </a>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <a href="{{ route('org-adviser.generate-confirmed-attendance-org-list') }}">
+            <a href="{{ route('org-head.generate-confirmed-attendance-org-list') }}">
               <div class="info-box hover-expand-effect">
               <div class="icon bg-green">
                 <i class="material-icons">date_range</i>
@@ -56,7 +56,7 @@
             </a>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <a href="{{ route('org-adviser.attendance-org-list') }}">
+            <a href="{{ route('org-head.attendance-org-list') }}">
               <div class="info-box hover-expand-effect">
               <div class="icon bg-light-green">
                 <i class="material-icons">date_range</i>
@@ -69,7 +69,7 @@
             </a>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <a href="{{ route('org-adviser.official-attendance-org-list') }}">
+            <a href="{{ route('org-head.official-attendance-org-list') }}">
               <div class="info-box hover-expand-effect">
               <div class="icon bg-light-green">
                 <i class="material-icons">date_range</i>

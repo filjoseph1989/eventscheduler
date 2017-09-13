@@ -16,6 +16,7 @@ use App\Models\PersonalEvent;
 use App\Models\EventCategory;
 use App\Models\OrganizationGroup;
 use App\Models\EventApprovalMonitor;
+use App\Models\OrganizationHeadGroup;
 
 class EventController extends Controller
 {
@@ -78,7 +79,7 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createWithinOrgEvent()
+    public function create()
     {
       # Is the user loggedin?
       parent::loginCheck();
@@ -104,7 +105,7 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $data
      * @return \Illuminate\Http\Response
      */
-    public function storeWithinOrgEvent(Request $data)
+    public function store(Request $data)
     {
       # is the user login?
       parent::loginCheck();
@@ -479,8 +480,10 @@ class EventController extends Controller
       # is the org_head logged in?
       $this->org_head->isOrgHead();
 
-      # Get event created by the adiviser
-      $event = Event::where('user_id', Auth::user()->id)->where('event_category_id', 2)->get();
+      #get all events of the org head's organization
+      $org_head_group = OrganizationHeadGroup::where('user_id', Auth::user()->id)->get();
+      foreach ($org_head_group as $key => $value) { $org = $value->organization_id; }
+      $event = Event::where('organization_id', $org)->get();
 
       $login_type = "user";
       return view('pages/users/organization-head/events/list0')->with([

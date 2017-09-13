@@ -49,7 +49,7 @@
                   <tbody>
                     @foreach ($event as $key => $value)
                       <tr>
-                        <td><a href="{{ route('org-adviser.confirmed-attendance-member-list', [ $value->organization_id, $value->id] ) }}">{{ $value->title }}</a></td>
+                        <td><a href="{{ route('org-head.confirmed-attendance-member-list', [ $value->organization_id, $value->id] ) }}">{{ $value->title }}</a></td>
                       </tr>
                     @endforeach
                   </tbody>

@@ -66,12 +66,10 @@ class GenerateAttendanceController extends Controller
      */
     public function store(Request $request)
     {
-      $result = UserAttendance::updateOrCreate([
-        'event_id'     => $request->eid,
-        'user_id'      => $request->id,
-        'status'       => $request->status,
-        'confirmation' => $request->confirmation
-      ]);
+      $result = UserAttendance::updateOrCreate(
+        ['event_id'     => $request->eid, 'user_id' => $request->id],
+        ['status'       => $request->status, 'confirmation' => $request->confirmation]
+      );
 
       if ($result) {
         echo json_encode([

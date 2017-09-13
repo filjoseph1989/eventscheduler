@@ -33,25 +33,12 @@ To Do:
 
   Task 6: View Profile:
     ✔ What if there are many organization? @done(2017-07-23 03:04)
-    ☐ if click the following:
-      ☐ Course
-        ☐ List all members having this course (Optional|Advance|Low Priority)
-      ☐ Department
-        ☐ List all members within this department (Optional|Advance|Low Priority)
-      ☐ Position
-        ☐ List all members having this position (Optional|Advance|Low Priority)
-      ☐ Organization
-        ☐ List all members of this organization (Optional|Advance|Low Priority)
-      ☐ Account Type
-        ☐ List all staff with same account type (Optional|Advance|Low Priority)
-      ☐ Is it okay to view other adviser profile? (Optional|Advance|Low Priority)
     ✔ Change password @done(2017-07-27 21:47)
     ✔ Change profile pic @done(2017-07-27 15:50)
     ✔ Upload photo @done(2017-07-23 13:03)
     ✔ Do not delete the default picture @done(2017-07-23 13:03)
     ✔ Update also the sidebar picture @done(2017-07-23 15:18)
     ✔ Change profile pic @done(2017-07-27 21:48)
-    ☐ Create a thumbnails for profile pricture (Low Priority)
 
   Task 5: User admin account:
     ☐ Approve user system membership
@@ -74,8 +61,12 @@ To Do:
 
   Task 4: Office of the student affairs account:
     ☐ Assign an approvers:
+      Steps:
+        ☐ Get the list of users with position (2,3,4,5,13,14)
+        ☐ Set to approver button
     ☐ Organization:
       ☐ List all organization, include who is the adviser of the organization
+        ☐ View the member of the organization
       ☐ Add organization
       ☐ Assign an adviser for an organization
       ☐ Activate organization
@@ -139,12 +130,7 @@ To Do:
         ☐ Among Orgs
         ☐ Personal
     ☐ Members:
-      ☐ List of members within the organization of adviser
-        ☐ View members profile
-      ✔ Display membership request @done(2017-08-27 03:16) @project(To Do / Task 4: Office of the student affairs account / ☐ Members)
-      ☐ Accept new member
-      ☐ Check for new membership request live(Advance)
-      ☐ Check for if an edit happend about the organization live(Advance)
+      ☐ All members (list all members) (tagged with organization belong)
     ☐ Generate Attendance:
       ☐ Display the list of organization, advise by the loggedin adviser
       ☐ Display the list of event from the given organization

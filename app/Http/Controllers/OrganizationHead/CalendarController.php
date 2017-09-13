@@ -27,7 +27,7 @@ class CalendarController extends Controller
   {
     $this->middleware('web');
     $this->orgHead = new OrgHead();
-  } 
+  }
 
   /**
    * Display the event calendar
@@ -48,7 +48,7 @@ class CalendarController extends Controller
     # Display the calendar
     return view('pages/users/organization-head/calendars/my-org-calendar', compact(
       'login_type', 'id'
-    )); 
+    ));
   }
 
   /**
@@ -70,8 +70,8 @@ class CalendarController extends Controller
       ->get();
 
     $login_type = "user";
-    return view('pages/users/organization-head/organization/list1', compact(
+    return view('pages/users/organization-head/organization/within-org-events/list1', compact(
       'organization', 'login_type'
     ));
-  } 
+  }
 }

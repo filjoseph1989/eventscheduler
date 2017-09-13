@@ -31,16 +31,17 @@
   </a>
   <ul class="ml-menu">
     <li><a href="{{ route('osa-personnel.members.list') }}">All Members</a></li>
-    <li><a href="{{ route('osa-personnel.members.add') }}">Add Members</a></li>
-    <li><a href="{{ route('osa-personnel.members.accept') }}">Accept Request</a></li>
-    {{-- <li><a href="#">Members with organization</a></li> --}}
-    {{-- <li><a href="#">Members without organization</a></li> --}}
   </ul>
 </li>
 <li>
-  {{-- <a href="{{ route('osa-personnel.event.show') }}"> --}}
   <a href="{{ route('osa-personnel.attendance') }}">
     <i class="material-icons">list</i>
     <span>Generate Attendance</span>
+  </a>
+</li>
+<li>
+  <a href="#">
+    <i class="material-icons">list</i>
+    <span>Assign Approver</span>
   </a>
 </li>
