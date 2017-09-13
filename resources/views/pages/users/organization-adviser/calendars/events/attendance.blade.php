@@ -46,8 +46,8 @@
                       <th>Name</th>
                       <th>Family Name</th>
                       <th>Organization</th>
-                      <th>Action</th>
                       <th>Confirmation</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -68,6 +68,7 @@
                             data-event-id="{{ $eid }}">
                              Unconfirm
                           </button>
+                          <div class="preload preloader-{{ $value->user->id }}"></div>
                         </td>
                       </tr>
                     @endforeach

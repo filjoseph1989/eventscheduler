@@ -138,7 +138,8 @@ class GenerateAttendanceController extends Controller
     }
 
     #menu blade for functionality generate attendance
-    public function generateAttendanceMenu(){
+    public function generateAttendanceMenu()
+    {
       parent::loginCheck();
 
       $this->adviser->isAdviser();
@@ -147,8 +148,6 @@ class GenerateAttendanceController extends Controller
         'login_type'
       ));
     }
-
-
 
     public function declinedAttendanceOrgList()
     {
@@ -162,6 +161,7 @@ class GenerateAttendanceController extends Controller
         'org', 'login_type'
       ));
     }
+
     public function confirmedAttendanceOrgList()
     {
       # Get the organization of the adviser
@@ -174,6 +174,7 @@ class GenerateAttendanceController extends Controller
         'org', 'login_type'
       ));
     }
+
     public function officialAttendanceOrgList()
     {
       # Get the organization of the adviser
@@ -187,10 +188,8 @@ class GenerateAttendanceController extends Controller
       ));
     }
 
-
-
-    public function generateConfirmedAttendanceEventList($id = null){
-
+    public function generateConfirmedAttendanceEventList($id = null)
+    {
       $event = Event::where('organization_id', '=', $id)
       ->where('approve_status', '=', 'approved')
       ->get();
@@ -201,8 +200,8 @@ class GenerateAttendanceController extends Controller
       ));
     }
 
-    public function generateOfficialAttendanceEventList($id = null){
-
+    public function generateOfficialAttendanceEventList($id = null)
+    {
       $event = Event::where('organization_id', '=', $id)
       ->where('approve_status', '=', 'approved')
       ->get();
@@ -213,8 +212,8 @@ class GenerateAttendanceController extends Controller
       ));
     }
 
-    public function generateDeclinedAttendanceEventList($id = null){
-
+    public function generateDeclinedAttendanceEventList($id = null)
+    {
       $event = Event::where('organization_id', '=', $id)
       ->where('approve_status', '=', 'approved')
       ->get();
@@ -225,8 +224,8 @@ class GenerateAttendanceController extends Controller
       ));
     }
 
-
-    public function generateConfirmedAttendance($id = null){
+    public function generateConfirmedAttendance($id = null)
+    {
       parent::loginCheck();
 
       $this->adviser->isAdviser();
@@ -323,7 +322,6 @@ class GenerateAttendanceController extends Controller
       ));
     }
 
-
     public function officialAttendanceMemberList($id, $eid)
     {
       parent::loginCheck();
@@ -360,6 +358,7 @@ class GenerateAttendanceController extends Controller
         'login_type', 'att_sheet', 'organization', 'event', 'att', 'pos2', 'org'
       ));
     }
+
     /**
      * Show the form for editing the specified resource.
      *

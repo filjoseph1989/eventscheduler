@@ -1,4 +1,9 @@
 /* Navbar ====================================== */
+/**
+ * Style
+ * @type {String}
+ * @version 0.16
+ */
 
 @import url(materialize.css);
 .navbar {
@@ -11064,4 +11069,16 @@ a:focus {
 }
 tr > td:nth-child(2) {
   padding-left: 30px;
+}
+
+.confirmed,
+.unconfirmed {
+  float: left;
+}
+.confirmed {
+  margin-right: 2px;
+}
+.preload {
+  margin-left: 4px;
+  margin-top: 4px;
 }

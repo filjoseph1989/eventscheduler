@@ -280,7 +280,6 @@ $(document).on('click', '.unconfirmed', function() {
   updateAttendance(data, "Unconfirmed");
 });
 
-
 /**
  * Can't attend function
  * @return void
@@ -298,7 +297,7 @@ $(document).on('click', '#cant-attend', function() {
  * @param {string} url
  * @return {void}
  */
-function submit(data, url, callback) {
+function submit(data, url, callback, preloader = '') {
   $.ajax({
     type: 'POST',
     url: url,
@@ -306,6 +305,24 @@ function submit(data, url, callback) {
     dataType: 'json',
     beforeSend: function(request) {
       request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
+      if (preloader != '') {
+        var html =
+        '<div class="preloader pl-size-xs">' +
+          '<div class="spinner-layer pl-red-grey">' +
+            '<div class="circle-clipper left">' +
+              '<div class="circle"></div>' +
+            '</div>' +
+            '<div class="circle-clipper right">' +
+              '<div class="circle"></div>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+
+        $(preloader).html(html);
+      }
+    },
+    complete: function() {
+      $(preloader).html('');
     },
     success: function(data) {
       callback(data);
@@ -448,5 +465,5 @@ function updateAttendance(data, $message) {
 
   submit(data, url, function(data) {
     $('#confirm-status-'+data.id).html($message);
-  });
+  }, '.preloader-'+data.id);
 }
