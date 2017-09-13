@@ -56,6 +56,7 @@
                         <td>{{ $value->user->first_name }}</td>
                         <td>{{ $value->user->last_name }}</td>
                         <td>{{ $value->organization->name }}</td>
+                        <td id="confirm-status-{{ $value->user->id }}">{{ (isset($confirm[$value->user->id]) AND $confirm[$value->user->id] == 'true') ? "Confirmed" : "Unconfirmed" }}</td>
                         <td>
                           <button type="button" class="btn btn-primary waves-effect confirmed"
                             data-user-id="{{ $value->user->id }}"
@@ -68,7 +69,6 @@
                              Unconfirm
                           </button>
                         </td>
-                        <td>{{ (isset($confirm[$value->user->id]) AND $confirm[$value->user->id] == 'true') ? "Confirmed" : "Unconfirmed" }}</td>
                       </tr>
                     @endforeach
                   </tbody>
@@ -91,5 +91,5 @@
 @endsection
 
 @section('footer')
-  <script src="{{ asset('js/app.js') }}?v=0.27" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.31" charset="utf-8"></script>
 @endsection

@@ -16,7 +16,7 @@ use App\Models\Event;
 use App\Models\Course;
 
 class GenerateAttendanceController extends Controller
-  {
+{
     private $adviser;
 
     /**
@@ -88,42 +88,23 @@ class GenerateAttendanceController extends Controller
      */
     public function store(Request $request)
     {
-      // $data['event_id'] = $request->eid;
-      // $data['user_id']  = $request->id;
-      // $data['reason']   = '';
-      // $data['status']   = 'true';
-      // $data['confirmation'] = 'true';
+      $result = UserAttendance::updateOrCreate([
+        'event_id'     => $request->eid,
+        'user_id'      => $request->id,
+        'status'       => $request->status,
+        'confirmation' => $request->confirmation
+      ]);
 
-      $result = UserAttendance::updateOrCreate(
-        ['event_id' => $request->eid, 'user_id' => $request->id],
-        ['status' => 'true', 'confirmation' => 'true']
-      );
       if ($result) {
         echo json_encode([
-          'status' => true
+          'status' => true,
+          'id'     => $request->id
         ]);
       }
     }
-    public function store2(Request $request)
-    {
-      // $data['event_id'] = $request->eid;
-      // $data['user_id']  = $request->id;
-      // $data['reason']   = '';
-      // $data['status']   = 'true';
-      // $data['confirmation'] = 'true';
 
-      $result = UserAttendance::updateOrCreate(
-        ['event_id' => $request->eid, 'user_id' => $request->id],
-        ['status' => 'false', 'confirmation' => 'false']
-      );
-      if ($result) {
-        echo json_encode([
-          'status' => true
-        ]);
-      }
-    }
     /**
-     * Display the specified resource.
+     * Display the list of member who will attend the event.
      *
      * @param  int  $id Organization ID
      * @param int $eid Event ID
@@ -142,11 +123,11 @@ class GenerateAttendanceController extends Controller
         ->get();
 
       # Get the status of the user attendance
-      $att = []; # attendance
-      $cnf = []; # confirmation
+      $att       = []; # attendance
+      $cnf       = []; # confirmation
       $att_sheet = UserAttendance::where('event_id', '=', $eid)->get();
       foreach ($att_sheet as $key => $value) {
-        $att[$value->user_id] = $value->status;
+        $att[$value->user_id]     = $value->status;
         $confirm[$value->user_id] = $value->confirmation;
       }
 

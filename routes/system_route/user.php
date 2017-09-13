@@ -45,33 +45,20 @@ Route::prefix('users')->group(function() {
     Route::name('org-adviser.manage-notification-menu')->get('/manage-notification-menu', 'OrganizationAdviser\EventController@manageNotificationMenu');
     Route::name('org-adviser.manage-notification')->get('/manage-notification', 'OrganizationAdviser\EventController@manageNotification');
     Route::name('org-adviser.update-notification')->post('/update-notification', 'OrganizationAdviser\EventController@updateNotification');
- 
-    ####generate attendance route
     Route::name('org-adviser.generate-attendance')->get('/generate-attendance/menu', 'OrganizationAdviser\GenerateAttendanceController@generateAttendanceMenu');
-
-    #route for generate declined attendance
     Route::name('org-adviser.generate-declined-attendance-org-list')->get('/generate/declined-attendance/org-list', 'OrganizationAdviser\GenerateAttendanceController@declinedAttendanceOrgList');
     Route::name('org-adviser.generate-declined-attendance-event-list')->get('/generate/declined-attendance/event-list/{id?}', 'OrganizationAdviser\GenerateAttendanceController@generateDeclinedAttendanceEventList');
     Route::name('org-adviser.declined-attendance-member-list')->get('/generate/declined-attendance/member-list/{id}/{eid}', 'OrganizationAdviser\GenerateAttendanceController@declinedAttendanceMemberList');
-
-    #route for generate confirmed attendance
     Route::name('org-adviser.generate-confirmed-attendance-org-list')->get('/generate/confirmed-attendance/org-list', 'OrganizationAdviser\GenerateAttendanceController@confirmedAttendanceOrgList');
     Route::name('org-adviser.generate-confirmed-attendance-event-list')->get('/generate/confirmed-attendance/event-list/{id?}', 'OrganizationAdviser\GenerateAttendanceController@generateConfirmedAttendanceEventList');
     Route::name('org-adviser.confirmed-attendance-member-list')->get('/generate/confirmed-attendance/member-list/{id}/{eid}', 'OrganizationAdviser\GenerateAttendanceController@confirmedAttendanceMemberList');
-
-    #route for confirm and view org members' event expected attendance
     Route::name('org-adviser.attendance-org-list')->get('/attendance/org-list', 'OrganizationAdviser\GenerateAttendanceController@index');
     Route::name('org-adviser.attendance.show')->get('/new/{id}/{eid}', 'OrganizationAdviser\GenerateAttendanceController@show');
     Route::name('org-adviser.attendance.store')->post('/store', 'OrganizationAdviser\GenerateAttendanceController@store');
-    Route::name('org-adviser.attendance.store2')->post('/store2', 'OrganizationAdviser\GenerateAttendanceController@store2');
     Route::name('org-adviser.userattendance.store')->post('user-attendance/store', 'OrganizationAdviser\UserAttendanceController@store');
-    Route::name('org-adviser.attendance.ajax-update')->post('/ajax/update', 'OrganizationAdviser\UserAttendanceController@updateUsingAjax');
-
-    #route for generate attended attendance
     Route::name('org-adviser.official-attendance-org-list')->get('/generate/official-attendance/org-list', 'OrganizationAdviser\GenerateAttendanceController@officialAttendanceOrgList');
     Route::name('org-adviser.generate-official-attendance-event-list')->get('/generate/official-attendance/event-list/{id?}', 'OrganizationAdviser\GenerateAttendanceController@generateOfficialAttendanceEventList');
     Route::name('org-adviser.official-attendance-member-list')->get('/generate/official-attendance/member-list/{id}/{eid}', 'OrganizationAdviser\GenerateAttendanceController@officialAttendanceMemberList');
-
   });
 
   # Route for organization adviser
@@ -182,7 +169,6 @@ Route::prefix('users')->group(function() {
     Route::name('osa-personnel.members.new')->post('/members/new', 'OsaPersonnel\OrganizationGroupController@storeNewMember');
     Route::name('osa-personnel.members.accept')->post('/members/accept', 'OsaPersonnel\OrganizationGroupController@acceptNewMember');
     Route::name('osa-personnel.calendar')->get('/calendar', 'OsaPersonnel\CalendarController@calendar');
-    // Route::name('osa-personnel.members.search')->post('/members/search', 'OsaPersonnel\UserController@search');
   });
 
 });

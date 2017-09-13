@@ -1,10 +1,10 @@
 /**
  * App.js
- * @version 0.30
+ * @version 0.31
  */
 
 var _this;
-var _ambot;
+
 /**
  * Filled up back the data into the create event form
  *
@@ -90,10 +90,6 @@ $(document).on('click', '.event-details', function() {
     "<tr><td>Event Status</td><td data-name='status' data-event-id='"+id+"'>" + data.status + "</td></tr>" +
     "<tr><td>Approve?</td><td data-name='approve' data-event-id='"+id+"'>" + data.approve_status + "</td></tr>" +
     "<tr><td>Semester</td><td data-name='semester' data-event-id='"+id+"'>" + data.semester + " Semester</td></tr>" +
-    // "<tr><td><div class='switch'><label>OFF<input type='checkbox' name='notify_via_facebook' checked><span class='lever switch-col-indigo'></span>ON</label> Facebook</div></td></tr>"+
-    // "<tr><td><div class='switch'><label>OFF<input type='checkbox' name='notify_via_twitter' checked><span class='lever switch-col-blue'></span>ON</label> Twitter</div></td></tr>"+
-    // "<tr><td><div class='switch'><label>OFF<input type='checkbox' name='notify_via_sms' checked><span class='lever switch-col-pink'></span>ON</label> SMS</div></td></tr>"+
-    // "<tr><td><div class='switch'><label>OFF<input type='checkbox' name='notify_via_email' checked><span class='lever switch-col-teal'></span>ON</label> Email</div></td></tr>"+
     "<tr><td>APPROVERS</td><td></td></tr>";
 
     $('#event-details-body tbody').html(html);
@@ -260,39 +256,28 @@ $(document).on('change', '#event-details-body tbody td', function(evt, newValue)
  * @return {}
  */
 $(document).on('click', '.confirmed', function() {
-  _this    = $(this);
-  var id   = $(this).data('user-id');
-  var eid  = $(this).data('event-id');
-  var url  = route('org-adviser.attendance.store').replace('localhost', window.location.hostname);
+  _this = $(this);
   var data = {
-    id:  id,
-    eid: eid
+    status:       'true',
+    confirmation: 'true'
   }
 
-  submit(data, url, function(data, _this) {
-    // if (data.status == true) {
-    //   $(_this).html('Confirmed');
-    // }
-    location.reload();
-  });
+  updateAttendance(data, "Confirmed");
 });
 
+/**
+ * Unconfirmed the attendance of the member
+ *
+ * @return {void}
+ */
 $(document).on('click', '.unconfirmed', function() {
-  _ambot = $(this);
-  var id   = $(this).data('user-id');
-  var eid  = $(this).data('event-id');
-  var url  = route('org-adviser.attendance.store2').replace('localhost', window.location.hostname);
+  _this = $(this);
   var data = {
-    id:  id,
-    eid: eid
+    status:       'false',
+    confirmation: 'false'
   }
 
-  submit(data, url, function(data, _ambot) {
-    // if (data.status == true) {
-    //   $(_ambot).html('Unconfirmed');
-    // }
-    location.reload();
-  });
+  updateAttendance(data, "Unconfirmed");
 });
 
 
@@ -323,7 +308,7 @@ function submit(data, url, callback) {
       request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
     },
     success: function(data) {
-      callback(data, _this);
+      callback(data);
     },
     error: function(data) {
       console.log('Error:');
@@ -448,4 +433,20 @@ function editEventData(data) {
   }
 
   return data;
+}
+
+/**
+ * Update the database attendance sheet
+ *
+ * @param  {object} data
+ * @return {void}
+ */
+function updateAttendance(data, $message) {
+  var url  = route('org-adviser.attendance.store').replace('localhost', window.location.hostname);
+  data.id  = _this.data('user-id');
+  data.eid = _this.data('event-id');
+
+  submit(data, url, function(data) {
+    $('#confirm-status-'+data.id).html($message);
+  });
 }
