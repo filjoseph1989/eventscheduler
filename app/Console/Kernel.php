@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-      'App\Console\Commands\SendNotifications'
+      'App\Console\Commands\SendNotifications',
+      'App\Console\Commands\SendSms'
     ];
 
     /**
@@ -26,6 +27,8 @@ class Kernel extends ConsoleKernel
     {
       $schedule->command('SendNotifications:notification')->weekly();
       $schedule->command('SendNotifications:notification')->daily();
+      $schedule->command('sms:notification')->weekly();
+      $schedule->command('sms:notification')->daily();
     }
 
     /**
