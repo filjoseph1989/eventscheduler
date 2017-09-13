@@ -42,22 +42,9 @@ To Do:
 
   Task 5: User admin account:
     ☐ Approve user system membership
-    ☐ List of all registered members (this feature is for administrator)
-      It must consist of the following columns
-        ☐ name
-        ☐ department
-          ☐ If click show all user under this department (optiona|advance)
-        ☐ course
-          ☐ If click show all user under this course (optiona|advance)
-        ☐ position
-          ☐ If click show all user under this position (optiona|advance)
-        ☐ organization
-          ☐ If click, show all members of this organization (optiona|advance)
-        ☐ member since?
-          ☐ If click, show all members since this date (optiona|advance)
-      ☐ If happend that a user is a member of many organization, merge the information
     ☐ List of all user belongs to an organization (this feature is for administrator)
     ☐ List of all users who has no organization yet (this feature is for administrator)
+    ☐ Set type of event
 
   Task 4: Office of the student affairs account:
     ☐ Assign an approvers:
@@ -74,6 +61,7 @@ To Do:
         ☐ List of officeer for the current school year (Advance|Low Priority)
       ☐ Display the organization events (Advance|Low Priority)
     ☐ Events:
+      ☐ Set type of events
       ☐ Delete events that not approve and already due
       ☐ Create My Events:
         ☐ Display form to create event

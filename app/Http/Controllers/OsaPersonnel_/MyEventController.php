@@ -62,7 +62,7 @@ class MyEventController extends Controller
       $login_type = 'user';
       $event_type = EventType::all();
 
-      return view('pages/users/osa-personnel/events/my_event', compact(
+      return view('pages/users/osa-user/events/my_event', compact(
         'login_type', 'event_type'
       ));
     }

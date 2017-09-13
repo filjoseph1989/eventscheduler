@@ -55,7 +55,7 @@ class OrganizationController extends Controller
       $organization = Organization::all()->where('id', '!=', 1);
 
       # Render view
-      return view('pages/users/osa-personnel/organization/list', compact(
+      return view('pages/users/osa-user/organization/list', compact(
         'login_type', 'organization'
       ));
     }
@@ -109,7 +109,7 @@ class OrganizationController extends Controller
       $orgHead      = self::_headOfThisOrganization();
       $isMember     = self::_isAmember($id);
 
-      return view('pages/users/osa-personnel/organization/profile', compact(
+      return view('pages/users/osa-user/organization/profile', compact(
         'login_type', 'organization', 'isMember', 'orgHead'
       ));
     }
@@ -133,7 +133,7 @@ class OrganizationController extends Controller
       $login_type   = 'user';
 
       # Display to browser
-      return view('pages/users/osa-personnel/organization/edit', compact(
+      return view('pages/users/osa-user/organization/edit', compact(
         'organization', 'login_type'
       ));
     }
@@ -171,7 +171,7 @@ class OrganizationController extends Controller
       # Inform user about the changes
       if ($result) {
         return redirect()
-          ->route('osa-personnel.org-profile', $request->id)
+          ->route('org-head.org-profile', $request->id)
           ->with('success', 'Successfully updated');
       } else {
         return back()->withInput()->with('status_warning', "Sorry, we have problem updating {$organization->name} information, please try again later");

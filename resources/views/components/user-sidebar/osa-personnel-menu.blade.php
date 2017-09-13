@@ -5,7 +5,7 @@
   </a>
   <ul class="ml-menu">
     <li>
-      <a href="{{ route('osa-personnel.org-list') }}">
+      <a href="{{ route('org-head.org-list') }}">
         <span>List of organizations</span>
       </a>
     </li>
@@ -17,11 +17,11 @@
     <span>Events</span>
   </a>
   <ul class="ml-menu">
-    <li><a href="{{ route('osa-personnel.event.new') }}">Create Event</a></li>
-    <li><a href="{{ route('osa-personnel.my.new.event') }}">Create My Events</a></li>
-    <li><a href="{{ route('osa-personnel.event.list') }}">List of Events</a></li>
-    <li><a href="{{ route('osa-personnel.approve.event') }}">Approve Events</a></li>
-    <li><a href="{{ route('osa-personnel.calendar') }}">Event Calendar</a></li>
+    <li><a href="{{ route('org-head.event.new') }}">Create Event</a></li>
+    <li><a href="{{ route('org-head.my.new.event') }}">Create My Events</a></li>
+    <li><a href="{{ route('org-head.event.list') }}">List of Events</a></li>
+    <li><a href="{{ route('org-head.approve.event') }}">Approve Events</a></li>
+    <li><a href="{{ route('org-head.calendar') }}">Event Calendar</a></li>
   </ul>
 </li>
 <li>
@@ -30,18 +30,15 @@
     <span>Members</span>
   </a>
   <ul class="ml-menu">
-    <li><a href="{{ route('osa-personnel.members.list') }}">All Members</a></li>
+    <li><a href="{{ route('org-head.members.list') }}">All Members</a></li>
+    <li><a href="{{ route('org-head.members.add') }}">Add Members</a></li>
+    <li><a href="{{ route('org-head.members.accept') }}">Accept Request</a></li>
   </ul>
 </li>
 <li>
-  <a href="{{ route('osa-personnel.attendance') }}">
+  {{-- <a href="{{ route('org-head.event.show') }}"> --}}
+  <a href="{{ route('org-head.attendance') }}">
     <i class="material-icons">list</i>
     <span>Generate Attendance</span>
-  </a>
-</li>
-<li>
-  <a href="#">
-    <i class="material-icons">list</i>
-    <span>Assign Approver</span>
   </a>
 </li>
