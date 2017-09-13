@@ -67,15 +67,17 @@ class SendNotifications extends Command
         $month = date('m', strtotime($value->date_start));
         $day   = date('d', strtotime($value->date_start)) - date('d');
 
+        # Send an email reminder to user
         if ($month == date('m') AND ($day == 1 OR $day == 2 OR $day == 3)) {
-          # Send an email to user
           self::sendEmails($beautymail, $value);
         }
 
         if ($month > date('m')) {
-          # Send an email to user
           self::sendEmails($beautymail, $value);
         }
+
+        $this->emails    = []; # reset
+        $this->user_name = []; # reset
       }
     }
 
@@ -88,7 +90,7 @@ class SendNotifications extends Command
       foreach ($data as $key => $value) {
         if (! isset($this->emails[$value->user->id])) {
           $this->emails[$value->user->id] = $value->user->email;
-          $this->name[$value->user->id] = $value->user->first_name . " " . $value->user->last_name;
+          $this->name[$value->user->id]   = $value->user->first_name . " " . $value->user->last_name;
         }
       }
     }
@@ -137,9 +139,9 @@ class SendNotifications extends Command
       # Send an email to user
       $mail->send('emails.mail1', ['event' => $value], function($message)
       {
-        foreach ($this->emails as $key => $email) {
+        foreach ($this->emails as $key => $e) {
           $message
-            ->to($email, $this->name[$key])
+            ->to($e, $this->name[$key])
             ->subject('You have a new event reminder!');
         }
       });
