@@ -37,7 +37,11 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> Attendance Sheet </h2>
+                <h2>Attendance Sheet of Those Who Confirmed</h2>
+                <h2>Event: <b>{{ $event->title }}</b></h2>
+                <h2>Venue: {{ $event->venue }}</h2>
+                <h2>Duration: <b>from</b> {{ $event->date_start_time }}, {{ date('M d, Y', strtotime($event->date_start)) }} <b>to</b> {{ $event->date_end_time }}, {{ date('M d, Y', strtotime($event->date_end)) }}</h2>
+                <h2>By: <b>{{ $organization->name }}</b></h2>
               </div>
               <div class="body table-responsive">
                 <table class="table">
@@ -45,30 +49,23 @@
                     <tr>
                       <th>Name</th>
                       <th>Family Name</th>
+                      <th>Course</th>
+                      <th>Position</th>
                       <th>Organization</th>
-                      <th>Action</th>
-                      <th>Confirmation</th>
+                      <th>Mobile Number</th>
+                      <th>Facebook</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($attendance as $key => $value)
+                    @foreach ($att_sheet as $key => $value)
                       <tr>
                         <td>{{ $value->user->first_name }}</td>
                         <td>{{ $value->user->last_name }}</td>
-                        <td>{{ $value->organization->name }}</td>
-                        <td>
-                          <button type="button" class="btn btn-primary waves-effect confirmed"
-                            data-user-id="{{ $value->user->id }}"
-                            data-event-id="{{ $eid }}">
-                              Confirm
-                          </button>
-                          <button type="button" class="btn btn-primary waves-effect unconfirmed"
-                            data-user-id="{{ $value->user->id }}"
-                            data-event-id="{{ $eid }}">
-                             Unconfirm
-                          </button>
-                        </td>
-                        <td>{{ (isset($confirm[$value->user->id]) AND $confirm[$value->user->id] == 'true') ? "Confirmed" : "Unconfirmed" }}</td>
+                        <td>{{ $att[$value->user_id] }}</td>
+                        <td>{{ $pos2[$value->user_id] }}</td>
+                        <td>{{ $org[$value->user_id] }}</td>
+                        <td>{{ $value->user->mobile_number }}</td>
+                        <td>{{ $value->user->facebook_username }}</td>
                       </tr>
                     @endforeach
                   </tbody>
@@ -91,5 +88,5 @@
 @endsection
 
 @section('footer')
-  <script src="{{ asset('js/app.js') }}?v=0.27" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.25" charset="utf-8"></script>
 @endsection

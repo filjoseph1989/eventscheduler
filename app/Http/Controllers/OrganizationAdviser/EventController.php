@@ -182,7 +182,7 @@ class EventController extends Controller
         ->get();
 
       $login_type = 'user';
-      return view('pages/users/organization-adviser/events/list_for_attendance', compact(
+      return view('pages/users/organization-adviser/generate-attendance/list_for_attendance', compact(
         'event', 'login_type'
       ));
     }

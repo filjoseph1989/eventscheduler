@@ -12,7 +12,7 @@
   </a>
 </div>
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-  <a href="{{ route('org-co-adviser.attendance') }}">
+  <a href="{{ route('org-co-adviser.generate-attendance') }}">
     <div class="info-box {{ session('color') }} hover-expand-effect">
       <div class="icon">
         <i class="material-icons">playlist_add_check</i>
@@ -24,7 +24,7 @@
     </div>
   </a>
 </div>
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+{{-- <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
   <a href="{{ route('org-co-adviser.manage-notification-menu') }}">
     <div class="info-box {{ session('color') }} hover-expand-effect">
       <div class="icon">
@@ -37,3 +37,4 @@
     </div>
   </a>
 </div>
+--}}

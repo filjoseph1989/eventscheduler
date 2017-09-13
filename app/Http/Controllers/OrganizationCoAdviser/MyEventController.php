@@ -5,7 +5,7 @@ namespace App\Http\Controllers\OrganizationCoAdviser;
 use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Library\OrgAdviserLibrary as Adviser;
+use App\Library\OrgCoAdviserLibrary as CoAdviser;
 
 # models
 use App\Models\EventType;
@@ -24,7 +24,7 @@ use App\Models\OrganizationAdviserGroup;
  */
 class MyEventController extends Controller
 {
-    private $adviser;
+    private $co_adviser;
 
     /**
      * Create a new controller instance.
@@ -34,7 +34,7 @@ class MyEventController extends Controller
     public function __construct()
     {
       $this->middleware('web');
-      $this->adviser = new Adviser();
+      $this->co_adviser = new CoAdviser();
     }
 
     /**
@@ -59,12 +59,12 @@ class MyEventController extends Controller
       parent::loginCheck();
 
       # return home if not an organization adviser
-      $this->adviser->isAdviser();
+      $this->co_adviser->isCoAdviser();
 
       $login_type = 'user';
       $event_type = EventType::all();
 
-      return view('pages/users/organization-adviser/events/my_event', compact(
+      return view('pages/users/organization-co-adviser/events/my_event', compact(
         'login_type', 'event_type'
       ));
     }
@@ -81,7 +81,7 @@ class MyEventController extends Controller
       parent::loginCheck();
 
       # is the user rank as adivser?
-      $this->adviser->isAdviser();
+      $this->co_adviser->isCoAdviser();
 
       # return to form if the following does not satisfy
       if ($data->event_type_id == 0) {
@@ -96,7 +96,7 @@ class MyEventController extends Controller
       }
 
       # is data entry valid?
-      $this->adviser->isValid($data);
+      $this->co_adviser->isValid($data);
 
       # Get the data from form
       $request = $data->only(

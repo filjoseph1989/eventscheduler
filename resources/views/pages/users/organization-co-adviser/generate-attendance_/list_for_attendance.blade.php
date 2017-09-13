@@ -37,7 +37,7 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> Expected Member Attendance </h2>
+                <h2> Attendance Sheet </h2>
               </div>
               <div class="body table-responsive">
                 <table class="table">

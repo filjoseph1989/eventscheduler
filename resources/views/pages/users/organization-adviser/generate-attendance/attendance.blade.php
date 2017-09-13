@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page-title', 'List of events for attendance')
+@section('page-title', 'User Attendance')
 
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/all-themes.css') }}">
@@ -43,13 +43,32 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th>Event Title</th>
+                      <th>Name</th>
+                      <th>Family Name</th>
+                      <th>Organization</th>
+                      <th>Action</th>
+                      <th>Confirmation</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($event as $key => $value)
+                    @foreach ($attendance as $key => $value)
                       <tr>
-                        <td><a href="{{ route('org-adviser.attendance.show', [ $value->organization_id, $value->id] ) }}">{{ $value->title }}</a></td>
+                        <td>{{ $value->user->first_name }}</td>
+                        <td>{{ $value->user->last_name }}</td>
+                        <td>{{ $value->organization->name }}</td>
+                        <td>
+                          <button type="button" class="btn btn-primary waves-effect confirmed"
+                            data-user-id="{{ $value->user->id }}"
+                            data-event-id="{{ $eid }}">
+                              Confirm
+                          </button>
+                          <button type="button" class="btn btn-primary waves-effect unconfirmed"
+                            data-user-id="{{ $value->user->id }}"
+                            data-event-id="{{ $eid }}">
+                             Unconfirm
+                          </button>
+                        </td>
+                        <td>{{ (isset($confirm[$value->user->id]) AND $confirm[$value->user->id] == 'true') ? "Confirmed" : "Unconfirmed" }}</td>
                       </tr>
                     @endforeach
                   </tbody>
@@ -72,4 +91,5 @@
 @endsection
 
 @section('footer')
+  <script src="{{ asset('js/app.js') }}?v=0.27" charset="utf-8"></script>
 @endsection

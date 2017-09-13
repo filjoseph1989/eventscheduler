@@ -35,6 +35,7 @@
                     </a>
                     <ul class="dropdown-menu pull-right calendar-options">
                       <li><a name=public href="#" id="public">Public View</a></li>
+                      <li><a name=among href="#" id="among">Among All Organizations</a></li>
                       <li><a name=within href="{{ route('org-co-adviser.calendar.within') }}">Within Organization</a></li>
                       <li><a name=ppersonal href="#" id="personal-public">Personal Event (Public)</a></li>
                       <li><a name=pprivate href="#" id="personal-private">Personal Event (Private)</a></li>

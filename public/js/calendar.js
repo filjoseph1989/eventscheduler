@@ -154,12 +154,12 @@ function getEvents($id, option) {
           event = data[i];
           if(event.event_category_id == 3){
             org = "\n Org: " + event.organization.name;
-            author = "\n";
+            author = "";
           } else {
             if(event.event_category_id == 2 || event.event_category_id == 4){
               author = "\n Author: " + event.user.first_name + " " + event.user.last_name;
-            } else author = "\n";
-            org = "\n";
+            } else author = "";
+            org = "";
           }
           calendar.fullCalendar('renderEvent', {
             title: "\nEvent: " + event.title + org  + "\n Venue: " + event.venue + author,
