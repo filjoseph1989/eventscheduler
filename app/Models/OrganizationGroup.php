@@ -32,10 +32,23 @@ class OrganizationGroup extends Model
      *
      * @return object
      */
-    public function organization()
-    {
-      return $this->belongsTo('App\Models\Organization');
-    }
+     public function organization()
+     {
+       return $this->belongsTo('App\Models\Organization');
+     }
+     /**
+      * Define the relationship between organization group
+      * and position
+      *
+      * @return object
+      */
+
+     public function position()
+     {
+       return $this->belongsTo('App\Models\Position');
+     }
+
+
 
     /**
      * Return the user profile information

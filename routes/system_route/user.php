@@ -22,7 +22,7 @@ Route::prefix('users')->group(function() {
 
   # Route for organization adviser
   Route::prefix('org-adviser')->group(function() {
-    Route::name('org.adviser.org-list')->get('/list-of-organization','OrganizationAdviser\OrganizationController@index');
+    Route::name('org-adviser.org-list')->get('/list-of-organization','OrganizationAdviser\OrganizationController@index');
     Route::name('org-adviser.event.list')->get('/get/event-list/{id?}', 'OrganizationAdviser\EventController@index');
     Route::name('org-adviser.org-profile')->get('/profile/{id}', 'OrganizationAdviser\OrganizationController@show');
     Route::name('org-adviser.org-logo')->post('/change-logo', 'OrganizationAdviser\OrganizationController@uploadLogo');
@@ -39,16 +39,70 @@ Route::prefix('users')->group(function() {
     Route::name('org-adviser.members.list')->get('/members/list', 'OrganizationAdviser\OrganizationGroupController@index');
     Route::name('org-adviser.members.join')->get('/members/join', 'OrganizationAdviser\OrganizationGroupController@join');
     Route::name('org-adviser.event.show')->get('/show/{id?}', 'OrganizationAdviser\EventController@show');
-    Route::name('org-adviser.attendance')->get('/attendance', 'OrganizationAdviser\GenerateAttendanceController@index');
-    Route::name('org-adviser.attendance.show')->get('/new/{id}/{eid}', 'OrganizationAdviser\GenerateAttendanceController@show');
-    Route::name('org-adviser.attendance.store')->post('/store', 'OrganizationAdviser\GenerateAttendanceController@store');
-    Route::name('org-adviser.userattendance.store')->post('user-attendance/store', 'OrganizationAdviser\UserAttendanceController@store');
     Route::name('org-adviser.calendar.within')->get('/calendar/within', 'OrganizationAdviser\CalendarController@calendarWithin');
     Route::name('org-adviser.calendar')->get('/calendar/{id?}', 'OrganizationAdviser\CalendarController@calendar');
     Route::name('org-adviser.manage-schedule')->get('/manage-schedule', 'OrganizationAdviser\EventController@manageSchedule');
     Route::name('org-adviser.manage-notification-menu')->get('/manage-notification-menu', 'OrganizationAdviser\EventController@manageNotificationMenu');
     Route::name('org-adviser.manage-notification')->get('/manage-notification', 'OrganizationAdviser\EventController@manageNotification');
     Route::name('org-adviser.update-notification')->post('/update-notification', 'OrganizationAdviser\EventController@updateNotification');
+ 
+    ####generate attendance route
+    Route::name('org-adviser.generate-attendance')->get('/generate-attendance/menu', 'OrganizationAdviser\GenerateAttendanceController@generateAttendanceMenu');
+
+    #route for generate declined attendance
+    Route::name('org-adviser.generate-declined-attendance-org-list')->get('/generate/declined-attendance/org-list', 'OrganizationAdviser\GenerateAttendanceController@declinedAttendanceOrgList');
+    Route::name('org-adviser.generate-declined-attendance-event-list')->get('/generate/declined-attendance/event-list/{id?}', 'OrganizationAdviser\GenerateAttendanceController@generateDeclinedAttendanceEventList');
+    Route::name('org-adviser.declined-attendance-member-list')->get('/generate/declined-attendance/member-list/{id}/{eid}', 'OrganizationAdviser\GenerateAttendanceController@declinedAttendanceMemberList');
+
+    #route for generate confirmed attendance
+    Route::name('org-adviser.generate-confirmed-attendance-org-list')->get('/generate/confirmed-attendance/org-list', 'OrganizationAdviser\GenerateAttendanceController@confirmedAttendanceOrgList');
+    Route::name('org-adviser.generate-confirmed-attendance-event-list')->get('/generate/confirmed-attendance/event-list/{id?}', 'OrganizationAdviser\GenerateAttendanceController@generateConfirmedAttendanceEventList');
+    Route::name('org-adviser.confirmed-attendance-member-list')->get('/generate/confirmed-attendance/member-list/{id}/{eid}', 'OrganizationAdviser\GenerateAttendanceController@confirmedAttendanceMemberList');
+
+    #route for confirm and view org members' event expected attendance
+    Route::name('org-adviser.attendance-org-list')->get('/attendance/org-list', 'OrganizationAdviser\GenerateAttendanceController@index');
+    Route::name('org-adviser.attendance.show')->get('/new/{id}/{eid}', 'OrganizationAdviser\GenerateAttendanceController@show');
+    Route::name('org-adviser.attendance.store')->post('/store', 'OrganizationAdviser\GenerateAttendanceController@store');
+    Route::name('org-adviser.attendance.store2')->post('/store2', 'OrganizationAdviser\GenerateAttendanceController@store2');
+    Route::name('org-adviser.userattendance.store')->post('user-attendance/store', 'OrganizationAdviser\UserAttendanceController@store');
+    Route::name('org-adviser.attendance.ajax-update')->post('/ajax/update', 'OrganizationAdviser\UserAttendanceController@updateUsingAjax');
+
+    #route for generate attended attendance
+    Route::name('org-adviser.official-attendance-org-list')->get('/generate/official-attendance/org-list', 'OrganizationAdviser\GenerateAttendanceController@officialAttendanceOrgList');
+    Route::name('org-adviser.generate-official-attendance-event-list')->get('/generate/official-attendance/event-list/{id?}', 'OrganizationAdviser\GenerateAttendanceController@generateOfficialAttendanceEventList');
+    Route::name('org-adviser.official-attendance-member-list')->get('/generate/official-attendance/member-list/{id}/{eid}', 'OrganizationAdviser\GenerateAttendanceController@officialAttendanceMemberList');
+
+  });
+
+  # Route for organization adviser
+  Route::prefix('org-co-adviser')->group(function() {
+    Route::name('org-co-adviser.org-list')->get('/list-of-organization','OrganizationCoAdviser\OrganizationController@index');
+    Route::name('org-co-adviser.event.list')->get('/get/event-list/{id?}', 'OrganizationCoAdviser\EventController@index');
+    Route::name('org-co-adviser.org-profile')->get('/profile/{id}', 'OrganizationCoAdviser\OrganizationController@show');
+    Route::name('org-co-adviser.org-logo')->post('/change-logo', 'OrganizationCoAdviser\OrganizationController@uploadLogo');
+    Route::name('org-co-adviser.org-membership')->post('/org-membership', 'OrganizationCoAdviser\OrganizationGroupController@store');
+    Route::name('org-co-adviser.my.new.event')->get('/my/new/event', 'OrganizationCoAdviser\MyEventController@create');
+    Route::name('org-co-adviser.my.new.event.submit')->post('/store/new', 'OrganizationCoAdviser\MyEventController@store');
+    Route::name('org-co-adviser.event.new')->get('/new', 'OrganizationCoAdviser\EventController@create');
+    Route::name('org-co-adviser.event.new')->post('/new', 'OrganizationCoAdviser\EventController@store');
+    Route::name('org-co-adviser.approve.event')->get('/approve/event', 'OrganizationCoAdviser\EventController@approveEvents');
+    Route::name('org-co-adviser.approved.event')->get('/approved/event/{id}', 'OrganizationCoAdviser\EventController@setApprove');
+    Route::name('org-co-adviser.disapproved.event')->get('/disapproved/event/{id}', 'OrganizationCoAdviser\EventController@setDisApprove');
+    Route::name('org-co-adviser.org-edit')->get('/edit-org/{id}', 'OrganizationCoAdviser\OrganizationController@edit');
+    Route::name('org-co-adviser.org-update')->post('/update-org', 'OrganizationCoAdviser\OrganizationController@update');
+    Route::name('org-co-adviser.members.list')->get('/members/list', 'OrganizationCoAdviser\OrganizationGroupController@index');
+    Route::name('org-co-adviser.members.join')->get('/members/join', 'OrganizationCoAdviser\OrganizationGroupController@join');
+    Route::name('org-co-adviser.event.show')->get('/show/{id?}', 'OrganizationCoAdviser\EventController@show');
+    Route::name('org-co-adviser.attendance')->get('/attendance', 'OrganizationCoAdviser\GenerateAttendanceController@index');
+    Route::name('org-co-adviser.attendance.show')->get('/new/{id}/{eid}', 'OrganizationCoAdviser\GenerateAttendanceController@show');
+    Route::name('org-co-adviser.attendance.store')->post('/store', 'OrganizationCoAdviser\GenerateAttendanceController@store');
+    Route::name('org-co-adviser.userattendance.store')->post('user-attendance/store', 'OrganizationCoAdviser\UserAttendanceController@store');
+    Route::name('org-co-adviser.calendar.within')->get('/calendar/within', 'OrganizationCoAdviser\CalendarController@calendarWithin');
+    Route::name('org-co-adviser.calendar')->get('/calendar/{id?}', 'OrganizationCoAdviser\CalendarController@calendar');
+    Route::name('org-co-adviser.manage-schedule')->get('/manage-schedule', 'OrganizationCoAdviser\EventController@manageSchedule');
+    Route::name('org-co-adviser.manage-notification-menu')->get('/manage-notification-menu', 'OrganizationCoAdviser\EventController@manageNotificationMenu');
+    Route::name('org-co-adviser.manage-notification')->get('/manage-notification', 'OrganizationCoAdviser\EventController@manageNotification');
+    Route::name('org-co-adviser.update-notification')->post('/update-notification', 'OrganizationCoAdviser\EventController@updateNotification');
   });
 
   # Route for organization head

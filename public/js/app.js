@@ -1,8 +1,10 @@
 /**
  * App.js
- * @version 0.29
+ * @version 0.30
  */
 
+var _this;
+var _ambot;
 /**
  * Filled up back the data into the create event form
  *
@@ -115,7 +117,9 @@ $(document).on('click', '.event-details', function() {
       html =
       '<div class="row">' +
         '<div class="col-md-offset-3 col-md-6">' +
+          '<p name="confirmation" type="hidden">'+
           '<button name="status" type="submit" value="true" class="btn bg-green btn-block btn-lg waves-effect">Attend</button>' +
+          '<input type="hidden" name="confirmation" value = "false">' +
         '</div>' +
       '</div>' +
       '<div class="row" style="margin-top: 3px;">' +
@@ -129,6 +133,7 @@ $(document).on('click', '.event-details', function() {
             '<div class="form-line hidden" id="cant-attend-message">' +
               '<textarea name="reason" rows="4" class="form-control no-resize" placeholder="Please type the reason why you cannot attend the event."></textarea>' +
               '<input type="hidden" name="event_id" value="' + data.id + '">' +
+              '<input type="hidden" name="confirmation" value = "false">' +
             '</div>' +
           '</div>' +
         '</div>' +
@@ -255,6 +260,7 @@ $(document).on('change', '#event-details-body tbody td', function(evt, newValue)
  * @return {}
  */
 $(document).on('click', '.confirmed', function() {
+  _this    = $(this);
   var id   = $(this).data('user-id');
   var eid  = $(this).data('event-id');
   var url  = route('org-adviser.attendance.store').replace('localhost', window.location.hostname);
@@ -263,12 +269,32 @@ $(document).on('click', '.confirmed', function() {
     eid: eid
   }
 
-  submit(data, url, function(data) {
-    if (data.status == true) {
-      $('#confirm').html('Confirmed');
-    }
+  submit(data, url, function(data, _this) {
+    // if (data.status == true) {
+    //   $(_this).html('Confirmed');
+    // }
+    location.reload();
   });
 });
+
+$(document).on('click', '.unconfirmed', function() {
+  _ambot = $(this);
+  var id   = $(this).data('user-id');
+  var eid  = $(this).data('event-id');
+  var url  = route('org-adviser.attendance.store2').replace('localhost', window.location.hostname);
+  var data = {
+    id:  id,
+    eid: eid
+  }
+
+  submit(data, url, function(data, _ambot) {
+    // if (data.status == true) {
+    //   $(_ambot).html('Unconfirmed');
+    // }
+    location.reload();
+  });
+});
+
 
 /**
  * Can't attend function
@@ -297,7 +323,7 @@ function submit(data, url, callback) {
       request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
     },
     success: function(data) {
-      callback(data);
+      callback(data, _this);
     },
     error: function(data) {
       console.log('Error:');

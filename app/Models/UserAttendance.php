@@ -15,7 +15,8 @@ class UserAttendance extends Model
   	'event_id',
   	'user_id',
   	'reason',
-  	'status'
+  	'status',
+    'confirmation'
   ];
 
   /**

@@ -24,15 +24,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-      # Issue 71
-      # There should be two schedule
-      # every week and everyday
-      #
-      # While everyday is the tricky part,
-      # and we need to determine if the day's difference in start date is
-      # 3 days, 2 days and 1 day
-
-      $schedule->command('SendNotifications:notification')->everyMinute();
+      $schedule->command('SendNotifications:notification')->weekly();
+      $schedule->command('SendNotifications:notification')->daily();
     }
 
     /**

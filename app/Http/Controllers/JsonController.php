@@ -89,20 +89,38 @@ class JsonController extends Controller
   {
     # Return Personal Event
     if ($data->option != 'false') {
-      return PersonalEvent::where('category', '=', $data->option)
+      if($data->option == 'public'){
+        return PersonalEvent::where('category', '=', $data->option)
+        ->with('user')
         ->get()
         ->toJson();
+      }
+      if($data->option == 'private'){
+        return PersonalEvent::where('category', '=', $data->option)
+        ->where('user_id', '=', Auth::user()->id)
+        ->with('user')
+        ->get()
+        ->toJson();
+      }
     }
 
     # Return event that are not public
     if ( $data->id > 1 ) {
       return Event::where('event_category_id', '=', $data->id)
+        ->with('user')
+        ->with('eventType')
+        ->with('eventCategory')
+        ->with('organization')
         ->get()
         ->toJson();
     }
 
     # Return public events
     return Event::where('event_category_id', '=', 1)
+      ->with('user')
+      ->with('eventType')
+      ->with('eventCategory')
+      ->with('organization')
       ->get()
       ->toJson();
   }

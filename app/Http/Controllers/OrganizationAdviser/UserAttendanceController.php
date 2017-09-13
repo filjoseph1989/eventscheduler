@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\OrganizationAdviser;
 
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -38,27 +39,28 @@ class UserAttendanceController extends Controller
      */
     public function store(Request $data)
     {
-        # Get the data from form 
-        $request = $data->only( 'status', 'reason', 'event_id' );
+        # Get the data from form
+        $request = $data->only( 'status', 'reason', 'confirmation', 'event_id' );
+        // $request = $data->only( 'status', 'reason', 'event_id' );
         $request['user_id'] = Auth::user()->id;
 
         # Lets check if the use exists
-        $result = UserAttendance::where('user_id', '=', Auth::user()->id)->get(); 
-        
-        # Finally create events 
+        $result = UserAttendance::where('user_id', '=', Auth::user()->id)->get();
+
+        # Finally create events
         if ($result->count() == 0) {
-            $result = UserAttendance::create($request); 
-            return back()->with('status', 'See you on the event'); 
+            $result = UserAttendance::create($request);
+            return back()->with('status', 'See you on the event');
         } else {
             $result = UserAttendance::where('user_id', '=', Auth::user()->id);
             $result = $result->update($request);
 
-            # inform the user what happend 
-            if ($data->status == 'false') { 
-                return back()->with('status', 'Thank you for letting us know, yet you can still welcome to attend'); 
-            } 
-            return back()->with('status', 'See you on the event'); 
-        } 
+            # inform the user what happend
+            if ($data->status == 'false') {
+                return back()->with('status', 'Thank you for letting us know, yet you can still welcome to attend');
+            }
+            return back()->with('status', 'See you on the event');
+        }
     }
 
     /**
@@ -93,6 +95,21 @@ class UserAttendanceController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    /**
+     * Update user_attendance table via ajax
+     *
+     * @return void
+     */
+    public function updateUsingAjax(Request $data)
+    {
+        $attendance = UserAttendance::find($data->id);
+        $attendance->status = $data->status;
+        var_dump($attendance->status);
+        if ($attendance->save()) {
+            echo json_encode('true');
+        }
     }
 
     /**

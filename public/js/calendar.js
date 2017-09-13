@@ -9,6 +9,7 @@
  */
 var global_start, global_end, calendar;
 
+var event_color;
 /**
  * ------------------------------------------------------------------
  * This part mange the calendar even creation
@@ -19,9 +20,9 @@ var global_start, global_end, calendar;
 $(document).ready(function() {
     $id = $('#my-organization').data('id');
     if ($id != undefined) {
-      displayEvent($id, 'within'); 
+      displayEvent($id, 'within');
     } else {
-      displayEvent(); 
+      displayEvent();
     }
     /**
      * If the user click on the input that has class
@@ -65,9 +66,9 @@ function displayEvent($id = false, option = false) {
         right define what will be at right position in calendar
       */
       header: {
-          left: 'prev,next today',
+          left: 'prev, next today',
           center: 'title',
-          right: 'month,agendaWeek,agendaDay'
+          right: 'month, agendaWeek, agendaDay'
       },
 
       /*
@@ -107,7 +108,14 @@ function displayEvent($id = false, option = false) {
         events is the main option for calendar.
         for demo we have added predefined events in json object.
       */
-      events: getEvents($id, option)
+      events: getEvents($id, option),
+
+      eventRender: function(event, element) {
+        // element.qtip({
+        //     content: event.description
+        // });
+        content: event.description
+    }
   });
 
 }
@@ -124,9 +132,6 @@ function getEvents($id, option) {
     if ($id != false && option != 'within') {
       calendar.fullCalendar('removeEvents');
     }
-
-    option = (option == 'within') ? 'false' : option;
-
     // Organization ID
     var url = route('ajax.get.events').replace('localhost', window.location.hostname);
 
@@ -142,13 +147,27 @@ function getEvents($id, option) {
         request.setRequestHeader("X-CSRF-TOKEN", $('meta[name="csrf-token"]').attr('content'));
       },
       success: function(data) {
+        // console.log(data);
         var event;
+        var org, author ;
         for (var i = 0; i < data.length; i++) {
           event = data[i];
+          if(event.event_category_id == 3){
+            org = "\n Org: " + event.organization.name;
+            author = "\n";
+          } else {
+            if(event.event_category_id == 2 || event.event_category_id == 4){
+              author = "\n Author: " + event.user.first_name + " " + event.user.last_name;
+            } else author = "\n";
+            org = "\n";
+          }
           calendar.fullCalendar('renderEvent', {
-            title:  event.title,
+            title: "\nEvent: " + event.title + org  + "\n Venue: " + event.venue + author,
             start:  getDate('', event.date_start, event.date_start_time),
             end:    getDate('', event.date_end, event.date_end_time),
+            description: event.fname,
+            overlap: true,
+            color: event.event_category_id < 4 ? 'green' : event.category == 'private' ? 'red' : 'blue',
             allDay: event.whole_day == 1 ? true : false
           }, true);
           calendar.fullCalendar('unselect');
