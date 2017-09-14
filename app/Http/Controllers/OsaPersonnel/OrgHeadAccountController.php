@@ -7,7 +7,7 @@ use App\Models\OrganizationGroup;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class OsaAccountController extends Controller
+class OrgHeadAccountController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -30,7 +30,7 @@ class OsaAccountController extends Controller
         return redirect()->route('login');
       }
 
-      if (parent::isOsaPersonnel()) {
+      if (parent::isOrgHead()) {
         # Get the organization base onn the user's ID
         $organization = OrganizationGroup::select(
           'organizations.id',
@@ -42,7 +42,7 @@ class OsaAccountController extends Controller
 
         $login_type = "user";
         return view(
-          'pages.users.osa-personnel.manage_schedule.my-organization',
+          'pages.users.organization-head.manage_schedule.my-organization',
           compact(
             'login_type',
             'organization'

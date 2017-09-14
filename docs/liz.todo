@@ -33,7 +33,6 @@ Follow Control Flow in the docs
         ✔ Facebook (on/off) @done(2017-09-09 06:00) @project(☐Org Adviser Account / ☐ Manage Notifications)
         ✔ Email (on/off) @done(2017-09-09 06:00) @project(☐Org Adviser Account / ☐ Manage Notifications)
         ✔ SMS (on/off) @done(2017-09-09 06:00) @project(☐Org Adviser Account / ☐ Manage Notifications)
-
 ☐Org Co-Adviser Account:
   ✔ Manage Schedule: @done(2017-09-14 01:33) @project(☐Org Co-Adviser Account)
     ✔ Public View @done(2017-09-09 09:13) @project(☐Org Co-Adviser Account / ☐ Manage Schedule)
@@ -114,26 +113,42 @@ Follow Control Flow in the docs
       ✔ View Org Members' Attendance @done(2017-09-14 03:44) @project(☐Org Member Account)
       (No more confirm my attendance because she can do it at the list of events if he can attend or can't attend button)
 ☐OSA Staff Account:
-  ☐ Manage Schedule:
-    ☐ Public View
-      ☐ Calendar
-      ☐ Create an event
-    ☐ All Organizations
-      ☐ Calendar
-      ☐ Create an event
-    ☐ Within Organization
-      ☐ Calendar
-    ☐ Personal Schedule
-      ☐ Calendar
-      ☐ Create My Event
-  ☐ Generate Attendance:
-    ☐ List of Events
-      ☐ Generate Expected Attendance
+☐ ✔   Manage Schedule:
+  ☐ Public View
+    ☐ include the org in the details (study fullcalendar.io for this)
+    ☐ Calendar
+    ☐ Create Public View Event
+  ☐ All Organizations Calendar
+    ☐ Calendar
+      ☐ include the org in the details (study fullcalendar.io for this)
+    ☐ Create Among Org Event
+  ☐ Within Organization
+    ☐ include the author in the details (study fullcalendar.io for this)
+    ☐ Calendar
+    ☐ Create Within Organization Event
+  ☐ Personal Schedule Calendar
+    ☐ Calendar
+      ☐ public
+        ☐ included author
+      ☐ private (dapat ang makita lang niya kay iayahang personal private events)
+    ☐ Create My Event
+      ☐ Public
+      ☐ Private
+  ☐ ✔ Generate Attendance:
+    ☐ my organization which i am the head events
+      ☐ Generate Expected Attendance (list of names expected to come)
+        ☐ confirmation(which is manipulated by head or adviser during the actual event)
       ☐ Generate Confirmed Attendance
-  ☐ Manage Notifications:
+      ☐ Generate Declined Attendance
+      ☐ View and Confirm Org Members' Attendance
+  ☐ ✔ Manage Notifications:
     ☐ List of Events that needs your approval
       ☐ Approve Events
-
+      ☐ Edit Event Notifications Settings
+        ☐ Twitter (on/off)
+        ☐ Facebook (on/off)
+        ☐ Email (on/off)
+        ☐ SMS (on/off)
 
 tasks:
       ☐ next tasks: (OSA account)

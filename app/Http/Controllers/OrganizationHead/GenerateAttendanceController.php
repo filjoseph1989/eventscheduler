@@ -115,7 +115,7 @@ class GenerateAttendanceController extends Controller
     {
       parent::loginCheck();
 
-      $this->org_head->isCoAdviser();
+      $this->org_head->isOrgHead();
       $login_type = 'user';
       return view('pages/users/organization-head/generate-attendance/generate-attendance-menu', compact(
         'login_type'

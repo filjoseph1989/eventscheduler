@@ -1,6 +1,11 @@
 To Do:
+<<<<<<< HEAD
   ☐ Issue 77: I should define another weekly reminder algorithm
   ✔ Issue 76: Remove Controllers in OSA personnel that are unused @done(2017-09-14 13:30)
+=======
+  ☐ Issue 77: Display all event type in OSA and should be able to edit it
+  ✔ Issue 76: Remove Controllers in OSA personnel that are unused @done(2017-09-14 05:35)
+>>>>>>> feature/Sept_14
   ☐ Issue 75: Ang pag send og email reminder notification dapat i test sa daghan nga event, dapat daghan email ma receive
   ☐ Issue 74: Find alternative to beautymail because it break on laravel 5.5.3
   ✔ Issue 73: Remove na ang MailController kay okay naman maka send naman event reminder pati sa route @done(2017-09-13 22:38)

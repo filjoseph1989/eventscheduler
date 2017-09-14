@@ -48,7 +48,7 @@ class OrganizationGroupController extends Controller
       }
 
       $login_type = 'user';
-      return view('pages/users/osa-personnel/organization/members', compact(
+      return view('pages/users/osa-user/organization/members', compact(
         'org', 'login_type', 'member'
       ));
     }
@@ -61,7 +61,7 @@ class OrganizationGroupController extends Controller
     public function create()
     {
       $login_type = 'user';
-      return view('pages/users/osa-personnel/members/add', compact(
+      return view('pages/users/osa-user/members/add', compact(
         'org', 'login_type', 'member'
       ));
     }
@@ -122,7 +122,7 @@ class OrganizationGroupController extends Controller
       # Return when the user already has a request
       if ($org->count() > 0) {
         return redirect()
-        ->route('osa-personnel.members.add')
+        ->route('org-head.members.add')
         ->with('status_warning', 'The user is already a  member or sent a request for membership');
       }
 
@@ -144,13 +144,13 @@ class OrganizationGroupController extends Controller
         # notify the user what happend
         if ($result->wasRecentlyCreated) {
           return redirect()
-            ->route('osa-personnel.members.add')
+            ->route('org-head.members.add')
             ->with('status', 'Successfully added..');
         }
       }
 
       return redirect()
-        ->route('osa-personnel.members.add')
+        ->route('org-head.members.add')
         ->with('status_warning', 'Membership is not posible for a moment');
     }
 
