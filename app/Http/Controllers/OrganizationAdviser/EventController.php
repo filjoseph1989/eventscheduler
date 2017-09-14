@@ -4,10 +4,12 @@ namespace App\Http\Controllers\OrganizationAdviser;
 
 use Auth;
 use Illuminate\Http\Request;
-use App\Library\ApproverLibrary;
 use App\Http\Controllers\Controller;
-use App\Library\OrgAdviserLibrary as Adviser;
 use App\Http\Controllers\ManageNotificationController;
+
+# Library
+use App\Library\ApproverLibrary;
+use App\Library\OrgAdviserLibrary as Adviser;
 
 # Models
 use App\Models\Event;
