@@ -72,7 +72,9 @@ class SendNotifications extends Command
           self::sendEmails($beautymail, $value);
         }
 
-        # Issue 77
+        if ($month > date('m')) {
+          self::sendEmails($beautymail, $value);
+        }
 
         $this->emails    = []; # reset
         $this->user_name = []; # reset

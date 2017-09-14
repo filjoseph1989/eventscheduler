@@ -68,7 +68,9 @@ class SendSms extends Command
           self::send($event);
         }
 
-        # Issue 77
+        if ($month > date('m')) {
+          self::send($event);
+        }
 
         $this->mobile = []; # reset list
       }
