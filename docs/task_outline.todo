@@ -43,19 +43,6 @@ To Do:
   Task 5: User admin account:
     ☐ Approve user system membership
     ☐ List of all registered members (this feature is for administrator)
-      It must consist of the following columns
-        ☐ name
-        ☐ department
-          ☐ If click show all user under this department (optiona|advance)
-        ☐ course
-          ☐ If click show all user under this course (optiona|advance)
-        ☐ position
-          ☐ If click show all user under this position (optiona|advance)
-        ☐ organization
-          ☐ If click, show all members of this organization (optiona|advance)
-        ☐ member since?
-          ☐ If click, show all members since this date (optiona|advance)
-      ☐ If happend that a user is a member of many organization, merge the information
     ☐ List of all user belongs to an organization (this feature is for administrator)
     ☐ List of all users who has no organization yet (this feature is for administrator)
 
@@ -70,9 +57,6 @@ To Do:
       ☐ Add organization
       ☐ Assign an adviser for an organization
       ☐ Activate organization
-      ☐ Display organization structure (Advance|Low Priority)
-        ☐ List of officeer for the current school year (Advance|Low Priority)
-      ☐ Display the organization events (Advance|Low Priority)
     ☐ Events:
       ☐ Delete events that not approve and already due
       ☐ Create My Events:
@@ -83,22 +67,8 @@ To Do:
       ☐ Create Events:
         ☐ Display form to create event
         ☐ Use textarea for description
-        ☐ Change the semester dropdown into season such (quarter, holidays, christmas) {Enterprise version}
-          ☐ customizable by the user
         ☐ Can customize message for notification
         ☐ Can upload image for notification
-        ☐ In what way that this event should be valid? Goto Approve events (Advance)
-          ☐ Add approvers:
-            ☐ There should be a default approvers - This approvers are crucial for approving the said event
-            ☐ Browse to the list of approvers
-            ☐ If the adviser is an approver, display a button within the form to approve the created event
-            ☐ Include the president as approver for this event
-        ☐ Chose organization
-          ☐ Categories as public
-            ☐ Is outside the campus? - This part doesnt need for approval from the people in university (Advance)
-          ☐ Categories as private (within organization)
-          ☐ Categories as Among Organization
-        ☐ Determine if her/she is the adviser of the organization
       ☐ List of events:
         ☐ Display the info box of events base on category
         ☐ Attend this event - A button for user if he wants to attend this event (For regulart users and non member of the organization)
@@ -193,10 +163,10 @@ To Do:
     ☐ Events:
       ☐ Create Events:
         ✔ Display form to create event @done (8/22/2017, 7:01:28 PM)
-        ✔ Can customize message for notification @done(2017-08-30 01:29) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ Create Events)
+        ✔ Can customize message for notification @done (9/14/2017, 1:45:39 PM)
         ☐ Can upload image for notification (advance)
-        ✔ In what way that this event should be valid? Goto Approve events (Advance) @done(2017-08-30 01:37) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ Create Events)
-        ✔ Choose organization category @done(2017-08-30 06:34) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ Create Events)
+        ✔ In what way that this event should be valid? Goto Approve events (Advance) @done (9/14/2017, 1:45:29 PM)
+        ✔ Choose organization category @done (9/14/2017, 1:45:28 PM)
           ✔ Categories as public @done (8/23/2017, 3:02:59 PM)
             ☐ Is outside the campus? - This part doesnt need for approval from the people in university (Advance)
           ✔ Categories as private (within organization) @done (8/23/2017, 3:03:01 PM)
@@ -207,31 +177,31 @@ To Do:
         ☐ Change the semester dropdown into season such (quarter, holidays, christmas) {Enterprise version}
           ☐ customizable by the user
         ☐ Can upload image for notification (advance)
-        ✔ Can customize message for notification @done(2017-08-30 01:37) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ Create My Events)
+        ✔ Can customize message for notification @done (9/14/2017, 1:45:24 PM)
       ☐ List of events:
         ✔ Display the info box of events base on category @done (8/23/2017, 6:32:48 AM)
-        ✔ Display events table (Public, Among, Within, Personal) @done(2017-08-23 23:49) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
-        ✔ Attend this event - A button for user if he wants to attend this event @done (8/26/2017, 11:48:49 PM)
-        ✔ On the event details, display the name of the approver who already approve the event @done(2017-08-30 01:38) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
+        ✔ Display events table (Public, Among, Within, Personal) @done (9/14/2017, 1:45:21 PM)
+        ✔ Attend this event - A button for user if he wants to attend this event @done (9/14/2017, 1:45:20 PM)
+        ✔ On the event details, display the name of the approver who already approve the event @done (9/14/2017, 1:45:19 PM)
         ☐ Archive events(advance)
-        ✔ Automatically change the status of the event base on the given date @done(2017-08-30 01:38) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
+        ✔ Automatically change the status of the event base on the given date @done (9/14/2017, 1:45:17 PM)
         ☐ Set status of my events (advance)
           ☐ if the status changed, Set notification functionality  (advance)
-        ✔ Show List of Personal Events @done(2017-08-30 02:38) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
-          ✔ public @done(2017-08-30 02:38) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
-          ✔ private @done(2017-08-30 02:38) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
+        ✔ Show List of Personal Events @done (9/14/2017, 1:45:14 PM)
+          ✔ public @done (9/14/2017, 1:45:13 PM)
+          ✔ private @done (9/14/2017, 1:45:12 PM)
         ☐ within org list of events must be events under the org where the user is a member only
-      ✔ Calendar of events @done(2017-08-30 01:39) @project(To Do / Task 2: Organization HEAD Account / ☐ Events)
-        ✔ Public @done(2017-08-30 01:40) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
-        ✔ Among @done(2017-08-30 01:40) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
-        ✔ Within @done(2017-08-30 01:40) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
-        ✔ Personal @done(2017-08-30 02:43) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ List of events)
+      ✔ Calendar of events @done (9/14/2017, 1:45:09 PM)
+        ✔ Public @done (9/14/2017, 1:45:08 PM)
+        ✔ Among @done (9/14/2017, 1:45:06 PM)
+        ✔ Within @done (9/14/2017, 1:45:05 PM)
+        ✔ Personal @done (9/14/2017, 1:45:04 PM)
       ☐ Approval of event functionality:
         ☐ Approve events
-          ✔ Approval of event blade @done(2017-08-24 02:50) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ Approval of event functionality)
-          ✔ Show organization and browse events @done (8/23/2017, 4:06:25 PM)
-          ✔ Notification: (Facebook, Twitter, Email, Phone) @done(2017-08-30 01:58) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ Approval of event functionality)
-        ✔ Disapprove event @done (8/25/2017, 3:58:50 PM)
+          ✔ Approval of event blade @done (9/14/2017, 1:45:03 PM)
+          ✔ Show organization and browse events @done (9/14/2017, 1:45:01 PM)
+          ✔ Notification: (Facebook, Twitter, Email, Phone) @done (9/14/2017, 1:45:00 PM)
+        ✔ Disapprove event @done (9/14/2017, 1:44:57 PM)
         ☐ Edit event:
           ☐ If the organization head edit the date of the of the event, reset the approver count and status
         ☐ Automatic Successful Event Notifications upon complete approvals:
@@ -256,13 +226,13 @@ To Do:
             ☐ Among org
             ☐ Personal
       ☐ Calendar of events:
-        ✔ Public @done(2017-08-24 00:26) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Events / ☐ Calendar of events)
-        ✔ Among @done(2017-08-24 00:26) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Events / ☐ Calendar of events)
-        ✔ Within @done(2017-08-24 00:26) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Events / ☐ Calendar of events)
-        ✔ Personal @done(2017-08-30 02:42) @project(To Do / Task 2: Organization HEAD Account / ☐ Events / ☐ Calendar of events)
+        ✔ Public @done (9/14/2017, 1:44:45 PM)
+        ✔ Among @done (9/14/2017, 1:44:44 PM)
+        ✔ Within @done (9/14/2017, 1:44:43 PM)
+        ✔ Personal @done (9/14/2017, 1:44:42 PM)
     ☐ Members:
-      ✔ List of members within the organization of head @done(2017-08-27 22:11) @project(To Do / Task 2: Organization HEAD Account / ☐ Members)
-        ✔ View members profile @done(2017-08-27 22:11) @project(To Do / Task 2: Organization HEAD Account / ☐ Members)
+      ✔ List of members within the organization of head @done (9/14/2017, 1:44:48 PM)
+        ✔ View members profile @done (9/14/2017, 1:44:47 PM)
       ☐ Add members
       ☐ Accept request
       ✔ Display membership request @done(2017-08-27 03:19) @project(To Do / Task 2: Organization HEAD Account / ☐ Members)
@@ -270,31 +240,31 @@ To Do:
       ☐ Org head: (an org head can have many org as long as he has only one org precidency )
         ☐Display the list of org in which he belongs
         ☐Display all members within the organization he belongs to
-    ✔ Generate Attendance: @done(2017-08-24 01:24) @project(To Do / ☐ Task 2: Organization HEAD Account)
-      ✔ Display the list of organization, advise by the loggedin adviser @done(2017-08-24 00:54) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Generate Attendance)
-      ✔ Display the list of event from the given organization @done(2017-08-24 01:05) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Generate Attendance)
-      ✔ Display the list of organization member of the organization @done(2017-08-24 01:23) @project(To Do / ☐ Task 2: Organization HEAD Account / ☐ Generate Attendance)
+    ✔ Generate Attendance: @done (9/14/2017, 1:44:35 PM)
+      ✔ Display the list of organization, advise by the loggedin adviser @done (9/14/2017, 1:44:31 PM)
+      ✔ Display the list of event from the given organization @done (9/14/2017, 1:44:30 PM)
+      ✔ Display the list of organization member of the organization @done (9/14/2017, 1:44:29 PM)
         ☐  Including non-member who wants to attend the event (for public view or among orgs event)
 
   Task 1: Organization Adviser Account:
     ✔ Organizations: @done (9/2/2017, 2:38:23 PM)
       ✔ List of organization @done (9/2/2017, 2:38:19 PM)
         ✔ Request for membership @done(2017-07-31 16:38)
-          ✔ If the adviser is not a member of the organization display this button @done(2017-07-31 01:15)
-        ✔ If the organization name is clicked, display the orgazation simple profile @done(2017-07-22 23:18)
-        ✔ Card Layout for simple organization profile @done(2017-07-31 01:11)
-        ✔ Who are they? - Should have default description if not given @done(2017-07-31 01:10)
-        ✔ If the adivser view his organization as an adviser he must have option for editing few information @done(2017-08-02 20:33)
+          ✔ If the adviser is not a member of the organization display this button @done (9/14/2017, 1:44:22 PM)
+        ✔ If the organization name is clicked, display the orgazation simple profile @done (9/14/2017, 1:44:21 PM)
+        ✔ Card Layout for simple organization profile @done (9/14/2017, 1:44:20 PM)
+        ✔ Who are they? - Should have default description if not given @done (9/14/2017, 1:44:19 PM)
+        ✔ If the adivser view his organization as an adviser he must have option for editing few information @done (9/14/2017, 1:44:18 PM)
           ✔ Color picker @done(2017-08-02 20:33)
         ✔ logo default @done(2017-07-22 21:17)
         ✔ Change logo @done(2017-07-22 22:59)
         ☐ Notify the organization officers for the changes made by the adviser (advance)
     ☐ Events:
-      ✔ Create My Events @done(2017-08-28 15:44) @project(To Do / Task 1: Organization Adviser Account / ☐ Events)
-        ✔ Can customize message for notification @done(2017-08-28 04:31) @project(Task 1: Organization Adviser Account / ☐ Events / ☐ Create My Events)
+      ✔ Create My Events @done (9/14/2017, 1:44:13 PM)
+        ✔ Can customize message for notification @done (9/14/2017, 1:44:12 PM)
         ✔ Display form to create event @done(2017-08-17 16:37)
       ☐ Create Events:
-        ✔ Can customize message for notification @done(2017-08-28 04:32) @project(Task 1: Organization Adviser Account / ☐ Events / ☐ Create Events)
+        ✔ Can customize message for notification @done (9/14/2017, 1:44:09 PM)
         ✔ Display form to create event @done(2017-08-17 16:35)
         ✔ Chose organization @done(2017-07-24 00:28)
           ✔ Categories as private (within organization) @done(2017-07-23 23:43)
@@ -303,11 +273,11 @@ To Do:
         ☐ In what way that this event should be valid? Goto Approve events (Advance)
       ☐ List of events:
         ✔ Display the info box of events base on category @done(2017-08-17 16:38)
-        ✔ Attend this event - A button for user if he wants to attend this event (For regulart users and non member of the organization) @done(2017-08-24 05:10)
-        ✔ On the event details, display the name of the approver who already approve the event @done(2017-08-28 15:06) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ List of events)
-        ✔ Set status of my events @done(2017-08-28 15:06) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ List of events)
-          ✔ if the status changed, Set notification functionality @done(2017-08-28 15:06) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ List of events)
-        ✔ Show List of Personal Events @done(2017-08-30 02:38) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ List of events)
+        ✔ Attend this event - A button for user if he wants to attend this event (For regulart users and non member of the organization) @done (9/14/2017, 1:44:00 PM)
+        ✔ On the event details, display the name of the approver who already approve the event @done (9/14/2017, 1:44:01 PM)
+        ✔ Set status of my events @done (9/14/2017, 1:44:03 PM)
+          ✔ if the status changed, Set notification functionality @done (9/14/2017, 1:44:04 PM)
+        ✔ Show List of Personal Events @done (9/14/2017, 1:44:05 PM)
           ✔ public @done (9/2/2017, 2:34:17 PM)
           ✔ private @done (9/2/2017, 2:34:19 PM)
         ☐ within org list of events must be events under the org where the user is a member only
@@ -319,9 +289,9 @@ To Do:
           ✔ Among org @done(2017-08-31 16:11)
           ☐ Personal
         ☐ notify_via_twitter
-          ✔ Public View @done(2017-08-31 15:09) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ Automatic Successful Event Notifications upon complete approvals)
-          ✔ Within Org @done(2017-08-31 15:04) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ Automatic Successful Event Notifications upon complete approvals)
-          ✔ Among org @done(2017-08-31 15:09) @project(To Do / Task 1: Organization Adviser Account / ☐ Events / ☐ Automatic Successful Event Notifications upon complete approvals)
+          ✔ Public View @done (9/14/2017, 1:43:38 PM)
+          ✔ Within Org @done (9/14/2017, 1:43:42 PM)
+          ✔ Among org @done (9/14/2017, 1:43:44 PM)
           ☐ Personal
         ☐ notify_via_email
           ✔ Public View @done (9/2/2017, 2:34:36 PM)
@@ -333,17 +303,17 @@ To Do:
           ✔ Within Org @done (9/2/2017, 2:34:46 PM)
           ✔ Among org @done (9/2/2017, 2:34:49 PM)
           ☐ Personal
-      ✔ Show organization and browse events  @done(2017-08-24 02:46) @project(To Do / Task 1: Organization Adviser Account / ☐ Events)
-      ✔ Approval of event functionality @done(2017-08-15 20:34) @project(To Do / ☐ Task 39 - Login as organization adviser / ☐ Events)
-      ✔ Approval of event blade @done(2017-08-24 02:50) @project(To Do / Task 1: Organization Adviser Account / ☐ Events)
+      ✔ Show organization and browse events @done (9/14/2017, 1:43:47 PM)
+      ✔ Approval of event functionality @done (9/14/2017, 1:43:48 PM)
+      ✔ Approval of event blade @done (9/14/2017, 1:43:49 PM)
         ✔ Approve events @done(2017-08-08 19:03)
           ✔ Notification: (Facebook, Twitter, Email, Phone) @done(2017-08-11 19:11)
         ✔ disapprove event @done(2017-08-11 00:30)
-    ☐ Calendar of events
+    ✔ Calendar of events @done (9/14/2017, 1:43:07 PM)
       ✔ Public @done(2017-08-15 20:32)
       ✔ Among  @done(2017-08-15 20:32)
       ✔ Within @done (9/2/2017, 2:35:20 PM)
-      ☐ Personal
+      ✔ Personal @done (9/14/2017, 1:42:58 PM)
     ✔ Members: @done(2017-08-27 22:58) @project(Task 1: Organization Adviser Account)
       ✔ List of members within the organization of adviser @done(2017-08-16 20:02)
         ✔ View members profile @done(2017-08-16 20:28)
