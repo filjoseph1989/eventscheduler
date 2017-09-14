@@ -20,6 +20,7 @@ use App\Models\OrganizationGroup;
 use App\Models\EventCategory;
 class ManageNotificationController extends Controller
 {
+  private $tweeter = false;
 
   /**
    * This method will send notification on different media
@@ -36,19 +37,19 @@ class ManageNotificationController extends Controller
     $ev->date_start = date("d M Y",strtotime($ev->date_start));
     $ev->date_end   = date("d M Y",strtotime($ev->date_end));
 
-    if( $ev->notify_via_facebook == 'on' ) {
-        // self::notifyViaFacebook($ev);
+    if ($ev->notify_via_facebook == 'on') {
+      self::notifyViaFacebook($ev);
     }
 
-    if( $ev->notify_via_twitter == 'on'  ) {
-        // self::notifyViaTwitter($ev);
+    if ($ev->notify_via_twitter == 'on') {
+      self::notifyViaTwitter($ev);
     }
 
-    if( $ev->notify_via_email == 'on' ) {
-      //  self::notifyViaEmail($ev);
+    if ($ev->notify_via_email == 'on') {
+      self::notifyViaEmail($ev);
     }
 
-    if( $ev->notify_via_sms == 'on' ) {
+    if ($ev->notify_via_sms == 'on') {
       self::notifyViaSms($ev);
     }
   }
@@ -59,149 +60,37 @@ class ManageNotificationController extends Controller
    * @param  object $value
    * @return
    */
-  private function notifyViaFacebook ($value) {
-    //if they will like and follow my facebook page,it will show on their feed
-    //backlog or version 2 na tng tagging accounts
-    //as long as naka indicate ang audience sa event in the post
-    if($value->event_category_id == 1){
-      //where event_category == among organization
-      $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      $pin = mt_rand(10, 99)
-          . mt_rand(10, 99)
-          . $characters[rand(0, strlen($characters) - 1)];
-          // generate a pin based on 2 * 2 digits + a random character
-      $fb = str_shuffle($pin);
-        // shuffle the result
-      $notification_message = "{$fb} Hello UP Mindanao!! You have an upcoming event!
-      \n{$value->title} headed by {$value->organization->name}.
-      \nDescription: {$value->description}
-      \nVenue: {$value->venue}
-      \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time} ".
-      "\n{$value->additional_msg_facebook}" .
-      "\nPlease be guided accordingly. Thank You!";
-    }
-
-    if($value->event_category_id == 2){
-      $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      $pin = mt_rand(10, 99)
-          . mt_rand(10, 99)
-          . $characters[rand(0, strlen($characters) - 1)];
-          // generate a pin based on 2 * 2 digits + a random character
-      $fb = str_shuffle($pin);
-        // shuffle the result
-      $notification_message = "{$fb} Hello {$value->organization->name}! You have an upcoming event!
-      \n{$value->title}
-      \nDescription: {$value->description}
-      \nVenue: {$value->venue}
-      \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}".
-      "\n{$value->additional_msg_facebook}" .
-      "\nPlease be guided accordingly. Thank You!";
-    }
-
-    if($value->event_category_id == 3){
-      $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      $pin = mt_rand(10, 99)
-          . mt_rand(10, 99)
-          . $characters[rand(0, strlen($characters) - 1)];
-          // generate a pin based on 2 * 2 digits + a random character
-      $fb = str_shuffle($pin);
-        // shuffle the result
-      $notification_message = "{$fb} Hello Student Leaders! You have an upcoming event!
-      \n{$value->title} headed by {$value->organization->name}.
-      \nDescription: {$value->description}
-      \nVenue: {$value->venue}
-      \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}".
-      "\n{$value->additional_msg_facebook}" .
-      "\nPlease be guided accordingly. Thank You!";
-    }
-
-    if($value->event_category_id == 4){
-      $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      $pin = mt_rand(10, 99)
-          . mt_rand(10, 99)
-          . $characters[rand(0, strlen($characters) - 1)];
-          // generate a pin based on 2 * 2 digits + a random character
-      $fb = str_shuffle($pin);
-        // shuffle the result
-      $notification_message = "{$fb} Hello {$value->fname}! Your {$value->title} event has been approved.
-      \nDescription: {$value->description}
-      \nVenue: {$value->venue}
-      \nDuration: {$value->date_start}, {$value->date_start_time} to {$value->date_end}, {$value->date_end_time}".
-      "\n{$value->additional_msg_facebook}" .
-      "\nPlease be guided accordingly. Thank You!";
-    }
-    $data['fb_message'] = $notification_message;
-    $result = User::send($data['fb_message']);
+  private function notifyViaFacebook ($event) {
+    $data['fb_message'] = self::smsMessage($event->event_category_id, $event);
+    User::send($data['fb_message']);
   }
 
+  /**
+   * Tweet if the event has been approved
+   *
+   * if they will follow my twitter account,it will show on their feed
+   * backlog or version 2 na tng tagging accounts
+   * as long as naka indicate ang audience sa event in the post
+   *
+   * @param  object $value Event
+   * @return void
+   */
   private function notifyViaTwitter ($value) {
-    //if they will follow my twitter account,it will show on their feed
-    //backlog or version 2 na tng tagging accounts
-    //as long as naka indicate ang audience sa event in the post
+    $this->tweeter = true;
+    $tweet = self::tweeterMessage($value);
+    $this->tweeter = false;
+    return Twitter::postTweet(['status' => $tweet, 'format' => 'json']);
+  }
 
-      if($value->event_category_id == 1){
-        //where event_category == public view
-        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $pin = mt_rand(10, 99)
-            . mt_rand(10, 99)
-            . $characters[rand(0, strlen($characters) - 1)];
-            // generate a pin based on 2 * 2 digits + a random character
-        $tweet = str_shuffle($pin);
-          // shuffle the result
-        $notification_message = "{$tweet} Hello UP Mindanao!! You have an upcoming event! ".
-        "{$value->title} headed by {$value->organization->name}.".
-        " Venue: {$value->venue}".
-        " Duration: {$value->date_start}, {$value->date_start_time}";
-        $t = str_limit($notification_message, 139);
-      }
-
-      if($value->event_category_id == 2){
-        //where event_category == within organization
-        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $pin = mt_rand(10, 99)
-            . mt_rand(10, 99)
-            . $characters[rand(0, strlen($characters) - 1)];
-            // generate a pin based on 2 * 2 digits + a random character
-        $tweet = str_shuffle($pin);
-          // shuffle the result
-        $notification_message = "{$tweet} Hello {$value->organization->name}! You have an upcoming event! ".
-        "{$value->title}".
-        " Venue: {$value->venue}".
-        " Duration: {$value->date_start}, {$value->date_start_time}";
-        $t = str_limit($notification_message, 140);
-      }
-
-      if($value->event_category_id == 3){
-        //where event_category == among organization
-        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $pin = mt_rand(10, 99)
-            . mt_rand(10, 99)
-            . $characters[rand(0, strlen($characters) - 1)];
-            // generate a pin based on 2 * 2 digits + a random character
-        $tweet = str_shuffle($pin);
-          // shuffle the result
-        $notification_message = "{$tweet} Hello Student Leaders! You have an upcoming event!".
-        "{$value->title} headed by {$value->organization->name}".
-        " Venue: {$value->venue}".
-        " Duration: {$value->date_start}, {$value->date_start_time}";
-        $t = str_limit($notification_message, 140);
-      }
-
-      if($value->event_category_id == 4){
-        //where event_category == my own event
-        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $pin = mt_rand(10, 99)
-            . mt_rand(10, 99)
-            . $characters[rand(0, strlen($characters) - 1)];
-            // generate a pin based on 2 * 2 digits + a random character
-        $tweet = str_shuffle($pin);
-          // shuffle the result
-        $notification_message = "{$tweet} Hello {$value->fname}! Your {$value->title} event has been approved. ".
-        " Venue: {$value->venue}".
-        " Duration: {$value->date_start}, {$value->date_start_time}";
-        $t = str_limit($notification_message, 140);
-      }
-      return Twitter::postTweet(['status' => $t, 'format' => 'json']);
+  /**
+   * make tweet
+   *
+   * @return void
+   */
+  private function tweeterMessage($event)
+  {
+    $message = self::smsMessage($event->event_category_id, $event);
+    return str_limit($message, 140);
   }
 
   /**
@@ -288,7 +177,7 @@ class ManageNotificationController extends Controller
         break;
 
       case 2:
-        $heading = "Hello {$value->organization->name}! You have an upcoming event!";
+        $heading = "Hello {$event->organization->name}! You have an upcoming event!";
         break;
 
       case 3:
@@ -296,17 +185,28 @@ class ManageNotificationController extends Controller
         break;
 
       case 4:
-        $heading = "Hello {$value->fname}! Your {$value->title} event has been approved.";
+        $heading = "Hello {$event->fname}! Your {$value->title} event has been approved.";
         break;
     }
 
-    return $heading .
-      "\n{$event->title} headed by {$event->organization->name}." .
-      "\nDescription: {$event->description}" .
-      "\nVenue: {$event->venue}" .
-      "\nDuration: {$event->date_start}, {$event->date_start_time} to {$event->date_end}, {$event->date_end_time} " .
-      "\n{$event->additional_msg_sms}" .
-      "\nPlease be guided accordingly. Thank You!";
+    $new_line = "";
+    if (! $this->tweeter) {
+      $new_line = "\n";
+    }
+
+    $heading .=
+      "{$new_line}{$event->title} headed by {$event->organization->name}.";
+      if (! $this->tweeter) {
+        $heading .= "{$new_line}Description: {$event->description}";
+      }
+
+    $heading .=
+      "{$new_line}Venue: {$event->venue}" .
+      "{$new_line}Duration: {$event->date_start}, {$event->date_start_time} to {$event->date_end}, {$event->date_end_time} " .
+      "{$new_line}{$event->additional_msg_sms}" .
+      "{$new_line}Please be guided accordingly. Thank You!";
+
+    return $heading;
   }
 
   /**
