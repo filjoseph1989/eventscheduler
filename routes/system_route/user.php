@@ -275,6 +275,7 @@ Route::prefix('users')->group(function() {
     Route::name('osa-personnel.members.search')->post('/members/search', 'OsaPersonnel\UserController@search');
     Route::name('osa-personnel.members.new')->post('/members/new', 'OsaPersonnel\OrganizationGroupController@storeNewMember');
     Route::name('osa-personnel.members.accept')->post('/members/accept', 'OsaPersonnel\OrganizationGroupController@acceptNewMember');
+    Route::name('osa-personnel.assign-approver')->get('/assign/approver', 'OsaPersonnel\UserController@assignApprover');
 
     ####manage schedule route
     Route::name('osa-personnel.manage-schedule')->get('/manage-schedule', 'OsaPersonnel\EventController@manageSchedule');
