@@ -1,0 +1,74 @@
+
+☐ RESULTS AND DISCUSSION:
+  ✔ GENERAL FEATURES OF THE SYSTEM: @done(2017-09-16 05:01) @project(☐ RESULTS AND DISCUSSION)
+    ✔ THE GENEREAL FUNCTIONALITIES: @done(2017-09-16 05:01) @project(☐ RESULTS AND DISCUSSION)
+      ✔ MANAGE SCHEDULE @done(2017-09-16 05:02) @project(☐ RESULTS AND DISCUSSION)
+      ✔ GENERATE ATTENDANCE @done(2017-09-16 05:02) @project(☐ RESULTS AND DISCUSSION)
+      ✔ MANAGE NOTIFICATIONS @done(2017-09-16 05:02) @project(☐ RESULTS AND DISCUSSION)
+      ✔ OTHER NEEDED FUNCTIONS TO SETUP THE SYSTEM (SEE  UNIVERSITY STAFF ACCOUNT AND ADMIN, SUPER ADMIN TO SET EVERYTHING) @done(2017-09-16 05:02) @project(☐ RESULTS AND DISCUSSION)
+    ✔ THE DIFFERENT USER ACCOUNTS @done(2017-09-16 05:02) @project(☐ RESULTS AND DISCUSSION)
+      ✔ ORG HEAD @done(2017-09-16 05:02) @project(☐ RESULTS AND DISCUSSION)
+      ✔ ORG ADVISER @done(2017-09-16 05:02) @project(☐ RESULTS AND DISCUSSION)
+      ✔ ORG MEMBER @done(2017-09-16 05:02) @project(☐ RESULTS AND DISCUSSION)
+      ✔ ORG CO ADVISER @done(2017-09-16 05:02) @project(☐ RESULTS AND DISCUSSION)
+      ✔ OSA @done(2017-09-16 05:02) @project(☐ RESULTS AND DISCUSSION)
+      ✔ UNIVERSITY STAFF ACCOUNT @done(2017-09-16 05:02) @project(☐ RESULTS AND DISCUSSION)
+        ✔ Organization @done(2017-09-16 05:02) @project(☐ RESULTS AND DISCUSSION)
+          ✔ View Organizations @done(2017-09-16 05:02) @project(☐ RESULTS AND DISCUSSION)
+          ✔ View organization profile @done(2017-09-16 05:02) @project(☐ RESULTS AND DISCUSSION)
+        ✔ Events @done(2017-09-16 05:02) @project(☐ RESULTS AND DISCUSSION)
+          ✔ View events @done(2017-09-16 05:02) @project(☐ RESULTS AND DISCUSSION)
+        //  ☐ Create personal event (not included)
+          ✔ Approve events @done(2017-09-16 05:02) @project(☐ RESULTS AND DISCUSSION)
+          ✔ Calendar @done(2017-09-16 05:02) @project(☐ RESULTS AND DISCUSSION)
+      ✔ ADMIN @done(2017-09-16 05:02) @project(☐ RESULTS AND DISCUSSION)
+          ✔ Approve user system membership @done(2017-09-16 05:02) @project(☐ RESULTS AND DISCUSSION)
+          ✔ List of all user belongs to an organization (this feature is for administrator) @done(2017-09-16 05:02) @project(☐ RESULTS AND DISCUSSION)
+          ✔ List of all users who has no organization yet (this feature is for administrator) @done(2017-09-16 05:02) @project(☐ RESULTS AND DISCUSSION)
+          ✔ Set type of event @done(2017-09-16 05:02) @project(☐ RESULTS AND DISCUSSION)
+  ☐ MANAGING DATA AND GENERATING INFORMATION(SCREENSHOTS AND EXPLAINATIONS OF THE GENERAL FUNCTIONALITIES):
+    ☐ MANAGE SCHEDULE:
+      ☐ ORG HEAD
+      ☐ ORG ADVISER
+      ☐ MEMBER
+      ☐ CO AD
+      ☐ OSA
+    ☐ GENERATE ATTENDANCE:
+      ☐ ORG HEAD
+      ☐ ORG ADVISER
+      ☐ MEMBER
+      ☐ CO AD
+      ☐ OSA
+    ☐ MANAGE NOTIFICATIONS:
+      ☐ ORG HEAD
+      ☐ ORG ADVISER
+      ☐ MEMBER
+      ☐ CO AD
+      ☐ OSA
+    ☐ REGISTRATION OF ACCOUNTS:
+      ☐ ADMIN FUNCTIONS:
+        ☐ Approve user system membership
+    ☐ MISCELLANEOUS:
+      ☐ UNIVERSITY STAFF ACCOUNT:
+        ☐ Organization:
+          ☐ View Organizations
+          ☐ View organization profile
+        ☐ Events:
+          ☐ View events
+        //  ☐ Create personal event (not included)
+          ☐ Approve events
+          ☐ Calendar
+      ☐ ADMIN:
+          ☐ List of all user belongs to an organization (this feature is for administrator)
+          ☐ List of all users who has no organization yet (this feature is for administrator)
+          ☐ Set type of event
+    ☐ NEEDED TO SET UP (SCREENSHOTS AND EXPLANATION):
+      ☐ SCREEESHOTS FOR SUPER ADMIN
+    ☐ MISCELLANEOUS FUNCTIONS(SEE USER-MENU TABS, FOR EACH ACCOUNT):
+☐ SYSTEM AND USABILITY TESTING:
+  ☐ ALPHA TESTING - WHITE-BOX TESTING (THESIS ADVISER AND PANELISTS TESTS THE CODES OF THE SYSTEM)
+  ☐ BETA TESTING - BLACK BOX TESTING, RANDOMLY SELECTED TEST USERS
+  ☐ USABILITY TESTING - USERS: 3 OSA STAFF, 3 ORG HEADS, 3 ORG ADVISER, 3 ORG CO ADVISER, 3 MEMBERS (FROM RANDOMLY SELECTED ORGANIZATIONS)
+
+☐ SUMMARY AND DISCUSSIONS:
+  ☐ AFTER SA FINAL DEFENSE PA ATA?
