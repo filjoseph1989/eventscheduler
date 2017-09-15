@@ -20,6 +20,8 @@ use App\Models\Position;
  */
 class UserController extends Controller
 {
+  private $login_type = 'user';
+
   /**
    * Create a new controller instance.
    *
@@ -53,5 +55,48 @@ class UserController extends Controller
     }
 
     return back()->with('status_warning', 'Sorry We couldn\'t find what your looking for.');
+  }
+
+  /**
+   * return the list of users
+   *
+   * @return void
+   */
+  public function assignApprover()
+  {
+    /*
+    Steps:
+    1. Check if the user is currently loggedin
+    2. Check if the user is an osa personnel
+
+    1. Get the list of the users
+    2. Crete table in the blade
+    3. Display the users
+    */
+    return view('pages/users/osa-user/manage-users/assign-approver')->with([
+      'login_type' => $this->login_type
+    ]);
+  }
+
+  /**
+   * This is an ajax request response for setting an approver
+   * from the list of approvers
+   *
+   * Issue 79
+   *  dapat kani nga function ibalhin ni didto sa jsonController
+   *  kay mao man jud ang purpose ato, handling ajax request
+   *
+   * @return void
+   */
+  public function setApprover(Request $data)
+  {
+    /*
+    Steps:
+
+    1. Get the user ID
+    2. Find the user in the users table given the ID
+    3. Set is_approvers column for that user to true
+    4. return response
+    */
   }
 }
