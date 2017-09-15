@@ -250,30 +250,6 @@ Route::prefix('users')->group(function() {
 
   # Route for organization adviser
   Route::prefix('osa-personnel')->group(function() {
-    // Route::name('osa-personnel.org-list')->get('/list_of_organizations','OsaPersonnel\OrganizationController@index');
-    // Route::name('osa-personnel.org-profile')->get('/profile/{id}', 'OsaPersonnel\OrganizationController@show');
-    // Route::name('osa-personnel.org-logo')->post('/change-logo', 'OsaPersonnel\OrganizationController@uploadLogo');
-    // Route::name('osa-personnel.org-edit')->get('/edit-org/{id}', 'OsaPersonnel\OrganizationController@edit');
-    // Route::name('osa-personnel.org-update')->post('/update-org', 'OsaPersonnel\OrganizationController@update');
-    // Route::name('osa-personnel.event.list')->get('/get/event-list/{id?}', 'OsaPersonnel\EventController@index');
-    // Route::name('osa-personnel.my.new.event')->get('/my/new/event', 'OsaPersonnel\MyEventController@create');
-    // Route::name('osa-personnel.my.new.event.submit')->post('/store/new', 'OsaPersonnel\MyEventController@store');
-    // Route::name('osa-personnel.approve.event')->get('/approve/event', 'OsaPersonnel\EventController@approveEvents');
-    // Route::name('osa-personnel.attendance')->get('/attendance', 'OsaPersonnel\GenerateAttendanceController@index');
-    // Route::name('osa-personnel.event.show')->get('/show/{id?}', 'OsaPersonnel\EventController@show');
-    // Route::name('osa-personnel.attendance.store')->post('/store', 'OsaPersonnel\GenerateAttendanceController@store');
-    // Route::name('osa-personnel.attendance.show')->get('/new/{id}/{eid}', 'OsaPersonnel\GenerateAttendanceController@show');
-    // Route::name('osa-personnel.my.new.event')->get('/my/new/event', 'OsaPersonnel\MyEventController@create');
-    // Route::name('osa-personnel.my.new.event.submit')->post('/store/new', 'OsaPersonnel\MyEventController@store');
-    // Route::name('osa-personnel.approved.event')->get('/approved/event/{id}', 'OsaPersonnel\EventController@setApprove');
-    // Route::name('osa-personnel.disapproved.event')->get('/disapproved/event/{id}', 'OsaPersonnel\EventController@setDisApprove');
-    // Route::name('osa-personnel.userattendance.store')->post('user-attendance/store', 'OsaPersonnel\UserAttendanceController@store');
-    // Route::name('osa-personnel.org-membership')->post('/org-membership', 'OsaPersonnel\OrganizationGroupController@store');
-    // Route::name('osa-personnel.members.list')->get('/members/list', 'OsaPersonnel\OrganizationGroupController@index');
-    // Route::name('osa-personnel.members.add')->get('/members/add', 'OsaPersonnel\OrganizationGroupController@create');
-    // Route::name('osa-personnel.members.new')->post('/members/new', 'OsaPersonnel\OrganizationGroupController@storeNewMember');
-    // Route::name('osa-personnel.members.accept')->post('/members/accept', 'OsaPersonnel\OrganizationGroupController@acceptNewMember');
-    // Route::name('osa-personnel.calendar')->get('/calendar', 'OsaPersonnel\CalendarController@calendar');
     Route::name('osa-personnel.set-approver')->get('/set-approver', 'OsaPersonnel\UserController@getUser');
     Route::name('osa-personnel.org-list')->get('/list_of_organizations','OsaPersonnel\OrganizationController@index');
     Route::name('osa-personnel.org-profile')->get('/profile/{id}', 'OsaPersonnel\OrganizationController@show');
