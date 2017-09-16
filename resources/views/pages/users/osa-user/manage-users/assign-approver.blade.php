@@ -65,25 +65,57 @@
                     <tr>
                       <th>First Name</th>
                       <th>Last Name</th>
+                      <th>User Account Type</th>
+                      <th>Position</th>
+                      <th>Organization</th>
                       <th>Approver</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody class="js-sweetalert">
+                    @foreach ($all_user as $key => $value)
                     <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td>{{ $value->first_name }}</td>
+                      <td>{{ $value->last_name }}</td>
+                      <td>{{ $user_acc[$value->id] }} </td>
                       <td>
-                        <button class="btn btn-primary" type="button" name="approver">Set as approver</button>
-                        <button class="btn btn-primary" type="button" name="approver">Revoke as approver</button>
+                        <?php
+                          if (count($position[$value->id]) > 1) {
+                            foreach ($position[$value->id] as $key => $val) {
+                              echo "$val <br>";
+                            }
+                          } else {
+                            echo $position[$value->id];
+                          }
+                        ?>
+                       </td>
+                      <td>
+                        <?php
+                          if (count($organization[$value->id]) > 1) {
+                            foreach ($organization[$value->id] as $key => $val) {
+                              echo "$val <br>";
+                            }
+                          } else {
+                            echo $organization[$value->id];
+                          }
+                        ?>
+                      </td>
+                      <td id="approver-status-{{ $value->id }}">{{ $value->is_approver == 'true' ? 'YES' : 'NO' }}</td>
+                      <td>
+                        <button class="btn btn-primary setapprover" type="button" name="setapprover" data-user-id = "{{ $value->id }}" >Set as approver</button>
+                        <button class="btn btn-primary revokeapprover" type="button" name="revokeapprover" data-user-id = "{{ $value->id }}" >Revoke approver</button>
+                        <div class="preload preloader-{{ $value->id }}"></div>
                       </td>
                     </tr>
+                    @endforeach
                   </tbody>
                   <tfoot>
                     <tr>
                       <th>First Name</th>
                       <th>Last Name</th>
+                      <th>User Account Type</th>
+                      <th>Position</th>
+                      <th>Organization</th>
                       <th>Approver</th>
                       <th>Action</th>
                     </tr>

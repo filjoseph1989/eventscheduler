@@ -1,6 +1,6 @@
 /**
  * App.js
- * @version 0.31
+ * @version 0.32
  */
 
 var _this;
@@ -281,6 +281,35 @@ $(document).on('click', '.unconfirmed', function() {
 });
 
 /**
+ * Submit the isApprover status of the user to the database
+ *
+ * @return {}
+ */
+$(document).on('click', '.setapprover', function() {
+  _this = $(this);
+  var data = {
+    isApprover:  'true'
+  }
+
+  setApproverState(data, "YES");
+});
+
+/**
+ * Unconfirmed the attendance of the member
+ *
+ * @return {void}
+ */
+$(document).on('click', '.revokeapprover', function() {
+  _this = $(this);
+  var data = {
+    isApprover:       'false'
+  }
+
+  setApproverState(data, "NO");
+});
+
+
+/**
  * Can't attend function
  * @return void
  */
@@ -465,5 +494,14 @@ function updateAttendance(data, $message) {
 
   submit(data, url, function(data) {
     $('#confirm-status-'+data.id).html($message);
+  }, '.preloader-'+data.id);
+}
+
+function setApproverState(data, $message) {
+  var url  = route('osa-personnel.approverstate.update').replace('localhost', window.location.hostname);
+  data.id  = _this.data('user-id');
+
+  submit(data, url, function(data) {
+    $('#approver-status-'+data.id).html($message);
   }, '.preloader-'+data.id);
 }

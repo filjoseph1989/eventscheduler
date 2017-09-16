@@ -30,6 +30,7 @@
     <span>Members</span>
   </a>
   <ul class="ml-menu">
+    <!-- <li><a href="#">All Members</a></li> -->
     <li><a href="{{ route('osa-personnel.members.list') }}">All Members</a></li>
   </ul>
 </li>

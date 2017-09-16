@@ -11072,10 +11072,14 @@ tr > td:nth-child(2) {
 }
 
 .confirmed,
-.unconfirmed {
+.unconfirmed,
+.setapprover,
+.revokeapprover {
   float: left;
 }
-.confirmed {
+.confirmed,
+.setapprover,
+.revokeapprover {
   margin-right: 2px;
 }
 .preload {

@@ -309,6 +309,7 @@ Route::prefix('users')->group(function() {
     Route::name('osa-personnel.manage-notification-menu')->get('/manage-notification-menu', 'OsaPersonnel\EventController@manageNotificationMenu');
     Route::name('osa-personnel.manage-notification')->get('/manage-notification', 'OsaPersonnel\EventController@manageNotification');
     Route::name('osa-personnel.update-notification')->post('/update-notification', 'OsaPersonnel\EventController@updateNotification');
+    Route::name('osa-personnel.approverstate.update')->post('approver/update', 'OsaPersonnel\UserController@setApprover');
 
   });
 
