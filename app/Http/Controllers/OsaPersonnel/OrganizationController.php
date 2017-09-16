@@ -23,6 +23,8 @@ class OrganizationController extends Controller
 {
     private $osa_personnel;
 
+    private $login_type = "user";
+
     /**
      * Guard
      */
@@ -61,13 +63,15 @@ class OrganizationController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating new organization
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+      return view('pages/users/osa-personnel/organization/add')->with([ 
+        'login_type' => $this->login_type
+      ]);
     }
 
     /**
@@ -78,7 +82,15 @@ class OrganizationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      /**
+       * Steps:
+       * 
+       * Validate the inputs
+       * Get the input data
+       * Save to database
+       */
+
+      
     }
 
     /**

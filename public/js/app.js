@@ -308,7 +308,6 @@ $(document).on('click', '.revokeapprover', function() {
   setApproverState(data, "NO");
 });
 
-
 /**
  * Can't attend function
  * @return void
@@ -317,6 +316,27 @@ $(document).on('click', '#cant-attend', function() {
   $('#cant-attend').hide();
   $('#cant-attend-submit').removeClass('hidden');
   $('#cant-attend-message').removeClass('hidden');
+});
+
+/**
+ * If the user click on the input that has class
+ *    event-datepicker
+ *    event-timepicker
+ * this function here will trigger and there will be
+ * prompt for date and time
+ *
+ * @type {String}
+ */
+$('.event-datepicker').bootstrapMaterialDatePicker({
+    format: 'YYYY/MM/DD',
+    clearButton: true,
+    weekStart: 1,
+    time: false
+});
+$('.event-timepicker').bootstrapMaterialDatePicker({
+    format: 'HH:mm',
+    clearButton: true,
+    date: false
 });
 
 /**
@@ -497,6 +517,12 @@ function updateAttendance(data, $message) {
   }, '.preloader-'+data.id);
 }
 
+/**
+ * Set the approver
+ *
+ * @param {object} data
+ * @param {string} $message Custom message
+ */
 function setApproverState(data, $message) {
   var url  = route('osa-personnel.approverstate.update').replace('localhost', window.location.hostname);
   data.id  = _this.data('user-id');
