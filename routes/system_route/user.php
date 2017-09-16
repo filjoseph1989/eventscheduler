@@ -312,8 +312,76 @@ Route::prefix('users')->group(function() {
     Route::name('osa-personnel.manage-notification-menu')->get('/manage-notification-menu', 'OsaPersonnel\EventController@manageNotificationMenu');
     Route::name('osa-personnel.manage-notification')->get('/manage-notification', 'OsaPersonnel\EventController@manageNotification');
     Route::name('osa-personnel.update-notification')->post('/update-notification', 'OsaPersonnel\EventController@updateNotification');
+    ###manage org members / user routes
     Route::name('osa-personnel.approverstate.update')->post('approver/update', 'OsaPersonnel\UserController@setApprover');
 
   });
+    Route::prefix('user-admin')->group(function() {
+      Route::name('user-admin.set-approver')->get('/set-approver', 'UserAdmin\UserController@getUser');
+      Route::name('user-admin.org-list')->get('/list_of_organizations','UserAdmin\OrganizationController@index');
+      Route::name('user-admin.org-add')->get('/new/organizations','UserAdmin\OrganizationController@create');
+      Route::name('user-admin.org-profile')->get('/profile/{id}', 'UserAdmin\OrganizationController@show');
+      Route::name('user-admin.org-logo')->post('/change-logo', 'UserAdmin\OrganizationController@uploadLogo');
+      Route::name('user-admin.org-edit')->get('/edit-org/{id}', 'UserAdmin\OrganizationController@edit');
+      Route::name('user-admin.org-update')->post('/update-org', 'UserAdmin\OrganizationController@update');
+      Route::name('user-admin.event.list')->get('/get/event-list/{id?}', 'UserAdmin\EventController@index');
+      Route::name('user-admin.my.new.event')->get('/my/new/event', 'UserAdmin\MyEventController@create');
+      Route::name('user-admin.my.new.event.submit')->post('/store/new', 'UserAdmin\MyEventController@store');
+      Route::name('user-admin.approve.event')->get('/approve/event', 'UserAdmin\EventController@approveEvents');
+      Route::name('user-admin.attendance')->get('/attendance', 'UserAdmin\GenerateAttendanceController@index');
+      Route::name('user-admin.event.show')->get('/show/{id?}', 'UserAdmin\EventController@show');
+      Route::name('user-admin.attendance.store')->post('/store', 'UserAdmin\GenerateAttendanceController@store');
+      Route::name('user-admin.attendance.show')->get('/new/{id}/{eid}', 'UserAdmin\GenerateAttendanceController@show');
+      Route::name('user-admin.my.new.event')->get('/my/new/event', 'UserAdmin\MyEventController@create');
+      Route::name('user-admin.my.new.event.submit')->post('/store/new', 'UserAdmin\MyEventController@store');
+      Route::name('user-admin.approved.event')->get('/approved/event/{id}', 'UserAdmin\EventController@setApprove');
+      Route::name('user-admin.disapproved.event')->get('/disapproved/event/{id}', 'UserAdmin\EventController@setDisApprove');
+      Route::name('user-admin.userattendance.store')->post('user-attendance/store', 'UserAdmin\UserAttendanceController@store');
+      Route::name('user-admin.org-membership')->post('/org-membership', 'UserAdmin\OrganizationGroupController@store');
+      Route::name('user-admin.members.list')->get('/members/list', 'UserAdmin\OrganizationGroupController@index');
+      Route::name('user-admin.members.add')->get('/members/add', 'UserAdmin\OrganizationGroupController@create');
+      Route::name('user-admin.members.search')->post('/members/search', 'UserAdmin\UserController@search');
+      Route::name('user-admin.members.new')->post('/members/new', 'UserAdmin\OrganizationGroupController@storeNewMember');
+      Route::name('user-admin.members.accept')->post('/members/accept', 'UserAdmin\OrganizationGroupController@acceptNewMember');
+
+      # Check og gigamit pani nga part
+      Route::name('user-admin.assign-approver')->get('/assign/approver', 'UserAdmin\UserController@assignApprover');
+
+      ####manage schedule route
+      Route::name('user-admin.manage-schedule')->get('/manage-schedule', 'UserAdmin\EventController@manageSchedule');
+      Route::name('user-admin.calendar.within')->get('/calendar/within', 'UserAdmin\CalendarController@calendarWithin');
+      Route::name('user-admin.calendar')->get('/calendar/{id?}', 'UserAdmin\CalendarController@calendar');
+      #create within organization event route
+      Route::name('user-admin.event.new')->get('/new-event', 'UserAdmin\EventController@create');
+      Route::name('user-admin.event.new')->post('/new-event', 'UserAdmin\EventController@store');
+
+      ####generate attendance route
+      Route::name('user-admin.generate-attendance')->get('/generate-attendance/menu', 'UserAdmin\GenerateAttendanceController@generateAttendanceMenu');
+      #route for generate declined attendance
+      Route::name('user-admin.generate-declined-attendance-org-list')->get('/generate/declined-attendance/org-list', 'UserAdmin\GenerateAttendanceController@declinedAttendanceOrgList');
+      Route::name('user-admin.generate-declined-attendance-event-list')->get('/generate/declined-attendance/event-list/{id?}', 'UserAdmin\GenerateAttendanceController@generateDeclinedAttendanceEventList');
+      Route::name('user-admin.declined-attendance-member-list')->get('/generate/declined-attendance/member-list/{id}/{eid}', 'UserAdmin\GenerateAttendanceController@declinedAttendanceMemberList');
+      #route for generate confirmed attendance
+      Route::name('user-admin.generate-confirmed-attendance-org-list')->get('/generate/confirmed-attendance/org-list', 'UserAdmin\GenerateAttendanceController@confirmedAttendanceOrgList');
+      Route::name('user-admin.generate-confirmed-attendance-event-list')->get('/generate/confirmed-attendance/event-list/{id?}', 'UserAdmin\GenerateAttendanceController@generateConfirmedAttendanceEventList');
+      Route::name('user-admin.confirmed-attendance-member-list')->get('/generate/confirmed-attendance/member-list/{id}/{eid}', 'UserAdmin\GenerateAttendanceController@confirmedAttendanceMemberList');
+      #route for confirm and view org members' event expected attendance
+      Route::name('user-admin.attendance-org-list')->get('/attendance/org-list', 'UserAdmin\GenerateAttendanceController@index');
+      Route::name('user-admin.attendance.show')->get('/new/{id}/{eid}', 'UserAdmin\GenerateAttendanceController@show');
+      Route::name('user-admin.attendance.store')->post('/store', 'UserAdmin\GenerateAttendanceController@store');
+      Route::name('user-admin.attendance.store2')->post('/store2', 'UserAdmin\GenerateAttendanceController@store2');
+      Route::name('user-admin.userattendance.store')->post('user-attendance/store', 'UserAdmin\UserAttendanceController@store');
+      #route for generate attended attendance
+      Route::name('user-admin.official-attendance-org-list')->get('/generate/official-attendance/org-list', 'UserAdmin\GenerateAttendanceController@officialAttendanceOrgList');
+      Route::name('user-admin.generate-official-attendance-event-list')->get('/generate/official-attendance/event-list/{id?}', 'UserAdmin\GenerateAttendanceController@generateOfficialAttendanceEventList');
+      Route::name('user-admin.official-attendance-member-list')->get('/generate/official-attendance/member-list/{id}/{eid}', 'UserAdmin\GenerateAttendanceController@officialAttendanceMemberList');
+      ####manage notification route
+      Route::name('user-admin.manage-notification-menu')->get('/manage-notification-menu', 'UserAdmin\EventController@manageNotificationMenu');
+      Route::name('user-admin.manage-notification')->get('/manage-notification', 'UserAdmin\EventController@manageNotification');
+      Route::name('user-admin.update-notification')->post('/update-notification', 'UserAdmin\EventController@updateNotification');
+      ###manage org members / user routes
+      Route::name('user-admin.approverstate.update')->post('approver/update', 'UserAdmin\UserController@setApprover');
+
+    });
 
 });

@@ -2378,7 +2378,7 @@
 }
 
 .bg-pink {
-    background-color: #E2C75A  !important;
+    background-color: #E91E63 !important;
     color: #fff;
 }
 
@@ -10566,7 +10566,7 @@ fieldset[disabled] .form-control {
 /* Login Page ================================== */
 
 .login-page {
-    background-color: #e2c75a;
+    background-color: #00BCD4;
     padding-left: 0;
     max-width: 360px;
     margin: 5% auto;
@@ -10574,7 +10574,7 @@ fieldset[disabled] .form-control {
 }
 
 .login-page .login-box .msg {
-    color: #7f8c8d;
+    color: #555;
     margin-bottom: 30px;
     text-align: center;
 }
@@ -10582,7 +10582,7 @@ fieldset[disabled] .form-control {
 .login-page .login-box a {
     font-size: 14px;
     text-decoration: none;
-    color: #15a8d8;
+    color: #00BCD4;
 }
 
 .login-page .login-box .logo {
@@ -10594,7 +10594,7 @@ fieldset[disabled] .form-control {
     display: block;
     width: 100%;
     text-align: center;
-    color: #ffffff;
+    color: #fff;
 }
 
 .login-page .login-box .logo small {

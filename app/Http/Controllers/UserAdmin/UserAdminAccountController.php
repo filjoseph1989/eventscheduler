@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\OsaPersonnel;
+namespace App\Http\Controllers\UserAdmin;
 
 use Auth;
 use App\Models\OrganizationGroup;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class OsaAccountController extends Controller
+class UserAdminAccountController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -30,7 +30,7 @@ class OsaAccountController extends Controller
         return redirect()->route('login');
       }
 
-      if (parent::isOsaPersonnel()) {
+      if (parent::isUserAdmin()) {
         # Get the organization base onn the user's ID
         $organization = OrganizationGroup::select(
           'organizations.id',
@@ -42,7 +42,7 @@ class OsaAccountController extends Controller
 
         $login_type = "user";
         return view(
-          'pages.users.osa-personnel.manage-schedule.my-organization',
+          'pages.users.user-admin.manage-schedule.my-organization',
           compact(
             'login_type',
             'organization'

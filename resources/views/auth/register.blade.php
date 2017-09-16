@@ -129,7 +129,7 @@
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon sign-in">
-                        <i class="material-icons">lock</i>
+                        <i class="fa fa-instagram" aria-hidden="true"></i>
                     </span>
                     <div class="form-line">
                         <input id="instagram_username" type="text" class="form-control" name="instagram_username" placeholder="Instagram" value="{{ old('instagram_username') }}">
@@ -137,7 +137,7 @@
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon sign-in">
-                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                      <i class="material-icons">lock</i>
                     </span>
                     <div class="form-line">
                         <input id="mobile_number" type="text" class="form-control" name="mobile_number" placeholder="Modile Number" value="{{ old('mobile_number') }}" required>
