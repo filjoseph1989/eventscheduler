@@ -38,6 +38,7 @@
                     <tr>
                       <th>Name</th>
                       <th>URL</th>
+                      <th>Adviser</th>
                       <th>Date Started</th>
                       <th>Date Expired</th>
                       <th>Status</th>
@@ -53,6 +54,7 @@
                         <tr>
                           <td><a href="{{ route('osa-personnel.org-profile', [$value->id]) }}">{{ $value->name }}</a></td>
                           <td><a href="{{ $value->url }}" target="_blank">{{ $value->url }}</a></td>
+                          <td>{{ $value->adviser }}</td>
                           <td>{{ date('M d, Y', strtotime($value->date_started)) }}</td>
                           <td>{{ date('M d, Y', strtotime($value->date_expired)) }}</td>
                           <td class="organization-status" data-id="{{ $value->id }}">{{ ucwords($value->status) }}</td>
@@ -64,6 +66,7 @@
                     <tr>
                       <th>Name</th>
                       <th>URL</th>
+                      <th>Adviser</th>
                       <th>Date Started</th>
                       <th>Date Expired</th>
                       <th>Status</th>

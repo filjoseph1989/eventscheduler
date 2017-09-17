@@ -10,6 +10,7 @@ use App\Library\OsaPersonnelLibrary as OsaPersonnel;
 # Models
 use App\Models\Organization;
 use App\Models\OrganizationGroup;
+use App\Models\OrganizationAdviserGroup;
 
 /**
  * This class controller handles the request related to
@@ -54,6 +55,9 @@ class OrganizationController extends Controller
         but is active to system.
        */
       $organization = Organization::all()->where('id', '!=', 1);
+      $adviser      = OrganizationAdviserGroup::with('user')->get()->toArray();
+
+      $organization = self::includeAdviser($organization, $adviser);
 
       # Render view
       return view('pages/users/osa-personnel/organization/list', compact('organization'))
@@ -317,5 +321,25 @@ class OrganizationController extends Controller
         'date_expired' => 'nullable|date|after_or_equal:date_start',
         'status'       => 'Required'
       ]);
+    }
+
+    /**
+     * Include the adviser in the organization
+     * list
+     *
+     * @param object $organization
+     * @param array $adviser
+     * @return object
+     */
+    private function includeAdviser($organization, $adviser)
+    {
+      foreach ($organization as $key => $value) {
+        $adviserKey = array_search($value->id, array_column($adviser, 'organization_id'));
+        if ($adviserKey !== false) {
+          $organization[$key]->adviser = $adviser[$adviserKey]['user']['first_name'] . " " . $adviser[$adviserKey]['user']['last_name'];
+        }
+      }
+
+      return $organization;
     }
 }
