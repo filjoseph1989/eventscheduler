@@ -199,7 +199,8 @@ class OrganizationGroupController extends Controller
      */
     public function acceptNewMember(Request $data)
     {
-      echo "wala pa ni";
+      return redirect()
+        ->route('user-admin.accept-users');
     }
 
     /**

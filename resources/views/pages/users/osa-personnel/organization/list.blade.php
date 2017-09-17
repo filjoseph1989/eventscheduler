@@ -52,11 +52,11 @@
                           <td>
                             <div class="demo-switch">
                               <div class="switch"> 
-                                <?php if ($value->status == 'active'): ?>
+                                <?php if ($value->status == 'active') { ?>
                                   <label><input type="checkbox" checked><span class="lever"></span>{{ ucwords($value->status) }}</label>
-                                <?php else ?>
+                                <?php } else { ?>
                                   <label>{{ ucwords($value->status) }}<input type="checkbox" checked><span class="lever"></span></label>
-                                <?php endif ?>
+                                <?php } ?>
                               </div>
                             </div>
                           </td>

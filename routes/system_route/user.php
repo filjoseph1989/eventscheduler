@@ -343,8 +343,8 @@ Route::prefix('users')->group(function() {
       Route::name('user-admin.members.add')->get('/members/add', 'UserAdmin\OrganizationGroupController@create');
       Route::name('user-admin.members.search')->post('/members/search', 'UserAdmin\UserController@search');
       Route::name('user-admin.members.new')->post('/members/new', 'UserAdmin\OrganizationGroupController@storeNewMember');
-      Route::name('user-admin.members.accept')->post('/members/accept', 'UserAdmin\OrganizationGroupController@acceptNewMember');
-
+      Route::name('user-admin.members.accept')->get('/members/accept', 'UserAdmin\OrganizationGroupController@acceptNewMember');
+      
       # Check og gigamit pani nga part
       Route::name('user-admin.assign-approver')->get('/assign/approver', 'UserAdmin\UserController@assignApprover');
 
