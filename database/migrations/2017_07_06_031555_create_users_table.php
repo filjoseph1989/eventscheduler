@@ -35,9 +35,9 @@ class CreateUsersTable extends Migration
           $table->tinyInteger('status')->default(0);
           $table->enum('is_approver', ['true', 'false'])->default('false');
           $table->tinyInteger('approver_or_not')->default(0);
-          $table->softDeletes();
           $table->rememberToken();
           $table->timestamps();
+          $table->softDeletes();
 
           #foreign keys
           $table->foreign('user_account_id')->references('id')->on('user_accounts');
