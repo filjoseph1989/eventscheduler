@@ -171,3 +171,5 @@ tasks:
                 ✔ unconfirm functionality must also work @done(2017-09-12 05:22) @project(tasks / >  ☐ Generate Attendance)
       >Manage Schedule:
         ✔Calendar (dili clear and details: ang time dili klaro, include org) (study fullcalendar.io for this) @done(2017-09-12 10:25) @project(tasks / >Manage Schedule)
+
+☐ retest forgot password if working

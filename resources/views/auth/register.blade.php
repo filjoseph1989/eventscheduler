@@ -62,7 +62,7 @@
                         <i class="material-icons">person</i>
                     </span>
                     <div class="form-line">
-                        <input type="text" class="form-control" name="middle_name" placeholder="Middle Name" value="{{ old('middle_name') }}" required>
+                        <input type="text" class="form-control" name="middle_name" placeholder="Middle Name" value="{{ old('middle_name') }}" >
                         @if ($errors->has('middle_name'))
                           <span class="help-block"> <strong>{{ $errors->first('middle_name') }}</strong> </span>
                         @endif
