@@ -4,7 +4,7 @@
 /**
  * Style
  * @type {String}
- * @version 0.16
+ * @version 0.19
  */
 
 @import url(materialize.css);
@@ -11101,4 +11101,8 @@ tr>td:nth-child(2) {
 .bg-custom-pink {
     background-color: #E2C75A !important;
     color: #fff;
+}
+.organization-status,
+.organization-status-click {
+  cursor:pointer;
 }

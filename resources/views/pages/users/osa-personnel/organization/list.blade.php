@@ -5,6 +5,7 @@
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('css/all-themes.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap-select.css') }}">
 @endsection
 
 @section('content')
@@ -26,7 +27,13 @@
                 <h2> LIST OF ORGANIZATION </h2>
               </div>
               <div class="body table-responsive">
-                <table class="table table-striped table-hover js-basic-example dataTable">
+                @php
+                  $class = "";
+                  if ($organization->count() > 10) {
+                    $class = "js-basic-example dataTable";
+                  }
+                @endphp
+                <table class="table table-striped table-hover {{ $class }}">
                   <thead>
                     <tr>
                       <th>Name</th>
@@ -48,23 +55,12 @@
                           <td><a href="{{ $value->url }}" target="_blank">{{ $value->url }}</a></td>
                           <td>{{ date('M d, Y', strtotime($value->date_started)) }}</td>
                           <td>{{ date('M d, Y', strtotime($value->date_expired)) }}</td>
-                          {{--<td>{{ ucwords($value->status) }}</td>--}}
-                          <td>
-                            <div class="demo-switch">
-                              <div class="switch"> 
-                                <?php if ($value->status == 'active'): ?>
-                                  <label><input type="checkbox" checked><span class="lever"></span>{{ ucwords($value->status) }}</label>
-                                <?php else ?>
-                                  <label>{{ ucwords($value->status) }}<input type="checkbox" checked><span class="lever"></span></label>
-                                <?php endif ?>
-                              </div>
-                            </div>
-                          </td>
+                          <td class="organization-status" data-id="{{ $value->id }}">{{ ucwords($value->status) }}</td>
                         </tr>
                       @endforeach
                     @endif
                   </tbody>
-                  <tfoot>
+                  <tfoot></tfoot>
                     <tr>
                       <th>Name</th>
                       <th>URL</th>
@@ -89,5 +85,5 @@
   <script src="{{ asset('js/jquery.dataTables.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/dataTables.bootstrap.js') }}" charset="utf-8"></script>
   <script src="{{ asset('js/jquery-datatable.js') }}" charset="utf-8"></script>
-  <script src="{{ asset('js/app.js') }}?v=0.25" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.33" charset="utf-8"></script>
 @endsection
