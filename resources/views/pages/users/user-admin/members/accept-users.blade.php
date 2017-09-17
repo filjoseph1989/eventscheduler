@@ -70,8 +70,8 @@
                       <th>Organization</th>
                       <th>Account Activation</th>
                       <th>Action</th>
-                      <th>Created At</th>
-                      <th>Updated At</th>
+                      <th>Created</th>
+                      <th>Updated</th>
                     </tr>
                   </thead>
                   <tbody class="js-sweetalert">
@@ -122,8 +122,8 @@
                       <th>Organization</th>
                       <th>Account Activation</th>
                       <th>Action</th>
-                      <th>Created At</th>
-                      <th>Updated At</th>
+                      <th>Created</th>
+                      <th>Updated</th>
                     </tr>
                   </tfoot>
                 </table>
