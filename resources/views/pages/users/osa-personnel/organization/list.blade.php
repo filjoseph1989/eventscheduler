@@ -48,7 +48,18 @@
                           <td><a href="{{ $value->url }}" target="_blank">{{ $value->url }}</a></td>
                           <td>{{ date('M d, Y', strtotime($value->date_started)) }}</td>
                           <td>{{ date('M d, Y', strtotime($value->date_expired)) }}</td>
-                          <td>{{ ($value->status == 1) ? "Active" : "Inactive" }}</td>
+                          {{--<td>{{ ucwords($value->status) }}</td>--}}
+                          <td>
+                            <div class="demo-switch">
+                              <div class="switch"> 
+                                <?php if ($value->status == 'active'): ?>
+                                  <label><input type="checkbox" checked><span class="lever"></span>{{ ucwords($value->status) }}</label>
+                                <?php else ?>
+                                  <label>{{ ucwords($value->status) }}<input type="checkbox" checked><span class="lever"></span></label>
+                                <?php endif ?>
+                              </div>
+                            </div>
+                          </td>
                         </tr>
                       @endforeach
                     @endif
