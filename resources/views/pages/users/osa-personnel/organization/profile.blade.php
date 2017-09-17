@@ -119,6 +119,15 @@
                         @endif
                       </div>
                     </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                          <a href="{{ route('osa-personnel.org-members', $organization->id ) }}">
+                          <button type="button" class="btn btn-success">
+                            List of Members
+                          </button>
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
