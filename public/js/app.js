@@ -1,6 +1,6 @@
 /**
  * App.js
- * @version 0.33
+ * @version 0.32
  */
 
 var _this;
@@ -309,34 +309,6 @@ $(document).on('click', '.revokeapprover', function() {
 });
 
 /**
- * Submit the isApprover status of the user to the database
- *
- * @return {}
- */
-$(document).on('click', '.activate-account', function () {
-  _this = $(this);
-  var data = {
-    status: 1
-  }
-
-  setStatusState(data, "Active");
-});
-
-/**
- * Unconfirmed the attendance of the member
- *
- * @return {void}
- */
-$(document).on('click', '.deactivate-account', function () {
-  _this = $(this);
-  var data = {
-    status: 0
-  }
-
-  setStatusState(data, "Inactive");
-});
-
-/**
  * Can't attend function
  * @return void
  */
@@ -344,51 +316,6 @@ $(document).on('click', '#cant-attend', function() {
   $('#cant-attend').hide();
   $('#cant-attend-submit').removeClass('hidden');
   $('#cant-attend-message').removeClass('hidden');
-});
-
-/**
- * Change the status value in the organization list
- * page in osa-personnel account
- *
- * @return void
- */
-$(document).on('click', '.organization-status', function() {
-  _this = $(this);
-  var $html =
-    '<select class="form-control" name="status">' +
-      '<option value="0">-- Select Status --</option>' +
-      '<option value="active">Active</option>' +
-      '<option value="inactive">Inactive</option>' +
-    '</select>';
-
-  $(this).html($html);
-  $(this).removeClass('organization-status');
-  $(this).addClass('organization-status-click');
-});
-
-/**
- * Set the organization active or inactive in osa-personnel
- * account
- *
- * @return {void}
- */
-$(document).on('click', '.organization-status-click', function() {
-  _this       = $(this);
-  var $option = $(this).find(':selected').val();
-  var id      = $(this).data('id');
-  var data    = {
-    'status': $option.toLowerCase(),
-    'id': id
-  }
-  var url = route('ajax.update.organization').replace('localhost', window.location.hostname);
-
-  if ($option != 0) {
-    submit(data, url, function(data) {
-      _this.html(data.status);
-      _this.removeClass('organization-status-click');
-      _this.addClass('organization-status');
-    }, $(this), false);
-  }
 });
 
 /**
@@ -400,19 +327,17 @@ $(document).on('click', '.organization-status-click', function() {
  *
  * @type {String}
  */
-if (typeof $('.event-datepicker').bootstrapMaterialDatePicker === "function") {
-  $('.event-datepicker').bootstrapMaterialDatePicker({
+$('.event-datepicker').bootstrapMaterialDatePicker({
     format: 'YYYY/MM/DD',
     clearButton: true,
     weekStart: 1,
     time: false
-  });
-  $('.event-timepicker').bootstrapMaterialDatePicker({
+});
+$('.event-timepicker').bootstrapMaterialDatePicker({
     format: 'HH:mm',
     clearButton: true,
     date: false
-  });
-}
+});
 
 /**
  * This will be used in sumitting request
@@ -421,7 +346,7 @@ if (typeof $('.event-datepicker').bootstrapMaterialDatePicker === "function") {
  * @param {string} url
  * @return {void}
  */
-function submit(data, url, callback, preloader = '', complete = true) {
+function submit(data, url, callback, preloader = '') {
   $.ajax({
     type: 'POST',
     url: url,
@@ -445,10 +370,8 @@ function submit(data, url, callback, preloader = '', complete = true) {
         $(preloader).html(html);
       }
     },
-    complete: function(data) {
-      if (complete == true) {
-        $(preloader).html('');
-      }
+    complete: function() {
+      $(preloader).html('');
     },
     success: function(data) {
       callback(data);
@@ -606,14 +529,5 @@ function setApproverState(data, $message) {
 
   submit(data, url, function(data) {
     $('#approver-status-'+data.id).html($message);
-  }, '.preloader-'+data.id);
-}
-
-function setStatusState(data, $message) {
-  var url = route('user-admin.account-status.update').replace('localhost', window.location.hostname);
-  data.id  = _this.data('user-id');
-
-  submit(data, url, function(data) {
-    $('#account-status-'+data.id).html($message);
   }, '.preloader-'+data.id);
 }

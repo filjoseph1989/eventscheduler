@@ -197,63 +197,12 @@ class OrganizationGroupController extends Controller
      * @param Request $data
      * @return void
      */
-    public function acceptNewMember()
-  {
-    $all_user = [];
-    $user_acc = [];
-    $organization = [];
-    $position = [];
-    $all_position = Position::all();
-    $all_user_account_type = UserAccount::all();
-    $all_organization = Organization::all();
-    $user = User::with('userAccount')->get();
-    $org_grp = OrganizationGroup::with(['organization', 'position', 'user'])->get();
-    $all_user = User::all();
-
-    foreach ($all_user as $key => $v) {
-      $og = OrganizationGroup::where('user_id', $v->id)
-        ->with(['position', 'organization'])
-        ->get();
-
-      if (count($og) > 1) {
-        foreach ($og as $key => $value) {
-          $position[$v->id][$key] = $value->position->name;
-          $organization[$v->id][$key] = $value->organization->name;
-          $ua = User::with('userAccount')->where('id', $v->id)->get();
-          foreach ($ua as $key => $val) {
-            $user_acc[$v->id] = $val->userAccount->name;
-          }
-        }
-      }
-      else if (count($og) == 1) {
-        foreach ($og as $key => $value) {
-          $position[$v->id] = $value->position->name;
-          $organization[$v->id] = $value->organization->name;
-          $ua = User::with('userAccount')->where('id', $v->id)->get();
-          foreach ($ua as $key => $val) {
-            $user_acc[$v->id] = $val->userAccount->name;
-          }
-        }
-      }
-      else {
-        $position[$v->id] = "Not Yet Assigned";
-        $organization[$v->id] = "Not Yet Assigned";
-        $ua = User::with('userAccount')->where('id', $v->id)->get();
-        foreach ($ua as $key => $val) {
-          $user_acc[$v->id] = $val->userAccount->name;
-        }
-      }
+    public function acceptNewMember(Request $data)
+    {
+      return redirect()
+        ->route('user-admin.accept-users');
     }
 
-    $org_mem = OrganizationGroup::with(['user', 'organization'])->get();
-    return view('pages/users/user-admin/members/accept-users', compact(
-      'user_acc',
-      'organization',
-      'position',
-      'og',
-      'all_user'
-    ))->with(['login_type' => $this->login_type]);
-  }
     /**
      * Display the specified resource.
      *

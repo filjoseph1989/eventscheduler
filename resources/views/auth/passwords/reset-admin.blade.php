@@ -57,7 +57,7 @@
               @endif
             </div>
           </div>
-          <button class="btn btn-block btn-lg bg-custom-pink waves-effect" type="submit">Reset Password</button>
+          <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">Reset Password</button>
         </form>
       </div>
     </div>

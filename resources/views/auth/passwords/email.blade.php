@@ -30,7 +30,7 @@
                         @endif
                     </div>
                 </div>
-                <button class="btn btn-block btn-lg bg-custom-pink waves-effect" type="submit">Send Password Reset Link</button>
+                <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">Send Password Reset Link</button>
             </form>
         </div>
     </div>
