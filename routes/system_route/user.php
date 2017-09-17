@@ -5,18 +5,6 @@ Route::prefix('users')->group(function() {
   Route::name('user.profile')->get('/profile/{id?}', 'UserController@viewProfile');
   Route::name('user.profile.upload')->post('/profile/upload', 'UserController@uploadPhoto');
 
-  # Ajax Request
-  # Issue 44: This part can be improve by creating a method that accept id and model name
-  Route::name('ajax.get.event-type')->post('/get/event-type', 'JsonController@getEventType');
-  Route::name('ajax.get.event-category')->post('/get/event-category', 'JsonController@getEventCategory');
-  Route::name('ajax.get.organization')->post('/get/organization', 'JsonController@getOrganization');
-  Route::name('ajax.get.event.list')->post('/get/event', 'JsonController@getEvent');
-  Route::name('ajax.get.events')->post('/get/events', 'JsonController@getEventList');
-  Route::name('ajax.get.event.personal.list')->post('/get/personal/event', 'JsonController@getPersonalEvent');
-  Route::name('ajax.update.event.personal.list')->post('/update/personal/event', 'JsonController@updatePersonalEvent');
-  Route::name('ajax.update.event.list')->post('/update/event', 'JsonController@updateEvent');
-  Route::name('ajax.get.event.approvers')->post('/get/approver', 'JsonController@getApprover');
-
   # Include other routing in "routes\system_route\user\user-sub.php"
   require_once 'user/user-sub.php';
 
@@ -258,7 +246,6 @@ Route::prefix('users')->group(function() {
     Route::name('osa-personnel.org-logo')->post('/change-logo', 'OsaPersonnel\OrganizationController@uploadLogo');
     Route::name('osa-personnel.org-edit')->get('/edit-org/{id}', 'OsaPersonnel\OrganizationController@edit');
     Route::name('osa-personnel.org-update')->post('/update-org', 'OsaPersonnel\OrganizationController@update');
-    Route::name('osa-personnel.org-members')->get('/org-members/{id}', 'OsaPersonnel\OrganizationMembersController@show');
     Route::name('osa-personnel.event.list')->get('/get/event-list/{id?}', 'OsaPersonnel\EventController@index');
     Route::name('osa-personnel.my.new.event')->get('/my/new/event', 'OsaPersonnel\MyEventController@create');
     Route::name('osa-personnel.my.new.event.submit')->post('/store/new', 'OsaPersonnel\MyEventController@store');
@@ -345,7 +332,8 @@ Route::prefix('users')->group(function() {
       Route::name('user-admin.members.search')->post('/members/search', 'UserAdmin\UserController@search');
       Route::name('user-admin.members.new')->post('/members/new', 'UserAdmin\OrganizationGroupController@storeNewMember');
       Route::name('user-admin.members.accept')->get('/members/accept', 'UserAdmin\OrganizationGroupController@acceptNewMember');
-      
+      Route::name('user-admin.account-status.update')->post('/members/activation', 'UserAdmin\UserController@setAccountStatus');
+
       # Check og gigamit pani nga part
       Route::name('user-admin.assign-approver')->get('/assign/approver', 'UserAdmin\UserController@assignApprover');
 
