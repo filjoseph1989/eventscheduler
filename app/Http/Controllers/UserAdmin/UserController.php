@@ -122,11 +122,13 @@ class UserController extends Controller
       ['id' => $data->id],
       ['status' => $data->status]
     );
-
+    
     if ($result) {
+      $upd = date("d M Y, h:i A", strtotime($result->updated_at));
       echo json_encode([
         'status' => true,
-        'id' => $data->id
+        'id' => $result->id,
+        'updated_at' => $upd
       ]);
     }
   }

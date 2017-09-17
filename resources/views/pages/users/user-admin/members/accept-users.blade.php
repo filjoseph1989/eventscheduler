@@ -104,12 +104,12 @@
                       </td>
                       <td id="account-status-{{ $value->id }}">{{ $value->status == 1 ? 'Active' : 'Inactive' }}</td>
                       <td>
-                        <button class="btn btn-primary activate-account" type="button" name="activate-account" data-user-id = "{{ $value->id }}">Approve Registration</button>
-                        <button class="btn btn-primary deactivate-account" type="button" name="deactivate-account" data-user-id = "{{ $value->id }}">Ignore Registration</button>
+                        <button class="btn btn-primary activate-account" type="button" name="activate-account" data-user-id = "{{ $value->id }}" data-updated-id = "{{ $value->updated_at }}">Approve Registration</button>
+                        <button class="btn btn-primary deactivate-account" type="button" name="deactivate-account" data-user-id = "{{ $value->id }}" data-updated-id = "{{ $value->updated_at }}">Ignore Registration</button>
                         <div class="preload preloader-{{ $value->id }}"></div>
                       </td>
-                      <td>{{ $value->created_at }}</td>
-                      <td id="updated-at-{{ $value->id }}">{{ $value->updated_at }}</td>
+                      <td>{{ date("d M Y, h:i A", strtotime($value->created_at))  }}</td>
+                      <td id="updated-at-{{ $value->id }}">{{ date("d M Y, h:i A", strtotime($value->updated_at))  }}</td>
                     </tr>
                     @endforeach
                   </tbody>
