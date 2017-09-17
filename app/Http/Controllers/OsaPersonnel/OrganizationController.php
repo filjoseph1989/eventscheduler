@@ -48,8 +48,6 @@ class OrganizationController extends Controller
       # is the user an adviser?
       $this->osa_personnel->isOsaPersonnel();
 
-      $login_type = 'user';
-
       /*
         We do not include the ID 1 in getting organization list,
         because that used only to user wherein not a member to an organization yet
@@ -58,9 +56,10 @@ class OrganizationController extends Controller
       $organization = Organization::all()->where('id', '!=', 1);
 
       # Render view
-      return view('pages/users/osa-personnel/organization/list', compact(
-        'login_type', 'organization'
-      ));
+      return view('pages/users/osa-personnel/organization/list', compact('organization'))
+      ->with([
+        'login_type' => $this->login_type
+      ]);
     }
 
     /**
