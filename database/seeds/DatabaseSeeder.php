@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
+date_default_timezone_set('Asia/Manila');
+
 class DatabaseSeeder extends Seeder
 {
     /**
