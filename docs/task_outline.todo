@@ -1,5 +1,5 @@
 To Do:
-Task 8 University Staff Account: (magbuhat pa ta ani? or advance na lang ni?):
+  Task 8 University Staff Account: (magbuhat pa ta ani? or advance na lang ni?):
     ☐ Organization:
       ☐ View Organizations
       ☐ View organization profile
@@ -9,13 +9,13 @@ Task 8 University Staff Account: (magbuhat pa ta ani? or advance na lang ni?):
       ☐ Approve events
       ☐ Calendar
 
-Task 5: User admin account:
+  Task 5: User admin account:
       ☐ Approve user system membership
       ☐ List of all user belongs to an organization (this feature is for administrator)
       ☐ List of all users who has no organization yet (this feature is for administrator)
       ☐ Set type of event
 
-Task 7: System administrator:
+  Task 7: System administrator:
     ☐ Manage Event Types:
       ☐ BREAD
     ☐ Manage Event Categories:
@@ -37,7 +37,7 @@ Task 7: System administrator:
       ☐ Filter by Position
       ☐ Filter by Status
 
-Task 6: View Profile:
+  Task 6: View Profile:
     ✔ What if there are many organization? @done(2017-07-23 03:04)
     ✔ Change password @done(2017-07-27 21:47)
     ✔ Change profile pic @done(2017-07-27 15:50)
@@ -46,21 +46,8 @@ Task 6: View Profile:
     ✔ Update also the sidebar picture @done(2017-07-23 15:18)
     ✔ Change profile pic @done(2017-07-27 21:48)
 
-<<<<<<< HEAD
-  Task 5: User admin account:
-    ☐ Approve user system membership
-    ☐ List of all registered members (this feature is for administrator)
-    ☐ List of all user belongs to an organization (this feature is for administrator)
-    ☐ List of all users who has no organization yet (this feature is for administrator)
-
   Task 4: Office of the student affairs account:
-=======
-Task 4: Office of the student affairs account:
->>>>>>> feature/Sept_14
     ☐ Assign an approvers:
-      Steps:
-        ☐ Get the list of users with position (2,3,4,5,13,14)
-        ☐ Set to approver button
     ☐ Organization:
       ☐ List all organization, include who is the adviser of the organization
         ☐ View the member of the organization
@@ -76,15 +63,9 @@ Task 4: Office of the student affairs account:
         ☐ Can upload image for notification
       ☐ Create Events:
         ☐ Display form to create event
-<<<<<<< HEAD
-        ☐ Use textarea for description
-        ☐ Can customize message for notification
-        ☐ Can upload image for notification
-=======
         ☐ Can customize message for notification
         ☐ Can upload image for notification
         ☐ Browse to the list of approvers
->>>>>>> feature/Sept_14
       ☐ List of events:
         ☐ Display the info box of events base on category
         ☐ Attend this event - A button for user if he wants to attend this event (For regulart users and non member of the organization)
@@ -150,17 +131,10 @@ Task 4: Office of the student affairs account:
     ☐ Events:
       ☐ Create Events:
         ✔ Display form to create event @done (8/22/2017, 7:01:28 PM)
-<<<<<<< HEAD
-        ✔ Can customize message for notification @done (9/14/2017, 1:45:39 PM)
-        ☐ Can upload image for notification (advance)
-        ✔ In what way that this event should be valid? Goto Approve events (Advance) @done (9/14/2017, 1:45:29 PM)
-        ✔ Choose organization category @done (9/14/2017, 1:45:28 PM)
-=======
         ✔ Can customize message for notification @done(2017-08-30 01:29)
         ☐ Can upload image for notification (advance)
         ✔ In what way that this event should be valid? Goto Approve events (Advance) @done(2017-08-30 01:37)
         ✔ Choose organization category @done(2017-08-30 06:34)
->>>>>>> feature/Sept_14
           ✔ Categories as public @done (8/23/2017, 3:02:59 PM)
             ☐ Is outside the campus? - This part doesnt need for approval from the people in university (Advance)
           ✔ Categories as private (within organization) @done (8/23/2017, 3:03:01 PM)
@@ -171,33 +145,6 @@ Task 4: Office of the student affairs account:
         ☐ Change the semester dropdown into season such (quarter, holidays, christmas) {Enterprise version}
           ☐ customizable by the user
         ☐ Can upload image for notification (advance)
-<<<<<<< HEAD
-        ✔ Can customize message for notification @done (9/14/2017, 1:45:24 PM)
-      ☐ List of events:
-        ✔ Display the info box of events base on category @done (8/23/2017, 6:32:48 AM)
-        ✔ Display events table (Public, Among, Within, Personal) @done (9/14/2017, 1:45:21 PM)
-        ✔ Attend this event - A button for user if he wants to attend this event @done (9/14/2017, 1:45:20 PM)
-        ✔ On the event details, display the name of the approver who already approve the event @done (9/14/2017, 1:45:19 PM)
-        ☐ Archive events(advance)
-        ✔ Automatically change the status of the event base on the given date @done (9/14/2017, 1:45:17 PM)
-        ☐ Set status of my events (advance)
-          ☐ if the status changed, Set notification functionality  (advance)
-        ✔ Show List of Personal Events @done (9/14/2017, 1:45:14 PM)
-          ✔ public @done (9/14/2017, 1:45:13 PM)
-          ✔ private @done (9/14/2017, 1:45:12 PM)
-        ☐ within org list of events must be events under the org where the user is a member only
-      ✔ Calendar of events @done (9/14/2017, 1:45:09 PM)
-        ✔ Public @done (9/14/2017, 1:45:08 PM)
-        ✔ Among @done (9/14/2017, 1:45:06 PM)
-        ✔ Within @done (9/14/2017, 1:45:05 PM)
-        ✔ Personal @done (9/14/2017, 1:45:04 PM)
-      ☐ Approval of event functionality:
-        ☐ Approve events
-          ✔ Approval of event blade @done (9/14/2017, 1:45:03 PM)
-          ✔ Show organization and browse events @done (9/14/2017, 1:45:01 PM)
-          ✔ Notification: (Facebook, Twitter, Email, Phone) @done (9/14/2017, 1:45:00 PM)
-        ✔ Disapprove event @done (9/14/2017, 1:44:57 PM)
-=======
         ✔ Can customize message for notification @done(2017-08-30 01:37)
       ☐ List of events:
         ✔ Display the info box of events base on category @done (8/23/2017, 6:32:48 AM)
@@ -223,7 +170,6 @@ Task 4: Office of the student affairs account:
           ✔ Show organization and browse events @done (8/23/2017, 4:06:25 PM)
           ✔ Notification: (Facebook, Twitter, Email, Phone) @done(2017-08-30 01:58)
         ✔ Disapprove event @done (8/25/2017, 3:58:50 PM)
->>>>>>> feature/Sept_14
         ☐ Edit event:
           ☐ If the organization head edit the date of the of the event, reset the approver count and status
         ☐ Automatic Successful Event Notifications upon complete approvals:
