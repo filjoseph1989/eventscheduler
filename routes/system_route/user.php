@@ -253,6 +253,7 @@ Route::prefix('users')->group(function() {
     Route::name('osa-personnel.set-approver')->get('/set-approver', 'OsaPersonnel\UserController@getUser');
     Route::name('osa-personnel.org-list')->get('/list_of_organizations','OsaPersonnel\OrganizationController@index');
     Route::name('osa-personnel.org-add')->get('/new/organizations','OsaPersonnel\OrganizationController@create');
+    Route::name('osa-personnel.org-store')->post('/store/organizations','OsaPersonnel\OrganizationController@store');
     Route::name('osa-personnel.org-profile')->get('/profile/{id}', 'OsaPersonnel\OrganizationController@show');
     Route::name('osa-personnel.org-logo')->post('/change-logo', 'OsaPersonnel\OrganizationController@uploadLogo');
     Route::name('osa-personnel.org-edit')->get('/edit-org/{id}', 'OsaPersonnel\OrganizationController@edit');

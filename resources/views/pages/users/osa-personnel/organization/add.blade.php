@@ -38,13 +38,13 @@
                 <h2> Add New Organization</h2>
               </div>
               <div class="body">
-                <form class="" action="" method="post">
+                <form class="" action="{{ route('osa-personnel.org-store') }}" method="post">
                   {{ csrf_field() }}
                   <div class="row clearfix">
                     <div class="col-sm-8 col-sm-offset-2">
                       <div class="form-group form-float form-group">
                         <div class="form-line">
-                          <input type="text" class="form-control" id="name" name="name" placeholder="Name of the organization" autofocus>
+                          <input type="text" class="form-control" id="name" name="name" placeholder="Name of the organization" autofocus value="{{ old('name') }}">
                           @if ($errors->has('name'))
                             <span class="help-block"> <strong>{{ $errors->first('name') }}</strong> </span>
                           @endif
@@ -56,7 +56,7 @@
                     <div class="col-sm-8 col-sm-offset-2">
                       <div class="form-group form-float form-group">
                         <div class="form-line">
-                          <textarea class="form-control no-resize" name="description" id="description">Description</textarea>
+                          <textarea class="form-control no-resize" name="description" id="description" placeholder="Description">{{ old('description') }}</textarea>
                           @if ($errors->has('description'))
                             <span class="help-block"> <strong>{{ $errors->first('description') }}</strong> </span>
                           @endif
@@ -68,7 +68,7 @@
                     <div class="col-sm-8 col-sm-offset-2">
                       <div class="form-group form-float form-group">
                         <div class="form-line">
-                          <input type="text" class="form-control" id="url" name="url" placeholder="URL of the organization">
+                          <input type="text" class="form-control" id="url" name="url" placeholder="URL of the organization" value="{{ old('url') }}">
                           @if ($errors->has('url'))
                             <span class="help-block"> <strong>{{ $errors->first('url') }}</strong> </span>
                           @endif
@@ -80,7 +80,7 @@
                     <div class="col-sm-8 col-sm-offset-2">
                       <div class="form-group form-float form-group">
                         <div class="form-line">
-                          <input type="text" class="form-control" id="logo" name="logo" placeholder="Select the logo">
+                          <input type="text" class="form-control" id="logo" name="logo" placeholder="Select the logo" value="{{ old('logo') }}">
                           @if ($errors->has('logo'))
                             <span class="help-block"> <strong>{{ $errors->first('logo') }}</strong> </span>
                           @endif
@@ -92,7 +92,7 @@
                     <div class="col-sm-8 col-sm-offset-2">
                       <div class="form-group form-float form-group">
                         <div class="form-line">
-                          <input type="text" class="form-control" id="color" name="color" placeholder="Select the color">
+                          <input type="text" class="form-control" id="color" name="color" placeholder="Select the color" value="{{ old('color') }}">
                           @if ($errors->has('color'))
                             <span class="help-block"> <strong>{{ $errors->first('color') }}</strong> </span>
                           @endif
@@ -116,7 +116,7 @@
                     <div class="col-sm-8 col-sm-offset-2">
                       <div class="form-group form-float form-group">
                         <div class="form-line">
-                          <input class="form-control event-datepicker" type="text" name="date_expired" id="date_expired" placeholder="Date Expired" value="">
+                          <input class="form-control event-datepicker" type="text" name="date_expired" id="date_expired" placeholder="Date Expired" value="{{ old('date_expired') }}">
                           @if ($errors->has('date_expired'))
                             <span class="help-block"> <strong>{{ $errors->first('date_expired') }}</strong> </span>
                           @endif
@@ -140,7 +140,9 @@
                   <div class="row clearfix">
                     <div class="col-sm-8 col-sm-offset-2">
                       <div class="form-group form-float form-group">
-                        <button type="submit" name="save" class="btn btn-success">Save</button>
+                        <button type="submit" name="save" class="btn btn-success">
+                          <i class="material-icons">save</i> Save
+                        </button>
                       </div>
                     </div>
                   </div>

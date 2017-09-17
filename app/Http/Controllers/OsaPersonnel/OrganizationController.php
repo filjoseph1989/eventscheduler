@@ -18,6 +18,7 @@ use App\Models\OrganizationGroup;
  * @author Janica Liz De Guzman
  * @version 0.1
  * @created 2017-08-21
+ * @update 2017-09-17
  */
 class OrganizationController extends Controller
 {
@@ -69,6 +70,10 @@ class OrganizationController extends Controller
      */
     public function create()
     {
+      parent::loginCheck();
+
+      $this->osa_personnel->isOsaPersonnel();
+
       return view('pages/users/osa-personnel/organization/add')->with([ 
         'login_type' => $this->login_type
       ]);
@@ -82,15 +87,36 @@ class OrganizationController extends Controller
      */
     public function store(Request $request)
     {
-      /**
-       * Steps:
-       * 
-       * Validate the inputs
-       * Get the input data
-       * Save to database
-       */
+      # Is the user loggedin?
+      parent::loginCheck();
 
+      # Check if its an OSA personnel
+      $this->osa_personnel->isOsaPersonnel();
       
+      # Data valid?
+      self::_isValid($request);
+
+      # check if existing in record
+      if (Organization::where('name', '=', $request->name)->exists()) {
+        return back()
+          ->withInput()
+          ->with('status_warning', "Sorry, {$request->name} Already Exists");
+      }
+
+      # Save to the database
+      $result = Organization::create($request->only(
+        "name", "description", "url", "logo", 
+        "color", "date_started", "date_expired", 
+        "status"
+      ));
+
+      # If was recently created, 
+      if ($result->wasRecentlyCreated) {
+        return back()
+          ->withIput()
+          ->with('status', "You successfully added {$request->name}");
+      }
+
     }
 
     /**
@@ -186,7 +212,9 @@ class OrganizationController extends Controller
           ->route('osa-personnel.org-profile', $request->id)
           ->with('success', 'Successfully updated');
       } else {
-        return back()->withInput()->with('status_warning', "Sorry, we have problem updating {$organization->name} information, please try again later");
+        return back()
+          ->withInput()
+          ->with('status_warning', "Sorry, we have problem updating {$organization->name} information, please try again later");
       }
     }
 
