@@ -315,8 +315,13 @@ $(document).on('click', '.revokeapprover', function() {
  */
 $(document).on('click', '.activate-account', function () {
   _this = $(this);
+  var today = new Date();
+  var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  var dateTim = date + ' ' + time;
   var data = {
-    status: 1
+    status: 1,
+    dateTime: dateTim
   }
 
   setStatusState(data, "Active");
@@ -329,8 +334,13 @@ $(document).on('click', '.activate-account', function () {
  */
 $(document).on('click', '.deactivate-account', function () {
   _this = $(this);
+  var today = new Date();
+  var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  var dateTim = date + ' ' + time;
   var data = {
-    status: 0
+    status: 0,
+    dateTime: dateTim
   }
 
   setStatusState(data, "Inactive");
@@ -612,8 +622,10 @@ function setApproverState(data, $message) {
 function setStatusState(data, $message) {
   var url = route('user-admin.account-status.update').replace('localhost', window.location.hostname);
   data.id  = _this.data('user-id');
+  // data.dateTime = _this.data('-id');
 
   submit(data, url, function(data) {
     $('#account-status-'+data.id).html($message);
+    $('#updated-at' + data.id).html(data.dateTime);
   }, '.preloader-'+data.id);
 }

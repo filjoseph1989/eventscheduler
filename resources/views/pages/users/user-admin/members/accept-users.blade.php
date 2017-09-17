@@ -70,6 +70,8 @@
                       <th>Organization</th>
                       <th>Account Activation</th>
                       <th>Action</th>
+                      <th>Created At</th>
+                      <th>Updated At</th>
                     </tr>
                   </thead>
                   <tbody class="js-sweetalert">
@@ -102,10 +104,12 @@
                       </td>
                       <td id="account-status-{{ $value->id }}">{{ $value->status == 1 ? 'Active' : 'Inactive' }}</td>
                       <td>
-                        <button class="btn btn-primary activate-account" type="button" name="activate-account" data-user-id = "{{ $value->id }}" >Approve Registration</button>
-                        <button class="btn btn-primary deactivate-account" type="button" name="deactivate-account" data-user-id = "{{ $value->id }}" >Ignore Registration</button>
+                        <button class="btn btn-primary activate-account" type="button" name="activate-account" data-user-id = "{{ $value->id }}">Approve Registration</button>
+                        <button class="btn btn-primary deactivate-account" type="button" name="deactivate-account" data-user-id = "{{ $value->id }}">Ignore Registration</button>
                         <div class="preload preloader-{{ $value->id }}"></div>
                       </td>
+                      <td>{{ $value->created_at }}</td>
+                      <td id="updated-at-{{ $value->id }}">{{ $value->updated_at }}</td>
                     </tr>
                     @endforeach
                   </tbody>
@@ -118,6 +122,8 @@
                       <th>Organization</th>
                       <th>Account Activation</th>
                       <th>Action</th>
+                      <th>Created At</th>
+                      <th>Updated At</th>
                     </tr>
                   </tfoot>
                 </table>
