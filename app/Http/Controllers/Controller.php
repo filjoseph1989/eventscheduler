@@ -90,6 +90,17 @@ class Controller extends BaseController
     }
 
     /**
+     * Check if the user who currently loggedin
+     * is the admin
+     *
+     * @return boolean
+     */
+    protected function isUserAdmin()
+    {
+      return self::accountCheck(1);
+    }
+
+    /**
      * Check if the account is an approver
      *
      * @return boolean

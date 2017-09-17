@@ -10,6 +10,7 @@ use App\Library\OsaPersonnelLibrary as OsaPersonnel;
 # Models
 use App\Models\Organization;
 use App\Models\OrganizationGroup;
+use App\Models\OrganizationAdviserGroup;
 
 /**
  * This class controller handles the request related to
@@ -18,10 +19,13 @@ use App\Models\OrganizationGroup;
  * @author Janica Liz De Guzman
  * @version 0.1
  * @created 2017-08-21
+ * @update 2017-09-17
  */
 class OrganizationController extends Controller
 {
     private $osa_personnel;
+
+    private $login_type = "user";
 
     /**
      * Guard
@@ -45,29 +49,37 @@ class OrganizationController extends Controller
       # is the user an adviser?
       $this->osa_personnel->isOsaPersonnel();
 
-      $login_type = 'user';
-
       /*
         We do not include the ID 1 in getting organization list,
         because that used only to user wherein not a member to an organization yet
         but is active to system.
        */
       $organization = Organization::all()->where('id', '!=', 1);
+      $adviser      = OrganizationAdviserGroup::with('user')->get()->toArray();
+
+      $organization = self::includeAdviser($organization, $adviser);
 
       # Render view
-      return view('pages/users/osa-personnel/organization/list', compact(
-        'login_type', 'organization'
-      ));
+      return view('pages/users/osa-personnel/organization/list', compact('organization'))
+      ->with([
+        'login_type' => $this->login_type
+      ]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating new organization
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+      parent::loginCheck();
+
+      $this->osa_personnel->isOsaPersonnel();
+
+      return view('pages/users/osa-personnel/organization/add')->with([ 
+        'login_type' => $this->login_type
+      ]);
     }
 
     /**
@@ -78,7 +90,36 @@ class OrganizationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      # Is the user loggedin?
+      parent::loginCheck();
+
+      # Check if its an OSA personnel
+      $this->osa_personnel->isOsaPersonnel();
+      
+      # Data valid?
+      self::_isValid($request);
+
+      # check if existing in record
+      if (Organization::where('name', '=', $request->name)->exists()) {
+        return back()
+          ->withInput()
+          ->with('status_warning', "Sorry, {$request->name} Already Exists");
+      }
+
+      # Save to the database
+      $result = Organization::create($request->only(
+        "name", "description", "url", "logo", 
+        "color", "date_started", "date_expired", 
+        "status"
+      ));
+
+      # If was recently created, 
+      if ($result->wasRecentlyCreated) {
+        return back()
+          ->withIput()
+          ->with('status', "You successfully added {$request->name}");
+      }
+
     }
 
     /**
@@ -174,7 +215,9 @@ class OrganizationController extends Controller
           ->route('osa-personnel.org-profile', $request->id)
           ->with('success', 'Successfully updated');
       } else {
-        return back()->withInput()->with('status_warning', "Sorry, we have problem updating {$organization->name} information, please try again later");
+        return back()
+          ->withInput()
+          ->with('status_warning', "Sorry, we have problem updating {$organization->name} information, please try again later");
       }
     }
 
@@ -278,5 +321,25 @@ class OrganizationController extends Controller
         'date_expired' => 'nullable|date|after_or_equal:date_start',
         'status'       => 'Required'
       ]);
+    }
+
+    /**
+     * Include the adviser in the organization
+     * list
+     *
+     * @param object $organization
+     * @param array $adviser
+     * @return object
+     */
+    private function includeAdviser($organization, $adviser)
+    {
+      foreach ($organization as $key => $value) {
+        $adviserKey = array_search($value->id, array_column($adviser, 'organization_id'));
+        if ($adviserKey !== false) {
+          $organization[$key]->adviser = $adviser[$adviserKey]['user']['first_name'] . " " . $adviser[$adviserKey]['user']['last_name'];
+        }
+      }
+
+      return $organization;
     }
 }

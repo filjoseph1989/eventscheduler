@@ -1,6 +1,6 @@
 /**
  * App.js
- * @version 0.31
+ * @version 0.33
  */
 
 var _this;
@@ -281,6 +281,34 @@ $(document).on('click', '.unconfirmed', function() {
 });
 
 /**
+ * Submit the isApprover status of the user to the database
+ *
+ * @return {}
+ */
+$(document).on('click', '.setapprover', function() {
+  _this = $(this);
+  var data = {
+    isApprover:  'true'
+  }
+
+  setApproverState(data, "YES");
+});
+
+/**
+ * Unconfirmed the attendance of the member
+ *
+ * @return {void}
+ */
+$(document).on('click', '.revokeapprover', function() {
+  _this = $(this);
+  var data = {
+    isApprover:       'false'
+  }
+
+  setApproverState(data, "NO");
+});
+
+/**
  * Can't attend function
  * @return void
  */
@@ -291,13 +319,81 @@ $(document).on('click', '#cant-attend', function() {
 });
 
 /**
+ * Change the status value in the organization list
+ * page in osa-personnel account
+ *
+ * @return void
+ */
+$(document).on('click', '.organization-status', function() {
+  _this = $(this);
+  var $html =
+    '<select class="form-control" name="status">' +
+      '<option value="0">-- Select Status --</option>' +
+      '<option value="active">Active</option>' +
+      '<option value="inactive">Inactive</option>' +
+    '</select>';
+
+  $(this).html($html);
+  $(this).removeClass('organization-status');
+  $(this).addClass('organization-status-click');
+});
+
+/**
+ * Set the organization active or inactive in osa-personnel
+ * account
+ *
+ * @return {void}
+ */
+$(document).on('click', '.organization-status-click', function() {
+  _this       = $(this);
+  var $option = $(this).find(':selected').val();
+  var id      = $(this).data('id');
+  var data    = {
+    'status': $option.toLowerCase(),
+    'id': id
+  }
+  var url = route('ajax.update.organization').replace('localhost', window.location.hostname);
+
+  if ($option != 0) {
+    submit(data, url, function(data) {
+      _this.html(data.status);
+      _this.removeClass('organization-status-click');
+      _this.addClass('organization-status');
+    }, $(this), false);
+  }
+});
+
+/**
+ * If the user click on the input that has class
+ *    event-datepicker
+ *    event-timepicker
+ * this function here will trigger and there will be
+ * prompt for date and time
+ *
+ * @type {String}
+ */
+if (typeof $('.event-datepicker').bootstrapMaterialDatePicker === "function") {
+  $('.event-datepicker').bootstrapMaterialDatePicker({
+    format: 'YYYY/MM/DD',
+    clearButton: true,
+    weekStart: 1,
+    time: false
+  });
+  $('.event-timepicker').bootstrapMaterialDatePicker({
+    format: 'HH:mm',
+    clearButton: true,
+    date: false
+  });
+}
+
+/**
  * This will be used in sumitting request
  *
  * @param  {object} data
  * @param {string} url
  * @return {void}
  */
-function submit(data, url, callback, preloader = '') {
+function submit(data, url, callback, preloader = '', complete = true) {
   $.ajax({
     type: 'POST',
     url: url,
@@ -321,8 +417,10 @@ function submit(data, url, callback, preloader = '') {
         $(preloader).html(html);
       }
     },
-    complete: function() {
-      $(preloader).html('');
+    complete: function(data) {
+      if (complete == true) {
+        $(preloader).html('');
+      }
     },
     success: function(data) {
       callback(data);
@@ -465,5 +563,20 @@ function updateAttendance(data, $message) {
 
   submit(data, url, function(data) {
     $('#confirm-status-'+data.id).html($message);
+  }, '.preloader-'+data.id);
+}
+
+/**
+ * Set the approver
+ *
+ * @param {object} data
+ * @param {string} $message Custom message
+ */
+function setApproverState(data, $message) {
+  var url  = route('osa-personnel.approverstate.update').replace('localhost', window.location.hostname);
+  data.id  = _this.data('user-id');
+
+  submit(data, url, function(data) {
+    $('#approver-status-'+data.id).html($message);
   }, '.preloader-'+data.id);
 }

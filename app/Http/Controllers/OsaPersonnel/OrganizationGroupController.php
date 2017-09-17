@@ -9,6 +9,10 @@ use App\Library\OsaPersonnelLibrary as OsaPersonnel;
 
 # Models
 use App\Models\OrganizationGroup;
+use App\Models\Organization;
+use App\Models\User;
+use App\Models\Position;
+use App\Models\UserAccount;
 
 /**
  * This class controller handles all the Http request
@@ -17,6 +21,7 @@ use App\Models\OrganizationGroup;
 class OrganizationGroupController extends Controller
 {
     private $osa_personnel;
+    private $login_type = 'user';
 
     /**
      * Construct an object
@@ -34,25 +39,57 @@ class OrganizationGroupController extends Controller
      */
     public function index()
     {
-      # Get user organization
-      $org = OrganizationGroup::with('organization')
-        ->where('user_id', Auth::user()->id)
-        ->get();
+      $all_user              = [];
+      $user_acc              = [];
+      $organization          = [];
+      $position              = [];
+      $all_position          = Position::all();
+      $all_user_account_type = UserAccount::all();
+      $all_organization      = Organization::all();
+      $user                  = User::with('userAccount')->get();
+      $org_grp               = OrganizationGroup::with(['organization' , 'position', 'user'])->get();
+      $all_user              = User::all();
 
-      # Get members
-      if (isset($org[0])) {
-        $org    = $org[0];
-        $member = OrganizationGroup::getMembers($org->organization_id);
-      } else {
-        $org = false;
+      foreach ($all_user as $key => $v) {
+        $og = OrganizationGroup::where('user_id', $v->id)
+          ->with(['position', 'organization'])
+          ->get();
+
+        if( count($og) > 1 ){
+          foreach ($og as $key => $value) {
+            $position[$v->id][$key]     = $value->position->name;
+            $organization[$v->id][$key] = $value->organization->name;
+            $ua                         = User::with('userAccount')->where('id', $v->id)->get();
+            foreach ($ua as $key => $val) {
+              $user_acc[$v->id] = $val->userAccount->name;
+            }
+          }
+        }
+        else if( count($og) == 1 ) {
+          foreach ($og as $key => $value){
+            $position[$v->id]     = $value->position->name;
+            $organization[$v->id] = $value->organization->name;
+            $ua                   = User::with('userAccount')->where('id', $v->id)->get();
+            foreach ($ua as $key => $val) {
+              $user_acc[$v->id] = $val->userAccount->name;
+            }
+          }
+        }
+        else {
+          $position[$v->id]     = "Not Yet Assigned";
+          $organization[$v->id] = "Not Yet Assigned";
+          $ua                   = User::with('userAccount')->where('id', $v->id)->get();
+          foreach ($ua as $key => $val) {
+            $user_acc[$v->id] = $val->userAccount->name;
+          }
+        }
       }
 
-      $login_type = 'user';
-      return view('pages/users/osa-personnel/organization/members', compact(
-        'org', 'login_type', 'member'
-      ));
+      $org_mem = OrganizationGroup::with(['user', 'organization'])->get();
+      return view('pages/users/osa-user/manage-users/assign-approver', compact(
+        'user_acc', 'organization', 'position', 'og', 'all_user'
+        ))->with(['login_type' => $this->login_type]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -60,10 +97,11 @@ class OrganizationGroupController extends Controller
      */
     public function create()
     {
-      $login_type = 'user';
       return view('pages/users/osa-personnel/members/add', compact(
-        'org', 'login_type', 'member'
-      ));
+        'org', 'member'
+      ))->with([
+        'login_type' => $this->login_type
+      ]);
     }
 
     /**

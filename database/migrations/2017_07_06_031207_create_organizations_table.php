@@ -24,8 +24,8 @@ class CreateOrganizationsTable extends Migration
           $table->integer('number_of_members')->default('0');
           $table->date('date_started')->default(date("Y-m-d H:i:s"));
           $table->date('date_expired')->default(date("Y-m-d H:i:s"));
-          $table->softDeletes();
           $table->timestamps();
+          $table->softDeletes();
         });
     }
 

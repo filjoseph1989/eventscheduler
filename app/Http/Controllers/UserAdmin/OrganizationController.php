@@ -1,11 +1,11 @@
 <?php
-namespace App\Http\Controllers\OsaPersonnel;
+namespace App\Http\Controllers\UserAdmin;
 
 use Auth;
 use Illuminate\Http\Request;
 use App\Library\ImageLibrary;
 use App\Http\Controllers\Controller;
-use App\Library\OsaPersonnelLibrary as OsaPersonnel;
+use App\Library\UserAdminLibrary as UserAdmin;
 
 # Models
 use App\Models\Organization;
@@ -21,7 +21,9 @@ use App\Models\OrganizationGroup;
  */
 class OrganizationController extends Controller
 {
-    private $osa_personnel;
+    private $user_admin;
+
+    private $login_type = "user";
 
     /**
      * Guard
@@ -29,7 +31,7 @@ class OrganizationController extends Controller
     public function __construct()
     {
         $this->middleware('web');
-        $this->osa_personnel = new OsaPersonnel();
+        $this->user_admin = new UserAdmin();
     }
 
     /**
@@ -43,7 +45,7 @@ class OrganizationController extends Controller
       parent::loginCheck();
 
       # is the user an adviser?
-      $this->osa_personnel->isOsaPersonnel();
+      $this->user_admin->isUserAdmin();
 
       $login_type = 'user';
 
@@ -55,19 +57,21 @@ class OrganizationController extends Controller
       $organization = Organization::all()->where('id', '!=', 1);
 
       # Render view
-      return view('pages/users/osa-user/organization/list', compact(
+      return view('pages/users/user-admin/organization/list', compact(
         'login_type', 'organization'
       ));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating new organization
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+      return view('pages/users/user-admin/organization/add')->with([
+        'login_type' => $this->login_type
+      ]);
     }
 
     /**
@@ -78,7 +82,15 @@ class OrganizationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      /**
+       * Steps:
+       *
+       * Validate the inputs
+       * Get the input data
+       * Save to database
+       */
+
+
     }
 
     /**
@@ -102,14 +114,14 @@ class OrganizationController extends Controller
       parent::loginCheck();
 
       # is the user an adviser?
-      $this->osa_personnel->isOsaPersonnel();
+      $this->user_admin->isUserAdmin();
 
       $login_type   = 'user';
       $organization = Organization::find($id);
       $orgHead      = self::_headOfThisOrganization();
       $isMember     = self::_isAmember($id);
 
-      return view('pages/users/osa-user/organization/profile', compact(
+      return view('pages/users/user-admin/organization/profile', compact(
         'login_type', 'organization', 'isMember', 'orgHead'
       ));
     }
@@ -126,14 +138,14 @@ class OrganizationController extends Controller
       parent::loginCheck();
 
       # is the user an adviser?
-      $this->osa_personnel->isOsaPersonnel();
+      $this->user_admin->isUserAdmin();
 
       # Get one row of organization
       $organization = Organization::find($id);
       $login_type   = 'user';
 
       # Display to browser
-      return view('pages/users/osa-user/organization/edit', compact(
+      return view('pages/users/user-admin/organization/edit', compact(
         'organization', 'login_type'
       ));
     }
@@ -151,7 +163,7 @@ class OrganizationController extends Controller
       parent::loginCheck();
 
       # make sure user is an adviser
-      $this->osa_personnel->isOsaPersonnel();
+      $this->user_admin->isUserAdmin();
 
       # make sure entry is valid
       self::_isValid($request);
@@ -171,7 +183,7 @@ class OrganizationController extends Controller
       # Inform user about the changes
       if ($result) {
         return redirect()
-          ->route('org-head.org-profile', $request->id)
+          ->route('user-admin.org-profile', $request->id)
           ->with('success', 'Successfully updated');
       } else {
         return back()->withInput()->with('status_warning', "Sorry, we have problem updating {$organization->name} information, please try again later");
@@ -200,7 +212,7 @@ class OrganizationController extends Controller
       parent::loginCheck();
 
       # is the user an adviser?
-      $this->osa_personnel->isOsaPersonnel();
+      $this->user_admin->isUserAdmin();
 
       # Upload image
       $imageName = ImageLibrary::uploadImage($request, 'images/org_profile');

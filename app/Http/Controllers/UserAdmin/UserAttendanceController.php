@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\OsaPersonnel;
+namespace App\Http\Controllers\UserAdmin;
 
 use Auth;
 use Illuminate\Http\Request;

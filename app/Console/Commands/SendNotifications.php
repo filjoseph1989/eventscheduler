@@ -11,9 +11,15 @@ use App\Models\Event;
 use App\Models\UserAttendance;
 use App\Models\OrganizationGroup;
 
+/**
+ * Send email notification
+ * 
+ * @author Janiza Liz De Guzman <janicalizdeguzman@gmail.com>
+ * @author Fil Beluan <filjoseph22@gmail.com>
+ */
 class SendNotifications extends Command
 {
-    private $emails = [];
+    private $emails    = [];
     private $user_name = [];
 
     /**
@@ -28,7 +34,7 @@ class SendNotifications extends Command
      *
      * @var string
      */
-    protected $description = 'This will send notification about upcomming events to facebook, twitter, email and mobile';
+    protected $description = 'This will send notification about upcomming events to users email';
 
     /**
      * Create a new command instance.

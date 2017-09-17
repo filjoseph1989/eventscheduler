@@ -27,6 +27,8 @@ use App\Models\OrganizationGroup;
  */
 class UserController extends Controller
 {
+    private $login_type = "user";
+
     /**
      * Create a new controller instance.
      *
@@ -48,8 +50,6 @@ class UserController extends Controller
       # Is the organization adviser loggedin?
       parent::loginCheck();
 
-      $login_type = "user";
-
       # Unlike the typical return which object, here is different
       # an array
       $originUser = OrganizationGroup::userProfile(Auth::user(), $id)->toArray();
@@ -59,11 +59,13 @@ class UserController extends Controller
       }
 
       $user         = $originUser[0];
-      $current_user = ($id === false) ? true: false;
+      $current_user = (Auth::user()->id == $id) ? true : false;
 
       return view('pages/users/user-profile', compact(
-          'login_type', 'originUser', 'user', 'current_user'
-        ));
+          'originUser', 'user', 'current_user'
+        ))->with([
+          'login_type' => $this->login_type
+        ]);
     }
 
     /**

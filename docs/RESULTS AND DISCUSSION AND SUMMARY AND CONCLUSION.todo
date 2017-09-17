@@ -55,6 +55,16 @@
           ☐ View organization profile
         ☐ Events:
           ☐ View events
+            ☐ Create personal event
+            ☐ Approve events
+            ☐ Calendar
+        ☐ ADMIN:
+            ☐ List of all user belongs to an organization (this feature is for administrator)
+            ☐ List of all users who has no organization yet (this feature is for administrator)
+            ☐ Set type of event
+      ☐ NEEDED TO SET UP (SCREENSHOTS AND EXPLANATION):
+        ☐ SCREEESHOTS FOR SUPER ADMIN
+      ☐ MISCELLANEOUS FUNCTIONS(SEE USER-MENU TABS, FOR EACH ACCOUNT):
         //  ☐ Create personal event (not included)
           ☐ Approve events
           ☐ Calendar

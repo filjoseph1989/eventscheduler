@@ -9,6 +9,11 @@
         <span>List of organizations</span>
       </a>
     </li>
+    <li>
+      <a href="{{ route('osa-personnel.org-add') }}">
+        <span>Add Organization</span>
+      </a>
+    </li>
   </ul>
 </li>
 <li>
@@ -37,11 +42,5 @@
   <a href="{{ route('osa-personnel.attendance') }}">
     <i class="material-icons">list</i>
     <span>Generate Attendance</span>
-  </a>
-</li>
-<li>
-  <a href="{{ route('osa-personnel.assign-approver') }}">
-    <i class="material-icons">list</i>
-    <span>Assign Approver</span>
   </a>
 </li>

@@ -92,11 +92,22 @@ class UserController extends Controller
   {
     /*
     Steps:
-
     1. Get the user ID
     2. Find the user in the users table given the ID
     3. Set is_approvers column for that user to true
     4. return response
     */
+    $result = User::updateOrCreate(
+      ['id'          => $data->id],
+      ['is_approver' => $data->isApprover]
+    );
+    
+    if ($result) {
+      echo json_encode([
+        'status' => true,
+        'id'     => $data->id
+      ]);
+    }
   }
+
 }

@@ -37,12 +37,12 @@ class OsaAccountController extends Controller
           'organizations.name'
         )
         ->join('organizations', 'organizations.id', '=', 'organization_groups.organization_id')
-        ->where('user_id', '=', Auth::user()->id)
+        // ->where('user_id', '=', Auth::user()->id)
         ->get();
 
         $login_type = "user";
         return view(
-          'pages.users.osa-personnel.manage_schedule.my-organization',
+          'pages.users.osa-personnel.manage-schedule.my-organization',
           compact(
             'login_type',
             'organization'

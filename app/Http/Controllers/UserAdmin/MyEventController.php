@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\OsaPersonnel;
+namespace App\Http\Controllers\UserAdmin;
 
 use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Library\OsaPersonnelLibrary as OsaPersonnel;
+use App\Library\UserAdminLibrary as UserAdmin;
 
 # models
 use App\Models\EventType;
@@ -22,7 +22,7 @@ use App\Models\OrganizationGroup;
  */
 class MyEventController extends Controller
 {
-    private $osa_personnel;
+    private $user_admin;
 
     /**
      * Create a new controller instance.
@@ -32,7 +32,7 @@ class MyEventController extends Controller
     public function __construct()
     {
       $this->middleware('web');
-      $this->osa_personnel = new OsaPersonnel();
+      $this->user_admin = new UserAdmin();
     }
 
     /**
@@ -57,12 +57,12 @@ class MyEventController extends Controller
       parent::loginCheck();
 
       # return home if not an organization adviser
-      $this->osa_personnel->isOsaPersonnel();
+      $this->user_admin->isUserAdmin();
 
       $login_type = 'user';
       $event_type = EventType::all();
 
-      return view('pages/users/osa-user/events/my_event', compact(
+      return view('pages/users/user-admin/events/my_event', compact(
         'login_type', 'event_type'
       ));
     }
@@ -79,7 +79,7 @@ class MyEventController extends Controller
       parent::loginCheck();
 
       # is the user rank as adivser?
-      $this->osa_personnel->isOsaPersonnel();
+      $this->user_admin->isUserAdmin();
 
       # return to form if the following does not satisfy
       if ($data->event_type_id == 0) {
@@ -94,7 +94,7 @@ class MyEventController extends Controller
       }
 
       # is data entry valid?
-      $this->osa_personnel->isValid($data);
+      $this->user_admin->isValid($data);
 
       # Get the data from form
       $request = $data->only(

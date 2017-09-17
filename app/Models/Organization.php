@@ -17,7 +17,7 @@ class Organization extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-      'name', 'status', 'url', 'date_started', 'date_expired',
+      'name', 'status', 'url', 'logo', 'color', 'date_started', 'date_expired',
     ];
 
     public function scopeRegistered($query){

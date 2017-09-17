@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\OsaPersonnel;
+namespace App\Http\Controllers\UserAdmin;
 
 use Auth;
 use Illuminate\Http\Request;
 use App\Library\ApproverLibrary;
 use App\Http\Controllers\Controller;
-use App\Library\OsaPersonnelLibrary as OsaPersonnel;
+use App\Library\UserAdminLibrary as UserAdmin;
 use App\Http\Controllers\ManageNotificationController;
 
 # Models
@@ -15,16 +15,17 @@ use App\Models\EventType;
 use App\Models\PersonalEvent;
 use App\Models\EventCategory;
 use App\Models\OrganizationGroup;
+use App\Models\Organization;
 use App\Models\EventApprovalMonitor;
 
 class EventController extends Controller
 {
-    private $osa_personnel;
+    private $user_admin;
 
     public function __construct()
     {
       $this->middleware('web');
-      $this->osa_personnel = new OsaPersonnel();
+      $this->user_admin = new UserAdmin();
     }
 
     /**
@@ -38,12 +39,12 @@ class EventController extends Controller
       parent::loginCheck();
 
       # Is the user an head?
-      $this->osa_personnel->isOsaPersonnel();
+      $this->user_admin->isUserAdmin();
 
       $login_type = "user";
 
       if ($id == null) {
-        return view('pages/users/osa-user/events/choices', compact(
+        return view('pages/users/user-admin/events/choices', compact(
           'login_type'
         ));
       } else {
@@ -54,7 +55,7 @@ class EventController extends Controller
             ->with('organization')
             ->get();
 
-          return view('pages/users/osa-user/events/list', compact(
+          return view('pages/users/user-admin/events/list', compact(
             'login_type', 'eventCategory', 'event'
           ));
         } elseif ($id == 4) {
@@ -64,7 +65,7 @@ class EventController extends Controller
           $event = PersonalEvent::where('date_start', '>=', date('m'))
             ->where('user_id', '=', Auth::user()->id)
             ->get();
-          return view('pages/users/osa-user/events/mylist', compact(
+          return view('pages/users/user-admin/events/mylist', compact(
             'login_type', 'event'
           ));
         }
@@ -84,17 +85,14 @@ class EventController extends Controller
       parent::loginCheck();
 
       # Is the user an head?
-      $this->osa_personnel->isOsaPersonnel();
+      $this->user_admin->isUserAdmin();
 
       $login_type     = 'user';
       $event_type     = EventType::all()->except(1);
       $event_category = EventCategory::all()->except(4);
-      $organization   = OrganizationGroup::with('organization')
-        ->where('organization_groups.user_id', '=', Auth::user()->id)
-        ->get();
 
-      return view('pages/users/osa-user/events/form', compact(
-        'login_type', 'event_type', 'event_category', 'organization'
+      return view('pages/users/user-admin/events/form', compact(
+        'login_type', 'event_type', 'event_category'
       ));
     }
 
@@ -110,7 +108,7 @@ class EventController extends Controller
       parent::loginCheck();
 
       # is the user rank as adivser?
-      $this->osa_personnel->isOsaPersonnel();
+      $this->user_admin->isUserAdmin();
 
       # return to form if the following does not satisfy
       if ($data->event_type_id == 0) {
@@ -128,33 +126,22 @@ class EventController extends Controller
           ->withInput()
           ->with('status_warning', 'You must chose for what semester this event');
       }
-      if ($data->organization_id == 0) {
-        return back()
-          ->withInput()
-          ->with('status_warning', "Sorry you cannot create event because you are not yet a member of any organization");
-      }
-
-      # is the user a member of the given organization?
-      if ( ! self::_isMember($data->organization_id)) {
-        return back()
-          ->withInput()
-          ->with('status_warning', "Sorry you are not yet a member of any organization.<br>You need to be a member first");
-      }
 
       # is data entry valid?
-      $this->osa_personnel->isValid($data);
+      $this->user_admin->isValid($data);
 
       # Get the data from form
       $request = $data->only(
         'user_id', 'event_type_id', 'event_category_id',
-        'organization_id', 'title', 'description',
-        'venue', 'date_start', 'date_start_time',
+        'title', 'description', 'venue', 'date_start', 'date_start_time',
         'date_end', 'date_end_time', 'whole_day',
         'notify_via_facebook', 'notify_via_twitter',
         'notify_via_email', 'notify_via_sms', 'semester',
         'additional_msg_facebook', 'additional_msg_sms',
         'additional_msg_email'
       );
+
+      $request['organization_id'] = 1;
 
       # Replace with defaults the following
       $index = ['notify_via_facebook', 'notify_via_twitter', 'notify_via_sms', 'notify_via_email'];
@@ -184,10 +171,12 @@ class EventController extends Controller
     public function show($id = null)
     {
       # Get the events from organiation ID
-      $event = Event::where('organization_id', '=', $id)->get();
+      $event = Event::where('organization_id', '=', $id)
+        ->where('approve_status', '=', 'approved')
+        ->get();
 
       $login_type = 'user';
-      return view('pages/users/osa-user/calendars/events/list_for_attendance', compact(
+      return view('pages/users/user-admin/calendars/events/list_for_attendance', compact(
         'event', 'login_type'
       ));
     }
@@ -237,13 +226,13 @@ class EventController extends Controller
       parent::loginCheck();
 
       # Check if user is an head
-      $this->osa_personnel->isOsaPersonnel();
+      $this->user_admin->isUserAdmin();
 
       # Check if the account is an approver
       if (parent::isApprover()) {
         $login_type = 'user';
 
-        # Get the organization of the osa-personnel
+        # Get the organization of the user-admin
         $organization = OrganizationGroup::with('organization')
           ->where('user_id', '=', Auth::user()->id)
           ->get();
@@ -267,7 +256,7 @@ class EventController extends Controller
         }
 
         # Display view
-        return view('pages/users/osa-user/events/approve-events', compact(
+        return view('pages/users/user-admin/events/approve-events', compact(
           'login_type', 'organization', 'event'
         ));
       } else {
@@ -287,15 +276,15 @@ class EventController extends Controller
       # is login?
       parent::loginCheck();
 
-      # is an approver & adviser?
-      if (parent::isOsaPersonnel() and parent::isApprover()) {
+      # is an approver & org_head?
+      if (parent::isUserAdmin() and parent::isApprover()) {
         $approved_events = Event::with('organization')
           ->where('id', '=', $id)
           ->get();
 
         # is the event exist?
         if ($approved_events->count() == 0) {
-          return redirect()->route('osa-personnel.approve.event')
+          return redirect()->route('user-admin.approve.event')
             ->with('status_warning', 'There is no event yet');
         }
 
@@ -310,7 +299,7 @@ class EventController extends Controller
             ->exists();
 
           if ($done) {
-            return redirect()->route('osa-personnel.approve.event')
+            return redirect()->route('user-admin.approve.event')
               ->with('status_warning', "You already approved this event ( {$approved_event->title} ). Press the UNAPPROVE button to disable your approval.");
           } else {
             # Increment approver count on events table.
@@ -339,12 +328,12 @@ class EventController extends Controller
 
               # message
               # I think no need here, hm
-              return redirect()->route('osa-personnel.approve.event')
+              return redirect()->route('user-admin.approve.event')
                 ->with('status', "Successfuly approved the event ( {$approved_event->title} ) and Notified");
             }
 
             # with no notification message
-            return redirect()->route('osa-personnel.approve.event')
+            return redirect()->route('user-admin.approve.event')
               ->with('status', "Successfuly approved the event ( {$approved_event->title} )");
           }
         }
@@ -357,7 +346,7 @@ class EventController extends Controller
             ->exists();
 
           if ($done) {
-            return redirect()->route('osa-personnel.approve.event')
+            return redirect()->route('user-admin.approve.event')
               ->with('status_warning', "You already approved this event ( {$approved_event->title} ). Press the UNAPPROVE button to disable your approval.");
           } else {
             # Increment approver count on events table.
@@ -386,12 +375,12 @@ class EventController extends Controller
 
               # message
               # I think no need here, hm
-              return redirect()->route('osa-personnel.approve.event')
+              return redirect()->route('user-admin.approve.event')
                 ->with('status', "Successfuly approved the event ( {$approved_event->title} ) and Notified");
             }
 
             # with no notification message
-            return redirect()->route('osa-personnel.approve.event')
+            return redirect()->route('user-admin.approve.event')
               ->with('status', "Successfuly approved the event ( {$approved_event->title} )");
           }
         }
@@ -410,13 +399,13 @@ class EventController extends Controller
       parent::loginCheck();
 
       # is an head & approver?
-      if (parent::isOsaPersonnel() and parent::isApprover()) {
+      if (parent::isUserAdmin() and parent::isApprover()) {
         # Get one row of event
         $approved_event = Event::find($id);
 
         # is the event exist?
         if ( ! $approved_event->exists) {
-          return redirect()->route('osa-personnel.approve.event')
+          return redirect()->route('user-admin.approve.event')
             ->with('status_warning', 'There no event yet');
         }
 
@@ -449,20 +438,89 @@ class EventController extends Controller
     }
 
     /**
-     * Determined if this loggedin user
-     * is a member of the given organization ID
+     * Display the info box for event management
      *
-     * @param  int  $id Organization ID
-     * @param boolean $get Used to determine if need to return boolean or redirect
-     * @return boolean
+     * @return void
      */
-    private function _isMember($id)
+    public function manageSchedule()
     {
-      $result = OrganizationGroup::where('user_id', '=', Auth::user()->id)
-      ->where('organization_id', '=', $id)
-      ->where('membership_status', '=', 'yes')
-      ->count();
+      parent::loginCheck();
 
-      return $result == 1 ? true : false;
+      $this->user_admin->isUserAdmin();
+
+      $login_type = "user";
+      return view('pages/users/user-admin/events/manange-schedule')
+        ->with([
+          'login_type' => $login_type
+        ]);
+    }
+    /**
+     * Manage notification
+     *
+     * @return void
+     */
+    public function manageNotification()
+    {
+      parent::loginCheck();
+
+      # is the org_head logged in?
+      $this->user_admin->isUserAdmin();
+
+      #get all events of the org head's organization
+      $org_head_group = OrganizationGroup::where('user_id', Auth::user()->id)->get();
+      foreach ($org_head_group as $key => $value) { $org = $value->organization_id; }
+      $event = Event::where('organization_id', $org)->get();
+
+      $login_type = "user";
+      return view('pages/users/user-admin/events/list0')->with([
+        'login_type' => $login_type,
+        'event'      => $event,
+      ]);
+    }
+
+    public function manageNotificationMenu()
+    {
+      parent::loginCheck();
+
+      # is the org_head logged in?
+      $this->user_admin->isUserAdmin();
+
+      # Get event created by the adiviser
+      $event = Event::where('user_id', Auth::user()->id)->get();
+
+      $login_type = "user";
+      return view('pages/users/user-admin/events/manage-notif-menu')->with([
+        'login_type' => $login_type,
+        'event'      => $event
+      ]);
+    }
+
+    /**
+     * Update event notifications
+     *
+     * @param  Request $data Event Informations
+     * @return void
+     */
+    public function updateNotification(Request $data)
+    {
+      parent::loginCheck();
+
+      # is the org_head logged in?
+      $this->user_admin->isUserAdmin();
+
+      $request = $data->only(
+        'notify_via_facebook', 'notify_via_twitter',
+        'notify_via_email', 'notify_via_sms',
+        'additional_msg_facebook', 'additional_msg_sms',
+        'additional_msg_email'
+      );
+
+      # Finally create events
+      $result = Event::find($data->event_id);
+      $result = $result->update($request);
+
+      if ($result) {
+        return back()->with('status', 'Successfuly updated notifications');
+      }
     }
 }

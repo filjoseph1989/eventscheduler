@@ -59,16 +59,16 @@
                     @endif
                     @if ($current_user)
                       <form action="{{ route('user.profile.upload') }}" enctype="multipart/form-data" method="POST">
-                      {{ csrf_field() }}
-                      <div class="row">&nbsp;</div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <input type="hidden" name="id" value="{{ $user['user_id'] }}">
-                          <input type="file" name="image">
-                          <button type="submit" class="btn btn-success" style="margin-top: 3px; "><i class="material-icons">file_upload</i> Upload</button>
+                        {{ csrf_field() }}
+                        <div class="row">&nbsp;</div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <input type="hidden" name="id" value="{{ $user['user_id'] }}">
+                            <input type="file" name="image">
+                            <button type="submit" class="btn btn-success" style="margin-top: 3px; "><i class="material-icons">file_upload</i> Upload</button>
+                          </div>
                         </div>
-                      </div>
-                    </form>
+                      </form>
                     @endif
                   </div>
                   <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
