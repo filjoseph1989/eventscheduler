@@ -309,6 +309,34 @@ $(document).on('click', '.revokeapprover', function() {
 });
 
 /**
+ * Submit the isApprover status of the user to the database
+ *
+ * @return {}
+ */
+$(document).on('click', '.activate-account', function () {
+  _this = $(this);
+  var data = {
+    status: 1
+  }
+
+  setStatusState(data, "Active");
+});
+
+/**
+ * Unconfirmed the attendance of the member
+ *
+ * @return {void}
+ */
+$(document).on('click', '.deactivate-account', function () {
+  _this = $(this);
+  var data = {
+    status: 0
+  }
+
+  setStatusState(data, "Inactive");
+});
+
+/**
  * Can't attend function
  * @return void
  */
@@ -578,5 +606,14 @@ function setApproverState(data, $message) {
 
   submit(data, url, function(data) {
     $('#approver-status-'+data.id).html($message);
+  }, '.preloader-'+data.id);
+}
+
+function setStatusState(data, $message) {
+  var url = route('user-admin.account-status.update').replace('localhost', window.location.hostname);
+  data.id  = _this.data('user-id');
+
+  submit(data, url, function(data) {
+    $('#account-status-'+data.id).html($message);
   }, '.preloader-'+data.id);
 }

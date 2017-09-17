@@ -12,7 +12,7 @@ class OrganizationGroup extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-      'user_id', 'organization_id', 'membership_status'
+      'user_id', 'organization_id', 'membership_status', 'position_id'
     ];
 
     /**
@@ -35,6 +35,11 @@ class OrganizationGroup extends Model
     {
       return $this->belongsTo('App\Models\Organization');
     }
+
+  public function position()
+  {
+    return $this->belongsTo('App\Models\Position');
+  }
 
     /**
      * Return the user profile information

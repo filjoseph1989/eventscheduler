@@ -20,7 +20,7 @@
     @endif
 
     @if (session('status'))
-      <div class="alert alert-success"> 
+      <div class="alert alert-success">
         {{ session('status') }}
       </div>
     @endif
@@ -68,7 +68,7 @@
                       <th>User Account Type</th>
                       <th>Position</th>
                       <th>Organization</th>
-                      <th>Approver</th>
+                      <th>Account Activation</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -100,10 +100,10 @@
                           }
                         ?>
                       </td>
-                      <td id="approver-status-{{ $value->id }}">{{ $value->is_approver == 'true' ? 'YES' : 'NO' }}</td>
+                      <td id="account-status-{{ $value->id }}">{{ $value->status == 1 ? 'Active' : 'Inactive' }}</td>
                       <td>
-                        <button class="btn btn-primary setapprover" type="button" name="setapprover" data-user-id = "{{ $value->id }}" >Set as approver</button>
-                        <button class="btn btn-primary revokeapprover" type="button" name="revokeapprover" data-user-id = "{{ $value->id }}" >Revoke approver</button>
+                        <button class="btn btn-primary activate-account" type="button" name="activate-account" data-user-id = "{{ $value->id }}" >Approve Registration</button>
+                        <button class="btn btn-primary deactivate-account" type="button" name="deactivate-account" data-user-id = "{{ $value->id }}" >Ignore Registration</button>
                         <div class="preload preloader-{{ $value->id }}"></div>
                       </td>
                     </tr>
@@ -116,7 +116,7 @@
                       <th>User Account Type</th>
                       <th>Position</th>
                       <th>Organization</th>
-                      <th>Approver</th>
+                      <th>Account Activation</th>
                       <th>Action</th>
                     </tr>
                   </tfoot>
