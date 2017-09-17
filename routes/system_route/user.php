@@ -5,18 +5,6 @@ Route::prefix('users')->group(function() {
   Route::name('user.profile')->get('/profile/{id?}', 'UserController@viewProfile');
   Route::name('user.profile.upload')->post('/profile/upload', 'UserController@uploadPhoto');
 
-  # Ajax Request
-  # Issue 44: This part can be improve by creating a method that accept id and model name
-  Route::name('ajax.get.event-type')->post('/get/event-type', 'JsonController@getEventType');
-  Route::name('ajax.get.event-category')->post('/get/event-category', 'JsonController@getEventCategory');
-  Route::name('ajax.get.organization')->post('/get/organization', 'JsonController@getOrganization');
-  Route::name('ajax.get.event.list')->post('/get/event', 'JsonController@getEvent');
-  Route::name('ajax.get.events')->post('/get/events', 'JsonController@getEventList');
-  Route::name('ajax.get.event.personal.list')->post('/get/personal/event', 'JsonController@getPersonalEvent');
-  Route::name('ajax.update.event.personal.list')->post('/update/personal/event', 'JsonController@updatePersonalEvent');
-  Route::name('ajax.update.event.list')->post('/update/event', 'JsonController@updateEvent');
-  Route::name('ajax.get.event.approvers')->post('/get/approver', 'JsonController@getApprover');
-
   # Include other routing in "routes\system_route\user\user-sub.php"
   require_once 'user/user-sub.php';
 
@@ -343,8 +331,9 @@ Route::prefix('users')->group(function() {
       Route::name('user-admin.members.add')->get('/members/add', 'UserAdmin\OrganizationGroupController@create');
       Route::name('user-admin.members.search')->post('/members/search', 'UserAdmin\UserController@search');
       Route::name('user-admin.members.new')->post('/members/new', 'UserAdmin\OrganizationGroupController@storeNewMember');
-      Route::name('user-admin.members.accept')->get('/members/accept', 'UserAdmin\OrganizationGroupController@acceptNewMember');
-      
+      Route::name('user-admin.accept-users')->get('/members/accept', 'UserAdmin\OrganizationGroupController@acceptNewMember');
+      Route::name('user-admin.account-status.update')->post('/members/activation', 'UserAdmin\UserController@setAccountStatus');
+
       # Check og gigamit pani nga part
       Route::name('user-admin.assign-approver')->get('/assign/approver', 'UserAdmin\UserController@assignApprover');
 

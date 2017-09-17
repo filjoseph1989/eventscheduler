@@ -31,7 +31,7 @@
   <ul class="ml-menu">
     <li><a href="{{ route('user-admin.members.list') }}">All Members</a></li>
     <li><a href="{{ route('user-admin.members.add') }}">Add Members</a></li>
-    <li><a href="{{ route('user-admin.members.accept') }}">Accept Request</a></li>
+    <li><a href="{{ route('user-admin.accept-users') }}">Accept Registraton Request</a></li>
   </ul>
 </li>
 <li>
