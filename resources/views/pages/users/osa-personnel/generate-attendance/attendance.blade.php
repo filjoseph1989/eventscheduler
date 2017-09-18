@@ -47,7 +47,7 @@
                       <th>Family Name</th>
                       <th>Organization</th>
                       <th>Confirmation</th>
-                      <th>Action</th>
+                      {{-- <th>Action</th> --}}
                     </tr>
                   </thead>
                   <tbody>
@@ -56,7 +56,7 @@
                         <td>{{ $value->user->first_name }}</td>
                         <td>{{ $value->user->last_name }}</td>
                         <td>{{ $value->organization->name }}</td>
-                        <td id="confirm-status-{{ $value->user->id }}">{{ (isset($confirm[$value->user->id]) AND $confirm[$value->user->id] == 'true') ? "Confirmed" : "Unconfirmed" }}</td>
+                        {-- {<td id="confirm-status-{{ $value->user->id }}">{{ (isset($confirm[$value->user->id]) AND $confirm[$value->user->id] == 'true') ? "Confirmed" : "Unconfirmed" }}</td>
                         <td>
                           <button type="button" class="btn btn-primary waves-effect confirmed"
                             data-user-id="{{ $value->user->id }}"
@@ -67,7 +67,7 @@
                             data-user-id="{{ $value->user->id }}"
                             data-event-id="{{ $eid }}">
                              Unconfirm
-                          </button>
+                          </button> --}}
                           <div class="preload preloader-{{ $value->user->id }}"></div>
                         </td>
                       </tr>
