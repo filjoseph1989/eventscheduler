@@ -171,20 +171,6 @@ Route::prefix('users')->group(function() {
 
   # Route for organization member
   Route::prefix('org-member')->group(function() {
-    // Route::name('org-member.org-list')->get('/list_of_organizations','OrganizationMember\OrganizationController@index');
-    // Route::name('org-member.my.new.event')->get('/my/new/event', 'OrganizationMember\MyEventController@create');
-    // Route::name('org-member.my.new.event.submit')->post('/store/new', 'OrganizationMember\MyEventController@store');
-    // Route::name('org-member.event.list')->get('/get/event-list/{id?}', 'OrganizationMember\EventController@index');
-    // Route::name('org-member.approve.event')->get('/approve/event', 'OrganizationMember\EventController@approveEvents');
-    // Route::name('org-member.calendar')->get('/calendar', 'OrganizationMember\CalendarController@calendar');
-    // Route::name('org-member.members.list')->get('/members/list', 'OrganizationMember\OrganizationGroupController@index');
-    // Route::name('org-member.attendance')->get('/attendance', 'OrganizationMember\GenerateAttendanceController@index');
-    // Route::name('org-member.event.show')->get('/show/{id?}', 'OrganizationMember\EventController@show');
-    // Route::name('org-member.attendance.store')->post('/store', 'OrganizationMember\GenerateAttendanceController@store');
-    // Route::name('org-member.org-profile')->get('/profile/{id}', 'OrganizationMember\OrganizationController@show');
-    // Route::name('org-member.org-edit')->get('/edit-org/{id}', 'OrganizationMember\OrganizationController@edit');
-    // Route::name('org-member.org-logo')->post('/change-logo', 'OrganizationMember\OrganizationController@uploadLogo');
-    // Route::name('org-member.org-membership')->post('/org-membership', 'OrganizationMember\OrganizationGroupController@store');
     Route::name('org-member.org-list')->get('/list-of-organization','OrganizationMember\OrganizationController@index');
     Route::name('org-member.event.list')->get('/get/event-list/{id?}', 'OrganizationMember\EventController@index');
     Route::name('org-member.org-profile')->get('/profile/{id}', 'OrganizationMember\OrganizationController@show');

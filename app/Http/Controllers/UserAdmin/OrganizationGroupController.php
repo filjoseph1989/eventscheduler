@@ -39,16 +39,11 @@ class OrganizationGroupController extends Controller
      */
     public function index()
     {
-      $all_user              = [];
-      $user_acc              = [];
-      $organization          = [];
-      $position              = [];
-      $all_position          = Position::all();
-      $all_user_account_type = UserAccount::all();
-      $all_organization      = Organization::all();
-      $user                  = User::with('userAccount')->get();
-      $org_grp               = OrganizationGroup::with(['organization' , 'position', 'user'])->get();
-      $all_user              = User::all();
+      $user_acc     = [];
+      $organization = [];
+      $position     = [];
+      $user         = User::with('userAccount')->get();
+      $all_user     = User::all();
 
       foreach ($all_user as $key => $v) {
         $og = OrganizationGroup::where('user_id', $v->id)
@@ -56,16 +51,8 @@ class OrganizationGroupController extends Controller
           ->get();
 
         if( count($og) > 1 ){
-          foreach ($og as $key => $value) {
-            $position[$v->id][$key]     = $value->position->name;
-            $organization[$v->id][$key] = $value->organization->name;
-            $ua                         = User::with('userAccount')->where('id', $v->id)->get();
-            foreach ($ua as $key => $val) {
-              $user_acc[$v->id] = $val->userAccount->name;
-            }
-          }
-        }
-        else if( count($og) == 1 ) {
+          self::getAttribute($og, $position, $organization, $user_acc);
+        } else if( count($og) == 1 ) {
           foreach ($og as $key => $value){
             $position[$v->id]     = $value->position->name;
             $organization[$v->id] = $value->organization->name;
@@ -74,8 +61,7 @@ class OrganizationGroupController extends Controller
               $user_acc[$v->id] = $val->userAccount->name;
             }
           }
-        }
-        else {
+        } else {
           $position[$v->id]     = "Not Yet Assigned";
           $organization[$v->id] = "Not Yet Assigned";
           $ua                   = User::with('userAccount')->where('id', $v->id)->get();
@@ -90,6 +76,35 @@ class OrganizationGroupController extends Controller
         'user_acc', 'organization', 'position', 'og', 'all_user'
         ))->with(['login_type' => $this->login_type]);
     }
+
+    /**
+     * A private method for getting the following:
+     *  1. User position
+     *  2. User organization
+     *  3/ User account
+     * 
+     * This parameter below modify the original variable
+     * because they pass here as reference
+     *
+     * @param array $og
+     * @param array $position
+     * @param array $organization
+     * @param array $user_acc
+     * @return void
+     */
+    private function getAttribute($og, &$position, &$organization, &$user_acc, &$id)
+    {
+      foreach ($og as $key => $value) {
+        $position[$id][$key]     = $value->position->name;
+        $organization[$id][$key] = $value->organization->name;
+        
+        $ua = User::with('userAccount')->where('id', $id)->get();
+        foreach ($ua as $key => $val) {
+          $user_acc[$id] = $val->userAccount->name;
+        }
+      }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -198,62 +213,59 @@ class OrganizationGroupController extends Controller
      * @return void
      */
     public function acceptNewMember()
-  {
-    $all_user = [];
-    $user_acc = [];
-    $organization = [];
-    $position = [];
-    $all_position = Position::all();
-    $all_user_account_type = UserAccount::all();
-    $all_organization = Organization::all();
-    $user = User::with('userAccount')->get();
-    $org_grp = OrganizationGroup::with(['organization', 'position', 'user'])->get();
-    $all_user = User::all();
+    {
+      $all_user     = [];
+      $user_acc     = [];
+      $organization = [];
+      $position     = [];
+      $user         = User::with('userAccount')->get();
+      $all_user     = User::all();
 
-    foreach ($all_user as $key => $v) {
-      $og = OrganizationGroup::where('user_id', $v->id)
-        ->with(['position', 'organization'])
-        ->get();
+      foreach ($all_user as $key => $v) {
+        $og = OrganizationGroup::where('user_id', $v->id)
+          ->with(['position', 'organization'])
+          ->get();
 
-      if (count($og) > 1) {
-        foreach ($og as $key => $value) {
-          $position[$v->id][$key] = $value->position->name;
-          $organization[$v->id][$key] = $value->organization->name;
-          $ua = User::with('userAccount')->where('id', $v->id)->get();
+        if (count($og) > 1) {
+          foreach ($og as $key => $value) {
+            $position[$v->id][$key]     = $value->position->name;
+            $organization[$v->id][$key] = $value->organization->name;
+            $ua                         = User::with('userAccount')->where('id', $v->id)->get();
+
+            foreach ($ua as $key => $val) {
+              $user_acc[$v->id] = $val->userAccount->name;
+            }
+          }
+        } elseif (count($og) == 1) {
+          foreach ($og as $key => $value) {
+            $position[$v->id]     = $value->position->name;
+            $organization[$v->id] = $value->organization->name;
+            $ua                   = User::with('userAccount')->where('id', $v->id)->get();
+
+            foreach ($ua as $key => $val) {
+              $user_acc[$v->id] = $val->userAccount->name;
+            }
+          }
+        } else {
+          $position[$v->id]     = "Not Yet Assigned";
+          $organization[$v->id] = "Not Yet Assigned";
+          $ua                   = User::with('userAccount')->where('id', $v->id)->get();
+
           foreach ($ua as $key => $val) {
             $user_acc[$v->id] = $val->userAccount->name;
           }
         }
       }
-      else if (count($og) == 1) {
-        foreach ($og as $key => $value) {
-          $position[$v->id] = $value->position->name;
-          $organization[$v->id] = $value->organization->name;
-          $ua = User::with('userAccount')->where('id', $v->id)->get();
-          foreach ($ua as $key => $val) {
-            $user_acc[$v->id] = $val->userAccount->name;
-          }
-        }
-      }
-      else {
-        $position[$v->id] = "Not Yet Assigned";
-        $organization[$v->id] = "Not Yet Assigned";
-        $ua = User::with('userAccount')->where('id', $v->id)->get();
-        foreach ($ua as $key => $val) {
-          $user_acc[$v->id] = $val->userAccount->name;
-        }
-      }
+
+      $org_mem = OrganizationGroup::with(['user', 'organization'])->get();
+      return view('pages/users/user-admin/members/accept-users', compact(
+          'user_acc', 'organization', 'position', 'og', 'all_user'
+        ))->with([
+          'login_type' => $this->login_type
+        ]);
+>>>>>>> develop
     }
 
-    $org_mem = OrganizationGroup::with(['user', 'organization'])->get();
-    return view('pages/users/user-admin/members/accept-users', compact(
-      'user_acc',
-      'organization',
-      'position',
-      'og',
-      'all_user'
-    ))->with(['login_type' => $this->login_type]);
-  }
     /**
      * Display the specified resource.
      *

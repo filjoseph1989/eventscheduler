@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page-title', 'List of organization')
+@section('page-title', 'List of members')
 
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.css') }}">

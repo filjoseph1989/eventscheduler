@@ -18,12 +18,8 @@ use App\Models\Position;
  * @created 8-26-2017
  * @updated 8-26-2017
  */
-
-
 class UserController extends Controller
 {
-
-
   private $login_type = 'user';
 
   /**

@@ -36,7 +36,7 @@
               <label for="rememberme">Remember Me</label>
             </div>
             <div class="col-xs-4">
-              <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
+              <button class="btn btn-block bg-custom-pink waves-effect" type="submit">SIGN IN</button>
             </div>
           </div>
           <div class="row m-t-15 m-b--20">

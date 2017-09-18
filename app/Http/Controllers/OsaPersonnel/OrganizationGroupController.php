@@ -97,10 +97,11 @@ class OrganizationGroupController extends Controller
      */
     public function create()
     {
-      $login_type = 'user';
       return view('pages/users/osa-personnel/members/add', compact(
-        'org', 'login_type', 'member'
-      ));
+        'org', 'member'
+      ))->with([
+        'login_type' => $this->login_type
+      ]);
     }
 
     /**
