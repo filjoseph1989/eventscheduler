@@ -263,7 +263,6 @@ class OrganizationGroupController extends Controller
         ))->with([
           'login_type' => $this->login_type
         ]);
->>>>>>> develop
     }
 
     /**
