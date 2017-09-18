@@ -1,6 +1,6 @@
 /**
  * App.js
- * @version 0.33
+ * @version 0.35
  */
 
 var _this;
@@ -287,11 +287,16 @@ $(document).on('click', '.unconfirmed', function() {
  */
 $(document).on('click', '.setapprover', function() {
   _this = $(this);
-  var data = {
-    isApprover:  'true'
+  $(this).removeClass('setapprover');
+  $(this).addClass('revokeapprover');
+  $(this).addClass('btn-warning');
+  $(this).removeClass('btn-primary');
+
+  data = {
+    isApprover: 'true'
   }
 
-  setApproverState(data, "YES");
+  setApproverState(data, 'Revoke as Approver');
 });
 
 /**
@@ -301,11 +306,16 @@ $(document).on('click', '.setapprover', function() {
  */
 $(document).on('click', '.revokeapprover', function() {
   _this = $(this);
-  var data = {
-    isApprover:       'false'
+  $(this).addClass('setapprover');
+  $(this).removeClass('revokeapprover');
+  $(this).addClass('btn-primary');
+  $(this).removeClass('btn-warning');
+
+  data = {
+    isApprover: 'false'
   }
 
-  setApproverState(data, "NO");
+  setApproverState(data, 'Set as Approver');
 });
 
 /**
@@ -547,7 +557,6 @@ function formatTime(time) {
   return hour + ":" + min + " " + unit;
 }
 
-
 /**
  * Modify some information regarding the event
  *
@@ -600,28 +609,36 @@ function updateAttendance(data, $message) {
 }
 
 /**
- * Set the approver
+ * Set user status
  *
  * @param {object} data
- * @param {string} $message Custom message
+ * @param {string} $message
+ */
+function setStatusState(data, $message) {
+  var url = route('user-admin.account-status.update').replace('localhost', window.location.hostname);
+  data.id  = _this.data('user-id');
+  data.new = _this.data('updated-id');
+
+  submit(data, url, function(data) {
+    // console.log(data.updated_at);
+    $('#account-status-'+data.id).html($message);
+    $('#updated-at-' + data.id).html(data.updated_at);
+  }, '.preloader-'+data.id);
+}
+
+/**
+ * Set user as approver
+ *
+ * @param {object} data
+ * @param {string} $message
  */
 function setApproverState(data, $message) {
   var url  = route('osa-personnel.approverstate.update').replace('localhost', window.location.hostname);
   data.id  = _this.data('user-id');
 
   submit(data, url, function(data) {
-    $('#approver-status-'+data.id).html($message);
-  }, '.preloader-'+data.id);
-}
-
-function setStatusState(data, $message) {
-  var url = route('user-admin.account-status.update').replace('localhost', window.location.hostname);
-  data.id  = _this.data('user-id');
-  data.new = _this.data('updated-id');
-  
-  submit(data, url, function(data) {
-    // console.log(data.updated_at);
-    $('#account-status-'+data.id).html($message);
-    $('#updated-at-' + data.id).html(data.updated_at);
-  }, '.preloader-'+data.id);
+    _this.html($message);
+    data.approver = (data.approver == 'true') ? 'YES' : 'NO';
+    $('#approver-status-'+data.id).html(data.approver);
+  }, _this, false);
 }

@@ -289,7 +289,6 @@ Route::prefix('users')->group(function() {
     Route::name('osa-personnel.update-notification')->post('/update-notification', 'OsaPersonnel\EventController@updateNotification');
     ###manage org members / user routes
     Route::name('osa-personnel.approverstate.update')->post('approver/update', 'OsaPersonnel\UserController@setApprover');
-
   });
     Route::prefix('user-admin')->group(function() {
       Route::name('user-admin.set-approver')->get('/set-approver', 'UserAdmin\UserController@getUser');

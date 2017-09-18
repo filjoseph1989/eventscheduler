@@ -64,15 +64,8 @@ class UserController extends Controller
    */
   public function assignApprover()
   {
-    /*
-    Steps:
-    1. Check if the user is currently loggedin
-    2. Check if the user is an osa personnel
+    parent::loginCheck();
 
-    1. Get the list of the users
-    2. Crete table in the blade
-    3. Display the users
-    */
     return view('pages/users/osa-user/manage-users/assign-approver')->with([
       'login_type' => $this->login_type
     ]);
@@ -90,22 +83,14 @@ class UserController extends Controller
    */
   public function setApprover(Request $data)
   {
-    /*
-    Steps:
-    1. Get the user ID
-    2. Find the user in the users table given the ID
-    3. Set is_approvers column for that user to true
-    4. return response
-    */
-    $result = User::updateOrCreate(
-      ['id'          => $data->id],
-      ['is_approver' => $data->isApprover]
-    );
+    $result = User::find($data->id);
+    $result->is_approver = $data->isApprover;
     
-    if ($result) {
+    if ($result->save()) {
       echo json_encode([
-        'status' => true,
-        'id'     => $data->id
+        'status'   => true,
+        'id'       => $data->id,
+        'approver' => $data->isApprover
       ]);
     }
   }
