@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.master') 
 
 @section('page-title', 'Set Approvers')
 
@@ -9,8 +9,6 @@
 @endsection
 
 @section('content')
-    {{-- list all users on user dashboard --}}
-
     @include('pages.top-nav')
 
     @if (isset($login_type) and $login_type == 'admin')
@@ -60,7 +58,10 @@
                 </ul>
               </div>
               <div class="body">
-                <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                @php
+                  $class = "js-basic-example dataTable";
+                @endphp
+                <table class="table table-bordered table-striped table-hover {{ $class }}">
                   <thead>
                     <tr>
                       <th>First Name</th>
@@ -133,5 +134,8 @@
 @endsection
 
 @section('footer')
-  <script src="{{ asset('js/app.js') }}?v=0.25" charset="utf-8"></script>
+  <script src="{{ asset('js/jquery.dataTables.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/dataTables.bootstrap.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/jquery-datatable.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.33" charset="utf-8"></script>
 @endsection

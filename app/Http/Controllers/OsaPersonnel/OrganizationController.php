@@ -61,9 +61,9 @@ class OrganizationController extends Controller
 
       # Render view
       return view('pages/users/osa-personnel/organization/list', compact('organization'))
-      ->with([
-        'login_type' => $this->login_type
-      ]);
+        ->with([
+          'login_type' => $this->login_type
+        ]);
     }
 
     /**

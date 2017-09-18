@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace App\Http\Controllers\OsaPersonnel;
 
@@ -39,16 +39,10 @@ class OrganizationGroupController extends Controller
      */
     public function index()
     {
-      $all_user              = [];
-      $user_acc              = [];
-      $organization          = [];
-      $position              = [];
-      $all_position          = Position::all();
-      $all_user_account_type = UserAccount::all();
-      $all_organization      = Organization::all();
-      $user                  = User::with('userAccount')->get();
-      $org_grp               = OrganizationGroup::with(['organization' , 'position', 'user'])->get();
-      $all_user              = User::all();
+      $user_acc     = [];
+      $organization = [];
+      $position     = [];
+      $all_user     = User::all();
 
       foreach ($all_user as $key => $v) {
         $og = OrganizationGroup::where('user_id', $v->id)
@@ -90,6 +84,7 @@ class OrganizationGroupController extends Controller
         'user_acc', 'organization', 'position', 'og', 'all_user'
         ))->with(['login_type' => $this->login_type]);
     }
+    
     /**
      * Show the form for creating a new resource.
      *
