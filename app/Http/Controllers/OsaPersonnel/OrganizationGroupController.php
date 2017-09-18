@@ -79,7 +79,6 @@ class OrganizationGroupController extends Controller
         }
       }
 
-      $org_mem = OrganizationGroup::with(['user', 'organization'])->get();
       return view('pages/users/osa-user/manage-users/assign-approver', compact(
         'user_acc', 'organization', 'position', 'og', 'all_user'
         ))->with(['login_type' => $this->login_type]);
