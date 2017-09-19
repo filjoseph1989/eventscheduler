@@ -33,8 +33,8 @@ class EventController extends Controller
      *
      * # Issue 82
      *
-     * @param  [type] $id [description]
-     * @return [type]     [description]
+     * @param  int $id
+     * @return \Illuminate\Response
      */
     public function index($id = null)
     {
@@ -54,7 +54,10 @@ class EventController extends Controller
         # Is event not belong to personal event?
         if ($id != 4) {
           if ($id == 2) {
-            $organization = Organization::all();
+            $organization = OrganizationGroup::with('organization')
+              ->where('user_id', '=', Auth::user()->id)
+              ->get();
+              
             return view('pages/users/osa-personnel/events/list1', compact(
                 'organization'
               ))->with([

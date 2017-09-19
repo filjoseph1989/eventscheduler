@@ -53,11 +53,10 @@ To Do:
       ✔ Add organization @done (2017-9-17 11:11:14)
       ✔ List all organization, include who is the adviser of the organization @done (9/17/2017, 8:44:23 PM)
       ✔ Activate/Deactivate organization @done (9/17/2017, 8:44:27 PM)
-        ☐ View the member of the organization
+      ☐ View the member of the organization
       ☐ Assign an adviser for an organization
     ☐ Events:
       ☐ Set type of events
-      ☐ Delete events that not approve and already due
       ☐ Create My Events:
         ☐ Display form to create event
         ☐ Can customize message for notification

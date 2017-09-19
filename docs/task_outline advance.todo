@@ -73,12 +73,13 @@ To Do:
     ☐ List of all users who has no organization yet (this feature is for administrator)
 
   Task 4: Office of the student affairs account:
-    ☐ Assign an approvers:
+    ✔ Assign an approvers: @done (9/19/2017, 12:04:04 PM)
     ☐ Organization:
-      ☐ List all organization, include who is the adviser of the organization
-      ☐ Add organization
+      ✔ List all organization, include who is the adviser of the organization @done (9/19/2017, 12:04:09 PM)
+      ✔ Add organization @done (9/19/2017, 12:04:11 PM)
+      ✔ Activate/Deactivate organization @done (9/19/2017, 12:04:14 PM)
+      ☐ View the member of the organization
       ☐ Assign an adviser for an organization
-      ☐ Activate organization
       ☐ Display organization structure (Advance|Low Priority)
         ☐ List of officeer for the current school year (Advance|Low Priority)
       ☐ Display the organization events (Advance|Low Priority)

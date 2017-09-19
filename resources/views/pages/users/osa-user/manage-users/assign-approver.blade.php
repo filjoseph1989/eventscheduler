@@ -58,12 +58,7 @@
                 </ul>
               </div>
               <div class="body">
-                @php
-                  $class = "";
-                  if ($all_user->count() > 10) {
-                    $class = "js-basic-example dataTable";
-                  }
-                @endphp
+                @php extract( $help::dataTableClass($all_user) ); @endphp
                 <table class="table table-bordered table-striped table-hover {{ $class }}">
                   <thead>
                     <tr>
@@ -78,47 +73,20 @@
                   </thead>
                   <tbody class="js-sweetalert">
                     @foreach ($all_user as $key => $value)
-                      <tr>
-                        <td>{{ $value->first_name }}</td>
-                        <td>{{ $value->last_name }}</td>
-                        <td>{{ $user_acc[$value->id] }} </td>
-                        <td>
-                          @php
-                            if (count($position[$value->id]) > 1) {
-                              foreach ($position[$value->id] as $key => $val) {
-                                echo "$val <br>";
-                              }
-                            } else {
-                              echo $position[$value->id];
-                            }
-                          @endphp
-                        </td>
-                        <td>
-                          @php
-                            if (count($organization[$value->id]) > 1) {
-                              foreach ($organization[$value->id] as $key => $val) {
-                                echo "$val <br>";
-                              }
-                            } else {
-                              echo $organization[$value->id];
-                            }
-                          @endphp
-                        </td>
-                        <td id="approver-status-{{ $value->id }}">{{ $value->is_approver == 'true' ? 'YES' : 'NO' }}</td>
-                        <td>
-                          @php
-                            $class    = "setapprover";
-                            $approver = "Set as Approver";
-                            $btn = "primary";
-                            if ($value->is_approver == 'true') {
-                              $class    = "revokeapprover";
-                              $approver = "Revoke as Approver";
-                              $btn = "warning";
-                            }
-                          @endphp
-                          <button class="btn btn-{{ $btn }} {{ $class }}" type="button" name="setapprover" data-user-id="{{ $value->id }}" > {{ $approver }} </button>
-                        </td>
-                      </tr>
+                      @if ($user_acc[$value->id] != 'admin' AND $user_acc[$value->id] != 'university-staff')
+                        <tr>
+                          <td>{{ $value->first_name }}</td>
+                          <td>{{ $value->last_name }}</td>
+                          <td>{{ ucwords(str_replace('-', ' ', $user_acc[$value->id])) }} </td>
+                          <td> @php $help::userAttribute($position, $value->id); @endphp </td>
+                          <td> @php $help::userAttribute($organization, $value->id); @endphp </td>
+                          <td id="approver-status-{{ $value->id }}">{{ $value->is_approver == 'true' ? 'YES' : 'NO' }}</td>
+                          <td>
+                            @php extract( $help::setAttribute($value->is_approver) ); @endphp
+                            <button class="btn btn-{{ $btn }} {{ $class }}" type="button" name="setapprover" data-user-id="{{ $value->id }}" > {{ $approver }} </button>
+                          </td>
+                        </tr>
+                      @endif
                     @endforeach
                   </tbody>
                   <tfoot>

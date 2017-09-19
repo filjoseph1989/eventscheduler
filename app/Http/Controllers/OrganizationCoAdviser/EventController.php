@@ -52,12 +52,13 @@ class EventController extends Controller
         # Is event not belong to personal event?
         if ($id != 4) {
           if ($id == 2) {
-            $organization = Organization::all();
+            $organization = OrganizationGroup::with('organization')
+              ->where('user_id', '=', Auth::user()->id)
+              ->get();
+
             return view('pages/users/organization-co-adviser/events/list1', compact(
                 'organization'
-              ))->with([
-                'login_type' => $login_type
-              ]);
+              ))->with([ 'login_type' => 'user' ]);
           } else {
             $eventCategory = EventCategory::find($id);
             $event         = Event::where('event_category_id', '=', $id)

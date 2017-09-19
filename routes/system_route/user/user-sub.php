@@ -41,4 +41,4 @@ Route::name('organization.gets')->post('/organization/gets', 'OrganizationContro
 Route::name('notification.show')->get('/notification/show', 'ManageNotificationController@showNotificationPage'); //unpassed events data
 Route::name('event.show')->get('notifications/events/show', 'ManageNotificationController@showEventList');
 Route::name('event.notify')->post('/events/notify', 'ManageNotificationController@notify');
-Route::name('email')->get('/email', 'MailController@index'); //test for email notif
+// Route::name('email')->get('/email', 'MailController@index'); //test for email notif
