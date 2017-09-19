@@ -49,9 +49,8 @@ class WithinOrganizationEventsController extends Controller
     {
         $event = Event::where('organization_id', '=', $id)->get();
 
-        return view('pages/users/list', compact('event'))->with([
-            'login_type' => 'user'
-        ]);
+        return view('pages/users/list', compact('event'))
+            ->with([ 'login_type' => 'user' ]);
     }
 
     /**

@@ -34,7 +34,13 @@
                 <h2> LIST EVENTS </h2>
               </div>
               <div class="body">
-                <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                <?php 
+                  $class = "";
+                  if ($event->count() > 10) {
+                    $class = "js-basic-example dataTable";
+                  }
+                ?>
+                <table class="table table-bordered table-striped table-hover {{ $class }}">
                   <thead>
                     <tr>
                       <th>Title</th>

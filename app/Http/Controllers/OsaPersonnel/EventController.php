@@ -54,7 +54,10 @@ class EventController extends Controller
         # Is event not belong to personal event?
         if ($id != 4) {
           if ($id == 2) {
-            $organization = Organization::all();
+            $organization = OrganizationGroup::with('organization')
+              ->where('user_id', '=', Auth::user()->id)
+              ->get();
+              
             return view('pages/users/osa-personnel/events/list1', compact(
                 'organization'
               ))->with([
