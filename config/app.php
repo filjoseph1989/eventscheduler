@@ -175,6 +175,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\SchedulerProvider::class,
 
         # Used to send sms
         Nexmo\Laravel\NexmoServiceProvider::class,
@@ -238,6 +239,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Nexmo' => \Nexmo\Laravel\Facade\Nexmo::class,
         'Twitter' => Thujohn\Twitter\Facades\Twitter::class,
+        'RandomHelper' => App\Providers\SchedulerProvider::class,
     ],
 
 ];

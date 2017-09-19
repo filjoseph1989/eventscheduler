@@ -4,15 +4,16 @@ namespace App\Http\Controllers\OsaPersonnel;
 
 use Auth;
 use Illuminate\Http\Request;
+use App\Helpers\RandomHelper;
 use App\Http\Controllers\Controller;
 use App\Library\OsaPersonnelLibrary as OsaPersonnel;
 
 # Models
-use App\Models\OrganizationGroup;
-use App\Models\Organization;
 use App\Models\User;
 use App\Models\Position;
 use App\Models\UserAccount;
+use App\Models\Organization;
+use App\Models\OrganizationGroup;
 
 /**
  * This class controller handles all the Http request
@@ -37,7 +38,7 @@ class OrganizationGroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(RandomHelper $help)
     {
       $user_acc     = [];
       $organization = [];
@@ -80,7 +81,7 @@ class OrganizationGroupController extends Controller
       }
 
       return view('pages/users/osa-user/manage-users/assign-approver', compact(
-        'user_acc', 'organization', 'position', 'og', 'all_user'
+        'user_acc', 'organization', 'position', 'og', 'all_user', 'help'
         ))->with(['login_type' => $this->login_type]);
     }
     
