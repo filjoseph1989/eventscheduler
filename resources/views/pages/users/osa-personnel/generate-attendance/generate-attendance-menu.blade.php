@@ -62,7 +62,7 @@
                 <i class="material-icons">date_range</i>
               </div>
               <div class="content">
-                <div class="text">Confirm and View Organization Members'</div>
+                <div class="text">View Organization Members'</div>
                 <div class="number">Event Expected Attendance/s</div>
               </div>
             </div>
