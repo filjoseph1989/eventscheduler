@@ -9,6 +9,8 @@ use App\Library\OrgHeadLibrary as OrgHead;
 
 # Models
 use App\Models\OrganizationGroup;
+use App\Models\OrganizationHeadGroup;
+use App\Models\User;
 
 /**
  * This class controller handles all the Http request
@@ -160,9 +162,24 @@ class OrganizationGroupController extends Controller
      * @param Request $data
      * @return void
      */
-    public function acceptNewMember(Request $data)
+    public function acceptNewMember()
     {
-      echo "wala pa ni";
+      $u = [];
+      //get the org the user is leading
+      $org_headed = OrganizationHeadGroup::where('user_id', Auth::user()->id)->get();
+      //get the org grp instance of this org with membership_status - 'no'
+      $org_grp = OrganizationGroup::with('position')->where('organization_id', $org_headed[0]->organization_id)
+      ->where('membership_status', 'no')
+      ->get();
+      //get all necessary details of the user/s found in this org grp
+      foreach ($org_grp as $key => $value) {
+        $u[$value->id] = User::with('department', 'course')
+        ->where('id', $value->user_id)->get();
+      }
+      $login_type = 'user';
+      return view('pages.users.organization-head.members.accept-membership-request', compact(
+        'login_type', 'u', 'org_grp' 
+      ));
     }
 
     /**
