@@ -52,7 +52,7 @@
                     <tbody>
                       @foreach ($organization as $key => $org)
                         <tr>
-                          <td><a href="#">{{ $org->name }}</a></td>
+                          <td><a href="{{ route('event-within-organization', $org->id) }}">{{ $org->name }}</a></td>
                         </tr>
                       @endforeach
                     </tbody>

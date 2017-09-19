@@ -33,8 +33,8 @@ class EventController extends Controller
      *
      * # Issue 82
      *
-     * @param  [type] $id [description]
-     * @return [type]     [description]
+     * @param  int $id
+     * @return \Illuminate\Response
      */
     public function index($id = null)
     {
