@@ -155,7 +155,7 @@ class EventController extends Controller
       );
 
       $request['organization_id'] = 1;
-
+ 
       # Replace with defaults the following
       $index = ['notify_via_facebook', 'notify_via_twitter', 'notify_via_sms', 'notify_via_email'];
       foreach ($index as $key => $value) {
@@ -265,7 +265,9 @@ class EventController extends Controller
 
         # Get the events of the organization
         if ($organization->exists) {
-          $event = Event::where('organization_id', '=', $organization->organization_id)->get();
+          // $event = Event::where('organization_id', '=', $organization->organization_id)->get();
+          //changed because OSA can access all organization events
+          $event = Event::where('event_category_id', '!=', 2)->get();
         }
 
         # Display view

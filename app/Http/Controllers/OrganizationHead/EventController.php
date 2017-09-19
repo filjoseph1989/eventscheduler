@@ -36,7 +36,7 @@ class EventController extends Controller
      */
     public function index($id = null)
     {
-      # is head loggedin?
+      # is head loggedin? 
       parent::loginCheck();
 
       # Is the user an head?

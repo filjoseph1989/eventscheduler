@@ -451,7 +451,7 @@ class EventController extends Controller
         ]);
     }
 
-    /**
+    /** 
      * Manage notification
      *
      * @return void
