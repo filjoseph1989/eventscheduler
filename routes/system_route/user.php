@@ -360,6 +360,6 @@ Route::prefix('users')->group(function() {
 
   }); 
 
-  Route::name('event-within-organization')->get('/all-events/organization/{id}', 'WithinOrganizationEventsController@show');
+  Route::name('event-within-organization')->get('/all-events/within/organization/{id}', 'WithinOrganizationEventsController@show');
 
 });

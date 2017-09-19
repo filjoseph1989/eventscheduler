@@ -55,7 +55,7 @@
                   </thead>
                   <tbody class="js-sweetalert">
                     <?php foreach ($event as $key => $value): ?>
-                      <tr>
+                      <tr data-id="{{ $value->id }}">
                         <td>{{ $value->title }}</td>
                         <td>{{ $value->venue }}</td>
                         <td>{{ date("M d, Y", strtotime($value->date_start)) }}</td>
@@ -65,7 +65,7 @@
                         <td>{{ $value->status == 1 ? "Approved" : "Unapproved" }}</td>
                         <td>
                           <a href="#" class=""> <i class="material-icons">delete</i> </a>
-                          <a href="#" class="view-event" data-id="{{ $value->id }}" data-toggle="modal" data-target="#view-event"> <i class="material-icons">visibility</i></a>
+                          <a href="#" class="event-details" data-toggle="modal" data-target="#view-event"> <i class="material-icons">visibility</i></a>
                         </td>
                       </tr>
                     <?php endforeach; ?>
@@ -99,7 +99,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h4 class="modal-title" id="view-event-title">{{-- Events title goes here --}}</h4>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" id="event-details-body">
           <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <table class="table table-striped">
