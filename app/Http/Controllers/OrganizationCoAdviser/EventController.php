@@ -43,17 +43,32 @@ class EventController extends Controller
       $this->co_adviser->isCoAdviser();
 
       $login_type = "user";
+
       if ($id == null) {
         return view('pages/users/organization-co-adviser/events/choices', compact(
           'login_type'
         ));
       } else {
+        # Is event not belong to personal event?
         if ($id != 4) {
-          $eventCategory = EventCategory::find($id);
-          $event         = Event::where('event_category_id', '=', $id)->with('organization')->get();
-          return view('pages/users/organization-co-adviser/events/list', compact(
-            'login_type', 'eventCategory', 'event', 'id'
-          ));
+          if ($id == 2) {
+            $organization = Organization::all();
+            return view('pages/users/organization-co-adviser/events/list1', compact(
+                'organization'
+              ))->with([
+                'login_type' => $login_type
+              ]);
+          } else {
+            $eventCategory = EventCategory::find($id);
+            $event         = Event::where('event_category_id', '=', $id)
+              ->with('organization')
+              ->get();
+
+            return view('pages/users/organization-co-adviser/events/list', compact(
+              'login_type', 'eventCategory', 'event'
+            ));
+
+          }
         } elseif ($id == 4) {
           # Issue: 45
           #  Note: Set some event to archive when date is before the current date
@@ -62,12 +77,12 @@ class EventController extends Controller
             ->where('user_id', '=', Auth::user()->id)
             ->get();
           return view('pages/users/organization-co-adviser/events/mylist', compact(
-            'login_type', 'event', 'id'
+            'login_type', 'event'
           ));
-        } else {
-          return back();
         }
       }
+
+      return back();
     }
 
     /**

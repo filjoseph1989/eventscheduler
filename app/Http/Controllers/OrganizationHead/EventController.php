@@ -12,6 +12,7 @@ use App\Http\Controllers\ManageNotificationController;
 # Models
 use App\Models\Event;
 use App\Models\EventType;
+use App\Models\Organization;
 use App\Models\PersonalEvent;
 use App\Models\EventCategory;
 use App\Models\OrganizationGroup;
@@ -50,14 +51,24 @@ class EventController extends Controller
       } else {
         # Is event not belong to personal event?
         if ($id != 4) {
-          $eventCategory = EventCategory::find($id);
-          $event         = Event::where('event_category_id', '=', $id)
-            ->with('organization')
-            ->get();
+          if ($id == 2) {
+            $organization = Organization::all();
+            return view('pages/users/organization-head/events/list1', compact(
+                'organization'
+              ))->with([
+                'login_type' => $login_type
+              ]);
+          } else {
+            $eventCategory = EventCategory::find($id);
+            $event         = Event::where('event_category_id', '=', $id)
+              ->with('organization')
+              ->get();
 
-          return view('pages/users/organization-head/events/list', compact(
-            'login_type', 'eventCategory', 'event'
-          ));
+            return view('pages/users/organization-head/events/list', compact(
+              'login_type', 'eventCategory', 'event'
+            ));
+
+          }
         } elseif ($id == 4) {
           # Issue: 45
           #  Note: Set some event to archive when date is before the current date
