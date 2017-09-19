@@ -51,8 +51,10 @@ class EventController extends Controller
       } else {
         # Is event not belong to personal event?
         if ($id != 4) {
-          if ($id == 2) {
-            $organization = Organization::all();
+          if ($id == 2) { //sets within org event category
+            //this will get the within org events of only the organizations the user belongs to
+            $organization = OrganizationGroup::with('organization')->where('user_id', Auth::user()->id)->get();
+            // $organization = Organization::all();
             return view('pages/users/organization-head/events/list1', compact(
                 'organization'
               ))->with([

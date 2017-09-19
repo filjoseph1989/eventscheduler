@@ -54,6 +54,7 @@
                       <th>Organization</th>
                       <th>Mobile Number</th>
                       <th>Facebook</th>
+                      <th>Reason for the Absence</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -66,6 +67,7 @@
                         <td>{{ $org[$value->user_id] }}</td>
                         <td>{{ $value->user->mobile_number }}</td>
                         <td>{{ $value->user->facebook_username }}</td>
+                        <td>{{ $value->reason }}</td>
                       </tr>
                     @endforeach
                   </tbody>

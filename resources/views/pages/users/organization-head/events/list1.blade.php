@@ -47,12 +47,12 @@
                   @endphp
                   <table class="table table-striped table-hover {{ $class }}">
                     <thead>
-                      <th>Organizatin Name</th>
+                      <th>Organization Name</th>
                     </thead>
                     <tbody>
                       @foreach ($organization as $key => $org)
                         <tr>
-                          <td><a href="#">{{ $org->name }}</a></td>
+                          <td><a href="#">{{ $org->organization->name }}</a></td>
                         </tr>
                       @endforeach
                     </tbody>
