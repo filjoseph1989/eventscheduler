@@ -72,7 +72,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="event-details-title">Manage Notification for Event <span id="event-name">Name</span></h4>
+          <h4 class="modal-title" id="event-details-title">Manage Notification for Event <span id="event-name"> </span></h4>
         </div>
         <div class="modal-body table-responsive event-table" id="event-details-body">
           <form class="" action="{{ route('org-adviser.update-notification') }}" method="post">

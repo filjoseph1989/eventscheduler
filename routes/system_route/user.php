@@ -358,8 +358,8 @@ Route::prefix('users')->group(function() {
     ###manage org members / user routes
     Route::name('user-admin.approverstate.update')->post('approver/update', 'UserAdmin\UserController@setApprover');
 
-  });
+  }); 
 
-  Route::name('event-within-organization')->get('/event/within/organization/{id}', 'WithinOrganizationEventsController@show');
+  Route::name('event-within-organization')->get('/all-events/within/organization/{id}', 'WithinOrganizationEventsController@show');
 
 });

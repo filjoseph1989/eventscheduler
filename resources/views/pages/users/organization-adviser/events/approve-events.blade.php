@@ -48,7 +48,7 @@
                       <th>Date Start</th>
                       <th>Time</th>
                       <th>Date End</th>
-                      <th>Time</th>
+                      <th>Time</th> 
                       <th>Status</th>
                       <th>Action</th>
                     </tr>
@@ -57,9 +57,7 @@
                     @if (isset($ev))
                       @foreach ($ev as $key => $value)
                         <tr data-id="{{ $value->id }}">
-                          <td>
-                            <a href="#" class="event-details" data-toggle="modal" data-target="#event-details">{{ str_limit($value->title, 12) }}</a>
-                          </td>
+                          <td>{{ $value->title }}</td>
                           <td>{{ $value->org_name }}</td>
                           <td>{{ $value->title }}</td>
                           <td>{{ date("M d, Y", strtotime($value->date_start)) }}</td>
@@ -70,6 +68,9 @@
                           <td>
                             <a href="{{ route('org-adviser.approved.event', [$value->id] ) }}" title="approve this event">
                               <i class="material-icons">thumb_up</i>
+                            </a>
+                            <a href="#" class="event-details" title="further details" data-toggle="modal" data-target="#event-details">
+                              <i class="material-icons">visibility</i>
                             </a>
                             <a href="{{ route('org-adviser.disapproved.event', [$value->id] ) }}" class="" title="disapprove this event">
                               <i class="material-icons">thumb_down</i>
