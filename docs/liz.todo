@@ -219,15 +219,29 @@ there will be list of all events the user is expected to go to, plus the org, an
 ☐ try also with photos 
 ☐ try to improve facebook event notification sending through facebook page , ung may html, and photos 
 
-☐ try all and right error trapping before blade or message once a variable is empty or undefined
-
 ☐ University staff account will be the one who inputs the events from the academic calendar that will be displayed in the Public View Calendar.
 ☐ finish all university staff functionalities and blades
 ☐ finish all admin of users functionalities and blades
 
+☐ make system detect conflict of schedules to all events. for every user account typer, it must have a blade for list of conflicted events
+  ☐ osa
+  ☐ org ad
+  ☐ org head
+  ☐ org member
+  ☐ org co-ad  
+☐ for each user, must have the functionality to change their own password and usernames
+    ☐ osa
+    ☐ org ad
+    ☐ org head
+    ☐ org member
+    ☐ org co-ad 
+☐ make "Remember Me" feature functional at login menu
+
+☐ try all and right error trapping before blade or message once a variable is empty or undefined
 ☐ clean, delete all unecessaries
 
 ☐ finish results and discussion docs. 
+☐ start usability testing 
 
 
 ✔ add event details on Generate Attendance > View Organization Members’ Event Expected Attendances > list of orgs > list of events > Attendance Sheet
