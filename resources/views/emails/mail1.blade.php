@@ -21,16 +21,4 @@
 
     @include('beautymail::templates.ark.contentEnd')
 
-    {{-- @include('beautymail::templates.ark.heading', [ 'heading' => 'Another headline', 'level' => 'h2' ]) --}}
-
-    {{--
-
-    @include('beautymail::templates.ark.contentStart')
-
-        <h4 class="secondary"><strong>Hello World again</strong></h4>
-        <p>This is another test</p>
-
-    @include('beautymail::templates.ark.contentEnd')
-
-    --}}
 @stop
