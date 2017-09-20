@@ -174,6 +174,12 @@ tasks:
 
 ✔ retest forgot password if working
 
+☐ presentation sa FRIDAY 1-3PM {
+    INGA NI PAGKA EXPLAIN
+    ☐GENERAL FEATURES (THE OLD SYSTEM 190A-APPROVED PROPOSAL) 
+    ☐ADDED FEATURES 
+  }
+
 ☐ org head > change [list of organization] to [list of all university organizations]
 ☐ org head > list of organization > at the profile of every org, indicate the user's position if he is a member
 ☐ org head > members > all members > [must show list of organizations the user belongs to] > List of org members
@@ -200,7 +206,12 @@ there will be list of all events the user is expected to go to, plus the org, an
 ☐ org co-adviser > events > (delete approve events tab) 
 ☐ org co-adviser > members > all members > [must show list of organizations the user belongs to] > List of org members
 
-☐ osa personnel > list of organization > at the profile of every org, indicate the user's position if he is a member
+☐ osa personnel > organization >list of organization > at the profile of every org, indicate the user's position if he is a member
+☐ osa personnel > organization > add organization > select the logo (make it functional, kanang maka browse og picture ang system from pc)
+☐ osa personnel > organization > add organization > select the color (make it functional, (i don't know how)
+☐ osa personnel > organization > add organization > system always say "The url is not a valid URL." y? (make it functional, (i don't know how)
+/// tama ra na dili maaccess ni osa ang mga within orgs events
+☐ osa personnel > generate attendance > list of orgs (osa must access all organizations) - fix
 
 ☐ do facebook direct message event notification sending 
 ☐ try also with photos
