@@ -132,7 +132,7 @@ Route::prefix('users')->group(function() {
     Route::name('org-head.members.add')->get('/members/add', 'OrganizationHead\OrganizationGroupController@create');
     Route::name('org-head.members.search')->post('/members/search', 'OrganizationHead\UserController@search');
     Route::name('org-head.members.new')->post('/members/new', 'OrganizationHead\OrganizationGroupController@storeNewMember');
-    Route::name('org-head.members.accept')->post('/members/accept', 'OrganizationHead\OrganizationGroupController@acceptNewMember');
+    Route::name('org-head.members.accept')->get('/members/accept', 'OrganizationHead\OrganizationGroupController@acceptNewMember');
 
     ####manage schedule route
     Route::name('org-head.manage-schedule')->get('/manage-schedule', 'OrganizationHead\EventController@manageSchedule');

@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+  use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class OrganizationHeadGroup extends Model
-{
+{ 
   use SoftDeletes;
 
   /**
@@ -42,4 +42,8 @@ class OrganizationHeadGroup extends Model
     return $this->belongsTo('App\Models\Organization');
   }
 
+  public function users()
+  {
+    return $this->hasMany('App\Models\User');
+  }
 }

@@ -54,10 +54,10 @@ class OrganizationController extends Controller
         because that used only to user wherein not a member to an organization yet
         but is active to system.
        */
-      $organization = Organization::all()->where('id', '!=', 1);
+      $orgs = Organization::all()->except(1); //osa can access all organizations, 1 is the default org
       $adviser      = OrganizationAdviserGroup::with('user')->get()->toArray();
 
-      $organization = self::includeAdviser($organization, $adviser);
+      $organization = self::includeAdviser($orgs, $adviser);
 
       # Render view
       return view('pages/users/osa-personnel/organization/list', compact('organization'))
