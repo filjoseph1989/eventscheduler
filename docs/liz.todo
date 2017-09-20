@@ -219,8 +219,16 @@ there will be list of all events the user is expected to go to, plus the org, an
 ☐ try also with photos 
 ☐ try to improve facebook event notification sending through facebook page , ung may html, and photos 
 
-☐ try all and right error trapping blade or message once a variable is empty or undefined
+☐ try all and right error trapping before blade or message once a variable is empty or undefined
+
 ☐ University staff account will be the one who inputs the events from the academic calendar that will be displayed in the Public View Calendar.
+☐ finish all university staff functionalities and blades
+☐ finish all admin of users functionalities and blades
+
+☐ clean, delete all unecessaries
+
+☐ finish results and discussion docs. 
+
 
 ✔ add event details on Generate Attendance > View Organization Members’ Event Expected Attendances > list of orgs > list of events > Attendance Sheet
 ✔ add event details on Generate Attendance > Confirm and View Organization Members’ Event Expected Attendances > list of orgs > list of events > Attendance Sheet
