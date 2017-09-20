@@ -150,6 +150,7 @@ Follow Control Flow in the docs
         ☐ Email (on/off)
         ☐ SMS (on/off)
 
+        
 tasks:
       ☐ next tasks: (OSA account)
       ✔ next tasks: (Org-member account) @done(2017-09-14 03:44)
@@ -176,7 +177,7 @@ tasks:
 
 ☐ presentation sa FRIDAY 1-3PM {
     INGA NI PAGKA EXPLAIN
-    ☐GENERAL FEATURES (THE OLD SYSTEM 190A-APPROVED PROPOSAL) 
+    ☐GENERAL FEATURES (compare THE OLD SYSTEM 190A-APPROVED PROPOSAL) 
     ☐ADDED FEATURES 
   }
 
