@@ -40,9 +40,9 @@
                       @foreach ($org_grp as $key => $val)
                           {{-- <?php $user_id = $val->id; ?> --}}
                           <tr>
-                            <td><a href="#">{{ $u[$val->id]->first_name }} {{ $u[$val->id]->last_name }}</a></td>
-                            <td><a href="#">{{ $u[$val->id]->course->name }}</a></td>
-                            <td><a href="#">{{ $u[$val->id]->department->name }}</a></td>
+                            <td><a href="#">{{ $u[$val->id][0]->first_name }} {{ $u[$val->id][0]->last_name }}</a></td>
+                            <td><a href="#">{{ $u[$val->id][0]->course->name }}</a></td>
+                            <td><a href="#">{{ $u[$val->id][0]->department->name }}</a></td>
                             <td><a href="#">{{-- $value->position->name --}}</a></td>
                             <td>{{-- $value->membership_status --}}</td>
                             <td>

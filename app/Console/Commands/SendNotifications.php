@@ -69,7 +69,7 @@ class SendNotifications extends Command
       foreach ($event as $key => $value) {
         # gather organization member emails
         self::getUser($value);
-
+        
         $month = date('m', strtotime($value->date_start));
         $day   = date('d', strtotime($value->date_start)) - date('d');
 
