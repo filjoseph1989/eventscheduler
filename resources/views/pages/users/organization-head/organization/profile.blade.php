@@ -39,6 +39,7 @@
   	        <strong>{{ $message }}</strong>
       		</div>
     		@endif
+
         <div class="row clearfix">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
@@ -55,6 +56,7 @@
                       @else
                         <li><a href="#">No Options</a></li>
                       @endif
+                      <li><a href="#">List of Members</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -119,6 +121,65 @@
                         @endif
                       </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row clearfix">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+              <div class="header">
+                <h2> List of Officers </h2>
+                <ul class="header-dropdown m-r--5">
+                  <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                      <i class="material-icons">more_vert</i>
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+                      @if ($orgHead === true AND $isMember === true)
+                        <li><a href="{{ route('org-head.org-edit', $organization->id) }}"><i class="material-icons">create</i> Edit</a></li>
+                      @else
+                        <li><a href="#">No Options</a></li>
+                      @endif
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="body table-responsive">
+                <div class="row">
+                  <div class="col-sm-12 col-xs-12">
+                    <?php $class = "js-basic-example dataTable"; ?>
+                    <table class="table table-striped table-hover {{ $class }}">
+                      <thead>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Department</th>
+                        <th>Course</th>
+                      </thead>
+                      <tbody>
+                        <?php if ($officers->count() == 0): ?>
+                          {{ "No data yet" }}
+                        <?php else: ?>
+                          <?php foreach ($officers as $key => $officer): ?>
+                            <?php $trClass = ($officer->user->id == $user_id) ? "login-officer" : "" ?>
+                            <tr class="{{ $trClass }}">
+                              <td>{{ $officer->user->first_name }} {{ $officer->user->last_name }}</td>
+                              <td>{{ $officer->position->name }}</td>
+                              <td>{{ $officer->user->department->name }}</td>
+                              <td>{{ $officer->user->course->name }}</td>
+                            </tr>
+                          <?php endforeach; ?>
+                        <?php endif; ?>
+                      </tbody>
+                      <tfoot>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Department</th>
+                        <th>Course</th>
+                      </tfoot>
+                    </table>
                   </div>
                 </div>
               </div>

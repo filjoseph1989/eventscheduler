@@ -4,7 +4,7 @@
 /**
  * Style
  * @type {String}
- * @version 0.19
+ * @version 0.20
  */
 
 @import url(materialize.css);
@@ -11105,4 +11105,9 @@ tr>td:nth-child(2) {
 .organization-status,
 .organization-status-click {
   cursor:pointer;
+}
+
+.login-officer {
+  font-weight: 600;
+  color: goldenrod;
 }

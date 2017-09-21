@@ -23,6 +23,8 @@ class OrganizationController extends Controller
 {
     private $org_head;
 
+    private $path = "pages/users/organization-head/";
+
     /**
      * Guard
      */
@@ -55,7 +57,7 @@ class OrganizationController extends Controller
       $organization = Organization::all()->where('id', '!=', 1);
 
       # Render view
-      return view('pages/users/organization-head/organization/list', compact(
+      return view($this->path . 'organization/list', compact(
         'login_type', 'organization'
       ));
     }
@@ -104,14 +106,24 @@ class OrganizationController extends Controller
       # is the user an adviser?
       $this->org_head->isOrgHead();
 
-      $login_type   = 'user';
       $organization = Organization::find($id);
-      $orgHead      = self::_headOfThisOrganization();
-      $isMember     = self::_isAmember($id);
+      $officers     = OrganizationGroup::with([
+          'user' => function($query) {
+            $query->with(['department', 'course'])->get();
+          },
+          'position'
+        ])->where('organization_id', '=', $id)
+          ->get();
 
-      return view('pages/users/organization-head/organization/profile', compact(
-        'login_type', 'organization', 'isMember', 'orgHead'
-      ));
+      $orgHead  = self::_headOfThisOrganization();
+      $isMember = self::_isAmember($id);
+
+      return view($this->path . 'organization/profile', compact(
+        'organization', 'isMember', 'orgHead', 'officers'
+      ))->with([
+        'login_type' => 'user',
+        'user_id'    => Auth::user()->id
+      ]);
     }
 
     /**
@@ -133,7 +145,7 @@ class OrganizationController extends Controller
       $login_type   = 'user';
 
       # Display to browser
-      return view('pages/users/organization-head/organization/edit', compact(
+      return view($this->path . 'organization/edit', compact(
         'organization', 'login_type'
       ));
     }

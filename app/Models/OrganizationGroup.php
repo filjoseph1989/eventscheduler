@@ -36,10 +36,15 @@ class OrganizationGroup extends Model
       return $this->belongsTo('App\Models\Organization');
     }
 
-  public function position()
-  {
-    return $this->belongsTo('App\Models\Position');
-  }
+    /**
+     * A Relationship with position
+     *
+     * @return object
+     */
+    public function position()
+    {
+      return $this->belongsTo('App\Models\Position');
+    }
 
     /**
      * Return the user profile information
