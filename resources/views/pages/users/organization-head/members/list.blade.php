@@ -22,7 +22,7 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> LIST OF USERS </h2>
+                <h2> LIST OF REGISTERED USERS </h2>
               </div>
               <div class="body table-responsive">
                 <table class="table table-striped table-hover js-basic-example dataTable">
@@ -31,35 +31,16 @@
                       <th>Name</th>
                       <th>Course</th>
                       <th>Department</th>
-                      <th>Position</th>
-                      <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($user as $key => $value)
-                      <?php $user_id = $value->id; ?>
+                    @foreach ($members as $key => $member)
                       <tr>
-                        <td><a href="#">{{ $value->first_name }} {{ $value->last_name }}</a></td>
-                        <td><a href="#">{{ $value->course->name }}</a></td>
-                        <td><a href="#">{{ $value->department->name }}</a></td>
-                        <td>
-                          <select class="" id="user-postion" name="position_id">
-                            <option value="">-- Select Position --</option>
-                            @foreach ($position as $key => $value)
-                              <option value="{{ $value->id }}">{{ $value->name }}</option>
-                            @endforeach
-                          </select>
-                        </td>
-                        <td>{{ $value->status == '1' ? "Active" : "Inactive" }}</td>
-                        <td>
-                          <form class="" action="{{ route('org-head.members.new') }}" method="post">
-                            {{ csrf_field() }}
-                            <input type="hidden" id="add-new-member-position" name="position_id" value="1">
-                            <input type="hidden" name="user_id" value="{{ $user_id }}">
-                            <button type="submit" class="btn btn-success" name="add">Add</button>
-                          </form>
-                        </td>
+                        <td><a href="#">{{ $member->user->first_name }} {{ $member->user->last_name }}</a></td>
+                        <td><a href="#">{{ $member->user->course->name }}</a></td>
+                        <td><a href="#">{{ $member->user->department->name }}</a></td>
+                        <td><button type="submit" class="btn btn-success invite" data-user-id="{{ $member->user->id }}" name="invite">Invite</button></td>
                       </tr>
                     @endforeach
                   </tbody>

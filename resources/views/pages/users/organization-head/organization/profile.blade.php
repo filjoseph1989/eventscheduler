@@ -150,7 +150,7 @@
               <div class="body table-responsive">
                 <div class="row">
                   <div class="col-sm-12 col-xs-12">
-                    <?php $class = "js-basic-example dataTable"; ?>
+                    @php $class = "js-basic-example dataTable"; @endphp
                     <table class="table table-striped table-hover {{ $class }}">
                       <thead>
                         <th>Name</th>
@@ -159,19 +159,19 @@
                         <th>Course</th>
                       </thead>
                       <tbody>
-                        <?php if ($officers->count() == 0): ?>
+                        @if ($officers->count() == 0)
                           {{ "No data yet" }}
-                        <?php else: ?>
-                          <?php foreach ($officers as $key => $officer): ?>
-                            <?php $trClass = ($officer->user->id == $user_id) ? "login-officer" : "" ?>
+                        @else
+                          @foreach ($officers as $key => $officer)
+                            @php $trClass = ($officer->user->id == $user_id) ? "login-officer" : "" @endphp
                             <tr class="{{ $trClass }}">
                               <td>{{ $officer->user->first_name }} {{ $officer->user->last_name }}</td>
                               <td>{{ $officer->position->name }}</td>
                               <td>{{ $officer->user->department->name }}</td>
                               <td>{{ $officer->user->course->name }}</td>
                             </tr>
-                          <?php endforeach; ?>
-                        <?php endif; ?>
+                          @endforeach
+                        @endif
                       </tbody>
                       <tfoot>
                         <th>Name</th>

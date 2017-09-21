@@ -106,7 +106,7 @@ Route::prefix('users')->group(function() {
     Route::name('org-co-adviser.official-attendance-member-list')->get('/generate/official-attendance/member-list/{id}/{eid}', 'OrganizationCoAdviser\GenerateAttendanceController@officialAttendanceMemberList');
 
   });
- 
+
   # Route for organization head
   Route::prefix('org-head')->group(function() {
     Route::name('org-head.org-list')->get('/list_of_organizations','OrganizationHead\OrganizationController@index');
@@ -129,8 +129,9 @@ Route::prefix('users')->group(function() {
     Route::name('org-head.userattendance.store')->post('user-attendance/store', 'OrganizationHead\UserAttendanceController@store');
     Route::name('org-head.org-membership')->post('/org-membership', 'OrganizationHead\OrganizationGroupController@store');
     Route::name('org-head.members.list')->get('/members/list', 'OrganizationHead\OrganizationGroupController@index');
+    Route::name('org-head.members.invite')->get('/members/invite', 'OrganizationHead\UserController@show');
     Route::name('org-head.members.search')->post('/members/search', 'OrganizationHead\UserController@search');
-    Route::name('org-head.members.new')->post('/members/new', 'OrganizationHead\OrganizationGroupController@storeNewMember');
+    Route::name('org-head.members.new')->post('/members/new', 'OrganizationHead\OrganizationGroupController@storeNewMember'); # Remove me soon including all code associated with me
     Route::name('org-head.members.accept')->get('/members/accept', 'OrganizationHead\OrganizationGroupController@acceptNewMember');
 
     ####manage schedule route
@@ -357,7 +358,7 @@ Route::prefix('users')->group(function() {
     ###manage org members / user routes
     Route::name('user-admin.approverstate.update')->post('approver/update', 'UserAdmin\UserController@setApprover');
 
-  }); 
+  });
 
   Route::name('event-within-organization')->get('/all-events/within/organization/{id}', 'WithinOrganizationEventsController@show');
 
