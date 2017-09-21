@@ -185,6 +185,8 @@ Tasks:
     ☐ ADDED FEATURES
   }
 
+✔ add event details on Generate Attendance > View Organization Members’ Event Expected Attendances > list of orgs > list of events > Attendance Sheet @done(2017-09-22 02:04)
+✔ add event details on Generate Attendance > Confirm and View Organization Members’ Event Expected Attendances > list of orgs > list of events > Attendance Sheet @done(2017-09-22 02:04)
 ✔ org head > change [list of organization] to [list of all university organizations] { Change to University Organizations nalang tungod sa space } @done(2017-09-21 15:16)
 ✔ org head > list of organization > at the profile of every org, indicate the user's position if he is a member @done(2017-09-21 16:23)
 ✔ org head > members > all members > [must show list of organizations the user belongs to] > List of org members {ahm all member dinhi kay member lang sa organization sa organization head, wala apil sa lain} @done(2017-09-21 17:17)
@@ -211,7 +213,7 @@ Tasks:
 ☐ osa personnel > generate attendance > list of orgs (osa must access all organizations) - fix
     /// tama ra na dili maaccess ni osa ang mga within orgs events
 
-☐ do facebook direct message event notification sending 
+☐ do facebook direct message event notification sending
 ☐ try also with photos
 ☐ do twitter direct message event notification sending instead of posting in twitter
 ☐ try also with photos
@@ -237,6 +239,12 @@ Tasks:
 ☐ finish results and discussion docs.
 ☐ start usability testing
 
+invitation:
+  if the organization head click invite on user,
+  add that member to organization group table with status 'no' and check if existing
 
-✔ add event details on Generate Attendance > View Organization Members’ Event Expected Attendances > list of orgs > list of events > Attendance Sheet
-✔ add event details on Generate Attendance > Confirm and View Organization Members’ Event Expected Attendances > list of orgs > list of events > Attendance Sheet
+User accept invitation:
+  For the user to accept the invitation,
+  check on notification, tapos, accept, {hm wala pako idea regarding ani}
+  tapos, once click accept, check organization group if exist
+  then set to members_status to 'yes'

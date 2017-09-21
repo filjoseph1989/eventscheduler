@@ -70,8 +70,6 @@ class OrganizationGroupController extends Controller
       ));
     }
 
-
-
     /**
      * Store a new membership request.
      *
