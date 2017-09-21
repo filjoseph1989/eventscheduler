@@ -2,12 +2,12 @@ To Do:
   ☐ Issue 83: In this url, {/users/event/within/organization/1} and when u click on view event, it's not working
   ☐ Issue 82: Optimize this function here
   ☐ Issue 81: Try og gamit sa middleware para sa login check functionality
-  ☐ Issue 80: I improve ang button sa "Set approver" & "Revoke approver"
+  ✔ Issue 80: I improve ang button sa "Set approver" & "Revoke approver" @done (9/21/2017, 3:04:01 PM)
   ☐ Issue 79: Go to this line
-  ☐ Issue 78: I should define another weekly reminder algorithm
+  ✔ Issue 78: I should define another weekly reminder algorithm @done (9/21/2017, 3:04:16 PM)
   ✔ Issue 76: Remove Controllers in OSA personnel that are unused @done(2017-09-14 13:30)
   ☐ Issue 77: Display all event type in OSA and should be able to edit it
-  ☐ Issue 75: Ang pag send og email reminder notification dapat i test sa daghan nga event, dapat daghan email ma receive
+  ✔ Issue 75: Ang pag send og email reminder notification dapat i test sa daghan nga event, dapat daghan email ma receive @done (9/21/2017, 3:04:36 PM)
   ✔ Issue 74: Find alternative to beautymail because it break on laravel 5.5.3 @done (9/18/2017, 5:44:49 PM)
   ✔ Issue 73: Remove na ang MailController kay okay naman maka send naman event reminder pati sa route @done(2017-09-13 22:38)
   ✔ Issue 72: When reminding upcoming event, the system also must check if the event notification is turn on @done(2017-09-08 12:22)
