@@ -60,13 +60,15 @@ class OrganizationGroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function addMember()
     {
       $login_type = 'user';
       return view('pages/users/organization-head/members/add', compact(
         'org', 'login_type', 'member'
       ));
     }
+
+
 
     /**
      * Store a new membership request.
@@ -166,7 +168,7 @@ class OrganizationGroupController extends Controller
     {
       $u = [];
       //get the org the user is leading
-      $org_headed = OrganizationHeadGroup::where('user_id', Auth::user()->id)->get();
+      $org_headed = OrganizationHeadGroup::with('organization')->where('user_id', Auth::user()->id)->get();
       //get the org grp instance of this org with membership_status - 'no'
       $org_grp = OrganizationGroup::with('position')->where('organization_id', $org_headed[0]->organization_id)
       ->where('membership_status', 'no')
@@ -178,7 +180,7 @@ class OrganizationGroupController extends Controller
       }
       $login_type = 'user';
       return view('pages.users.organization-head.members.accept-membership-request', compact(
-        'login_type', 'u', 'org_grp' 
+        'login_type', 'u', 'org_grp', 'org_headed'
       ));
     }
 

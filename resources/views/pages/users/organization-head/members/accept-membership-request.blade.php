@@ -22,7 +22,7 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> LIST OF USERS REQUESTING MEMBERSHIP </h2>
+                <h2> LIST OF USERS REQUESTING MEMBERSHIP for {{ $org_headed[0]->organization->name }} </h2>
               </div>
               <div class="body table-responsive">
                 <table class="table table-striped table-hover js-basic-example dataTable">
@@ -38,13 +38,13 @@
                   </thead>
                   <tbody>
                       @foreach ($org_grp as $key => $val)
-                          {{-- <?php $user_id = $val->id; ?> --}}
+                            <?php $user_id = $val->id; ?> 
                           <tr>
                             <td><a href="#">{{ $u[$val->id][0]->first_name }} {{ $u[$val->id][0]->last_name }}</a></td>
                             <td><a href="#">{{ $u[$val->id][0]->course->name }}</a></td>
                             <td><a href="#">{{ $u[$val->id][0]->department->name }}</a></td>
-                            <td><a href="#">{{-- $value->position->name --}}</a></td>
-                            <td>{{-- $value->membership_status --}}</td>
+                            <td><a href="#">{{ $val->position->name }}</a></td>
+                            <td>{{ $val->membership_status }}</td>
                             <td>
                               <form class="" action="{{ route('org-head.members.new') }}" method="post">
                                 {{ csrf_field() }}
@@ -61,7 +61,9 @@
                       <th>Name</th>
                       <th>Course</th>
                       <th>Department</th>
+                      <th>Position</th>
                       <th>Status</th>
+                      <th>Action</th>
                     </tr>
                   </tfoot>
                 </table>

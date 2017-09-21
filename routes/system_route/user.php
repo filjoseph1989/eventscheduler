@@ -129,7 +129,6 @@ Route::prefix('users')->group(function() {
     Route::name('org-head.userattendance.store')->post('user-attendance/store', 'OrganizationHead\UserAttendanceController@store');
     Route::name('org-head.org-membership')->post('/org-membership', 'OrganizationHead\OrganizationGroupController@store');
     Route::name('org-head.members.list')->get('/members/list', 'OrganizationHead\OrganizationGroupController@index');
-    Route::name('org-head.members.add')->get('/members/add', 'OrganizationHead\OrganizationGroupController@create');
     Route::name('org-head.members.search')->post('/members/search', 'OrganizationHead\UserController@search');
     Route::name('org-head.members.new')->post('/members/new', 'OrganizationHead\OrganizationGroupController@storeNewMember');
     Route::name('org-head.members.accept')->get('/members/accept', 'OrganizationHead\OrganizationGroupController@acceptNewMember');
@@ -304,7 +303,7 @@ Route::prefix('users')->group(function() {
     Route::name('user-admin.my.new.event.submit')->post('/store/new', 'UserAdmin\MyEventController@store');
     Route::name('user-admin.approve.event')->get('/approve/event', 'UserAdmin\EventController@approveEvents');
     Route::name('user-admin.attendance')->get('/attendance', 'UserAdmin\GenerateAttendanceController@index');
-    Route::name('user-admin.event.show')->get('/show/{id?}', 'UserAdmin\EventController@show');
+    Route::name('user-admin.event.show')->get('/show/{id?}', 'UserAdmin\EventController@show'); 
     Route::name('user-admin.attendance.store')->post('/store', 'UserAdmin\GenerateAttendanceController@store');
     Route::name('user-admin.attendance.show')->get('/new/{id}/{eid}', 'UserAdmin\GenerateAttendanceController@show');
     Route::name('user-admin.my.new.event')->get('/my/new/event', 'UserAdmin\MyEventController@create');

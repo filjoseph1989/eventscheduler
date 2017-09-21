@@ -218,7 +218,7 @@ class OrganizationGroupController extends Controller
       $user_acc     = [];
       $organization = [];
       $position     = [];
-      $user         = User::with('userAccount')->get();
+      $user         = User::with('userAccount')->get(); 
       $all_user     = User::all();
 
       foreach ($all_user as $key => $v) {

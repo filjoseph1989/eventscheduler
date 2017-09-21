@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="{{ asset('css/bootstrap-select.css') }}">
   <link rel="stylesheet" href="{{ asset('css/bootstrap-material-datetimepicker.css') }}">
 @endsection
-
+ 
 @section('content')
   <div class="signup-box">
     @if ($errors->any())

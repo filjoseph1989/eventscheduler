@@ -31,7 +31,6 @@
   </a>
   <ul class="ml-menu">
     <li><a href="{{ route('org-head.members.list') }}">All Members</a></li>
-    <li><a href="{{ route('org-head.members.add') }}">Add Members</a></li>
     <li><a href="{{ route('org-head.members.accept') }}">Accept Request</a></li>
   </ul>
 </li>

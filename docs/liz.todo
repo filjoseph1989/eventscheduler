@@ -186,9 +186,8 @@ Tasks:
 
 ✔ org head > change [list of organization] to [list of all university organizations] { Change to University Organizations nalang tungod sa space } @done(2017-09-21 15:16)
 ✔ org head > list of organization > at the profile of every org, indicate the user's position if he is a member @done(2017-09-21 16:23)
-☐ org head > members > all members > [must show list of organizations the user belongs to] > List of org members
-☐ org head > members > add members fix / complete
-☐ org head > members > add members (show in the blade the name of org)
+✔ org head > members > all members > [must show list of members of the organization the user is leading
+✘ org head > members > add members fix / complete //ok na ang accept request, dili pwede mag add ang org head og member sa org kung wala nagrequest ang member to join
 ☐ org head > members > accept request (finish)
 ☐ org member > Check my attendance > (in the blade, there is a search data table, there will be list of all events the user is expected to go to, plus the org, and the user's attendance status)
 ☐ org adviser > list of organization > at the profile of every org, indicate the user's position if he is a member
@@ -211,7 +210,7 @@ Tasks:
 ☐ osa personnel > generate attendance > list of orgs (osa must access all organizations) - fix
     /// tama ra na dili maaccess ni osa ang mga within orgs events
 
-☐ do facebook direct message event notification sending
+☐ do facebook direct message event notification sending 
 ☐ try also with photos
 ☐ do twitter direct message event notification sending instead of posting in twitter
 ☐ try also with photos
