@@ -111,47 +111,49 @@ Follow Control Flow in the docs
       ✔ Generate Confirmed Attendance @done(2017-09-14 03:44) @project(☐Org Member Account)
       ✔ Generate Declined Attendance @done(2017-09-14 03:44) @project(☐Org Member Account)
       ✔ View Org Members' Attendance @done(2017-09-14 03:44) @project(☐Org Member Account)
+      
       (No more confirm my attendance because she can do it at the list of events if he can attend or can't attend button)
-☐OSA Staff Account:
-☐ ✔   Manage Schedule:
-  ☐ Public View
-    ☐ include the org in the details (study fullcalendar.io for this)
-    ☐ Calendar
-    ☐ Create Public View Event
-  ☐ All Organizations Calendar
-    ☐ Calendar
-      ☐ include the org in the details (study fullcalendar.io for this)
-    ☐ Create Among Org Event
-  ☐ Within Organization
-    ☐ include the author in the details (study fullcalendar.io for this)
-    ☐ Calendar
-    ☐ Create Within Organization Event
-  ☐ Personal Schedule Calendar
-    ☐ Calendar
-      ☐ public
-        ☐ included author
-      ☐ private (dapat ang makita lang niya kay iayahang personal private events)
-    ☐ Create My Event
-      ☐ Public
-      ☐ Private
-  ☐ ✔ Generate Attendance:
-    ☐ my organization which i am the head events
-      ☐ Generate Expected Attendance (list of names expected to come)
-        ☐ confirmation(which is manipulated by head or adviser during the actual event)
-      ☐ Generate Confirmed Attendance
-      ☐ Generate Declined Attendance
-      ☐ View and Confirm Org Members' Attendance
-  ☐ ✔ Manage Notifications:
-    ☐ List of Events that needs your approval
-      ☐ Approve Events
-      ☐ Edit Event Notifications Settings
-        ☐ Twitter (on/off)
-        ☐ Facebook (on/off)
-        ☐ Email (on/off)
-        ☐ SMS (on/off)
+✔OSA Staff Account:
+✔ ✔   Manage Schedule:
+✔ Public View
+✔ include the org in the details (study fullcalendar.io for this)
+    ✔ Calendar
+    ✔ Create Public View Event
+  ✔ All Organizations Calendar
+    ✔ Calendar
+      ✔ include the org in the details (study fullcalendar.io for this)
+    ✔ Create Among Org Event
+  ✔ Within Organization
+    ✔ include the author in the details (study fullcalendar.io for this)
+    ✔ Calendar
+    ✔ Create Within Organization Event
+  ✔ Personal Schedule Calendar
+    ✔ Calendar
+      ✔ public
+        ✔ included author
+      ✔ private (dapat ang makita lang niya kay iayahang personal private events)
+    ✔ Create My Event
+      ✔ Public
+      ✔ Private
+  ✔ ✔ Generate Attendance:
+    ✔ my organization which i am the head events
+      ✔ Generate Expected Attendance (list of names expected to come)
+        ✔ confirmation(which is manipulated by head or adviser during the actual event)
+      ✔ Generate Confirmed Attendance
+      ✔ Generate Declined Attendance
+      ✔ View and Confirm Org Members' Attendance
+  ✔ ✔ Manage Notifications:
+    ✔ List of Events that needs your approval
+      ✔ Approve Events
+      ✔ Edit Event Notifications Settings
+        ✔ Twitter (on/off)
+        ✔ Facebook (on/off)
+        ✔ SMS (on/off)
+        ✔ Email (on/off)
 
+        
 tasks:
-      ☐ next tasks: (OSA account)
+      ✔ next tasks: (OSA account)
       ✔ next tasks: (Org-member account) @done(2017-09-14 03:44)
       ✔ next tasks: (Org-adivser account) @done(2017-09-14 01:30) @project(tasks)
       ✔filter confirm and confirmed button to take effect in confirmation field @done(2017-09-10 21:38) @project(tasks)
@@ -172,7 +174,79 @@ tasks:
       >Manage Schedule:
         ✔Calendar (dili clear and details: ang time dili klaro, include org) (study fullcalendar.io for this) @done(2017-09-12 10:25) @project(tasks / >Manage Schedule)
 
-☐ retest forgot password if working
-University staff account will be the one who inputs the events from the academic calendar that will be displayed in the Public View Calendar.
-add event details on Generate Attendance > View Organization Members’ Event Expected Attendances > list of orgs > list of events > Attendance Sheet
-add event details on Generate Attendance > Confirm and View Organization Members’ Event Expected Attendances > list of orgs > list of events > Attendance Sheet
+✔ retest forgot password if working
+
+☐ presentation sa FRIDAY 1-3PM {
+    INGA NI PAGKA EXPLAIN
+    ☐GENERAL FEATURES (compare THE OLD SYSTEM 190A-APPROVED PROPOSAL) 
+    ☐ADDED FEATURES 
+  }
+
+☐ org head > change [list of organization] to [list of all university organizations]
+☐ org head > list of organization > at the profile of every org, indicate the user's position if he is a member
+☐ org head > members > all members > [must show list of organizations the user belongs to] > List of org members
+☐ org head > members > add members fix / complete
+☐ org head > members > add members (show in the blade the name of org)
+☐ org head > members > accept request (finish)
+☐ org member > Check my attendance > (in the blade, there is a search data table, 
+there will be list of all events the user is expected to go to, plus the org, and the user's attendance status)
+
+☐ org adviser > list of organization > at the profile of every org, indicate the user's position if he is a member
+☐ org adviser > Check my attendance > (in the blade, there is a search data table, 
+there will be list of all events the user is expected to go to, plus the org, and the user's attendance status)
+
+☐ org member > list of organization > at the profile of every org, indicate the user's position if he is a member
+☐ org member > members > all members fix /complete
+☐ org member > members > all members > [must show list of organizations the user belongs to] > List of org members
+☐ org member > Check my attendance > (in the blade, there is a search data table, 
+there will be list of all events the user is expected to go to, plus the org, and the user's attendance status)
+
+☐ org co-adviser > list of organization > fix / complete 
+☐ org co-adviser > list of organization > at the profile of every org, indicate the user's position if he is a member
+☐ org co-adviser > Check my attendance > (in the blade, there is a search data table, 
+there will be list of all events the user is expected to go to, plus the org, and the user's attendance status)
+☐ org co-adviser > events > (delete approve events tab) 
+☐ org co-adviser > members > all members > [must show list of organizations the user belongs to] > List of org members
+
+☐ osa personnel > organization >list of organization > at the profile of every org, indicate the user's position if he is a member
+☐ osa personnel > organization > add organization > select the logo (make it functional, kanang maka browse og picture ang system from pc)
+☐ osa personnel > organization > add organization > select the color (make it functional, (i don't know how)
+☐ osa personnel > organization > add organization > system always say "The url is not a valid URL." y? (make it functional, (i don't know how)
+☐ osa personnel > events > approve events > (muingon ag you're not a member of any org)
+    // dapat dili kay maaccess sa osa tanang events except within org, personal private, og personal public events
+☐ osa personnel > generate attendance > list of orgs (osa must access all organizations) - fix
+    /// tama ra na dili maaccess ni osa ang mga within orgs events
+
+☐ do facebook direct message event notification sending 
+☐ try also with photos
+☐ do twitter direct message event notification sending instead of posting in twitter 
+☐ try also with photos 
+☐ try to improve facebook event notification sending through facebook page , ung may html, and photos 
+
+☐ University staff account will be the one who inputs the events from the academic calendar that will be displayed in the Public View Calendar.
+☐ finish all university staff functionalities and blades
+☐ finish all admin of users functionalities and blades
+
+☐ make system detect conflict of schedules to all events. for every user account typer, it must have a blade for list of conflicted events
+  ☐ osa
+  ☐ org ad
+  ☐ org head
+  ☐ org member
+  ☐ org co-ad  
+☐ for each user, must have the functionality to change their own password and usernames
+    ☐ osa
+    ☐ org ad
+    ☐ org head
+    ☐ org member
+    ☐ org co-ad 
+☐ make "Remember Me" feature functional at login menu
+
+☐ try all and right error trapping before blade or message once a variable is empty or undefined
+☐ clean, delete all unecessaries
+
+☐ finish results and discussion docs. 
+☐ start usability testing 
+
+
+✔ add event details on Generate Attendance > View Organization Members’ Event Expected Attendances > list of orgs > list of events > Attendance Sheet
+✔ add event details on Generate Attendance > Confirm and View Organization Members’ Event Expected Attendances > list of orgs > list of events > Attendance Sheet

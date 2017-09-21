@@ -193,7 +193,7 @@ class EventController extends Controller
      * Display events
      *
      * @param  int  $id Organization ID
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response 
      */
     public function show($id = null)
     {

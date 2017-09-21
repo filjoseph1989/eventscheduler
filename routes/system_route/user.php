@@ -106,7 +106,7 @@ Route::prefix('users')->group(function() {
     Route::name('org-co-adviser.official-attendance-member-list')->get('/generate/official-attendance/member-list/{id}/{eid}', 'OrganizationCoAdviser\GenerateAttendanceController@officialAttendanceMemberList');
 
   });
-
+ 
   # Route for organization head
   Route::prefix('org-head')->group(function() {
     Route::name('org-head.org-list')->get('/list_of_organizations','OrganizationHead\OrganizationController@index');
