@@ -22,7 +22,7 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> LIST OF USERS </h2>
+                <h2> LIST OF REGISTERED USERS </h2>
               </div>
               <div class="body table-responsive">
                 <table class="table table-striped table-hover js-basic-example dataTable">
@@ -31,8 +31,6 @@
                       <th>Name</th>
                       <th>Course</th>
                       <th>Department</th>
-                      <th>Position</th>
-                      <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -44,20 +42,11 @@
                         <td><a href="#">{{ $value->course->name }}</a></td>
                         <td><a href="#">{{ $value->department->name }}</a></td>
                         <td>
-                          <select class="" id="user-postion" name="position_id">
-                            <option value="">-- Select Position --</option>
-                            @foreach ($position as $key => $value)
-                              <option value="{{ $value->id }}">{{ $value->name }}</option>
-                            @endforeach
-                          </select>
-                        </td>
-                        <td>{{ $value->status == '1' ? "Active" : "Inactive" }}</td>
-                        <td>
                           <form class="" action="{{ route('org-head.members.new') }}" method="post">
                             {{ csrf_field() }}
                             <input type="hidden" id="add-new-member-position" name="position_id" value="1">
                             <input type="hidden" name="user_id" value="{{ $user_id }}">
-                            <button type="submit" class="btn btn-success" name="add">Add</button>
+                            <button type="submit" class="btn btn-success" name="add">Invite</button>
                           </form>
                         </td>
                       </tr>

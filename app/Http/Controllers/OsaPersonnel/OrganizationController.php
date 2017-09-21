@@ -27,6 +27,8 @@ class OrganizationController extends Controller
 
     private $login_type = "user";
 
+    private $path = "pages/users/osa-personnel/";
+
     /**
      * Guard
      */
@@ -54,13 +56,15 @@ class OrganizationController extends Controller
         because that used only to user wherein not a member to an organization yet
         but is active to system.
        */
-      $orgs = Organization::all()->except(1); //osa can access all organizations, 1 is the default org
-      $adviser      = OrganizationAdviserGroup::with('user')->get()->toArray();
+      $orgs    = Organization::all()->except(1);
+      $adviser = OrganizationAdviserGroup::with('user')
+        ->get()
+        ->toArray();
 
       $organization = self::includeAdviser($orgs, $adviser);
 
       # Render view
-      return view('pages/users/osa-personnel/organization/list', compact('organization'))
+      return view($this->path . 'organization/list', compact('organization'))
         ->with([
           'login_type' => $this->login_type
         ]);
@@ -77,7 +81,7 @@ class OrganizationController extends Controller
 
       $this->osa_personnel->isOsaPersonnel();
 
-      return view('pages/users/osa-personnel/organization/add')->with([ 
+      return view('pages/users/osa-personnel/organization/add')->with([
         'login_type' => $this->login_type
       ]);
     }
@@ -95,7 +99,7 @@ class OrganizationController extends Controller
 
       # Check if its an OSA personnel
       $this->osa_personnel->isOsaPersonnel();
-      
+
       # Data valid?
       self::_isValid($request);
 
@@ -108,12 +112,12 @@ class OrganizationController extends Controller
 
       # Save to the database
       $result = Organization::create($request->only(
-        "name", "description", "url", "logo", 
-        "color", "date_started", "date_expired", 
+        "name", "description", "url", "logo",
+        "color", "date_started", "date_expired",
         "status"
       ));
 
-      # If was recently created, 
+      # If was recently created,
       if ($result->wasRecentlyCreated) {
         return back()
           ->withIput()

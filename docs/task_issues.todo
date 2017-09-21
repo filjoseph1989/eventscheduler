@@ -1,4 +1,6 @@
 To Do:
+  ☐ Issue 85: Dapat didto sa list of members sa organization siya maka set og user position sa iya organization
+  ✔ Issue 84: Dapat wala position sa add members sa organizaion head account. Why, mag add lang man. @done(2017-09-21 17:43)
   ☐ Issue 83: In this url, {/users/event/within/organization/1} and when u click on view event, it's not working
   ☐ Issue 82: Optimize this function here
   ☐ Issue 81: Try og gamit sa middleware para sa login check functionality

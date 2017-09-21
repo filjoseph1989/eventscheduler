@@ -58,6 +58,8 @@ class OrganizationGroupController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * ! Deprecated
+     *
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -178,7 +180,7 @@ class OrganizationGroupController extends Controller
       }
       $login_type = 'user';
       return view('pages.users.organization-head.members.accept-membership-request', compact(
-        'login_type', 'u', 'org_grp' 
+        'login_type', 'u', 'org_grp'
       ));
     }
 
