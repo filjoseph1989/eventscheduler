@@ -37,7 +37,7 @@ class OrganizationGroupController extends Controller
     public function index()
     {
       # Get user organization
-      $org = OrganizationGroup::with('organization')
+      $org = OrganizationHeadGroup::with('organization')
         ->where('user_id', Auth::user()->id)
         ->get();
 
