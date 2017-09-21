@@ -129,9 +129,9 @@ Route::prefix('users')->group(function() {
     Route::name('org-head.userattendance.store')->post('user-attendance/store', 'OrganizationHead\UserAttendanceController@store');
     Route::name('org-head.org-membership')->post('/org-membership', 'OrganizationHead\OrganizationGroupController@store');
     Route::name('org-head.members.list')->get('/members/list', 'OrganizationHead\OrganizationGroupController@index');
-    Route::name('org-head.members.add')->get('/members/add', 'OrganizationHead\UserController@show');
+    Route::name('org-head.members.invite')->get('/members/invite', 'OrganizationHead\UserController@show');
     Route::name('org-head.members.search')->post('/members/search', 'OrganizationHead\UserController@search');
-    Route::name('org-head.members.new')->post('/members/new', 'OrganizationHead\OrganizationGroupController@storeNewMember');
+    Route::name('org-head.members.new')->post('/members/new', 'OrganizationHead\OrganizationGroupController@storeNewMember'); # Remove me soon including all code associated with me
     Route::name('org-head.members.accept')->get('/members/accept', 'OrganizationHead\OrganizationGroupController@acceptNewMember');
 
     ####manage schedule route

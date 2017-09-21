@@ -92,7 +92,8 @@ class User extends Authenticatable
      *
      * @return object
      */
-    public function userAccount(){
+    public function userAccount()
+    {
       return $this->belongsTo('App\Models\UserAccount');
     }
 
@@ -102,7 +103,8 @@ class User extends Authenticatable
      *
      * @return object
      */
-    public function userHasOneUserAccount(){
+    public function userHasOneUserAccount()
+    {
       return $this->hasOne('App\Models\UserAccount');
     }
 

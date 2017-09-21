@@ -1,6 +1,6 @@
 Follow Control Flow in the docs
 
-☐Org Adviser Account:
+Org Adviser Account:
   ✔ Manage Schedule: @done(2017-09-13 21:26)
     ✔ Public View @done(2017-09-05 03:19)
       ✔ include the org in the details (study fullcalendar.io for this) @done(2017-09-12 10:26)
@@ -33,7 +33,8 @@ Follow Control Flow in the docs
         ✔ Facebook (on/off) @done(2017-09-09 06:00)
         ✔ Email (on/off) @done(2017-09-09 06:00)
         ✔ SMS (on/off) @done(2017-09-09 06:00)
-☐Org Co-Adviser Account:
+
+Org Co-Adviser Account:
   ✔ Manage Schedule: @done(2017-09-14 01:33)
     ✔ Public View @done(2017-09-09 09:13)
       ✔ Calendar @done(2017-09-09 09:13)
@@ -54,8 +55,8 @@ Follow Control Flow in the docs
         ✔ Generate Declined Attendance @done(2017-09-13 17:42)
         ✔ View Org Members' Attendance @done(2017-09-13 17:42)
 
-☐ Org Head Account:
-✔   Manage Schedule: @done(2017-09-14 00:00)
+Org Head Account:
+  Manage Schedule:
   ✔ Public View @done(2017-09-13 23:59)
     ✔ include the org in the details (study fullcalendar.io for this) @done(2017-09-13 23:59)
     ✔ Calendar @done(2017-09-13 23:59)
@@ -92,7 +93,7 @@ Follow Control Flow in the docs
         ✔ Email (on/off) @done(2017-09-14 01:27)
         ✔ SMS (on/off) @done(2017-09-14 01:27)
 
-☐ Org Member Account:
+Org Member Account:
   ✔ Manage Schedule: @done(2017-09-14 03:30)
     ✔ Public View @done(2017-09-14 03:30)
       ✔ Calendar @done(2017-09-14 03:30)

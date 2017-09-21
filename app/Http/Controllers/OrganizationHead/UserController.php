@@ -39,6 +39,8 @@ class UserController extends Controller
    * This method search teh user table to be used
    * by organization head to add new organization memeber
    *
+   * ! Deprecated
+   *
    * @param  Request $data
    * @return Illuminate\Response
    */
@@ -65,14 +67,17 @@ class UserController extends Controller
    * Display the list of members not yet belong
    * to the organization of the organization head account
    *
-   * @return void
+   * @return Illuminate\Response
    */
   public function show()
   {
-    $orgId      = self::getOrganization();
-    $membership = self::getMemberNotBelong($orgId);
+    parent::loginCheck();
 
-    d($membership);
+    $orgId   = self::getOrganization();
+    $members = self::getMemberNotBelong($orgId);
+
+    return view($this->path . 'members/list', compact('members'))
+      ->with(['login_type' => 'user']);
   }
 
   /**
@@ -96,6 +101,14 @@ class UserController extends Controller
    */
   private function getMemberNotBelong($id)
   {
-    return OrganizationGroup::where('organization_id', '!=', $id)->get();
+    return OrganizationGroup::with([
+        'user' => function($query) {
+            $query
+              ->with(['department', 'course'])
+              ->get();
+          },
+        'position'
+      ])->where('organization_id', '!=', $id)
+        ->get();
   }
 }
