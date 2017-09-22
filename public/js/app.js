@@ -281,6 +281,30 @@ $(document).on('click', '.unconfirmed', function() {
 });
 
 /**
+ * [this for membership request acceptance by the org head
+ * @return {[type]} [description]
+ */
+$(document).on('click', '.accept', function() {
+  _this = $(this);
+  var data = {
+    user_id: $(this).data('user-id'),
+    org_id: $(this).data('org-id'),
+  }
+
+  acceptMember(data, "Added");
+});
+
+$(document).on('click', '.invite', function() {
+  _this = $(this);
+  var data = {
+    user_id: $(this).data('user-id'),
+    org_id: $(this).data('org-id'),
+  }
+
+  inviteMembership(data, "Invited");
+});
+
+/**
  * Submit the isApprover status of the user to the database
  *
  * @return {}
@@ -608,6 +632,30 @@ function updateAttendance(data, $message) {
   }, '.preloader-'+data.id);
 }
 
+function acceptMember(data, $message) {
+  var url  = route('org-head.members.accept.store').replace('localhost', window.location.hostname);
+  data.id  = _this.data('user-id');
+  // data.eid = _this.data('event-id');
+
+  submit(data, url, function(data) {
+    if(data.status){
+      $('#add-member-'+data.id).html($message);
+      $('#membership-status-'+data.id).html('yes');
+    }
+  }, _this, false);
+}
+
+function inviteMembership(data, $message) {
+  var url  = route('org-head.members.invite.store').replace('localhost', window.location.hostname);
+  data.id  = _this.data('user-id');
+  // data.eid = _this.data('event-id');
+
+  submit(data, url, function(data) {
+    if(data.status){
+      $('#invite-member-'+data.id).html($message);
+    }
+  }, _this, false);
+}
 /**
  * Set user status
  *

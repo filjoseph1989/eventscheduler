@@ -8,7 +8,7 @@
 
 @section('content')
 
-    @include('pages.top-nav')
+    @include('pages.top-nav') 
 
     @if (isset($login_type) and $login_type == 'admin')
         @include('pages.admin.sidebar')

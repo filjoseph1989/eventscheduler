@@ -1,7 +1,7 @@
 Follow Control Flow in the docs
 
 Org Adviser Account:
-  ✔ Manage Schedule: @done(2017-09-13 21:26)
+  Manage Schedule:
     ✔ Public View @done(2017-09-05 03:19)
       ✔ include the org in the details (study fullcalendar.io for this) @done(2017-09-12 10:26)
       ✔ Calendar @done(2017-09-05 03:19)
@@ -18,14 +18,14 @@ Org Adviser Account:
           ✔ included author @done(2017-09-12 12:09)
         ✔ private (dapat ang makita lang niya kay iayahang personal private events) @done(2017-09-12 06:41)
       ✔ Create My Event @done(2017-09-05 03:19)
-  ✔ Generate Attendance: @done(2017-09-14 01:33)
+  Generate Attendance:
     ✔ my advisee organization events @done(2017-09-13 16:52)
         ✔ Generate Expected Attendance (list of names expected to come) @done(2017-09-13 16:52)
           ✔ confirmation(which is manipulated by head or adviser during the actual event) @done(2017-09-13 16:52)
         ✔ Generate Confirmed Attendance @done(2017-09-13 16:52)
         ✔ Generate Declined Attendance @done(2017-09-13 16:52)
         ✔ View and Confirm Org Members' Attendance @done(2017-09-13 16:52)
-  ✔ Manage Notifications: @done(2017-09-14 01:33)
+  Manage Notifications:
     ✔ List of Events that needs your approval @done(2017-09-09 06:00)
       ✔ Approve Events @done(2017-09-09 06:00)
       ✔ Edit Within Event Notifications Settings @done(2017-09-09 06:00)

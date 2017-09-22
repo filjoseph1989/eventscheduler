@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Library\OrgHeadLibrary as OrgHead;
 
 # Models
+use App\Models\Organization;
 use App\Models\OrganizationGroup;
 use App\Models\OrganizationHeadGroup;
 use App\Models\User;
@@ -37,7 +38,7 @@ class OrganizationGroupController extends Controller
     public function index()
     {
       # Get user organization
-      $org = OrganizationGroup::with('organization')
+      $org = OrganizationHeadGroup::with('organization')
         ->where('user_id', Auth::user()->id)
         ->get();
 
@@ -62,7 +63,7 @@ class OrganizationGroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function addMember()
     {
       $login_type = 'user';
       return view('pages/users/organization-head/members/add', compact(
@@ -168,7 +169,7 @@ class OrganizationGroupController extends Controller
     {
       $u = [];
       //get the org the user is leading
-      $org_headed = OrganizationHeadGroup::where('user_id', Auth::user()->id)->get();
+      $org_headed = OrganizationHeadGroup::with('organization')->where('user_id', Auth::user()->id)->get();
       //get the org grp instance of this org with membership_status - 'no'
       $org_grp = OrganizationGroup::with('position')->where('organization_id', $org_headed[0]->organization_id)
       ->where('membership_status', 'no')
@@ -180,10 +181,41 @@ class OrganizationGroupController extends Controller
       }
       $login_type = 'user';
       return view('pages.users.organization-head.members.accept-membership-request', compact(
-        'login_type', 'u', 'org_grp'
+        'login_type', 'u', 'org_grp', 'org_headed'
       ));
     }
 
+    public function storeNewMembershipRequest(Request $data)
+    {
+
+      $result = OrganizationGroup::updateOrCreate(
+        ['user_id'     => $data->user_id, 'organization_id' => $data->org_id],
+        ['membership_status' => 'no']
+      );
+
+      if ($result) {
+        echo json_encode([
+          'status' => true,
+          'id'     => $data->user_id
+        ]);
+      }
+    }
+
+    public function inviteNewMembership(Request $data)
+    {
+
+      $result = OrganizationGroup::updateOrCreate(
+        ['user_id'     => $data->user_id, 'organization_id' => $data->org_id],
+        ['membership_status' => 'no']
+      );
+
+      if ($result) {
+        echo json_encode([
+          'status' => true,
+          'id'     => $data->user_id
+        ]);
+      }
+    }
     /**
      * Display the specified resource.
      *

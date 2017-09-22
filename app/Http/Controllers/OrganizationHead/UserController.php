@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Position;
 use App\Models\OrganizationGroup;
+use App\Models\OrganizationHeadGroup;
+use App\Models\Organization;
 
 use Auth;
 
@@ -74,9 +76,11 @@ class UserController extends Controller
     parent::loginCheck();
 
     $orgId   = self::getOrganization();
+    $og = Organization::find($orgId);
     $members = self::getMemberNotBelong($orgId);
+    // dd($members);
 
-    return view($this->path . 'members/list', compact('members'))
+    return view($this->path . 'members/list', compact('members', 'orgId' , 'og'))
       ->with(['login_type' => 'user']);
   }
 
@@ -88,7 +92,7 @@ class UserController extends Controller
    */
   private function getOrganization()
   {
-    $membership = OrganizationGroup::where('user_id', '=', Auth::user()->id)->get();
+    $membership = OrganizationHeadGroup::where('user_id', '=', Auth::user()->id)->get();
     return $membership[0]->organization_id;
   }
 
@@ -101,14 +105,40 @@ class UserController extends Controller
    */
   private function getMemberNotBelong($id)
   {
-    return OrganizationGroup::with([
+    $invited_users = OrganizationGroup::with('user')->where('membership_status','=', 'no')->where('organization_id','=', $id)->get();
+
+    $uninvited_users = [];
+    $in = [];
+    $ctr = 0;
+
+    $temp_uninvited_users = OrganizationGroup::with([
         'user' => function($query) {
             $query
               ->with(['department', 'course'])
               ->get();
           },
         'position'
-      ])->where('organization_id', '!=', $id)
+      ])->where('organization_id', '!=', $id)->where('user_id', '!=', Auth::user()->id)->where('membership_status','=', 'yes')
         ->get();
+
+        foreach ($invited_users as $key => $val) {
+          $in[ctr] = $val->user_id;
+          foreach ($temp_uninvited_users as $key => $value) {
+            if( $val->user_id != $val)
+          }
+        }
+
+        // d($invited_users); exit;
+    dd($in);
+    // return OrganizationGroup::with([
+    //     'user' => function($query) {
+    //         $query
+    //           ->with(['department', 'course'])
+    //           ->get();
+    //       },
+    //     'position'
+    //   ])->where('organization_id', '!=', $id)->where('user_id', '!=', Auth::user()->id)->where('membership_status', '!=', 'no')
+    //     ->get();
+    return $uninvited_users;
   }
 }

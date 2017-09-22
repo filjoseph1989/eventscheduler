@@ -22,7 +22,7 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> LIST OF USERS REQUESTING MEMBERSHIP </h2>
+                <h2> LIST OF USERS REQUESTING MEMBERSHIP for {{ $org_headed[0]->organization->name }} </h2>
               </div>
               <div class="body table-responsive">
                 <table class="table table-striped table-hover js-basic-example dataTable">
@@ -31,27 +31,20 @@
                       <th>Name</th>
                       <th>Course</th>
                       <th>Department</th>
-                      <th>Position</th>
                       <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                       @foreach ($org_grp as $key => $val)
-                          {{-- <?php $user_id = $val->id; ?> --}}
+                            <?php $user_id = $val->id; ?>
                           <tr>
                             <td><a href="#">{{ $u[$val->id][0]->first_name }} {{ $u[$val->id][0]->last_name }}</a></td>
                             <td><a href="#">{{ $u[$val->id][0]->course->name }}</a></td>
                             <td><a href="#">{{ $u[$val->id][0]->department->name }}</a></td>
-                            <td><a href="#">{{-- $value->position->name --}}</a></td>
-                            <td>{{-- $value->membership_status --}}</td>
+                            <td id="membership-status-{{ $val->user_id }}" >{{ $val->membership_status }}</td>
                             <td>
-                              <form class="" action="{{ route('org-head.members.new') }}" method="post">
-                                {{ csrf_field() }}
-                                <input type="hidden" id="add-new-member-position" name="position_id" value="1">
-                                <input type="hidden" name="user_id" value="{{ $user_id }}">
-                                <button type="submit" class="btn btn-success" name="add">Add</button>
-                              </form>
+                              <button type="submit" class="btn btn-success accept" name="add" data-user-id = "{{ $val->user_id }}" data-org-id = "{{ $org_headed[0]->organization_id }}" id="add-member-{{ $val->user_id }}">Add</button>
                             </td>
                           </tr>
                       @endforeach
@@ -62,6 +55,7 @@
                       <th>Course</th>
                       <th>Department</th>
                       <th>Status</th>
+                      <th>Action</th>
                     </tr>
                   </tfoot>
                 </table>

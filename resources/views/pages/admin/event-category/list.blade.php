@@ -94,7 +94,7 @@
         </div>
       </div>
     </section>
-
+ 
 @endsection
 
 @section('modal')
