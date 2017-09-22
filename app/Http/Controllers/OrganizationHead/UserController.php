@@ -77,8 +77,8 @@ class UserController extends Controller
 
     extract( self::getOrganization() );
 
-    $members     = self::getMembers($orgId);
-    $users       = self::getUser();
+    $members = self::getMembers($orgId);
+    $users   = self::getUser();
 
     # alter the list of users
     self::userToInvite($users, $members);
@@ -119,7 +119,7 @@ class UserController extends Controller
       ->toArray();
   }
 
-   /**
+  /**
    * Get all registered active users
    *
    * @return object
@@ -132,15 +132,17 @@ class UserController extends Controller
       ->get();
   }
 
-   /**
-    * Modify the list of users to invite list
-    *
-    * @return void
-    */
+  /**
+   * Modify the list of users to invite list
+   *
+   * @param  object $users   List of users pass by reference
+   * @param  array $members
+   * @return void
+   */
   private function userToInvite(&$users, &$members)
   {
     foreach ($users as $key => $value) {
-      if (array_search($value->id, array_column($members, 'id')) !== false) {
+      if (array_search($value->id, array_column($members, 'user_id')) !== false) {
         unset($users[$key]);
       }
     }
