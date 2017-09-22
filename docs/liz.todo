@@ -189,6 +189,8 @@ Tasks:
 ✔ org head > list of organization > at the profile of every org, indicate the user's position if he is a member @done(2017-09-21 16:23)
 ✔ org head > members > all members > [must show list of organizations the user belongs to] > List of org members {ahm all member dinhi kay member lang sa organization sa organization head, wala apil sa lain} @done(2017-09-21 17:17)
 ✔ org head > members > add members fix / complete {Dapat ang makita dinhi na part kay user name,course and department lang, tapos invite button. Why, because add lang ni or new member} @done(2017-09-21 17:45)
+✔ add event details on Generate Attendance > View Organization Members’ Event Expected Attendances > list of orgs > list of events > Attendance Sheet
+✔ add event details on Generate Attendance > Confirm and View Organization Members’ Event Expected Attendances > list of orgs > list of events > Attendance Sheet
 ☐ org head > members > accept request (finish)
 ☐ org member > Check my attendance > (in the blade, there is a search data table, there will be list of all events the user is expected to go to, plus the org, and the user's attendance status)
 ☐ org adviser > list of organization > at the profile of every org, indicate the user's position if he is a member
@@ -238,5 +240,3 @@ Tasks:
 ☐ start usability testing
 
 
-✔ add event details on Generate Attendance > View Organization Members’ Event Expected Attendances > list of orgs > list of events > Attendance Sheet
-✔ add event details on Generate Attendance > Confirm and View Organization Members’ Event Expected Attendances > list of orgs > list of events > Attendance Sheet
