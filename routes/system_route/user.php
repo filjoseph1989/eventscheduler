@@ -304,7 +304,7 @@ Route::prefix('users')->group(function() {
     Route::name('user-admin.my.new.event.submit')->post('/store/new', 'UserAdmin\MyEventController@store');
     Route::name('user-admin.approve.event')->get('/approve/event', 'UserAdmin\EventController@approveEvents');
     Route::name('user-admin.attendance')->get('/attendance', 'UserAdmin\GenerateAttendanceController@index');
-    Route::name('user-admin.event.show')->get('/show/{id?}', 'UserAdmin\EventController@show'); 
+    Route::name('user-admin.event.show')->get('/show/{id?}', 'UserAdmin\EventController@show');
     Route::name('user-admin.attendance.store')->post('/store', 'UserAdmin\GenerateAttendanceController@store');
     Route::name('user-admin.attendance.show')->get('/new/{id}/{eid}', 'UserAdmin\GenerateAttendanceController@show');
     Route::name('user-admin.my.new.event')->get('/my/new/event', 'UserAdmin\MyEventController@create');

@@ -31,19 +31,17 @@
                       <th>Name</th>
                       <th>Course</th>
                       <th>Department</th>
-                      <th>Position</th>
                       <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                       @foreach ($org_grp as $key => $val)
-                            <?php $user_id = $val->id; ?> 
+                            <?php $user_id = $val->id; ?>
                           <tr>
                             <td><a href="#">{{ $u[$val->id][0]->first_name }} {{ $u[$val->id][0]->last_name }}</a></td>
                             <td><a href="#">{{ $u[$val->id][0]->course->name }}</a></td>
                             <td><a href="#">{{ $u[$val->id][0]->department->name }}</a></td>
-                            <td><a href="#">{{ $val->position->name }}</a></td>
                             <td>{{ $val->membership_status }}</td>
                             <td>
                               <form class="" action="{{ route('org-head.members.new') }}" method="post">
@@ -61,7 +59,6 @@
                       <th>Name</th>
                       <th>Course</th>
                       <th>Department</th>
-                      <th>Position</th>
                       <th>Status</th>
                       <th>Action</th>
                     </tr>

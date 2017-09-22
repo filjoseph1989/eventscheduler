@@ -20,7 +20,7 @@ use App\Models\OrganizationGroup;
 use App\Models\EventCategory;
 class ManageNotificationController extends Controller
 {
-  private $tweeter = false;
+  private $twitter = false;
 
   /**
    * This method will send notification on different media
@@ -42,7 +42,7 @@ class ManageNotificationController extends Controller
     }
 
     if ($ev->notify_via_twitter == 'on') {
-      self::notifyViaTwitter($ev);
+      $pwde = self::notifyViaTwitter($ev);
     }
 
     if ($ev->notify_via_email == 'on') {
@@ -76,9 +76,9 @@ class ManageNotificationController extends Controller
    * @return void
    */
   private function notifyViaTwitter ($value) {
-    $this->tweeter = true;
-    $tweet = self::tweeterMessage($value);
-    $this->tweeter = false;
+    $this->twitter = true;
+    $tweet = self::twitterMessage($value);
+    $this->twitter = false;
     return Twitter::postTweet(['status' => $tweet, 'format' => 'json']);
   }
 
@@ -87,10 +87,10 @@ class ManageNotificationController extends Controller
    *
    * @return void
    */
-  private function tweeterMessage($event)
+  private function twitterMessage($event)
   {
     $message = self::smsMessage($event->event_category_id, $event);
-    return str_limit($message, 140);
+    return str_limit($message, 100);
   }
 
   /**
@@ -190,13 +190,13 @@ class ManageNotificationController extends Controller
     }
 
     $new_line = "";
-    if (! $this->tweeter) {
+    if (! $this->twitter) {
       $new_line = "\n";
     }
 
     $heading .=
       "{$new_line}{$event->title} headed by {$event->organization->name}.";
-      if (! $this->tweeter) {
+      if (! $this->twitter) {
         $heading .= "{$new_line}Description: {$event->description}";
       }
 

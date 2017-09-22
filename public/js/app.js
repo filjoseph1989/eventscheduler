@@ -608,6 +608,16 @@ function updateAttendance(data, $message) {
   }, '.preloader-'+data.id);
 }
 
+function updateAttendance(data, $message) {
+  var url  = route('org-head.membership.invite').replace('localhost', window.location.hostname);
+  data.id  = _this.data('user-id');
+  data.eid = _this.data('event-id');
+
+  submit(data, url, function(data) {
+    $('#confirm-status-'+data.id).html($message);
+  }, '.preloader-'+data.id);
+}
+
 /**
  * Set user status
  *
