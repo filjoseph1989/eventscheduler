@@ -3,6 +3,7 @@
 @section('page-title', 'search result')
 
 @section('style')
+  <link rel="stylesheet" href="{{ asset('css/sweetalert.css') }}">
   <link rel="stylesheet" href="{{ asset('css/all-themes.css') }}">
 @endsection
 
@@ -65,7 +66,8 @@
 @endsection
 
 @section('footer')
-  <script src="{{ asset('js/app.js') }}?v=0.25" charset="utf-8"></script>
+  <script src="{{ asset('js/sweetalert.min.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=0.26" charset="utf-8"></script>
   <script type="text/javascript">
     $(document).on('change','#user-postion', function() {
       var id = $(this).val();

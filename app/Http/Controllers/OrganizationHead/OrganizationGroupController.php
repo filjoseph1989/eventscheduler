@@ -201,21 +201,39 @@ class OrganizationGroupController extends Controller
       }
     }
 
+    /**
+     * Invite the user to join the organization
+     *
+     * @param  Request $data
+     * @return json
+     */
     public function inviteNewMembership(Request $data)
     {
+      $result = OrganizationGroup::where('user_id', '=', $data->user_id)
+        ->where('organization_id', '=', $data->org_id)
+        ->get();
 
-      $result = OrganizationGroup::updateOrCreate(
-        ['user_id'     => $data->user_id, 'organization_id' => $data->org_id],
-        ['membership_status' => 'no']
-      );
-
-      if ($result) {
-        echo json_encode([
-          'status' => true,
-          'id'     => $data->user_id
-        ]);
+      if (isset($result[0]->exists) and $result[0]->exists === true) {
+        $json = false;
+        goto end;
       }
+
+      $result = OrganizationGroup::create([
+        'user_id'           => $data->user_id,
+        'organization_id'   => $data->org_id,
+        'membership_status' => 'no',
+      ]);
+
+      if ($result->wasRecentlyCreated) {
+        $json = true;
+      }
+
+      end:
+      echo json_encode([
+        'status' => $json,
+      ]);
     }
+
     /**
      * Display the specified resource.
      *
