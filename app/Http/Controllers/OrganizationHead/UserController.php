@@ -129,7 +129,7 @@ class UserController extends Controller
         }
 
         // d($invited_users); exit;
-    dd($in);
+    // dd($in);
     // return OrganizationGroup::with([
     //     'user' => function($query) {
     //         $query
