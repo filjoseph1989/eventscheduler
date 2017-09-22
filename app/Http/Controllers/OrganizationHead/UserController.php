@@ -111,7 +111,7 @@ class UserController extends Controller
               ->get();
           },
         'position'
-      ])->where('organization_id', '!=', $id)->where('user_id', '!=', Auth::user()->id)->where('membership_status', '==', 'yes')
+      ])->where('organization_id', '!=', $id)->where('user_id', '!=', Auth::user()->id)->where('membership_status', '!=', 'no')
         ->get();
   }
 }
