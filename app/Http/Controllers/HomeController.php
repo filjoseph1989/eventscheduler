@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\Models\User;
-use App\Models\UserAccount;
 use Illuminate\Http\Request;
 use App\Notifications\FacebookPublished;
 use App\Http\Controllers\Auth\AdminLoginController;
+
+# Models
+use App\Models\User;
+use App\Models\UserAccount;
+use App\Models\Organization;
+use App\Models\OrganizationGroup;
 
 class HomeController extends Controller
 {
@@ -44,7 +48,9 @@ class HomeController extends Controller
       ]);
 
       # Render View
-      return view('pages/home');
+      return view('pages/home')->with([
+        'notification' => self::getNotification()
+      ]);
     } else {
       # logout and redirect to register page if status is not active
       Auth::guard('web')->logout();
@@ -52,7 +58,7 @@ class HomeController extends Controller
         ->with('status', 'Your registration is not yet complete. </br> Please wait for the confirmation of your account of the administrator');
     }
   }
-   
+
   /**
    * Return the status of the loggedin user
    * @return boolean
@@ -99,5 +105,27 @@ class HomeController extends Controller
   private function getInfoBox()
   {
     return "components.info-box.".str_replace(' ', '-', self::getIdentity()['name'])."";
+  }
+
+  /**
+   * Get the User notification
+   *
+   * @return void
+   */
+  private function getNotification()
+  {
+    $notification = OrganizationGroup::with('organization')
+      ->where('user_id', '=', Auth::user()->id)
+      ->where('membership_status', '=', 'no')
+      ->get();
+
+    foreach ($notification as $key => $value) {
+      $notification[$key]->title = "You're invited to join <br>{$value->organization->name}";
+      $notification[$key]->icon  = "mail_outline";
+    }
+
+    return $notification;
+
+    // d($notification);
   }
 }
