@@ -77,8 +77,8 @@ class UserController extends Controller
 
     extract( self::getOrganization() );
 
-    $members = self::getMemberNotBelong($orgId);
-    $users   = self::getUser();
+    $members     = self::getMembers($orgId);
+    $users       = self::getUser();
 
     # alter the list of users
     self::userToInvite($users, $members);
@@ -112,37 +112,37 @@ class UserController extends Controller
    * @param int $id Organization ID
    * @return void
    */
-   private function getMemberNotBelong($id)
-   {
-     return OrganizationGroup::where('organization_id', '=', $id)
-       ->get()
-       ->toArray();
-   }
+  private function getMembers($id)
+  {
+    return OrganizationGroup::where('organization_id', '=', $id)
+      ->get()
+      ->toArray();
+  }
 
    /**
-    * Get all registered active users
-    *
-    * @return object
-    */
-   private function getUser()
-   {
-      return User::with(['department', 'course'])
-        ->where('status', '=', 1)
-        ->where('user_account_id', '!=', 1) # Wala apil ang admin account sa i invite
-        ->get();
-   }
+   * Get all registered active users
+   *
+   * @return object
+   */
+  private function getUser()
+  {
+    return User::with(['department', 'course'])
+      ->where('status', '=', 1)
+      ->where('user_account_id', '!=', 1) # Wala apil ang admin account sa i invite
+      ->get();
+  }
 
    /**
     * Modify the list of users to invite list
     *
     * @return void
     */
-   private function userToInvite(&$users, &$members)
-   {
-      foreach ($users as $key => $value) {
-        if (array_search($value->id, array_column($members, 'id')) !== false) {
-          unset($users[$key]);
-        }
+  private function userToInvite(&$users, &$members)
+  {
+    foreach ($users as $key => $value) {
+      if (array_search($value->id, array_column($members, 'id')) !== false) {
+        unset($users[$key]);
       }
-   }
+    }
+  }
 }
