@@ -281,6 +281,20 @@ $(document).on('click', '.unconfirmed', function() {
 });
 
 /**
+ * [this for membership request acceptance by the org head
+ * @return {[type]} [description]
+ */
+$(document).on('click', '.accept', function() {
+  _this = $(this);
+  var data = {
+    user_id: $(this).data('user-id'),
+    org_id: $(this).data('org-id'),
+  }
+
+  acceptMember(data, "Added");
+});
+
+/**
  * Submit the isApprover status of the user to the database
  *
  * @return {}
@@ -608,14 +622,17 @@ function updateAttendance(data, $message) {
   }, '.preloader-'+data.id);
 }
 
-function updateAttendance(data, $message) {
-  var url  = route('org-head.membership.invite').replace('localhost', window.location.hostname);
+function acceptMember(data, $message) {
+  var url  = route('org-head.members.accept.store').replace('localhost', window.location.hostname);
   data.id  = _this.data('user-id');
-  data.eid = _this.data('event-id');
+  // data.eid = _this.data('event-id');
 
   submit(data, url, function(data) {
-    $('#confirm-status-'+data.id).html($message);
-  }, '.preloader-'+data.id);
+    if(data.status){
+      $('#add-member-'+data.id).html($message);
+      $('#membership-status-'+data.id).html('yes');
+    }
+  }, _this, false);
 }
 
 /**

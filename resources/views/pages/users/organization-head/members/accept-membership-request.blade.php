@@ -42,14 +42,9 @@
                             <td><a href="#">{{ $u[$val->id][0]->first_name }} {{ $u[$val->id][0]->last_name }}</a></td>
                             <td><a href="#">{{ $u[$val->id][0]->course->name }}</a></td>
                             <td><a href="#">{{ $u[$val->id][0]->department->name }}</a></td>
-                            <td>{{ $val->membership_status }}</td>
+                            <td id="membership-status-{{ $val->user_id }}" >{{ $val->membership_status }}</td>
                             <td>
-                              <form class="" action="{{ route('org-head.members.new') }}" method="post">
-                                {{ csrf_field() }}
-                                <input type="hidden" id="add-new-member-position" name="position_id" value="1">
-                                <input type="hidden" name="user_id" value="{{ $user_id }}">
-                                <button type="submit" class="btn btn-success" name="add">Add</button>
-                              </form>
+                              <button type="submit" class="btn btn-success accept" name="add" data-user-id = "{{ $val->user_id }}" data-org-id = "{{ $org_headed[0]->organization_id }}" id="add-member-{{ $val->user_id }}">Add</button>
                             </td>
                           </tr>
                       @endforeach

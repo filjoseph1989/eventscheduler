@@ -184,6 +184,21 @@ class OrganizationGroupController extends Controller
       ));
     }
 
+    public function storeNewMembershipRequest(Request $data)
+    {
+
+      $result = OrganizationGroup::updateOrCreate(
+        ['user_id'     => $data->user_id, 'organization_id' => $data->org_id, 'membership_status' => 'no'],
+        ['membership_status' => 'yes']
+      );
+
+      if ($result) {
+        echo json_encode([
+          'status' => true,
+          'id'     => $data->user_id
+        ]);
+      }
+    }
     /**
      * Display the specified resource.
      *
