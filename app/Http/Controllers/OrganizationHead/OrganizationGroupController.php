@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Library\OrgHeadLibrary as OrgHead;
 
 # Models
+use App\Models\Organization;
 use App\Models\OrganizationGroup;
 use App\Models\OrganizationHeadGroup;
 use App\Models\User;
@@ -190,6 +191,22 @@ class OrganizationGroupController extends Controller
       $result = OrganizationGroup::updateOrCreate(
         ['user_id'     => $data->user_id, 'organization_id' => $data->org_id, 'membership_status' => 'no'],
         ['membership_status' => 'yes']
+      );
+
+      if ($result) {
+        echo json_encode([
+          'status' => true,
+          'id'     => $data->user_id
+        ]);
+      }
+    }
+
+    public function inviteNewMembership(Request $data)
+    {
+
+      $result = OrganizationGroup::updateOrCreate(
+        ['user_id'     => $data->user_id, 'organization_id' => $data->org_id],
+        ['membership_status' => 'no']
       );
 
       if ($result) {

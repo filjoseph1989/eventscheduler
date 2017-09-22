@@ -134,6 +134,7 @@ Route::prefix('users')->group(function() {
     Route::name('org-head.members.new')->post('/members/new', 'OrganizationHead\OrganizationGroupController@storeNewMember'); # Remove me soon including all code associated with me
     Route::name('org-head.members.accept')->get('/members/accept', 'OrganizationHead\OrganizationGroupController@acceptNewMember');
     Route::name('org-head.members.accept.store')->post('/members/accept/store-member', 'OrganizationHead\OrganizationGroupController@storeNewMembershipRequest');
+    Route::name('org-head.members.invite.store')->post('/members/invite-member', 'OrganizationHead\OrganizationGroupController@inviteNewMembership');
 
     ####manage schedule route
     Route::name('org-head.manage-schedule')->get('/manage-schedule', 'OrganizationHead\EventController@manageSchedule');

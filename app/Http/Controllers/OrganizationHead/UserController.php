@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Position;
 use App\Models\OrganizationGroup;
+use App\Models\OrganizationHeadGroup;
+use App\Models\Organization;
 
 use Auth;
 
@@ -74,9 +76,10 @@ class UserController extends Controller
     parent::loginCheck();
 
     $orgId   = self::getOrganization();
+    $og = Organization::find($orgId);
     $members = self::getMemberNotBelong($orgId);
 
-    return view($this->path . 'members/list', compact('members'))
+    return view($this->path . 'members/list', compact('members', 'orgId' , 'og'))
       ->with(['login_type' => 'user']);
   }
 
@@ -88,7 +91,7 @@ class UserController extends Controller
    */
   private function getOrganization()
   {
-    $membership = OrganizationGroup::where('user_id', '=', Auth::user()->id)->get();
+    $membership = OrganizationHeadGroup::where('user_id', '=', Auth::user()->id)->get();
     return $membership[0]->organization_id;
   }
 
@@ -108,7 +111,7 @@ class UserController extends Controller
               ->get();
           },
         'position'
-      ])->where('organization_id', '!=', $id)
+      ])->where('organization_id', '!=', $id)->where('user_id', '!=', Auth::user()->id)->where('membership_status', '==', 'yes')
         ->get();
   }
 }
