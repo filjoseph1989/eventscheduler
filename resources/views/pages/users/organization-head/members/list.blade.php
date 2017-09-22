@@ -22,7 +22,7 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
               <div class="header">
-                <h2> LIST OF REGISTERED USERS who are/is not member of {{ $og->name }}</h2>
+                <h2> LIST OF REGISTERED USERS who are/is not member of {{ $orgName }}</h2>
               </div>
               <div class="body table-responsive">
                 <table class="table table-striped table-hover js-basic-example dataTable">
@@ -35,12 +35,12 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($members as $key => $member)
+                    @foreach ($users as $key => $member)
                       <tr>
-                        <td><a href="#">{{ $member->user->first_name }} {{ $member->user->last_name }}</a></td>
-                        <td><a href="#">{{ $member->user->course->name }}</a></td>
-                        <td><a href="#">{{ $member->user->department->name }}</a></td>
-                        <td><button type="submit" class="btn btn-success invite" data-org-id="{{ $orgId }}" data-user-id="{{ $member->user->id }}" name="invite" id="invite-member-{{ $member->user->id }}">Invite</button></td>
+                        <td><a href="#">{{ $member->first_name }} {{ $member->last_name }}</a></td>
+                        <td><a href="#">{{ $member->course->name }}</a></td>
+                        <td><a href="#">{{ $member->department->name }}</a></td>
+                        <td><button type="submit" class="btn btn-success invite" data-org-id="{{ $orgId }}" data-user-id="{{ $member->id }}" name="invite" id="invite-member-{{ $member->id }}">Invite</button></td>
                       </tr>
                     @endforeach
                   </tbody>
