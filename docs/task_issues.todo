@@ -1,4 +1,5 @@
 To Do:
+  ☐ Issue 86: Limit the number of display notification on top bar, you have view all notification which should be another page
   ☐ Issue 85: Dapat didto sa list of members sa organization siya maka set og user position sa iya organization
   ✔ Issue 84: Dapat wala position sa add members sa organizaion head account. Why, mag add lang man. @done(2017-09-21 17:43)
   ☐ Issue 83: In this url, {/users/event/within/organization/1} and when u click on view event, it's not working

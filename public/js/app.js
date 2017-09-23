@@ -1,6 +1,6 @@
 /**
  * App.js
- * @version 0.35
+ * @version 0.36
  */
 
 var _this;
@@ -294,6 +294,11 @@ $(document).on('click', '.accept', function() {
   acceptMember(data, "Added");
 });
 
+/**
+ * Handle the invitation
+ *
+ * @return {void}
+ */
 $(document).on('click', '.invite', function() {
   _this = $(this);
   var data = {
@@ -301,7 +306,16 @@ $(document).on('click', '.invite', function() {
     org_id: $(this).data('org-id'),
   }
 
-  inviteMembership(data, "Invited");
+  var url  = route('org-head.members.invite.store').replace('localhost', window.location.hostname);
+
+  submit(data, url, function(data) {
+    if(data.status) {
+      $(_this).html("Invited");
+    } else {
+      $(_this).html("Invite");
+      swal("Sorry!", "You already invited this user!", "error");
+    }
+  }, _this, false);
 });
 
 /**
@@ -645,17 +659,6 @@ function acceptMember(data, $message) {
   }, _this, false);
 }
 
-function inviteMembership(data, $message) {
-  var url  = route('org-head.members.invite.store').replace('localhost', window.location.hostname);
-  data.id  = _this.data('user-id');
-  // data.eid = _this.data('event-id');
-
-  submit(data, url, function(data) {
-    if(data.status){
-      $('#invite-member-'+data.id).html($message);
-    }
-  }, _this, false);
-}
 /**
  * Set user status
  *

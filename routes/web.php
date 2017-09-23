@@ -3,7 +3,7 @@
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-| 
+|
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
@@ -34,7 +34,7 @@ Route::group(['middleware' => 'revalidate'], function() {
   |--------------------------------------------------------------------------
   */
   require_once "system_route/admin.php";
-  
+
   /*
   |--------------------------------------------------------------------------
   | Ajax request
@@ -66,6 +66,7 @@ Route::group(['middleware' => 'revalidate'], function() {
   |--------------------------------------------------------------------------
   */
   Route::name('home')->get('/home', 'HomeController@index');
+  Route::name('home.notification')->get('/home/notification', 'HomeController@getNotification');
 
   /*
   |--------------------------------------------------------------------------

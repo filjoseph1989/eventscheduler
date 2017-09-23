@@ -75,12 +75,15 @@ class UserController extends Controller
   {
     parent::loginCheck();
 
-    $orgId   = self::getOrganization();
-    $og = Organization::find($orgId);
-    $members = self::getMemberNotBelong($orgId);
-    // dd($members);
+    extract( self::getOrganization() );
 
-    return view($this->path . 'members/list', compact('members', 'orgId' , 'og'))
+    $members = self::getMembers($orgId);
+    $users   = self::getUser();
+
+    # alter the list of users
+    self::userToInvite($users, $members);
+
+    return view($this->path . 'members/list', compact('users', 'orgId', 'orgName'))
       ->with(['login_type' => 'user']);
   }
 
@@ -92,8 +95,14 @@ class UserController extends Controller
    */
   private function getOrganization()
   {
-    $membership = OrganizationHeadGroup::where('user_id', '=', Auth::user()->id)->get();
-    return $membership[0]->organization_id;
+    $membership = OrganizationGroup::with('organization')
+      ->where('user_id', '=', Auth::user()->id)
+      ->get();
+
+    return [
+      'orgId'   => $membership[0]->organization_id,
+      'orgName' => $membership[0]->organization->name,
+    ];
   }
 
   /**
@@ -103,42 +112,39 @@ class UserController extends Controller
    * @param int $id Organization ID
    * @return void
    */
-  private function getMemberNotBelong($id)
+  private function getMembers($id)
   {
-    $invited_users = OrganizationGroup::with('user')->where('membership_status','=', 'no')->where('organization_id','=', $id)->get();
+    return OrganizationGroup::where('organization_id', '=', $id)
+      ->get()
+      ->toArray();
+  }
 
-    $uninvited_users = [];
-    $in = [];
-    $ctr = 0;
+  /**
+   * Get all registered active users
+   *
+   * @return object
+   */
+  private function getUser()
+  {
+    return User::with(['department', 'course'])
+      ->where('status', '=', 1)
+      ->where('user_account_id', '!=', 1) # Wala apil ang admin account sa i invite
+      ->get();
+  }
 
-    $temp_uninvited_users = OrganizationGroup::with([
-        'user' => function($query) {
-            $query
-              ->with(['department', 'course'])
-              ->get();
-          },
-        'position'
-      ])->where('organization_id', '!=', $id)->where('user_id', '!=', Auth::user()->id)->where('membership_status','=', 'yes')
-        ->get();
-
-        foreach ($invited_users as $key => $val) {
-          $in[ctr] = $val->user_id;
-          foreach ($temp_uninvited_users as $key => $value) {
-            if( $val->user_id != $val)
-          }
-        }
-
-        // d($invited_users); exit;
-    // dd($in);
-    // return OrganizationGroup::with([
-    //     'user' => function($query) {
-    //         $query
-    //           ->with(['department', 'course'])
-    //           ->get();
-    //       },
-    //     'position'
-    //   ])->where('organization_id', '!=', $id)->where('user_id', '!=', Auth::user()->id)->where('membership_status', '!=', 'no')
-    //     ->get();
-    return $uninvited_users;
+  /**
+   * Modify the list of users to invite list
+   *
+   * @param  object $users   List of users pass by reference
+   * @param  array $members
+   * @return void
+   */
+  private function userToInvite(&$users, &$members)
+  {
+    foreach ($users as $key => $value) {
+      if (array_search($value->id, array_column($members, 'user_id')) !== false) {
+        unset($users[$key]);
+      }
+    }
   }
 }
