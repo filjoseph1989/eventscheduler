@@ -159,11 +159,13 @@ Route::prefix('users')->group(function() {
     Route::name('org-head.attendance.show')->get('/new/{id}/{eid}', 'OrganizationHead\GenerateAttendanceController@show');
     Route::name('org-head.attendance.store')->post('/store', 'OrganizationHead\GenerateAttendanceController@store');
     Route::name('org-head.attendance.store2')->post('/store2', 'OrganizationHead\GenerateAttendanceController@store2');
-    Route::name('org-head.userattendance.store')->post('user-attendance/store', 'OrganizationHead\UserAttendanceController@store');
+    Route::name('org-head.userattendance.store')->post('/user-attendance/store', 'OrganizationHead\UserAttendanceController@store');
     #route for generate attended attendance
     Route::name('org-head.official-attendance-org-list')->get('/generate/official-attendance/org-list', 'OrganizationHead\GenerateAttendanceController@officialAttendanceOrgList');
     Route::name('org-head.generate-official-attendance-event-list')->get('/generate/official-attendance/event-list/{id?}', 'OrganizationHead\GenerateAttendanceController@generateOfficialAttendanceEventList');
     Route::name('org-head.official-attendance-member-list')->get('/generate/official-attendance/member-list/{id}/{eid}', 'OrganizationHead\GenerateAttendanceController@officialAttendanceMemberList');
+    #route for check my attendance
+    Route::name('org-head.user.own.attendance')->get('/this/user-attendance/show', 'OrganizationHead\UserAttendanceController@show');
     ####manage notification route
     Route::name('org-head.manage-notification-menu')->get('/manage-notification-menu', 'OrganizationHead\EventController@manageNotificationMenu');
     Route::name('org-head.manage-notification')->get('/manage-notification', 'OrganizationHead\EventController@manageNotification');

@@ -191,8 +191,8 @@ Tasks:
 ✔ org head > members > add members fix / complete {Dapat ang makita dinhi na part kay user name,course and department lang, tapos invite button. Why, because add lang ni or new member} @done(2017-09-21 17:45)
 ✔ add event details on Generate Attendance > View Organization Members’ Event Expected Attendances > list of orgs > list of events > Attendance Sheet
 ✔ add event details on Generate Attendance > Confirm and View Organization Members’ Event Expected Attendances > list of orgs > list of events > Attendance Sheet
-☐ org head > members > accept request (finish)
-☐ org member > Check my attendance > (in the blade, there is a search data table, there will be list of all events the user is expected to go to, plus the org, and the user's attendance status)
+☐ org head > members > invite membership (finish)
+☐ org head > Check my attendance > (in the blade, there is a search data table, there will be list of all events the user is expected to go to, plus the org, and the user's attendance status)
 ☐ org adviser > list of organization > at the profile of every org, indicate the user's position if he is a member
 ☐ org adviser > Check my attendance > (in the blade, there is a search data table, there will be list of all events the user is expected to go to, plus the org, and the user's attendance status)
 ☐ org member > list of organization > at the profile of every org, indicate the user's position if he is a member
@@ -240,3 +240,15 @@ Tasks:
 ☐ start usability testing
 
 
+✔ add event details on Generate Attendance > View Organization Members’ Event Expected Attendances > list of orgs > list of events > Attendance Sheet
+✔ add event details on Generate Attendance > Confirm and View Organization Members’ Event Expected Attendances > list of orgs > list of events > Attendance Sheet
+
+☐ interface (change);
+
+☐ usability: 5 orgs - 4 members(2 officers, 2 reg members), 2 osa,
+
+☐ osa na lang mag input, magpasa na lang ang org of event
+☐ dili niya gina replace ang paper, sa broadcasting na lang ni ()..
+☐ pag approved nila sa paper, ddto pa mag approve ang osa , for osa lang na approval ang iask sa org head
+
+☐ manghatag og letter sa osa, na i broadcast og message para iintroduce ning system
