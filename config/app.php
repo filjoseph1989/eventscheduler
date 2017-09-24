@@ -10,6 +10,7 @@ return [
     | This value is the name of your application. This value is used when the
     | framework needs to place the application's name in a notification or
     | any other location as required by the application or its packages.
+    |
     */
 
     'name' => env('APP_NAME', 'Laravel'),
@@ -166,29 +167,16 @@ return [
         /*
          * Package Service Providers...
          */
-        Laravel\Tinker\TinkerServiceProvider::class,
 
         /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\SchedulerProvider::class,
 
-        # Used to send sms
-        Nexmo\Laravel\NexmoServiceProvider::class,
-
-        # Facebook notification
-        NotificationChannels\FacebookPoster\FacebookPosterServiceProvider::class,
-
-        # Twitter notification
-        Thujohn\Twitter\TwitterServiceProvider::class,
-        Tightenco\Ziggy\ZiggyServiceProvider::class,
-
-        # Beautiful email
-        Snowfire\Beautymail\BeautymailServiceProvider::class,        
     ],
 
     /*
@@ -237,9 +225,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Nexmo' => \Nexmo\Laravel\Facade\Nexmo::class,
-        'Twitter' => Thujohn\Twitter\Facades\Twitter::class,
-        'RandomHelper' => App\Providers\SchedulerProvider::class,
+
     ],
 
 ];
