@@ -1,5 +1,11 @@
 Legend: () close and open parenthesis kay suggestions of comments
 
+Layout:
+	☐ Login Page
+	☐ Home Page
+	☐ Tables
+	☐ Modals
+
 OSA Personnel:
 	☐ Add new organization - Once ADD button is clicked, naay mugawas na alert
 		☐ Add alert with message "Organization added User password has been successfully sent to the organization head via email."
