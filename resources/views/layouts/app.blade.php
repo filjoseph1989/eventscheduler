@@ -13,15 +13,13 @@
   <!-- Styles -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
-  <link href="{{ asset('css/bootstrap.css') }}?v=3.3.7" rel="stylesheet">
-  <link href="{{ asset('css/waves.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/style.css') }}?v=0.20" rel="stylesheet">
-
+  <link href="{{ asset('css/bootstrap.css') }}?v=3.3.8" rel="stylesheet">
+  <link href="{{ asset('css/waves.css') }}?v=1" rel="stylesheet">
+  <link href="{{ asset('css/animate.css') }}?v=1" rel="stylesheet">
+  <link href="{{ asset('css/style.css') }}?v=1" rel="stylesheet">
 </head>
 
 <body class="login-page">
-
   <div class="login-box">
     <div class="logo">
       <a href="#">Event<b>Scheduler</b></a>

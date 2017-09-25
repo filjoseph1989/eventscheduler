@@ -13,20 +13,14 @@
   <!-- Styles -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
-  <link href="{{ asset('css/bootstrap.css') }}?v=3.3.7" rel="stylesheet">
-  <link href="{{ asset('css/waves.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/style.css') }}?v=0.20" rel="stylesheet">
+  <link href="{{ asset('css/bootstrap.css') }}?v=3.3.8" rel="stylesheet">
+  <link href="{{ asset('css/waves.css') }}?v=1" rel="stylesheet">
+  <link href="{{ asset('css/animate.css') }}?v=1" rel="stylesheet">
+  <link href="{{ asset('css/style.css') }}?v=1.0.1" rel="stylesheet">
 
   {{-- Remove Me --}}
   <link href="{{ asset('css/all-themes.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/fullcalendar.css') }}?v=0.1" rel="stylesheet">
-  <link href="{{ asset('css/fullcalendar.print.css') }}?v=0.1" rel="stylesheet">
 </head>
-<head>
-
-</head>
-
 <body class="theme-brown">
   <div class="page-loader-wrapper">
     <div class="loader">
@@ -58,7 +52,7 @@
       <div class="navbar-header">
         <a href="#" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
         <a href="#" class="bars"></a>
-        <a class="navbar-brand" href="http://fil2.local/home" title="Event Scheduler System">
+        <a class="navbar-brand" href="/home" title="Event Scheduler System">
           <i class="material-icons">access_time</i>
         </a>
       </div>
@@ -99,12 +93,11 @@
       </div>
     </div>
   </nav>
-
   <section>
     <aside id="leftsidebar" class="sidebar">
       <div class="user-info">
         <div class="image">
-          <img src="http://fil2.local/images/profile.png" width="48" height="48" alt="User" />
+          <img src="/images/profile.png" width="48" height="48" alt="User" />
         </div>
         <div class="info-container">
           <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Eldora Vandervort</div>
@@ -113,13 +106,13 @@
           <div class="btn-group user-helper-dropdown">
             <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
             <ul class="dropdown-menu pull-right">
-              <li><a href="http://fil2.local/users/profile/1"><i class="material-icons">person</i>Profile</a></li>
+              <li><a href="/users/profile/1"><i class="material-icons">person</i>Profile</a></li>
               <li role="seperator" class="divider"></li>
               <li>
                 <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                   <i class="material-icons">input</i> Sign Out
                 </a>
-                <form id="logout-form" action="http://fil2.local/users/logout" method="POST" style="display: none;">
+                <form id="logout-form" action="/users/logout" method="POST" style="display: none;">
                   <input type="hidden" name="_token" value="PjMLKYxnBUqo7t4YyZpwYNY8AWL0k3qaMWeMVwyL">
                 </form>
               </li>
@@ -131,19 +124,30 @@
         <ul class="list">
           <li class="header">MAIN NAVIGATION</li>
           <li class="active">
-            <a href="http://fil2.local/home">
+            <a href="/home">
               <i class="material-icons">home</i>
               <span>Home</span>
             </a>
           </li>
           <li>
             <a href="javascript:void(0);" class="menu-toggle">
-              <i class="material-icons">date_range</i>
+              <i class="material-icons">account_circle</i>
+              <span>System User</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);" class="menu-toggle">
+              <i class="material-icons">group_work</i>
               <span>Organization</span>
             </a>
             <ul class="ml-menu">
               <li>
-                <a href="http://fil2.local/users/org-head/list_of_organizations">
+                <a href="#">
+                  <span>Add New</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
                   <span>University Organizations</span>
                 </a>
               </li>
@@ -151,39 +155,46 @@
           </li>
           <li>
             <a href="javascript:void(0);" class="menu-toggle">
-              <i class="material-icons">event_seat</i>
+              <i class="material-icons">alarm</i>
               <span>Events</span>
             </a>
             <ul class="ml-menu">
-              <li><a href="http://fil2.local/users/org-head/new-event">Create Event</a></li>
-              <li><a href="http://fil2.local/users/org-head/my/new/event">Create My Events</a></li>
-              <li><a href="http://fil2.local/users/org-head/get/event-list">List of Events</a></li>
-              <li><a href="http://fil2.local/users/org-head/approve/event">Approve Events</a></li>
-              <li><a href="http://fil2.local/users/org-head/calendar">Event Calendar</a></li>
+              <li>
+                <a href="#">
+                  <span>Add New</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="menu-toggle">
+                  <span>list</span>
+                </a>
+                <ul class="ml-menu">
+                  <li>
+                    <a href="#"><span>Official</span> </a>
+                  </li>
+                  <li>
+                    <a href="#"> <span>Personal</span> </a>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </li>
           <li>
             <a href="javascript:void(0);" class="menu-toggle">
-              <i class="material-icons">person</i>
-              <span>Members</span>
+              <i class="material-icons">check_circle</i>
+              <span>Attendances</span>
             </a>
             <ul class="ml-menu">
-              <li><a href="http://fil2.local/users/org-head/members/list">All Members</a></li>
-              <li><a href="http://fil2.local/users/org-head/members/invite">Invite</a></li>
-              <li><a href="http://fil2.local/users/org-head/members/accept">Accept</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="javascript:void(0);" class="menu-toggle">
-              <i class="material-icons">list</i>
-              <span>Generate Attendance</span>
-            </a>
-            <ul class="ml-menu">
-              <li><a href="http://fil2.local/users/org-head/generate/declined-attendance/org-list">Generate Declined Attendance</a></li>
-              <li><a href="http://fil2.local/users/org-head/generate/confirmed-attendance/org-list">Generate Confirmed Attendance</a></li>
-              <li><a href="http://fil2.local/users/org-head/attendance/org-list">Confirm and View Organization Members' Event Expected Attendance/s</a></li>
-              <li><a href="http://fil2.local/users/org-head/generate/official-attendance/org-list">Generate Official Attendance</a></li>
-              <li><a href="#">Check My Attendance</a></li>
+              <li>
+                <a href="#">
+                  <span>Create</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span>list</span>
+                </a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -193,7 +204,7 @@
           &copy; 2017 <a href="#">Event Scheduler System</a>.
         </div>
         <div class="version">
-          <b>Version: </b> 1.0.0
+          <b>Version: </b> 2.0.0 | <a href="#" data-toggle="modal" data-target="#webknights">Liz</a>
         </div>
       </div>
     </aside>
@@ -205,47 +216,139 @@
   </section>
   <section class="content">
     <div class="container-fluid">
-      <div class="block-header">
-        <h2>WELCOME <span class="font-10">Eldora</span></h2>
-      </div>
-      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-        <a href="http://fil2.local/users/org-head/manage-schedule">
-          <div class="info-box bg-brown hover-expand-effect">
-            <div class="icon">
-              <i class="material-icons">date_range</i>
+      <div class="row clearfix">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <div class="card">
+            <div class="header">
+              <h2>
+                ADVERTISEMENT
+                <small>In this panel you set or approved for advertisement</small>
+              </h2>
+              <ul class="header-dropdown m-r--5">
+                <li class="dropdown">
+                  <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="material-icons">more_vert</i>
+                  </a>
+                  <ul class="dropdown-menu pull-right">
+                    <li><a href="javascript:void(0);">Action</a></li>
+                    <li><a href="javascript:void(0);">Another action</a></li>
+                    <li><a href="javascript:void(0);">Something else here</a></li>
+                  </ul>
+                </li>
+              </ul>
             </div>
-            <div class="content">
-              <div class="text">Manage Schedule</div>
-              <div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20"></div>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-        <a href="http://fil2.local/users/org-head/generate-attendance/menu">
-          <div class="info-box bg-brown hover-expand-effect">
-            <div class="icon">
-              <i class="material-icons">playlist_add_check</i>
-            </div>
-            <div class="content">
-              <div class="text">Generate Attendance</div>
-              <div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20"></div>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-        <a href="http://fil2.local/users/org-head/manage-notification-menu">
-          <div class="info-box bg-brown hover-expand-effect">
-            <div class="icon">
-              <i class="material-icons">playlist_add</i>
-            </div>
-            <div class="content">
-              <div class="text">Manage Notifications</div>
-              <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20"></div>
+            <div class="body">
+              <div class="list-group">
+                <a href="javascript:void(0);" class="list-group-item">
+                  <span class="badge bg-pink">14 For Approval</span> Official Events
+                </a>
+                <a href="javascript:void(0);" class="list-group-item">
+                  <span class="badge bg-cyan">99 Upcoming</span> Personal Events
+                </a>
+              </div>
             </div>
           </div>
-        </a>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <div class="card">
+            <div class="header">
+              <h2>
+                CALENDAR
+                <small>Show the event in a calendar</small>
+              </h2>
+              <ul class="header-dropdown m-r--5">
+                <li class="dropdown">
+                  <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="material-icons">more_vert</i>
+                  </a>
+                  <ul class="dropdown-menu pull-right">
+                    <li><a href="javascript:void(0);">Action</a></li>
+                    <li><a href="javascript:void(0);">Another action</a></li>
+                    <li><a href="javascript:void(0);">Something else here</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="body">
+              <div class="list-group">
+                <a href="javascript:void(0);" class="list-group-item">
+                  <span class="badge bg-pink">14 New</span> Official Events
+                </a>
+                <a href="javascript:void(0);" class="list-group-item">
+                  <span class="badge bg-cyan">99 Unread</span> Personal Events
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row clearfix">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <div class="card">
+            <div class="header">
+              <h2>
+                ATTENDANCE
+                <small>In this panel you set the user attendance for each event</small>
+              </h2>
+              <ul class="header-dropdown m-r--5">
+                <li class="dropdown">
+                  <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="material-icons">more_vert</i>
+                  </a>
+                  <ul class="dropdown-menu pull-right">
+                    <li><a href="javascript:void(0);">Action</a></li>
+                    <li><a href="javascript:void(0);">Another action</a></li>
+                    <li><a href="javascript:void(0);">Something else here</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="body">
+              <div class="list-group">
+                <a href="javascript:void(0);" class="list-group-item">
+                  <span class="badge bg-pink">14 Attendees</span> Official
+                </a>
+                <a href="javascript:void(0);" class="list-group-item">
+                  <span class="badge bg-cyan">99 Confirmed</span> Confirmation
+                </a>
+                <a href="javascript:void(0);" class="list-group-item">
+                  <span class="badge bg-teal">0</span> Expected
+                </a>
+                <a href="javascript:void(0);" class="list-group-item">
+                  <span class="badge bg-blue">0</span> Decline
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <div class="card">
+            <div class="header">
+              <h2>
+                Manage Notifications
+                <small>you panel for notification management</small>
+              </h2>
+              <ul class="header-dropdown m-r--5">
+                <li class="dropdown">
+                  <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="material-icons">more_vert</i>
+                  </a>
+                  <ul class="dropdown-menu pull-right">
+                    <li><a href="javascript:void(0);">Action</a></li>
+                    <li><a href="javascript:void(0);">Another action</a></li>
+                    <li><a href="javascript:void(0);">Something else here</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="body">
+              <div class="list-group">
+                <a href="javascript:void(0);" class="list-group-item"> Notification Settings </a>
+                <a href="javascript:void(0);" class="list-group-item"> Approved Events </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -263,6 +366,25 @@
         </div>
         <div class="modal-footer">
           ...
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="webknights" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">Janica Liz De Guzman</h4>
+        </div>
+        <div class="modal-body">
+          <p>System Creator</p>
+          <p>janicalizdeguzman at gmail dot com</p>
+        </div>
+        <div class="modal-footer">
+          <i class="material-icons" data-dismiss="modal" style="cursor:pointer;">close</i>
         </div>
       </div>
     </div>
