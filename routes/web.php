@@ -12,9 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+  return redirect()->route('login');
 });
 
 Auth::routes();
+Route::name('my.login')->post('/my-login', 'Auth\LoginController@myLogin');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('home', 'HomeController');
+# Route::get('/home', 'HomeController@index')->name('home');
