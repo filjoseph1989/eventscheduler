@@ -28,8 +28,8 @@
     </div>
     <div class="card">
       <div class="body">
-        <form id="sign_in" id="sign_in" role="form" method="POST" action="">
-          <input type="hidden" name="_token" value="rLIDLgwY8WFbxr9cMU4XbmxScMXAYKGkKUo84mbZ">
+        <form id="sign_in" id="sign_in" role="form" method="POST" action="{{ route('my.login') }}">
+          {{ csrf_field() }}
           <div class="msg">Sign in to start your session</div>
           <div class="input-group form-group">
             <span class="input-group-addon"><i class="material-icons">person</i></span>
