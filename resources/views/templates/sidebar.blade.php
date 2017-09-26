@@ -2,7 +2,7 @@
   <aside id="leftsidebar" class="sidebar">
     <div class="user-info">
       <div class="image">
-        <img src="/images/profile.png" width="48" height="48" alt="User" />
+        <img src="/img/profile.png" width="48" height="48" alt="User">
       </div>
       <div class="info-container">
         <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Eldora Vandervort</div>
@@ -52,7 +52,7 @@
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="{{ route('Org.index') }}">
                 <span>University Organizations</span>
               </a>
             </li>
