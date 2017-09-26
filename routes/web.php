@@ -20,3 +20,5 @@ Route::name('my.login')->post('/my-login', 'Auth\LoginController@myLogin');
 
 Route::resource('home', 'HomeController'); # Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('User', 'UserController');
+Route::resource('Event', 'EventController');
+Route::resource('Org', 'OrganizationController');

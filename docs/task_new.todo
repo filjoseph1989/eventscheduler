@@ -4,6 +4,7 @@ Layout:
 	✔ Login Page @done(2017-09-26 11:26) @project(Layout)
 	✔ Home Page @done(2017-09-26 11:27) @project(Layout)
 	✔ User List @done(2017-09-26 11:27) @project(Layout)
+	☐ Add organization
 
 OSA Personnel:
 	☐ Add new organization - Once ADD button is clicked, naay mugawas na alert
