@@ -65,7 +65,7 @@
           </a>
           <ul class="ml-menu">
             <li>
-              <a href="#">
+              <a href="{{ route('Event.create') }}">
                 <span>Add New</span>
               </a>
             </li>
