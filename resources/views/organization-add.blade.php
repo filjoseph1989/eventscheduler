@@ -99,12 +99,12 @@
   <section class="content">
     <div class="container-fluid">
       <div class="row clearfix">
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="card">
             <div class="header">
               <h2>
-                ADVERTISEMENT
-                <small>In this panel you set or approved for advertisement</small>
+                Add New Organization
+                <small>This form used to register new organization in the system</small>
               </h2>
               <ul class="header-dropdown m-r--5">
                 <li class="dropdown">
@@ -120,113 +120,41 @@
               </ul>
             </div>
             <div class="body">
-              <div class="list-group">
-                <a href="javascript:void(0);" class="list-group-item">
-                  <span class="badge bg-pink">14 For Approval</span> Official Events
-                </a>
-                <a href="javascript:void(0);" class="list-group-item">
-                  <span class="badge bg-cyan">99 Upcoming</span> Personal Events
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <div class="card">
-            <div class="header">
-              <h2>
-                CALENDAR
-                <small>Show the event in a calendar</small>
-              </h2>
-              <ul class="header-dropdown m-r--5">
-                <li class="dropdown">
-                  <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="material-icons">more_vert</i>
-                  </a>
-                  <ul class="dropdown-menu pull-right">
-                    <li><a href="javascript:void(0);">Action</a></li>
-                    <li><a href="javascript:void(0);">Another action</a></li>
-                    <li><a href="javascript:void(0);">Something else here</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-            <div class="body">
-              <div class="list-group">
-                <a href="javascript:void(0);" class="list-group-item">
-                  <span class="badge bg-pink">14 New</span> Official Events
-                </a>
-                <a href="javascript:void(0);" class="list-group-item">
-                  <span class="badge bg-cyan">99 Unread</span> Personal Events
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row clearfix">
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <div class="card">
-            <div class="header">
-              <h2>
-                ATTENDANCE
-                <small>In this panel you set the user attendance for each event</small>
-              </h2>
-              <ul class="header-dropdown m-r--5">
-                <li class="dropdown">
-                  <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="material-icons">more_vert</i>
-                  </a>
-                  <ul class="dropdown-menu pull-right">
-                    <li><a href="javascript:void(0);">Action</a></li>
-                    <li><a href="javascript:void(0);">Another action</a></li>
-                    <li><a href="javascript:void(0);">Something else here</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-            <div class="body">
-              <div class="list-group">
-                <a href="javascript:void(0);" class="list-group-item">
-                  <span class="badge bg-pink">14 Attendees</span> Official
-                </a>
-                <a href="javascript:void(0);" class="list-group-item">
-                  <span class="badge bg-cyan">99 Confirmed</span> Confirmation
-                </a>
-                <a href="javascript:void(0);" class="list-group-item">
-                  <span class="badge bg-teal">0</span> Expected
-                </a>
-                <a href="javascript:void(0);" class="list-group-item">
-                  <span class="badge bg-blue">0</span> Decline
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <div class="card">
-            <div class="header">
-              <h2>
-                MANAGE NOTIFICATIONS
-                <small>you panel for notification management</small>
-              </h2>
-              <ul class="header-dropdown m-r--5">
-                <li class="dropdown">
-                  <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="material-icons">more_vert</i>
-                  </a>
-                  <ul class="dropdown-menu pull-right">
-                    <li><a href="javascript:void(0);">Action</a></li>
-                    <li><a href="javascript:void(0);">Another action</a></li>
-                    <li><a href="javascript:void(0);">Something else here</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-            <div class="body">
-              <div class="list-group">
-                <a href="javascript:void(0);" class="list-group-item"> Notification Settings </a>
-                <a href="javascript:void(0);" class="list-group-item"> Approved Events </a>
+              <div class="row clearfix">
+                <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8 col-sm-offset-2">
+                  <form class="" action="{{ route('Org.store') }}" method="post">
+                    <div class="form-group">
+                      <div class="form-line">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Organization Name" required autofocus>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="form-line">
+                        <input type="text" class="form-control" id="acronym" name="acronym" placeholder="Acronym" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="form-line">
+                        <input type="text" class="form-control" id="student_number" name="student_number" placeholder="Organization Leader Student number" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="form-line">
+                        <input type="text" class="form-control" id="student_name" name="student_name" placeholder="Organization Leader Name" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="form-line">
+                        <input type="text" class="form-control" id="student_email" name="student_email" placeholder="Organization Leader Email" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-success" name="button">
+                        <i class="material-icons">save</i> Save
+                      </button>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
@@ -234,24 +162,7 @@
       </div>
     </div>
   </section>
-  <div id="notification" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title" id="myModalLabel">Accept Invitation</h4>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          ...
-        </div>
-      </div>
-    </div>
-  </div>
+
   <div id="webknights" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -271,6 +182,7 @@
       </div>
     </div>
   </div>
+
   <script src="{{ asset('js/jquery.min.js') }}?v=3.2.2"></script>
   <script src="{{ asset('js/bootstrap.min.js') }}?v=3.3.8"></script>
   <script src="{{ asset('js/waves.js') }}?v=0.1"></script>

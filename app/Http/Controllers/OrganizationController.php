@@ -23,18 +23,20 @@ class OrganizationController extends Controller
      */
     public function create()
     {
-        return view()
+        return view('organization-add');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store new organization
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        # Get form data
+        # validate form data
+        # add to database
     }
 
     /**
