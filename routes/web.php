@@ -18,12 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 Route::name('my.login')->post('/my-login', 'Auth\LoginController@myLogin');
 
-Route::resource('home', 'HomeController'); # Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('User', 'UserController');
-Route::resource('Event', 'EventController');
-Route::resource('Org', 'OrganizationController');
-Route::resource('Official', 'EventOfficialController');
-Route::resource('Personal', 'EventPersonalController');
-Route::resource('Calendar', 'CalendarController');
-Route::resource('Attendances', 'AttendanceController');
+# Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('home',         'HomeController'); 
+Route::resource('User',         'UserController');
+Route::resource('Event',        'EventController');
+Route::resource('Org',          'OrganizationController');
+Route::resource('Calendar',     'CalendarController');
+Route::resource('Attendances',  'AttendanceController');
 

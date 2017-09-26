@@ -23,6 +23,7 @@
   <link href="{{ asset('css/all-themes.css') }}" rel="stylesheet">
 </head>
 <body class="theme-brown">
+
   @include ('templates/top-navigation')
 
   @include ('templates/sidebar')
@@ -34,7 +35,7 @@
           <div class="card">
             <div class="header">
               <h2>
-                List of Official Events
+                {{ ucwords($title) }} Events
                 <small>Display organizations in the system</small>
               </h2>
               <ul class="header-dropdown m-r--5">

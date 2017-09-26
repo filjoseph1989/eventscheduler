@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
+    private $list = ['official', 'personal'];
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +14,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        return view('event-list');    
+        return view('approve-events');    
     }
 
     /**
@@ -45,7 +46,9 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('events-list')->with([
+            'title' => $this->list[$id]
+        ]);
     }
 
     /**
