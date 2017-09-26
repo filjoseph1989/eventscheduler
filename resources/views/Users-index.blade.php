@@ -217,12 +217,12 @@
   <section class="content">
     <div class="container-fluid">
       <div class="row clearfix">
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="card">
             <div class="header">
               <h2>
-                ADVERTISEMENT
-                <small>In this panel you set or approved for advertisement</small>
+                System Members
+                <small>List of users</small>
               </h2>
               <ul class="header-dropdown m-r--5">
                 <li class="dropdown">
@@ -238,134 +238,85 @@
               </ul>
             </div>
             <div class="body">
-              <div class="list-group">
-                <a href="javascript:void(0);" class="list-group-item">
-                  <span class="badge bg-pink">14 For Approval</span> Official Events
-                </a>
-                <a href="javascript:void(0);" class="list-group-item">
-                  <span class="badge bg-cyan">99 Upcoming</span> Personal Events
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <div class="card">
-            <div class="header">
-              <h2>
-                CALENDAR
-                <small>Show the event in a calendar</small>
-              </h2>
-              <ul class="header-dropdown m-r--5">
-                <li class="dropdown">
-                  <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="material-icons">more_vert</i>
-                  </a>
-                  <ul class="dropdown-menu pull-right">
-                    <li><a href="javascript:void(0);">Action</a></li>
-                    <li><a href="javascript:void(0);">Another action</a></li>
-                    <li><a href="javascript:void(0);">Something else here</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-            <div class="body">
-              <div class="list-group">
-                <a href="javascript:void(0);" class="list-group-item">
-                  <span class="badge bg-pink">14 New</span> Official Events
-                </a>
-                <a href="javascript:void(0);" class="list-group-item">
-                  <span class="badge bg-cyan">99 Unread</span> Personal Events
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row clearfix">
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <div class="card">
-            <div class="header">
-              <h2>
-                ATTENDANCE
-                <small>In this panel you set the user attendance for each event</small>
-              </h2>
-              <ul class="header-dropdown m-r--5">
-                <li class="dropdown">
-                  <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="material-icons">more_vert</i>
-                  </a>
-                  <ul class="dropdown-menu pull-right">
-                    <li><a href="javascript:void(0);">Action</a></li>
-                    <li><a href="javascript:void(0);">Another action</a></li>
-                    <li><a href="javascript:void(0);">Something else here</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-            <div class="body">
-              <div class="list-group">
-                <a href="javascript:void(0);" class="list-group-item">
-                  <span class="badge bg-pink">14 Attendees</span> Official
-                </a>
-                <a href="javascript:void(0);" class="list-group-item">
-                  <span class="badge bg-cyan">99 Confirmed</span> Confirmation
-                </a>
-                <a href="javascript:void(0);" class="list-group-item">
-                  <span class="badge bg-teal">0</span> Expected
-                </a>
-                <a href="javascript:void(0);" class="list-group-item">
-                  <span class="badge bg-blue">0</span> Decline
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <div class="card">
-            <div class="header">
-              <h2>
-                MANAGE NOTIFICATIONS
-                <small>you panel for notification management</small>
-              </h2>
-              <ul class="header-dropdown m-r--5">
-                <li class="dropdown">
-                  <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="material-icons">more_vert</i>
-                  </a>
-                  <ul class="dropdown-menu pull-right">
-                    <li><a href="javascript:void(0);">Action</a></li>
-                    <li><a href="javascript:void(0);">Another action</a></li>
-                    <li><a href="javascript:void(0);">Something else here</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-            <div class="body">
-              <div class="list-group">
-                <a href="javascript:void(0);" class="list-group-item"> Notification Settings </a>
-                <a href="javascript:void(0);" class="list-group-item"> Approved Events </a>
-              </div>
+              <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                <thead>
+                  <th>Name</th>
+                  <th>Course</th>
+                  <th>Position</th>
+                  <th>Status</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a href="#" data-toggle="modal" data-target="#profile">Katherine Mcnamara</a></td>
+                    <td><a href="#" data-toggle="modal" data-target="#course">MS in Applied Economics</a></td>
+                    <td><a href="#">American Actress/Singer</a></td>
+                    <td><a href="#">Active</a></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <div id="notification" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div id="profile" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          <h4 class="modal-title" id="myModalLabel">Accept Invitation</h4>
+          <h4 class="modal-title" id="myModalLabel">Katherine Mcnamara</h4>
         </div>
         <div class="modal-body">
-          ...
+          <table class="table table-bordered table-striped">
+            <tbody>
+              <tr>
+                <td>Katherine Mcnamara</td>
+              </tr>
+              <tr>
+                <td>Actress Singer</td>
+              </tr>
+              <tr>
+                <td>Bachelor of Science in Business Administration</td>
+              </tr>
+              <tr>
+                <td>Summa Cum Laude</td>
+              </tr>
+              <tr>
+                <td>Drexel University</td>
+              </tr>
+              <tr>
+                <td>Master in Applid Economics</td>
+              </tr>
+              <tr>
+                <td>Johns Hopkins University</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <div class="modal-footer">
-          ...
+          <i class="material-icons" data-dismiss="modal" style="cursor:pointer;">close</i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="course" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">Business Administration</h4>
+        </div>
+        <div class="modal-body">
+          <p><strong>Business administration</strong> is management of a business. It includes all aspects of overseeing and supervising business operations.</p>
+          <a href="https://en.wikipedia.org/wiki/Business_administration" target="_blank">Source Wikipedia</a>
+        </div>
+        <div class="modal-footer">
+          <i class="material-icons" data-dismiss="modal" style="cursor:pointer;">close</i>
         </div>
       </div>
     </div>
