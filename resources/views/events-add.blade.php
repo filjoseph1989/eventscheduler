@@ -16,6 +16,7 @@
   <link href="{{ asset('css/bootstrap.css') }}?v=3.3.8" rel="stylesheet">
   <link href="{{ asset('css/waves.css') }}?v=1" rel="stylesheet">
   <link href="{{ asset('css/animate.css') }}?v=1" rel="stylesheet">
+  <link href="{{ asset('css/bootstrap-material-datetimepicker.css') }}?v=1.0.1" rel="stylesheet">
   <link href="{{ asset('css/style.css') }}?v=1.0.1" rel="stylesheet">
 
   {{-- Remove Me --}}
@@ -337,6 +338,22 @@
   <script src="{{ asset('js/bootstrap.min.js') }}?v=3.3.8"></script>
   <script src="{{ asset('js/waves.js') }}?v=0.1"></script>
   <script src="{{ asset('js/jquery.slimscroll.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/autosize.js') }}"?v=0.1></script>
+  <script src="{{ asset('js/moment.js') }}"?v=0.1></script>
+  <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}"?v=0.1></script>
   <script src="{{ asset('js/admin.js') }}"?v=0.1></script>
+  <script type="text/javascript">
+    $('.event-datepicker').bootstrapMaterialDatePicker({
+       format: 'YYYY/MM/DD',
+       clearButton: true,
+       weekStart: 1,
+       time: false
+     });
+     $('.event-timepicker').bootstrapMaterialDatePicker({
+       format: 'HH:mm',
+       clearButton: true,
+       date: false
+     });
+  </script>
 </body>
 </html>
