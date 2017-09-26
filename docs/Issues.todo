@@ -1,1 +1,3 @@
-Issue 1: Remove the welcome.blade.php, its not being used anymore
+☐ Issue 1: Remove the welcome.blade.php, its not being used anymore           
+☐ Issue 2: Remove the login.blade.php, its not being used anymore           
+☐ Issue 3: Try to create shortcut key access to buttons in the system

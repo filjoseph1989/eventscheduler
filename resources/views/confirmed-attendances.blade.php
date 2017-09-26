@@ -17,6 +17,7 @@
   <link href="{{ asset('css/waves.css') }}?v=1" rel="stylesheet">
   <link href="{{ asset('css/animate.css') }}?v=1" rel="stylesheet">
   <link href="{{ asset('css/style.css') }}?v=1.0.1" rel="stylesheet">
+  <link href="{{ asset('css/dataTables.bootstrap.css') }}?v=1" rel="stylesheet">
 
   {{-- Remove Me --}}
   <link href="{{ asset('css/all-themes.css') }}" rel="stylesheet">
@@ -103,8 +104,8 @@
           <div class="card">
             <div class="header">
               <h2>
-                Add New Organization
-                <small>This form used to register new organization in the system</small>
+                Confirmed Attendance 
+                <small>Display all registered organiztion in the system</small>
               </h2>
               <ul class="header-dropdown m-r--5">
                 <li class="dropdown">
@@ -121,39 +122,41 @@
             </div>
             <div class="body">
               <div class="row clearfix">
-                <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8 col-sm-offset-2">
-                  <form class="" action="{{ route('Org.store') }}" method="post">
-                    <div class="form-group">
-                      <div class="form-line">
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Organization Name" required autofocus>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="form-line">
-                        <input type="text" class="form-control" id="acronym" name="acronym" placeholder="Acronym" required>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="form-line">
-                        <input type="text" class="form-control" id="student_number" name="student_number" placeholder="Organization Leader Student number" required>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="form-line">
-                        <input type="text" class="form-control" id="student_name" name="student_name" placeholder="Organization Leader Name" required>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="form-line">
-                        <input type="text" class="form-control" id="student_email" name="student_email" placeholder="Organization Leader Email" required>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <button type="submit" class="btn btn-success" name="button">
-                        <i class="material-icons">save</i>Save
-                      </button>
-                    </div>
-                  </form>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                    <thead>
+                      <th><a href="#">Organization Name</a></th>
+                      <th>Abbrivation</th>
+                      <th>Leader</th>
+                      <th>Status</th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><a href="#" data-target="#org-profile" data-toggle="modal">Computer Science Society</a></td>
+                        <td>CSS</td>
+                        <td><a href="#">Mark Zuckerberg</a></td>
+                        <td>Active</td>
+                      </tr>
+                      <tr>
+                        <td><a href="#" data-target="#org-profile" data-toggle="modal">Association of IT students</a></td>
+                        <td>AITS</td>
+                        <td><a href="#">Donald Trump</a></td>
+                        <td>Active</td>
+                      </tr>
+                      <tr>
+                        <td><a href="#" data-target="#org-profile" data-toggle="modal">Association of Engineering students</a></td>
+                        <td>AES</td>
+                        <td><a href="#">Elon Musk</a></td>
+                        <td>Active</td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <th>Organization Name</th>
+                      <th>Abbrivation</th>
+                      <th>Leader</th>
+                      <th>Status</th>
+                    </tfoot>
+                  </table>
                 </div>
               </div>
             </div>
@@ -162,7 +165,47 @@
       </div>
     </div>
   </section>
-
+  <div id="org-profile" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">Computer Science Society</h4>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered table-striped">
+            <tbody>
+              <tr>
+                <td>Computer Science Society</td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    First appeared in 2017, when the two of the student of Bachelor of Science in Computer Science
+                    Namely Larry Page and Sergey Brin in time of on going research conventional search engine that
+                    ranked results by counting how many times the search terms appeared on the page and
+                    analyzed the relationships among websites called pagerank
+                  </p>
+                  <p>These project grow and now what is known as google</p>
+                </td>
+              </tr>
+              <tr>
+                <td>Lead by: Jeff Bezos</td>
+              </tr>
+              <tr>
+                <td>Aniversary: September 25, 2017</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <i class="material-icons" data-dismiss="modal" style="cursor:pointer;">close</i>
+        </div>
+      </div>
+    </div>
+  </div>
   <div id="webknights" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -188,5 +231,8 @@
   <script src="{{ asset('js/waves.js') }}?v=0.1"></script>
   <script src="{{ asset('js/jquery.slimscroll.js') }}?v=0.1"></script>
   <script src="{{ asset('js/admin.js') }}"?v=0.1></script>
+  <script src="{{ asset('js/bootstrap-select.js') }}"?v=0.1></script>
+  <script src="{{ asset('js/jquery.dataTables.js') }}"?v=0.1></script>
+  <script src="{{ asset('js/jquery-datatable.js') }}"?v=0.1></script>
 </body>
 </html>

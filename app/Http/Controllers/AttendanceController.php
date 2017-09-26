@@ -4,16 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class AttendanceController extends Controller
 {
-    /**
-     * Initial instance of the class
-     */
-    public function __construct()
-    {
-
-    }
- 
+    private $list = ['official', 'expected', 'confirm', 'decline'];
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users-index');
+        //
     }
 
     /**
@@ -53,7 +46,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        return view("attendance-{$this->list[$id]}");
     }
 
     /**

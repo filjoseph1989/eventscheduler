@@ -104,8 +104,8 @@
           <div class="card">
             <div class="header">
               <h2>
-                Add New Organization
-                <small>This form used to register new organization in the system</small>
+                Add New Events
+                <small>This form used to register new event in the system</small>
               </h2>
               <ul class="header-dropdown m-r--5">
                 <li class="dropdown">

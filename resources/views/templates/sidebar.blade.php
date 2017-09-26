@@ -37,7 +37,7 @@
         <li>
           <a href="{{ route('User.index') }}" class="menu-toggle">
             <i class="material-icons">account_circle</i>
-            <span>System User</span>
+            <span>All System Users</span>
           </a>
         </li>
         <li>
@@ -71,19 +71,19 @@
             </li>
             <li>
               <a href="#" class="menu-toggle">
-                <span>list</span>
+                <span>List</span>
               </a>
               <ul class="ml-menu">
                 <li>
-                  <a href="#"><span>Official</span> </a>
+                  <a href="{{ route('Official.index') }}"><span>Official</span> </a>
                 </li>
                 <li>
-                  <a href="#"> <span>Personal</span> </a>
+                  <a href="{{ route('Personal.index') }}"> <span>Personal</span> </a>
                 </li>
               </ul>
             </li>
             <li>
-              <a href="#"><span>Approved Events</span></a>
+              <a href="{{ route('Event.index') }}"><span>Approved Events</span></a>
             </li>
             <li>
               <a href="#" class="menu-toggle">
@@ -91,10 +91,10 @@
               </a>
               <ul class="ml-menu">
                 <li>
-                  <a href="#"><span>Official</span> </a>
+                  <a href="{{ route('CalendarOf.index') }}"><span>Official</span> </a>
                 </li>
                 <li>
-                  <a href="#"> <span>Personal</span> </a>
+                  <a href="{{ route('CalendarPe.index') }}"> <span>Personal</span> </a>
                 </li>
               </ul>
             </li>
@@ -106,16 +106,10 @@
             <span>Attendances</span>
           </a>
           <ul class="ml-menu">
-            <li>
-              <a href="#">
-                <span>Create</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span>list</span>
-              </a>
-            </li>
+            <li><a href="{{ route('Attendances.show', 1) }}"><span>Official</span></a></li>
+            <li><a href="{{ route('Attendances.show', 2) }}"><span>Expected</span></a></li>
+            <li><a href="{{ route('Attendances.show', 3) }}"><span>Confirmed</span></a></li>
+            <li><a href="{{ route('Attendances.show', 4) }}"><span>Declined</span></a></li>
           </ul>
         </li>
       </ul>

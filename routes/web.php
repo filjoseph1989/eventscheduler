@@ -22,3 +22,15 @@ Route::resource('home', 'HomeController'); # Route::get('/home', 'HomeController
 Route::resource('User', 'UserController');
 Route::resource('Event', 'EventController');
 Route::resource('Org', 'OrganizationController');
+Route::resource('Official', 'EventOfficialController');
+Route::resource('Personal', 'EventPersonalController');
+Route::resource('Calendar', 'CalendarController');
+Route::resource('CalendarOf', 'CalendarOfficialController');
+Route::resource('CalendarPe', 'CalendarPersonalController');
+
+Route::resource('Attendances', 'AttendanceController');
+
+Route::resource('AttendancesOff', 'AttendanceConfirmedController');
+Route::resource('AttendancesExp', 'AttendanceExpectedController');
+Route::resource('AttendancesDec', 'AttendanceDeclineController');
+Route::resource('AttendancesCon', 'AttendanceConfirmedController');

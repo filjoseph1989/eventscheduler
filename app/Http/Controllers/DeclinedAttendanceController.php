@@ -4,16 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class DeclinedAttendanceController extends Controller
 {
-    /**
-     * Initial instance of the class
-     */
-    public function __construct()
-    {
-
-    }
- 
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users-index');
+        return view('declined-attendances');        
     }
 
     /**

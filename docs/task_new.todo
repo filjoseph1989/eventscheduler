@@ -1,4 +1,4 @@
-Legend: () close and open parenthesis kay suggestions of comments
+Legend: () close and open parenthesis kay suggestions og comments
 
 Layout:
 	✔ Login Page @done(2017-09-26 11:26) @project(Layout)
@@ -12,20 +12,20 @@ Layout:
 OSA Personnel:
 	☐ Add new organization - Once ADD button is clicked, naay mugawas na alert
 		☐ Add alert with message "Organization added User password has been successfully sent to the organization head via email."
-		☐ Warnig alert if organization already exist
+		☐ Warning alert if organization already exist
 		☐ Return to homepage after a successful registration of the new organization
-		☐ Send email to Organization Head about hi/her system credentials (e.g email and password)
+		☐ Send email to Organization Head about his/her system credentials (e.g email and password)
 			☐ Student number as username and,
 			☐ Generated password
 	☐ List of events (Please refer to mockups)
-		☐ Click on events, a modal shoudl promt with all the details about the events
+		☐ Click on events, a modal should prompt with all the details about the events
 			☐ Has a button to advertise the event
 				☐ This button should only show if the event is not approve by the OSA to be advertise
 		☐ Official event page (This will show up when an official event is clicked)
 			☐ Should contain (title, description, start date with time, end date with time)
 			☐ Should have a dropdown (for what ni?)
 				☐ University
-				☐ Organization
+				☐ Organization 
 			☐ Reminder options (Must be a two dropdown) (And should be set before the day the event will come)
 				☐ First is a number, partner with
 				☐ day, week, month, year
