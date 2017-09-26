@@ -35,7 +35,7 @@
           <div class="card">
             <div class="header">
               <h2>
-                Official Calendar
+                {{ ucwords($title) }} Attedance
                 <small>Display organizations in the system</small>
               </h2>
               <ul class="header-dropdown m-r--5">
@@ -56,35 +56,25 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                     <thead>
-                      <th><a href="#">Organization Name</a></th>
-                      <th>Abbrivation</th>
-                      <th>Leader</th>
+                      <th>Name</th>
+                      <th>Course</th>
                       <th>Status</th>
                     </thead>
                     <tbody>
                       <tr>
-                        <td><a href="#" data-target="#org-profile" data-toggle="modal">Computer Science Society</a></td>
-                        <td>CSS</td>
-                        <td><a href="#">Mark Zuckerberg</a></td>
+                        <td>Mark Zuckerberg</td>
+                        <td>BS in Com Scie</td>
                         <td>Active</td>
                       </tr>
                       <tr>
-                        <td><a href="#" data-target="#org-profile" data-toggle="modal">Association of IT students</a></td>
-                        <td>AITS</td>
-                        <td><a href="#">Donald Trump</a></td>
-                        <td>Active</td>
-                      </tr>
-                      <tr>
-                        <td><a href="#" data-target="#org-profile" data-toggle="modal">Association of Engineering students</a></td>
-                        <td>AES</td>
-                        <td><a href="#">Elon Musk</a></td>
+                        <td>Mark Wahlberg</td>
+                        <td>BS in Com Scie</td>
                         <td>Active</td>
                       </tr>
                     </tbody>
                     <tfoot>
-                      <th>Organization Name</th>
-                      <th>Abbrivation</th>
-                      <th>Leader</th>
+                      <th>Name</th>
+                      <th>Course</th>
                       <th>Status</th>
                     </tfoot>
                   </table>
@@ -96,47 +86,7 @@
       </div>
     </div>
   </section>
-  <div id="org-profile" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title" id="myModalLabel">Computer Science Society</h4>
-        </div>
-        <div class="modal-body">
-          <table class="table table-bordered table-striped">
-            <tbody>
-              <tr>
-                <td>Computer Science Society</td>
-              </tr>
-              <tr>
-                <td>
-                  <p>
-                    First appeared in 2017, when the two of the student of Bachelor of Science in Computer Science
-                    Namely Larry Page and Sergey Brin in time of on going research conventional search engine that
-                    ranked results by counting how many times the search terms appeared on the page and
-                    analyzed the relationships among websites called pagerank
-                  </p>
-                  <p>These project grow and now what is known as google</p>
-                </td>
-              </tr>
-              <tr>
-                <td>Lead by: Jeff Bezos</td>
-              </tr>
-              <tr>
-                <td>Aniversary: September 25, 2017</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="modal-footer">
-          <i class="material-icons" data-dismiss="modal" style="cursor:pointer;">close</i>
-        </div>
-      </div>
-    </div>
-  </div>
+  
   <div id="webknights" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">

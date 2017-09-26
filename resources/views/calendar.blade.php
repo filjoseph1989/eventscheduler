@@ -23,6 +23,7 @@
   <link href="{{ asset('css/all-themes.css') }}" rel="stylesheet">
 </head>
 <body class="theme-brown">
+
   @include ('templates/top-navigation')
 
   @include ('templates/sidebar')
@@ -34,8 +35,8 @@
           <div class="card">
             <div class="header">
               <h2>
-                Declined Attendance 
-                <small>Display all registered organiztion in the system</small>
+                {{ ucwords($title) }} Calendar
+                <small>Display organizations in the system</small>
               </h2>
               <ul class="header-dropdown m-r--5">
                 <li class="dropdown">
@@ -51,44 +52,7 @@
               </ul>
             </div>
             <div class="body">
-              <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
-                    <thead>
-                      <th><a href="#">Organization Name</a></th>
-                      <th>Abbrivation</th>
-                      <th>Leader</th>
-                      <th>Status</th>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td><a href="#" data-target="#org-profile" data-toggle="modal">Computer Science Society</a></td>
-                        <td>CSS</td>
-                        <td><a href="#">Mark Zuckerberg</a></td>
-                        <td>Active</td>
-                      </tr>
-                      <tr>
-                        <td><a href="#" data-target="#org-profile" data-toggle="modal">Association of IT students</a></td>
-                        <td>AITS</td>
-                        <td><a href="#">Donald Trump</a></td>
-                        <td>Active</td>
-                      </tr>
-                      <tr>
-                        <td><a href="#" data-target="#org-profile" data-toggle="modal">Association of Engineering students</a></td>
-                        <td>AES</td>
-                        <td><a href="#">Elon Musk</a></td>
-                        <td>Active</td>
-                      </tr>
-                    </tbody>
-                    <tfoot>
-                      <th>Organization Name</th>
-                      <th>Abbrivation</th>
-                      <th>Leader</th>
-                      <th>Status</th>
-                    </tfoot>
-                  </table>
-                </div>
-              </div>
+              {{--  The body of the caledar  --}}
             </div>
           </div>
         </div>

@@ -49,7 +49,9 @@ class AttendanceController extends Controller
      */
     public function show($id)
     {
-        return view("attendance-{$this->list[$id]}");
+        return view("attendance")->with([
+            'title' => $this->list[$id]
+        ]);
     }
 
     /**

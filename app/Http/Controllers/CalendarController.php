@@ -47,7 +47,9 @@ class CalendarController extends Controller
      */
     public function show($id)
     {
-        return view("calendar-{$this->list[$id]}");
+        return view("calendar")->with([
+            'title' => $this->list[$id]
+        ]);
     }
 
     /**
