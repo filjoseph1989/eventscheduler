@@ -177,6 +177,22 @@
                   </li>
                 </ul>
               </li>
+              <li>
+                <a href="#"><span>Approved Events</span></a>
+              </li>
+              <li>
+                <a href="#" class="menu-toggle">
+                  <span>Calendar</span>
+                </a>
+                <ul class="ml-menu">
+                  <li>
+                    <a href="#"><span>Official</span> </a>
+                  </li>
+                  <li>
+                    <a href="#"> <span>Personal</span> </a>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </li>
           <li>

@@ -1,10 +1,9 @@
 Legend: () close and open parenthesis kay suggestions of comments
 
 Layout:
-	☐ Login Page
-	☐ Home Page
-	☐ Tables
-	☐ Modals
+	✔ Login Page @done(2017-09-26 11:26) @project(Layout)
+	✔ Home Page @done(2017-09-26 11:27) @project(Layout)
+	✔ User List @done(2017-09-26 11:27) @project(Layout)
 
 OSA Personnel:
 	☐ Add new organization - Once ADD button is clicked, naay mugawas na alert
