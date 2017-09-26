@@ -23,77 +23,8 @@
   <link href="{{ asset('css/all-themes.css') }}" rel="stylesheet">
 </head>
 <body class="theme-brown">
-  <div class="page-loader-wrapper">
-    <div class="loader">
-      <div class="preloader">
-        <div class="spinner-layer pl-red">
-          <div class="circle-clipper left">
-            <div class="circle"></div>
-          </div>
-          <div class="circle-clipper right">
-            <div class="circle"></div>
-          </div>
-        </div>
-      </div>
-      <p>Please wait...</p>
-    </div>
-  </div>
-  <div class="overlay"></div>
-  <div class="search-bar">
-    <div class="search-icon">
-      <i class="material-icons">search</i>
-    </div>
-    <input type="text" placeholder="START TYPING...">
-    <div class="close-search">
-      <i class="material-icons">close</i>
-    </div>
-  </div>
-  <nav class="navbar">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a href="#" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
-        <a href="#" class="bars"></a>
-        <a class="navbar-brand" href="/home" title="Event Scheduler System">
-          <i class="material-icons">access_time</i>
-        </a>
-      </div>
-      <div class="collapse navbar-collapse" id="navbar-collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
-              <i class="material-icons">notifications</i>
-              <span class="label-count">7</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">NOTIFICATIONS</li>
-              <li class="body">
-                <ul class="menu">
-                  <li>
-                    <a href="#" data-target="#notification" data-toggle="modal">
-                      <div class="icon-circle bg-light-green">
-                        <i class="material-icons">mail_outline</i>
-                      </div>
-                      <div class="menu-info">
-                        <h4>You're invited to join <br>Alpha Phi Omega</h4>
-                        <p>
-                          <i class="material-icons">access_time</i> 14 mins ago
-                        </p>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="footer">
-                <a href="#">View All Notifications</a>
-              </li>
-            </ul>
-          </li>
-          <li class="pull-right"><a href="#" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+
+  @include ('templates/top-navigation')
 
   @include ('templates/sidebar')
 
@@ -121,44 +52,7 @@
               </ul>
             </div>
             <div class="body">
-              <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
-                    <thead>
-                      <th><a href="#">Organization Name</a></th>
-                      <th>Abbrivation</th>
-                      <th>Leader</th>
-                      <th>Status</th>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td><a href="#" data-target="#org-profile" data-toggle="modal">Computer Science Society</a></td>
-                        <td>CSS</td>
-                        <td><a href="#">Mark Zuckerberg</a></td>
-                        <td>Active</td>
-                      </tr>
-                      <tr>
-                        <td><a href="#" data-target="#org-profile" data-toggle="modal">Association of IT students</a></td>
-                        <td>AITS</td>
-                        <td><a href="#">Donald Trump</a></td>
-                        <td>Active</td>
-                      </tr>
-                      <tr>
-                        <td><a href="#" data-target="#org-profile" data-toggle="modal">Association of Engineering students</a></td>
-                        <td>AES</td>
-                        <td><a href="#">Elon Musk</a></td>
-                        <td>Active</td>
-                      </tr>
-                    </tbody>
-                    <tfoot>
-                      <th>Organization Name</th>
-                      <th>Abbrivation</th>
-                      <th>Leader</th>
-                      <th>Status</th>
-                    </tfoot>
-                  </table>
-                </div>
-              </div>
+              {{--  The caledar content  --}}
             </div>
           </div>
         </div>
@@ -235,4 +129,5 @@
   <script src="{{ asset('js/jquery.dataTables.js') }}"?v=0.1></script>
   <script src="{{ asset('js/jquery-datatable.js') }}"?v=0.1></script>
 </body>
+
 </html>

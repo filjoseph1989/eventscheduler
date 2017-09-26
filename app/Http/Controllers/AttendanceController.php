@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 class AttendanceController extends Controller
 {
     private $list = ['official', 'expected', 'confirm', 'decline'];
+    
     /**
      * Display a listing of the resource.
      *
@@ -40,6 +41,8 @@ class AttendanceController extends Controller
 
     /**
      * Display the specified resource.
+     * 
+     * Display the different attendances
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

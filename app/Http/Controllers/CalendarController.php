@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 class CalendarController extends Controller
 {
+    private $list = ['official', 'personal'];
+
     /**
      * Display a listing of the resource.
      *
@@ -45,7 +47,7 @@ class CalendarController extends Controller
      */
     public function show($id)
     {
-        //
+        return view("calendar-{$this->list[$id]}");
     }
 
     /**
