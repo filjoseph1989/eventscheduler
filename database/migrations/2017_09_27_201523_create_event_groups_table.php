@@ -19,7 +19,7 @@ class CreateEventGroupsTable extends Migration
             $table->integer('event_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
             $table->integer('organization_id')->unsigned()->index();
-            $table->enum('category', ['within', 'personal', 'university', organization])->default('false');
+            $table->enum('category', ['within', 'personal', 'university', 'organization']);
             $table->timestamps();
             $table->softDeletes();
 

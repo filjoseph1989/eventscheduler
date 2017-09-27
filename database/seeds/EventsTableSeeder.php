@@ -17,7 +17,7 @@ class EventsTableSeeder extends Seeder
         array(
           'user_id'                 => '1',
           'event_type_id'           => '5',
-          'semester'                => '1',
+          'semester_id'                => '1',
           'title'                   => "UP Foundation",
           'description'             => "UP-Mindanao took part in the simultaneous U.P. System-wide flag-raising ceremony to close the Centennial Celebration and open U.P.'s Next Century.",
           'venue'                   => "Eden Nature Park",
@@ -45,7 +45,7 @@ class EventsTableSeeder extends Seeder
         array(
           'user_id'                 => '1',
           'event_type_id'           => '6',
-          'semester'                => '1',
+          'semester_id'                => '1',
           'title'                   => "REGULAR PERIOD for Removal and Completion",
           'description'             => "Removal and Completion of Grades",
           'venue'                   => "UP Mindanao",
@@ -73,7 +73,7 @@ class EventsTableSeeder extends Seeder
         array(
           'user_id'                 => '1',
           'event_type_id'           => '1',
-          'semester'                => '1',
+          'semester_id'                => '1',
           'title'                   => "Deadline for transfer students to file Application for Admission",
           'description'             => "Admission for Transfer Students",
           'venue'                   => "UP Mindanao",
@@ -101,7 +101,7 @@ class EventsTableSeeder extends Seeder
         array(
           'user_id'                 => '1',
           'event_type_id'           => '8',
-          'semester'                => '1',
+          'semester_id'                => '1',
           'title'                   => "Readmission, Validation of advanced credits for transferees, Application for Shifting",
           'description'             => "Readmission/Validation of advanced credits for transferees /Application for Shifting",
           'venue'                   => "UP Mindanao",
@@ -129,7 +129,7 @@ class EventsTableSeeder extends Seeder
         array(
           'user_id'                 => '1',
           'event_type_id'           => '15',
-          'semester'                => '1',
+          'semester_id'                => '1',
           'title'                   => "Deadline for Application for Waiver of Prerequisite",
           'description'             => "Application for Waiver of Prerequisite",
           'venue'                   => "UP Mindanao",
@@ -157,7 +157,7 @@ class EventsTableSeeder extends Seeder
         array(
           'user_id'                 => '1',
           'event_type_id'           => '10',
-          'semester'                => '1',
+          'semester_id'                => '1',
           'title'                   => "General Registration for Student Number 2014 and older",
           'description'             => "General Registration",
           'venue'                   => "UP Mindanao",
@@ -185,7 +185,7 @@ class EventsTableSeeder extends Seeder
         array(
           'user_id'                 => '1',
           'event_type_id'           => '10',
-          'semester'                => '1',
+          'semester_id'                => '1',
           'title'                   => "General Registration for Student Number 2015",
           'description'             => "General Registration",
           'venue'                   => "UP Mindanao",
@@ -213,7 +213,7 @@ class EventsTableSeeder extends Seeder
         array(
           'user_id'                 => "1",
           'event_type_id'           => "10",
-          'semester'                => '1',
+          'semester_id'                => '1',
           'title'                   => "General Registration for Transferees, Cross Registrants, and others",
           'description'             => "General Registration",
           'venue'                   => "UP Mindanao",
@@ -241,7 +241,7 @@ class EventsTableSeeder extends Seeder
         array(
           'user_id'                 => "1",
           'event_type_id'           => "12",
-          'semester'                => '1',
+          'semester_id'                => '1',
           'title'                   => "START OF CLASSES",
           'description'             => "Start of Classes",
           'venue'                   => "UP Mindanao",
@@ -269,7 +269,7 @@ class EventsTableSeeder extends Seeder
         array(
           'user_id'                 => "1",
           'event_type_id'           => "10",
-          'semester'                => '1',
+          'semester_id'                => '1',
           'title'                   => "Change/Add Matriculation Period",
           'description'             => "General Registration",
           'venue'                   => "UP Mindanao",
@@ -297,7 +297,7 @@ class EventsTableSeeder extends Seeder
         array(
           'user_id'                 => "1",
           'event_type_id'           => "13",
-          'semester'                => '1',
+          'semester_id'                => '1',
           'title'                   => "UP College Admission Test",
           'description'             => "College Admission Test",
           'venue'                   => "UP Mindanao",
@@ -325,7 +325,7 @@ class EventsTableSeeder extends Seeder
         array(
           'user_id'                 => "1",
           'event_type_id'           => "16",
-          'semester'                => '1',
+          'semester_id'                => '1',
           'title'                   => "University Curriculum Committee Meeting",
           'description'             => "Curriculum Committee Meeting",
           'venue'                   => "UP Mindanao",
@@ -353,9 +353,9 @@ class EventsTableSeeder extends Seeder
         array(
           'user_id'                 => "1",
           'event_type_id'           => "16",
-          'semester'                => '1',
+          'semester_id'                => '1',
           'title'                   => "University Council Meeting to Approve Candidates for Graduation",
-          'description'             => "for Mid-Year Term 2016-2017, First Semester 2017-2018, Second Semester 2017-2018",
+          'description'             => "for Mid-Year Term 2016-2017, First Semester_id 2017-2018, Second Semester_id 2017-2018",
           'venue'                   => "UP Mindanao",
           'date_start'              => "2017-10-09",
           'date_end'                => "2017-10-09",
@@ -381,7 +381,7 @@ class EventsTableSeeder extends Seeder
         array(
           'user_id'                 => "1",
           'event_type_id'           => "3",
-          'semester'                => '1',
+          'semester_id'                => '1',
           'title'                   => "UPMin Tagbo (Student Leadership Seminar)",
           'description'             => "Student Leadership Seminar",
           'venue'                   => "UP Mindanao",
@@ -409,8 +409,8 @@ class EventsTableSeeder extends Seeder
         array(
           'user_id'                 => "1",
           'event_type_id'           => "15",
-          'semester'                => '1',
-          'title'                   => "Mid-Semester",
+          'semester_id'                => '1',
+          'title'                   => "Mid-Semester_id",
           'description'             => "Deadline for Dropping subjects without evaluation",
           'venue'                   => "UP Mindanao",
           'date_start'              => "2017-10-04",
@@ -437,7 +437,7 @@ class EventsTableSeeder extends Seeder
         array(
           'user_id'                 => "1",
           'event_type_id'           => "15",
-          'semester'                => '1',
+          'semester_id'                => '1',
           'title'                   => "Deadline for Dropping subjects with evaluation",
           'description'             => "Deadline for Dropping subjects with evaluation",
           'venue'                   => "UP Mindanao",
@@ -465,7 +465,7 @@ class EventsTableSeeder extends Seeder
         array(
           'user_id'                 => "1",
           'event_type_id'           => "20",
-          'semester'                => '1',
+          'semester_id'                => '1',
           'title'                   => "Preregistration Period",
           'description'             => "Preregistration",
           'venue'                   => "UP Mindanao",
@@ -493,7 +493,7 @@ class EventsTableSeeder extends Seeder
         array(
           'user_id'                 => "1",
           'event_type_id'           => "15",
-          'semester'                => '1',
+          'semester_id'                => '1',
           'title'                   => "Deadline for Filing Leave of Absence",
           'description'             => "LOA",
           'venue'                   => "UP Mindanao",
@@ -521,7 +521,7 @@ class EventsTableSeeder extends Seeder
         array(
           'user_id'                 => "1",
           'event_type_id'           => "22",
-          'semester'                => '1',
+          'semester_id'                => '1',
           'title'                   => "MORATORIUM",
           'description'             => "No student organization activities",
           'venue'                   => "UP Mindanao",
@@ -549,7 +549,7 @@ class EventsTableSeeder extends Seeder
         array(
           'user_id'                 => "1",
           'event_type_id'           => "12",
-          'semester'                => '1',
+          'semester_id'                => '1',
           'title'                   => "LAST DAY OF CLASSES",
           'description'             => "last day of classes",
           'venue'                   => "UP Mindanao",
@@ -577,7 +577,7 @@ class EventsTableSeeder extends Seeder
         array(
           'user_id'                 => "1",
           'event_type_id'           => "23",
-          'semester'                => '1',
+          'semester_id'                => '1',
           'title'                   => "Integration Period",
           'description'             => "Integration Period",
           'venue'                   => "UP Mindanao",
@@ -605,7 +605,7 @@ class EventsTableSeeder extends Seeder
         array(
           'user_id'                 => "1",
           'event_type_id'           => "17",
-          'semester'                => '1',
+          'semester_id'                => '1',
           'title'                   => "UP Mindanao KASADYA",
           'description'             => "UP Mindanao KASADYA",
           'venue'                   => "UP Mindanao",
@@ -633,7 +633,7 @@ class EventsTableSeeder extends Seeder
         array(
           'user_id'                 => "1",
           'event_type_id'           => "15",
-          'semester'                => '1',
+          'semester_id'                => '1',
           'title'                   => "Deadline for Submission of Grades",
           'description'             => "for Continuing Students",
           'venue'                   => "UP Mindanao",

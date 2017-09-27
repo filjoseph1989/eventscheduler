@@ -36,7 +36,7 @@ class CreateUsersTable extends Migration
 
 
           #foreign keys
-          $table->foreign('user_type_id')->references('id')->on('user_accounts');
+          $table->foreign('user_type_id')->references('id')->on('user_types');
           $table->foreign('course_id')->references('id')->on('courses');
         });
     }
