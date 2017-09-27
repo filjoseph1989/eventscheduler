@@ -1,5 +1,5 @@
 <?php
-
+require 'vendor/autoload.php';
 use Illuminate\Database\Seeder;
 
 class SemestersTableSeeder extends Seeder

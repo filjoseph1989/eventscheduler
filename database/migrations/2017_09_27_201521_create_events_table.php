@@ -20,7 +20,7 @@ class CreateEventsTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('venue');
-            $table->date('date_start')->useCurrent();
+            $table->date('date_start');
             $table->date('date_end')->nullable();
             $table->time('date_start_time')->default('00:00:00');
             $table->time('date_end_time')->nullable()->default('00:00:00');
