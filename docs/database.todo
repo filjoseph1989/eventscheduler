@@ -37,6 +37,8 @@ Positions:
 
 Events:
   ✔ id (int) (primary) (autoincrement)
+  ✔ event_type_id (foreign key) 
+  ✔ semester_id (to make a functionality for osa to set the duration dates of a sem)
   ✔ title (char)
   ✔ description (text)
   ✔ venue (char)
@@ -45,21 +47,19 @@ Events:
   ✔ start_time (datetime)
   ✔ end_time (datetime)
   ✔ whole_day ['true', 'false'] (enum)
-  ✔ event_type_id (foreign key) 
   ✔ status ['upcoming', 'ongoing', 'archived'] (enum) //gidungagan nkog canceled
   ✔ is_approve ['true', 'false'] (enum)
-  ✔ semester (to make a functionality for osa to set the duration dates of a sem)
   ✔ twitter (char) //ngano ni char? gitemporary sa nko og enum (on/off)
-  ✔ twitter_message (text)
+  ✔ twitter_msg (text)
   ✔ twitter_img (char)
   ✔ facebook (char)  //ngano ni char? gitemporary sa nko og enum (on/off)
-  ✔ facebook_message (text)
+  ✔ facebook_msg (text)
   ✔ facebook_img (char)
-  ✔ sms_message (text)
-  ✔ email (char)  //ngano ni char? gitemporary sa nko og enum (on/off)
-  ✔ email_message (text)
-  ✔ email_img (char)  
+  ✔ sms_msg (text)
   ✔ sms (char)
+  ✔ email (char)  //ngano ni char? gitemporary sa nko og enum (on/off)
+  ✔ email_msg (text)
+  ✔ email_img (char)  
   ✔ created_at (date)
   ✔ updated_at (date)
   ✔ deleted_at (int)
@@ -84,7 +84,8 @@ Organization Groups:
   ✔ created_at
   ✔ updated_at
 
-Accounts: (user_type)
+User Type: 
+  (mao ni tung "Accounts" dati)
   ✔ id
   ✔ name (osa, head, member)
   ✔ theme
@@ -108,28 +109,20 @@ Attendance:
   ✔ deleted_at
 
 Event Types:
-  ☐ id
-  ☐ name (local, official)
-  ☐ created_at
-  ☐ deleted_at
+  ✔ id
+  ✔ name (local, official)
+  ✔ created_at
+  ✔ deleted_at
 
-Local Event Groups:
-☐ id
-☐ event_type_id
-☐ event_id
-☐ category (enum) (within, personal)
-☐ user_id
-☐ created_at
-☐ deleted_at
-
-Official Event Groups:
-☐ id
-☐ event_id
-☐ event_type_id
-☐ category (enum) (university, organization)
-☐ organization_id (foraign key) (ref: organization.id)
-☐ created_at
-☐ deleted_at
+Event Groups:
+✔ id
+✔ event_type_id
+✔ event_id
+✔ user_id
+✔ organization_id (foreign key) (ref: organization.id)
+✔ category (enum) (within, personal, university, organization)
+✔ created_at
+✔ deleted_at
 
 Organization Head Groups: (because what if in another org group, the head is a member, so to distinguish the org he/she is leading)
 ✔ id
@@ -146,3 +139,13 @@ Event Notifications (An event that is set to be advertised) (after advertise/req
 ✔ is_advertised (enum) (true or false)
 ✔ created_at
 ✔ deleted_at
+
+Semester:
+  ✔ id
+  ✔ name (enum) (first or second)
+  ✔ date start ->nullable
+  ✔ date end ->nullable
+  ✔ created_at
+  ✔ deleted_at
+  ✔ updated_at
+

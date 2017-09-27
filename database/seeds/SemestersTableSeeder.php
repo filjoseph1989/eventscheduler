@@ -1,9 +1,8 @@
 <?php
 
-use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
-class EventTypesTableSeeder extends Seeder
+class SemestersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,14 +11,18 @@ class EventTypesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('event_types')->insert([
+        DB::table('semesters')->insert([
             array(
-                'name'           => 'Local',
+                'name'           => 'First',
+                'date_start'     => null,
+                'date_end'       => null,
                 'created_at'     => Carbon::now()->toDateTimeString(),
                 'updated_at'     => Carbon::now()->toDateTimeString(),
             ),
             array(
-                'name'           => 'Official',
+                'name'           => 'Second',
+                'date_start'     => null,
+                'date_end'       => null,
                 'created_at'     => Carbon::now()->toDateTimeString(),
                 'updated_at'     => Carbon::now()->toDateTimeString(),
             ),

@@ -28,7 +28,6 @@ class CreateUsersTable extends Migration
           $table->string('mobile_number', '12');
           $table->string('picture')->default('profile.png');
           $table->enum('status', ['true', 'false'])->default('false');
-          $table->enum('is_approver', ['true', 'false'])->default('false');
           $table->rememberToken();
           $table->timestamps();
           $table->softDeletes();
