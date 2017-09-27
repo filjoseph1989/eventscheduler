@@ -42,6 +42,7 @@ Phase 1:
       ☐ Create new event
       ☐ Display official events for advertisements approval
       ☐ Display all official events approved by the OSA
+        ☐ Attend and Decline (should show when members is loggedin)
       ☐ Display Personal event exclusive to osa only
       ☐ Display the calendar of events
         ☐ official
@@ -76,6 +77,7 @@ Phase 1:
       ☐ Display all official events approved by the OSA
         ☐ Update advertisements settings
         ☐ Request for approval
+        ☐ Attend and Decline (should show when members is loggedin)
       ☐ Display Personal event exclusive to organization head/organization only
       ☐ Display the calendar of events
         ☐ official
@@ -88,6 +90,8 @@ Phase 1:
   4. For Members:
     ☐ View profile
     ☐ View organization
+    ☐ View Events
+      ☐ Attend and Decline (should show when members is loggedin)
     ☐ Change password
     ☐ Upload picture
     ☐ Create personal events
