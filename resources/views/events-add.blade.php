@@ -56,6 +56,7 @@
                 <div class="col-sm-8 col-sm-offset-2">
                   <form class="" id="add-event-form" action="" method="POST">
                     {{ csrf_field() }}
+                    {{ method_field('PUT') }}
                     <div class="form-group form-float form-group">
                       <div class="form-line">
                         <input type="text" class="form-control" id="title" name="title" placeholder="Title of the event" value="" required autofocus>

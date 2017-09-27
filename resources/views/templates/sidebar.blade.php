@@ -57,12 +57,10 @@
           </a>
           <ul class="ml-menu">
             <li>
-              <a href="{{ route('Event.create') }}">
-                <span>Add New</span>
-              </a>
+              <a href="{{ route('Event.create') }}"> <span>Create Event</span> </a>
             </li>
             <li>
-              <a href="#" class="menu-toggle"><span>List</span></a>
+              <a href="#" class="menu-toggle"><span>List of Events</span></a>
               <ul class="ml-menu">
                 <li><a href="{{ route('Event.show', 0) }}"><span>Official</span></a></li>
                 <li><a href="{{ route('Event.show', 1) }}"> <span>Personal</span></a></li>
@@ -72,9 +70,7 @@
               <a href="{{ route('Event.index') }}"><span>Approved Events</span></a>
             </li>
             <li>
-              <a href="#" class="menu-toggle">
-                <span>Calendar</span>
-              </a>
+              <a href="#" class="menu-toggle"> <span>Calendar</span> </a>
               <ul class="ml-menu">
                 <li><a href="{{ route('Calendar.show', 0) }}"><span>Official</span></a></li>
                 <li><a href="{{ route('Calendar.show', 1) }}"><span>Personal</span></a></li>
