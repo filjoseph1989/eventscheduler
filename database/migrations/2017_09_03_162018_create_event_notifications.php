@@ -18,7 +18,7 @@ class CreateEventNotifications extends Migration
             $table->integer('event_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
             $table->integer('organization_id')->unsigned()->index();
-            $table->enum('status', ['read', 'unread', 'archived', 'deleted'])->default('unread');
+            $table->enum('is_advertised', ['true', 'false'])->default('false');
             $table->timestamps();
 
             $table->foreign('event_id')->references('id')->on('events');

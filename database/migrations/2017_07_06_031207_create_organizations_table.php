@@ -16,14 +16,11 @@ class CreateOrganizationsTable extends Migration
         Schema::create('organizations', function (Blueprint $table) {
           $table->increments('id');
           $table->string('name')->unique();
-          $table->enum('status', ['active', 'inactive'])->default('active');
+          $table->text('description')->nullable();
           $table->string('url')->nullable();
+          $table->enum('status', ['active', 'inactive'])->default('active');
           $table->string('logo')->default('ship.jpg');
           $table->string('color')->nullable();
-          $table->text('description')->nullable();
-          $table->integer('number_of_members')->default('0');
-          $table->date('date_started')->default(date("Y-m-d H:i:s"));
-          $table->date('date_expired')->default(date("Y-m-d H:i:s"));
           $table->timestamps();
           $table->softDeletes();
         });

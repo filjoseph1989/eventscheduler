@@ -1,100 +1,148 @@
-Users:
-  ☐ id
-  ☐ course_id
-  ☐ department_id
-  ☐ name
-  ☐ student_number
-  ☐ password
-  ☐ facebook
-  ☐ twitter
-  ☐ email
-  ☐ mobile
-  ☐ picture
-  ☐ status ['active', 'inactive']
-  ☐ remember_token
-  ☐ created_at
-  ☐ updated_at
-  ☐ deleted_at
+☐ Users:
+  ✔ id
+  ✔ course_id
+ // ☐ department_id (no need)
+  ✔ name (full_name)
+  ✔ student_number (account_number)
+  ✔ user_type_id
+  ✔ email
+  ✔ password
+  ✔ facebook
+  ✔ twitter
+  ✔ mobile (mobile_number)
+  ✔ picture
+  ✔ status ['active', 'inactive']
+  ✔ remember_token
+  ✔ created_at
+  ✔ updated_at
+  ✔ deleted_at
 
 Courses:
-  ☐ id
-  ☐ name
-  ☐ created_at
-  ☐ updated_at
+  ✔ id
+  ✔ name
+  ✔ created_at
+  ✔ updated_at
 
-Departments:
+(Departments: (no need)
   ☐ id
   ☐ name
   ☐ created_at
-  ☐ updated_at
+  ☐ updated_at) 
 
 Positions:
-  ☐ id
-  ☐ name
-  ☐ created_at
-  ☐ updated_at
+  ✔ id
+  ✔ name
+  ✔ created_at
+  ✔ updated_at
 
 Events:
-  ☐ id (int) (primary) (autoincrement)
-  ☐ organization_id (foraign key) (ref: organization.id)
-  ☐ title (char)
-  ☐ description (text)
-  ☐ venue (char)
-  ☐ start (date)
-  ☐ end (date)
-  ☐ start_time (datetime)
-  ☐ end_time (datetime)
-  ☐ whole_day ['true', 'false'] (enum)
-  ☐ status ['upcoming', 'ongoing', 'archived'] (enum)
-  ☐ is_approve ['true', 'false'] (enum)
-  ☐ facebook (char)
-  ☐ facebook_message (text)
-  ☐ facebook_img (char)
-  ☐ twitter (char)
-  ☐ twitter_message (text)
-  ☐ twitter_img (char)
-  ☐ email (char)
-  ☐ email_message (text)
-  ☐ mobile (char)
-  ☐ mobile_message (text)
-  ☐ created_at (date)
-  ☐ updated_at (date)
-  ☐ deleted_at (int)
+  ✔ id (int) (primary) (autoincrement)
+  ✔ title (char)
+  ✔ description (text)
+  ✔ venue (char)
+  ✔ start (date)
+  ✔ end (date)
+  ✔ start_time (datetime)
+  ✔ end_time (datetime)
+  ✔ whole_day ['true', 'false'] (enum)
+  ✔ event_type_id (foreign key) 
+  ✔ status ['upcoming', 'ongoing', 'archived'] (enum) //gidungagan nkog canceled
+  ✔ is_approve ['true', 'false'] (enum)
+  ✔ semester (to make a functionality for osa to set the duration dates of a sem)
+  ✔ twitter (char) //ngano ni char? gitemporary sa nko og enum (on/off)
+  ✔ twitter_message (text)
+  ✔ twitter_img (char)
+  ✔ facebook (char)  //ngano ni char? gitemporary sa nko og enum (on/off)
+  ✔ facebook_message (text)
+  ✔ facebook_img (char)
+  ✔ sms_message (text)
+  ✔ email (char)  //ngano ni char? gitemporary sa nko og enum (on/off)
+  ✔ email_message (text)
+  ✔ email_img (char)  
+  ✔ sms (char)
+  ✔ created_at (date)
+  ✔ updated_at (date)
+  ✔ deleted_at (int)
 
 Organizations:
-  ☐ id
-  ☐ name
-  ☐ description
-  ☐ link
-  ☐ status ['active', 'inactive'] (enum)
-  ☐ created_at
-  ☐ updated_at
-  ☐ deleted_at
+  ✔ id
+  ✔ name
+  ✔ description
+  ✔ link (url)
+  ✔ status ['active', 'inactive'] (enum)
+  ✔ logo
+  ✔ color
+  ✔ created_at
+  ✔ updated_at
+  ✔ deleted_at
 
 Organization Groups:
-  ☐ id
-  ☐ user_id
-  ☐ organization_id
-  ☐ position (e.g adviser, president, etc..)
-  ☐ created_at
-  ☐ updated_at
+  ✔ id
+  ✔ user_id
+  ✔ organization_id
+  ✔ position (e.g adviser, president, etc..)
+  ✔ created_at
+  ✔ updated_at
 
-Accounts:
-  ☐ id
-  ☐ name (osa, head, member)
-  ☐ created_at
-  ☐ updated_at
+Accounts: (user_type)
+  ✔ id
+  ✔ name (osa, head, member)
+  ✔ theme
+  ✔ color
+  ✔ created_at
+  ✔ updated_at
 
 Password Reset:
-  ☐ email
-  ☐ token
-  ☐ created_at
+  ✔ email
+  ✔ token
+  ✔ created_at
 
 Attendance:
+  ✔ id
+  ✔ user_id
+  ✔ event_id
+  ✔ status ['confirmed', 'uncomfirmed']
+  ✔ did_attend ['true', 'false']
+  ✔ reason
+  ✔ created_at
+  ✔ deleted_at
+
+Event Types:
   ☐ id
-  ☐ user_id
-  ☐ event_id
-  ☐ status ['confirmed', 'uncomfirmed']
-  ☐ did_attend? ['true', 'false']
+  ☐ name (local, official)
   ☐ created_at
   ☐ deleted_at
+
+Local Event Groups:
+☐ id
+☐ event_type_id
+☐ event_id
+☐ category (enum) (within, personal)
+☐ user_id
+☐ created_at
+☐ deleted_at
+
+Official Event Groups:
+☐ id
+☐ event_id
+☐ event_type_id
+☐ category (enum) (university, organization)
+☐ organization_id (foraign key) (ref: organization.id)
+☐ created_at
+☐ deleted_at
+
+Organization Head Groups: (because what if in another org group, the head is a member, so to distinguish the org he/she is leading)
+✔ id
+✔ user_id
+✔ organization_id
+✔ created_at
+✔ deleted_at
+
+Event Notifications (An event that is set to be advertised) (after advertise/request to advertise button is clicked)
+✔ id
+✔ event_id
+✔ user_id
+✔ organization_id
+✔ is_advertised (enum) (true or false)
+✔ created_at
+✔ deleted_at
