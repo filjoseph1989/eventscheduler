@@ -10,6 +10,7 @@ Users:
   ☐ email
   ☐ mobile
   ☐ picture
+  ☐ status ['active', 'inactive']
   ☐ remember_token
   ☐ created_at
   ☐ updated_at
