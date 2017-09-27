@@ -1,0 +1,99 @@
+Users:
+  ☐ id
+  ☐ course_id
+  ☐ department_id
+  ☐ name
+  ☐ student_number
+  ☐ password
+  ☐ facebook
+  ☐ twitter
+  ☐ email
+  ☐ mobile
+  ☐ picture
+  ☐ remember_token
+  ☐ created_at
+  ☐ updated_at
+  ☐ deleted_at
+
+Courses:
+  ☐ id
+  ☐ name
+  ☐ created_at
+  ☐ updated_at
+
+Departments:
+  ☐ id
+  ☐ name
+  ☐ created_at
+  ☐ updated_at
+
+Positions:
+  ☐ id
+  ☐ name
+  ☐ created_at
+  ☐ updated_at
+
+Events:
+  ☐ id (int) (primary) (autoincrement)
+  ☐ organization_id (foraign key) (ref: organization.id)
+  ☐ title (char)
+  ☐ description (text)
+  ☐ venue (char)
+  ☐ start (date)
+  ☐ end (date)
+  ☐ start_time (datetime)
+  ☐ end_time (datetime)
+  ☐ whole_day ['true', 'false'] (enum)
+  ☐ status ['upcoming', 'ongoing', 'archived'] (enum)
+  ☐ is_approve ['true', 'false'] (enum)
+  ☐ facebook (char)
+  ☐ facebook_message (text)
+  ☐ facebook_img (char)
+  ☐ twitter (char)
+  ☐ twitter_message (text)
+  ☐ twitter_img (char)
+  ☐ email (char)
+  ☐ email_message (text)
+  ☐ mobile (char)
+  ☐ mobile_message (text)
+  ☐ created_at (date)
+  ☐ updated_at (date)
+  ☐ deleted_at (int)
+
+Organizations:
+  ☐ id
+  ☐ name
+  ☐ description
+  ☐ link
+  ☐ status ['active', 'inactive'] (enum)
+  ☐ created_at
+  ☐ updated_at
+  ☐ deleted_at
+
+Organization Groups:
+  ☐ id
+  ☐ user_id
+  ☐ organization_id
+  ☐ position (e.g adviser, president, etc..)
+  ☐ created_at
+  ☐ updated_at
+
+Accounts:
+  ☐ id
+  ☐ name (osa, head, member)
+  ☐ created_at
+  ☐ updated_at
+
+Password Reset:
+  ☐ email
+  ☐ token
+  ☐ created_at
+
+Attendance:
+  ☐ id
+  ☐ user_id
+  ☐ event_id
+  ☐ status ['confirmed', 'uncomfirmed']
+  ☐ did_attend? ['true', 'false']
+  ☐ created_at
+  ☐ deleted_at

@@ -5,9 +5,9 @@ Layout:
 	✔ Home Page @done(2017-09-26 11:27) @project(Layout)
 	✔ User List @done(2017-09-26 11:27) @project(Layout)
 	✔ Add organization @done(2017-09-26 15:17) @project(Layout)
-	✔ List of Organizations
-	✔ List of Users
-	✔ Add new users 
+	✔ List of Organizations @done(2017-09-27 17:03) @project(Layout)
+	✔ List of Users @done(2017-09-27 17:03) @project(Layout)
+	✔ Add new users  @done(2017-09-27 17:03) @project(Layout)
 
 OSA Personnel:
 	☐ Add new organization - Once ADD button is clicked, naay mugawas na alert
@@ -25,7 +25,7 @@ OSA Personnel:
 			☐ Should contain (title, description, start date with time, end date with time)
 			☐ Should have a dropdown (for what ni?)
 				☐ University
-				☐ Organization 
+				☐ Organization
 			☐ Reminder options (Must be a two dropdown) (And should be set before the day the event will come)
 				☐ First is a number, partner with
 				☐ day, week, month, year
