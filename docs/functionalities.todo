@@ -1,5 +1,5 @@
 Phase 1:
-  Login functionalities:
+  1. Login functionalities:
     ☐ Login using student_number and password
     ☐ User registration form (this is consider as an invitation to the user ti join the organizatin and be part of the system)
       ☐ Validate if the user is already a system member
@@ -18,8 +18,9 @@ Phase 1:
     (This functionality is for member who recieved invitation from organization head)
     ☐ System validate the user active status by setting it 'active' using code sent via email
 
-  For OSA:
+  2. For OSA:
     Display Users list:
+      ☐ Display all registered members
       ☐ View Profile (modal) (optional)
       ☐ view Course (modal) (optional)
       ☐ view Position (modal) (optional)
@@ -30,6 +31,7 @@ Phase 1:
         ☐ By registration
         ☐ By organization
       ☐ Edit - (osa is allowed to edit with certain information, such name, course, department but not more on Personal like facebook)
+
     Organization:
       ☐ Add new organization
       ☐ Display all registered University organizations
@@ -38,8 +40,56 @@ Phase 1:
           ☐ view organization events - (upcoming, archived, canceled, approved)
     Events:
       ☐ Create new event
-      ☐ Display all official events approved by the osa
+      ☐ Display official events for advertisements approval
+      ☐ Display all official events approved by the OSA
       ☐ Display Personal event exclusive to osa only
-      ☐ Display all unapprove events to approved
       ☐ Display the calendar of events
+        ☐ official
+        ☐ personal
+
     Student Attendance:
+      ☐ Display events
+        ☐ Display attendance sheet per event (Just like who attend this event?) (It maybe a single table with filters)
+
+  3. For Organization Head:
+    ☐ View Profile
+    ☐ Change password
+    ☐ Upload picture
+
+    Display Users list:
+      ☐ Display all members of the organization (organization sa head)
+      ☐ View Profile (modal) (optional)
+      ☐ view Course (modal) (optional)
+      ☐ view Position (modal) (optional)
+      ☐ Filteriing/Sorting
+        ☐ By course
+        ☐ By department
+        ☐ By registration
+        ☐ By organization
+
+    My Organization:
+      ☐ view organization profile
+        ☐ view organization events - (upcoming, archived, canceled, approved)
+
+    Events:
+      ☐ Create new event
+      ☐ Display all official events approved by the OSA
+        ☐ Update advertisements settings
+        ☐ Request for approval
+      ☐ Display Personal event exclusive to organization head/organization only
+      ☐ Display the calendar of events
+        ☐ official
+        ☐ personal
+
+    Student Attendance:
+      ☐ Display events
+        ☐ Display attendance sheet per event (Just like who attend this event?) (It maybe a single table with filters)
+
+  4. For Members:
+    ☐ View profile
+    ☐ View organization
+    ☐ Change password
+    ☐ Upload picture
+    ☐ Create personal events
+    ☐ View Attendance
+    ☐ View Calendar
