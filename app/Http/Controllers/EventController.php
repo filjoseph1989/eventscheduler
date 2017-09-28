@@ -30,7 +30,16 @@ class EventController extends Controller
      */
     public function create()
     {
-        return  view('events-add');
+        /*
+          Steps:
+          1. Check if the user is loggedin
+          2. Check if the user account is an osa
+         */
+
+        # view
+        return  view('events-add')->with([
+          'loginClass' => 'theme-teal'
+        ]);
     }
 
     /**
@@ -41,7 +50,31 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      /*
+      Steps:
+      1. Check if the user is loggedin
+      2. Check if the user's account is osa
+      3. validate the entry and return data
+      4. save to database
+       */
+
+      $data = [
+        "event_type_id"   => 1, # take note for this, because it needed
+        "semester_id"     => 1, # and this too
+        "title"           => $request->title,
+        "description"     => $request->description,
+        "venue"           => $request->venue,
+        "date_start"      => date('Y-m-d', strtotime($request->date_start)),
+        "date_start_time" => date('H:i:s', strtotime($request->date_start_time)),
+        "date_end"        => date('Y-m-d', strtotime($request->date_end)),
+        "date_end_time"   => date('H:i:s', strtotime($request->date_end_time)),
+        "whole_day"       => ($request->whole_day == "1") ? 'true': 'false',
+      ];
+
+      $event = Event::create($data);
+      if ($event->wasRecentlyCreated) {
+        echo 'true';
+      }
     }
 
     /**
@@ -52,6 +85,12 @@ class EventController extends Controller
      */
     public function show($id)
     {
+        /*
+          Steps:
+          1. Check if the user is loggedin
+          2. Check if the user account is an osa
+         */
+
         if ($id == 0) {
           $events = Event::all();
         } else {
