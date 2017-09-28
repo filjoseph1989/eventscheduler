@@ -45,31 +45,31 @@
                       <th>Start</th>
                       <th>End</th>
                       <th>Status</th>
-                      <th>Action</th>
+                      @if ($eventType == 1)
+                        <th>Approve</th>
+                      @endif
                     </thead>
                     <tbody>
-                      <?php foreach ($events as $key => $event): ?>
+                      @foreach ($events as $key => $event)
                         <tr data-event="{{ $event->id }}">
                           <td><a href="#" data-target="#event" data-toggle="modal">{{ $event->title }}</a></td>
                           <td><a href="#">{{ $event->venue }}</a></td>
                           <td>
-                            <?php if ($event['organization']->count() > 0): ?>
+                            @if ($event['organization']->count() > 0)
                               <?php $organization = $event['organization'][0]; ?>
                               {{ $organization->organization->name }}
-                            <?php else: ?>
+                            @else
                               No Organization
-                            <?php endif; ?>
+                            @endif
                           </td>
-                          <td>
-                            {{ date('M d, Y', strtotime($event->date_start)) }} {{ date('h:i A', strtotime($event->date_start_time)) }}
-                          </td>
-                          <td>
-                            {{ date('M d, Y', strtotime($event->date_end)) }} {{ date('h:i A', strtotime($event->date_end_time)) }}
-                          </td>
+                          <td>{{ date('M d, Y', strtotime($event->date_start)) }} {{ date('h:i A', strtotime($event->date_start_time)) }}</td>
+                          <td>{{ date('M d, Y', strtotime($event->date_end)) }} {{ date('h:i A', strtotime($event->date_end_time)) }}</td>
                           <td>Upcoming</td>
-                          <td><a href="#">Attend</a>|<a href="#">Decline</a></td>
+                          @if ($eventType == 1)
+                            <td><a href="#">Yes</a> | <a href="#">No</a></td>
+                          @endif
                         </tr>
-                      <?php endforeach; ?>
+                      @endforeach
                     </tbody>
                     <tfoot>
                       <th><a href="#">Title</a></th>
@@ -78,7 +78,9 @@
                       <th>Start</th>
                       <th>End</th>
                       <th>Status</th>
-                      <th>Action</th>
+                      @if ($eventType == 1)
+                        <th>Approve</th>
+                      @endif
                     </tfoot>
                   </table>
                 </div>
