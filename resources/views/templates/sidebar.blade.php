@@ -18,7 +18,7 @@
                 <i class="material-icons">input</i> Sign Out
               </a>
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                {{ crsf_field() }}
+                {{ csrf_field() }}
               </form>
             </li>
           </ul>

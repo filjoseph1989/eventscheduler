@@ -23,17 +23,19 @@
 
 <body class="{{ isset($loginClass) ? $loginClass : "" }}">
 
-    @include ('templates/top-navigation')
-
-    @include ('templates/sidebar')
 
     @if ($loginClass == 'login-page')
       @yield('login')
     @else
+      @include ('templates/top-navigation')
+
+      @include ('templates/sidebar')
+
       @yield('content')
+
+      @yield('modals')
     @endif
 
-    @yield('modals')
 
   {{--
     @guest
