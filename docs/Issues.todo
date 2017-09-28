@@ -1,8 +1,10 @@
-☐ Issue 2: Remove the login.blade.php, its not being used anymore
 ☐ Issue 3: Try to create shortcut key access to buttons in the system
 ☐ Issue 4: Dapat a ang member ang mag set og when siya e-remind dapat ni system
 ☐ Issue 5: Dapat ang color consistent
 ☐ Issue 6: Dapat sa organization table, during final test or release, wala dapat content ni sya
+☐ Issue 8: kadali ang kaning 'login-page' ba, balik-balik, pangita og lain way pag pasa ani niya
 
 Archived:
-✔ Issue 1: Remove the welcome.blade.php, its not being used anymore
+✔ Issue 7: Dapat ma change ang content sa <title></title> @done(2017-09-28 19:56)
+✔ Issue 2: Remove the login.blade.php, its not being used anymore @done(2017-09-28 19:57)
+✔ Issue 1: Remove the welcome.blade.php, its not being used anymore @done(2017-09-28 19:57)
