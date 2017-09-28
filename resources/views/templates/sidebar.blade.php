@@ -17,8 +17,8 @@
               <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="material-icons">input</i> Sign Out
               </a>
-              <form id="logout-form" action="/users/logout" method="POST" style="display: none;">
-                <input type="hidden" name="_token" value="PjMLKYxnBUqo7t4YyZpwYNY8AWL0k3qaMWeMVwyL">
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ crsf_field() }}
               </form>
             </li>
           </ul>
