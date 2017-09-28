@@ -1,4 +1,13 @@
 Phase 1:
+  0. Layout:
+  	✔ Login Page @done (9/28/2017, 8:34:12 AM)
+  	✔ Home Page @done (9/28/2017, 8:34:23 AM)
+  	✔ User List @done (9/28/2017, 8:34:25 AM)
+  	✔ Add organization @done (9/28/2017, 8:34:26 AM)
+  	✔ List of Organizations @done (9/28/2017, 8:34:27 AM)
+  	✔ List of Users @done (9/28/2017, 8:34:34 AM)
+  	✔ Add new users @done (9/28/2017, 8:34:37 AM)
+
   1. Login functionalities:
     ☐ Login using student_number and password
     ☐ User registration form (this is consider as an invitation to the user ti join the organizatin and be part of the system)
@@ -30,7 +39,9 @@ Phase 1:
         ☐ By department
         ☐ By registration
         ☐ By organization
-      ☐ Edit - (osa is allowed to edit with certain information, such name, course, department but not more on Personal like facebook)
+      ☐ Edit - (osa is allowed to edit with certain information, such as name, course, department but not more on Personal like facebook)
+      ☐ Deleted - (Soft Delete only)
+      ☐ Archived - (To archived those events nahumana) (Must be a systems job)
 
     Organization:
       ☐ Add new organization
@@ -38,8 +49,10 @@ Phase 1:
         ☐ Set active/inactive - (usefull when the organization is not functional already on school or no member already)
         ☐ view organization profile
           ☐ view organization events - (upcoming, archived, canceled, approved)
+
     Events:
       ☐ Create new event
+      ☐ Display all events
       ☐ Display official events for advertisements approval
       ☐ Display all official events approved by the OSA
         ☐ Attend and Decline (should show when members is loggedin)
