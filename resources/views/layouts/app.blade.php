@@ -17,22 +17,42 @@
   <link href="{{ asset('css/waves.css') }}?v=1" rel="stylesheet">
   <link href="{{ asset('css/animate.css') }}?v=1" rel="stylesheet">
   <link href="{{ asset('css/style.css') }}?v=1" rel="stylesheet">
+  @yield('css')
+
 </head>
 
 <body class="{{ isset($loginClass) ? $loginClass : "" }}">
 
-  @guest
-    @yield('login')
-  @else
-    @yield('content')
-  @endguest
+    @include ('templates/top-navigation')
+
+    @include ('templates/sidebar')
+
+    @if ($loginClass == 'login-page')
+      @yield('login')
+    @else
+      @yield('content')
+    @endif
+
+    @yield('modals')
+
+  {{--
+    @guest
+      @yield('login')
+    @else
+      @include ('templates/top-navigation')
+
+      @include ('templates/sidebar')
+
+      @yield('content')
+
+      @yield('modals')
+    @endguest
+  --}}
 
   <script src="{{ asset('js/jquery.min.js') }}?v=3.2.1"></script>
   <script src="{{ asset('js/bootstrap.min.js') }}?v=3.3.7"></script>
   <script src="{{ asset('js/waves.js') }}"></script>
   <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
-  <script src="{{ asset('js/jquery.validate.js') }}"></script>
-
   @yield('js')
 
 </body>

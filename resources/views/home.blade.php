@@ -1,31 +1,10 @@
-<!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-  <!-- CSRF Token -->
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-
-  <title>{{ config('app.name', 'Home Page') }}</title>
-
-  <!-- Styles -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
-  <link href="{{ asset('css/bootstrap.css') }}?v=3.3.8" rel="stylesheet">
-  <link href="{{ asset('css/waves.css') }}?v=1" rel="stylesheet">
-  <link href="{{ asset('css/animate.css') }}?v=1" rel="stylesheet">
-  <link href="{{ asset('css/style.css') }}?v=1.0.1" rel="stylesheet">
-
-  {{-- Remove Me --}}
+@section('css')
   <link href="{{ asset('css/all-themes.css') }}" rel="stylesheet">
-</head>
-<body class="theme-brown">
-  @include ('templates/top-navigation')
+@endsection
 
-  @include ('templates/sidebar')
-
+@section('content')
   <section class="content">
     <div class="container-fluid">
       <div class="row clearfix">
@@ -164,6 +143,9 @@
       </div>
     </div>
   </section>
+@endsection
+
+@section('modals')
   <div id="notification" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -201,10 +183,8 @@
       </div>
     </div>
   </div>
-  <script src="{{ asset('js/jquery.min.js') }}?v=3.2.2"></script>
-  <script src="{{ asset('js/bootstrap.min.js') }}?v=3.3.8"></script>
-  <script src="{{ asset('js/waves.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/jquery.slimscroll.js') }}?v=0.1"></script>
+@endsection
+
+@section('js')
   <script src="{{ asset('js/admin.js') }}"?v=0.1></script>
-</body>
-</html>
+@endsection

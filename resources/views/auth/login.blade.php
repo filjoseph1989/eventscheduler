@@ -46,5 +46,6 @@
 @endsection
 
 @section('js')
+  <script src="{{ asset('js/jquery.validate.js') }}"></script>
   <script src="{{ asset('js/sign-in.js') }}"></script>
 @endsection
