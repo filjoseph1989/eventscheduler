@@ -1,0 +1,37 @@
+CREATE EVENT:
+  ☐ User login to the system (Adviser, Organizatin Head, OSA)
+  ☐ Click create event
+  ☐ Enter event information
+  ☐ Click Save
+
+Issues: (When creating an event):
+  ☐ A system should check the availability of the place and time because maybe other events are already enqueue
+  ☐ After the event has been approve, notify to social media, email , mobile all of which must have  a link to an event
+    and notify the dashboard of the user
+
+2. ---------
+Event Reminder:
+  ☐ The system should also run in the background reminding the member about the upcoming event
+
+Issues on event reminder:
+  ☐ The system should reminder a week before the event and 2 days priot to an event
+  ☐ The event to reminded should be an approve event
+
+3. ---------
+Attendance to an event:
+  ☐ User click on any notification (social medial, email, phone or dashboard) or go to event list
+  ☐ click attend or cant attend with a reason
+  ☐ Submit
+
+Issues of the attendance:
+  ☐ A system should determine the class or personal event schedule of the member matching the time an day of the organization event
+
+4. ---------
+Notifications:
+  ☐ User login
+  ☐ Click on notification
+  ☐ System will redirect the user to the event page
+  ☐ and follow the attendace steps
+
+Issues of notifications:
+  ☐ Watch on the message link 4 mins ago, it means the system should calculate the time the notification occur base on created_at
