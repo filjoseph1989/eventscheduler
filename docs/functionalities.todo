@@ -1,12 +1,18 @@
 Phase 1:
   0. Layout:
-  	✔ Login Page @done (9/28/2017, 8:34:12 AM)
+  	✔ Login Page @done(2017-09-28 17:41) @project(Phase 1 / 0. Layout)
   	✔ Home Page @done (9/28/2017, 8:34:23 AM)
   	✔ User List @done (9/28/2017, 8:34:25 AM)
   	✔ Add organization @done (9/28/2017, 8:34:26 AM)
   	✔ List of Organizations @done (9/28/2017, 8:34:27 AM)
   	✔ List of Users @done (9/28/2017, 8:34:34 AM)
   	✔ Add new users @done (9/28/2017, 8:34:37 AM)
+
+  0.1 Final template:
+    ☐ Layout.blade.php
+    ☐ Login
+    ☐ Home
+    ☐ Other Pages
 
   1. Login functionalities:
     ☐ Login using student_number and password
