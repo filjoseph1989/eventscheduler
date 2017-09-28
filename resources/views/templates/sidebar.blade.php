@@ -62,8 +62,9 @@
             <li>
               <a href="#" class="menu-toggle"><span>List of Events</span></a>
               <ul class="ml-menu">
-                <li><a href="{{ route('Event.show', 0) }}"><span>Official</span></a></li>
-                <li><a href="{{ route('Event.show', 1) }}"> <span>Personal</span></a></li>
+                <li><a href="{{ route('Event.show', 0) }}"><span>All</span></a></li>
+                <li><a href="{{ route('Event.show', 1) }}"> <span>Official</span></a></li>
+                <li><a href="{{ route('Event.show', 2) }}"> <span>Personal</span></span></a></li>
               </ul>
             </li>
             <li>
