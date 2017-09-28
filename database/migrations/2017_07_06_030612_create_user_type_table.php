@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEventCategoriesTable extends Migration
+class CreateUserTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateEventCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('event_categories', function (Blueprint $table) {
+        Schema::create('user_types', function (Blueprint $table) {
           $table->increments('id');
           $table->string('name')->unique();
+          $table->string('theme')->nullable();
+          $table->string('color')->nullable();
           $table->softDeletes();
           $table->timestamps();
         });
@@ -28,6 +30,6 @@ class CreateEventCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('event_categories');
+        Schema::dropIfExists('user_types');
     }
 }

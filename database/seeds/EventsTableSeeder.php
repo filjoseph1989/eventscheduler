@@ -366,7 +366,7 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',          
+          'event_type_id'           => '2',
           'semester_id'             => '1',
           'title'                   => "UPMin Tagbo (Student Leadership Seminar)",
           'description'             => "Student Leadership Seminar",

@@ -77,7 +77,8 @@ Organization Groups:
   ✔ created_at
   ✔ updated_at
 
-User Type: (Mao ni ang accounts)
+User Type: 
+  (mao ni tung "Accounts" dati)
   ✔ id
   ✔ name (osa, head, member)
   ✔ theme

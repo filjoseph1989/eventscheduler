@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserAttendanceTable extends Migration
+class CreateAttendanceTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateUserAttendanceTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_attendances', function (Blueprint $table) {
+        Schema::create('attendances', function (Blueprint $table) {
           $table->increments('id');
-          $table->integer('event_id')->unsigned()->index();
           $table->integer('user_id')->unsigned()->index();
+          $table->integer('event_id')->unsigned()->index();
+          $table->enum('status', ['confirmed', 'unconfirmed'])->default('unconfirmed');
+          $table->enum('did_attend', ['true', 'false'])->default('false');
           $table->string('reason')->nullable();
-          $table->enum('status', ['true', 'false'])->default('false');
-          $table->enum('confirmation', ['true', 'false'])->default('false');
           $table->softDeletes();
           $table->timestamps();
 
