@@ -8,7 +8,11 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'EventScheduler') }}</title>
+  @if ($loginClass == 'login-page')
+    <title>{{ config('app.name', 'EventScheduler') }}</title>
+  @else
+    @yield('title')
+  @endif
 
   <!-- Styles -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -50,6 +54,26 @@
       @yield('modals')
     @endguest
   --}}
+
+  <div id="webknights" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">Janica Liz De Guzman</h4>
+        </div>
+        <div class="modal-body">
+          <p>System Creator</p>
+          <p>janicalizdeguzman at gmail dot com</p>
+        </div>
+        <div class="modal-footer">
+          <i class="material-icons" data-dismiss="modal" style="cursor:pointer;">close</i>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="{{ asset('js/jquery.min.js') }}?v=3.2.1"></script>
   <script src="{{ asset('js/bootstrap.min.js') }}?v=3.3.7"></script>
