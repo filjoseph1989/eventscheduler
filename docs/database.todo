@@ -30,7 +30,7 @@ Positions:
 
 Events:
   ✔ id (int) (primary) (autoincrement)
-  ✔ event_type_id (foreign key) 
+  ✔ event_type_id (foreign key)
   ✔ semester_id (to make a functionality for osa to set the duration dates of a sem)
   ✔ title (char)
   ✔ description (text)
@@ -52,7 +52,7 @@ Events:
   ✔ sms (char)
   ✔ email (char)  //ngano ni char? gitemporary sa nko og enum (on/off)
   ✔ email_msg (text)
-  ✔ email_img (char)  
+  ✔ email_img (char)
   ✔ created_at (date)
   ✔ updated_at (date)
   ✔ deleted_at (int)
@@ -77,7 +77,7 @@ Organization Groups:
   ✔ created_at
   ✔ updated_at
 
-User Type: 
+User Type:
   (mao ni tung "Accounts" dati)
   ✔ id
   ✔ name (osa, head, member)
@@ -141,4 +141,3 @@ Semester:
   ✔ created_at
   ✔ deleted_at
   ✔ updated_at
-

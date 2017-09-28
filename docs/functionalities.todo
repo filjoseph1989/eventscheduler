@@ -57,12 +57,12 @@ Phase 1:
           ☐ view organization events - (upcoming, archived, canceled, approved)
 
     Events:
+      ✔ Display all events @done (9/28/2017, 10:17:58 PM)
+      ✔ Display official events for advertisements approval @done(2017-09-28 23:26)
+      ✔ Display Personal event exclusive to osa only @done(2017-09-28 23:26)
       ☐ Create new event
-      ☐ Display all events
-      ☐ Display official events for advertisements approval
       ☐ Display all official events approved by the OSA
         ☐ Attend and Decline (should show when members is loggedin)
-      ☐ Display Personal event exclusive to osa only
       ☐ Display the calendar of events
         ☐ official
         ☐ personal
