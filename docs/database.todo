@@ -1,7 +1,6 @@
-☐ Users:
+Users:
   ✔ id
   ✔ course_id
- // ☐ department_id (no need)
   ✔ name (full_name)
   ✔ student_number (account_number)
   ✔ user_type_id
@@ -22,12 +21,6 @@ Courses:
   ✔ name
   ✔ created_at
   ✔ updated_at
-
-(Departments: (no need)
-  ☐ id
-  ☐ name
-  ☐ created_at
-  ☐ updated_at) 
 
 Positions:
   ✔ id
@@ -115,30 +108,30 @@ Event Types:
   ✔ deleted_at
 
 Event Groups:
-✔ id
-✔ event_type_id
-✔ event_id
-✔ user_id
-✔ organization_id (foreign key) (ref: organization.id)
-✔ category (enum) (within, personal, university, organization)
-✔ created_at
-✔ deleted_at
+  ✔ id
+  ✔ event_type_id
+  ✔ event_id
+  ✔ user_id
+  ✔ organization_id (foreign key) (ref: organization.id)
+  ✔ category (enum) (within, personal, university, organization)
+  ✔ created_at
+  ✔ deleted_at
 
 Organization Head Groups: (because what if in another org group, the head is a member, so to distinguish the org he/she is leading)
-✔ id
-✔ user_id
-✔ organization_id
-✔ created_at
-✔ deleted_at
+  ✔ id
+  ✔ user_id
+  ✔ organization_id
+  ✔ created_at
+  ✔ deleted_at
 
-Event Notifications (An event that is set to be advertised) (after advertise/request to advertise button is clicked)
-✔ id
-✔ event_id
-✔ user_id
-✔ organization_id
-✔ is_advertised (enum) (true or false)
-✔ created_at
-✔ deleted_at
+Event Notifications: (An event that is set to be advertised) (after advertise/request to advertise button is clicked)
+  ✔ id
+  ✔ event_id
+  ✔ user_id
+  ✔ organization_id
+  ✔ is_advertised (enum) (true or false)
+  ✔ created_at
+  ✔ deleted_at
 
 Semester:
   ✔ id

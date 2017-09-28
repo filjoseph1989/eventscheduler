@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 class EventController extends Controller
 {
     private $list = ['official', 'personal'];
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +15,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        return view('approve-events');    
+        return view('approve-events');
     }
 
     /**

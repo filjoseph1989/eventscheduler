@@ -1,0 +1,304 @@
+To Do:
+  Page:
+    http://fil.local/users/org-head/profile/2:
+      ☐ When the user click on the name of one of the officers, the system should display the profile of the officer
+      
+  Task 8 University Staff Account: (magbuhat pa ta ani? or advance na lang ni?):
+    ☐ Organization:
+      ☐ View Organizations
+      ☐ View organization profile
+    ☐ Events:
+      ☐ View events
+      ☐ Create personal event
+      ☐ Approve events
+      ☐ Calendar
+      University staff account will be the one who inputs the events from the academic calendar that will be displayed in the Public View Calendar.
+
+  Task 5: User admin account:
+      ☐ Approve user system membership
+      ☐ List of all user belongs to an organization (this feature is for administrator)
+      ☐ List of all users who has no organization yet (this feature is for administrator)
+      ☐ Set type of event
+
+  Task 7: System administrator:
+    ☐ Manage Event Types:
+      ☐ BREAD
+    ☐ Manage Event Categories:
+      ☐ BREAD
+    ☐ Manage Organization:
+      ☐ BREAD
+    ☐ Manage Position:
+      ☐ BREAD
+    ☐ Manage Department:
+      ☐ BREAD
+    ☐ Manage Courses:
+      ☐ BREAD
+    ☐ Manage Users Account:
+      ☐ BREAD
+      ☐ Approve user sytem membership
+    ☐ Create a filtering in list of user in the admin dashboard (admin/users/list):
+      ☐ Filter by Course
+      ☐ Filter by Department
+      ☐ Filter by Position
+      ☐ Filter by Status
+
+  Task 6: View Profile:
+    ✔ What if there are many organization? @done(2017-07-23 03:04)
+    ✔ Change password @done(2017-07-27 21:47)
+    ✔ Change profile pic @done(2017-07-27 15:50)
+    ✔ Upload photo @done(2017-07-23 13:03)
+    ✔ Do not delete the default picture @done(2017-07-23 13:03)
+    ✔ Update also the sidebar picture @done(2017-07-23 15:18)
+    ✔ Change profile pic @done(2017-07-27 21:48)
+
+  Task 4: Office of the student affairs account:
+    ✔ Assign an approvers: @done (2017-9-17 11:10:47)
+    ☐ Organization:
+      ✔ Add organization @done (2017-9-17 11:11:14)
+      ✔ List all organization, include who is the adviser of the organization @done (9/17/2017, 8:44:23 PM)
+      ✔ Activate/Deactivate organization @done (9/17/2017, 8:44:27 PM)
+      ☐ View the member of the organization
+      ☐ Assign an adviser for an organization
+    ☐ Events:
+      ☐ Set type of events
+      ☐ Create My Events:
+        ☐ Display form to create event
+        ☐ Can customize message for notification
+        ☐ Can upload image for notification
+      ☐ Create Events:
+        ☐ Display form to create event
+        ☐ Can customize message for notification
+        ☐ Can upload image for notification
+        ☐ Browse to the list of approvers
+      ☐ List of events:
+        ☐ Display the info box of events base on category
+        ☐ Attend this event - A button for user if he wants to attend this event (For regulart users and non member of the organization)
+        ☐ Archive events
+        ☐ Automatically change the status of the event base on the given date
+        ☐ Set status of my events
+          ☐ if the status changed, Set notification functionality
+      ☐ Approval of event functionality
+        ☐ Approve events
+      ☐ Calendar of events(Public, Among, Within, Personal)
+    ☐ Members:
+      ☐ All members (list all members) (tagged with organization belong)
+    ☐ Generate Attendance:
+
+  Task 3: Organization Member Account:
+    ☐ Check my attendance:
+    ☐ Organization:
+      ☐ List of organization
+        ✔ Request for membership @done(2017-08-30 02:07)
+          ✔ If the organization member is not a member of the organization display this button @done(2017-08-30 02:07)
+        ✔ If the organization name is clicked, display the organization simple profile @done(2017-08-30 02:07)
+        ✔ Card Layout for simple organization profile @done(2017-08-30 02:07)
+        ✔ Who are they? - Should have default description if not given @done(2017-08-30 02:07)
+    ☐ Events:
+      ☐ Create My Events:
+        ✔ Display form to create event @done(2017-08-30 02:18)
+        ✔ Use textarea for description @done(2017-08-30 02:18)
+        ✔ Can customize message for notification @done(2017-08-30 02:44)
+        ☐ Can upload image for notification (advance)
+      ☐ List of events:
+        ✔ Display the info box of events base on category @done(2017-08-30 02:44)
+        ✔ Attend this event - A button for user if he wants to attend this event (For regulart users and non member of the organization) @done(2017-08-30 02:44)
+        ✔ Automatically change the status of the event base on the given date @done(2017-08-30 02:44)
+        ✔ Show List of Personal Events @done(2017-08-30 02:43)
+          ✔ public @done(2017-08-30 02:43)
+          ✔ private @done(2017-08-30 02:43)
+        ☐ within org list of events must be events under the org where the user is a member only
+
+      ☐ Calendar of events
+        ✔ Public @done(2017-08-30 02:43)
+        ✔ Among @done(2017-08-30 02:43)
+        ✔ Within @done(2017-08-30 02:43)
+        ✔ Personal @done(2017-08-30 02:43)
+    ☐ Members: (an org member can have many orgs)
+      ☐Display the list of org in which he belongs
+      ☐Display all members within the organization he belongs to
+      ✔ Display all members within the organization @done(2017-08-27 22:33)
+      ✔ Display membership request @done(2017-08-27 22:52)
+
+  Task 2: Organization HEAD Account:
+    ☐ Organization:
+      ✔ List of organization @done(2017-08-30 02:53)
+        ✔ If the organization name is clicked, display the orgazation simple profile @done (8/21/2017, 11:20:52 PM)
+        ✔ If the organization head is not a member of the organization display the "Request Membership" button @done (8/21/2017, 11:21:34 PM)
+        ✔ Card Layout for simple organization profile @done (8/21/2017, 11:21:41 PM)
+        ✔ If the adivser view his organization as an adviser he must have option for editing few information @done (8/21/2017, 11:21:50 PM)
+        ✔ Must have logo default @done (8/21/2017, 11:22:59 PM)
+        ✔ Join the organization (Request for membership) @done (8/27/2017, 12:37:49 AM)
+      ✔ Edit @done(2017-08-30 02:53)
+        ✔ Change logo @done (8/21/2017, 11:34:57 PM)
+          ✔ Uploading logo on other organization hes/shes not an organization head should not be allowed @done (8/21/2017, 11:34:56 PM)
+        ✔ There should be color picker on one field of the edit form @done (8/21/2017, 11:46:20 PM)
+    ☐ Events:
+      ☐ Create Events:
+        ✔ Display form to create event @done (8/22/2017, 7:01:28 PM)
+        ✔ Can customize message for notification @done(2017-08-30 01:29)
+        ☐ Can upload image for notification (advance)
+        ✔ In what way that this event should be valid? Goto Approve events (Advance) @done(2017-08-30 01:37)
+        ✔ Choose organization category @done(2017-08-30 06:34)
+          ✔ Categories as public @done (8/23/2017, 3:02:59 PM)
+          ✔ Categories as private (within organization) @done (8/23/2017, 3:03:01 PM)
+          ✔ Categories as Among Organization @done (8/23/2017, 3:03:01 PM)
+        ✔ Determine if her/she is the head of the organization @done (8/26/2017, 11:56:10 PM)
+      ☐ Create My Events:
+        ✔ Display form to create event @done (8/23/2017, 3:00:54 PM)
+        ✔ Can customize message for notification @done(2017-08-30 01:37)
+      ☐ List of events:
+        ✔ Display the info box of events base on category @done (8/23/2017, 6:32:48 AM)
+        ✔ Display events table (Public, Among, Within, Personal) @done(2017-08-23 23:49)
+        ✔ Attend this event - A button for user if he wants to attend this event @done (8/26/2017, 11:48:49 PM)
+        ✔ On the event details, display the name of the approver who already approve the event @done(2017-08-30 01:38)
+        ✔ Automatically change the status of the event base on the given date @done(2017-08-30 01:38)
+        ✔ Show List of Personal Events @done(2017-08-30 02:38)
+          ✔ public @done(2017-08-30 02:38)
+          ✔ private @done(2017-08-30 02:38)
+        ✔ within org list of events must be events under the org where the user is a member only @done (9/22/2017, 5:51:38 PM)
+      ✔ Calendar of events @done(2017-08-30 01:39)
+        ✔ Public @done(2017-08-30 01:40)
+        ✔ Among @done(2017-08-30 01:40)
+        ✔ Within @done(2017-08-30 01:40)
+        ✔ Personal @done(2017-08-30 02:43)
+      ☐ Approval of event functionality:
+        ☐ Approve events
+          ✔ Approval of event blade @done(2017-08-24 02:50)
+          ✔ Show organization and browse events @done (8/23/2017, 4:06:25 PM)
+          ✔ Notification: (Facebook, Twitter, Email, Phone) @done(2017-08-30 01:58)
+        ✔ Disapprove event @done (8/25/2017, 3:58:50 PM)
+        ☐ Edit event:
+          ☐ If the organization head edit the date of the of the event, reset the approver count and status
+        ✔ Automatic Successful Event Notifications upon complete approvals: @done (9/22/2017, 5:52:21 PM)
+          ✔ notify_via_facebook @done (9/22/2017, 5:52:08 PM)
+          ✔ notify_via_twitter @done (9/22/2017, 5:52:09 PM)
+          ✔ notify_via_email @done (9/22/2017, 5:52:10 PM)
+          ✔ notify_via_sms @done (9/22/2017, 5:52:10 PM)
+      ✔ Calendar of events: @done (9/22/2017, 5:52:34 PM)
+        ✔ Public @done (9/14/2017, 1:44:45 PM)
+        ✔ Among @done (9/14/2017, 1:44:44 PM)
+        ✔ Within @done (9/14/2017, 1:44:43 PM)
+        ✔ Personal @done (9/14/2017, 1:44:42 PM)
+    ☐ Members:
+      ✔ List of members within the organization of head @done (9/14/2017, 1:44:48 PM)
+        ✔ View members profile @done (9/14/2017, 1:44:47 PM)
+      ✔ Invite members @done (9/22/2017, 5:52:46 PM)
+      ☐ Accept request
+      ✔ Display membership request @done(2017-08-27 03:19) @project(To Do / Task 2: Organization HEAD Account / ☐ Members)
+      ☐ no duplication of same user id and organization id at organization_groups table (One org presidency per faculty only)
+      ☐ Org head: (an org head can have many org as long as he has only one org precidency )
+        ☐ Display the list of org in which he belongs
+        ☐ Display all members within the organization he belongs to
+    ✔ Generate Attendance: @done (9/14/2017, 1:44:35 PM)
+      ✔ Display the list of organization, advise by the loggedin adviser @done (9/14/2017, 1:44:31 PM)
+      ✔ Display the list of event from the given organization @done (9/14/2017, 1:44:30 PM)
+      ✔ Display the list of organization member of the organization @done (9/14/2017, 1:44:29 PM)
+        ☐  Including non-member who wants to attend the event (for public view or among orgs event)
+
+  Task 1: Organization Adviser Account:
+    ✔ Organizations: @done (9/2/2017, 2:38:23 PM)
+      ✔ List of organization @done (9/2/2017, 2:38:19 PM)
+        ✔ Request for membership @done(2017-07-31 16:38)
+          ✔ If the adviser is not a member of the organization display this button @done (9/14/2017, 1:44:22 PM)
+        ✔ If the organization name is clicked, display the orgazation simple profile @done (9/14/2017, 1:44:21 PM)
+        ✔ Card Layout for simple organization profile @done (9/14/2017, 1:44:20 PM)
+        ✔ Who are they? - Should have default description if not given @done (9/14/2017, 1:44:19 PM)
+        ✔ If the adivser view his organization as an adviser he must have option for editing few information @done (9/14/2017, 1:44:18 PM)
+          ✔ Color picker @done(2017-08-02 20:33)
+        ✔ logo default @done(2017-07-22 21:17)
+        ✔ Change logo @done(2017-07-22 22:59)
+        ☐ Notify the organization officers for the changes made by the adviser (advance)
+    ☐ Events:
+      ✔ Create My Events @done (9/14/2017, 1:44:13 PM)
+        ✔ Can customize message for notification @done (9/14/2017, 1:44:12 PM)
+        ✔ Display form to create event @done(2017-08-17 16:37)
+      ☐ Create Events:
+        ✔ Can customize message for notification @done (9/14/2017, 1:44:09 PM)
+        ✔ Display form to create event @done(2017-08-17 16:35)
+        ✔ Chose organization @done(2017-07-24 00:28)
+          ✔ Categories as private (within organization) @done(2017-07-23 23:43)
+          ✔ Categories as Among Organization @done(2017-07-23 23:43)
+        ✔ Determine if her/she is the adviser of the organization @done(2017-07-23 23:30)
+        ☐ In what way that this event should be valid? Goto Approve events (Advance)
+      ☐ List of events:
+        ✔ Display the info box of events base on category @done(2017-08-17 16:38)
+        ✔ Attend this event - A button for user if he wants to attend this event (For regulart users and non member of the organization) @done (9/14/2017, 1:44:00 PM)
+        ✔ On the event details, display the name of the approver who already approve the event @done (9/14/2017, 1:44:01 PM)
+        ✔ Set status of my events @done (9/14/2017, 1:44:03 PM)
+          ✔ if the status changed, Set notification functionality @done (9/14/2017, 1:44:04 PM)
+        ✔ Show List of Personal Events @done (9/14/2017, 1:44:05 PM)
+          ✔ public @done (9/2/2017, 2:34:17 PM)
+          ✔ private @done (9/2/2017, 2:34:19 PM)
+        ☐ within org list of events must be events under the org where the user is a member only
+      ☐ Automatic Successful Event Notifications upon complete approvals:
+        ☐ notify_via_facebook
+          ✔ Public View @done(2017-08-31 16:11)
+          ✔ Public View @done(2017-08-31 16:11)
+          ✔ Within Org @done(2017-08-31 16:11)
+          ✔ Among org @done(2017-08-31 16:11)
+          ☐ Personal
+        ☐ notify_via_twitter
+          ✔ Public View @done (9/14/2017, 1:43:38 PM)
+          ✔ Within Org @done (9/14/2017, 1:43:42 PM)
+          ✔ Among org @done (9/14/2017, 1:43:44 PM)
+          ☐ Personal
+        ☐ notify_via_email
+          ✔ Public View @done (9/2/2017, 2:34:36 PM)
+          ✔ Within Org @done (9/2/2017, 2:34:37 PM)
+          ✔ Among org @done (9/2/2017, 2:34:38 PM)
+          ☐ Personal
+        ☐ notify_via_sms
+          ✔ Public View @done (9/2/2017, 2:34:43 PM)
+          ✔ Within Org @done (9/2/2017, 2:34:46 PM)
+          ✔ Among org @done (9/2/2017, 2:34:49 PM)
+          ☐ Personal
+      ✔ Show organization and browse events @done (9/14/2017, 1:43:47 PM)
+      ✔ Approval of event functionality @done (9/14/2017, 1:43:48 PM)
+      ✔ Approval of event blade @done (9/14/2017, 1:43:49 PM)
+        ✔ Approve events @done(2017-08-08 19:03)
+          ✔ Notification: (Facebook, Twitter, Email, Phone) @done(2017-08-11 19:11)
+        ✔ disapprove event @done(2017-08-11 00:30)
+    ✔ Calendar of events @done (9/14/2017, 1:43:07 PM)
+      ✔ Public @done(2017-08-15 20:32)
+      ✔ Among  @done(2017-08-15 20:32)
+      ✔ Within @done (9/2/2017, 2:35:20 PM)
+      ✔ Personal @done (9/14/2017, 1:42:58 PM)
+    ✔ Members: @done(2017-08-27 22:58) @project(Task 1: Organization Adviser Account)
+      ✔ List of members within the organization of adviser @done(2017-08-16 20:02)
+        ✔ View members profile @done(2017-08-16 20:28)
+        ✔ no duplication of same user id and organization id at organization_groups table (One org advisory per faculty only) @done(2017-08-28 15:42) @project(To Do / Task 1: Organization Adviser Account / / ☐ Automatic Successful Event Notifications upon complete approvals)
+    ✔ Generate Attendance: @done(2017-08-24 01:24) @project(To Do / ☐ Task 1: Organization Adviser Account)
+      ✔ Display the list of organization, advise by the loggedin adviser @done(2017-08-21 10:46)
+      ✔ Display the list of event from the given organization @done(2017-08-21 10:47)
+      ✔ Display the list of organization member of the organization @done(2017-08-21 10:47)
+        ✔  Including non-member who wants to attend the event @done(2017-08-28 15:13) @project(To Do / Task 1: Organization Adviser Account / / ☐ Automatic Successful Event Notifications upon complete approvals)
+
+Issues:
+✔ test within and among org sms notif later after done with changing the nexmo keys in .env @done(2017-08-31 02:39)
+✔ solve problem in rendering many calendars upon switching calendars @done(2017-08-31 13:35)
+✔ naga-double send ang notify_via_sms for 1 item @done(2017-08-31 13:35)
+✔ Make a migration, and model for table organization_head_groups @done(2017-09-01 23:57)
+✔ test within and among org sms notif later after done with changing the nexmo keys in .env @done(2017-08-31 02:39)
+☐ naga-double send siya musend and notify_via_email for 1 item
+☐ you can try to upload picture on fb notif
+☐ you can try to upload picture on twitter notif
+☐ try to use postDm() in twitter for direct message notification
+☐ enable the ORG-HEAD to have many orgs but only one org to lead to
+☐ Maka detect na ba tuh og conflict of schedule sa tanang calendars/event_category ang system?
+  ☐ Dili pud ba ni pwede na katong parehas sa una sabot nato na dapat mu hatag xa og alert or notification pag hapit na ang event?
+☐ Pwede nto ni ienable sa facebook direct message, twitter direct message og sa text..
+☐ Kaya ra man diba? Bale katong parehas sauna na
+☐ Mu notify xa 1 week before,  then 3 days before,  then 1 day before, then on that event na gyud..
+  ☐ Dili na tuh i set,  bale default nato xa na alert for every event.. Ddto nato xa pwede mabutang sa additional_msg_facebook, additional_msg_twitter(idungag pa nako ni sa migration og seeder),
+      additional_msg_sms
+☐ dapat dili ma edit sa adviser ang pulic view, og among orgs sa list of events
+☐ dapat dili ma edit sa member ang tanan events sa list of events
+☐ dapat dili ma edit sa org head ang events sa public view sa list of events
+☐ dapat dili ma edit sa OSA ang events sa within orgs sa list of events
+☐ change later some expected terms to declined
+
+
+Tapos kailangan pa ba magbuhat og another table dili na?
+Unsaon nato pag indicate og kuha sa event para malaman na 1 week to go,  3 days to go,  1 day to go,  og today na tung event? Unsay algorithm nato ana?
+add event details on Generate Attendance > View Organization Members’ Event Expected Attendances > list of orgs > list of events > Attendance Sheet
+add event details on Generate Attendance > Confirm and View Organization Members’ Event Expected Attendances > list of orgs > list of events > Attendance Sheet

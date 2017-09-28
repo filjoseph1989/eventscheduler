@@ -14,6 +14,8 @@ class PositionsTableSeeder extends Seeder
     DB::table('positions')->insert([
       array('name' => 'Not Applicable', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
       array('name' => 'OSA Staff', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
+      array('name' => 'OSA Head', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
+      array('name' => 'Instructor', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
       array('name' => 'Chairperson', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
       array('name' => 'Vice-Chairperson', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
       array('name' => 'President', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
@@ -24,8 +26,6 @@ class PositionsTableSeeder extends Seeder
       array('name' => '1st Year Representattive', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
       array('name' => '2nd Year Representattive', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
       array('name' => '3rd Year Representattive', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
-      array('name' => 'Instructor', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
-      array('name' => 'OSA Head', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
     ]);
   }
 }

@@ -15,7 +15,8 @@ class EventsTableSeeder extends Seeder
     {
       DB::table('events')->insert([
         array(
-          'event_type_id'           => '2',          'semester_id'             => '1',
+          'event_type_id'           => '2', 
+          'semester_id'             => '1',
           'title'                   => "UP Foundation",
           'description'             => "UP-Mindanao took part in the simultaneous U.P. System-wide flag-raising ceremony to close the Centennial Celebration and open U.P.'s Next Century.",
           'venue'                   => "Eden Nature Park",
@@ -41,7 +42,8 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',          'semester_id'             => '1',
+          'event_type_id'           => '2',          
+          'semester_id'             => '1',
           'title'                   => "REGULAR PERIOD for Removal and Completion",
           'description'             => "Removal and Completion of Grades",
           'venue'                   => "UP Mindanao",
@@ -67,7 +69,8 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',          'semester_id'             => '1',
+          'event_type_id'           => '2',          
+          'semester_id'             => '1',
           'title'                   => "Deadline for transfer students to file Application for Admission",
           'description'             => "Admission for Transfer Students",
           'venue'                   => "UP Mindanao",
@@ -93,7 +96,8 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',          'semester_id'             => '1',
+          'event_type_id'           => '2',          
+          'semester_id'             => '1',
           'title'                   => "Readmission, Validation of advanced credits for transferees, Application for Shifting",
           'description'             => "Readmission/Validation of advanced credits for transferees /Application for Shifting",
           'venue'                   => "UP Mindanao",
@@ -362,7 +366,8 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',          'semester_id'             => '1',
+          'event_type_id'           => '2',
+          'semester_id'             => '1',
           'title'                   => "UPMin Tagbo (Student Leadership Seminar)",
           'description'             => "Student Leadership Seminar",
           'venue'                   => "UP Mindanao",
