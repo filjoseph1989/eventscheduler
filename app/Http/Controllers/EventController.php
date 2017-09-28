@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 class EventController extends Controller
 {
     private $list = ['official', 'personal'];
+    private $theme = 'theme-red';
 
     /**
      * Display a listing of the resource.
@@ -48,7 +49,8 @@ class EventController extends Controller
     public function show($id)
     {
         return view('events-list')->with([
-            'title' => $this->list[$id]
+            'title'      => $this->list[$id],
+            'loginClass' => 'theme-teal'
         ]);
     }
 
