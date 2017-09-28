@@ -37,4 +37,9 @@ class Event extends Model
     'email_msg',
     'email_img',
   ];
+
+  public function eventGroup()
+  {
+    return $this->belongsTo('App\Models\EventGroup');
+  }
 }
