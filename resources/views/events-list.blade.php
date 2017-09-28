@@ -48,15 +48,28 @@
                       <th>Action</th>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td><a href="#" data-target="#event" data-toggle="modal">Kadayawan sa UP</a></td>
-                        <td>UP Gym</td>
-                        <td>Computer Science Society</td>
-                        <td>Oct 01, 2017 @ 10:00 AM</td>
-                        <td>Oct 01, 2017 @ 05:00 AM</td>
-                        <td>Upcoming</td>
-                        <td><a href="#">Attend</a>|<a href="#">Decline</a></td>
-                      </tr>
+                      <?php foreach ($events as $key => $event): ?>
+                        <tr data-event="{{ $event->id }}">
+                          <td><a href="#" data-target="#event" data-toggle="modal">{{ $event->title }}</a></td>
+                          <td><a href="#">{{ $event->venue }}</a></td>
+                          <td>
+                            <?php if ($event['organization']->count() > 0): ?>
+                              <?php $organization = $event['organization'][0]; ?>
+                              {{ $organization->organization->name }}
+                            <?php else: ?>
+                              No Organization
+                            <?php endif; ?>
+                          </td>
+                          <td>
+                            {{ date('M d, Y', strtotime($event->date_start)) }} {{ date('h:i A', strtotime($event->date_start_time)) }}
+                          </td>
+                          <td>
+                            {{ date('M d, Y', strtotime($event->date_end)) }} {{ date('h:i A', strtotime($event->date_end_time)) }}
+                          </td>
+                          <td>Upcoming</td>
+                          <td><a href="#">Attend</a>|<a href="#">Decline</a></td>
+                        </tr>
+                      <?php endforeach; ?>
                     </tbody>
                     <tfoot>
                       <th><a href="#">Title</a></th>
@@ -247,7 +260,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" data-color="red" class="btn bg-green waves-effect">Request Approval</button>
+          <button type="submit" data-color="green" class="btn bg-green waves-effect">Save Changes</button>
+          <button type="button" data-color="green" class="btn bg-green waves-effect">Request Approval</button>
           <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
         </div>
       </div>

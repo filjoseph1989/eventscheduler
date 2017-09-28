@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+# Models
+use App\Models\Event;
+use App\Models\EventGroup;
+
 class EventController extends Controller
 {
     private $list = ['official', 'personal'];
@@ -48,9 +52,14 @@ class EventController extends Controller
      */
     public function show($id)
     {
+        $events = Event::all();
+
+        self::getOrganization($events);
+
         return view('events-list')->with([
+            'loginClass' => 'theme-teal',
             'title'      => $this->list[$id],
-            'loginClass' => 'theme-teal'
+            'events'     => $events
         ]);
     }
 
@@ -86,5 +95,20 @@ class EventController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Modefy the events
+     *
+     * @param  objeect $events Reference to events
+     * @return void
+     */
+    private function getOrganization(&$events)
+    {
+      foreach ($events as $key => $event) {
+        $events[$key]['organization'] = EventGroup::with('organization')
+          ->where('event_id', '=', $event->id)
+          ->get();
+      }
     }
 }
