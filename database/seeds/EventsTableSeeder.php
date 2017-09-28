@@ -15,7 +15,7 @@ class EventsTableSeeder extends Seeder
     {
       DB::table('events')->insert([
         array(
-          'event_type_id'           => '2', 
+          'event_type_id'           => '1', 
           'semester_id'             => '1',
           'title'                   => "UP Foundation",
           'description'             => "UP-Mindanao took part in the simultaneous U.P. System-wide flag-raising ceremony to close the Centennial Celebration and open U.P.'s Next Century.",
@@ -42,7 +42,7 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',          
+          'event_type_id'           => '1',
           'semester_id'             => '1',
           'title'                   => "REGULAR PERIOD for Removal and Completion",
           'description'             => "Removal and Completion of Grades",
@@ -69,7 +69,7 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',          
+          'event_type_id'           => '1',
           'semester_id'             => '1',
           'title'                   => "Deadline for transfer students to file Application for Admission",
           'description'             => "Admission for Transfer Students",
@@ -96,7 +96,7 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',          
+          'event_type_id'           => '1',
           'semester_id'             => '1',
           'title'                   => "Readmission, Validation of advanced credits for transferees, Application for Shifting",
           'description'             => "Readmission/Validation of advanced credits for transferees /Application for Shifting",
@@ -123,7 +123,7 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',
+          'event_type_id'           => '1',
           'semester_id'             => '1',
           'title'                   => "Deadline for Application for Waiver of Prerequisite",
           'description'             => "Application for Waiver of Prerequisite",
@@ -150,7 +150,7 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',
+          'event_type_id'           => '1',
           'semester_id'             => '1',
           'title'                   => "General Registration for Student Number 2014 and older",
           'description'             => "General Registration",
@@ -177,7 +177,7 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',
+          'event_type_id'           => '1',
           'semester_id'             => '1',
           'title'                   => "General Registration for Student Number 2015",
           'description'             => "General Registration",
@@ -204,7 +204,7 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',
+          'event_type_id'           => '1',
           'semester_id'             => '1',
           'title'                   => "General Registration for Transferees, Cross Registrants, and others",
           'description'             => "General Registration",
@@ -231,7 +231,7 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',
+          'event_type_id'           => '1',
           'semester_id'             => '1',
           'title'                   => "START OF CLASSES",
           'description'             => "Start of Classes",
@@ -258,7 +258,7 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',
+          'event_type_id'           => '1',
           'semester_id'             => '1',
           'title'                   => "Change/Add Matriculation Period",
           'description'             => "General Registration",
@@ -285,7 +285,7 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',
+          'event_type_id'           => '1',
           'semester_id'             => '1',
           'title'                   => "UP College Admission Test",
           'description'             => "College Admission Test",
@@ -312,7 +312,7 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',
+          'event_type_id'           => '1',
           'semester_id'             => '1',
           'title'                   => "University Curriculum Committee Meeting",
           'description'             => "Curriculum Committee Meeting",
@@ -339,7 +339,7 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',
+          'event_type_id'           => '1',
           'semester_id'             => '1',
           'title'                   => "University Council Meeting to Approve Candidates for Graduation",
           'description'             => "for Mid-Year Term 2016-2017, First Semester_id 2017-2018, Second Semester_id 2017-2018",
@@ -366,7 +366,7 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',
+          'event_type_id'           => '1',
           'semester_id'             => '1',
           'title'                   => "UPMin Tagbo (Student Leadership Seminar)",
           'description'             => "Student Leadership Seminar",
@@ -393,7 +393,7 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',
+          'event_type_id'           => '1',
           'semester_id'             => '1',
           'title'                   => "Mid-Semester_id",
           'description'             => "Deadline for Dropping subjects without evaluation",
@@ -420,7 +420,7 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',
+          'event_type_id'           => '1',
           'semester_id'             => '1',
           'title'                   => "Deadline for Dropping subjects with evaluation",
           'description'             => "Deadline for Dropping subjects with evaluation",
@@ -447,7 +447,7 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',
+          'event_type_id'           => '1',
           'semester_id'             => '1',
           'title'                   => "Preregistration Period",
           'description'             => "Preregistration",
@@ -474,7 +474,7 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',
+          'event_type_id'           => '1',
           'semester_id'             => '1',
           'title'                   => "Deadline for Filing Leave of Absence",
           'description'             => "LOA",
@@ -501,7 +501,7 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',
+          'event_type_id'           => '1',
           'semester_id'             => '1',
           'title'                   => "MORATORIUM",
           'description'             => "No student organization activities",
@@ -528,7 +528,7 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',
+          'event_type_id'           => '1',
           'semester_id'             => '1',
           'title'                   => "LAST DAY OF CLASSES",
           'description'             => "last day of classes",
@@ -555,7 +555,7 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',
+          'event_type_id'           => '1',
           'semester_id'             => '1',
           'title'                   => "Integration Period",
           'description'             => "Integration Period",
@@ -582,7 +582,7 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',
+          'event_type_id'           => '1',
           'semester_id'             => '1',
           'title'                   => "UP Mindanao KASADYA",
           'description'             => "UP Mindanao KASADYA",
@@ -609,7 +609,7 @@ class EventsTableSeeder extends Seeder
           'updated_at'              => Carbon::now()->toDateTimeString(),
         ),
         array(
-          'event_type_id'           => '2',
+          'event_type_id'           => '1',
           'semester_id'             => '1',
           'title'                   => "Deadline for Submission of Grades",
           'description'             => "for Continuing Students",
