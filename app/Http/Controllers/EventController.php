@@ -10,7 +10,7 @@ use App\Models\EventGroup;
 
 class EventController extends Controller
 {
-    private $list = ['official', 'personal'];
+    private $list = ['all', 'official', 'local'];
     private $theme = 'theme-red';
 
     /**
@@ -52,14 +52,19 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        $events = Event::all();
+        if ($id == 0) {
+          $events = Event::all();
+        } else {
+          $events = Event::where('event_type_id', $id)->get();
+        }
 
         self::getOrganization($events);
 
         return view('events-list')->with([
             'loginClass' => 'theme-teal',
             'title'      => $this->list[$id],
-            'events'     => $events
+            'events'     => $events,
+            'eventType'  => $id
         ]);
     }
 
