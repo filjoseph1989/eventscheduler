@@ -20,27 +20,33 @@ class OrganizationController extends Controller
     public function index()
     {
         $organizations = OrganizationHeadGroup::with('organization')
-        ->with('user')
-        ->get();
-        return view('organization_list', compact('organizations'));
+          ->with('user')
+          ->get();
+
+        return view('organization_list')->with([
+          'organizations' => $organizations,
+          'loginClass'    => 'theme-teal'
+        ]);
     }
 
-    /** 
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() 
+    public function create()
     {
         /**
-         *  TO CONSIDER 
+         *  TO CONSIDER
          *parent::loginCheck();
          *$this->osa_personnel->isOsaPersonnel();
          *return view('pages/users/osa-personnel/organization/add')->with([
          *   'login_type' => $this->login_type
          *]);
          */
-        return view('organization_add');
+        return view('organization_add')->with([
+            'loginClass' => 'theme-teal'
+        ]);
     }
 
     /**
@@ -66,7 +72,7 @@ class OrganizationController extends Controller
             'name'           => $request->name,
             'acronym'        => $request->acronym,
         ];
-        
+
         $faker = Faker::create();
 
         $data_org_head = [
@@ -76,7 +82,7 @@ class OrganizationController extends Controller
             'user_type_id'   => 1,
             'password'       => $faker->password,
         ];
-        
+
         $organization = Organization::create($data_organization);
         $org_head = User::create($data_org_head);
         if ($organization->wasRecentlyCreated && $org_head->wasRecentlyCreated ) {
