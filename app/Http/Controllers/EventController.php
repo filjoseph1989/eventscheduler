@@ -68,7 +68,7 @@ class EventController extends Controller
     {
       /*
       Steps:
-      Issue 11
+      Issue 12
       1. Check if the user is loggedin
       2. Check if the user's account is osa
       3. validate the entry and return data
