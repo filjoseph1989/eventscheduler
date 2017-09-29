@@ -52,7 +52,9 @@ Phase 1:
     Organization:
       ✔ Add new organization
       ✔ Display all registered University organizations
-        ✘ Set active/inactive - (usefull when the organization is not functional already on school or no member already)//NO NEED BECAUSE THE ORG WILL ALREADY HAVE A MEMBER AT ORG GROUP TABLE BECAUSE OF THE ORG HEAD ASSIGNMENT DURING ADD ORG, THEN IT WILL AUTOMATICALLY BE ACTIVE ONCE REGISTERED AS AN ORG IN THE SYSTEM
+        ✘ Set active/inactive - (usefull when the organization is not functional already on school or no member already)
+          (no need because the org will already have a member at org group table because of the org head assignment during add org, then it will automatically be active once registered as an org in the system)
+          (reply: What if the registered organization (e.g 4 years) but currently, not renewed their organization in OSA or not operational?)
         ✔ view organization profile
           ☐ view organization events - (upcoming, archived, canceled, approved) //ASA IBUTANG ANG LINKED ANI?
 
