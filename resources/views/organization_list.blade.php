@@ -137,7 +137,7 @@
                 <td>Lead by: {{ $value->user->full_name }}</td>
               </tr>
               <tr>
-                <td>Aniversary: {{ $value->organization->anniversary }}</td>
+                <td>Aniversary: {{ date('m-d-Y', strtotime($value->organization->anniversary)) }}</td>
               </tr>
             </tbody>
           </table>
