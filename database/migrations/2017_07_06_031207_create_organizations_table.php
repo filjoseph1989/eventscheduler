@@ -19,6 +19,7 @@ class CreateOrganizationsTable extends Migration
           $table->string('acronym')->unique()->nullable();
           $table->text('description')->nullable();
           $table->string('url')->nullable();
+          $table->date('anniversary')->nullable();
           $table->enum('status', ['active', 'inactive'])->default('active');
           $table->string('logo')->default('ship.jpg');
           $table->string('color')->nullable();

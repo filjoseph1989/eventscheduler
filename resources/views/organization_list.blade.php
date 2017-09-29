@@ -87,7 +87,7 @@
                         @foreach ($organizations as $key => $value)
                           <tr>
                             {{--  <td><a href="{{{ route('osa-personnel.org-profile', [$value->id]) }}}">{{ $value->name }}</a></td>  --}}
-                            <td><a href="#">{{ $value->organization->name }}</a></td>                            
+                            <td><a href="#" data-target="#org-profile" data-toggle="modal">{{ $value->organization->name }}</a></td>                            
                             <td>{{ $value->organization->acronym }}</a></td>
                             <td>{{ $value->user->full_name }}</td>
                             <td>{{ $value->organization->status }}</td>
@@ -114,33 +114,30 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
+        @foreach ($organizations as $key => $value)
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          <h4 class="modal-title" id="myModalLabel">Computer Science Society</h4>
+          <h4 class="modal-title" id="myModalLabel">{{ $value->organization->name }}</h4>
         </div>
         <div class="modal-body">
           <table class="table table-bordered table-striped">
             <tbody>
               <tr>
-                <td>Computer Science Society</td>
+                <td>{{ $value->organization->name }}</td>
               </tr>
               <tr>
                 <td>
                   <p>
-                    First appeared in 2017, when the two of the student of Bachelor of Science in Computer Science
-                    Namely Larry Page and Sergey Brin in time of on going research conventional search engine that
-                    ranked results by counting how many times the search terms appeared on the page and
-                    analyzed the relationships among websites called pagerank
+                   {{ $value->organization->description }}
                   </p>
-                  <p>These project grow and now what is known as google</p>
                 </td>
               </tr>
               <tr>
-                <td>Lead by: Jeff Bezos</td>
+                <td>Lead by: {{ $value->user->full_name }}</td>
               </tr>
               <tr>
-                <td>Aniversary: September 25, 2017</td>
+                <td>Aniversary: {{ $value->organization->anniversary }}</td>
               </tr>
             </tbody>
           </table>
@@ -158,6 +155,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
+          @endforeach
           <h4 class="modal-title" id="myModalLabel">Janica Liz De Guzman</h4>
         </div>
         <div class="modal-body">
