@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class EventGroup extends Model
 {
-    public $table = "events_groups";
+    public $table = "events_groups"; 
 
     public function organization()
     {

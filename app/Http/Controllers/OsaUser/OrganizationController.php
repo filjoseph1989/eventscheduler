@@ -16,14 +16,22 @@ class OrganizationController extends Controller
         return view('organization-list');
     }
 
-    /**
+    /** 
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('organization-add');
+        /**
+         *  TO CONSIDER 
+         *parent::loginCheck();
+         *$this->osa_personnel->isOsaPersonnel();
+         *return view('pages/users/osa-personnel/organization/add')->with([
+         *   'login_type' => $this->login_type
+         *]);
+         */
+        return view('organization_add');
     }
 
     /**

@@ -53,9 +53,16 @@
               <div class="row clearfix">
                 <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8 col-sm-offset-2">
                   <form class="" action="{{ route('Org.store') }}" method="post">
+                    {{ csrf_field() }}
                     <div class="form-group">
                       <div class="form-line">
                         <input type="text" class="form-control" id="name" name="name" placeholder="Organization Name" required autofocus>
+                      </div>
+                      <div class="form-line">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Name of the organization" autofocus value="{{ old('name') }}">
+                            @if ($errors->has('name'))
+                              <span class="help-block"> <strong>{{ $errors->first('name') }}</strong> </span>
+                            @endif
                       </div>
                     </div>
                     <div class="form-group">
