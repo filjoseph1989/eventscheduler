@@ -3,15 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Common\ValidationClass;
 
 # Models
 use App\Models\Event;
+use App\Models\Semester;
+use App\Models\EventType;
 use App\Models\EventGroup;
 
+/**
+ * CRUDS class for events
+ *
+ * @author Liz <janicalizdeguzman@gmail.com>
+ */
 class EventController extends Controller
 {
     private $list  = ['all', 'official', 'local'];
     private $theme = 'theme-red';
+    private $validation;
+
+    public function __construct()
+    {
+      $this->validation = new ValidationClass();
+    }
 
     /**
      * Display a listing of the resource.
@@ -20,7 +34,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        return view('approve-events');
+      return view('approve-events');
     }
 
     /**
@@ -38,7 +52,9 @@ class EventController extends Controller
 
         # view
         return  view('events-add')->with([
-          'loginClass' => 'theme-teal'
+          'loginClass' => 'theme-teal',
+          'eventTypes' => EventType::all(),
+          'semesters'  => Semester::all()
         ]);
     }
 
@@ -52,45 +68,33 @@ class EventController extends Controller
     {
       /*
       Steps:
+      Issue 11
       1. Check if the user is loggedin
       2. Check if the user's account is osa
       3. validate the entry and return data
       4. save to database
        */
 
-      $message = [
-        'regex' => "Time should be valid format",
-      ];
+      self::customValidate($request);
 
-      $this->validate($request, [
-        // 'event_type_id'   => 'Required',
-        // 'semester_id'     => 'Required',
-        'title'           => 'Required',
-        'description'     => 'Required',
-        'venue'           => 'Required',
-        'date_start'      => 'required|date|after_or_equal:today',
-        'date_end'        => 'nullable|date|after_or_equal:date_start',
-        'date_start_time' => 'filled|date_format:H:i',
-        'date_end_time'   => 'nullable|date_format:H:i',
-        'whole_day'       => 'nullable',
-      ], $message);
+      $event = Event::create(
+        [
+          "event_type_id"   => $request->event_type_id,
+          "semester_id"     => $request->semester_id,
+          "title"           => $request->title,
+          "description"     => $request->description,
+          "venue"           => $request->venue,
+          "date_start"      => date('Y-m-d', strtotime($request->date_start)),
+          "date_end"        => date('Y-m-d', strtotime($request->date_end)),
+          "date_start_time" => date('H:i:s', strtotime($request->date_start_time)),
+          "date_end_time"   => date('H:i:s', strtotime($request->date_end_time)),
+          "whole_day"       => ($request->whole_day == "1") ? 'true': 'false',
+        ]
+      );
 
-      $data = [
-        "event_type_id"   => 1, # take note for this, because it needed
-        "semester_id"     => 1, # and this too
-        "title"           => $request->title,
-        "description"     => $request->description,
-        "venue"           => $request->venue,
-        "date_start"      => date('Y-m-d', strtotime($request->date_start)),
-        "date_end"        => date('Y-m-d', strtotime($request->date_end)),
-        "date_start_time" => date('H:i:s', strtotime($request->date_start_time)),
-        "date_end_time"   => date('H:i:s', strtotime($request->date_end_time)),
-        "whole_day"       => ($request->whole_day == "1") ? 'true': 'false',
-      ];
-
-      $event = Event::create($data);
       if ($event->wasRecentlyCreated) {
-        echo 'true';
+        return back()
+          ->with('status', 'Successfully created new event');
       }
     }
 
@@ -171,5 +175,21 @@ class EventController extends Controller
           ->where('event_id', '=', $event->id)
           ->get();
       }
+    }
+
+    /**
+     * Validate the given entries.
+     *
+     * As you notice I'm just referencing the
+     * request to original variable
+     *
+     * Learn more about pass by Reference
+     *
+     * @param Request $request
+     * @return void
+     */
+    private function customValidate(&$request)
+    {
+      $this->validation->validate($this, $request);
     }
 }
