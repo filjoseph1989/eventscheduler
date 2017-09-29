@@ -46,6 +46,7 @@ class UsersTableSeeder extends Seeder
           if (User::where('email', '=', $email)->exists()) {
               goto email;
           }
+          
           if (User::where('account_number', '=', $account_number)->exists()) {
               goto account_number;
           }
