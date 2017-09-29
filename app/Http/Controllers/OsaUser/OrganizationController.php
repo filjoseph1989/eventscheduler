@@ -19,7 +19,7 @@ class OrganizationController extends Controller
      */
     public function index()
     {
-        return view('organization-list');
+        return view('organization_list');
     }
 
     /** 
@@ -73,7 +73,6 @@ class OrganizationController extends Controller
         'user_type_id'   => 1,
         'password'       => $faker->password,
         ];
-        // d($data_org_head); exit;
         
         $organization = Organization::create($data_organization);
         if ($organization->wasRecentlyCreated) {
@@ -84,14 +83,11 @@ class OrganizationController extends Controller
                     'organization_id' => $organization->id,
                     'position_id' => 7,
                 ];
-                // dd($data_org_grp);
                 $org_h_g = OrganizationHeadGroup::create($data_org_grp);
                 $org_g = OrganizationGroup::create($data_org_grp);
-                //  if($org_h_g->wasRecentlyCreated && $org_g->wasRecentlyCreated ){
-                     dd('true');
-                // }
+                dd('true');
             } 
-            // $org_grp = OrganizationGroup::create()
+            //create the alert later
         }
     }
 
