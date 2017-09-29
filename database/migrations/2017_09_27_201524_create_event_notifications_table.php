@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEventNotifications extends Migration
+class CreateEventNotificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -34,6 +34,6 @@ class CreateEventNotifications extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('EventNotifications');
+        Schema::dropIfExists('event_notifications');
     }
 }
