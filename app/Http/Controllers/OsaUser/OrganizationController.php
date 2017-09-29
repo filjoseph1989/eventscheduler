@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Faker\Factory as Faker;
+# Models
+use App\Models\User;
+use App\Models\Organization;
+use App\Models\OrganizationGroup;
+use App\Models\OrganizationHeadGroup;
 
 class OrganizationController extends Controller
 {
@@ -21,7 +27,7 @@ class OrganizationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create() 
     {
         /**
          *  TO CONSIDER 
@@ -45,6 +51,48 @@ class OrganizationController extends Controller
         # Get form data
         # validate form data
         # add to database
+        $this->validate($request, [
+        'name'           => 'Required',
+        'acronym'        => 'Required',
+        'account_number' => 'Required',
+        'full_name'      => 'Required',
+        'email'          => 'Required',
+        ]);
+
+        $data_organization = [
+        'name'           => $request->name,
+        'acronym'        => $request->acronym,
+        ];
+        
+        $faker = Faker::create();
+
+        $data_org_head = [
+        'account_number' => $request->account_number,
+        'full_name'      => $request->full_name,
+        'email'          => $request->email,
+        'user_type_id'   => 1,
+        'password'       => $faker->password,
+        ];
+        // d($data_org_head); exit;
+        
+        $organization = Organization::create($data_organization);
+        if ($organization->wasRecentlyCreated) {
+            $org_head = User::create($data_org_head);
+            if($org_head->wasRecentlyCreated ){
+                $data_org_grp = [
+                    'user_id' => $org_head->id,
+                    'organization_id' => $organization->id,
+                    'position_id' => 7,
+                ];
+                // dd($data_org_grp);
+                $org_h_g = OrganizationHeadGroup::create($data_org_grp);
+                $org_g = OrganizationGroup::create($data_org_grp);
+                //  if($org_h_g->wasRecentlyCreated && $org_g->wasRecentlyCreated ){
+                     dd('true');
+                // }
+            } 
+            // $org_grp = OrganizationGroup::create()
+        }
     }
 
     /**

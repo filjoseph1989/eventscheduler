@@ -16,6 +16,7 @@ class CreateOrganizationsTable extends Migration
         Schema::create('organizations', function (Blueprint $table) {
           $table->increments('id');
           $table->string('name')->unique();
+          $table->string('acronym')->unique()->nullable();
           $table->text('description')->nullable();
           $table->string('url')->nullable();
           $table->enum('status', ['active', 'inactive'])->default('active');

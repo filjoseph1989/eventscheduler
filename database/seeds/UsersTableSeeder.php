@@ -60,7 +60,7 @@ class UsersTableSeeder extends Seeder
                'password'       => bcrypt($account_number),
                'facebook'       => $facebook,
                'twitter'        => $twitter,
-               'mobile_number'  => $faker->numberBetween($min = 1000, $max = 9000),
+               'mobile_number'  => $faker->numberBetween($min = 100000000000, $max = 900000000000),
                'remember_token' => NULL
            ]);
       }
@@ -74,7 +74,7 @@ class UsersTableSeeder extends Seeder
                   'password'       => bcrypt('password'),
                   'facebook'       => 'adviseruser@email.com',
                   'twitter'        => 'adviseruser@email.com',
-                  'mobile_number'  => '9958633866',
+                  'mobile_number'  => '639958633866',
                   'remember_token' => NULL
           ),
           array(
@@ -86,7 +86,7 @@ class UsersTableSeeder extends Seeder
                   'password'       => bcrypt('password'),
                   'facebook'       => 'headuser@email.com',
                   'twitter'        => 'headuser@email.com',
-                  'mobile_number'  => '9958633866',
+                  'mobile_number'  => '639958633866',
                   'remember_token' => NULL
           ),
           array(
@@ -98,7 +98,7 @@ class UsersTableSeeder extends Seeder
                   'password'       => bcrypt('password'),
                   'facebook'       => 'memberuser@email.com',
                   'twitter'        => 'memberuser@email.com',
-                  'mobile_number'  => '9958633866',
+                  'mobile_number'  => '639958633866',
                   'remember_token' => NULL
           ),
           array(
@@ -110,7 +110,7 @@ class UsersTableSeeder extends Seeder
                   'password'       => bcrypt('password'),
                   'facebook'       => 'osauser@email.com',
                   'twitter'        => 'osauser@email.com',
-                  'mobile_number'  => '9958633866',
+                  'mobile_number'  => '639958633866',
                   'remember_token' => NULL
           ),
       ]);
