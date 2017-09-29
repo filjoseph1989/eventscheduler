@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateUsersTable extends Migration
 {
     /**
-     *
+     * 
      *
      * Run the migrations.
      *
@@ -31,9 +31,6 @@ class CreateUsersTable extends Migration
           $table->rememberToken();
           $table->timestamps();
           $table->softDeletes();
-
-
-
 
           #foreign keys
           $table->foreign('user_type_id')->references('id')->on('user_types');
