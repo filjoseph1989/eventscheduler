@@ -35,7 +35,7 @@ Phase 1:
 
   2. For OSA:
     Display Users list:
-      ☐ Display all registered members
+      ✔ Display all registered members
       ☐ View Profile (modal) (optional)
       ☐ view Course (modal) (optional)
       ☐ view Position (modal) (optional)

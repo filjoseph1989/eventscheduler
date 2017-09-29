@@ -21,4 +21,13 @@ class OrganizationGroup extends Model
     {
         return $this->belongsTo('App\Models\Organization');
     }
+     public function position()
+    {
+        return $this->belongsTo('App\Models\Position');
+    }
+
+     public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }
