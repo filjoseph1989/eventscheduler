@@ -19,7 +19,10 @@ class OrganizationController extends Controller
      */
     public function index()
     {
-        return view('organization_list');
+        $organizations = OrganizationHeadGroup::with('organization')
+        ->with('user')
+        ->get();
+        return view('organization_list', compact('organizations'));
     }
 
     /** 
@@ -75,19 +78,17 @@ class OrganizationController extends Controller
         ];
         
         $organization = Organization::create($data_organization);
-        if ($organization->wasRecentlyCreated) {
-            $org_head = User::create($data_org_head);
-            if($org_head->wasRecentlyCreated ){
-                $data_org_grp = [
-                    'user_id' => $org_head->id,
-                    'organization_id' => $organization->id,
-                    'position_id' => 7,
-                ];
-                $org_h_g = OrganizationHeadGroup::create($data_org_grp);
-                $org_g = OrganizationGroup::create($data_org_grp);
-                dd('true');
-            } 
-            //create the alert later
+        $org_head = User::create($data_org_head);
+        if ($organization->wasRecentlyCreated && $org_head->wasRecentlyCreated ) {
+            $data_org_grp = [
+                'user_id' => $org_head->id,
+                'organization_id' => $organization->id,
+                'position_id' => 7,
+            ];
+            $org_h_g = OrganizationHeadGroup::create($data_org_grp);
+            $org_g = OrganizationGroup::create($data_org_grp);
+            dd('true');
+        //create the alert later
         }
     }
 

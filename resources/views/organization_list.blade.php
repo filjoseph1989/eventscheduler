@@ -56,12 +56,12 @@
                   <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                     <thead>
                       <th><a href="#">Organization Name</a></th>
-                      <th>Abbrivation</th>
+                      <th>Acronym</th>
                       <th>Leader</th>
                       <th>Status</th>
                     </thead>
                     <tbody>
-                      <tr>
+                      {{--  <tr>
                         <td><a href="#" data-target="#org-profile" data-toggle="modal">Computer Science Society</a></td>
                         <td>CSS</td>
                         <td><a href="#">Mark Zuckerberg</a></td>
@@ -78,11 +78,26 @@
                         <td>AES</td>
                         <td><a href="#">Elon Musk</a></td>
                         <td>Active</td>
-                      </tr>
+                      </tr>  --}}
+                      @if ($organizations->count() == 0)
+                        <tr>
+                          <td>{{ "No entry yet" }}</td>
+                        </tr>
+                      @else
+                        @foreach ($organizations as $key => $value)
+                          <tr>
+                            {{--  <td><a href="{{{ route('osa-personnel.org-profile', [$value->id]) }}}">{{ $value->name }}</a></td>  --}}
+                            <td><a href="#">{{ $value->organization->name }}</a></td>                            
+                            <td>{{ $value->organization->acronym }}</a></td>
+                            <td>{{ $value->user->full_name }}</td>
+                            <td>{{ $value->organization->status }}</td>
+                          </tr>
+                        @endforeach
+                      @endif
                     </tbody>
                     <tfoot>
                       <th>Organization Name</th>
-                      <th>Abbrivation</th>
+                      <th>Acronym</th>
                       <th>Leader</th>
                       <th>Status</th>
                     </tfoot>

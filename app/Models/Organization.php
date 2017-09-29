@@ -17,7 +17,7 @@ class Organization extends Model
         'name',
         'acronym',
         // 'description',
-        // 'url',
+        // 'url', 
         // 'status',
         // 'logo',
         // 'color'

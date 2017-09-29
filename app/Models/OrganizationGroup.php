@@ -17,4 +17,8 @@ class OrganizationGroup extends Model
         'position_id',
     ];
 
+     public function organization()
+    {
+        return $this->belongsTo('App\Models\Organization');
+    }
 }

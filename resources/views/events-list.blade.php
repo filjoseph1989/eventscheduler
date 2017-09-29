@@ -9,7 +9,7 @@
   <link href="{{ asset('css/bootstrap-select.css') }}?v=1" rel="stylesheet">
   <link href="{{ asset('css/all-themes.css') }}" rel="stylesheet">
 @endsection
-
+ 
 @section('content')
   <section class="content">
     <div class="container-fluid">
