@@ -9,7 +9,7 @@
   <link href="{{ asset('css/bootstrap-select.css') }}?v=1" rel="stylesheet">
   <link href="{{ asset('css/all-themes.css') }}" rel="stylesheet">
 @endsection
-
+ 
 @section('content')
   <section class="content">
     <div class="container-fluid">
@@ -60,7 +60,7 @@
                           <td><a href="#">{{ $event->venue }}</a></td>
                           <td>
                             @if ($event['organization']->count() > 0)
-                              @$organization = $event['organization'][0]
+                              @php $organization = $event['organization'][0]; @endphp
                               {{ $organization->organization->name }}
                             @else
                               No Organization
@@ -118,7 +118,7 @@
         </div>
         <div class="modal-body">
           <div class="panel-group" id="accordion_1" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-primary">
+            <div class="panel">
               <div class="panel-heading" role="tab" id="headingOne_1">
                 <h4 class="panel-title">
                   <a role="button" data-toggle="collapse" data-parent="#accordion_1" href="#collapseOne_1" aria-expanded="false" aria-controls="collapseOne_1" class="collapsed">
@@ -142,7 +142,7 @@
                 </div>
               </div>
             </div>
-            <div class="panel panel-primary">
+            <div class="panel">
               <div class="panel-heading" role="tab" id="headingTwo_1">
                 <h4 class="panel-title">
                   <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_1" href="#collapseTwo_1" aria-expanded="false" aria-controls="collapseTwo_1">
@@ -223,7 +223,7 @@
                 </div>
               </div>
             </div>
-            <div class="panel panel-primary">
+            <div class="panel">
               <div class="panel-heading" role="tab" id="headingThree_1">
                 <h4 class="panel-title">
                   <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_1" href="#collapseThree_1" aria-expanded="false" aria-controls="collapseThree_1">

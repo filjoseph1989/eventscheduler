@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
-<head>
+<head> 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -56,12 +56,12 @@
                   <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                     <thead>
                       <th><a href="#">Organization Name</a></th>
-                      <th>Abbrivation</th>
+                      <th>Acronym</th>
                       <th>Leader</th>
                       <th>Status</th>
                     </thead>
                     <tbody>
-                      <tr>
+                      {{--  <tr>
                         <td><a href="#" data-target="#org-profile" data-toggle="modal">Computer Science Society</a></td>
                         <td>CSS</td>
                         <td><a href="#">Mark Zuckerberg</a></td>
@@ -78,11 +78,26 @@
                         <td>AES</td>
                         <td><a href="#">Elon Musk</a></td>
                         <td>Active</td>
-                      </tr>
+                      </tr>  --}}
+                      @if ($organizations->count() == 0)
+                        <tr>
+                          <td>{{ "No entry yet" }}</td>
+                        </tr>
+                      @else
+                        @foreach ($organizations as $key => $value)
+                          <tr>
+                            {{--  <td><a href="{{{ route('osa-personnel.org-profile', [$value->id]) }}}">{{ $value->name }}</a></td>  --}}
+                            <td><a href="#" data-target="#org-profile" data-toggle="modal">{{ $value->organization->name }}</a></td>                            
+                            <td>{{ $value->organization->acronym }}</a></td>
+                            <td>{{ $value->user->full_name }}</td>
+                            <td>{{ $value->organization->status }}</td>
+                          </tr>
+                        @endforeach
+                      @endif
                     </tbody>
                     <tfoot>
                       <th>Organization Name</th>
-                      <th>Abbrivation</th>
+                      <th>Acronym</th>
                       <th>Leader</th>
                       <th>Status</th>
                     </tfoot>
@@ -99,33 +114,30 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
+        @foreach ($organizations as $key => $value)
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          <h4 class="modal-title" id="myModalLabel">Computer Science Society</h4>
+          <h4 class="modal-title" id="myModalLabel">{{ $value->organization->name }}</h4>
         </div>
         <div class="modal-body">
           <table class="table table-bordered table-striped">
             <tbody>
               <tr>
-                <td>Computer Science Society</td>
+                <td>{{ $value->organization->name }}</td>
               </tr>
               <tr>
                 <td>
                   <p>
-                    First appeared in 2017, when the two of the student of Bachelor of Science in Computer Science
-                    Namely Larry Page and Sergey Brin in time of on going research conventional search engine that
-                    ranked results by counting how many times the search terms appeared on the page and
-                    analyzed the relationships among websites called pagerank
+                   {{ $value->organization->description }}
                   </p>
-                  <p>These project grow and now what is known as google</p>
                 </td>
               </tr>
               <tr>
-                <td>Lead by: Jeff Bezos</td>
+                <td>Lead by: {{ $value->user->full_name }}</td>
               </tr>
               <tr>
-                <td>Aniversary: September 25, 2017</td>
+                <td>Aniversary: {{ date('m-d-Y', strtotime($value->organization->anniversary)) }}</td>
               </tr>
             </tbody>
           </table>
@@ -143,6 +155,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
+          @endforeach
           <h4 class="modal-title" id="myModalLabel">Janica Liz De Guzman</h4>
         </div>
         <div class="modal-body">

@@ -11,35 +11,31 @@ class UsersTableSeeder extends Seeder
   public function run()
   {
       $faker = Faker::create();
-      for ($i=0; $i < 10; $i++)
+      for ($i = 0 ; $i < 10; $i++)
       {
-          $gender = ['male','female'];
+          $gender  =  ['male','female'];
           /**
            * Genarate the following used for seeding
            *  1. email
            *  2. account_number
-           *  3. facebook_username
-           *  4. instagram_username
-           *  5. twitter_username
+           *  3. facebook
+           *  4. twitter
            */
-          email:
-          $email = $faker->email;
-          account_number:
-          $account_number = "2017-" . $faker->numberBetween($min = 10000, $max = 90000);
-          facebook_username:
-          $facebook_username = $faker->lastName."@facebook.com";
-          twitter_username:
-          $twitter_username = $faker->lastName."@twitter.com";
-          instagram_username:
-          $instagram_username = $faker->lastName."@instagram.com";
+          email                     :  
+            $email                  =  $faker->email;
+          account_number            :  
+            $account_number         =  "2017-" . $faker->numberBetween($min = 10000, $max = 90000);
+          facebook                  :  
+            $facebook               =  $faker->name."@facebook.com";
+          twitter                   :  
+            $twitter                =  $faker->name."@twitter.com";
 
           /**
            * Check if the following are already in the Database
            *  1. email
            *  2. account_number
-           *  3. facebook_username
-           *  4. instagram_username
-           *  5. twitter_username
+           *  3. facebook
+           *  4. twitter
            *
            * if yes, generate again
            */
@@ -49,130 +45,73 @@ class UsersTableSeeder extends Seeder
           if (User::where('account_number', '=', $account_number)->exists()) {
               goto account_number;
           }
-          if (User::where('facebook_username', '=', $facebook_username)->exists()) {
-              goto facebook_username;
+          if (User::where('facebook', '=', $facebook)->exists()) {
+              goto facebook;
           }
-          if (User::where('twitter_username', '=', $twitter_username)->exists()) {
-              goto twitter_username;
-          }
-          if (User::where('instagram_username', '=', $instagram_username)->exists()) {
-              goto instagram_username;
+          if (User::where('twitter', '=', $twitter)->exists()) {
+              goto twitter;
           }
           User::create([
-               'user_account_id'    => $faker->numberBetween($min = 1, $max = 5),
-               'course_id'          => $faker->numberBetween($min = 1, $max = 9),
-               'department_id'      => $faker->numberBetween($min = 1, $max = 4),
-               'account_number'     => $account_number,
-               'first_name'         => $faker->firstName($gender),
-               'last_name'          => $faker->lastName,
-               'middle_name'        => ucfirst(substr($faker->firstName($gender), 3, 1)),
-               'suffix_name'        => ucfirst($faker->suffix),
-               'email'              => $email,
-               'password'           => bcrypt($account_number),
-               'facebook_username'  => $facebook_username,
-               'twitter_username'   => $twitter_username,
-               'instagram_username' => $instagram_username,
-               'mobile_number'      => $faker->numberBetween($min = 1000, $max = 9000),
-               'status'             => 0,
-               'approver_or_not'    => 0,
-               'remember_token'     => NULL
+               'course_id'      => $faker->numberBetween($min = 1, $max = 9),
+               'full_name'      => ucfirst(substr($faker->name($gender), 0)),
+               'account_number' => $account_number,
+               'user_type_id'   => $faker->numberBetween($min = 1, $max = 3),
+               'email'          => $email,
+               'password'       => bcrypt($account_number),
+               'facebook'       => $facebook,
+               'twitter'        => $twitter,
+               'mobile_number'  => $faker->numberBetween($min = 100000000000, $max = 900000000000),
+               'remember_token' => NULL
            ]);
       }
       DB::table('users')->insert([
-        array(
-              'user_account_id'    => 1,
-              'course_id'          => 1,
-              'department_id'      => 1,
-              'account_number'     => '0000000001',
-              'first_name'         => 'Administrator',
-              'last_name'          => 'User',
-              'middle_name'        => '',
-              'suffix_name'        => '',
-              'email'              => 'adminuser@email.com',
-              'password'           => bcrypt('password'),
-              'facebook_username'  => 'adminuser@email.com',
-              'twitter_username'   => 'adminuser@email.com',
-              'instagram_username' => 'adminuser@email.com',
-              'mobile_number'      => '9958633866',
-              'status'             => 1,
-              'approver_or_not'    => 0,
-              'remember_token'     => NULL
+          array(
+                  'course_id'      => 1,
+                  'full_name'      => 'Org Adviser',
+                  'account_number' => '0000000002',
+                  'user_type_id'   => 2,
+                  'email'          => 'adviseruser@email.com',
+                  'password'       => bcrypt('password'),
+                  'facebook'       => 'adviseruser@email.com',
+                  'twitter'        => 'adviseruser@email.com',
+                  'mobile_number'  => '639958633866',
+                  'remember_token' => NULL
           ),
           array(
-            'user_account_id'    => 2,
-            'course_id'          => 1,
-            'department_id'      => 2,
-            'account_number'     => '0000000002',
-            'first_name'         => 'Org Adviser',
-            'last_name'          => 'User',
-            'middle_name'        => '',
-            'suffix_name'        => '',
-            'email'              => 'adviseruser@email.com',
-            'password'           => bcrypt('password'),
-            'facebook_username'  => 'adviseruser@email.com',
-            'twitter_username'   => 'adviseruser@email.com',
-            'instagram_username' => 'adviseruser@email.com',
-            'mobile_number'      => '9958633866',
-            'status'             => 1,
-            'approver_or_not'    => 0,
-            'remember_token'     => NULL
+                  'course_id'      => 6,
+                  'full_name'      => 'Org Head',
+                  'account_number' => '20XX-00001',
+                  'user_type_id'   => 1,
+                  'email'          => 'headuser@email.com',
+                  'password'       => bcrypt('password'),
+                  'facebook'       => 'headuser@email.com',
+                  'twitter'        => 'headuser@email.com',
+                  'mobile_number'  => '639958633866',
+                  'remember_token' => NULL
           ),
           array(
-            'user_account_id'    => 3,
-                'course_id'          => 6,
-                'department_id'      => 2,
-                'account_number'     => '20XX-00001',
-                'first_name'         => 'Org Head',
-                'last_name'          => 'User',
-                'middle_name'        => '',
-                'suffix_name'        => '',
-                'email'              => 'headuser@email.com',
-                'password'           => bcrypt('password'),
-                'facebook_username'  => 'headuser@email.com',
-                'twitter_username'   => 'headuser@email.com',
-                'instagram_username' => 'headuser@email.com',
-                'mobile_number'      => '9958633866',
-                'status'             => 1,
-                'approver_or_not'    => 0,
-                'remember_token'     => NULL
+                  'course_id'      => 6,
+                  'full_name'      => 'Org Member',
+                  'account_number' => '20XX-00002',
+                  'user_type_id'   => 2,
+                  'email'          => 'memberuser@email.com',
+                  'password'       => bcrypt('password'),
+                  'facebook'       => 'memberuser@email.com',
+                  'twitter'        => 'memberuser@email.com',
+                  'mobile_number'  => '639958633866',
+                  'remember_token' => NULL
           ),
           array(
-            'user_account_id'    => 4,
-            'course_id'          => 6,
-            'department_id'      => 2,
-            'account_number'     => '20XX-00002',
-            'first_name'         => 'Org Member',
-            'last_name'          => 'User',
-            'middle_name'        => '',
-            'suffix_name'        => '',
-            'email'              => 'memberuser@email.com',
-            'password'           => bcrypt('password'),
-            'facebook_username'  => 'memberuser@email.com',
-            'twitter_username'   => 'memberuser@email.com',
-            'instagram_username' => 'memberuser@email.com',
-            'mobile_number'      => '9958633866',
-            'status'             => 1,
-            'approver_or_not'    => 0,
-            'remember_token'     => NULL
-          ),
-          array(
-            'user_account_id'    => 5,
-                  'course_id'          => 1,
-                  'department_id'      => 1,
-                  'account_number'     => '0000000003',
-                  'first_name'         => 'Osa Personnel',
-                  'last_name'          => 'User',
-                  'middle_name'        => '',
-                  'suffix_name'        => '',
-                  'email'              => 'osauser@email.com',
-                  'password'           => bcrypt('password'),
-                  'facebook_username'  => 'osauser@email.com',
-                  'twitter_username'   => 'osauser@email.com',
-                  'instagram_username' => 'osauser@email.com',
-                  'mobile_number'      => '9958633866',
-                  'status'             => 1,
-                  'approver_or_not'    => 0,
-                  'remember_token'     => NULL
+                  'course_id'      => 1,
+                  'full_name'      => 'Osa Personnel',
+                  'account_number' => '0000000003',
+                  'user_type_id'   => 3,
+                  'email'          => 'osauser@email.com',
+                  'password'       => bcrypt('password'),
+                  'facebook'       => 'osauser@email.com',
+                  'twitter'        => 'osauser@email.com',
+                  'mobile_number'  => '639958633866',
+                  'remember_token' => NULL
           ),
       ]);
   }

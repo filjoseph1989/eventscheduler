@@ -3,7 +3,7 @@ require 'vendor/autoload.php';
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
-class UserTypeTableSeeder extends Seeder
+class UserTypesTableSeeder extends Seeder 
 {
   /**
    * Run the database seeds.
@@ -12,7 +12,7 @@ class UserTypeTableSeeder extends Seeder
    */
    public function run()
    {
-       DB::table('user_type')->insert([
+       DB::table('user_types')->insert([
          array(
            'name'           => 'organization-head-user',
            'theme'          => 'theme-brown',

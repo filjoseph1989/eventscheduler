@@ -22,7 +22,7 @@ class Event extends Model
     'date_end',
     'date_start_time',
     'date_end_time',
-    'whole_day',
+    'whole_day', 
     'status',
     'is_approve',
     'twitter',
@@ -38,6 +38,7 @@ class Event extends Model
     'email_img',
   ];
 
+  
   public function eventGroup()
   {
     return $this->belongsTo('App\Models\EventGroup');

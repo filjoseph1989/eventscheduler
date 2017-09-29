@@ -50,11 +50,11 @@ Phase 1:
       ☐ Archived - (To archived those events nahumana) (Must be a systems job)
 
     Organization:
-      ☐ Add new organization
-      ☐ Display all registered University organizations
-        ☐ Set active/inactive - (usefull when the organization is not functional already on school or no member already)
-        ☐ view organization profile
-          ☐ view organization events - (upcoming, archived, canceled, approved)
+      ✔ Add new organization
+      ✔ Display all registered University organizations
+        ✘ Set active/inactive - (usefull when the organization is not functional already on school or no member already)//NO NEED BECAUSE THE ORG WILL ALREADY HAVE A MEMBER AT ORG GROUP TABLE BECAUSE OF THE ORG HEAD ASSIGNMENT DURING ADD ORG, THEN IT WILL AUTOMATICALLY BE ACTIVE ONCE REGISTERED AS AN ORG IN THE SYSTEM
+        ✔ view organization profile
+          ☐ view organization events - (upcoming, archived, canceled, approved) //ASA IBUTANG ANG LINKED ANI?
 
     Events:
       ✔ Display all events @done (9/29/2017, 6:03:42 PM)
