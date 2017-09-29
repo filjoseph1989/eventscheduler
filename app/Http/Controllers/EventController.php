@@ -10,7 +10,7 @@ use App\Models\EventGroup;
 
 class EventController extends Controller
 {
-    private $list = ['all', 'official', 'local'];
+    private $list  = ['all', 'official', 'local'];
     private $theme = 'theme-red';
 
     /**
@@ -58,6 +58,23 @@ class EventController extends Controller
       4. save to database
        */
 
+      $message = [
+        'regex' => "Time should be valid format",
+      ];
+
+      $this->validate($request, [
+        // 'event_type_id'   => 'Required',
+        // 'semester_id'     => 'Required',
+        'title'           => 'Required',
+        'description'     => 'Required',
+        'venue'           => 'Required',
+        'date_start'      => 'required|date|after_or_equal:today',
+        'date_end'        => 'nullable|date|after_or_equal:date_start',
+        'date_start_time' => 'filled|date_format:H:i',
+        'date_end_time'   => 'nullable|date_format:H:i',
+        'whole_day'       => 'nullable',
+      ], $message);
+
       $data = [
         "event_type_id"   => 1, # take note for this, because it needed
         "semester_id"     => 1, # and this too
@@ -65,8 +82,8 @@ class EventController extends Controller
         "description"     => $request->description,
         "venue"           => $request->venue,
         "date_start"      => date('Y-m-d', strtotime($request->date_start)),
-        "date_start_time" => date('H:i:s', strtotime($request->date_start_time)),
         "date_end"        => date('Y-m-d', strtotime($request->date_end)),
+        "date_start_time" => date('H:i:s', strtotime($request->date_start_time)),
         "date_end_time"   => date('H:i:s', strtotime($request->date_end_time)),
         "whole_day"       => ($request->whole_day == "1") ? 'true': 'false',
       ];

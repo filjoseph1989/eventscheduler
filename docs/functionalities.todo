@@ -60,7 +60,7 @@ Phase 1:
       ✔ Display all events @done (9/28/2017, 10:17:58 PM)
       ✔ Display official events for advertisements approval @done(2017-09-28 23:26)
       ✔ Display Personal event exclusive to osa only @done(2017-09-28 23:26)
-      ☐ Create new event
+      ✔ Create new event @done(2017-09-29 08:39)
       ☐ Display all official events approved by the OSA
         ☐ Attend and Decline (should show when members is loggedin)
       ☐ Display the calendar of events

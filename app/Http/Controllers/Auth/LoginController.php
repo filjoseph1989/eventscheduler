@@ -55,6 +55,8 @@ class LoginController extends Controller
 
     public function myLogin(Request $request)
     {
+        # https://laravel.com/docs/5.5/hashing        
+        
       /**
        * This are the steps to replicate when making the login
        * for this system

@@ -40,7 +40,10 @@
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group form-float form-group">
                       <div class="form-line">
-                        <input type="text" class="form-control" id="title" name="title" placeholder="Title of the event" value="" required autofocus>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Title of the event" value="{{ old('title') }}" required autofocus>
+                        @if ($errors->has('title'))
+                          <span class="help-block"> <strong>{{ $errors->first('title') }}</strong> </span>
+                        @endif
                       </div>
                     </div>
                   </div>
@@ -49,7 +52,10 @@
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group form-float form-group">
                       <div class="form-line">
-                        <textarea rows="4" class="form-control no-resize" id="description" name="description" required placeholder="Description of the event"></textarea>
+                        <textarea rows="4" class="form-control no-resize" id="description" name="description" required placeholder="Description of the event">{{ old('description') }}</textarea>
+                        @if ($errors->has('description'))
+                          <span class="help-block"> <strong>{{ $errors->first('description') }}</strong> </span>
+                        @endif
                       </div>
                     </div>
                   </div>
@@ -58,7 +64,10 @@
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group form-float form-group">
                       <div class="form-line">
-                        <input type="text" class="form-control" id="venue" name="venue" placeholder="Venue" value="" required>
+                        <input type="text" class="form-control" id="venue" name="venue" placeholder="Venue" value="{{ old('venue') }}" required>
+                        @if ($errors->has('vanue'))
+                          <span class="help-block"> <strong>{{ $errors->first('vanue') }}</strong> </span>
+                        @endif
                       </div>
                     </div>
                   </div>
@@ -67,7 +76,10 @@
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group form-float form-group">
                       <div class="form-line">
-                        <input type="text" class="form-control event-datepicker" id="date_start" name="date_start" placeholder="Select Date Start" value="" data-dtp="dtp_mR6wO">
+                        <input type="text" class="form-control event-datepicker" id="date_start" name="date_start" placeholder="Select Date Start" value="{{ old('date_start') }}">
+                        @if ($errors->has('date_start'))
+                          <span class="help-block"> <strong>{{ $errors->first('date_start') }}</strong> </span>
+                        @endif
                       </div>
                     </div>
                   </div>
@@ -76,7 +88,22 @@
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group form-float form-group">
                       <div class="form-line">
-                        <input type="text" class="form-control event-timepicker" id="date_start_time" name="date_start_time" placeholder="Select Time Start" value="" data-dtp="dtp_Ty5Ak">
+                        <input type="text" class="form-control event-timepicker" id="date_start_time" name="date_start_time" placeholder="Select Time Start" value="{{ old('date_start_time') }}">
+                        @if ($errors->has('date_start_time'))
+                          <span class="help-block"> <strong>{{ $errors->first('date_start_time') }}</strong> </span>
+                        @endif
+                    </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row clearfix">
+                  <div class="col-sm-8 col-sm-offset-2">
+                    <div class="form-group form-float form-group">
+                      <div class="form-line">
+                        <input type="text" class="form-control event-datepicker" id="date_end" name="date_end" placeholder="Select Date End" value="{{ old('date_end') }}">
+                        @if ($errors->has('date_end'))
+                          <span class="help-block"> <strong>{{ $errors->first('date_end') }}</strong> </span>
+                        @endif
                       </div>
                     </div>
                   </div>
@@ -85,16 +112,10 @@
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group form-float form-group">
                       <div class="form-line">
-                        <input type="text" class="form-control event-datepicker" id="date_end" name="date_end" placeholder="Select Date End" value="" data-dtp="dtp_WVmA7">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row clearfix">
-                  <div class="col-sm-8 col-sm-offset-2">
-                    <div class="form-group form-float form-group">
-                      <div class="form-line">
-                        <input type="text" class="form-control event-timepicker" id="date_end_time" name="date_end_time" placeholder="Select Time End" value="" data-dtp="dtp_Cymge">
+                        <input type="text" class="form-control event-timepicker" id="date_end_time" name="date_end_time" placeholder="Select Time End" value="{{ old('date_end_time') }}">
+                        @if ($errors->has('date_end_time'))
+                          <span class="help-block"> <strong>{{ $errors->first('date_end_time') }}</strong> </span>
+                        @endif
                       </div>
                     </div>
                   </div>
