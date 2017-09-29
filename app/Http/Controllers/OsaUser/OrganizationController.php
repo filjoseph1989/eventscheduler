@@ -55,35 +55,35 @@ class OrganizationController extends Controller
         # validate form data
         # add to database
         $this->validate($request, [
-        'name'           => 'Required',
-        'acronym'        => 'Required',
-        'account_number' => 'Required',
-        'full_name'      => 'Required',
-        'email'          => 'Required',
+            'name'           => 'Required',
+            'acronym'        => 'Required',
+            'account_number' => 'Required',
+            'full_name'      => 'Required',
+            'email'          => 'Required',
         ]);
 
         $data_organization = [
-        'name'           => $request->name,
-        'acronym'        => $request->acronym,
+            'name'           => $request->name,
+            'acronym'        => $request->acronym,
         ];
         
         $faker = Faker::create();
 
         $data_org_head = [
-        'account_number' => $request->account_number,
-        'full_name'      => $request->full_name,
-        'email'          => $request->email,
-        'user_type_id'   => 1,
-        'password'       => $faker->password,
+            'account_number' => $request->account_number,
+            'full_name'      => $request->full_name,
+            'email'          => $request->email,
+            'user_type_id'   => 1,
+            'password'       => $faker->password,
         ];
         
         $organization = Organization::create($data_organization);
         $org_head = User::create($data_org_head);
         if ($organization->wasRecentlyCreated && $org_head->wasRecentlyCreated ) {
             $data_org_grp = [
-                'user_id' => $org_head->id,
+                'user_id'         => $org_head->id,
                 'organization_id' => $organization->id,
-                'position_id' => 7,
+                'position_id'     => 7,
             ];
             $org_h_g = OrganizationHeadGroup::create($data_org_grp);
             $org_g = OrganizationGroup::create($data_org_grp);
