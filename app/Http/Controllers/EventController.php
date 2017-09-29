@@ -18,7 +18,14 @@ use App\Models\EventGroup;
  */
 class EventController extends Controller
 {
-    private $list  = ['all', 'official', 'local'];
+    private $list  = [
+      'all',
+      'official',
+      'local',
+      'true'  => 'Approved Events',
+      'false' => 'Unapproved Events'
+    ];
+
     private $theme = 'theme-red';
     private $validation;
 
@@ -111,12 +118,7 @@ class EventController extends Controller
           1. Check if the user is loggedin
           2. Check if the user account is an osa
          */
-
-        if ($id == 0) {
-          $events = Event::all();
-        } else {
-          $events = Event::where('event_type_id', $id)->get();
-        }
+        $events = self::getEvents($id);
 
         self::getOrganization($events);
 
@@ -191,5 +193,26 @@ class EventController extends Controller
     private function customValidate(&$request)
     {
       $this->validation->validate($this, $request);
+    }
+
+    /**
+     * Return array of events
+     *
+     * @param mixed $id
+     * @return void
+     */
+    private function getEvents($id)
+    {
+      if ($id == '0') {
+        $events = Event::all();
+      }
+      if ($id == 'true' or $id == 'false') {
+        $events = Event::where('is_approve', $id)->get();
+      }
+      if ($id > 0) {
+        $events = Event::where('event_type_id', $id)->get();
+      }
+
+      return $events;
     }
 }
