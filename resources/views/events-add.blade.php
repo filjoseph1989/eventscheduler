@@ -14,10 +14,30 @@
     <div class="container-fluid">
       <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          @if (session('status'))
+            <div class="alert alert-success" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" data-toggle="tooltip" data-placement="top" title="Dismiss alert">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              {{ session('status') }}
+            </div>
+          @endif
+          @if ($errors->any())
+            <div class="alert alert-warning" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" data-toggle="tooltip" data-placement="top" title="Dismiss alert">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <strong>Please fix the following error(s)</strong>
+              <ul>
+                @foreach ($errors->all() as $key => $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
+          @endif
           <div class="card">
             <div class="header">
-              <h2>
-                Add New Events
+              <h2> Add New Events
                 <small>This form used to register new event in the system</small>
               </h2>
               <ul class="header-dropdown m-r--5">
@@ -135,6 +155,34 @@
                 </div>
                 <div class="row clearfix">
                   <div class="col-sm-8 col-sm-offset-2">
+                    <div class="form-group form-float">
+                      <div class="form-line focused">
+                        <select class="form-control show-tick" id="event_type_id" name="event_type_id">
+                          <option value="{{ old('event_type_id') }}" id="event-category-option">-- Select Event Category --</option>
+                          @foreach ($eventTypes as $key => $type)
+                            <option value="{{ $type->id }}">{{ $type->name }}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row clearfix">
+                  <div class="col-sm-8 col-sm-offset-2">
+                    <div class="form-group form-float">
+                      <div class="form-line focused">
+                        <select class="form-control show-tick" id="semester_id" name="semester_id">
+                          <option value="{{ old('semester_id') }}" id="semester-option">-- Select Semester --</option>
+                          @foreach ($semesters as $key => $semester)
+                            <option value="{{ $semester->id }}">{{ $semester->name }}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row clearfix">
+                  <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary" name="button">
                         <i class="material-icons">save</i> Save
@@ -178,6 +226,7 @@
   <script src="{{ asset('js/moment.js') }}"?v=0.1></script>
   <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}"?v=0.1></script>
   <script src="{{ asset('js/admin.js') }}"?v=0.1></script>
+  <script src="{{ asset('js/tooltips-popovers.js') }}"?v=0.1></script>
   <script type="text/javascript">
     $('.event-datepicker').bootstrapMaterialDatePicker({
        format: 'YYYY/MM/DD',

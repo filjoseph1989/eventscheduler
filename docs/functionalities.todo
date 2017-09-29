@@ -1,6 +1,6 @@
 Phase 1:
   0. Layout:
-  	✔ Login Page @done(2017-09-28 17:41) @project(Phase 1 / 0. Layout)
+  	✔ Login Page @done (9/29/2017, 11:23:10 AM)
   	✔ Home Page @done (9/28/2017, 8:34:23 AM)
   	✔ User List @done (9/28/2017, 8:34:25 AM)
   	✔ Add organization @done (9/28/2017, 8:34:26 AM)
@@ -9,9 +9,9 @@ Phase 1:
   	✔ Add new users @done (9/28/2017, 8:34:37 AM)
 
   0.1 Final template:
-    ☐ Layout.blade.php
-    ☐ Login
-    ☐ Home 
+    ✔ Layout.blade.php @done (9/29/2017, 11:23:04 AM)
+    ✔ Login @done (9/29/2017, 11:23:05 AM)
+    ✔ Home @done (9/29/2017, 11:23:06 AM)
     ☐ Other Pages
 
   1. Login functionalities:
@@ -57,12 +57,14 @@ Phase 1:
           ☐ view organization events - (upcoming, archived, canceled, approved)
 
     Events:
-      ✔ Display all events @done (9/28/2017, 10:17:58 PM)
-      ✔ Display official events for advertisements approval @done(2017-09-28 23:26)
-      ✔ Display Personal event exclusive to osa only @done(2017-09-28 23:26)
-      ✔ Create new event @done(2017-09-29 08:39)
-      ☐ Display all official events approved by the OSA
+      ☐ Display all events (9/28/2017, 10:17:58 PM)
+        ☐ Filtering
+          ☐ Official events approved by the OSA
+          ☐ Official events unapproved by the OSA
         ☐ Attend and Decline (should show when members is loggedin)
+      ✔ Display official events for advertisements approval @done (9/29/2017, 11:23:30 AM)
+      ✔ Display Personal event exclusive to osa only @done (9/29/2017, 11:23:32 AM)
+      ✔ Create new event @done (9/29/2017, 11:23:33 AM)
       ☐ Display the calendar of events
         ☐ official
         ☐ personal

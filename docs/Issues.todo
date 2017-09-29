@@ -5,6 +5,8 @@
 ☐ Issue 8: kadali ang kaning 'login-page' ba, balik-balik, pangita og lain way pag pasa ani niya
 ☐ Issue 9: Dapat limit lang ang columns na kuhaon sa events in OSA account, para dili bug-at
 ☐ Issue 10: {events-list0.blade.php} Kani nga file kay gi reserved nako ni para sa member, naa man gud option nga attend|decline
+☐ Issue 11: Buhat og provider para mag display og return value as a replacement sa -- select -- nga part sa dropdown during validation error return
+☐ Issue 12: {inline} Please add login checker and account checker here
 
 Archived:
 ✔ Issue 7: Dapat ma change ang content sa <title></title> @done(2017-09-28 19:56)

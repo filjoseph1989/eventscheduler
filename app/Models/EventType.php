@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class EventType extends Model
 {
-    //
+    public $table = "event_types";
 }

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+  <title>{{ config('app.name', 'Home Pages') }}</title>   
+@endsection
+
 @section('css')
   <link href="{{ asset('css/all-themes.css') }}" rel="stylesheet">
 @endsection
