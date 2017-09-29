@@ -53,7 +53,7 @@ class UsersTableSeeder extends Seeder
           }
           User::create([
                'course_id'      => $faker->numberBetween($min = 1, $max = 9),
-               'full_name'      => ucfirst(substr($faker->name($gender), 0, 0)),
+               'full_name'      => ucfirst(substr($faker->name($gender), 0)),
                'account_number' => $account_number,
                'user_type_id'   => $faker->numberBetween($min = 1, $max = 3),
                'email'          => $email,
