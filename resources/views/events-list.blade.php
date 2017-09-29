@@ -27,9 +27,10 @@
                     <i class="material-icons">more_vert</i>
                   </a>
                   <ul class="dropdown-menu pull-right">
-                    <li><a href="javascript:void(0);">Action</a></li>
-                    <li><a href="javascript:void(0);">Another action</a></li>
-                    <li><a href="javascript:void(0);">Something else here</a></li>
+                    @if ($eventType == 0)
+                      <li><a href="{{ route('Event.show', 'true') }}">Approved Events</a></li>
+                      <li><a href="{{ route('Event.show', 'false') }}">Disapproved Events</a></li>
+                    @endif
                   </ul>
                 </li>
               </ul>
@@ -48,6 +49,9 @@
                       @if ($eventType == 1)
                         <th>Approve</th>
                       @endif
+                      @if ($eventType == 'true' or $eventType == 'false')
+                        <th> Is Approve</th>
+                      @endif
                     </thead>
                     <tbody>
                       @foreach ($events as $key => $event)
@@ -56,7 +60,7 @@
                           <td><a href="#">{{ $event->venue }}</a></td>
                           <td>
                             @if ($event['organization']->count() > 0)
-                              <?php $organization = $event['organization'][0]; ?>
+                              @$organization = $event['organization'][0]
                               {{ $organization->organization->name }}
                             @else
                               No Organization
@@ -67,6 +71,12 @@
                           <td>Upcoming</td>
                           @if ($eventType == 1)
                             <td><a href="#">Yes</a> | <a href="#">No</a></td>
+                          @endif
+                          @if ($eventType == 'true' or $eventType == 'false')
+                            <td>
+                              <?php $is_approve = ($event->is_approve == 'true') ? 'Yes' : 'No'; ?>
+                              <a href="#">{{ $is_approve }}</a>
+                            </td>
                           @endif
                         </tr>
                       @endforeach
@@ -80,6 +90,9 @@
                       <th>Status</th>
                       @if ($eventType == 1)
                         <th>Approve</th>
+                      @endif
+                      @if ($eventType == 'true' or $eventType == 'false')
+                        <th> Is Approve</th>
                       @endif
                     </tfoot>
                   </table>
