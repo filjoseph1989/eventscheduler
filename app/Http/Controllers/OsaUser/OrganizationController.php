@@ -75,11 +75,14 @@ class OrganizationController extends Controller
         'email'          => $request->email,
         'user_type_id'   => 1,
         'password'       => $faker->password,
+        'status'         => true,
         ];
         
         $organization = Organization::create($data_organization);
         $org_head = User::create($data_org_head);
         if ($organization->wasRecentlyCreated && $org_head->wasRecentlyCreated ) {
+            ##create checker later to trap whenever a user is already an org head of an organization
+            
             $data_org_grp = [
                 'user_id' => $org_head->id,
                 'organization_id' => $organization->id,

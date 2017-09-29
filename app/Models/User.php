@@ -1,5 +1,5 @@
 <?php
-
+ 
 namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
@@ -25,7 +25,7 @@ class User extends Authenticatable
         //   'twitter',
           'mobile_number',
         //   'picture',
-        //   'status',
+          'status',
     ];
 
     /**
@@ -36,4 +36,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+     public function course()
+    {
+        return $this->belongsTo('App\Models\Course');
+    }
+
 }

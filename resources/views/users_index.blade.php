@@ -41,7 +41,7 @@
                 <li class="dropdown">
                   <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <i class="material-icons">more_vert</i>
-                  </a>
+                  </a> 
                   <ul class="dropdown-menu pull-right">
                     <li><a href="javascript:void(0);">Action</a></li>
                     <li><a href="javascript:void(0);">Another action</a></li>
@@ -56,15 +56,34 @@
                   <th>Name</th>
                   <th>Course</th>
                   <th>Position</th>
-                  <th>Status</th>
+                  <th>Organization</th>
                 </thead>
                 <tbody>
-                  <tr>
+                  {{--  <tr>
                     <td><a href="#" data-toggle="modal" data-target="#profile">Katherine Mcnamara</a></td>
                     <td><a href="#" data-toggle="modal" data-target="#course">MS in Applied Economics</a></td>
                     <td><a href="#">American Actress/Singer</a></td>
                     <td><a href="#">Active</a></td>
-                  </tr>
+                  </tr>  --}}
+                   @if ($users->count() == 0)
+                      <tr>
+                        <td>{{ "No entry yet" }}</td>
+                      </tr>
+                    @else
+                      @foreach ($users as $key => $value) 
+                      {{--all listed here are users with status='true'
+                      Organization Users Request should be seen in another blade,
+                      and in the All System Users Navigation, add tab for approve user requests,
+                      also, if there are/is org user requests, the no. of user requests should 
+                      be seen at the All System Users Navigation at the side-bar--}}
+                        <tr>
+                          <td><a href="#" data-target="#profile" data-toggle="modal">{{ $value->full_name }}</a></td>                            
+                          <td>{{ $value->name }}</a></td>
+                          <td> @php $help::userAttribute($position, $value->id); @endphp </td>
+                          <td> @php $help::userAttribute($organization, $value->id); @endphp </td>
+                        </tr>
+                      @endforeach
+                    @endif
                 </tbody>
               </table>
             </div>
