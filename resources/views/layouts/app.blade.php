@@ -75,10 +75,13 @@
     </div>
   </div>
 
+  @routes
+
   <script src="{{ asset('js/jquery.min.js') }}?v=3.2.1"></script>
   <script src="{{ asset('js/bootstrap.min.js') }}?v=3.3.7"></script>
   <script src="{{ asset('js/waves.js') }}"></script>
   <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   @yield('js')
 
 </body>
