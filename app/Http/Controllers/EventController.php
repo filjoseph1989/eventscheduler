@@ -29,9 +29,17 @@ class EventController extends Controller
     private $theme = 'theme-red';
     private $validation;
 
+    /**
+     * Build instance of a class
+     */
     public function __construct()
     {
       $this->validation = new ValidationClass();
+
+      # Issue 12
+      // if (! isset($login)) {
+      //   Redirect(config('app.url')."/home", false);
+      // }
     }
 
     /**
@@ -51,18 +59,12 @@ class EventController extends Controller
      */
     public function create()
     {
-        /*
-          Steps:
-          1. Check if the user is loggedin
-          2. Check if the user account is an osa
-         */
-
-        # view
-        return  view('events-add')->with([
-          'loginClass' => 'theme-teal',
-          'eventTypes' => EventType::all(),
-          'semesters'  => Semester::all()
-        ]);
+      # view
+      return  view('events-add')->with([
+        'loginClass' => 'theme-teal',
+        'eventTypes' => EventType::all(),
+        'semesters'  => Semester::all()
+      ]);
     }
 
     /**
@@ -73,15 +75,6 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-      /*
-      Steps:
-      Issue 12
-      1. Check if the user is loggedin
-      2. Check if the user's account is osa
-      3. validate the entry and return data
-      4. save to database
-       */
-
       self::customValidate($request);
 
       $event = Event::create(
@@ -113,21 +106,16 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        /*
-          Steps:
-          1. Check if the user is loggedin
-          2. Check if the user account is an osa
-         */
-        $events = self::getEvents($id);
+      $events = self::getEvents($id);
 
-        self::getOrganization($events);
+      self::getOrganization($events);
 
-        return view('events-list')->with([
-            'loginClass' => 'theme-teal',
-            'title'      => $this->list[$id],
-            'events'     => $events,
-            'eventType'  => $id
-        ]);
+      return view('events-list')->with([
+          'loginClass' => 'theme-teal',
+          'title'      => $this->list[$id],
+          'events'     => $events,
+          'eventType'  => $id
+      ]);
     }
 
     /**
@@ -138,7 +126,7 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        //
+      return Event::where('id', $id)->get();
     }
 
     /**
@@ -215,4 +203,12 @@ class EventController extends Controller
 
       return $events;
     }
+
+}
+
+function Redirect($url, $permanent = false)
+{
+    header('Location: ' . $url, true, $permanent ? 301 : 302);
+
+    exit();
 }
