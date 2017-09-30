@@ -158,7 +158,7 @@
                         <td>
                           <div class="demo-switch">
                             <div class="switch" id="facebook">
-                              <label>OFF<input type="checkbox" name="facebook" checked><span class="lever switch-col-indigo"></span>ON</label> Facebook
+                              <label>OFF<input type="checkbox" name="facebook" checked><span class="lever switch-col-teal"></span>ON</label> Facebook
                             </div>
                           </div>
                         </td>
@@ -192,7 +192,7 @@
                         <td>
                           <div class="demo-switch">
                             <div class="switch" id="twitter">
-                              <label>OFF<input type="checkbox" name="twitter" checked><span class="lever switch-col-indigo"></span>ON</label> Twitter
+                              <label>OFF<input type="checkbox" name="twitter" checked><span class="lever switch-col-teal"></span>ON</label> Twitter
                             </div>
                           </div>
                         </td>
@@ -202,7 +202,7 @@
                         <td>
                           <div class="demo-switch">
                             <div class="switch" id="email">
-                              <label>OFF<input type="checkbox" name="email" checked><span class="lever switch-col-indigo"></span>ON</label> Email
+                              <label>OFF<input type="checkbox" name="email" checked><span class="lever switch-col-teal"></span>ON</label> Email
                             </div>
                           </div>
                         </td>
@@ -211,14 +211,14 @@
                         <td>
                           <div class="demo-switch">
                             <div class="switch" id="mobile">
-                              <label>OFF<input type="checkbox" name="mobile" checked><span class="lever switch-col-indigo"></span>ON</label> Mobile
+                              <label>OFF<input type="checkbox" name="mobile" checked><span class="lever switch-col-teal"></span>ON</label> Mobile
                             </div>
                           </div>
                         </td>
                       </tr>
                     </tbody>
                   </table>
-                    <button type="button" id="modal-event-notification" data-color="green" class="btn bg-green waves-effect pull-right">Save Changes</button>
+                    <button type="button" id="modal-event-notification" data-color="green" class="btn bg-teal waves-effect pull-right">Save Changes</button>
                   </form>
                 </div>
               </div>
@@ -272,7 +272,7 @@
                         </div>
                       </div>
                     </div>
-                    <button type="button" id="modal-additional-messages" data-color="green" class="btn bg-green waves-effect pull-right">Save Changes</button>
+                    <button type="button" id="modal-additional-messages" data-color="teal" class="btn bg-teal waves-effect pull-right">Save Changes</button>
                   </form>
                 </div>
               </div>
@@ -280,7 +280,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" data-color="green" class="btn bg-green waves-effect" data-toggle="tooltip" data-placement="top" title="Request for advertisement approval">Request Approval</button>
+          <button type="button" data-color="green" class="btn bg-teal waves-effect" data-toggle="tooltip" data-placement="top" title="Request for advertisement approval">Request Approval</button>
           <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
         </div>
       </div>
