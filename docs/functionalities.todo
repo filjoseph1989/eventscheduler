@@ -35,7 +35,7 @@ Phase 1:
 
   2. For OSA:
     Display Users list:
-      ✔ Display all registered members
+      ✔ Display all registered members @done(2017-09-30 22:23)
       ☐ View Profile (modal) (optional)
       ☐ view Course (modal) (optional)
       ☐ view Position (modal) (optional)
@@ -97,13 +97,14 @@ Phase 1:
     Events:
       ☐ Create new event
       ☐ Display all official events approved by the OSA
-        ☐ Update advertisements settings
+        ☐ Modal for event information, notification and additional messages setting for each event
+          ☐ Notification settings here must override the general settings for notifications
         ☐ Request for approval
-        ☐ Attend and Decline (should show when members is loggedin)
       ☐ Display Personal event exclusive to organization head/organization only
       ☐ Display the calendar of events
         ☐ official
         ☐ personal
+      ☐ General Notification settings (As for now this should be defaulted as "on" for all events)
 
     Student Attendance:
       ☐ Display events
