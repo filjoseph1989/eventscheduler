@@ -41,16 +41,34 @@ class ModalController extends Controller
 
   }
 
+  /**
+   * Return course information
+   *
+   * @param Request $data
+   * @return json
+   */
   public function getCourse(Request $data)
   {
     return Course::find($data->id);
   }
 
+  /**
+   * return the position information
+   *
+   * @param  Request $data
+   * @return json
+   */
   public function getPosition(Request $data)
   {
     return Position::find($data->id);
   }
 
+  /**
+   * Return organization information
+   *
+   * @param  Request $data 
+   * @return json
+   */
   public function getOrganization(Request $data)
   {
     return Position::find($data->id);

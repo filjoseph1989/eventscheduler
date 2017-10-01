@@ -84,6 +84,11 @@
     });
   });
 
+  /**
+   * Provide information about the user in modal prompt
+   *
+   * @return {void}
+   */
   $(document).on('click', '.user-name', function() {
     var $id = $(this).data('user-id');
 
@@ -119,6 +124,53 @@
   });
 
   /**
+   * Provide course information with the user click
+   * on course
+   *
+   * @return {void}
+   */
+  $(document).on('click', '.user-course', function() {
+    var $id = $(this).data('course-id');
+
+    axios_post('/modals/get/course', {id: $id}, function(data) {
+      $('#modal-course-title').html(data.name);
+      $('#modal-course-content').html(
+        '<p><strong>'+ data.name +'</strong> '+ data.description +'.</p>'
+      );
+      $('#modal-course-sourse').html(
+        '<a href="'+data.source+'" target="_blank">Source</a>'
+      );
+    });
+  });
+
+  /**
+   * Provide information about organization
+   *
+   * @return {void}
+   */
+  $(document).on('click', '.user-organization', function() {
+    var $id = $(this).data('course-id');
+
+    axios_post('/modals/get/organization', {id: $id}, function(data) {
+      console.log(data);
+    });
+  });
+
+  /**
+   * Provide information about the position
+   *
+   * @return {void}
+   */
+  $(document).on('click', '.user-position', function() {
+    var $id = $(this).data('course-id');
+
+    axios_post('/modals/get/position', {id: $id}, function(data) {
+      console.log(data);
+    });
+  });
+
+
+  /**
    * Make http request
    *
    * @param  {object}   data Any data to be pass
@@ -127,6 +179,8 @@
    * @param  {String}   [preloader='']
    * @param  {Boolean}  [complete=true]
    * @return {void}
+   *
+   * @deprecated 2.0
    */
   function submit(data, url, callback) {
     if (param == '') {
@@ -192,6 +246,16 @@
       });
   }
 
+  /**
+   * Make http request using post
+   * but since we're using laravel not only put
+   * but put, patch and delete too
+   *
+   * @param  {string}   url
+   * @param  {object}   data
+   * @param  {Function} callback
+   * @return {void}
+   */
   var axios_post = function(url, data, callback)
   {
     axios.post(url, data)

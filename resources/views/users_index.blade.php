@@ -48,13 +48,13 @@
                     @foreach ($users as $key => $user)
                       <tr>
                         <td><a href="#" class="user-name" data-toggle="modal" data-target="#profile" data-user-id="{{ $user->id }}">{{ $user->full_name }}</a></td>
-                        <td><a href="#" data-toggle="modal" data-target="#course" data-course-id="{{ $user->course->id }}">{{ $user->course->name }}</a></td>
+                        <td><a href="#" class="user-course" data-toggle="modal" data-target="#modal-course" data-course-id="{{ $user->course->id }}">{{ $user->course->name }}</a></td>
                         <td>
                           @if ($user->organizationGroup->count() == 0)
                             No Position
                           @else
                             @foreach ($user->organizationGroup as $key => $pos)
-                              <a href="#" data-position-id="{{ $pos->position->id }}">{{ $pos->position->name }}</a>
+                              <a href="#" class="user-organization" data-position-id="{{ $pos->position->id }}">{{ $pos->position->name }}</a>
                               @if ($user->organizationGroup->count() > 1)
                                 <br>
                               @endif
@@ -66,7 +66,7 @@
                             No Organization
                           @else
                             @foreach ($user->organizationGroup as $key => $org)
-                              <a href="#" data-organization-id="{{ $org->organization->id }}">{{ $org->organization->name }}</a>
+                              <a href="#" class="user-position" data-organization-id="{{ $org->organization->id }}">{{ $org->organization->name }}</a>
                               @if ($user->organizationGroup->count() > 1)
                                 <br>
                               @endif
@@ -136,18 +136,18 @@
       </div>
     </div>
   </div>
-  <div id="course" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div id="modal-course" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          <h4 class="modal-title" id="myModalLabel">Business Administration</h4>
+          <h4 class="modal-title" id="modal-course-title"></h4>
         </div>
         <div class="modal-body">
-          <p><strong>Business administration</strong> is management of a business. It includes all aspects of overseeing and supervising business operations.</p>
-          <a href="https://en.wikipedia.org/wiki/Business_administration" target="_blank">Source Wikipedia</a>
+          <div id="modal-course-content">&nbsp;</div>
+          <div id="modal-course-sourse">&nbsp;</div>
         </div>
         <div class="modal-footer">
           <i class="material-icons" data-dismiss="modal" style="cursor:pointer;">close</i>
