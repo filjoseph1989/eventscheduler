@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 # Models
 use App\Models\User;
 use App\Models\Course;
+use App\Models\Position;
+use App\Models\Organization;
 
 /**
  * Handle all the request related to a modal
@@ -17,9 +19,11 @@ use App\Models\Course;
  */
 class ModalController extends Controller
 {
+  /**
+   * [__construct description]
+   */
   public function __construct()
   {
-
   }
 
   /**
@@ -66,11 +70,11 @@ class ModalController extends Controller
   /**
    * Return organization information
    *
-   * @param  Request $data 
+   * @param  Request $data
    * @return json
    */
   public function getOrganization(Request $data)
   {
-    return Position::find($data->id);
+    return Organization::find($data->id);
   }
 }

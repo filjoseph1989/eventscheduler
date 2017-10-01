@@ -54,7 +54,7 @@
                             No Position
                           @else
                             @foreach ($user->organizationGroup as $key => $pos)
-                              <a href="#" class="user-organization" data-position-id="{{ $pos->position->id }}">{{ $pos->position->name }}</a>
+                              <a href="#" class="user-position" data-position-id="{{ $pos->position->id }}">{{ $pos->position->name }}</a>
                               @if ($user->organizationGroup->count() > 1)
                                 <br>
                               @endif
@@ -66,7 +66,7 @@
                             No Organization
                           @else
                             @foreach ($user->organizationGroup as $key => $org)
-                              <a href="#" class="user-position" data-organization-id="{{ $org->organization->id }}">{{ $org->organization->name }}</a>
+                              <a href="#" class="user-organization" data-toggle="modal" data-target="#modal-organization" data-organization-id="{{ $org->organization->id }}">{{ $org->organization->name }}</a>
                               @if ($user->organizationGroup->count() > 1)
                                 <br>
                               @endif
@@ -148,6 +148,45 @@
         <div class="modal-body">
           <div id="modal-course-content">&nbsp;</div>
           <div id="modal-course-sourse">&nbsp;</div>
+        </div>
+        <div class="modal-footer">
+          <i class="material-icons" data-dismiss="modal" style="cursor:pointer;">close</i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="modal-organization" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="modal-organization-title"></h4>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered table-striped">
+            <tbody>
+              <tr>
+                <td class="" id="modal-organization-acronym"></td>
+              </tr>
+              <tr>
+                <td class="" id="modal-organization-description"> </td>
+              </tr>
+              <tr>
+                <td class="" id="modal-organization-aniversary"> </td>
+              </tr>
+              <tr>
+                <td class="" id="modal-organization-color"> </td>
+              </tr>
+              <tr>
+                <td class="" id="modal-organization-status"> </td>
+              </tr>
+              <tr>
+                <td class="" id="modal-organization-url"> </div>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <div class="modal-footer">
           <i class="material-icons" data-dismiss="modal" style="cursor:pointer;">close</i>

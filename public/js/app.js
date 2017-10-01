@@ -149,10 +149,16 @@
    * @return {void}
    */
   $(document).on('click', '.user-organization', function() {
-    var $id = $(this).data('course-id');
+    var $id = $(this).data('organization-id');
 
     axios_post('/modals/get/organization', {id: $id}, function(data) {
-      console.log(data);
+      $('#modal-organization-title').html(data.name);
+      $('#modal-organization-acronym').html("<strong>Acronym</strong>: <a href='#'>"+data.acronym+"</a>");
+      $('#modal-organization-description').html("<strong>Description</strong>: <a href='#'>"+data.description+"</a>");
+      $('#modal-organization-aniversary').html("<strong>Aniversary</strong>: <a href='#'>"+data.aniversary+"</a>");
+      $('#modal-organization-color').html("<strong>Color</strong>: <a href='#'>"+data.color+"</a>");
+      $('#modal-organization-status').html("<strong>Status</strong>: <a href='#'>"+data.status+"</a>");
+      $('#modal-organization-url').html("<strong>URL</strong>: <a href='#'>"+data.url+"</a>");
     });
   });
 
@@ -162,7 +168,7 @@
    * @return {void}
    */
   $(document).on('click', '.user-position', function() {
-    var $id = $(this).data('course-id');
+    var $id = $(this).data('position-id');
 
     axios_post('/modals/get/position', {id: $id}, function(data) {
       console.log(data);

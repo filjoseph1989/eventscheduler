@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Organization extends Model
-{ 
-    //public $table = "organizations"; 
+{
+    //public $table = "organizations";
     /**
      *  The attributes that are mass assignable.
      *
@@ -17,7 +17,7 @@ class Organization extends Model
         'name',
         'acronym',
         // 'description',
-        // 'url', 
+        // 'url',
         // 'status',
         // 'logo',
         // 'color'
