@@ -19,8 +19,6 @@ class DatabaseSeeder extends Seeder
       $this->call(PositionsTableSeeder::class);
       $this->call(EventsTableSeeder::class);
       $this->call(UserTypesTableSeeder::class);
-      // $this->call(UsersTableSeeder::class); 
-      //no need for UsersTableSeeder because osa will create org head which is an automatic active(status) user, 
-      //org head will create org member users
+      $this->call(UsersTableSeeder::class); 
     }
 }
