@@ -54,7 +54,7 @@
                             No Position
                           @else
                             @foreach ($user->organizationGroup as $key => $pos)
-                              <a href="#" class="user-position" data-position-id="{{ $pos->position->id }}">{{ $pos->position->name }}</a>
+                              <a href="#" class="user-position" data-toggle="modal" data-target="#modal-position" data-position-id="{{ $pos->position->id }}">{{ $pos->position->name }}</a>
                               @if ($user->organizationGroup->count() > 1)
                                 <br>
                               @endif
@@ -184,6 +184,30 @@
               </tr>
               <tr>
                 <td class="" id="modal-organization-url"> </div>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <i class="material-icons" data-dismiss="modal" style="cursor:pointer;">close</i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="modal-position" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="modal-position-title"></h4>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered table-striped">
+            <tbody>
+              <tr>
+                <td class="" id="modal-position-description"></td>
               </tr>
             </tbody>
           </table>

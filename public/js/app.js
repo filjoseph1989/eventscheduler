@@ -171,7 +171,8 @@
     var $id = $(this).data('position-id');
 
     axios_post('/modals/get/position', {id: $id}, function(data) {
-      console.log(data);
+      $('#modal-position-title').html(data.name);
+      $('#modal-position-description').html("<strong>Description</strong>: <a href='#'>"+data.description+"</a>");
     });
   });
 
