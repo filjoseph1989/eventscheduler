@@ -137,7 +137,22 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      # Issue 16
+
+      $event = Event::find($id);
+
+      $event->facebook_msg = $request->facebook_msg;
+      $event->twitter_msg  = $request->twitter_msg;
+      $event->email_msg    = $request->email_msg;
+      $event->sms_msg      = $request->sms_msg;
+
+      if ($event->save()) {
+        $result = ['result' => 'true'];
+      } else {
+        $result = ['result' => 'false'];
+      }
+
+      echo json_encode($result);
     }
 
     /**
@@ -202,9 +217,14 @@ class EventController extends Controller
 
       return $events;
     }
-
 }
 
+/**
+ * Independent functions and not belong to a class
+ *
+ * @param string  $url
+ * @param boolean $permanent
+ */
 function Redirect($url, $permanent = false)
 {
     header('Location: ' . $url, true, $permanent ? 301 : 302);

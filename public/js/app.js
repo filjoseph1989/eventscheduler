@@ -25,7 +25,8 @@
   var method    = 'post';
   var preloader = '';
   var complete  = true;
-  var param  = '';
+  var param     = '';
+  var action    = "";
 
   /**
    * Work when the user click on event title
@@ -34,12 +35,16 @@
    */
   $(document).on('click', '.event-title', function() {
     var $url = $(this).parents('tr').data('route');
+    action   = $(this).parents('tr').data('action');
+
+    // Make http request for editing the event
     axios_get($url, function(data) {
       data.forEach(function(currentValue, index, arr) {
         $('#modal-event-title').html(currentValue.title);
         $('#modal-event-ptitle').html("Title: " + currentValue.title);
         $('#modal-event-venue').html("Venue: " + currentValue.venue);
         $('#modal-event-description').html("Description: " + currentValue.description);
+        $('#form-additional-message').attr('action', action);
       });
     });
   });
@@ -53,11 +58,19 @@
    * @return {void}
    */
   $(document).on('click', '#modal-additional-messages', function() {
-    swal({
-      title: "Great!",
-      text: "Successfully saved changes!",
-      icon: "success"
+    var formData = $(this).parents('form').serialize();
+    var url      = $(this).parents('form').attr('action');
+
+    axios_post(url, formData, function(data) {
+      if (data.result == 'true') {
+        swal({
+          title: "Great!",
+          text: "Successfully saved changes!",
+          icon: "success"
+        });
+      }
     });
+
   });
   $(document).on('click', '#modal-event-notification', function() {
     swal({
@@ -137,6 +150,17 @@
       .then(function (response) {
         callback(response.data);
       }).catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  var axios_post = function(url, data, callback)
+  {
+    axios.post(url, data)
+      .then(function (response) {
+        callback(response.data);
+      })
+      .catch(function (error) {
         console.log(error);
       });
   }

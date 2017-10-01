@@ -30,8 +30,6 @@ trait ValidationTrait
       'date_start_time' => 'filled|date_format:H:i',
       'date_end_time'   => 'nullable|date_format:H:i',
       'whole_day'       => 'nullable',
-    ], [
-      'regex' => "Time should be valid format",
     ]);
   }
 }

@@ -55,7 +55,7 @@
                     </thead>
                     <tbody>
                       @foreach ($events as $key => $event)
-                        <tr data-event="{{ $event->id }}" data-route="{{ route('Event.edit', $event->id) }}">
+                        <tr data-event="{{ $event->id }}" data-route="{{ route('Event.edit', $event->id) }}" data-action="{{ route('Event.update', $event->id) }}">
                           <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ $event->title }}</a></td>
                           <td><a href="#">{{ $event->venue }}</a></td>
                           <td>
@@ -235,7 +235,9 @@
               </div>
               <div id="collapseThree_1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree_1" aria-expanded="false">
                 <div class="panel-body">
-                  <form class="" action="" method="post">
+                  <form class="" id="form-additional-message" action="" method="post">
+                    {{ csrf_field() }}
+                    {{ method_field('PUT') }}
                     <div class="row clearfix">
                       <div class="col-sm-12 col-md-12">
                         <div class="form-group form-float form-group">
@@ -296,5 +298,5 @@
   <script src="{{ asset('js/bootstrap-select.js') }}"?v=0.1></script>
   <script src="{{ asset('js/sweetalert.min.js') }}"?v=0.1></script>
   <script src="{{ asset('js/tooltips-popovers.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/app.js') }}?v=2" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.1" charset="utf-8"></script>
 @endsection
