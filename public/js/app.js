@@ -13,7 +13,7 @@
  * @author Fil <filjoseph22@gmail.com>
  * @author Liz <janicalizdeguzman@gmail.com>
  * @since 0.1
- * @version 2
+ * @version 2.2
  * @date 09-30-2017
  * @date 09-30-2017 - last updated
  */
@@ -74,13 +74,47 @@
         });
       }
     });
-
   });
+
   $(document).on('click', '#modal-event-notification', function() {
     swal({
       title: "Great!",
       text: "Successfully saved changes!",
       icon: "success"
+    });
+  });
+
+  $(document).on('click', '.user-name', function() {
+    var $id = $(this).data('user-id');
+
+    axios_post('/modals/get/user', {id: $id}, function(data) {
+      data = data[0];
+
+      $('#full-name').html(data.full_name);
+      $('#account-number').html("<strong>Account Number</strong>: " + '<a href="#">'+data.account_number+'</a>');
+      $('#course').html("<strong>Course</strong>: " + '<a href="#">'+data.course.name+'</a>');
+      $('#email').html("<strong>Email</strong>: " + '<a href="#">'+data.email+'</a>');
+      $('#account').html("<strong>Account Type</strong>: " + '<a href="#">'+data.user_type.name+'</a>');
+      $('#mobile-number').html("<strong>Mobile Number</strong>: " + '<a href="#">+'+data.mobile_number+'</a>');
+      $('#facebook').html("<strong>Facebook Account</strong>: " + '<a href="#">'+data.facebook+'</a>');
+      $('#twitter').html("<strong>Twitter Account</strong>: " + '<a href="#">'+data.twitter+'</a>');
+
+      var organization = "";
+      var position     = "";
+
+      for (var i = 0; i < data.organization_group.length; i++) {
+        organization += '<a href="#">'+ data.organization_group[i].organization.name +'</a>';
+
+        if (data.organization_group[i].position.name != 'Not Applicable') {
+          position += '<a href="#">'+ data.organization_group[i].position.name +'</a> @ '+data.organization_group[i].organization.name+'<br>';
+        }
+        if (data.organization_group.length > 1) {
+          organization += "<br>";
+        }
+      }
+
+      $('#organizations').html("<strong>Organization(s)</strong>: <br>" + organization);
+      $('#positions').html("<strong>Position(s)</strong>: <br>" + position);
     });
   });
 

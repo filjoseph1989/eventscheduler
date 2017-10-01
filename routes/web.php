@@ -26,3 +26,11 @@ Route::resource('Attendances',  'AttendanceController');
 Route::resource('Event',        'EventController', ['parameters' =>[
   'Event' => 'id'
 ]]);
+
+# Used for modal request
+Route::prefix('modals')->group(function() {
+  Route::name('modal.getUser')->post('/get/user','ModalController@getUser');
+  Route::name('modal.getCourse')->post('/get/course','ModalController@getCourse');
+  Route::name('modal.getPosition')->post('/get/position','ModalController@getPosition');
+  Route::name('modal.getOrganization')->post('/get/organization','ModalController@getOrganization');
+});
