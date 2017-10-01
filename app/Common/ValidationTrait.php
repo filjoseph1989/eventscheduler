@@ -4,17 +4,12 @@ namespace App\Common;
 
 /**
  * Written by Fil for common validation process
- * 
+ *
  * @author Fil Joseph <filjoseph22@gmail.com>
  * @date 09-28-2017
  */
-class ValidationClass
+trait ValidationTrait
 {
-
-  public function __construct()
-  {
-    # code...
-  }
 
   /**
    * make validation for event entries
@@ -22,7 +17,7 @@ class ValidationClass
    * @param object $data reference
    * @return void
    */
-  public function validate(&$data, &$request)
+  public function validateRequest(&$data, &$request)
   {
     $data->validate($request, [
       'event_type_id'   => 'Required',
