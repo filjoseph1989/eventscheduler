@@ -12,16 +12,66 @@ class CoursesTableSeeder extends Seeder
   public function run()
   {
     DB::table('courses')->insert([
-      array('name' => 'Not Applicable', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s'), ),
-      array('name' => 'BS Agribusiness Economics', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
-      array('name' => 'BS Food Technology', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
-      array('name' => 'BS Biology', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
-      array('name' => 'BS Applied Mathematics', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
-      array('name' => 'BS Computer Science', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
-      array('name' => 'BS Information System Management', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
-      array('name' => 'BS Architecture', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
-      array('name' => 'BA Communication Arts', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
-      array('name' => 'BA Anthropology', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')),
+      array(
+        'name'        => 'Not Applicable',
+        'description' => 'No Description yet',
+        'created_at'  => date('Y-m-d H:i:s'),
+        'updated_at'  => date('Y-m-d H:i:s')
+      ),
+      array(
+        'name'        => 'BS Agribusiness Economics',
+        'description' => 'No Description yet',
+        'created_at'  => date('Y-m-d H:i:s'),
+        'updated_at'  => date('Y-m-d H:i:s')
+      ),
+      array(
+        'name'        => 'BS Food Technology',
+        'description' => 'No Description yet',
+        'created_at'  => date('Y-m-d H:i:s'),
+        'updated_at'  => date('Y-m-d H:i:s')
+      ),
+      array(
+        'name'        => 'BS Biology',
+        'description' => 'No Description yet',
+        'created_at'  => date('Y-m-d H:i:s'),
+        'updated_at'  => date('Y-m-d H:i:s')
+      ),
+      array(
+        'name'        => 'BS Applied Mathematics',
+        'description' => 'No Description yet',
+        'created_at'  => date('Y-m-d H:i:s'),
+        'updated_at'  => date('Y-m-d H:i:s')
+      ),
+      array(
+        'name'        => 'BS Computer Science',
+        'description' => 'No Description yet',
+        'created_at'  => date('Y-m-d H:i:s'),
+        'updated_at'  => date('Y-m-d H:i:s')
+      ),
+      array(
+        'name'        => 'BS Information System Management',
+        'description' => 'No Description yet',
+        'created_at'  => date('Y-m-d H:i:s'),
+        'updated_at'  => date('Y-m-d H:i:s')
+      ),
+      array(
+        'name'        => 'BS Architecture',
+        'description' => 'No Description yet',
+        'created_at'  => date('Y-m-d H:i:s'),
+        'updated_at'  => date('Y-m-d H:i:s')
+      ),
+      array(
+        'name'        => 'BA Communication Arts',
+        'description' => 'No Description yet',
+        'created_at'  => date('Y-m-d H:i:s'),
+        'updated_at'  => date('Y-m-d H:i:s')
+      ),
+      array(
+        'name'        => 'BA Anthropology',
+        'description' => 'No Description yet',
+        'created_at'  => date('Y-m-d H:i:s'),
+        'updated_at'  => date('Y-m-d H:i:s')
+      ),
     ]);
   }
 }
