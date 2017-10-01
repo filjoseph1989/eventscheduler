@@ -18,9 +18,9 @@ class UserController extends Controller
     {
 
     }
- 
+
     /**
-     * Display a listing of the resource. 
+     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -28,7 +28,8 @@ class UserController extends Controller
     {
       $organization = [];
       $position     = [];
-      $users     = User::with('course')->where('status', 'true')->get();
+      $users        = User::with('course')->where('status', 'true')->get();
+
       foreach ($users as $key => $v) {
         $og = OrganizationGroup::where('user_id', $v->id)
           ->with(['position', 'organization'])

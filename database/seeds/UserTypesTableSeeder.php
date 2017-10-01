@@ -1,9 +1,9 @@
 <?php
-require 'vendor/autoload.php';
+
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
-class UserTypesTableSeeder extends Seeder 
+class UserTypesTableSeeder extends Seeder
 {
   /**
    * Run the database seeds.
@@ -14,23 +14,23 @@ class UserTypesTableSeeder extends Seeder
    {
        DB::table('user_types')->insert([
          array(
-           'name'           => 'organization-head-user',
-           'theme'          => 'theme-brown',
-           'color'          => 'bg-brown',
+           'name'       => 'organization-head-user',
+           'theme'      => 'theme-brown',
+           'color'      => 'bg-brown',
            'created_at' => Carbon::now()->toDateTimeString(),
            'updated_at' => Carbon::now()->toDateTimeString(),
          ),
          array(
-           'name'           => 'organization-user',
-           'theme'          => 'theme-blue-grey',
-           'color'          => 'bg-blue-grey',
+           'name'       => 'organization-user',
+           'theme'      => 'theme-blue-grey',
+           'color'      => 'bg-blue-grey',
            'created_at' => Carbon::now()->toDateTimeString(),
            'updated_at' => Carbon::now()->toDateTimeString(),
          ),
          array(
-           'name'           => 'osa-personnel',
-           'theme'          => 'theme-purple',
-           'color'          => 'bg-purple',
+           'name'       => 'osa-personnel',
+           'theme'      => 'theme-purple',
+           'color'      => 'bg-purple',
            'created_at' => Carbon::now()->toDateTimeString(),
            'updated_at' => Carbon::now()->toDateTimeString(),
          ),

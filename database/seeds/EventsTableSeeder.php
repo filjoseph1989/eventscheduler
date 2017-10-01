@@ -1,6 +1,4 @@
 <?php
-require 'vendor/autoload.php';
-
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
@@ -15,7 +13,7 @@ class EventsTableSeeder extends Seeder
     {
       DB::table('events')->insert([
         array(
-          'event_type_id'           => '1', 
+          'event_type_id'           => '1',
           'semester_id'             => '1',
           'title'                   => "UP Foundation",
           'description'             => "UP-Mindanao took part in the simultaneous U.P. System-wide flag-raising ceremony to close the Centennial Celebration and open U.P.'s Next Century.",
