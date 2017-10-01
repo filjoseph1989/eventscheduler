@@ -45,6 +45,10 @@
         $('#modal-event-venue').html("Venue: " + currentValue.venue);
         $('#modal-event-description').html("Description: " + currentValue.description);
         $('#form-additional-message').attr('action', action);
+        $('#facebook_msg').html(currentValue.facebook_msg);
+        $('#twitter_msg').html(currentValue.twitter_msg);
+        $('#email_msg').html(currentValue.email_msg);
+        $('#sms_msg').html(currentValue.sms_msg);
       });
     });
   });

@@ -99,6 +99,7 @@ Phase 1:
       ☐ Display all official events approved by the OSA
         ✔ Update additional messages @done(2017-10-01 13:13)
           ☐ This functionality should be sepate from OSA, OSA shouldn't have this, and must be hidden from them
+        ✔ Display the additional message @done(2017-10-01 13:28)
         ☐ Update notification setting for each event
         ☐ Modal for event information, notification and additional messages setting for each event
           (Notification settings here must override the general settings for notifications)

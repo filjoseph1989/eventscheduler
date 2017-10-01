@@ -242,7 +242,8 @@
                       <div class="col-sm-12 col-md-12">
                         <div class="form-group form-float form-group">
                           <div class="form-line">
-                            <textarea rows="4" class="form-control no-resize" id="facebook_msg" name="facebook_msg" placeholder="Additional message for Facebook Notification"></textarea>
+                            <label for="facebook_msg">Facebook Message</label>
+                            <textarea rows="2" class="form-control no-resize" id="facebook_msg" name="facebook_msg" placeholder="Additional message for Facebook Notification"></textarea>
                           </div>
                         </div>
                       </div>
@@ -251,7 +252,8 @@
                       <div class="col-sm-12 col-md-12">
                         <div class="form-group form-float form-group">
                           <div class="form-line">
-                            <textarea rows="4" class="form-control no-resize" id="twitter_msg" name="twitter_msg" placeholder="Additional message for Twitter notification"></textarea>
+                            <label for="twitter_msg">Twitter Message</label>
+                            <textarea rows="2" class="form-control no-resize" id="twitter_msg" name="twitter_msg" placeholder="Additional message for Twitter notification"></textarea>
                           </div>
                         </div>
                       </div>
@@ -260,7 +262,8 @@
                       <div class="col-sm-12 col-md-12">
                         <div class="form-group form-float form-group">
                           <div class="form-line">
-                            <textarea rows="4" class="form-control no-resize" id="email_msg" name="email_msg" placeholder="Additional message for email notification"></textarea>
+                            <label for="email_msg">Email Message</label>
+                            <textarea rows="2" class="form-control no-resize" id="email_msg" name="email_msg" placeholder="Additional message for email notification"></textarea>
                           </div>
                         </div>
                       </div>
@@ -269,7 +272,8 @@
                       <div class="col-sm-12 col-md-12">
                         <div class="form-group form-float form-group">
                           <div class="form-line">
-                            <textarea rows="4" class="form-control no-resize" id="sms_msg" name="sms_msg" placeholder="Additional message for mobile message"></textarea>
+                            <label for="sms_msg">Mobile Message</label>
+                            <textarea rows="2" class="form-control no-resize" id="sms_msg" name="sms_msg" placeholder="Additional message for mobile message"></textarea>
                           </div>
                         </div>
                       </div>
