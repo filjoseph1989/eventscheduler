@@ -9,6 +9,7 @@
 ☐ Issue 13: {inline} Please make a function for this which can be use across other functionalities
 ☐ Issue 14: {inline} This panels should only show up when the type of account is organization head or maybe create a modal for OSA, u think that is the best
 ☐ Issue 15: {inline} Hide this in member
+☐ Issue 16: {inline} Validate if the user is loggedin before making update in the database
 
 Archived:
 ✔ Issue 7: Dapat ma change ang content sa <title></title> @done(2017-09-28 19:56)

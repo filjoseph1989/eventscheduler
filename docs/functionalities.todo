@@ -97,8 +97,11 @@ Phase 1:
     Events:
       ☐ Create new event
       ☐ Display all official events approved by the OSA
+        ✔ Update additional messages @done(2017-10-01 13:13)
+          ☐ This functionality should be sepate from OSA, OSA shouldn't have this, and must be hidden from them
+        ☐ Update notification setting for each event
         ☐ Modal for event information, notification and additional messages setting for each event
-          ☐ Notification settings here must override the general settings for notifications
+          (Notification settings here must override the general settings for notifications)
         ☐ Request for approval
       ☐ Display Personal event exclusive to organization head/organization only
       ☐ Display the calendar of events
