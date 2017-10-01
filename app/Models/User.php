@@ -52,4 +52,14 @@ class User extends Authenticatable
     {
       return $this->hasMany('App\Models\OrganizationGroup');
     }
+
+    /**
+     * For eacch user has one user account
+     *
+     * @return object
+     */
+    public function userType()
+    {
+      return $this->belongsTo('App\Models\UserType');
+    }
 }

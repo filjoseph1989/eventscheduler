@@ -47,7 +47,7 @@
                   @if (isset($users))
                     @foreach ($users as $key => $user)
                       <tr>
-                        <td><a href="#" data-toggle="modal" data-target="#profile">{{ $user->full_name }}</a></td>
+                        <td><a href="#" class="user-name" data-toggle="modal" data-target="#profile" data-user-id="{{ $user->id }}">{{ $user->full_name }}</a></td>
                         <td><a href="#" data-toggle="modal" data-target="#course" data-course-id="{{ $user->course->id }}">{{ $user->course->name }}</a></td>
                         <td>
                           @if ($user->organizationGroup->count() == 0)
@@ -95,31 +95,37 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          <h4 class="modal-title" id="myModalLabel">Katherine Mcnamara</h4>
+          <h4 class="modal-title" id="full-name">Katherine Mcnamara</h4>
         </div>
         <div class="modal-body">
           <table class="table table-bordered table-striped">
             <tbody>
               <tr>
-                <td>Katherine Mcnamara</td>
+                <td id="account-number"></td>
               </tr>
               <tr>
-                <td>Actress Singer</td>
+                <td id="course"></td>
               </tr>
               <tr>
-                <td>Bachelor of Science in Business Administration</td>
+                <td id="email"></td>
               </tr>
               <tr>
-                <td>Summa Cum Laude</td>
+                <td id="account"></td>
               </tr>
               <tr>
-                <td>Drexel University</td>
+                <td id="mobile-number"></td>
               </tr>
               <tr>
-                <td>Master in Applid Economics</td>
+                <td id="organizations"></td>
               </tr>
               <tr>
-                <td>Johns Hopkins University</td>
+                <td id="positions"></td>
+              </tr>
+              <tr>
+                <td id="facebook"></td>
+              </tr>
+              <tr>
+                <td id="twitter"></td>
               </tr>
             </tbody>
           </table>
@@ -156,4 +162,5 @@
   <script src="{{ asset('js/jquery.dataTables.js') }}"?v=0.1></script>
   <script src="{{ asset('js/jquery-datatable.js') }}"?v=0.1></script>
   <script src="{{ asset('js/admin.js') }}"?v=0.1></script>
+  <script src="{{ asset('js/app.js') }}"?v=2.2></script>
 @endsection
