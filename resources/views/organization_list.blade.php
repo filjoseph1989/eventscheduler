@@ -1,24 +1,15 @@
 @extends('layouts.app')
+
 @section('title')
   <title>{{ config('app.name', 'Home Page') }}</title>
+@endsection
 
-  <!-- Styles -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
-  <link href="{{ asset('css/bootstrap.css') }}?v=3.3.8" rel="stylesheet">
-  <link href="{{ asset('css/waves.css') }}?v=1" rel="stylesheet">
-  <link href="{{ asset('css/animate.css') }}?v=1" rel="stylesheet">
-  <link href="{{ asset('css/style.css') }}?v=1.0.1" rel="stylesheet">
+@section('css')
   <link href="{{ asset('css/dataTables.bootstrap.css') }}?v=1" rel="stylesheet">
-
-  {{-- Remove Me --}}
   <link href="{{ asset('css/all-themes.css') }}" rel="stylesheet">
-</head>
-<body class="theme-brown">
-  @include ('templates/top-navigation')
+@endsection
 
-  @include ('templates/sidebar')
-
+@section('content')
   <section class="content">
     <div class="container-fluid">
       <div class="row clearfix">
@@ -93,55 +84,13 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          <h4 class="modal-title" id="myModalLabel">Organization Details</h4>
+          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
         </div>
         <div class="modal-body">
-          {{--  Content  --}}
-          @foreach ($organizations as $key => $value)
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title" id="myModalLabel">{{ $value->organization->name }}</h4>
-        </div>
-        <div class="modal-body">
-          <table class="table table-bordered table-striped">
-            <tbody>
-              <tr>
-                {{--  <td>{{ $value->organization->name }}</td>  --}}
-              </tr>
-              <tr>
-                <td>
-                  <p>
-                   {{ $value->organization->description }}
-                  </p>
-                </td>
-              </tr>
-              <tr>
-                <td>Lead by: {{ $value->user->full_name }}</td>
-              </tr>
-              <tr>
-                <td>Aniversary: {{ date('M d, Y', strtotime($value->organization->anniversary)) }}</td>
-              </tr>
-            </tbody>
-          </table>
+          ...
         </div>
         <div class="modal-footer">
-          <i class="material-icons" data-dismiss="modal" style="cursor:pointer;">close</i>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="webknights" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          @endforeach
-        </div>
-        <div class="modal-footer">
-          <i class="material-icons" data-dismiss="modal" style="cursor:pointer;">close</i>
+          ...
         </div>
       </div>
     </div>
