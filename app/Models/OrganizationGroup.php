@@ -6,28 +6,47 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrganizationGroup extends Model
 {
-    /** 
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'user_id',
-        'organization_id',
-        'position_id',
-    ];
+  protected $fillable = [
+    'user_id',
+    'organization_id',
+    'position_id',
+  ];
 
-     public function organization()
-    {
-        return $this->belongsTo('App\Models\Organization');
-    }
-     public function position()
-    {
-        return $this->belongsTo('App\Models\Position');
-    }
+  /**
+   * Organization group contains ID that is belong to
+   * an organization make them
+   * a one to one relationship
+   *
+   * @return object
+   */
+  public function organization()
+  {
+    return $this->belongsTo('App\Models\Organization');
+  }
 
-     public function user()
-    {
-        return $this->belongsTo('App\Models\User');
-    }
+  /**
+   * Organization group contains ID that is belong
+   * to a position make it a one to one Relationship with Position
+   * one to many relationship between users and positions
+   * through organization group
+   *
+   * wow amaing right? haha
+   *
+   * @return object
+   */
+  public function position()
+  {
+    return $this->belongsTo('App\Models\Position');
+  }
+
+  /**
+   * Organzation group contains an ID that is
+   * belong to a user makes them a ono to one relationship
+   * 
+   * @return object
+   */
+  public function user()
+  {
+    return $this->belongsTo('App\Models\User');
+  }
 }
