@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Common\ValidationClass;
+use App\Common\ValidationTrait;
 
 # Models
 use App\Models\Event;
@@ -18,6 +18,8 @@ use App\Models\EventGroup;
  */
 class EventController extends Controller
 {
+    use ValidationTrait;
+
     private $list  = [
       'all',
       'official',
@@ -27,15 +29,12 @@ class EventController extends Controller
     ];
 
     private $theme = 'theme-red';
-    private $validation;
 
     /**
      * Build instance of a class
      */
     public function __construct()
     {
-      $this->validation = new ValidationClass();
-
       # Issue 12
       // if (! isset($login)) {
       //   Redirect(config('app.url')."/home", false);
@@ -180,7 +179,7 @@ class EventController extends Controller
      */
     private function customValidate(&$request)
     {
-      $this->validation->validate($this, $request);
+      $this->validateRequest($this, $request);
     }
 
     /**
