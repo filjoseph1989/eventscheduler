@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateUsersTable extends Migration
 {
     /**
-     * 
+     *
      *
      * Run the migrations.
      *
@@ -18,9 +18,9 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
           $table->increments('id');
           $table->integer('course_id')->unsigned()->index()->nullable();
+          $table->integer('user_type_id')->unsigned()->index();
           $table->string('full_name');
-          $table->string('account_number')->unique(); //student_number or employee number
-          $table->integer('user_type_id')->unsigned()->index(); 
+          $table->string('account_number')->unique();
           $table->string('email')->unique();
           $table->string('password');
           $table->string('facebook')->nullable()->unique();
