@@ -123,9 +123,32 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, RandomHelper $help)
     {
-        //
+      # Get the list of user together with their
+      # course, organization and position in an orgainization
+      $users = User::with([
+        'course',
+        'organizationGroup' => function($query) {
+          return $query->with(['position', 'organization'])->get();
+        }
+      ]);
+
+      if ($id == 'all') {
+        $users = $users->get();
+      }
+      if ($id == 'active') {
+        $users = $users->where('status', 'true')->get();
+      }
+      if ($id == 'inactive') {
+        $users = $users->where('status', 'false')->get();
+      }
+
+      return view('users_index')->with([
+        'loginClass' => 'theme-teal',
+        'users'      => $users,
+        'help'       => $help
+      ]);
     }
 
     /**
@@ -136,7 +159,6 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**

@@ -45,8 +45,8 @@ Phase 1:
             (this part, i think it better if we ask the student to join, instead of osa making a direct decision)
             (osa never know who the user is? but organization head does)
       ✔ Activate/Deactivate user - (usefull when the student graduated) @done(2017-10-03 04:24)
-      ☐ Display all not active users
-      ☐ Display all active users
+      ✔ Display all not active users @done(2017-10-03 04:37)
+      ✔ Display all active users @done(2017-10-03 04:37)
       ☐ Filteriing/Sorting
         ☐ By course
         ☐ By department
