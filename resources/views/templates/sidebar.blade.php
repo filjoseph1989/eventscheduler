@@ -41,7 +41,7 @@
           </a>
           <ul class="ml-menu">
             <li><a href="{{ route('User.index') }}">List of Users</a></li>
-            <li><a href="{{ route('User.create') }}">Registed New User</a></li>
+            <li><a href="{{ route('User.create') }}">Register New User</a></li>
           </ul>
         </li>
         <li>

@@ -53,7 +53,7 @@
               </ul>
             </div>
             <div class="body">
-              <form class="" id="add-user-form" action="" method="POST">
+              <form class="" id="add-user-form" action="{{ route('User.store') }}" method="POST">
                 {{ csrf_field() }}
                 <div class="row clearfix">
                   <div class="col-sm-8 col-sm-offset-2">
@@ -71,9 +71,9 @@
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group form-float form-group">
                       <div class="form-line">
-                        <input type="text" class="form-control" id="accoun_number" name="accoun_number" placeholder="Enter student account number" value="{{ old('accoun_number') }}" required>
-                        @if ($errors->has('accoun_number'))
-                          <span class="help-block"> <strong>{{ $errors->first('accoun_number') }}</strong> </span>
+                        <input type="text" class="form-control" id="account_number" name="account_number" placeholder="Enter student account number" value="{{ old('account_number') }}" required>
+                        @if ($errors->has('account_number'))
+                          <span class="help-block"> <strong>{{ $errors->first('account_number') }}</strong> </span>
                         @endif
                       </div>
                     </div>
@@ -99,6 +99,34 @@
                         @if ($errors->has('mobile_number'))
                           <span class="help-block"> <strong>{{ $errors->first('mobile_number') }}</strong> </span>
                         @endif
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row clearfix">
+                  <div class="col-sm-8 col-sm-offset-2">
+                    <div class="form-group form-float">
+                      <div class="form-line focused">
+                        <select class="form-control show-tick" id="course_id" name="course_id">
+                          <option value="{{ old('course_id') }}" id="course-option">-- Select Course --</option>
+                          @foreach ($courses as $key => $course)
+                            <option value="{{ $course->id }}">{{ $course->name }}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row clearfix">
+                  <div class="col-sm-8 col-sm-offset-2">
+                    <div class="form-group form-float">
+                      <div class="form-line focused">
+                        <select class="form-control show-tick" id="user_type_id" name="user_type_id">
+                          <option value="{{ old('user_type_id') }}" id="user-type-option">-- Select User Account --</option>
+                          @foreach ($accounts as $key => $account)
+                            <option value="{{ $account->id }}">{{ $account->name }}</option>
+                          @endforeach
+                        </select>
                       </div>
                     </div>
                   </div>
