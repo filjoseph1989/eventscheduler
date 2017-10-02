@@ -15,6 +15,14 @@
     <div class="container-fluid">
       <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          @if (session('status'))
+            <div class="alert alert-success" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" data-toggle="tooltip" data-placement="top" title="Dismiss alert">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              {{ session('status') }}
+            </div>
+          @endif
           <div class="card">
             <div class="header">
               <h2> System Members
@@ -42,6 +50,10 @@
                   <th>Position</th>
                   <th>Organization</th>
                   <th>Status</th>
+                  {{-- Appear if the loggedin account is OSA --}}
+                  <th>Action</th>
+                  {{-- Appear when the loggedin account is org head --}}
+                  {{-- <th>Membershi Status</th> --}}
                 </thead>
                 <tbody>
                   @if (isset($users))
@@ -74,6 +86,20 @@
                           @endif
                         </td>
                         <td><a href="#">{{ $user->status == 'true' ? 'Active' : 'Inactive' }}</a></td>
+                        <td>
+                          <a href="#" onclick="event.preventDefault(); document.getElementById('form-activate').submit();">Activate</a> |
+                          <a href="#" onclick="event.preventDefault(); document.getElementById('form-deactivate').submit();">Deactivate</a>
+                          <form id="form-activate" action="{{ route('User.update', $user->id) }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                            {{ method_field('PUT') }}
+                            <input type="hidden" name="status" value="true">
+                          </form>
+                          <form id="form-deactivate" action="{{ route('User.update', $user->id) }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                            {{ method_field('PUT') }}
+                            <input type="hidden" name="status" value="false">
+                          </form>
+                        </td>
                       </tr>
                     @endforeach
                   @endif

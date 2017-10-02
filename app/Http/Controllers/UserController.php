@@ -148,7 +148,12 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $user = User::find($id);
+      $user->status = $request->status;
+      if ($user->save()) {
+        return back()
+          ->with('status', 'Successfully change the status');
+      }
     }
 
     /**
