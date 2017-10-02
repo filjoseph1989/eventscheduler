@@ -12,6 +12,7 @@
 ☐ Issue 16: {inline} Validate if the user is loggedin before making update in the database
 ☐ Issue 17: {inline} Its better if you provide a link where a user can password for security purpose
 ☐ Issue 18: Set the user into active once the user login using the password generated
+☐ Issue 19: {inline} Improve the validation trait by adding this
 
 Archived:
 ✔ Issue 7: Dapat ma change ang content sa <title></title> @done(2017-09-28 19:56)

@@ -79,6 +79,13 @@ class UserController extends Controller
         'course_id'      => 'Required',
         'user_type_id'   => 'Required',
       ]);
+
+      $user = User::where('email', $request->email)->get();
+      if ($user->count() >= 1) {
+        return back()
+          ->withInput()
+          ->with('status_warning', 'Email already exist');
+      }
       /*
       1. Generate a randomw password
       2. store a password in email and password in a file for reference
