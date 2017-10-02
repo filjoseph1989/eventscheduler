@@ -49,7 +49,7 @@
                     <li><a href="javascript:void(0);">Action</a></li>
                     <li><a href="javascript:void(0);">Another action</a></li>
                     <li><a href="javascript:void(0);">Something else here</a></li>
-                  </ul> 
+                  </ul>
                 </li>
               </ul>
             </div>
@@ -200,25 +200,6 @@
 @endsection
 
 @section('modals')
-  <div id="webknights" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title" id="myModalLabel">Janica Liz De Guzman</h4>
-        </div>
-        <div class="modal-body">
-          <p>System Creator</p>
-          <p>janicalizdeguzman at gmail dot com</p>
-        </div>
-        <div class="modal-footer">
-          <i class="material-icons" data-dismiss="modal" style="cursor:pointer;">close</i>
-        </div>
-      </div>
-    </div>
-  </div>
 @endsection
 
 @section('js')
