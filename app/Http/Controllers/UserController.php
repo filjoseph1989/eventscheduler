@@ -50,7 +50,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+      return view('auth/register')->with([
+        'loginClass' => 'theme-teal',
+      ]);
     }
 
     /**

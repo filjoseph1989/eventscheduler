@@ -35,10 +35,14 @@
           </a>
         </li>
         <li>
-          <a href="{{ route('User.index') }}" class="menu-toggle">
+          <a href="javascript:void(0);" class="menu-toggle">
             <i class="material-icons">account_circle</i>
             <span>All System Users</span>
           </a>
+          <ul class="ml-menu">
+            <li><a href="{{ route('User.index') }}">List of Users</a></li>
+            <li><a href="{{ route('User.create') }}">Registed New User</a></li>
+          </ul>
         </li>
         <li>
           <a href="javascript:void(0);" class="menu-toggle">
