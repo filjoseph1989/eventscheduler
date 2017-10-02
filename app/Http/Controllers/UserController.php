@@ -70,15 +70,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-      /*
-      Store in a file
-      $bytes_written = File::put($file, $contents);
-      if ($bytes_written === false)
-      {
-          die("Error writing to file");
-      }
-       */
-
+      # Issue 19
+      $this->validate($request, [
+        'full_name'      => 'Required',
+        'account_number' => 'Required',
+        'email'          => 'Required',
+        'mobile_number'  => 'Required',
+        'course_id'      => 'Required',
+        'user_type_id'   => 'Required',
+      ]);
       /*
       1. Generate a randomw password
       2. store a password in email and password in a file for reference
