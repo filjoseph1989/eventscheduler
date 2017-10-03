@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Faker\Factory as Faker;
+use App\Helpers\RandomHelper;
 
 # Models
 use App\Models\User;
@@ -18,15 +18,15 @@ class OrganizationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(RandomHelper $helper)
     {
-        $organizations = OrganizationHeadGroup::with('organization')
-          ->with('user')
+        $organizations = OrganizationGroup::with(['organization', 'user'])
           ->get();
 
         return view('organization_list')->with([
           'organizations' => $organizations,
-          'loginClass'    => 'theme-teal'
+          'loginClass'    => 'theme-teal',
+          'helper'        => $helper,
         ]);
     }
 

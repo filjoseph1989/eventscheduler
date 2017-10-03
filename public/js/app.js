@@ -215,6 +215,30 @@
   });
 
   /**
+   * Provide information on org-profile modal
+   * about the click organization
+   * @return {void}
+   */
+  $(document).on('click', '.organization-list-name', function() {
+    var data = {
+      id: $(this).parents('tr').data('organization-id')
+    };
+
+    axios_post(route('modal.getOrganization'), data, function(data) {
+      $('#org-profile-title').html(data.name);
+      $('#org-profile-acronym').html('<strong>Acronym</strong>: <a href="#">'+data.acronym+'</a>');
+      $('#org-profile-description').html('<strong>Description</strong>: <a href="#">'+data.description+'</a>');
+      $('#org-profile-url').html('<strong>URL</strong>: <a href="'+data.url+'" target="_blank">'+data.url+'</a>');
+      $('#org-profile-aniversary').html('<strong>Aniversary</strong>: <a href="#">'+data.aniversary+'</a>');
+
+      // $('#org-profile-').html();
+      // $('#org-profile-').html();
+      // $('#org-profile-').html();
+      // $('#org-profile-').html();
+    });
+  });
+
+  /**
    * Make http request
    *
    * @param  {object}   data Any data to be pass
