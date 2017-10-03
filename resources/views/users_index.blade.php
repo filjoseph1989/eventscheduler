@@ -50,7 +50,7 @@
                   <th>Position</th>
                   <th>Organization</th>
                   <th>Status</th>
-                  {{-- Appear if the loggedin account is OSA --}}
+                  {{-- Appear if the loggedin account is an OSA --}}
                   <th>Action</th>
                   {{-- Appear when the loggedin account is org head --}}
                   {{-- <th>Membershi Status</th> --}}
@@ -88,7 +88,8 @@
                         <td><a href="#">{{ $user->status == 'true' ? 'Active' : 'Inactive' }}</a></td>
                         <td>
                           <a href="#" onclick="event.preventDefault(); document.getElementById('form-activate').submit();">Activate</a> |
-                          <a href="#" onclick="event.preventDefault(); document.getElementById('form-deactivate').submit();">Deactivate</a>
+                          <a href="#" onclick="event.preventDefault(); document.getElementById('form-deactivate').submit();">Deactivate</a> |
+                          <a href="#" class="user-edit" data-route="{{ route('User.edit', $user->id ) }}" data-toggle="modal" data-target="#modal-edit">Edit</a>
                           <form id="form-activate" action="{{ route('User.update', $user->id) }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
                             {{ method_field('PUT') }}
@@ -220,6 +221,75 @@
       </div>
     </div>
   </div>
+  <div id="modal-edit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          <form class="" id="modal-edit-user-form" action="" method="POST">
+            {{ csrf_field() }}
+            {{ method_field('PUT') }}
+            <input type="hidden" name="from_modal_user_edit" value="true">
+            <div class="row clearfix">
+              <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group form-float form-group">
+                  <div class="form-line">
+                    <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Enter student full name" value="{{ old('full_name') }}" required autofocus>
+                    @if ($errors->has('full_name'))
+                      <span class="help-block"> <strong>{{ $errors->first('full_name') }}</strong> </span>
+                    @endif
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group form-float form-group">
+                  <div class="form-line">
+                    <input type="text" class="form-control" id="account_number" name="account_number" placeholder="Enter student account number" value="{{ old('account_number') }}" required>
+                    @if ($errors->has('account_number'))
+                      <span class="help-block"> <strong>{{ $errors->first('account_number') }}</strong> </span>
+                    @endif
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group form-float">
+                  <div class="form-line focused" id="modal-edit-course"> </div>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group form-float">
+                  <div class="form-line focused" id="modal-edit-user-account"> </div>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary" name="button">
+                    <i class="material-icons">save</i> Save
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <i class="material-icons" data-dismiss="modal" style="cursor:pointer;">close</i>
+        </div>
+      </div>
+    </div>
+  </div>
   <div id="modal-position" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -251,5 +321,5 @@
   <script src="{{ asset('js/jquery.dataTables.js') }}"?v=0.1></script>
   <script src="{{ asset('js/jquery-datatable.js') }}"?v=0.1></script>
   <script src="{{ asset('js/admin.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/app.js') }}"?v=2.2></script>
+  <script src="{{ asset('js/app.js') }}"?v=2.3></script>
 @endsection

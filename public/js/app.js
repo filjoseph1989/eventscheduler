@@ -13,7 +13,7 @@
  * @author Fil <filjoseph22@gmail.com>
  * @author Liz <janicalizdeguzman@gmail.com>
  * @since 0.1
- * @version 2.2
+ * @version 2.3
  * @date 09-30-2017
  * @date 09-30-2017 - last updated
  */
@@ -76,6 +76,10 @@
     });
   });
 
+  /**
+   * Provide information on modal event notification
+   * @return {void}
+   */
   $(document).on('click', '#modal-event-notification', function() {
     swal({
       title: "Great!",
@@ -176,6 +180,39 @@
     });
   });
 
+  /**
+   * Provide information on modal-edit
+   * @return {void}
+   */
+  $(document).on('click', '.user-edit', function() {
+    var $url = $(this).data('route');
+
+    axios_get($url, function(data) {
+      var user_type =
+        '<select class="form-control show-tick" id="user_type_id" name="user_type_id">' +
+        '<option value="">-- Select User Account --</option>';
+      var course    =
+        '<select class="form-control show-tick" id="course_id" name="course_id"> ' +
+        '<option value="">-- Select Course --</option>';
+
+      data.course.map(function(key) {
+        course += '<option value="'+key.id+'">'+key.name+'</option>';
+      });
+      data.user_type.map(function(key) {
+        user_type += '<option value="'+key.id+'">'+key.name+'</option>';
+      });
+
+      course += '</select>';
+      user_type += '</select>';
+
+      $('#full_name').val(data.user.full_name);
+      $('#account_number').val(data.user.account_number);
+      $('#modal-edit-course').html(course);
+      $('#modal-edit-user-account').html(user_type);
+
+      $('#modal-edit-user-form').attr('action', '/User/'+data.user.id);
+    })
+  });
 
   /**
    * Make http request

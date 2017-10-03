@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
 use App\Helpers\RandomHelper;
 
 #Models
 use App\Models\User;
 use App\Models\Course;
-use App\Models\OrganizationGroup;
 use App\Models\UserType;
+use App\Models\OrganizationGroup;
 
 class UserController extends Controller
 {
@@ -159,6 +160,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+      return json_encode([
+        'user'      => User::find($id)->toArray(),
+        'course'    => Course::all()->toArray(),
+        'user_type' => UserType::all()->toArray(),
+      ]);
     }
 
     /**
@@ -171,7 +177,16 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
       $user = User::find($id);
-      $user->status = $request->status;
+
+      if (isset($request->from_modal_user_edit)) {
+        $user->full_name      = empty($request->full_name) ? $user->full_name : $request->full_name;
+        $user->account_number = empty($request->account_number) ? $user->account_number : $request->account_number;
+        $user->course_id      = empty($request->course_id) ? $user->course_id : $request->course_id;
+        $user->user_type_id   = empty($request->user_type_id) ? $user->user_type_id : $request->user_type_id;
+      } else {
+        $user->status = $request->status;
+      }
+
       if ($user->save()) {
         return back()
           ->with('status', 'Successfully change the status');
