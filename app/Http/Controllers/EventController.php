@@ -28,7 +28,7 @@ class EventController extends Controller
       'false' => 'Unapproved Events'
     ];
 
-    private $theme = 'theme-red';
+    private $theme = 'theme-teal';
 
     /**
      * Build instance of a class

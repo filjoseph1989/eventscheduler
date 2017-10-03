@@ -25,7 +25,7 @@ class HomeController extends Controller
     {
         return view('home')
           ->with([
-            'loginClass' => 'theme-brown'
+            'loginClass' => 'theme-teal'
           ]);
     }
 }
