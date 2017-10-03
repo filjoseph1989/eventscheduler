@@ -1,32 +1,15 @@
-<!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-  <!-- CSRF Token -->
-  <meta name="csrf-token" content="{{ csrf_token() }}">
+@section('title')
+  <title>{{ config('app.name', 'Approve Events') }}</title>
+@endsection
 
-  <title>{{ config('app.name', 'Home Page') }}</title>
-
-  <!-- Styles -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
-  <link href="{{ asset('css/bootstrap.css') }}?v=3.3.8" rel="stylesheet">
-  <link href="{{ asset('css/waves.css') }}?v=1" rel="stylesheet">
-  <link href="{{ asset('css/animate.css') }}?v=1" rel="stylesheet">
-  <link href="{{ asset('css/style.css') }}?v=1.0.1" rel="stylesheet">
+@section('css')
   <link href="{{ asset('css/dataTables.bootstrap.css') }}?v=1" rel="stylesheet">
-
-  {{-- Remove Me --}}
   <link href="{{ asset('css/all-themes.css') }}" rel="stylesheet">
-</head>
-<body class="theme-brown">
-  @include ('templates/top-navigation')
+@endsection
 
-  @include ('templates/sidebar')
-
+@section('content')
   <section class="content">
     <div class="container-fluid">
       <div class="row clearfix">
@@ -95,6 +78,9 @@
       </div>
     </div>
   </section>
+@endsection
+
+@section('modals')
   <div id="org-profile" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -136,33 +122,11 @@
       </div>
     </div>
   </div>
-  <div id="webknights" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title" id="myModalLabel">Janica Liz De Guzman</h4>
-        </div>
-        <div class="modal-body">
-          <p>System Creator</p>
-          <p>janicalizdeguzman at gmail dot com</p>
-        </div>
-        <div class="modal-footer">
-          <i class="material-icons" data-dismiss="modal" style="cursor:pointer;">close</i>
-        </div>
-      </div>
-    </div>
-  </div>
+@endsection
 
-  <script src="{{ asset('js/jquery.min.js') }}?v=3.2.2"></script>
-  <script src="{{ asset('js/bootstrap.min.js') }}?v=3.3.8"></script>
-  <script src="{{ asset('js/waves.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/jquery.slimscroll.js') }}?v=0.1"></script>
+@section('js')
   <script src="{{ asset('js/admin.js') }}"?v=0.1></script>
   <script src="{{ asset('js/bootstrap-select.js') }}"?v=0.1></script>
   <script src="{{ asset('js/jquery.dataTables.js') }}"?v=0.1></script>
   <script src="{{ asset('js/jquery-datatable.js') }}"?v=0.1></script>
-</body>
-</html>
+@endsection
