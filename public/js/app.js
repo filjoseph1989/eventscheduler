@@ -13,9 +13,9 @@
  * @author Fil <filjoseph22@gmail.com>
  * @author Liz <janicalizdeguzman@gmail.com>
  * @since 0.1
- * @version 2.3
+ * @version 2.5
  * @date 09-30-2017
- * @date 09-30-2017 - last updated
+ * @date 10-02-2017 - last updated
  */
 (function() {
   /**
@@ -302,6 +302,7 @@
    */
   var axios_post = function(url, data, callback)
   {
+    axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     axios.post(url, data)
       .then(function (response) {
         callback(response.data);

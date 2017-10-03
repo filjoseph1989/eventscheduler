@@ -37,16 +37,10 @@ class OrganizationController extends Controller
      */
     public function create()
     {
-        /**
-         *  TO CONSIDER
-         *parent::loginCheck();
-         *$this->osa_personnel->isOsaPersonnel();
-         *return view('pages/users/osa-personnel/organization/add')->with([
-         *   'login_type' => $this->login_type
-         *]);
-         */
+
         return view('organization_add')->with([
-            'loginClass' => 'theme-teal'
+          'loginClass' => 'theme-teal',
+          'leaders'    => User::where('user_type_id', 1)->get()
         ]);
     }
 
@@ -58,47 +52,38 @@ class OrganizationController extends Controller
      */
     public function store(Request $request)
     {
-        # Get form data
-        # validate form data
-        # add to database
+        # Validate
         $this->validate($request, [
-          'name'           => 'Required',
-          'acronym'        => 'Required',
-          'account_number' => 'Required',
-          'full_name'      => 'Required',
-          'email'          => 'Required',
+          'name'        => 'Required',
+          'acronym'     => 'Required',
+          'description' => 'Required',
+          'user_id'     => 'Required',
+          'url'         => 'nullable|url',
         ]);
 
-        $data_organization = [
-          'name'    => $request->name,
-          'acronym' => $request->acronym,
-        ];
+        # Check if already in the record
+        if (self::isAlreadyExists($request)) {
+          return back()
+            ->withInput()
+            ->with('status_warning', 'Sorry the organization or acronym or a leader already in the record');
+        }
 
-        $faker = Faker::create();
+        $organization = Organization::create($request->all());
 
-        $data_org_head = [
-          'account_number' => $request->account_number,
-          'full_name'      => $request->full_name,
-          'email'          => $request->email,
-          'user_type_id'   => 1,
-          'password'       => $faker->password,
-          'status'         => true,
-        ];
+        if ($organization->wasRecentlyCreated === false) {
+          return back()
+            ->with('status_warning', "Sorry, we're unable to save the organization");
+        }
 
-        $organization = Organization::create($data_organization);
-        $org_head = User::create($data_org_head);
-        if ($organization->wasRecentlyCreated && $org_head->wasRecentlyCreated ) {
-            ##create checker later to trap whenever a user is already an org head of an organization
+        $group = OrganizationGroup::create([
+          'user_id'         => $request->user_id,
+          'organization_id' => $organization->id,
+          'position_id'     => 3,
+        ]);
 
-            $data_org_grp = [
-                'user_id'         => $org_head->id,
-                'organization_id' => $organization->id,
-                'position_id'     => 7,
-            ];
-            $org_h_g = OrganizationHeadGroup::create($data_org_grp);
-            $org_g = OrganizationGroup::create($data_org_grp);
-            dd('true');
-        //create the alert later
+        if ($group->wasRecentlyCreated) {
+          return back()
+            ->with('status', 'Great! we successfully added the organization');
         }
     }
 
@@ -145,5 +130,27 @@ class OrganizationController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Check if the given organization exists
+     *
+     * @param  Request  $request
+     * @return boolean
+     */
+    private function isAlreadyExists($request)
+    {
+      $organization = Organization::where('name', $request->name)
+        ->orWhere('acronym', $request->acronym)
+        ->get();
+
+      $group = OrganizationGroup::where('user_id', $request->user_id)
+        ->get();
+
+      if ($organization->count() > 0 OR $group->count() > 0) {
+        return true;
+      }
+
+      return false;
     }
 }

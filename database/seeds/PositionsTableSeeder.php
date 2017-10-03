@@ -13,88 +13,88 @@ class PositionsTableSeeder extends Seeder
   {
     DB::table('positions')->insert([
       array(
-        'name' => 'Not Applicable',
+        'name'        => 'Not Applicable',
         'description' => 'No description yet',
-        'created_at' => date('Y-m-d H:i:s'),
-        'updated_at' => date('Y-m-d H:i:s')
+        'created_at'  => date('Y-m-d H:i:s'),
+        'updated_at'  => date('Y-m-d H:i:s')
       ),
       array(
-        'name' => 'OSA Staff',
+        'name'        => 'OSA Staff',
         'description' => 'No description yet',
-        'created_at' => date('Y-m-d H:i:s'),
-        'updated_at' => date('Y-m-d H:i:s')
+        'created_at'  => date('Y-m-d H:i:s'),
+        'updated_at'  => date('Y-m-d H:i:s')
       ),
       array(
-        'name' => 'OSA Head',
+        'name'        => 'Organization Head',
         'description' => 'No description yet',
-        'created_at' => date('Y-m-d H:i:s'),
-        'updated_at' => date('Y-m-d H:i:s')
+        'created_at'  => date('Y-m-d H:i:s'),
+        'updated_at'  => date('Y-m-d H:i:s')
       ),
       array(
-        'name' => 'Instructor',
+        'name'        => 'Instructor',
         'description' => 'No description yet',
-        'created_at' => date('Y-m-d H:i:s'),
-        'updated_at' => date('Y-m-d H:i:s')
+        'created_at'  => date('Y-m-d H:i:s'),
+        'updated_at'  => date('Y-m-d H:i:s')
       ),
       array(
-        'name' => 'Chairperson',
+        'name'        => 'Chairperson',
         'description' => 'No description yet',
-        'created_at' => date('Y-m-d H:i:s'),
-        'updated_at' => date('Y-m-d H:i:s')
+        'created_at'  => date('Y-m-d H:i:s'),
+        'updated_at'  => date('Y-m-d H:i:s')
       ),
       array(
-        'name' => 'Vice-Chairperson',
+        'name'        => 'Vice-Chairperson',
         'description' => 'No description yet',
-        'created_at' => date('Y-m-d H:i:s'),
-        'updated_at' => date('Y-m-d H:i:s')
+        'created_at'  => date('Y-m-d H:i:s'),
+        'updated_at'  => date('Y-m-d H:i:s')
       ),
       array(
-        'name' => 'President',
+        'name'        => 'President',
         'description' => 'No description yet',
-        'created_at' => date('Y-m-d H:i:s'),
-        'updated_at' => date('Y-m-d H:i:s')
+        'created_at'  => date('Y-m-d H:i:s'),
+        'updated_at'  => date('Y-m-d H:i:s')
       ),
       array(
-        'name' => 'Vice-President',
+        'name'        => 'Vice-President',
         'description' => 'No description yet',
-        'created_at' => date('Y-m-d H:i:s'),
-        'updated_at' => date('Y-m-d H:i:s')
+        'created_at'  => date('Y-m-d H:i:s'),
+        'updated_at'  => date('Y-m-d H:i:s')
       ),
       array(
-        'name' => 'Secretary',
+        'name'        => 'Secretary',
         'description' => 'No description yet',
-        'created_at' => date('Y-m-d H:i:s'),
-        'updated_at' => date('Y-m-d H:i:s')
+        'created_at'  => date('Y-m-d H:i:s'),
+        'updated_at'  => date('Y-m-d H:i:s')
       ),
       array(
-        'name' => 'Treasurer',
+        'name'        => 'Treasurer',
         'description' => 'No description yet',
-        'created_at' => date('Y-m-d H:i:s'),
-        'updated_at' => date('Y-m-d H:i:s')
+        'created_at'  => date('Y-m-d H:i:s'),
+        'updated_at'  => date('Y-m-d H:i:s')
       ),
       array(
-        'name' => 'Public Relations Officer',
+        'name'        => 'Public Relations Officer',
         'description' => 'No description yet',
-        'created_at' => date('Y-m-d H:i:s'),
-        'updated_at' => date('Y-m-d H:i:s')
+        'created_at'  => date('Y-m-d H:i:s'),
+        'updated_at'  => date('Y-m-d H:i:s')
       ),
       array(
-        'name' => '1st Year Representattive',
+        'name'        => '1st Year Representattive',
         'description' => 'No description yet',
-        'created_at' => date('Y-m-d H:i:s'),
-        'updated_at' => date('Y-m-d H:i:s')
+        'created_at'  => date('Y-m-d H:i:s'),
+        'updated_at'  => date('Y-m-d H:i:s')
       ),
       array(
-        'name' => '2nd Year Representattive',
+        'name'        => '2nd Year Representattive',
         'description' => 'No description yet',
-        'created_at' => date('Y-m-d H:i:s'),
-        'updated_at' => date('Y-m-d H:i:s')
+        'created_at'  => date('Y-m-d H:i:s'),
+        'updated_at'  => date('Y-m-d H:i:s')
       ),
       array(
-        'name' => '3rd Year Representattive',
+        'name'        => '3rd Year Representattive',
         'description' => 'No description yet',
-        'created_at' => date('Y-m-d H:i:s'),
-        'updated_at' => date('Y-m-d H:i:s')
+        'created_at'  => date('Y-m-d H:i:s'),
+        'updated_at'  => date('Y-m-d H:i:s')
       ),
     ]);
   }
