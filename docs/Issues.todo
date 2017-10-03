@@ -1,6 +1,5 @@
 ☐ Issue 3: Try to create shortcut key access to buttons in the system
 ☐ Issue 4: {inline} Dapat a ang member ang mag set og when siya e-remind dapat ni system
-☐ Issue 5: Dapat ang color consistent
 ☐ Issue 8: kadali ang kaning 'login-page' ba, balik-balik, pangita og lain way pag pasa ani niya
 ☐ Issue 9: Dapat limit lang ang columns na kuhaon sa events in OSA account, para dili bug-at
 ☐ Issue 10: {events-list0.blade.php} Kani nga file kay gi reserved nako ni para sa member, naa man gud option nga attend|decline
@@ -18,5 +17,6 @@
 Archived:
 ✔ Issue 7: Dapat ma change ang content sa <title></title> @done(2017-09-28 19:56)
 ✔ Issue 6: Dapat sa organization table, during final test or release, wala dapat content ni sya @done(2017-09-29 22:54)
+✔ Issue 5: Dapat ang color consistent @done(2017-10-03 22:43)
 ✔ Issue 2: Remove the login.blade.php, its not being used anymore @done(2017-09-28 19:57)
 ✔ Issue 1: Remove the welcome.blade.php, its not being used anymore @done(2017-09-28 19:57)
