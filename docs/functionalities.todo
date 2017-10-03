@@ -55,10 +55,12 @@ Phase 1:
       ☐ Archived - (To archived those events nahumana) (Must be a systems job)
 
     Organization:
-      ✔ Add new organization
-      ✔ Display all registered University organizations
-        ✔ view organization profile (Modal)
-          ☐ view organization events - (upcoming, archived, canceled, approved)
+      ✔ Add new organization @done(2017-10-03 21:48)
+      ✔ Display all registered University organizations @done(2017-10-03 21:57)
+        ✔ view organization profile (Modal) @done(2017-10-03 22:16)
+          ☐ view official events
+          ☐ view private events
+        ☐ view organization events - (upcoming, archived, canceled, approved)
         ☐ Set active/inactive
           (Usefull when the organization is not functional already on school or no members already)
           (Not all registered organization are actively operational in school)
