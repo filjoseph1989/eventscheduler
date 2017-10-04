@@ -109,7 +109,7 @@ Phase 1:
         ☐ view organization events - (upcoming, archived, canceled, approved)
 
     Events:
-      ☐ Create new event
+      ✔ Create new event @done(2017-10-04 15:23)
       ☐ Display all official events approved by the OSA
         ✔ Update additional messages @done(2017-10-01 13:13)
           ☐ This functionality should be sepate from OSA, OSA shouldn't have this, and must be hidden from them
