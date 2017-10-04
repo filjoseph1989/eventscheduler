@@ -12,7 +12,7 @@ Phase 1:
     ✔ Layout.blade.php @done (9/29/2017, 11:23:04 AM)
     ✔ Login @done (9/29/2017, 11:23:05 AM)
     ✔ Home @done (9/29/2017, 11:23:06 AM)
-    ☐ Other Pages
+    ✔ Other Pages @done(2017-10-04 08:13)
 
   1. Login functionalities:
     ☐ Login using student_number and password

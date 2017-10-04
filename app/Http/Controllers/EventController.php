@@ -74,7 +74,7 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-      self::customValidate($request);
+      $this->validateRequest($this, $request);
 
       $event = Event::create(
         [
@@ -179,22 +179,6 @@ class EventController extends Controller
           ->where('event_id', '=', $event->id)
           ->get();
       }
-    }
-
-    /**
-     * Validate the given entries.
-     *
-     * As you notice I'm just referencing the
-     * request to original variable
-     *
-     * Learn more about pass by Reference
-     *
-     * @param Request $request
-     * @return void
-     */
-    private function customValidate(&$request)
-    {
-      $this->validateRequest($this, $request);
     }
 
     /**
