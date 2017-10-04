@@ -40,7 +40,7 @@
                   </ul>
                 </li>
               </ul>
-            </div>
+            </div> 
             <div class="body">
               @php extract($help::dataTableClass($users)) @endphp
               <table class="table table-bordered table-striped table-hover {{ $class }}">
@@ -52,7 +52,7 @@
                   <th>Status</th>
                   {{-- Appear if the loggedin account is an OSA --}}
                   <th>Action</th>
-                  {{-- Appear when the loggedin account is org head --}}
+                  {{-- Appear when the loggedin account is org hevad --}}
                   {{-- <th>Membershi Status</th> --}}
                 </thead>
                 <tbody>
