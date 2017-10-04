@@ -58,78 +58,47 @@ class OrganizationController extends Controller
      */
     public function store(Request $request)
     {
-         # Get form data
+        # Get form data
         # validate form data
         # add to database
         $this->validate($request, [
-            'name'           => 'Required',
-            'acronym'        => 'Required',
-            'account_number' => 'Required',
-            'full_name'      => 'Required',
-            'email'          => 'Required',
+          'name'           => 'Required',
+          'acronym'        => 'Required',
+          'account_number' => 'Required',
+          'full_name'      => 'Required',
+          'email'          => 'Required',
         ]);
 
         $data_organization = [
-            'name'           => $request->name,
-            'acronym'        => $request->acronym,
+          'name'    => $request->name,
+          'acronym' => $request->acronym,
         ];
-        
-          // 1. Generate a randomw password
-          // 2. store a password in email and password in a file for reference
-          //     remove later
-          // 
-          $password = str_random(15);
-          $contents = "{$request->email} {$password}";
 
-          # Store password in a file
-          # remove me later, because this password is to be email
-          # Issue 17
-
-          $file     = 'user.txt';
-          if(!(file_exists($file))){
-            file_put_contents($file, $contents);
-          } else {
-            $current  = file_get_contents($file);
-            $current .= "$contents\n";
-            file_put_contents($file, $current);
-          }
-
-          # Validate sah
-
-          # save sa database
-          // $data = $request->all();
-          // $data['password'] = bcrypt($password);
-
-          // $user = User::create( $data );
-
-          // if ($user->wasRecentlyCreated) {
-         
-          // }
-
+        $faker = Faker::create();
 
         $data_org_head = [
-            'account_number' => $request->account_number,
-            'full_name'      => $request->full_name,
-            'email'          => $request->email,
-            'user_type_id'   => 1,
-            'password'       => bcrypt($password),
+          'account_number' => $request->account_number,
+          'full_name'      => $request->full_name,
+          'email'          => $request->email,
+          'user_type_id'   => 1,
+          'password'       => $faker->password,
+          'status'         => true,
         ];
-        
+
         $organization = Organization::create($data_organization);
         $org_head = User::create($data_org_head);
         if ($organization->wasRecentlyCreated && $org_head->wasRecentlyCreated ) {
+            ##create checker later to trap whenever a user is already an org head of an organization
+
             $data_org_grp = [
                 'user_id'         => $org_head->id,
                 'organization_id' => $organization->id,
                 'position_id'     => 7,
             ];
-            // $org_h_g = OrganizationHeadGroup::create($data_org_grp);
+            $org_h_g = OrganizationHeadGroup::create($data_org_grp);
             $org_g = OrganizationGroup::create($data_org_grp);
-              if ($org_g->wasRecentlyCreated) {
-                return back()
-                ->withInput()
-                ->with('status', 'Successfully added organization and sent email for password to the organization head ');
-              }
+            dd('true');
+        //create the alert later
         }
     }
 

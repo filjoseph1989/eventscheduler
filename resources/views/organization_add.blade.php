@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-  <title>{{ config('app.name', 'Add New Organization') }}</title>
+  <title>{{ config('app.name', 'Home Page') }}</title>
 @endsection
 
 @section('css')
@@ -13,7 +13,7 @@
     <div class="container-fluid">
       <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          @if (session('status'))
+         @if (session('status'))
             <div class="alert alert-success" role="alert">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close" data-toggle="tooltip" data-placement="top" title="Dismiss alert">
                 <span aria-hidden="true">&times;</span>
@@ -31,7 +31,8 @@
           @endif
           <div class="card">
             <div class="header">
-              <h2> Add New Organization
+              <h2>
+                Add New Organization
                 <small>This form used to register new organization in the system</small>
               </h2>
               <ul class="header-dropdown m-r--5">
@@ -41,6 +42,8 @@
                   </a>
                   <ul class="dropdown-menu pull-right">
                     <li><a href="javascript:void(0);">Action</a></li>
+                    <li><a href="javascript:void(0);">Another action</a></li>
+                    <li><a href="javascript:void(0);">Something else here</a></li>
                   </ul>
                 </li>
               </ul>
@@ -60,7 +63,7 @@
                     </div>
                     <div class="form-group">
                       <div class="form-line">
-                        <input type="text" class="form-control" id="acronym" name="acronym" placeholder="Acronym" value="{{ old('acronym') }}" required>
+                        <input type="text" class="form-control" id="acronym" name="acronym" placeholder="Acronym" required>
                         @if ($errors->has('acronym'))
                           <span class="help-block"> <strong>{{ $errors->first('acronym') }}</strong> </span>
                         @endif
@@ -68,30 +71,25 @@
                     </div>
                     <div class="form-group">
                       <div class="form-line">
-                        <textarea rows="2" class="form-control no-resize" id="description" name="description" placeholder="Description for organization">{{ old('description') }}</textarea>
-                        @if ($errors->has('description'))
-                          <span class="help-block"> <strong>{{ $errors->first('description') }}</strong> </span>
+                        <input type="text" class="form-control" id="student_number" name="account_number" placeholder="Organization Leader Student number" required>
+                        @if ($errors->has('account_number'))
+                          <span class="help-block"> <strong>{{ $errors->first('account_number') }}</strong> </span>
                         @endif
                       </div>
                     </div>
                     <div class="form-group">
                       <div class="form-line">
-                        <input type="text" class="form-control" id="url" name="url" placeholder="Link to the organization (e.g. http://organization.com)">
-                        @if ($errors->has('url'))
-                          <span class="help-block"> <strong>{{ $errors->first('url') }}</strong> </span>
-                        @endif
+                        <input type="text" class="form-control" id="student_name" name="full_name" placeholder="Organization Leader Name" required>
+                         @if ($errors->has('full_name'))
+                          <span class="help-block"> <strong>{{ $errors->first('full_name') }}</strong> </span>
+                         @endif
                       </div>
                     </div>
                     <div class="form-group">
                       <div class="form-line">
-                        <select class="form-control show-tick" id="user_id" name="user_id">
-                          <option value="0">-- Chose Leader --</option>
-                          @foreach ($leaders as $key => $leader)
-                            <option value="{{ $leader->id }}">{{ $leader->full_name }}</option>
-                          @endforeach
-                        </select>
-                        @if ($errors->has('full_name'))
-                        <span class="help-block"> <strong>{{ $errors->first('full_name') }}</strong> </span>
+                        <input type="text" class="form-control" id="student_email" name="email" placeholder="Organization Leader Email" required>
+                         @if ($errors->has('email'))
+                          <span class="help-block"> <strong>{{ $errors->first('email') }}</strong> </span>
                         @endif
                       </div>
                     </div>
@@ -115,6 +113,5 @@
 @endsection
 
 @section('js')
-  <script src="{{ asset('js/admin.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/app.js') }}?v=2.5"></script>
+  <script src="{{ asset('js/admin.js') }}"?v=0.1></script>
 @endsection
