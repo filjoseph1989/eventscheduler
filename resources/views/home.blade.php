@@ -34,11 +34,19 @@
             </div>
             <div class="body">
               <div class="list-group">
-                <a href="javascript:void(0);" class="list-group-item">
-                  <span class="badge bg-pink">14 For Approval</span> Official Events
+                <a href="{{ route('Event.show', 1) }}" class="list-group-item"> 
+                  <span class="badge bg-pink">14 For Approval</span> Official Events 
+                  {{--  sa side-bar na lang ang create events, dri kay mag check na lang jud sa list of events tapos approve..
+                   kulang pa ata ang list of event og is_approve status
+                   tapos kailangan pud makita iyang type of official event, kung university or organizations
+                   sa sulod na lang sa link sa event tung status na field --}}
                 </a>
-                <a href="javascript:void(0);" class="list-group-item">
+                <a href="{{ route('Event.show', 2) }}" class="list-group-item">
                   <span class="badge bg-cyan">99 Upcoming</span> Personal Events
+                  {{--  sa side-bar na lang ang create events, dri kay mag check na lang jud sa list of events tapos approve..
+                   kulang pa ata ang list of event og is_approve status 
+                   tapos kailangan pud makita iyang type of local event, kung within org or personal
+                   sa sulod na lang sa link sa event tung status na field --}}
                 </a>
               </div>
             </div>
