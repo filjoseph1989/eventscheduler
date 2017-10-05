@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 
 # Models
 use App\Models\User;
+use App\Models\Event;
 use App\Models\Course;
 use App\Models\Position;
 use App\Models\Organization;
+use App\Models\OrganizationGroup;
 
 /**
  * Handle all the request related to a modal
@@ -90,11 +92,11 @@ class ModalController extends Controller
     # get organization that create events
     # get the member under the given organization
 
-    $event = Event::find($data->id);
-    $organization = Organization::find($event[0]->id);
+    $event        = Event::find($data->id);
+    $organization = Organization::find($event->id);
 
-    return OrganzationGroup::with('user')
-      ->where('organization_id', $organization[0]->id)
+    return OrganizationGroup::with('user')
+      ->where('organization_id', $organization->id)
       ->get()
       ->toJson();
   }

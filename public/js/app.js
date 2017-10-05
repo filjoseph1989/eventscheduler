@@ -238,14 +238,29 @@
     });
   });
 
-  $(document).on('click', '.event-title', function() {
+  /**
+   * Provide user list on the modal
+   * @return {void}
+   */
+  $(document).on('click', '.event-attendance', function() {
     var id = $(this).parents('tr').data('event');
     var data = {
       id: id
     }
 
-    axios_post(route('modal.getAttendace'), data, function(data) {
-      console.log(data);
+    axios_post(route('modal.getAttendance'), data, function(data) {
+      var html = "";
+      data.map(function(data) {
+        html +=
+        '<tr>' +
+          '<td><a href="#">'+ data.user.full_name +'</a></td>' +
+          '<td>' +
+            '<button type="button" class="btn btn-primary bg-teal" name="button">Attend</button>' +
+          '</td>' +
+        '</tr>';
+      });
+
+      $('#event-attendees').html(html);
     });
   });
 

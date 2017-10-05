@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Helpers\RandomHelper;
 
 # Models
 use App\Models\Event;
@@ -55,34 +56,32 @@ class AttendanceController extends Controller
      * @param    $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, RandomHelper $helper)
     {
-        /**
-         * upon cliking the type of event (whether official, expected, confirmed, or declined),
-         * it will direct to a link for what type of event(LOCAL: within or personal, or WITHIN: university or organizations),
-         * then by clicking, it will direct the user to the particular list of events he/she is looking for.
-         */
-            $events = self::getEvents($id);
-            // dd($events);
-            self::getOrganization($events);
+      /**
+       * upon cliking the type of event (whether official, expected, confirmed, or declined),
+       * it will direct to a link for what type of event(LOCAL: within or personal, or WITHIN: university or organizations),
+       * then by clicking, it will direct the user to the particular list of events he/she is looking for.
+       */
+      $events = self::getEvents($id);
 
-            $official_att  = self::getOfficialAttendance($events);
-            $expected_att  = self::getExpectedAttendance($events);
-            $declined_att  = self::getDeclinedAttendance($events);
-            $confirmed_att = self::getConfirmedAttendance($events);
+      self::getOrganization($events);
 
-            return view('attendance')->with([
-                'loginClass'   => 'theme-teal',
-                'events'       => $events,
-                'eventType'    => $id,
-                'official_att' => $official_att,
-                'expected_att' => $expected_att,
-                'declined_att' => $declined_att,
-            ]);
+      $official_att  = self::getOfficialAttendance($events);
+      $expected_att  = self::getExpectedAttendance($events);
+      $declined_att  = self::getDeclinedAttendance($events);
+      $confirmed_att = self::getConfirmedAttendance($events);
 
-        // return view("attendance")->with([
-        //     'title'      => $this->list[$id],
-        //     'loginClass' => 'theme-teal'
+      return view('attendance')->with([
+        'loginClass'   => 'theme-teal',
+        'events'       => $events,
+        'eventType'    => $id,
+        'official_att' => $official_att,
+        'expected_att' => $expected_att,
+        'declined_att' => $declined_att,
+        'helper'       => $helper,
+      ]);
+
     }
 
     /**
