@@ -1,7 +1,7 @@
 <?php
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-
+ 
 class EventTypesTableSeeder extends Seeder
 {
     /**

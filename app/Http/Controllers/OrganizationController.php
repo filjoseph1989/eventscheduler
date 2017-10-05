@@ -94,19 +94,6 @@ class OrganizationController extends Controller
             file_put_contents($file, $current);
           }
 
-          # Validate sah
-
-          # save sa database
-          // $data = $request->all();
-          // $data['password'] = bcrypt($password);
-
-          // $user = User::create( $data );
-
-          // if ($user->wasRecentlyCreated) {
-         
-          // }
-
-
         $data_org_head = [
             'account_number' => $request->account_number,
             'full_name'      => $request->full_name,
@@ -123,7 +110,6 @@ class OrganizationController extends Controller
                 'organization_id' => $organization->id,
                 'position_id'     => 7,
             ];
-            // $org_h_g = OrganizationHeadGroup::create($data_org_grp);
             $org_g = OrganizationGroup::create($data_org_grp);
               if ($org_g->wasRecentlyCreated) {
                 return back()

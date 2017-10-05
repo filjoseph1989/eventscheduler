@@ -18,6 +18,12 @@ class OrganizationsTableSeeder extends Seeder
             'created_at'  => date('Y-m-d H:i:s'),
             'updated_at'  => date('Y-m-d H:i:s')
         ),
+        array(
+            'name'        => 'Temp My Organization',
+            'description' => 'No description yet',
+            'created_at'  => date('Y-m-d H:i:s'),
+            'updated_at'  => date('Y-m-d H:i:s')
+        ),
         ]);
     }
 }

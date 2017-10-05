@@ -12,14 +12,14 @@
 
 @section('content')
   <section class="content">
-    <div class="container-fluid">
+    <div class="container-fluid"> 
       <div class="row clearfix">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
           <div class="card">
             <div class="header">
               <h2>
                 {{ ucwords($title) }} Events
-                <small>Display organizations in the system</small>
+                <small>Display events in the system</small>
               </h2>
               <ul class="header-dropdown m-r--5">
                 <li class="dropdown">

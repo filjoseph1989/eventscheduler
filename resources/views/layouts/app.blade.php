@@ -47,7 +47,7 @@
     @else
       @include ('templates/top-navigation')
 
-      @include ('templates/sidebar')
+      @include ('templates/sidebar') 
 
       @yield('content')
 

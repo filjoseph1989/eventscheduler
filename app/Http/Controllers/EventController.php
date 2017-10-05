@@ -20,7 +20,7 @@ class EventController extends Controller
 {
     use ValidationTrait;
 
-    private $list  = [
+    private $list  = [ 
       'all',
       'official',
       'local',
@@ -107,7 +107,7 @@ class EventController extends Controller
     {
       $events = self::getEvents($id);
 
-      self::getOrganization($events);
+      self::getOrganization($events); 
 
       return view('events-list')->with([
           'loginClass' => 'theme-teal',
@@ -165,7 +165,7 @@ class EventController extends Controller
     {
         //
     }
-
+ 
     /**
      * Modefy the events
      *
@@ -174,6 +174,8 @@ class EventController extends Controller
      */
     private function getOrganization(&$events)
     {
+      //need to change this because university events doesn't need eventroups
+      //use organization_id in events 
       foreach ($events as $key => $event) {
         $events[$key]['organization'] = EventGroup::with('organization')
           ->where('event_id', '=', $event->id)
