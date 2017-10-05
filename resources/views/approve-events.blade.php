@@ -38,10 +38,12 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                     <thead>
-                      <th><a href="#">Organization Name</a></th>
-                      <th>Abbrivation</th>
-                      <th>Leader</th>
-                      <th>Status</th>
+                      <tr>
+                        <th><a href="#">Organization Name</a></th>
+                        <th>Abbrivation</th>
+                        <th>Leader</th>
+                        <th>Status</th>
+                      </tr>
                     </thead>
                     <tbody>
                       <tr>
