@@ -30,7 +30,6 @@
                     @if ($eventType == 0)
                       <li><a href = "{{ route('Attendances.show', 'university') }}">University Events</a></li>
                       <li><a href = "{{ route('Attendances.show', 'organizations') }}">Organizations Events</a></li>
-                      <li><a href = "{{ route('Attendances.show', 'within') }}">My Orgnization Events</a></li>
                     @endif
                   </ul>
                 </li>
@@ -467,4 +466,8 @@
   <script src="{{ asset('js/bootstrap-select.js') }}"?v=0.1></script>
   <script src="{{ asset('js/jquery.dataTables.js') }}"?v=0.1></script>
   <script src="{{ asset('js/jquery-datatable.js') }}"?v=0.1></script>
+  <script src="{{ asset('js/bootstrap-select.js') }}"?v=0.1></script>
+  <script src="{{ asset('js/sweetalert.min.js') }}"?v=0.1></script>
+  <script src="{{ asset('js/tooltips-popovers.js') }}"?v=0.1></script>
+  <script src="{{ asset('js/app.js') }}?v=2.1" charset="utf-8"></script>
 @endsection

@@ -1,7 +1,7 @@
 /**
  * This file contains an official functionalities that support this
  * system better at interacting the user.
- *
+ * 
  * Notice that we enclosed all the functions defined here in a
  * big function? This is to prevent all the functions and variable here
  * to clobber all other variables used in other files in a global scope
