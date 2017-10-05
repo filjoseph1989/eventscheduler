@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Common\ValidationTrait;
+use App\Helpers\RandomHelper;
 
 # Models
 use App\Models\Event;
@@ -42,13 +43,21 @@ class EventController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a list of event need to be approve
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(RandomHelper $helper)
     {
-      return view('approve-events');
+      $events = Event::where('event_type_id', 1)
+        ->where('is_approve', 'false')
+        ->get();
+
+      return view('approve-events')->with([
+        'loginClass' => 'theme-teal',
+        'events'     => $events,
+        'helper'     => $helper
+      ]);
     }
 
     /**

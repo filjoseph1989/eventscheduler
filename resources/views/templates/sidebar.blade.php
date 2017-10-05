@@ -72,7 +72,7 @@
               </ul>
             </li>
             <li>
-              <a href="{{ route('Event.index') }}"><span>Approved Events</span></a>
+              <a href="{{ route('Event.index') }}"><span>Approved Events</span></a> 
             </li>
             <li>
               <a href="#" class="menu-toggle"> <span>Calendar</span> </a>

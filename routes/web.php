@@ -22,7 +22,8 @@ Route::resource('home',         'HomeController');
 Route::resource('User',         'UserController');
 Route::resource('Org',          'OrganizationController');
 Route::resource('Calendar',     'CalendarController');
-// Route::resource('Attendances',  'AttendanceController');
+Route::resource('Attendances',  'AttendanceController');
+Route::resource('Approve',      'ApproveEventController');
 Route::resource('Event',        'EventController', ['parameters' =>[
   'Event' => 'id'
 ]]);

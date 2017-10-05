@@ -14,6 +14,14 @@
     <div class="container-fluid">
       <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          @if (session('status'))
+            <div class="alert alert-success" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" data-toggle="tooltip" data-placement="top" title="Dismiss alert">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              {{ session('status') }}
+            </div>
+          @endif
           <div class="card">
             <div class="header">
               <h2>
@@ -36,7 +44,8 @@
             <div class="body">
               <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                  @php extract($helper->dataTableClass($events)) @endphp
+                  <table class="table table-bordered table-striped table-hover {{ $class }}">
                     <thead>
                       <tr>
                         <th><a href="#">Organization Name</a></th>
@@ -46,30 +55,22 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td><a href="#" data-target="#org-profile" data-toggle="modal">Computer Science Society</a></td>
-                        <td>CSS</td>
-                        <td><a href="#">Mark Zuckerberg</a></td>
-                        <td>Active</td>
-                      </tr>
-                      <tr>
-                        <td><a href="#" data-target="#org-profile" data-toggle="modal">Association of IT students</a></td>
-                        <td>AITS</td>
-                        <td><a href="#">Donald Trump</a></td>
-                        <td>Active</td>
-                      </tr>
-                      <tr>
-                        <td><a href="#" data-target="#org-profile" data-toggle="modal">Association of Engineering students</a></td>
-                        <td>AES</td>
-                        <td><a href="#">Elon Musk</a></td>
-                        <td>Active</td>
-                      </tr>
+                      @foreach ($events as $key => $event)
+                        <tr class="approve-event" data-event-id="{{ $event->id }}">
+                          <td>{{ $event->title }}</td>
+                          <td>
+                            <form class="approve-event" action="{{ route('Approve.update', $event->id) }}" method="POST">
+                              {{ csrf_field() }}
+                              {{ method_field('PUT') }}
+                              <button type="submit" class="btn btn-primary">Approve</button>
+                            </form>
+                          </td>
+                        </tr>
+                      @endforeach
                     </tbody>
                     <tfoot>
-                      <th>Organization Name</th>
-                      <th>Abbrivation</th>
-                      <th>Leader</th>
-                      <th>Status</th>
+                      <th>Title</th>
+                      <th>Action</th>
                     </tfoot>
                   </table>
                 </div>
