@@ -1,7 +1,7 @@
 /**
  * This file contains an official functionalities that support this
  * system better at interacting the user.
- * 
+ *
  * Notice that we enclosed all the functions defined here in a
  * big function? This is to prevent all the functions and variable here
  * to clobber all other variables used in other files in a global scope
@@ -13,7 +13,7 @@
  * @author Fil <filjoseph22@gmail.com>
  * @author Liz <janicalizdeguzman@gmail.com>
  * @since 0.1
- * @version 2.5
+ * @version 2.6
  * @date 09-30-2017
  * @date 10-02-2017 - last updated
  */
@@ -235,6 +235,17 @@
       // $('#org-profile-').html();
       // $('#org-profile-').html();
       // $('#org-profile-').html();
+    });
+  });
+
+  $(document).on('click', '.event-title', function() {
+    var id = $(this).parents('tr').data('event');
+    var data = {
+      id: id
+    }
+
+    axios_post(route('modal.getAttendace'), data, function(data) {
+      console.log(data);
     });
   });
 

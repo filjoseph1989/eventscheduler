@@ -23,7 +23,7 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        // 
+        //
     }
 
     /**
@@ -49,7 +49,7 @@ class AttendanceController extends Controller
 
     /**
      * Display the specified resource.
-     * 
+     *
      * Display the different attendances
      *
      * @param    $id
@@ -65,7 +65,7 @@ class AttendanceController extends Controller
             $events = self::getEvents($id);
             // dd($events);
             self::getOrganization($events);
-            
+
             $official_att  = self::getOfficialAttendance($events);
             $expected_att  = self::getExpectedAttendance($events);
             $declined_att  = self::getDeclinedAttendance($events);
@@ -73,7 +73,6 @@ class AttendanceController extends Controller
 
             return view('attendance')->with([
                 'loginClass'   => 'theme-teal',
-                // 'title'     => $this->list[$id],
                 'events'       => $events,
                 'eventType'    => $id,
                 'official_att' => $official_att,
@@ -121,16 +120,16 @@ class AttendanceController extends Controller
     }
 
     private function getOrganization(&$events)
-    { 
+    {
         //need to change this because university events doesn't need eventroups
-        //use organization_id in events 
+        //use organization_id in events
         foreach ($events as $key => $event) {
             $events[$key]['organization'] = EventGroup::with('organization')
             ->where('event_id', '=', $event->id)
             ->get();
         }
     }
-    
+
     private function getOfficialAttendance($events)
     {
         //get attendance with did_attend == 'true'
@@ -139,7 +138,7 @@ class AttendanceController extends Controller
             ->where('event_id', '=', $event->id)
             ->where('did_attend', '=', 'true')
             ->get();
-            // d($events[0]['users']); 
+            // d($events[0]['users']);
         }
         // exit();
     }
@@ -169,7 +168,7 @@ class AttendanceController extends Controller
     private function getExpectedAttendance($events)
     {
         /**
-         * if within org, get all users in the orggroup with the same organization_id with the event's 
+         * if within org, get all users in the orggroup with the same organization_id with the event's
          * if university / organization, get all users of the system
          */
          foreach ($events as $key => $event) {
@@ -187,6 +186,6 @@ class AttendanceController extends Controller
       if ($id == 'local') {
         $events = Event::where('event_type_id', 2)->where('is_approve', 'true')->get();
       }
-      return $events; 
+      return $events;
     }
 }

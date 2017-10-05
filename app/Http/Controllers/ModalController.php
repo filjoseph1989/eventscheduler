@@ -77,4 +77,25 @@ class ModalController extends Controller
   {
     return Organization::find($data->id);
   }
+
+  /**
+   * Return the list of user attendance list
+   *
+   * @param  Request $data
+   * @return json
+   */
+  public function getAttendance(Request $data)
+  {
+    # get events
+    # get organization that create events
+    # get the member under the given organization
+
+    $event = Event::find($data->id);
+    $organization = Organization::find($event[0]->id);
+
+    return OrganzationGroup::with('user')
+      ->where('organization_id', $organization[0]->id)
+      ->get()
+      ->toJson();
+  }
 }

@@ -1,6 +1,6 @@
 <section class="sidebar">
   <aside id="leftsidebar" class="sidebar">
-    <div class="user-info"> 
+    <div class="user-info">
       <div class="image">
         <img src="/img/profile.png" width="48" height="48" alt="User">
       </div>
@@ -74,7 +74,7 @@
             <li>
               <a href="{{ route('Event.index') }}"><span>Approved Events</span></a>
             </li>
-            <li> 
+            <li>
               <a href="#" class="menu-toggle"> <span>Calendar</span> </a>
               <ul class="ml-menu">
                 <li><a href="{{ route('Calendar.show', 0) }}"><span>Official</span></a></li>
@@ -82,7 +82,7 @@
               </ul>
             </li>
           </ul>
-        </li> 
+        </li>
         <li>
           <a href="javascript:void(0);" class="menu-toggle">
             <i class="material-icons">check_circle</i>
@@ -91,8 +91,6 @@
           <ul class="ml-menu">
             <li><a href="{{ route('Attendances.show', 'official') }}"><span>Official Events</span></a></li>
             <li><a href="{{ route('Attendances.show', 'local') }}"><span>Local Events</span></a></li>
-            {{--  <li><a href="{{ route('Attendances.show', 2) }}"><span>Confirmed</span></a></li>  --}}
-            {{--  <li><a href="{{ route('Attendances.show', 3) }}"><span>Declined</span></a></li>  --}}
           </ul>
         </li>
       </ul>

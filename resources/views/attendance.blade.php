@@ -2,7 +2,7 @@
 
 @section('title')
   <title>{{ config('app.name', 'Attendance') }}</title>
-@endsection 
+@endsection
 
 @section('css')
   <link href="{{ asset('css/dataTables.bootstrap.css') }}?v=1" rel="stylesheet">
@@ -41,19 +41,19 @@
                   <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                     <thead>
                       <th><a href="#">Title</a></th>
-                      <th>Official Attendance</th>                      
-                      <th>Expected Attendance</th>                      
-                      <th>Confirmed Attendance</th>                      
-                      <th>Declined Attendance</th>      
+                      <th>Official Attendance</th>
+                      <th>Expected Attendance</th>
+                      <th>Confirmed Attendance</th>
+                      <th>Declined Attendance</th>
                     </thead>
                     <tbody>
                       @foreach ($events as $key => $event)
                         <tr data-event="{{ $event->id }}" data-route="{{ route('Event.edit', $event->id) }}" data-action="{{ route('Event.update', $event->id) }}">
                           <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ $event->title }}</a></td>
-                          <td><button type="submit" class="event-title" data-target="#modal-official" data-toggle="modal">View</button></td> 
-                          <td><button type="submit" class="event-title" data-target="#modal-expected"  data-toggle="modal">View</button></td> 
-                          <td><button type="submit" class="event-title" data-target="#modal-confirmed" data-toggle="modal">View</button></td> 
-                          <td><button type="submit" class="event-title" data-target="#modal-attendance"  data-toggle="modal">View</button></td>                                                 
+                          <td><button type="submit" class="btn btn-success event-title" data-target="#modal-official" data-toggle="modal">View</button></td>
+                          <td><button type="submit" class="btn btn-success event-title" data-target="#modal-expected"  data-toggle="modal">View</button></td>
+                          <td><button type="submit" class="btn btn-success event-title" data-target="#modal-confirmed" data-toggle="modal">View</button></td>
+                          <td><button type="submit" class="btn btn-success event-title" data-target="#modal-attendance"  data-toggle="modal">View</button></td>
                         </tr>
                       @endforeach
                     </tbody>
@@ -70,10 +70,10 @@
                       @if ($eventType == 'true' or $eventType == 'false')
                         <th> Is Approve</th>
                       @endif  --}}
-                      <th>Official Attendance</th>                      
-                      <th>Expected Attendance</th>                      
-                      <th>Confirmed Attendance</th>                      
-                      <th>Declined Attendance</th> 
+                      <th>Official Attendance</th>
+                      <th>Expected Attendance</th>
+                      <th>Confirmed Attendance</th>
+                      <th>Declined Attendance</th>
                     </tfoot>
                   </table>
                 </div>
@@ -460,14 +460,14 @@
     </div>
   </div>
 @endsection
-  
+
 @section('js')
-  <script src="{{ asset('js/admin.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/bootstrap-select.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/jquery.dataTables.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/jquery-datatable.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/bootstrap-select.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/sweetalert.min.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/tooltips-popovers.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/app.js') }}?v=2.1" charset="utf-8"></script>
+  <script src="{{ asset('js/admin.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/jquery.dataTables.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/jquery-datatable.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/sweetalert.min.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/tooltips-popovers.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.6"></script>
 @endsection
