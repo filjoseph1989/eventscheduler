@@ -17,7 +17,7 @@ class CreateAttendanceTable extends Migration
           $table->increments('id');
           $table->integer('user_id')->unsigned()->index();
           $table->integer('event_id')->unsigned()->index();
-          $table->enum('status', ['confirmed', 'unconfirmed'])->default('unconfirmed');
+          $table->enum('status', ['confirmed', 'unconfirmed', 'declined'])->default('unconfirmed');
           $table->enum('did_attend', ['true', 'false'])->default('false');
           $table->string('reason')->nullable();
           $table->softDeletes();

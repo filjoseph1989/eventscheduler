@@ -7,7 +7,7 @@
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
-|
+| 
 | contains the "web" middleware group. Now create something great!
 */
 
@@ -22,10 +22,13 @@ Route::resource('home',         'HomeController');
 Route::resource('User',         'UserController');
 Route::resource('Org',          'OrganizationController');
 Route::resource('Calendar',     'CalendarController');
-Route::resource('Attendances',  'AttendanceController');
+// Route::resource('Attendances',  'AttendanceController');
 Route::resource('Event',        'EventController', ['parameters' =>[
   'Event' => 'id'
-]]);
+]]); 
+Route::resource('Attendances',        'AttendanceController', ['parameters' =>[
+  'Attendance' => 'id'
+]]); 
 
 # Used for modal request
 Route::prefix('modals')->group(function() {
