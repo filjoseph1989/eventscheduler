@@ -13,6 +13,7 @@
 ☐ Issue 18: Set the user into active once the user login using the password generated
 ☐ Issue 19: {inline} Improve the validation trait by adding this
 ☐ Issue 20: Find icons on User table action column
+☐ Issue 21: Fixed the seeder issue
 
 Archived:
 ✔ Issue 21: {inline} Update this, when the authentication or login functionality is completed @done(2017-10-04 09:08)

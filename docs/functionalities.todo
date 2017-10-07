@@ -74,9 +74,9 @@ Phase 1:
       ✔ Display official events for advertisements approval @done (9/29/2017, 11:23:30 AM)
       ✔ Display Personal event exclusive to osa only @done (9/29/2017, 11:23:32 AM)
       ✔ Create new event @done (9/29/2017, 11:23:33 AM)
-      ☐ Display the calendar of events
-        ☐ official
-        ☐ personal
+      ✔ Display the calendar of events @done(2017-10-07 15:25)
+        ✔ official @done(2017-10-07 15:25)
+        ✔ personal @done(2017-10-07 15:25)
 
     Student Attendance:
       ☐ Display events
@@ -120,9 +120,9 @@ Phase 1:
           (Notification settings here must override the general settings for notifications)
         ☐ Request for approval
       ☐ Display Personal event exclusive to organization head/organization only
-      ☐ Display the calendar of events
-        ☐ official
-        ☐ personal
+      ✔ Display the calendar of events @done (10/7/2017, 3:25:58 PM)
+        ✔ official @done (10/7/2017, 3:26:00 PM)
+        ✔ personal @done (10/7/2017, 3:26:02 PM)
       ☐ General Notification settings (As for now this should be defaulted as "on" for all events)
 
     Student Attendance:
