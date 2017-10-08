@@ -31,8 +31,7 @@
           @endif
           <div class="card">
             <div class="header">
-              <h2>
-                Add New Organization
+              <h2> Add New Organization
                 <small>This form used to register new organization in the system</small>
               </h2>
               <ul class="header-dropdown m-r--5">
@@ -41,9 +40,7 @@
                     <i class="material-icons">more_vert</i>
                   </a>
                   <ul class="dropdown-menu pull-right">
-                    <li><a href="javascript:void(0);">Action</a></li>
-                    <li><a href="javascript:void(0);">Another action</a></li>
-                    <li><a href="javascript:void(0);">Something else here</a></li>
+                    {{-- Options Here --}}
                   </ul>
                 </li>
               </ul>

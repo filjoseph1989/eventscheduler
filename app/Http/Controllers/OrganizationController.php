@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Faker\Factory as Faker;
+use Illuminate\Support\Facades\Mail;
+
+# Apps
+use App\Mail\EmailNotification;
 
 # Models
 use App\Models\User;
@@ -58,65 +61,55 @@ class OrganizationController extends Controller
      */
     public function store(Request $request)
     {
-         # Get form data
-        # validate form data
-        # add to database
-        $this->validate($request, [
-            'name'           => 'Required',
-            'acronym'        => 'Required',
-            'account_number' => 'Required',
-            'full_name'      => 'Required',
-            'email'          => 'Required',
-        ]);
+      # Get form data
+      # validate form data
+      # add to database
+      $this->validate($request, [
+        'name'           => 'Required',
+        'acronym'        => 'Required',
+        'account_number' => 'Required',
+        'full_name'      => 'Required',
+        'email'          => 'Required',
+      ]);
 
-        $data_organization = [
-            'name'           => $request->name,
-            'acronym'        => $request->acronym,
+      $data_organization = [
+        'name'    => $request->name,
+        'acronym' => $request->acronym,
+      ];
+
+      # Generate random password characters
+      $password = str_random(15);
+      $request->password = $password;
+
+      # Send an email notification
+      Mail::to($request->email)->send(new EmailNotification($request));
+
+      $data_org_head = [
+        'account_number' => $request->account_number,
+        'full_name'      => $request->full_name,
+        'email'          => $request->email,
+        'user_type_id'   => 1,
+        'password'       => bcrypt($password),
+      ];
+
+      $organization = Organization::create($data_organization);
+      $org_head     = User::create($data_org_head);
+
+      if ($organization->wasRecentlyCreated && $org_head->wasRecentlyCreated ) {
+        $data_org_grp = [
+          'user_id'         => $org_head->id,
+          'organization_id' => $organization->id,
+          'position_id'     => 7,
         ];
-        
-          // 1. Generate a randomw password
-          // 2. store a password in email and password in a file for reference
-          //     remove later
-          // 
-          $password = str_random(15);
-          $contents = "{$request->email} {$password}";
 
-          # Store password in a file
-          # remove me later, because this password is to be email
-          # Issue 17
+        $org_g = OrganizationGroup::create($data_org_grp);
 
-          $file     = 'user.txt';
-          if(!(file_exists($file))){
-            file_put_contents($file, $contents);
-          } else {
-            $current  = file_get_contents($file);
-            $current .= "$contents\n";
-            file_put_contents($file, $current);
-          }
-
-        $data_org_head = [
-            'account_number' => $request->account_number,
-            'full_name'      => $request->full_name,
-            'email'          => $request->email,
-            'user_type_id'   => 1,
-            'password'       => bcrypt($password),
-        ];
-        
-        $organization = Organization::create($data_organization);
-        $org_head = User::create($data_org_head);
-        if ($organization->wasRecentlyCreated && $org_head->wasRecentlyCreated ) {
-            $data_org_grp = [
-                'user_id'         => $org_head->id,
-                'organization_id' => $organization->id,
-                'position_id'     => 7,
-            ];
-            $org_g = OrganizationGroup::create($data_org_grp);
-              if ($org_g->wasRecentlyCreated) {
-                return back()
-                ->withInput()
-                ->with('status', 'Successfully added organization and sent email for password to the organization head ');
-              }
+        if ($org_g->wasRecentlyCreated) {
+          return back()
+            ->withInput()
+            ->with('status', 'Successfully added organization and sent email for password to the organization head ');
         }
+      }
     }
 
     /**
