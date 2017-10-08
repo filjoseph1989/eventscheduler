@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+
+# Apps
 use App\Helpers\RandomHelper;
+use App\Mail\EmailNotification;
 
 #Models
 use App\Models\User;
@@ -12,6 +16,15 @@ use App\Models\Course;
 use App\Models\UserType;
 use App\Models\OrganizationGroup;
 
+/**
+ * Handle the user related request
+ *
+ * @author Liz <janicalizdeguzman@gmail.com>
+ * @version 1.0.0
+ * @company DevCaffee
+ * @date 09-26-2017
+ * @date 10-08-2017 - Updated
+ */
 class UserController extends Controller
 {
     /**
@@ -82,26 +95,22 @@ class UserController extends Controller
       ]);
 
       $user = User::where('email', $request->email)->get();
+
       if ($user->count() >= 1) {
         return back()
           ->withInput()
           ->with('status_warning', 'Email already exist');
       }
+
       /*
       1. Generate a randomw password
       2. store a password in email and password in a file for reference
           remove later
        */
-      $password = str_random(15);
-      $contents = "{$request->email} {$password}";
+      $password          = str_random(15);
+      $request->password = $password;
 
-      # Store password in a file
-      # remove me later, because this password is to be email
-      # Issue 17
-      $file     = 'user.txt';
-      $current  = file_get_contents($file);
-      $current .= "$contents\n";
-      file_put_contents($file, $current);
+      Mail::to($request->email)->send(new EmailNotification($request));
 
       # Validate sah
 
