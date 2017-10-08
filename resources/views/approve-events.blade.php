@@ -24,8 +24,7 @@
           @endif
           <div class="card">
             <div class="header">
-              <h2>
-                Approve Events
+              <h2> Approve Events
                 <small>Display organizations in the system</small>
               </h2>
               <ul class="header-dropdown m-r--5">

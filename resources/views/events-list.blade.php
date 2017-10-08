@@ -12,13 +12,12 @@
 
 @section('content')
   <section class="content">
-    <div class="container-fluid"> 
+    <div class="container-fluid">
       <div class="row clearfix">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="card">
             <div class="header">
-              <h2>
-                {{ ucwords($title) }} Events
+              <h2> {{ ucwords($title) }} Events
                 <small>Display events in the system</small>
               </h2>
               <ul class="header-dropdown m-r--5">
@@ -46,9 +45,6 @@
                       <th>Start</th>
                       <th>End</th>
                       <th>Status</th>
-                      @if ($eventType == 1)
-                        <th>Approve</th>
-                      @endif
                       @if ($eventType == 'true' or $eventType == 'false')
                         <th> Is Approve</th>
                       @endif
@@ -69,9 +65,6 @@
                           <td>{{ date('M d, Y', strtotime($event->date_start)) }} {{ date('h:i A', strtotime($event->date_start_time)) }}</td>
                           <td>{{ date('M d, Y', strtotime($event->date_end)) }} {{ date('h:i A', strtotime($event->date_end_time)) }}</td>
                           <td>Upcoming</td>
-                          @if ($eventType == 1)
-                            <td><a href="#">Yes</a> | <a href="#">No</a></td>
-                          @endif
                           @if ($eventType == 'true' or $eventType == 'false')
                             <td>
                               <?php $is_approve = ($event->is_approve == 'true') ? 'Yes' : 'No'; ?>
@@ -88,9 +81,6 @@
                       <th>Start</th>
                       <th>End</th>
                       <th>Status</th>
-                      @if ($eventType == 1)
-                        <th>Approve</th>
-                      @endif
                       @if ($eventType == 'true' or $eventType == 'false')
                         <th> Is Approve</th>
                       @endif
