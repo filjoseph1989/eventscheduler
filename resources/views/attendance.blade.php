@@ -27,7 +27,7 @@
                     <i class="material-icons">more_vert</i>
                   </a>
                   <ul class="dropdown-menu pull-right">
-                    @if ($eventType == 'official')
+                    @if ($eventType == 'official' || $eventType == 'university' || $eventType == 'organizations')
                       <li><a href = "{{ route('Attendances.show', 'university') }}">University Events</a></li>
                       <li><a href = "{{ route('Attendances.show', 'organizations') }}">Organizations Events</a></li>
                     @endif ($eventType == 'local')
