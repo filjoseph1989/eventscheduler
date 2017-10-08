@@ -9,7 +9,6 @@
 ☐ Issue 14: {inline} This panels should only show up when the type of account is organization head or maybe create a modal for OSA, u think that is the best
 ☐ Issue 15: {inline} Hide this in member
 ☐ Issue 16: {inline} Validate if the user is loggedin before making update in the database
-☐ Issue 17: {inline} Its better if you provide a link where a user can password for security purpose
 ☐ Issue 18: Set the user into active once the user login using the password generated
 ☐ Issue 19: {inline} Improve the validation trait by adding this
 ☐ Issue 20: Find icons on User table action column
@@ -17,6 +16,7 @@
 
 Archived:
 ✔ Issue 21: {inline} Update this, when the authentication or login functionality is completed @done(2017-10-04 09:08)
+✔ Issue 17: {inline} Its better if you provide a link where a user can password for security purpose @done(2017-10-08 23:36)
 ✔ Issue 7: Dapat ma change ang content sa <title></title> @done(2017-09-28 19:56)
 ✔ Issue 6: Dapat sa organization table, during final test or release, wala dapat content ni sya @done(2017-09-29 22:54)
 ✔ Issue 5: Dapat ang color consistent @done(2017-10-03 22:43)
