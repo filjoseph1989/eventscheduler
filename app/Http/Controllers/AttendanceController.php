@@ -66,7 +66,7 @@ class AttendanceController extends Controller
       $events = self::getEventsWithOrganization($id);
 
       //get all user's organization for the dropdown pull right menu of local within orgs in attendance blade
-      $user_orgs = self::getUserOrgs(Auth::user()->id);  //{{--  magwork na ni pag naa nay auth  --}}
+    //   $user_orgs = self::getUserOrgs(Auth::user()->id);  //{{--  magwork na ni pag naa nay auth  --}}
 
     //   self::getOrganization($events);
 
@@ -84,7 +84,7 @@ class AttendanceController extends Controller
         'declined_att' => $declined_att,
         'confirmed_att'=> $confirmed_att,
         'helper'       => $helper,
-        'user_orgs'    => $user_orgs, // {{--  magwork na sulod ani pag naa nay auth  --}}
+        // 'user_orgs'    => $user_orgs, // {{--  magwork na sulod ani pag naa nay auth  --}}
       ]);
 
     }
@@ -206,8 +206,8 @@ class AttendanceController extends Controller
       return $events;
     }
 
-    private function getUserOrgs($id) {
-        //  {{--  magwork na ni pag naa nay auth  --}}
-        $orgs = OrganizationGroup::where('user_id', $id)->with('organization')->get();
-    }   
+    // private function getUserOrgs($id) {
+    //     //  {{--  magwork na ni pag naa nay auth  --}}
+    //     $orgs = OrganizationGroup::where('user_id', $id)->with('organization')->get();
+    // }   
 }

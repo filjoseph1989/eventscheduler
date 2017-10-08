@@ -31,10 +31,10 @@
                       <li><a href = "{{ route('Attendances.show', 'university') }}">University Events</a></li>
                       <li><a href = "{{ route('Attendances.show', 'organizations') }}">Organizations Events</a></li>
                     @endif ($eventType == 'local')
-                      @foreach ($user_orgs as $key => $org)
+                      {{--  @foreach ($user_orgs as $key => $org)  --}}
                           {{--  magwork na ni pag naa nay auth  --}}
-                        <li><a href = "{{ route('Attendances.show', '{{ $org->organization_id }}') }}">My Org: {{ $value->organization->name }} Events</a></li>                    
-                      @endforeach
+                        {{--  <li><a href = "{{ route('Attendances.show', '{{ $org->organization_id }}') }}">My Org: {{ $value->organization->name }} Events</a></li>                      --}}
+                      {{--  @endforeach  --}}
                   </ul>
                 </li>
               </ul>
