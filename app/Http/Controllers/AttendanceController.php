@@ -198,11 +198,6 @@ class AttendanceController extends Controller
       if ($id == 'local') {
         $events = Event::where('event_type_id', 2)->where('is_approve', 'true')->with('organization')->get();
       }
-
-      //sample dapat id sa org kung asa na belong ang user
-      if ($id == 'within') {
-          $events = Event::where('event_type_id', 2)->where('category', 'within')->where('is_approve', 'true')->with('organization')->get();
-      }
       return $events;
     }
 

@@ -239,16 +239,16 @@
   });
 
   /**
-   * Provide user list on the modal
-   * @return {void}
+   * Provide user list on the modal for official attendance
+   * @return {void} 
    */
-  $(document).on('click', '.event-attendance', function() {
+  $(document).on('click', '.event-attendance-official', function() {
     var id = $(this).parents('tr').data('event');
     var data = {
       id: id
     }
 
-    axios_post(route('modal.getAttendance'), data, function(data) {
+    axios_post(route('AttendanceController.getOfficialAttendance'), data, function(data) {
       var html = "";
       data.map(function(data) {
         html +=
@@ -263,6 +263,86 @@
       $('#event-attendees').html(html);
     });
   });
+
+  /**
+  * Provide user list on the modal for confirmed attendance
+  * @return {void} 
+  */
+  $(document).on('click', '.event-attendance-confirmed', function () {
+    var id = $(this).parents('tr').data('event');
+    var data = {
+      id: id
+    }
+
+    axios_post(route('AttendanceController.getConfirmedAttendance'), data, function (data) {
+      var html = "";
+      data.map(function (data) {
+        html +=
+          '<tr>' +
+          '<td><a href="#">' + data.user.full_name + '</a></td>' +
+          '<td>' +
+          '<button type="button" class="btn btn-primary bg-teal" name="button">Attend</button>' +
+          '</td>' +
+          '</tr>';
+      });
+
+      $('#event-attendees').html(html);
+    });
+  });
+
+  /**
+  * Provide user list on the modal for expected attendance
+  * @return {void} 
+  */
+  $(document).on('click', '.event-attendance-expected', function () {
+    var id = $(this).parents('tr').data('event');
+    var data = {
+      id: id
+    }
+
+    axios_post(route('AttendanceController.getExpectedAttendance'), data, function (data) {
+      var html = "";
+      data.map(function (data) {
+        html +=
+          '<tr>' +
+          '<td><a href="#">' + data.user.full_name + '</a></td>' +
+          '<td>' +
+          '<button type="button" class="btn btn-primary bg-teal" name="button">Attend</button>' +
+          '</td>' +
+          '</tr>';
+      });
+
+      $('#event-attendees').html(html);
+    });
+  });
+
+  /**
+ * Provide user list on the modal for declined attendance
+ * @return {void} 
+ */
+  $(document).on('click', '.event-attendance-declined', function () {
+    var id = $(this).parents('tr').data('event');
+    var data = {
+      id: id
+    }
+
+    axios_post(route('AttendanceController.getDeclinedAttendance'), data, function (data) {
+      var html = "";
+      data.map(function (data) {
+        html +=
+          '<tr>' +
+          '<td><a href="#">' + data.user.full_name + '</a></td>' +
+          '<td>' +
+          '<button type="button" class="btn btn-primary bg-teal" name="button">Attend</button>' +
+          '</td>' +
+          '</tr>';
+      });
+
+      $('#event-attendees').html(html);
+    });
+  });
+
+
 
   /**
    * Make http request

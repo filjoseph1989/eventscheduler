@@ -66,7 +66,7 @@ class ModalController extends Controller
    */
   public function getPosition(Request $data)
   {
-    return Position::find($data->id);
+    return Position::find($data->id); 
   }
 
   /**

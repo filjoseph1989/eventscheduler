@@ -37,5 +37,5 @@ Route::prefix('modals')->group(function() {
   Route::name('modal.getCourse')->post('/get/course','ModalController@getCourse');
   Route::name('modal.getPosition')->post('/get/position','ModalController@getPosition');
   Route::name('modal.getOrganization')->post('/get/organization','ModalController@getOrganization');
-  Route::name('modal.getAttendance')->post('/get/attendance','ModalController@getAttendance');
+  Route::name('modal.getAttendance')->post('/get/attendance','ModalController@getAttendance'); 
 });

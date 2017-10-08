@@ -55,10 +55,10 @@
                       @foreach ($events as $key => $event)
                         <tr data-event="{{ $event->id }}" data-route="{{ route('Event.edit', $event->id) }}" data-action="{{ route('Event.update', $event->id) }}">
                           <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ $event->title }}</a></td>
-                          <td><button type="submit" class="btn btn-success event-attendance" data-target="#modal-official" data-toggle="modal">View</button></td>
-                          <td><button type="submit" class="btn btn-success event-attendance" data-target="#modal-expected"  data-toggle="modal">View</button></td>
-                          <td><button type="submit" class="btn btn-success event-attendance" data-target="#modal-confirmed" data-toggle="modal">View</button></td>
-                          <td><button type="submit" class="btn btn-success event-attendance" data-target="#modal-attendance"  data-toggle="modal">View</button></td>
+                          <td><button type="submit" class="btn btn-success event-attendance-official" data-target="#modal-official" data-toggle="modal">View</button></td>
+                          <td><button type="submit" class="btn btn-success event-attendance-expected" data-target="#modal-expected"  data-toggle="modal">View</button></td>
+                          <td><button type="submit" class="btn btn-success event-attendance-confirmed" data-target="#modal-confirmed" data-toggle="modal">View</button></td>
+                          <td><button type="submit" class="btn btn-success event-attendance-declined" data-target="#modal-declined"  data-toggle="modal">View</button></td>
                         </tr>
                       @endforeach
                     </tbody>
