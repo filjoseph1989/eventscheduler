@@ -89,7 +89,7 @@
             <span>Attendances</span>
           </a>
           <ul class="ml-menu">
-            <li><a href="{{ route('Attendances.show', 'official') }}"><span>Official Events</span></a></li>
+            <li><a href="{{ route('Attendances.show', 'official') }}"><span>Official Events</span></a></li> 
             <li><a href="{{ route('Attendances.show', 'local') }}"><span>Local Events</span></a></li>
           </ul>
         </li>

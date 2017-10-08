@@ -63,9 +63,12 @@ class AttendanceController extends Controller
        * it will direct to a link for what type of event(LOCAL: within or personal, or WITHIN: university or organizations),
        * then by clicking, it will direct the user to the particular list of events he/she is looking for.
        */
-      $events = self::getEvents($id);
+      $events = self::getEventsWithOrganization($id);
 
-      self::getOrganization($events);
+      //get all user's organization for the dropdown pull right menu of local within orgs in attendance blade
+      $user_orgs = self::getUserOrgs(Auth::user()->id);  //{{--  magwork na ni pag naa nay auth  --}}
+
+    //   self::getOrganization($events);
 
       $official_att  = self::getOfficialAttendance($events);
       $expected_att  = self::getExpectedAttendance($events);
@@ -79,7 +82,9 @@ class AttendanceController extends Controller
         'official_att' => $official_att,
         'expected_att' => $expected_att,
         'declined_att' => $declined_att,
+        'confirmed_att'=> $confirmed_att,
         'helper'       => $helper,
+        'user_orgs'    => $user_orgs, // {{--  magwork na sulod ani pag naa nay auth  --}}
       ]);
 
     }
@@ -118,16 +123,17 @@ class AttendanceController extends Controller
         //
     }
 
-    private function getOrganization(&$events)
-    {
-        //need to change this because university events doesn't need eventroups
-        //use organization_id in events
-        foreach ($events as $key => $event) {
-            $events[$key]['organization'] = EventGroup::with('organization')
-            ->where('event_id', '=', $event->id)
-            ->get();
-        }
-    }
+    //I COMMENTED THIS BECAUSE I THINK WE WILL NO LONGER NEED TO TAP EVENTGROUP SINCE ORGANIZATION ID IS ALREADY IN EVENT MODEL
+    // private function getOrganization(&$events)
+    // {
+    //     //need to change this because university events doesn't need eventroups
+    //     //use organization_id in events
+    //     foreach ($events as $key => $event) {
+    //         $events[$key]['organization'] = EventGroup::with('organization')
+    //         ->where('event_id', '=', $event->id)
+    //         ->get();
+    //     }
+    // }
 
     private function getOfficialAttendance($events)
     {
@@ -159,7 +165,7 @@ class AttendanceController extends Controller
         foreach ($events as $key => $event) {
         $events[$key]['users'] = Attendance::with('user')
           ->where('event_id', '=', $event->id)
-          ->where('status', '=', 'confirmed')
+          ->where('status', '=', 'unconfirmed')
           ->get();
         }
     }
@@ -177,14 +183,31 @@ class AttendanceController extends Controller
         }
     }
 
-    private function getEvents($id)
+    private function getEventsWithOrganization($id)
     {
       if ($id == 'official') {
-        $events = Event::where('event_type_id', 1)->where('is_approve', 'true')->get();
+        $events = Event::where('event_type_id', 1)->where('is_approve', 'true')->with('organization')->get();
       }
+      if ($id == 'university') {
+          $events = Event::where('event_type_id', 1)->where('category', 'university')->where('is_approve', 'true')->with('organization')->get();
+      }
+      if ($id == 'organizations') {
+          $events = Event::where('event_type_id', 1)->where('category', 'organization')->where('is_approve', 'true')->with('organization')->get();
+      }
+
       if ($id == 'local') {
-        $events = Event::where('event_type_id', 2)->where('is_approve', 'true')->get();
+        $events = Event::where('event_type_id', 2)->where('is_approve', 'true')->with('organization')->get();
+      }
+
+      //sample dapat id sa org kung asa na belong ang user
+      if ($id == 'within') {
+          $events = Event::where('event_type_id', 2)->where('category', 'within')->where('is_approve', 'true')->with('organization')->get();
       }
       return $events;
     }
+
+    private function getUserOrgs($id) {
+        //  {{--  magwork na ni pag naa nay auth  --}}
+        $orgs = OrganizationGroup::where('user_id', $id)->with('organization')->get();
+    }   
 }
