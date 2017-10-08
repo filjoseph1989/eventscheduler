@@ -21,7 +21,7 @@ class EventController extends Controller
 {
     use ValidationTrait;
 
-    private $list  = [ 
+    private $list  = [
       'all',
       'official',
       'local',
@@ -116,13 +116,13 @@ class EventController extends Controller
     {
       $events = self::getEvents($id);
 
-      self::getOrganization($events); 
+      self::getOrganization($events);
 
       return view('events-list')->with([
-          'loginClass' => 'theme-teal',
-          'title'      => $this->list[$id],
-          'events'     => $events,
-          'eventType'  => $id
+        'loginClass' => 'theme-teal',
+        'title'      => $this->list[$id],
+        'events'     => $events,
+        'eventType'  => $id
       ]);
     }
 
@@ -174,7 +174,7 @@ class EventController extends Controller
     {
         //
     }
- 
+
     /**
      * Modefy the events
      *
@@ -183,8 +183,10 @@ class EventController extends Controller
      */
     private function getOrganization(&$events)
     {
-      //need to change this because university events doesn't need eventroups
-      //use organization_id in events 
+      /*
+      need to change this because university events doesn't need eventroups
+      use organization_id in events
+       */
       foreach ($events as $key => $event) {
         $events[$key]['organization'] = EventGroup::with('organization')
           ->where('event_id', '=', $event->id)
@@ -201,16 +203,14 @@ class EventController extends Controller
     private function getEvents($id)
     {
       if ($id == '0') {
-        $events = Event::all();
+        return Event::all();
       }
       if ($id == 'true' or $id == 'false') {
-        $events = Event::where('is_approve', $id)->get();
+        return Event::where('is_approve', $id)->get();
       }
       if ($id > 0) {
-        $events = Event::where('event_type_id', $id)->get();
+        return Event::where('event_type_id', $id)->get();
       }
-
-      return $events;
     }
 }
 

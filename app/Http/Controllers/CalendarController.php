@@ -20,6 +20,7 @@ use App\Models\Event;
 class CalendarController extends Controller
 {
     use CalendarTrait;
+    
     const ALL_DAY_REGEX = '/^\d{4}-\d\d-\d\d$/'; // matches strings like "2013-12-29";
 
     private $list = ['', 'official', 'personal'];
