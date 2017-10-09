@@ -81,7 +81,18 @@ Phase 1:
         ✔ personal @done(2017-10-07 15:25)
 
     Student Attendance:
-      ☐ Display events
+      ✔ Display events
+        ✔ official events
+           ✔ official attendance
+           ☐ expected attendance
+           ✔ confirmed attendance
+           ✔ declined attendance
+        ☐ local events
+          ☐ but not yet done with per within org events display at dropdown pull right 
+           ✔ official attendance
+           ☐ expected attendance
+           ✔ confirmed attendance
+           ✔ declined attendance
         ☐ Display attendance sheet per event (Just like who attend this event?) (It maybe a single table with filters)
 
   3. For Organization Head:
