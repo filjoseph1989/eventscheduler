@@ -49,7 +49,7 @@
                       <th>Official Attendance</th>
                       <th>Expected Attendance</th>
                       <th>Confirmed Attendance</th>
-                      <th>Declined Attendance</th> 
+                      <th>Declined Attendance</th>
                     </thead>
                     <tbody>
                       @foreach ($events as $key => $event)
@@ -112,5 +112,5 @@
   <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}?v=0.1"></script>
   <script src="{{ asset('js/tooltips-popovers.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/app.js') }}?v=2.6"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.7"></script>
 @endsection

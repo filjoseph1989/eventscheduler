@@ -240,7 +240,7 @@
 
   /**
    * Provide user list on the modal for official attendance
-   * @return {void} 
+   * @return {void}
    */
   $(document).on('click', '.event-attendance-official', function() {
     var id = $(this).parents('tr').data('event');
@@ -248,14 +248,14 @@
       id: id
     }
 
-    submit(data, route('attendance.official'), function(data) {
+    axios_post('/attendance/get/official/attendance', data, function(data) {
       console.log(data);
-    });
+    })
   });
 
   /**
   * Provide user list on the modal for confirmed attendance
-  * @return {void} 
+  * @return {void}
   */
   $(document).on('click', '.event-attendance-confirmed', function () {
     var id = $(this).parents('tr').data('event');
@@ -281,7 +281,7 @@
 
   /**
   * Provide user list on the modal for expected attendance
-  * @return {void} 
+  * @return {void}
   */
   $(document).on('click', '.event-attendance-expected', function () {
     var id = $(this).parents('tr').data('event');
@@ -300,14 +300,14 @@
           '</td>' +
           '</tr>';
       });
- 
+
       $('#event-attendees').html(html);
     });
   });
 
   /**
  * Provide user list on the modal for declined attendance
- * @return {void} 
+ * @return {void}
  */
   $(document).on('click', '.event-attendance-declined', function () {
     var id = $(this).parents('tr').data('event');
@@ -330,8 +330,6 @@
       $('#event-attendees').html(html);
     });
   });
-
-
 
   /**
    * Make http request
