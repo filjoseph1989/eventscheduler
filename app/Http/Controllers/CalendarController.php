@@ -70,6 +70,7 @@ class CalendarController extends Controller
           'date_end',
           'whole_day'
         )->where('event_type_id', $id)
+         ->where('is_approve', 'true')
           ->get();
 
         $output_arrays = array();
