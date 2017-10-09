@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 
+
 class LoginController extends Controller
 {
     /*
@@ -39,7 +40,7 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
+ 
     /**
      * Show the application's login form.
      *
