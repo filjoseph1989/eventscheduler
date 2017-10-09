@@ -15,7 +15,8 @@ Phase 1:
     ✔ Other Pages @done(2017-10-04 08:13)
 
   1. Login functionalities:
-    ☐ Login using student_number and password
+    ✘ Login using student_number and password
+    ✔ Login using email and password
     ☐ forgot password
     ☐ Remember me
     ✔ Logout @done(2017-10-01 13:49)
