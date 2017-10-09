@@ -13,6 +13,7 @@
 ☐ Issue 19: {inline} Improve the validation trait by adding this
 ☐ Issue 20: Find icons on User table action column
 ☐ Issue 21: Fixed the seeder issue
+☐ Issue 22: When the user click on the visit button in the email, the user should be redirected to login page of sheduler
 
 Archived:
 ✔ Issue 21: {inline} Update this, when the authentication or login functionality is completed @done(2017-10-04 09:08)

@@ -77,6 +77,8 @@ Phase 1:
       ✔ Display the calendar of events @done(2017-10-07 15:25)
         ✔ official @done(2017-10-07 15:25)
         ✔ personal @done(2017-10-07 15:25)
+      ☐ Approve Events
+        ☐ Post to social media and send email to registered user
 
     Student Attendance:
       ☐ Display events
