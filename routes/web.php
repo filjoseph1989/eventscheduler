@@ -39,3 +39,13 @@ Route::prefix('modals')->group(function() {
   Route::name('modal.getOrganization')->post('/get/organization','ModalController@getOrganization');
   Route::name('modal.getAttendance')->post('/get/attendance','ModalController@getAttendance'); 
 });
+
+# Used for attendances
+Route::prefix('attendance')->group(function() {
+  Route::name('attendance.official')->post('/get/official/attendance','AttendanceController@getOfficialAttendance');
+  Route::name('attendance.expected')->post('/get/expected/attendance','AttendanceController@getExpectedAttendance');
+  Route::name('attendance.confirmed')->post('/get/confirmed/attendance','AttendanceController@getConfirmedAttendance');
+  Route::name('attendance.declined')->post('/get/declined/attendance','AttendanceController@getDeclinedAttendance');
+  // Route::name('attendance.within')->post('/get/attendance','AttendanceController@getUserOrgs');  (<-edit)
+  //for later when authenitcation is complete(for within orgs of a user)
+});

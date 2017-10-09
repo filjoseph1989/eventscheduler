@@ -177,7 +177,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         NotificationChannels\FacebookPoster\FacebookPosterServiceProvider::class,
-
+        //for Cross Origin Resource Sharing headers package
+        Barryvdh\Cors\ServiceProvider::class,
     ],
 
     /*

@@ -70,19 +70,11 @@ class AttendanceController extends Controller
 
     //   self::getOrganization($events);
 
-      $official_att  = self::getOfficialAttendance($events);
-      $expected_att  = self::getExpectedAttendance($events);
-      $declined_att  = self::getDeclinedAttendance($events);
-      $confirmed_att = self::getConfirmedAttendance($events);
 
       return view('attendance')->with([
         'loginClass'   => 'theme-teal',
         'events'       => $events,
         'eventType'    => $id,
-        'official_att' => $official_att,
-        'expected_att' => $expected_att,
-        'declined_att' => $declined_att,
-        'confirmed_att'=> $confirmed_att,
         'helper'       => $helper,
         // 'user_orgs'    => $user_orgs, // {{--  magwork na sulod ani pag naa nay auth  --}}
       ]);
@@ -135,20 +127,16 @@ class AttendanceController extends Controller
     //     }
     // }
 
-    private function getOfficialAttendance($events)
+    public function getOfficialAttendance(Request $event)
     {
         //get attendance with did_attend == 'true'
-        foreach ($events as $key => $event) {
-            $events[$key]['users'] = Attendance::with('user')
-            ->where('event_id', '=', $event->id)
-            ->where('did_attend', '=', 'true')
-            ->get();
-            // d($events[0]['users']);
-        }
-        // exit();
+        return Attendance::with('user')
+        ->where('event_id', '=', $event->id)
+        ->where('did_attend', '=', 'true')
+        ->get();        
     }
 
-    private function getConfirmedAttendance($events)
+    public function getConfirmedAttendance(Request $event)
     {
         //get attendance with status == 'confirmed'
         foreach ($events as $key => $event) {
@@ -159,7 +147,7 @@ class AttendanceController extends Controller
         }
     }
 
-    private function getDeclinedAttendance($events)
+    public function getDeclinedAttendance(Request $event)
     {
         //get attendance with status == 'unconfirmed'
         foreach ($events as $key => $event) {
@@ -170,7 +158,7 @@ class AttendanceController extends Controller
         }
     }
 
-    private function getExpectedAttendance($events)
+    public function getExpectedAttendance(Request $event)
     {
         /**
          * if within org, get all users in the orggroup with the same organization_id with the event's

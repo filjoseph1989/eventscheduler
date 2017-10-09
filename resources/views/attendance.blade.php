@@ -49,7 +49,7 @@
                       <th>Official Attendance</th>
                       <th>Expected Attendance</th>
                       <th>Confirmed Attendance</th>
-                      <th>Declined Attendance</th>
+                      <th>Declined Attendance</th> 
                     </thead>
                     <tbody>
                       @foreach ($events as $key => $event)

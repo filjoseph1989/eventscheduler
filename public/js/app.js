@@ -248,19 +248,8 @@
       id: id
     }
 
-    axios_post(route('AttendanceController.getOfficialAttendance'), data, function(data) {
-      var html = "";
-      data.map(function(data) {
-        html +=
-        '<tr>' +
-          '<td><a href="#">'+ data.user.full_name +'</a></td>' +
-          '<td>' +
-            '<button type="button" class="btn btn-primary bg-teal" name="button">Attend</button>' +
-          '</td>' +
-        '</tr>';
-      });
-
-      $('#event-attendees').html(html);
+    submit(data, route('attendance.official'), function(data) {
+      console.log(data);
     });
   });
 
@@ -274,7 +263,7 @@
       id: id
     }
 
-    axios_post(route('AttendanceController.getConfirmedAttendance'), data, function (data) {
+    axios_post(route('attendance.confirmed'), data, function (data) {
       var html = "";
       data.map(function (data) {
         html +=
@@ -300,7 +289,7 @@
       id: id
     }
 
-    axios_post(route('AttendanceController.getExpectedAttendance'), data, function (data) {
+    axios_post(route('attendance.expected'), data, function (data) {
       var html = "";
       data.map(function (data) {
         html +=
@@ -311,7 +300,7 @@
           '</td>' +
           '</tr>';
       });
-
+ 
       $('#event-attendees').html(html);
     });
   });
@@ -326,7 +315,7 @@
       id: id
     }
 
-    axios_post(route('AttendanceController.getDeclinedAttendance'), data, function (data) {
+    axios_post(route('attendance.declined'), data, function (data) {
       var html = "";
       data.map(function (data) {
         html +=
@@ -357,12 +346,6 @@
    * @deprecated 2.0
    */
   function submit(data, url, callback) {
-    if (param == '') {
-      url = route(url).replace('localhost', window.location.hostname);
-    } else {
-      url = route(url, param).replace('localhost', window.location.hostname);
-    }
-
     $.ajax({
       type: method,
       url: url,
