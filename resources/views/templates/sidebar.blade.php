@@ -80,7 +80,7 @@
                 <li><a href="{{ route('Calendar.show', 1) }}"><span>Official</span></a></li>
                 <li><a href="{{ route('Calendar.show', 2) }}"><span>Personal</span></a></li>
               </ul>
-            </li>
+            </li> 
           </ul>
         </li>
         <li>

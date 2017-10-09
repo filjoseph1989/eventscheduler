@@ -250,6 +250,19 @@
 
     axios_post('/attendance/get/official/attendance', data, function(data) {
       console.log(data);
+      var html = "";
+      data.map(function (data) {
+        html +=
+          '<tr>' +
+          '<td><a href="#">' + data.user.full_name + '</a></td>' +
+          '<td>' +
+          '<button type="button" class="btn btn-primary bg-teal" name="button">Attend</button>' +
+          '</td>' +
+          '</tr>';
+      });
+
+      $('#event-attendees').html(html);
+      
     })
   });
 
@@ -258,12 +271,13 @@
   * @return {void}
   */
   $(document).on('click', '.event-attendance-confirmed', function () {
-    var id = $(this).parents('tr').data('event');
+     var id = $(this).parents('tr').data('event');
     var data = {
       id: id
     }
 
-    axios_post(route('attendance.confirmed'), data, function (data) {
+    axios_post('/attendance/get/official/attendance', data, function(data) {
+      console.log(data);
       var html = "";
       data.map(function (data) {
         html +=
@@ -289,12 +303,15 @@
       id: id
     }
 
-    axios_post(route('attendance.expected'), data, function (data) {
+    axios_post('/attendance/get/expected/attendance', data, function (data) {
+              //////DILI PA KO KABALO DRI PAGSHOW SA MODAL (INCOMPLETE)
+      console.log(data);
       var html = "";
       data.map(function (data) {
         html +=
           '<tr>' +
-          '<td><a href="#">' + data.user.full_name + '</a></td>' +
+          '<td><a href="#">' + data.full_name + '</a></td>' +
+          // '<td><a href="#">' + data.user.full_name + '</a></td>' +
           '<td>' +
           '<button type="button" class="btn btn-primary bg-teal" name="button">Attend</button>' +
           '</td>' +
@@ -315,7 +332,8 @@
       id: id
     }
 
-    axios_post(route('attendance.declined'), data, function (data) {
+    axios_post('/attendance/get/declined/attendance', data, function (data) {
+      console.log(data);
       var html = "";
       data.map(function (data) {
         html +=

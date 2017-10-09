@@ -15,7 +15,7 @@ Route::get('/', function () {
   return redirect()->route('login');
 });
 
-Auth::routes();
+Auth::routes(); 
 
 Route::name('my.login')->post('/my-login', 'Auth\LoginController@myLogin');
 

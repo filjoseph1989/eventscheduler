@@ -128,32 +128,19 @@ class AttendanceController extends Controller
     public function getOfficialAttendance(Request $event)
     {
         //get attendance with did_attend == 'true'
-        return Attendance::with('user')
-        ->where('event_id', '=', $event->id)
-        ->where('did_attend', '=', 'true')
-        ->get();
+        return Attendance::with('user')->where('event_id', $event->id)->where('did_attend', 'true') ->get();
     }
 
     public function getConfirmedAttendance(Request $event)
     {
         //get attendance with status == 'confirmed'
-        foreach ($events as $key => $event) {
-        $events[$key]['users'] = Attendance::with('user')
-          ->where('event_id', '=', $event->id)
-          ->where('status', '=', 'confirmed')
-          ->get();
-        }
+        return Attendance::with('user')->where('event_id', '=', $event->id)->where('status', '=', 'confirmed')->get();   
     }
 
     public function getDeclinedAttendance(Request $event)
     {
         //get attendance with status == 'unconfirmed'
-        foreach ($events as $key => $event) {
-        $events[$key]['users'] = Attendance::with('user')
-          ->where('event_id', '=', $event->id)
-          ->where('status', '=', 'unconfirmed')
-          ->get();
-        }
+        return Attendance::with('user')->where('event_id', '=', $event->id)->where('status', '=', 'unconfirmed')->get();
     }
 
     public function getExpectedAttendance(Request $event)
@@ -162,10 +149,11 @@ class AttendanceController extends Controller
          * if within org, get all users in the orggroup with the same organization_id with the event's
          * if university / organization, get all users of the system
          */
-         foreach ($events as $key => $event) {
-         $events[$key]['users'] = OrganizationGroup::with('user')
-          ->where('organization_id', '=', $event->organization_id)
-          ->get();
+        //////DILI PA KO KABALO DRI PAGSHOW SA MODAL (INCOMPLETE)
+        if($event->event_type_id == 1){
+            return Users::all();
+        } elseif ($event->event_type_id == 2){
+            return OrganizationGroup::with('user')->where('organization_id', '=', $event->organization_id)->get();
         }
     }
 
@@ -180,7 +168,6 @@ class AttendanceController extends Controller
       if ($id == 'organizations') {
           $events = Event::where('event_type_id', 1)->where('category', 'organization')->where('is_approve', 'true')->with('organization')->get();
       }
-
       if ($id == 'local') {
         $events = Event::where('event_type_id', 2)->where('is_approve', 'true')->with('organization')->get();
       }
