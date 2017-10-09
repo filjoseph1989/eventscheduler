@@ -1,3 +1,4 @@
+{{--  I THINK THIS BLADE WILL NOT BE NEEDE OR MUST BE MODIFIED SINCE THE ONLY WAY TO REGISTER A USER IN THEIS SYSTEM IS BY THE REGISTRATION OF THE ORG HEAD TO A MEMBER USER  --}}
 @extends('layouts.app')
 
 @section('title')
@@ -118,13 +119,13 @@
                           @foreach ($courses as $key => $course)
                             <option value="{{ $course->id }}">{{ $course->name }}</option>
                           @endforeach
-                        </select>
+                        </select> 
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="row clearfix">
-                  <div class="col-sm-8 col-sm-offset-2">
+                  {{--  <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group form-float">
                       <div class="form-line focused">
                         <select class="form-control show-tick" id="user_type_id" name="user_type_id">
@@ -135,7 +136,7 @@
                         </select>
                       </div>
                     </div>
-                  </div>
+                  </div>  --}}
                 </div>
                 <div class="row clearfix">
                   <div class="col-sm-8 col-sm-offset-2">
