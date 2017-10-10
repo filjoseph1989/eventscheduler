@@ -21,7 +21,7 @@
                 <div class="row">
                   <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <img class="org-logo" src="{{ asset("img/profile.png") }}" alt="Profile Picture">
-                    <form action="" enctype="multipart/form-data" method="POST">
+                    <form action="" enctype="multipart/form-data" method="POST"> 
                       {{ csrf_field() }}
                       <div class="row">&nbsp;</div>
                       <div class="row">
@@ -58,11 +58,25 @@
                         </tr>
                         <tr>
                           <td><strong>Position: </strong></td>
-                          <td><a href="#" data-id="">{{ $organizationGroup[0]->position->name }}</a></td>
+                          <td>
+                            <a href="#" data-id="">
+                              @if($organizationGroup == "Not Yet Specified"){
+                                {{ $organizationGroup }}
+                              } @else{
+                                {{ $organizationGroup[0]->position->name }}
+                              } @endif
+                            </a>
+                          </td>
                         </tr>
                         <tr>
                           <td><strong>Organization:</strong></td>
-                          <td><a href="#">{{ $organizationGroup[0]->organization->name }}</a></td>
+                          <td>
+                              @if($organizationGroup == "Not Yet Specified"){
+                                {{ $organizationGroup }}
+                              } @else{
+                                {{ $organizationGroup[0]->organization->name }}
+                              } @endif
+                          </td>
                         </tr>
                         <tr>
                           <td><strong>Account Type: </strong></td>

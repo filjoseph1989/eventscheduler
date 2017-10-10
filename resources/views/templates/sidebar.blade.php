@@ -83,7 +83,7 @@
                 <li><a href="{{ route('Calendar.show', 2) }}"><span>Personal</span></a></li>
               </ul>
             </li>
-          </ul>
+          </ul> 
         </li>
         <li>
           <a href="javascript:void(0);" class="menu-toggle">

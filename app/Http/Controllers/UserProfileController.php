@@ -9,7 +9,7 @@ use App\Models\Course;
 use App\Models\OrganizationGroup;
 use App\Models\UserType;
 
-/**
+/** 
  * Display the profile of the user
  *
  * @author Liz <janicalizdeguzman@gmail.com>
@@ -31,13 +31,27 @@ class UserProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        $cour = Course::find(Auth::user()->course_id);
+        $acc = UserType::find(Auth::user()->user_type_id)->name; 
+        /**
+         *no filtering needed for $acc, because automatically this is not null, 
+         *as osa creates organization, org head is registered with org head user automatically
+         *as org head requests to register member/s, these members should automatically have user_type -> "organization-user" 
+         */
+        $og = OrganizationGroup::with(['position', 'organization'])->where('user_id', Auth::user()->id)->get();
+        if($cour == null){
+            $cour = 'Not Yet Specified';
+        } else{
+             $cour = Course::find(Auth::user()->course_id)->name;
+        }
+        if($og->isEmpty()){
+            $og = 'Not Yet Specified';
+        }
         return view('user-profile')->with([
-          'course'            => Course::find(Auth::user()->course_id)->name,
-          'account'           => UserType::find(Auth::user()->user_type_id)->name,
-          'organizationGroup' => OrganizationGroup::with(['position', 'organization'])
-            ->where('user_id', Auth::user()->id)
-            ->get(),
+          'course'            => $cour,
+          'account'           => $acc, 
+          'organizationGroup' => $og
         ]);
     }
 }
