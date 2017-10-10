@@ -101,6 +101,8 @@ Phase 1:
     ✔ View Profile @done(2017-10-10 21:52)
     ☐ Change password
     ☐ Change Profile picture
+    ☐ "Fill Out My Other Profile Details"<-(temp button name) (add this button at user-profile blade) 
+        and make it functional where the user will edit or add his/her other info in the fields in the users table in the database
 
     Display Users list:
       ☐ Display all members of the organization (organization sa head)
