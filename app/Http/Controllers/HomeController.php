@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-// use Auth;
-// use Illuminate\Support\Facades\Auth;
+use Auth;
 use Illuminate\Http\Request;
 use App\Notifications\FacebookPublished;
-
-use Auth;
 
 # Models
 use App\Models\User;
@@ -15,8 +12,22 @@ use App\Models\UserType;
 use App\Models\Organization;
 use App\Models\OrganizationGroup;
 
+/**
+ * A landing controller after loggedin
+ *
+ * @author Liz <janicalizdeguzman@gmail.com>
+ * @version 2.0.0
+ * @company DevCaffee
+ * @date 09-24-2017
+ * @date 10-10-2017 - Updated
+ */
 class HomeController extends Controller
 {
+    private $status       = "";
+    private $account_name = "";
+    private $theme        = "";
+    private $color        = "";
+
     /**
      * Create a new controller instance.
      *
@@ -25,9 +36,8 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-
     }
-    
+
     /**
      * Show the application dashboard.
      *
@@ -35,31 +45,23 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $theme = UserType::find(Auth::user()->user_type_id);
-        session(['loginClass' => $theme->theme]);
-
-        # Is the user loggedin?
-        // parent::loginCheck();
+        self::getUserAccountProperty();
 
          # Does the user is active?
-        if (self::isIdStatus()) {
-            # Prepare session
+        if (self::isStatus()) {
+
             session([
-                'name'       => self::getIdentity()['name'],
-                'class'      => self::getIdentity()['theme'],
-                'color'      => self::getIdentity()['color'],
-                'sidebar'    => self::getSideBar(),
-                'info_box'   => self::getInfoBox(),
-                'login_type' => 'user',
+              'loginClass'   => $this->theme,
+              'user_account' => $this->account_name
             ]);
 
             # Render View
-            return view('home')->with([
-                'notification' => self::getNotification(),
-            ]);
+            return view('home');
         } else {
             # logout and redirect to register page if status is not active
             Auth::guard('web')->logout();
+
+            session(['loginClass' => 'login-page']);
 
             return redirect()
                 ->route('register')
@@ -67,75 +69,29 @@ class HomeController extends Controller
         }
     }
 
-       /**
-         * Is the user who tried to login the system
-         * is an active user?
-         *
-         * @return boolean
-         */
-        private function isIdStatus()
-        {
-            return (self::getIdentity()['status'] == 'true') ? true : false;
-        }
-
-        /**
-         * Return the sidebar name, base on the account type
-         *
-         * @return string
-         */
-        private function getSideBar()
-        {
-            return "components.user-sidebar.".str_replace(' ', '-', self::getIdentity()['name'])."-menu";
-        }
-
-        /**
-         * Return the info box name, base on the user account type
-         *
-         * @return string
-         */
-        private function getInfoBox()
-        {
-            return "components.info-box.".str_replace(' ', '-', self::getIdentity()['name'])."";
-        }
+   /**
+     * Is the user who tried to login the system
+     * is an active user?
+     *
+     * @return boolean
+     */
+    private function isStatus()
+    {
+        return ($this->status == 'true') ? true : false;
+    }
 
     /**
      * Return the status of the loggedin user
      * @return boolean
      */
-    private function getIdentity()
+    private function getUserAccountProperty()
     {
         $user        = User::find(Auth::user()->id);
         $userAccount = UserType::find($user->user_type_id);
-    
-        return [
-        'status' => $user->status,
-        'name'   => $userAccount->name,
-        'theme'  => $userAccount->theme,
-        'color'  => $userAccount->color,
-        ];
-    }
 
-     
-
-     /**
-     * Get the User notification
-     *
-     * @return void
-     */
-    private function getNotification()
-    {
-        $notification = OrganizationGroup::with('organization')
-        ->where('user_id', '=', Auth::user()->id)
-        // ->where('membership_status', '=', 'no')
-        ->get();
-
-        foreach ($notification as $key => $value) {
-        $notification[$key]->title = "You're invited to join <br>{$value->organization->name}";
-        $notification[$key]->icon  = "mail_outline";
-        }
-
-        return $notification;
-
-        // d($notification);
+        $this->status       = $user->status;
+        $this->account_name = $userAccount->name;
+        $this->theme        = $userAccount->theme;
+        $this->color        = $userAccount->color;
     }
 }
