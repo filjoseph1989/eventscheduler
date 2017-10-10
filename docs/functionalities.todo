@@ -86,16 +86,15 @@ Phase 1:
       ✔ Display events
         ✔ official events
            ✔ official attendance
-           ☐ expected attendance
+           ✔ expected attendance
            ✔ confirmed attendance
            ✔ declined attendance
-        ☐ local events
-          ☐ but not yet done with per within org events display at dropdown pull right
+        ✔ local events
+          ✔ but not yet done with per within org events display at dropdown pull right
            ✔ official attendance
-           ☐ expected attendance
+           ✔ expected attendance
            ✔ confirmed attendance
            ✔ declined attendance
-        ☐ Display attendance sheet per event (Just like who attend this event?) (It maybe a single table with filters)
 
   3. For Organization Head:
     ✔ View Profile @done(2017-10-10 21:52)
@@ -125,7 +124,7 @@ Phase 1:
         ✔ By organization @done(2017-10-03 22:33)
 
     My Organization:
-      ☐ view organization profile
+      ✔ view organization profile
         ✘ view organization events - (upcoming, archived, canceled, approved)
 
     Events:
@@ -143,20 +142,16 @@ Phase 1:
         ✔ official @done (10/7/2017, 3:26:00 PM)
         ✔ personal @done (10/7/2017, 3:26:02 PM)
 
-    Student Attendance:
-      ☐ Display events
-        ☐ Display attendance sheet per event (Just like who attend this event?) (It maybe a single table with filters)
-
-  4. For Members:
-    ☐ View profile
-    ☐ View organization
+  ☐ 4. For Members:
+    ✔ View profile
+    ✔ View organization
     ☐ View Events
       ☐ Attend and Decline (should show when members is loggedin)
     ☐ Change password
     ☐ Upload picture
     ☐ Create personal events
     ☐ View Attendance
-    ☐ View Calendar
+    ✔ View Calendar
 
   5. Separation of Authority:
     ☐ Plan how to separate what actions and pages or data can OSA, Organization Head and Member can view

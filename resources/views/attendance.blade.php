@@ -9,7 +9,7 @@
   <link href="{{ asset('css/all-themes.css') }}" rel="stylesheet">
 @endsection
 
-@section('content')
+@section('content') 
   <section class="content">
     <div class="container-fluid">
       <div class="row clearfix">
@@ -27,14 +27,13 @@
                     <i class="material-icons">more_vert</i>
                   </a>
                   <ul class="dropdown-menu pull-right">
-                    @if ($eventType == 'official' || $eventType == 'university' || $eventType == 'organizations')
+                    @if ($eventType == 'Official' || $eventType == 'university' || $eventType == 'organizations')
                       <li><a href = "{{ route('Attendances.show', 'university') }}">University Events</a></li>
                       <li><a href = "{{ route('Attendances.show', 'organizations') }}">Organizations Events</a></li>
-                    @endif ($eventType == 'local')
-                      {{--  @foreach ($user_orgs as $key => $org)  --}}
-                          {{--  magwork na ni pag naa nay auth  --}}
-                        {{--  <li><a href = "{{ route('Attendances.show', '{{ $org->organization_id }}') }}">My Org: {{ $value->organization->name }} Events</a></li>                      --}}
-                      {{--  @endforeach  --}}
+                    @endif ($eventType == 'Local')
+                      @foreach ($user_orgs as $key => $user_org)
+                          <li><a href = "{{ route('attendance.showWithinEachOrg', $user_org->organization->id) }}">My Org: {{ $user_org->organization->name }} Events</a></li>          
+                      @endforeach
                   </ul>
                 </li>
               </ul>
