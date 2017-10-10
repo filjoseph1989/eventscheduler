@@ -15,7 +15,7 @@ Route::get('/', function () {
   return redirect()->route('login');
 });
 
-Auth::routes(); 
+Auth::routes();
 
 Route::name('my.login')->post('/my-login', 'Auth\LoginController@myLogin');
 
@@ -26,22 +26,23 @@ Route::group(['middleware'=>['auth']], function(){
     Route::resource('Calendar',     'CalendarController');
     Route::resource('Attendances',  'AttendanceController');
     Route::resource('Approve',      'ApproveEventController');
+    Route::resource('Profile',      'UserProfileController');
     Route::resource('Event',        'EventController', ['parameters' =>[
       'Event' => 'id'
     ]]);
     Route::resource('Attendances', 'AttendanceController', ['parameters' =>[
       'Attendance' => 'id'
     ]]);
-    
+
     # Used for modal request
     Route::prefix('modals')->group(function() {
       Route::name('modal.getUser')->post('/get/user','ModalController@getUser');
       Route::name('modal.getCourse')->post('/get/course','ModalController@getCourse');
       Route::name('modal.getPosition')->post('/get/position','ModalController@getPosition');
       Route::name('modal.getOrganization')->post('/get/organization','ModalController@getOrganization');
-      Route::name('modal.getAttendance')->post('/get/attendance','ModalController@getAttendance'); 
+      Route::name('modal.getAttendance')->post('/get/attendance','ModalController@getAttendance');
     });
-    
+
     # Used for attendances
     Route::prefix('attendance')->group(function() {
       Route::name('attendance.official')->post('/get/official/attendance','AttendanceController@getOfficialAttendance');
@@ -52,4 +53,3 @@ Route::group(['middleware'=>['auth']], function(){
       //for later when authenitcation is complete(for within orgs of a user)
     });
 });
-

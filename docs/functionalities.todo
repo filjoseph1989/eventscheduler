@@ -90,7 +90,7 @@ Phase 1:
            ✔ confirmed attendance
            ✔ declined attendance
         ☐ local events
-          ☐ but not yet done with per within org events display at dropdown pull right 
+          ☐ but not yet done with per within org events display at dropdown pull right
            ✔ official attendance
            ☐ expected attendance
            ✔ confirmed attendance
@@ -98,9 +98,9 @@ Phase 1:
         ☐ Display attendance sheet per event (Just like who attend this event?) (It maybe a single table with filters)
 
   3. For Organization Head:
-    ☐ View Profile
+    ✔ View Profile @done(2017-10-10 21:52)
     ☐ Change password
-    ☐ Upload picture
+    ☐ Change Profile picture
 
     Display Users list:
       ☐ Display all members of the organization (organization sa head)
