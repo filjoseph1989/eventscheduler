@@ -8,6 +8,10 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
+  <?php if (session('loginClass')): ?>
+    <?php $loginClass = session('loginClass'); ?>
+  <?php endif; ?>
+
   @if ($loginClass == 'login-page')
     <title>{{ config('app.name', 'EventScheduler') }}</title>
   @else
@@ -28,34 +32,19 @@
 
 <body class="{{ isset($loginClass) ? $loginClass : "" }}">
 
+  @guest
+    @yield('login')
+  @else
+    @include ('templates/top-navigation')
 
-    @if ($loginClass == 'login-page')
-      @yield('login')
-    @else
-      @include ('templates/top-navigation')
+    @include ('templates/sidebar')
 
-      @include ('templates/sidebar')
+    @yield('content')
 
-      @yield('content')
+    @yield('modals')
+  @endguest
 
-      @yield('modals')
-    @endif
-
-
-  {{--
-    @guest
-      @yield('login')
-    @else
-      @include ('templates/top-navigation')
-
-      @include ('templates/sidebar')
-
-      @yield('content')
-
-      @yield('modals')
-    @endguest
-  --}}
-
+  {{--  Authors modals  --}}
   <div id="webknights" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -82,7 +71,7 @@
   <script src="{{ asset('js/bootstrap.min.js') }}?v=3.3.7"></script>
   <script src="{{ asset('js/waves.js') }}"></script>
   <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="{{ asset('js/axios.js') }}"></script>
   @yield('js')
 
 </body>
