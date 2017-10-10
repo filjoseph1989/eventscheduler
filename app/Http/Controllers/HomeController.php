@@ -13,7 +13,7 @@ use App\Models\Organization;
 use App\Models\OrganizationGroup;
 
 /**
- * A landing controller after loggedin
+ * A landing controller after loggedin 
  *
  * @author Liz <janicalizdeguzman@gmail.com>
  * @version 2.0.0

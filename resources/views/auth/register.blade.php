@@ -145,7 +145,7 @@
   <script type="text/javascript">
     (function() {
       var next = 1;
-
+ 
       $('.add-field').click(function(e) {
         e.preventDefault();
         var addto = "#input" + next;
