@@ -36,10 +36,6 @@ class EventController extends Controller
      */
     public function __construct()
     {
-      # Issue 12
-      // if (! isset($login)) {
-      //   Redirect(config('app.url')."/home", false);
-      // }
     }
 
     /**
@@ -54,7 +50,6 @@ class EventController extends Controller
         ->get();
 
       return view('approve-events')->with([
-        'loginClass' => 'theme-teal',
         'events'     => $events,
         'helper'     => $helper
       ]);
@@ -69,7 +64,6 @@ class EventController extends Controller
     {
       # view
       return  view('events-add')->with([
-        'loginClass' => 'theme-teal',
         'eventTypes' => EventType::all(),
         'semesters'  => Semester::all()
       ]);
@@ -119,7 +113,6 @@ class EventController extends Controller
       self::getOrganization($events);
 
       return view('events-list')->with([
-        'loginClass' => 'theme-teal',
         'title'      => $this->list[$id],
         'events'     => $events,
         'eventType'  => $id
@@ -146,8 +139,6 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-      # Issue 16
-
       $event = Event::find($id);
 
       $event->facebook_msg = $request->facebook_msg;

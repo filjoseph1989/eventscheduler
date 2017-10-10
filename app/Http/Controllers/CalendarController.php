@@ -70,6 +70,7 @@ class CalendarController extends Controller
           'date_end',
           'whole_day'
         )->where('event_type_id', $id)
+         ->where('is_approve', 'true')
           ->get();
 
         $output_arrays = array();
@@ -82,7 +83,6 @@ class CalendarController extends Controller
         return view("calendar")->with([
             'title'          => $this->list[$id],
             'calendarEvents' => json_encode($output_arrays),
-            'loginClass'     => 'theme-teal',
         ]);
     }
 

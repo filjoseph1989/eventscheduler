@@ -27,10 +27,14 @@
                     <i class="material-icons">more_vert</i>
                   </a>
                   <ul class="dropdown-menu pull-right">
-                    @if ($eventType == 0)
+                    @if ($eventType == 'official' || $eventType == 'university' || $eventType == 'organizations')
                       <li><a href = "{{ route('Attendances.show', 'university') }}">University Events</a></li>
                       <li><a href = "{{ route('Attendances.show', 'organizations') }}">Organizations Events</a></li>
-                    @endif
+                    @endif ($eventType == 'local')
+                      {{--  @foreach ($user_orgs as $key => $org)  --}}
+                          {{--  magwork na ni pag naa nay auth  --}}
+                        {{--  <li><a href = "{{ route('Attendances.show', '{{ $org->organization_id }}') }}">My Org: {{ $value->organization->name }} Events</a></li>                      --}}
+                      {{--  @endforeach  --}}
                   </ul>
                 </li>
               </ul>
@@ -51,15 +55,15 @@
                       @foreach ($events as $key => $event)
                         <tr data-event="{{ $event->id }}" data-route="{{ route('Event.edit', $event->id) }}" data-action="{{ route('Event.update', $event->id) }}">
                           <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ $event->title }}</a></td>
-                          <td><button type="submit" class="btn btn-success event-attendance" data-target="#modal-official" data-toggle="modal">View</button></td>
-                          <td><button type="submit" class="btn btn-success event-attendance" data-target="#modal-expected"  data-toggle="modal">View</button></td>
-                          <td><button type="submit" class="btn btn-success event-attendance" data-target="#modal-confirmed" data-toggle="modal">View</button></td>
-                          <td><button type="submit" class="btn btn-success event-attendance" data-target="#modal-attendance"  data-toggle="modal">View</button></td>
+                          <td><button type="submit" class="btn btn-success event-attendance-official" data-target="#modal-attendances" data-toggle="modal">View</button></td>
+                          <td><button type="submit" class="btn btn-success event-attendance-expected" data-target="#modal-attendances"  data-toggle="modal">View</button></td>
+                          <td><button type="submit" class="btn btn-success event-attendance-confirmed" data-target="#modal-attendances" data-toggle="modal">View</button></td>
+                          <td><button type="submit" class="btn btn-success event-attendance-declined" data-target="#modal-attendances"  data-toggle="modal">View</button></td>
                         </tr>
                       @endforeach
                     </tbody>
                   </table>
-                </div>
+                </div> 
               </div>
             </div>
           </div>
@@ -70,14 +74,14 @@
 @endsection
 
 @section('modals')
-  <div id="modal-official" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div id="modal-attendances" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          <h4 class="modal-title" id="myModalLabel">Official Attendance</h4>
+          <h4 class="modal-title" id="myModalLabel">{{-- MUST SHOW WHAT TYPE OF ATTENDANCE--}} Attendance</h4>
         </div>
         <div class="modal-body">
           <table class="table table-bordered table-striped table-hover">
@@ -108,5 +112,5 @@
   <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}?v=0.1"></script>
   <script src="{{ asset('js/tooltips-popovers.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/app.js') }}?v=2.6"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.7"></script>
 @endsection

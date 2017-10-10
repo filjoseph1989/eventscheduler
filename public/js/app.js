@@ -239,25 +239,117 @@
   });
 
   /**
-   * Provide user list on the modal
+   * Provide user list on the modal for official attendance
    * @return {void}
    */
-  $(document).on('click', '.event-attendance', function() {
+  $(document).on('click', '.event-attendance-official', function() {
     var id = $(this).parents('tr').data('event');
     var data = {
       id: id
     }
 
-    axios_post(route('modal.getAttendance'), data, function(data) {
+    axios_post('/attendance/get/official/attendance', data, function(data) {
+      console.log(data);
       var html = "";
-      data.map(function(data) {
+      data.map(function (data) {
         html +=
-        '<tr>' +
-          '<td><a href="#">'+ data.user.full_name +'</a></td>' +
+          '<tr>' +
+          '<td><a href="#">' + data.user.full_name + '</a></td>' +
+          '<td>' +
+          '<button type="button" class="btn btn-primary bg-teal" name="button">Attend</button>' +
+          '</td>' +
+          '</tr>';
+      });
+
+      $('#event-attendees').html(html);
+      
+    })
+  });
+
+  /**
+  * Provide user list on the modal for confirmed attendance
+  * @return {void}
+  */
+  $(document).on('click', '.event-attendance-confirmed', function () {
+     var id = $(this).parents('tr').data('event'); 
+     var data = { 
+       id: id 
+      }
+
+    axios_post('/attendance/get/official/attendance', data, function(data) {
+      console.log(data);
+      var html = "";
+      data.map(function (data) {
+        html +=
+          '<tr>' +
+          '<td><a href="#">' + data.user.full_name + '</a></td>' +
+          '<td>' +
+          '<button type="button" class="btn btn-primary bg-teal" name="button">Attend</button>' +
+          '</td>' +
+          '</tr>';
+      });
+
+      $('#event-attendees').html(html);
+    });
+  });
+
+  /**
+  * Provide user list on the modal for expected attendance
+  * @return {void}
+  */
+  $(document).on('click', '.event-attendance-expected', function () {
+    var id = $(this).parents('tr').data('event');
+    var data = {
+      id: id
+    }
+
+    axios_post('/attendance/get/expected/attendance', data, function (data) {
+      var event_type = data.event_type;
+      var html = "";
+
+      data.result.map(function (data) {
+        console.log(data);
+        html +=
+        '<tr>';
+
+        if (event_type == 1){ 
+          html +=   '<td><a href="#">' + data.full_name + '</a></td>'; 
+        } else { 
+          html += '<td><a href="#">' + data.full_name + '</a></td>'; 
+        }
+
+        html +=
           '<td>' +
             '<button type="button" class="btn btn-primary bg-teal" name="button">Attend</button>' +
           '</td>' +
         '</tr>';
+      });
+
+      $('#event-attendees').html(html);
+    });
+  });
+
+  /**
+ * Provide user list on the modal for declined attendance
+ * @return {void}
+ */
+  $(document).on('click', '.event-attendance-declined', function () {
+    var id = $(this).parents('tr').data('event');
+    var data = {
+      id: id
+    }
+
+    axios_post('/attendance/get/declined/attendance', data, function (data) {
+      console.log(data);
+      var html = "";
+      data.map(function (data) {
+        html +=
+          '<tr>' +
+          '<td><a href="#">' + data.user.full_name + '</a></td>' +
+          '<td>' +
+          '<button type="button" class="btn btn-primary bg-teal" name="button">Attend</button>' +
+          '</td>' +
+          '</tr>';
       });
 
       $('#event-attendees').html(html);
@@ -277,12 +369,6 @@
    * @deprecated 2.0
    */
   function submit(data, url, callback) {
-    if (param == '') {
-      url = route(url).replace('localhost', window.location.hostname);
-    } else {
-      url = route(url, param).replace('localhost', window.location.hostname);
-    }
-
     $.ajax({
       type: method,
       url: url,

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Mail;
 # Apps
 use App\Helpers\RandomHelper;
 use App\Mail\EmailNotification;
+use App\Common\ValidationTrait;
 
 #Models
 use App\Models\User;
@@ -27,6 +28,10 @@ use App\Models\OrganizationGroup;
  */
 class UserController extends Controller
 {
+    private $validateWho;
+
+    use ValidationTrait;
+
     /**
      * Initial instance of the class
      */
@@ -53,7 +58,6 @@ class UserController extends Controller
         ->get();
 
       return view('users_index')->with([
-        'loginClass' => 'theme-teal',
         'users'      => $users,
         'help'       => $help
       ]);
@@ -70,7 +74,6 @@ class UserController extends Controller
 
       # View
       return view('auth/register')->with([
-        'loginClass' => 'theme-teal',
         'courses'    => Course::all(),
         'accounts'   => UserType::all()
       ]);
@@ -84,15 +87,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-      # Issue 19
-      $this->validate($request, [
-        'full_name'      => 'Required',
-        'account_number' => 'Required',
-        'email'          => 'Required',
-        'mobile_number'  => 'Required',
-        'course_id'      => 'Required',
-        'user_type_id'   => 'Required',
-      ]);
+      $this->validateUser($this, $request);
 
       $user = User::where('email', $request->email)->get();
 
@@ -155,7 +150,6 @@ class UserController extends Controller
       }
 
       return view('users_index')->with([
-        'loginClass' => 'theme-teal',
         'users'      => $users,
         'help'       => $help
       ]);

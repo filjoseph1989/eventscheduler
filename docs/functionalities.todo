@@ -15,14 +15,16 @@ Phase 1:
     ✔ Other Pages @done(2017-10-04 08:13)
 
   1. Login functionalities:
-    ☐ Login using student_number and password
-    ☐ forgot password
+    ✘ Login using student_number and password
+    ✔ Login using email and password
+    ☐ forgot password via email
     ☐ Remember me
     ✔ Logout @done(2017-10-01 13:49)
+    ✔ registration
 
   Accepting the invitation:
     (This functionality is for member who recieved invitation from organization head)
-    ☐ System validate the user active status by setting it 'active' using code sent via email
+    ✔ System validate the user active status by setting it 'active' using code sent via email
 
   2. For OSA:
     Display Users list:
@@ -31,7 +33,7 @@ Phase 1:
         ✔ view Course (modal) (optional) @done(2017-10-01 22:42)
         ✔ view Organization (modal) (optional) @done(2017-10-01 23:14)
         ✔ view Position (modal) (optional) @done(2017-10-01 23:26)
-          ☐ All this modals can be editable, except for the users modal
+          ✘ All this modals can be editable, except for the users modal
       ✔ User registration  @done(2017-10-02 22:14)
         (this is consider as an invitation to the user ti join the organizatin and be part of the system)
         (The part is useful because, if the system doesn't have a members yet, an OSA can initiate an input)
@@ -53,7 +55,7 @@ Phase 1:
         ✔ By organization @done(2017-10-03 17:17)
         ✔ By position @done(2017-10-03 17:17)
       ✔ Edit - (osa is allowed to edit with certain information, such as name, course, department but not more on Personal like facebook) @done(2017-10-03 11:59)
-      ☐ Archived - (To archived those events nahumana) (Must be a systems job)
+      ✘ Archived - (To archived those events nahumana) (Must be a systems job)
 
     Organization:
       ✔ Add new organization @done(2017-10-03 21:48) (changed)
@@ -61,8 +63,8 @@ Phase 1:
         ✔ view organization profile (Modal) @done(2017-10-03 22:16)
           ✔ view official events @done(2017-10-05 22:04)
           ✔ view private events @done(2017-10-05 22:06)
-        ☐ view organization events - (upcoming, archived, canceled, approved)
-        ☐ Set active/inactive
+        ✘ view organization events - (upcoming, archived, canceled, approved)
+        ✘ Set active/inactive
           (Usefull when the organization is not functional already on school or no members already)
           (Not all registered organization are actively operational in school)
 
@@ -81,7 +83,18 @@ Phase 1:
         ☐ Post to social media and send email to registered user
 
     Student Attendance:
-      ☐ Display events
+      ✔ Display events
+        ✔ official events
+           ✔ official attendance
+           ☐ expected attendance
+           ✔ confirmed attendance
+           ✔ declined attendance
+        ☐ local events
+          ☐ but not yet done with per within org events display at dropdown pull right 
+           ✔ official attendance
+           ☐ expected attendance
+           ✔ confirmed attendance
+           ✔ declined attendance
         ☐ Display attendance sheet per event (Just like who attend this event?) (It maybe a single table with filters)
 
   3. For Organization Head:
@@ -109,7 +122,7 @@ Phase 1:
 
     My Organization:
       ☐ view organization profile
-        ☐ view organization events - (upcoming, archived, canceled, approved)
+        ✘ view organization events - (upcoming, archived, canceled, approved)
 
     Events:
       ✔ Create new event @done(2017-10-04 15:23)

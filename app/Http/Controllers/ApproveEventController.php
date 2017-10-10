@@ -16,7 +16,7 @@ use App\Models\Event;
  */
 class ApproveEventController extends Controller
 {
-    /**
+    /** 
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

@@ -29,7 +29,6 @@ class OrganizationController extends Controller
 
         return view('organization_list')->with([
           'organizations' => $organizations,
-          'loginClass'    => 'theme-teal'
         ]);
     }
 
@@ -40,17 +39,14 @@ class OrganizationController extends Controller
      */
     public function create()
     {
+        parent::loginCheck();
+
         /**
-         *  TO CONSIDER
-         *parent::loginCheck();
-         *$this->osa_personnel->isOsaPersonnel();
-         *return view('pages/users/osa-personnel/organization/add')->with([
-         *   'login_type' => $this->login_type
-         *]);
+         * TO CONSIDER
+         * $this->osa_personnel->isOsaPersonnel();
          */
-        return view('organization_add')->with([
-            'loginClass' => 'theme-teal'
-        ]);
+        
+        return view('organization_add');
     }
 
     /**

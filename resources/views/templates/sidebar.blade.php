@@ -41,7 +41,9 @@
           </a>
           <ul class="ml-menu">
             <li><a href="{{ route('User.index') }}">List of Users</a></li>
-            <li><a href="{{ route('User.create') }}">Register New User</a></li>
+            @if (Auth::user()->user_type_id == '3')
+              <li><a href="{{ route('User.create') }}">Register New User</a></li>
+            @endif
           </ul>
         </li>
         <li>
@@ -80,7 +82,7 @@
                 <li><a href="{{ route('Calendar.show', 1) }}"><span>Official</span></a></li>
                 <li><a href="{{ route('Calendar.show', 2) }}"><span>Personal</span></a></li>
               </ul>
-            </li>
+            </li> 
           </ul>
         </li>
         <li>
@@ -89,7 +91,7 @@
             <span>Attendances</span>
           </a>
           <ul class="ml-menu">
-            <li><a href="{{ route('Attendances.show', 'official') }}"><span>Official Events</span></a></li>
+            <li><a href="{{ route('Attendances.show', 'official') }}"><span>Official Events</span></a></li> 
             <li><a href="{{ route('Attendances.show', 'local') }}"><span>Local Events</span></a></li>
           </ul>
         </li>

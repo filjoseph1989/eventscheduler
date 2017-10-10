@@ -1,0 +1,12 @@
+OSA USER is the only one who can:
+    ☐ add or register an organization
+    ☐ register an org head upon adding an organization
+    ☐ send password to org head's email upon adding an organization
+    ☐ approve users for the system / approve orgnization members 
+    ☐ doesn't have local-within org events, only local-personal
+ORG HEAD:
+    ☐ add organization members / add user for the system for approval from the osa
+    ☐ add his/her other details after being added by the osa, like facebook, twitter, mobile_number, picture
+ORG USER:
+    ☐ add his/her other details after being approved as system users by the osa, like facebook, twitter, mobile_number, picture
+    

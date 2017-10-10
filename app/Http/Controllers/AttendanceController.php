@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Helpers\RandomHelper;
 
 # Models
+use App\Models\User;
 use App\Models\Event;
 use App\Models\Semester;
 use App\Models\EventType;
@@ -63,23 +64,17 @@ class AttendanceController extends Controller
        * it will direct to a link for what type of event(LOCAL: within or personal, or WITHIN: university or organizations),
        * then by clicking, it will direct the user to the particular list of events he/she is looking for.
        */
-      $events = self::getEvents($id);
+      $events = self::getEventsWithOrganization($id);
 
-      self::getOrganization($events);
-
-      $official_att  = self::getOfficialAttendance($events);
-      $expected_att  = self::getExpectedAttendance($events);
-      $declined_att  = self::getDeclinedAttendance($events);
-      $confirmed_att = self::getConfirmedAttendance($events);
+      // get all user's organization for the dropdown pull right menu of local within orgs in attendance blade
+      // $user_orgs = self::getUserOrgs(Auth::user()->id);  //{{--  magwork na ni pag naa nay auth  --}}
+      // self::getOrganization($events);
 
       return view('attendance')->with([
-        'loginClass'   => 'theme-teal',
         'events'       => $events,
         'eventType'    => $id,
-        'official_att' => $official_att,
-        'expected_att' => $expected_att,
-        'declined_att' => $declined_att,
         'helper'       => $helper,
+        // 'user_orgs'    => $user_orgs, // {{--  magwork na sulod ani pag naa nay auth  --}}
       ]);
 
     }
@@ -118,73 +113,91 @@ class AttendanceController extends Controller
         //
     }
 
-    private function getOrganization(&$events)
-    {
-        //need to change this because university events doesn't need eventroups
-        //use organization_id in events
-        foreach ($events as $key => $event) {
-            $events[$key]['organization'] = EventGroup::with('organization')
-            ->where('event_id', '=', $event->id)
-            ->get();
-        }
-    }
+    //I COMMENTED THIS BECAUSE I THINK WE WILL NO LONGER NEED TO TAP EVENTGROUP SINCE ORGANIZATION ID IS ALREADY IN EVENT MODEL
+    // private function getOrganization(&$events)
+    // {
+    //     //need to change this because university events doesn't need eventroups
+    //     //use organization_id in events
+    //     foreach ($events as $key => $event) {
+    //         $events[$key]['organization'] = EventGroup::with('organization')
+    //         ->where('event_id', '=', $event->id)
+    //         ->get();
+    //     }
+    // }
 
-    private function getOfficialAttendance($events)
+    public function getOfficialAttendance(Request $event)
     {
         //get attendance with did_attend == 'true'
-        foreach ($events as $key => $event) {
-            $events[$key]['users'] = Attendance::with('user')
-            ->where('event_id', '=', $event->id)
-            ->where('did_attend', '=', 'true')
+        return Attendance::with('user')
+            ->where('event_id', $event->id)
+            ->where('did_attend', 'true') 
             ->get();
-            // d($events[0]['users']);
-        }
-        // exit();
     }
 
-    private function getConfirmedAttendance($events)
+    public function getConfirmedAttendance(Request $event)
     {
         //get attendance with status == 'confirmed'
-        foreach ($events as $key => $event) {
-        $events[$key]['users'] = Attendance::with('user')
-          ->where('event_id', '=', $event->id)
-          ->where('status', '=', 'confirmed')
-          ->get();
-        }
+        return Attendance::with('user')
+            ->where('event_id', '=', $event->id)
+            ->where('status', '=', 'confirmed')
+            ->get();   
     }
 
-    private function getDeclinedAttendance($events)
+    public function getDeclinedAttendance(Request $event)
     {
         //get attendance with status == 'unconfirmed'
-        foreach ($events as $key => $event) {
-        $events[$key]['users'] = Attendance::with('user')
-          ->where('event_id', '=', $event->id)
-          ->where('status', '=', 'confirmed')
-          ->get();
-        }
+        return Attendance::with('user')
+            ->where('event_id', '=', $event->id)
+            ->where('status', '=', 'unconfirmed')
+            ->get();
     }
 
-    private function getExpectedAttendance($events)
+    /**
+     * Return the expexted attendance
+     *
+     * @param Request $event
+     * @return json
+     */
+    public function getExpectedAttendance(Request $event)
     {
         /**
          * if within org, get all users in the orggroup with the same organization_id with the event's
          * if university / organization, get all users of the system
          */
-         foreach ($events as $key => $event) {
-         $events[$key]['users'] = OrganizationGroup::with('user')
-          ->where('organization_id', '=', $event->organization_id)
-          ->get();
-        }
+        $ev = Event::find($event->id);
+
+        if($ev->event_type_id == 1) {
+            $data['result'] = User::all();
+        } elseif ($ev->event_type_id == 2) { 
+            $data['result'] = OrganizationGroup::with('user')
+                ->where('organization_id', '=', $ev->organization_id)
+                ->get();
+        } 
+        
+        $data['ev_type'] = $ev->event_type_id;
+
+        echo json_encode($data);
     }
 
-    private function getEvents($id)
+    private function getEventsWithOrganization($id)
     {
       if ($id == 'official') {
-        $events = Event::where('event_type_id', 1)->where('is_approve', 'true')->get();
+        $events = Event::where('event_type_id', 1)->where('is_approve', 'true')->with('organization')->get();
+      }
+      if ($id == 'university') {
+          $events = Event::where('event_type_id', 1)->where('category', 'university')->where('is_approve', 'true')->with('organization')->get();
+      }
+      if ($id == 'organizations') {
+          $events = Event::where('event_type_id', 1)->where('category', 'organization')->where('is_approve', 'true')->with('organization')->get();
       }
       if ($id == 'local') {
-        $events = Event::where('event_type_id', 2)->where('is_approve', 'true')->get();
+        $events = Event::where('event_type_id', 2)->where('is_approve', 'true')->with('organization')->get();
       }
       return $events;
     }
+
+    // private function getUserOrgs($id) {
+    //     //  {{--  magwork na ni pag naa nay auth  --}}
+    //     $orgs = OrganizationGroup::where('user_id', $id)->with('organization')->get();
+    // }
 }

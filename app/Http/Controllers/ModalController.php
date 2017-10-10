@@ -66,7 +66,7 @@ class ModalController extends Controller
    */
   public function getPosition(Request $data)
   {
-    return Position::find($data->id);
+    return Position::find($data->id); 
   }
 
   /**
@@ -93,7 +93,7 @@ class ModalController extends Controller
     # get the member under the given organization
 
     $event        = Event::find($data->id);
-    $organization = Organization::find($event->id);
+    $organization = Organization::find($event->organization_id);
 
     return OrganizationGroup::with('user')
       ->where('organization_id', $organization->id)
