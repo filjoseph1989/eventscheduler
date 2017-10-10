@@ -46,7 +46,7 @@ class OrganizationController extends Controller
          * $this->osa_personnel->isOsaPersonnel();
          */
         
-        return view('organization_add')
+        return view('organization_add');
     }
 
     /**

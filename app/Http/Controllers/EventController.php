@@ -36,10 +36,6 @@ class EventController extends Controller
      */
     public function __construct()
     {
-      # Issue 12
-      // if (! isset($login)) {
-      //   Redirect(config('app.url')."/home", false);
-      // }
     }
 
     /**
@@ -143,8 +139,6 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-      # Issue 16
-
       $event = Event::find($id);
 
       $event->facebook_msg = $request->facebook_msg;

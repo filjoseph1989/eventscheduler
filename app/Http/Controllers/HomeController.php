@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 // use Auth;
-use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Notifications\FacebookPublished;
+
+use Auth;
+
 # Models
 use App\Models\User;
 use App\Models\UserType;
@@ -22,9 +25,9 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        session(['loginClass' => 'theme-teal']);
-    }
 
+    }
+    
     /**
      * Show the application dashboard.
      *
@@ -32,8 +35,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $theme = UserType::find(Auth::user()->user_type_id);
+        session(['loginClass' => $theme->theme]);
+
         # Is the user loggedin?
-        parent::loginCheck();
+        // parent::loginCheck();
 
          # Does the user is active?
         if (self::isIdStatus()) {
