@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Helpers\RandomHelper;
 
 # Models
+use App\Models\User;
 use App\Models\Event;
 use App\Models\Semester;
 use App\Models\EventType;
@@ -70,7 +71,6 @@ class AttendanceController extends Controller
       // self::getOrganization($events);
 
       return view('attendance')->with([
-        'loginClass'   => 'theme-teal',
         'events'       => $events,
         'eventType'    => $id,
         'helper'       => $helper,
@@ -128,33 +128,55 @@ class AttendanceController extends Controller
     public function getOfficialAttendance(Request $event)
     {
         //get attendance with did_attend == 'true'
-        return Attendance::with('user')->where('event_id', $event->id)->where('did_attend', 'true') ->get();
+        return Attendance::with('user')
+            ->where('event_id', $event->id)
+            ->where('did_attend', 'true') 
+            ->get();
     }
 
     public function getConfirmedAttendance(Request $event)
     {
         //get attendance with status == 'confirmed'
-        return Attendance::with('user')->where('event_id', '=', $event->id)->where('status', '=', 'confirmed')->get();   
+        return Attendance::with('user')
+            ->where('event_id', '=', $event->id)
+            ->where('status', '=', 'confirmed')
+            ->get();   
     }
 
     public function getDeclinedAttendance(Request $event)
     {
         //get attendance with status == 'unconfirmed'
-        return Attendance::with('user')->where('event_id', '=', $event->id)->where('status', '=', 'unconfirmed')->get();
+        return Attendance::with('user')
+            ->where('event_id', '=', $event->id)
+            ->where('status', '=', 'unconfirmed')
+            ->get();
     }
 
+    /**
+     * Return the expexted attendance
+     *
+     * @param Request $event
+     * @return json
+     */
     public function getExpectedAttendance(Request $event)
     {
         /**
          * if within org, get all users in the orggroup with the same organization_id with the event's
          * if university / organization, get all users of the system
          */
-        //////DILI PA KO KABALO DRI PAGSHOW SA MODAL (INCOMPLETE)
-        if($event->event_type_id == 1){
-            return Users::all();
-        } elseif ($event->event_type_id == 2){
-            return OrganizationGroup::with('user')->where('organization_id', '=', $event->organization_id)->get();
-        }
+        $ev = Event::find($event->id);
+
+        if($ev->event_type_id == 1) {
+            $data['result'] = User::all();
+        } elseif ($ev->event_type_id == 2) { 
+            $data['result'] = OrganizationGroup::with('user')
+                ->where('organization_id', '=', $ev->organization_id)
+                ->get();
+        } 
+        
+        $data['ev_type'] = $ev->event_type_id;
+
+        echo json_encode($data);
     }
 
     private function getEventsWithOrganization($id)

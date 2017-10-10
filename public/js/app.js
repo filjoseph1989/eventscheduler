@@ -271,10 +271,10 @@
   * @return {void}
   */
   $(document).on('click', '.event-attendance-confirmed', function () {
-     var id = $(this).parents('tr').data('event');
-    var data = {
-      id: id
-    }
+     var id = $(this).parents('tr').data('event'); 
+     var data = { 
+       id: id 
+      }
 
     axios_post('/attendance/get/official/attendance', data, function(data) {
       console.log(data);
@@ -304,18 +304,25 @@
     }
 
     axios_post('/attendance/get/expected/attendance', data, function (data) {
-              //////DILI PA KO KABALO DRI PAGSHOW SA MODAL (INCOMPLETE)
-      console.log(data);
+      var event_type = data.event_type;
       var html = "";
-      data.map(function (data) {
+
+      data.result.map(function (data) {
+        console.log(data);
         html +=
-          '<tr>' +
-          '<td><a href="#">' + data.full_name + '</a></td>' +
-          // '<td><a href="#">' + data.user.full_name + '</a></td>' +
+        '<tr>';
+
+        if (event_type == 1){ 
+          html +=   '<td><a href="#">' + data.full_name + '</a></td>'; 
+        } else { 
+          html += '<td><a href="#">' + data.full_name + '</a></td>'; 
+        }
+
+        html +=
           '<td>' +
-          '<button type="button" class="btn btn-primary bg-teal" name="button">Attend</button>' +
+            '<button type="button" class="btn btn-primary bg-teal" name="button">Attend</button>' +
           '</td>' +
-          '</tr>';
+        '</tr>';
       });
 
       $('#event-attendees').html(html);
