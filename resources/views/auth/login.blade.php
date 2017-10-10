@@ -36,7 +36,7 @@
               <a href="{{ route('register') }}">Register Now!</a>
             </div>
             <div class="col-xs-6 align-right">
-              <a href="">Forgot Password?</a>
+              <a href="{{ route('password.request') }}">Forgot Password?</a> 
             </div>
           </div>
         </form>

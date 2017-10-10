@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+@section('login')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -12,7 +12,7 @@
                         <div class="alert alert-success">
                             {{ session('status') }}
                         </div>
-                    @endif
+                    @endif 
 
                     <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
                         {{ csrf_field() }}

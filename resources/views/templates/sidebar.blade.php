@@ -38,7 +38,7 @@
         </li>
         <li>
           <a href="javascript:void(0);" class="menu-toggle">
-            <i class="material-icons">account_circle</i>
+            <i class="material-icons">account_circle</i> 
             <span>All System Users</span>
           </a>
           <ul class="ml-menu">

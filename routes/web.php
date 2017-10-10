@@ -43,7 +43,7 @@ Route::group(['middleware'=>['auth']], function(){
       Route::name('modal.getAttendance')->post('/get/attendance','ModalController@getAttendance');
     });
 
-    # Used for attendances
+    # Used for attendances  
     Route::prefix('attendance')->group(function() {
       Route::name('attendance.official')->post('/get/official/attendance','AttendanceController@getOfficialAttendance');
       Route::name('attendance.expected')->post('/get/expected/attendance','AttendanceController@getExpectedAttendance');

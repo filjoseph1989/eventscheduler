@@ -46,7 +46,7 @@ class HomeController extends Controller
     public function index()
     {
         self::getUserAccountProperty();
-
+ 
          # Does the user is active?
         if (self::isStatus()) {
 
