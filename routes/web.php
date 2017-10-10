@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::name('my.login')->post('/my-login', 'Auth\LoginController@myLogin');
 
-Route::group(['middleware'=>['auth']], function(){
+Route::group(['middleware'=>['auth']], function(){ 
     Route::resource('home',         'HomeController');
     Route::resource('User',         'UserController');
     Route::resource('Org',          'OrganizationController');

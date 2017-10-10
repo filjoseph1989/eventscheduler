@@ -15,6 +15,7 @@ use App\Common\ValidationTrait;
 use App\Models\User;
 use App\Models\Course;
 use App\Models\UserType;
+use App\Models\Position;
 use App\Models\OrganizationGroup;
 
 /**
@@ -75,7 +76,8 @@ class UserController extends Controller
       # View
       return view('auth/register')->with([
         'courses'    => Course::all(),
-        'accounts'   => UserType::all()
+        'accounts'   => UserType::all(),
+        'positions'   => Position::all()
       ]);
     }
 

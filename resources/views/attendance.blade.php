@@ -84,6 +84,7 @@
           <h4 class="modal-title" id="myModalLabel">{{-- MUST SHOW WHAT TYPE OF ATTENDANCE--}} Attendance</h4>
         </div>
         <div class="modal-body">
+         
           <table class="table table-bordered table-striped table-hover">
             <thead>
               <tr>

@@ -6,8 +6,8 @@ OSA USER is the only one who can:
     ☐ doesn't have local-within org events, only local-personal
 ORG HEAD:
     ☐ add organization members / add user for the system for approval from the osa 
-        ✔ register new user / add 1 organization member
-        ☐ register new users / add organization members
+        ✔ register new user / add 1 organization member (will be disolved later because we will make register user mass registration)
+        ☐ register many users / add organization members
             ☐ make in side-bar blade additional tab "Register Users", (this means mass registration)
                 ☐ create blade for "Register Users" with a form of fields: student number, full_name, position
                     then put it in the controller creating these members in User eloquent model with user_type: "organization-user", 
