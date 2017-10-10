@@ -5,9 +5,11 @@
         <img src="/img/profile.png" width="48" height="48" alt="User">
       </div>
       <div class="info-container">
-        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Eldora Vandervort</div>
-        <div class="email">nannie73@emard.net</div>
-        <div class="email">organization-head</div>
+        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{ Auth::user()->full_name }}
+        </div>
+        <div class="email">{{ Auth::user()->email }}</div>
+        <div class="email">{{ session('user_account') }}</div>
         <div class="btn-group user-helper-dropdown">
           <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
           <ul class="dropdown-menu pull-right">
@@ -41,9 +43,7 @@
           </a>
           <ul class="ml-menu">
             <li><a href="{{ route('User.index') }}">List of Users</a></li>
-            @if (Auth::user()->user_type_id == '3')
-              <li><a href="{{ route('User.create') }}">Register New User</a></li>
-            @endif
+            <li><a href="{{ route('User.create') }}">Register New User</a></li>
           </ul>
         </li>
         <li>
@@ -82,7 +82,7 @@
                 <li><a href="{{ route('Calendar.show', 1) }}"><span>Official</span></a></li>
                 <li><a href="{{ route('Calendar.show', 2) }}"><span>Personal</span></a></li>
               </ul>
-            </li> 
+            </li>
           </ul>
         </li>
         <li>
@@ -91,7 +91,7 @@
             <span>Attendances</span>
           </a>
           <ul class="ml-menu">
-            <li><a href="{{ route('Attendances.show', 'official') }}"><span>Official Events</span></a></li> 
+            <li><a href="{{ route('Attendances.show', 'official') }}"><span>Official Events</span></a></li>
             <li><a href="{{ route('Attendances.show', 'local') }}"><span>Local Events</span></a></li>
           </ul>
         </li>

@@ -8,15 +8,11 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <?php if (session('loginClass')): ?>
-    <?php $loginClass = session('loginClass'); ?>
-  <?php endif; ?>
-
-  @if ($loginClass == 'login-page')
+  @guest
     <title>{{ config('app.name', 'EventScheduler') }}</title>
   @else
     @yield('title')
-  @endif
+  @endguest
 
   <!-- Styles -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -29,6 +25,10 @@
   <link href="{{ asset('css/style.css') }}?v=1" rel="stylesheet">
 
 </head>
+
+@if (session('loginClass'))
+  @php $loginClass = session('loginClass') @endphp
+@endif
 
 <body class="{{ isset($loginClass) ? $loginClass : "" }}">
 
