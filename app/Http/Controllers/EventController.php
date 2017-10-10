@@ -54,7 +54,6 @@ class EventController extends Controller
         ->get();
 
       return view('approve-events')->with([
-        'loginClass' => 'theme-teal',
         'events'     => $events,
         'helper'     => $helper
       ]);
@@ -69,7 +68,6 @@ class EventController extends Controller
     {
       # view
       return  view('events-add')->with([
-        'loginClass' => 'theme-teal',
         'eventTypes' => EventType::all(),
         'semesters'  => Semester::all()
       ]);
@@ -119,7 +117,6 @@ class EventController extends Controller
       self::getOrganization($events);
 
       return view('events-list')->with([
-        'loginClass' => 'theme-teal',
         'title'      => $this->list[$id],
         'events'     => $events,
         'eventType'  => $id

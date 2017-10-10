@@ -53,7 +53,6 @@ class UserController extends Controller
         ->get();
 
       return view('users_index')->with([
-        'loginClass' => 'theme-teal',
         'users'      => $users,
         'help'       => $help
       ]);
@@ -70,7 +69,6 @@ class UserController extends Controller
 
       # View
       return view('auth/register')->with([
-        'loginClass' => 'theme-teal',
         'courses'    => Course::all(),
         'accounts'   => UserType::all()
       ]);
@@ -155,7 +153,6 @@ class UserController extends Controller
       }
 
       return view('users_index')->with([
-        'loginClass' => 'theme-teal',
         'users'      => $users,
         'help'       => $help
       ]);

@@ -22,6 +22,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        session(['loginClass' => 'theme-teal']);
     }
 
     /**
@@ -36,34 +37,28 @@ class HomeController extends Controller
 
          # Does the user is active?
         if (self::isIdStatus()) {
-        # Prepare session
-        session([
-            'name'       => self::getIdentity()['name'],
-            'class'      => self::getIdentity()['theme'],
-            'color'      => self::getIdentity()['color'],
-            'sidebar'    => self::getSideBar(),
-            'info_box'   => self::getInfoBox(),
-            'login_type' => 'user',
-        ]);
+            # Prepare session
+            session([
+                'name'       => self::getIdentity()['name'],
+                'class'      => self::getIdentity()['theme'],
+                'color'      => self::getIdentity()['color'],
+                'sidebar'    => self::getSideBar(),
+                'info_box'   => self::getInfoBox(),
+                'login_type' => 'user',
+            ]);
 
-        # Render View
-        // return view('pages/home')->with([
-        return view('home')->with([
-            'loginClass'   => 'class',
-            'notification' => self::getNotification(),
-        ]);
+            # Render View
+            return view('home')->with([
+                'notification' => self::getNotification(),
+            ]);
         } else {
-        # logout and redirect to register page if status is not active
-        Auth::guard('web')->logout();
-        return redirect()->route('register')
-            ->with('status', 'Your registration is not yet complete. </br> Please wait for the confirmation of your account of the administrator');
-        }
+            # logout and redirect to register page if status is not active
+            Auth::guard('web')->logout();
 
-           // return view('home')
-        //   ->with([
-        //     'loginClass' => 'theme-teal'
-        //   ]);
-    
+            return redirect()
+                ->route('register')
+                ->with('status', 'Your registration is not yet complete. </br> Please wait for the confirmation of your account of the administrator');
+        }
     }
 
        /**

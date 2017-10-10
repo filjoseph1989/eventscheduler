@@ -83,7 +83,6 @@ class CalendarController extends Controller
         return view("calendar")->with([
             'title'          => $this->list[$id],
             'calendarEvents' => json_encode($output_arrays),
-            'loginClass'     => 'theme-teal',
         ]);
     }
 
