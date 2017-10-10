@@ -54,7 +54,9 @@
             <span>Organization</span>
           </a>
           <ul class="ml-menu">
+          @if(session('user_account') == 'osa-personnel')
             <li><a href="{{ route('Org.create') }}"><span>Add New</span></a></li>
+          @endif
             <li><a href="{{ route('Org.index') }}"><span>University Organizations</span></a></li>
           </ul>
         </li>
