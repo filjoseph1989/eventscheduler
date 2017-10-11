@@ -56,6 +56,9 @@ Phase 1:
         ✔ By position @done(2017-10-03 17:17)
       ✔ Edit - (osa is allowed to edit with certain information, such as name, course, department but not more on Personal like facebook) @done(2017-10-03 11:59)
       ✘ Archived - (To archived those events nahumana) (Must be a systems job)
+      ☐ Display in ADVERTISEMENT home blade and EVENTS sidebar blade - # of FOR APPROVAL EVENTS
+      ☐ Display in ALL SYSTEM USER side bar blade - # of USER REQUESTS
+      ☐ complete routes in Home blade display
 
     Organization:
       ✔ Add new organization @done(2017-10-03 21:48) (changed)
@@ -122,6 +125,7 @@ Phase 1:
         ✔ By course @done(2017-10-03 22:33)
         ✔ By department @done(2017-10-03 22:33)
         ✔ By organization @done(2017-10-03 22:33)
+      ☐ complete routes in Home blade display
 
     My Organization:
       ✔ view organization profile
@@ -152,6 +156,20 @@ Phase 1:
     ☐ Create personal events
     ☐ View Attendance
     ✔ View Calendar
+    ☐ complete routes in Home blade display
+
 
   5. Separation of Authority:
-    ☐ Plan how to separate what actions and pages or data can OSA, Organization Head and Member can view
+    ✔ Plan how to separate what actions and pages or data can OSA, Organization Head and Member can view (done logic, ongoing execution)
+
+
+
+
+
+
+Ang sa register blade.. Try ra gud open test.dev/User/create,
+
+Pag add og daghan nga form-line,  tapos itry pindot ang pinakalast na close button, mawala ang 2 ka close button tapos muabot sa point na wala nay close button mabilin.
+test.dev
+test.dev
+

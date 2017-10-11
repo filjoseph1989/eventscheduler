@@ -155,7 +155,7 @@
         var newIn    = $('#registration-form-template').html();
         newIn        = newIn.replace('templateid', 'input' + next);
         newIn        = newIn.replace('templateremoveid', 'remove' + (next - 1));
-        var newInput = $(newIn);
+        var newInput = $(newIn); 
 
         $(addto).after(newInput);
       });
