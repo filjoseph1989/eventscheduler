@@ -37,7 +37,7 @@
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <div class="form-group form-float form-group">
                       <div class="form-line">
-                        <input type="text" class="form-control" id="account_number" name="account_number" placeholder="Enter student student number" value="{{ old('account_number') }}" required autofocus>
+                        <input type="text" class="form-control" id="account_number" name="account_number[]" placeholder="Enter student student number" value="{{ old('account_number') }}" required autofocus>
                         @if ($errors->has('account_number'))
                           <span class="help-block"> <strong>{{ $errors->first('account_number') }}</strong> </span>
                         @endif
@@ -47,7 +47,7 @@
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <div class="form-group form-float form-group">
                       <div class="form-line">
-                        <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Enter student full name" value="{{ old('full_name') }}" required autofocus>
+                        <input type="text" class="form-control" id="full_name" name="full_name[]" placeholder="Enter student full name" value="{{ old('full_name') }}" required autofocus>
                         @if ($errors->has('full_name'))
                           <span class="help-block"> <strong>{{ $errors->first('full_name') }}</strong> </span>
                         @endif
@@ -57,7 +57,7 @@
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <div class="form-group form-float form-group">
                       <div class="form-line">
-                        <input type="text" class="form-control" id="email" name="email" placeholder="Enter student email" value="{{ old('email') }}" required autofocus>
+                        <input type="text" class="form-control" id="email" name="email[]" placeholder="Enter student email" value="{{ old('email') }}" required autofocus>
                         @if ($errors->has('email'))
                           <span class="help-block"> <strong>{{ $errors->first('email') }}</strong> </span>
                         @endif
@@ -68,7 +68,7 @@
                     <div class="form-group form-float form-group">
                       <div class="form-group form-float">
                       <div class="form-line focused">
-                        <select class="form-control show-tick" id="position_id" name="position_id">
+                        <select class="form-control show-tick" id="position_id" name="position_id[]">
                           <option value="{{ old('position_id') }}" id="position-option">-- Select Position --</option>
                           @foreach ($positions as $key => $position)
                             <option value="{{ $position->id }}">{{ $position->name }}</option>
@@ -81,7 +81,12 @@
                 </div>
                 <div class="row clearfix">
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <button id="b1" class="btn add-field" type="button">+</button>
+                    <button id="b1" class="btn btn-success add-field" type="button" data-toggle="tooltip" data-placement="top" title="Add Form Field">+</button>
+                  </div>
+                </div>
+                <div class="row clearfix">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <button class="btn btn-primary pull-right" type="submit" name="save"><i class="material-icons">save</i> Save</button>
                   </div>
                 </div>
               </form>
@@ -101,21 +106,21 @@
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
       <div class="form-group form-float form-group">
         <div class="form-line">
-          <input type="text" class="form-control" name="account_number" placeholder="Enter student student number" value="" required>
+          <input type="text" class="form-control" name="account_number[]" placeholder="Enter student student number" value="" required>
         </div>
       </div>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
       <div class="form-group form-float form-group">
         <div class="form-line">
-          <input type="text" class="form-control" name="full_name" placeholder="Enter student full name" value="" required>
+          <input type="text" class="form-control" name="full_name[]" placeholder="Enter student full name" value="" required>
         </div>
       </div>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
       <div class="form-group form-float form-group">
         <div class="form-line">
-          <input type="text" class="form-control" name="email" placeholder="Enter student email" value="" required>
+          <input type="text" class="form-control" name="email[]" placeholder="Enter student email" value="" required>
         </div>
       </div>
     </div>
@@ -123,7 +128,7 @@
       <div class="form-group form-float form-group">
         <div class="form-group form-float">
           <div class="form-line focused">
-            <select class="form-control show-tick" name="position_id" required>
+            <select class="form-control show-tick" name="position_id[]" required>
               <option value="" id="position-option">-- Select Position --</option>
               @foreach ($positions as $key => $position)
                 <option value="{{ $position->id }}">{{ $position->name }}</option>
@@ -142,36 +147,6 @@
 
 @section('js')
   <script src="{{ asset('js/admin.js') }}?v=0.1"></script>
-  <script type="text/javascript">
-    (function() {
-      var next     = 1;
-
-      /* Add new form field for registering new user */
-      $(document).on('click', '.add-field', function(e) {
-        e.preventDefault();
-
-        // Issue 
-        var addto = "#input" + next;
-
-        next = next + 1;
-
-        var newIn = $('#registration-form-template').html();
-        newIn = newIn.replace('templateid', 'input' + next);
-        newIn = newIn.replace('templateremoveid', next);
-
-        $(addto).after(newIn);
-      });
-
-      /* Remove the added field */
-      $(document).on('click', '.remove', function(e) {
-        e.preventDefault();
-
-        var removeNumber = $(this).data('remove');
-        var fieldID      = "#input" + removeNumber;
-        next = removeNumber - 1;
-
-        $(fieldID).remove();
-      });
-    })();
-  </script>
+  <script src="{{ asset('js/tooltips-popovers.js') }}"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.7"></script>
 @endsection

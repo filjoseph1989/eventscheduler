@@ -13,7 +13,7 @@
  * @author Fil <filjoseph22@gmail.com>
  * @author Liz <janicalizdeguzman@gmail.com>
  * @since 0.1
- * @version 2.6
+ * @version 2.7
  * @date 09-30-2017
  * @date 10-02-2017 - last updated
  */
@@ -27,6 +27,7 @@
   var complete  = true;
   var param     = '';
   var action    = "";
+  var next      = 1;
 
   /**
    * Work when the user click on event title
@@ -262,7 +263,7 @@
       });
 
       $('#event-attendees').html(html);
-      
+
     })
   });
 
@@ -271,9 +272,9 @@
   * @return {void}
   */
   $(document).on('click', '.event-attendance-confirmed', function () {
-     var id = $(this).parents('tr').data('event'); 
-     var data = { 
-       id: id 
+     var id = $(this).parents('tr').data('event');
+     var data = {
+       id: id
       }
 
     axios_post('/attendance/get/official/attendance', data, function(data) {
@@ -312,10 +313,10 @@
         html +=
         '<tr>';
 
-        if (event_type == 1){ 
-          html +=   '<td><a href="#">' + data.full_name + '</a></td>'; 
-        } else { 
-          html += '<td><a href="#">' + data.full_name + '</a></td>'; 
+        if (event_type == 1){
+          html +=   '<td><a href="#">' + data.full_name + '</a></td>';
+        } else {
+          html += '<td><a href="#">' + data.full_name + '</a></td>';
         }
 
         html +=
@@ -354,6 +355,47 @@
 
       $('#event-attendees').html(html);
     });
+  });
+
+  /**
+   * Add new form field for registering new user
+   * @var void
+   */
+  $(document).on('click', '.add-field', function(e) {
+    e.preventDefault();
+
+    // Issue  23
+    // Define ID
+    var addto = "#input" + next;
+    next = next + 1;
+
+    // get the template html
+    var newIn = $('#registration-form-template').html();
+
+    // Replate concerns
+    newIn = newIn.replace('templateid', 'input' + next);
+    newIn = newIn.replace('templateremoveid', next);
+
+    // Append to existing field
+    $(addto).after(newIn);
+  });
+
+  /**
+   * Remove the added field
+   * @var void
+   */
+  $(document).on('click', '.remove', function(e) {
+    e.preventDefault();
+
+    // Get the remove number
+    var removeNumber = $(this).data('remove');
+
+    // use the remove number to define ID
+    var fieldID = "#input" + removeNumber;
+    next        = removeNumber - 1;
+
+    // Remove field
+    $(fieldID).remove();
   });
 
   /**

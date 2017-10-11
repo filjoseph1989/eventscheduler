@@ -89,6 +89,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+      dd($request);
+      
       $this->validateUser($this, $request);
 
       $user = User::where('email', $request->email)->get();
@@ -99,21 +101,17 @@ class UserController extends Controller
           ->with('status_warning', 'Email already exist');
       }
 
-      /*
-      1. Generate a randomw password
-      2. store a password in email and password in a file for reference
-          remove later
-       */
-      $password          = str_random(15);
-      $request->password = $password;
+      // Issue 24
+      // $password          = str_random(15);
+      // $request->password = $password;
 
-      Mail::to($request->email)->send(new EmailNotification($request));
+      // Mail::to($request->email)->send(new EmailNotification($request));
 
       # Validate sah
 
       # save sa database
-      $data = $request->all();
-      $data['password'] = bcrypt($password);
+      // $data = $request->all();
+      // $data['password'] = bcrypt($password);
 
       $user = User::create( $data );
 

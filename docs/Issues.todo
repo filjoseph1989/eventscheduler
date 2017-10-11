@@ -10,6 +10,7 @@
 ☐ Issue 21: Fixed the seeder issue
 ☐ Issue 22: When the user click on the visit button in the email, the user should be redirected to login page of sheduler
 ☐ Issue 23: {inline} Check if the if the ID is already exists to prevent ID duplication
+☐ Issue 24: {inline} Use the commented part to generate password when the OSA approve the user registeration
 
 Archived:
     ✔ Issue 21: {inline} Update this, when the authentication or login functionality is completed @done(2017-10-04 09:08)
