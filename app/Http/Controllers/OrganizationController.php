@@ -39,13 +39,6 @@ class OrganizationController extends Controller
      */
     public function create()
     {
-        parent::loginCheck();
-
-        /**
-         * TO CONSIDER
-         * $this->osa_personnel->isOsaPersonnel();
-         */
-        
         return view('organization_add');
     }
 

@@ -12,7 +12,7 @@
         <div class="email">{{ session('user_account') }}</div>
         <div class="btn-group user-helper-dropdown">
           <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
-          <ul class="dropdown-menu pull-right"> 
+          <ul class="dropdown-menu pull-right">
             <li><a href="{{ route('Profile.index') }}"><i class="material-icons">person</i>Profile</a></li>
             <li role="seperator" class="divider"></li>
             <li>
@@ -38,7 +38,7 @@
         </li>
         <li>
           <a href="javascript:void(0);" class="menu-toggle">
-            <i class="material-icons">account_circle</i> 
+            <i class="material-icons">account_circle</i>
             <span>All System Users</span>
           </a>
           <ul class="ml-menu">
@@ -54,9 +54,9 @@
             <span>Organization</span>
           </a>
           <ul class="ml-menu">
-          @if(session('user_account') == 'osa-personnel')
-            <li><a href="{{ route('Org.create') }}"><span>Add New</span></a></li>
-          @endif
+            @if(session('user_account') == 'osa-personnel')
+              <li><a href="{{ route('Org.create') }}"><span>Add New</span></a></li>
+            @endif
             <li><a href="{{ route('Org.index') }}"><span>University Organizations</span></a></li>
           </ul>
         </li>
@@ -87,7 +87,7 @@
                 <li><a href="{{ route('Calendar.show', 2) }}"><span>Personal</span></a></li>
               </ul>
             </li>
-          </ul> 
+          </ul>
         </li>
         <li>
           <a href="javascript:void(0);" class="menu-toggle">
