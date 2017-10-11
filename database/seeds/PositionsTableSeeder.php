@@ -79,19 +79,19 @@ class PositionsTableSeeder extends Seeder
         'updated_at'  => date('Y-m-d H:i:s')
       ),
       array(
-        'name'        => '1st Year Representattive',
+        'name'        => '1st Year Representative',
         'description' => 'No description yet',
         'created_at'  => date('Y-m-d H:i:s'),
         'updated_at'  => date('Y-m-d H:i:s')
       ),
       array(
-        'name'        => '2nd Year Representattive',
+        'name'        => '2nd Year Representative',
         'description' => 'No description yet',
         'created_at'  => date('Y-m-d H:i:s'),
         'updated_at'  => date('Y-m-d H:i:s')
       ),
       array(
-        'name'        => '3rd Year Representattive',
+        'name'        => '3rd Year Representative',
         'description' => 'No description yet',
         'created_at'  => date('Y-m-d H:i:s'),
         'updated_at'  => date('Y-m-d H:i:s')
