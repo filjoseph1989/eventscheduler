@@ -307,16 +307,14 @@
     axios_post('/attendance/get/expected/attendance', data, function (data) {
       var event_type = data.event_type;
       var html = "";
-
       data.result.map(function (data) {
-        console.log(data);
         html +=
         '<tr>';
 
-        if (event_type == 1){
-          html +=   '<td><a href="#">' + data.full_name + '</a></td>';
-        } else {
-          html += '<td><a href="#">' + data.full_name + '</a></td>';
+        if (event_type == 1){ 
+          html +=   '<td><a href="#">' + data.full_name + '</a></td>'; 
+        } else { 
+          html += '<td><a href="#">' + data.user.full_name + '</a></td>'; 
         }
 
         html +=

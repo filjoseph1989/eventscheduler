@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
 use App\Helpers\RandomHelper;
 
@@ -67,18 +68,34 @@ class AttendanceController extends Controller
       $events = self::getEventsWithOrganization($id);
 
       // get all user's organization for the dropdown pull right menu of local within orgs in attendance blade
-      // $user_orgs = self::getUserOrgs(Auth::user()->id);  //{{--  magwork na ni pag naa nay auth  --}}
-      // self::getOrganization($events);
+      $user_orgs = self::getUserOrgs(Auth::user()->id);  //{{--  magwork na ni pag naa nay auth  --}}
+    //   self::getOrganization($events);
+    // d($user_orgs); exit;
 
       return view('attendance')->with([
         'events'       => $events,
         'eventType'    => $id,
         'helper'       => $helper,
-        // 'user_orgs'    => $user_orgs, // {{--  magwork na sulod ani pag naa nay auth  --}}
+        'user_orgs'    => $user_orgs, // {{--  magwork na sulod ani pag naa nay auth  --}}
       ]);
-
     }
 
+    /**
+     * this function will display the list of events in a specific organization
+     * after the user clicks the organization name linked at the dropdown pull right 
+     * on the view of Local attendances
+     */
+    public function showWithinEachOrg($id, RandomHelper $helper){
+        $events = Event::where('organization_id', $id)->where('is_approve', 'true')->with('organization')->where('event_type_id', 2)->with('eventType')->get();
+        $user_orgs = self::getUserOrgs(Auth::user()->id);  //{{--  magwork na ni pag naa nay auth  --}}
+        
+         return view('attendance')->with([
+        'events'       => $events,
+        'eventType'    => 'Local',
+        'helper'       => $helper,
+        'user_orgs'    => $user_orgs, // {{--  magwork na sulod ani pag naa nay auth  --}}
+      ]);
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -152,7 +169,7 @@ class AttendanceController extends Controller
             ->get();
     }
 
-    /**
+    /** 
      * Return the expexted attendance
      *
      * @param Request $event
@@ -170,34 +187,33 @@ class AttendanceController extends Controller
             $data['result'] = User::all();
         } elseif ($ev->event_type_id == 2) { 
             $data['result'] = OrganizationGroup::with('user')
-                ->where('organization_id', '=', $ev->organization_id)
-                ->get();
+            ->where('organization_id', '=', $ev->organization_id)
+            ->get();
         } 
         
-        $data['ev_type'] = $ev->event_type_id;
+        $data['event_type'] = $ev->event_type_id;
 
         echo json_encode($data);
     }
 
     private function getEventsWithOrganization($id)
     {
-      if ($id == 'official') {
-        $events = Event::where('event_type_id', 1)->where('is_approve', 'true')->with('organization')->get();
+      if ($id == 'Official') {
+        $events = Event::where('event_type_id', 1)->where('is_approve', 'true')->with('organization')->with('eventType')->get();
       }
       if ($id == 'university') {
-          $events = Event::where('event_type_id', 1)->where('category', 'university')->where('is_approve', 'true')->with('organization')->get();
+          $events = Event::where('event_type_id', 1)->where('category', 'university')->where('is_approve', 'true')->with('organization')->with('eventType')->get();
       }
       if ($id == 'organizations') {
-          $events = Event::where('event_type_id', 1)->where('category', 'organization')->where('is_approve', 'true')->with('organization')->get();
+          $events = Event::where('event_type_id', 1)->where('category', 'organization')->where('is_approve', 'true')->with('organization')->with('eventType')->get();
       }
-      if ($id == 'local') {
-        $events = Event::where('event_type_id', 2)->where('is_approve', 'true')->with('organization')->get();
+      if ($id == 'Local') {
+        $events = Event::where('event_type_id', 2)->where('is_approve', 'true')->with('organization')->with('eventType')->get();
       }
       return $events;
     }
 
-    // private function getUserOrgs($id) {
-    //     //  {{--  magwork na ni pag naa nay auth  --}}
-    //     $orgs = OrganizationGroup::where('user_id', $id)->with('organization')->get();
-    // }
+    private function getUserOrgs($id) {
+        return OrganizationGroup::where('user_id', $id)->with('organization')->get();        
+    }
 }

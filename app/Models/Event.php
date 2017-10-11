@@ -44,6 +44,11 @@ class Event extends Model
     return $this->belongsTo('App\Models\EventGroup');
   }
 
+  public function eventType()
+  {
+    return $this->belongsTo('App\Models\EventType');
+  }
+
   public function organization()
   {
     return $this->belongsTo('App\Models\Organization');
