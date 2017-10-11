@@ -134,7 +134,7 @@
       </div>
     </div>
     <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-      <i class="material-icons remove" id="templateremoveid">close</i>
+      <i class="material-icons remove" data-remove="templateremoveid">close</i>
     </div>
   </div>
 </div>
@@ -144,29 +144,32 @@
   <script src="{{ asset('js/admin.js') }}?v=0.1"></script>
   <script type="text/javascript">
     (function() {
-      var next = 1;
+      var next     = 1;
 
-      $('.add-field').click(function(e) {
+      /* Add new form field for registering new user */
+      $(document).on('click', '.add-field', function(e) {
         e.preventDefault();
+
+        // Issue 
         var addto = "#input" + next;
 
         next = next + 1;
 
-        var newIn    = $('#registration-form-template').html();
-        newIn        = newIn.replace('templateid', 'input' + next);
-        newIn        = newIn.replace('templateremoveid', 'remove' + (next - 1));
-        var newInput = $(newIn);
+        var newIn = $('#registration-form-template').html();
+        newIn = newIn.replace('templateid', 'input' + next);
+        newIn = newIn.replace('templateremoveid', next);
 
-        $(addto).after(newInput);
+        $(addto).after(newIn);
       });
 
-      /* Remove field */
+      /* Remove the added field */
       $(document).on('click', '.remove', function(e) {
         e.preventDefault();
-        var fieldNum = this.id.charAt(this.id.length-1);
-        var fieldID  = "#input" + fieldNum;
 
-        $(this).remove();
+        var removeNumber = $(this).data('remove');
+        var fieldID      = "#input" + removeNumber;
+        next = removeNumber - 1;
+
         $(fieldID).remove();
       });
     })();
