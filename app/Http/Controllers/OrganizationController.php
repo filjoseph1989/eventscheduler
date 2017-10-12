@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Helpers\RandomHelper;
 
 # Apps
 use App\Mail\EmailNotification;
@@ -21,7 +22,7 @@ class OrganizationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(RandomHelper $helper)
     {
         $organizations = OrganizationHeadGroup::with('organization')
           ->with('user')
@@ -29,6 +30,7 @@ class OrganizationController extends Controller
 
         return view('organization_list')->with([
           'organizations' => $organizations,
+          'helper'        => $helper,
         ]);
     }
 

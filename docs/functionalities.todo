@@ -70,18 +70,18 @@ Phase 1:
         ☐ Post to social media and send email to registered user
 
     Student Attendance:
-      ✔ Display events
-        ✔ official events
-           ✔ official attendance
-           ✔ expected attendance
-           ✔ confirmed attendance
-           ✔ declined attendance
-        ✔ local events
-          ✔ but not yet done with per within org events display at dropdown pull right
-           ✔ official attendance
+      ✔ Display events @done(2017-10-12 08:11)
+        ✔ official events @done(2017-10-12 08:11)
+           ✔ official attendance @done(2017-10-12 08:11)
+           ✔ expected attendance @done(2017-10-12 08:11)
+           ✔ confirmed attendance @done(2017-10-12 08:11)
+           ✔ declined attendance @done(2017-10-12 08:11)
+        ✔ local events @done(2017-10-12 08:11)
+          ✔ but not yet done with per within org events display at dropdown pull right @done(2017-10-12 08:11)
+           ✔ official attendance @done(2017-10-12 08:11)
            ✔ expected attendance @done(2017-10-12 06:48)
-           ✔ confirmed attendance
-           ✔ declined attendance
+           ✔ confirmed attendance @done(2017-10-12 08:11)
+           ✔ declined attendance @done(2017-10-12 08:11)
 
   3. For Organization Head:
     ✔ View Profile @done(2017-10-10 21:52)
@@ -156,4 +156,3 @@ Ang sa register blade.. Try ra gud open test.dev/User/create,
 Pag add og daghan nga form-line,  tapos itry pindot ang pinakalast na close button, mawala ang 2 ka close button tapos muabot sa point na wala nay close button mabilin.
 test.dev
 test.dev
-
