@@ -14,6 +14,7 @@
     <div class="container-fluid">
       <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
           @if (session('status'))
             <div class="alert alert-success" role="alert">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close" data-toggle="tooltip" data-placement="top" title="Dismiss alert">
@@ -22,6 +23,7 @@
               {{ session('status') }}
             </div>
           @endif
+          
           <div class="card">
             <div class="header">
               <h2> Approve Events
@@ -48,9 +50,7 @@
                     <thead>
                       <tr>
                         <th><a href="#">Organization Name</a></th>
-                        <th>Abbrivation</th>
-                        <th>Leader</th>
-                        <th>Status</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -83,52 +83,11 @@
 @endsection
 
 @section('modals')
-  <div id="org-profile" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title" id="myModalLabel">Computer Science Society</h4>
-        </div>
-        <div class="modal-body">
-          <table class="table table-bordered table-striped">
-            <tbody>
-              <tr>
-                <td>Computer Science Society</td>
-              </tr>
-              <tr>
-                <td>
-                  <p>
-                    First appeared in 2017, when the two of the student of Bachelor of Science in Computer Science
-                    Namely Larry Page and Sergey Brin in time of on going research conventional search engine that
-                    ranked results by counting how many times the search terms appeared on the page and
-                    analyzed the relationships among websites called pagerank
-                  </p>
-                  <p>These project grow and now what is known as google</p>
-                </td>
-              </tr>
-              <tr>
-                <td>Lead by: Jeff Bezos</td>
-              </tr>
-              <tr>
-                <td>Aniversary: September 25, 2017</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="modal-footer">
-          <i class="material-icons" data-dismiss="modal" style="cursor:pointer;">close</i>
-        </div>
-      </div>
-    </div>
-  </div>
 @endsection
 
 @section('js')
-  <script src="{{ asset('js/admin.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/bootstrap-select.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/jquery.dataTables.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/jquery-datatable.js') }}"?v=0.1></script>
+  <script src="{{ asset('js/admin.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/jquery.dataTables.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/jquery-datatable.js') }}?v=0.1"></script>
 @endsection

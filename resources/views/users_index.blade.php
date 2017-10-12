@@ -91,6 +91,8 @@
                             @if (Auth::user()->user_type_id == 2)
                             | <a href="#" class="user-edit" data-route="{{ route('User.edit', $user->id ) }}" data-toggle="modal" data-target="#modal-edit">Edit</a>
                             @endif
+
+                            {{--  Forms  --}}
                             <form id="form-activate" action="{{ route('User.update', $user->id) }}" method="POST" style="display: none;">
                               {{ csrf_field() }}
                               {{ method_field('PUT') }}
@@ -319,9 +321,9 @@
 @endsection
 
 @section('js')
-  <script src="{{ asset('js/bootstrap-select.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/jquery.dataTables.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/jquery-datatable.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/admin.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/app.js') }}"?v=2.3></script>
+  <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/jquery.dataTables.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/jquery-datatable.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/admin.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.7"></script>
 @endsection
