@@ -113,6 +113,9 @@ Phase 1:
       ☐ org head must only be the one to have the ability to edit members position
       ☐ add 'My Organizations' tab inside 'Organization Tab' in side bar
 
+      ☐ in Register Users:
+        ☐ create a new blade (this is for assigning position of a user which already exists in the User table when being registeres by the org head) 
+
     My Organization:
       ✔ view organization profile
         ✘ view organization events - (upcoming, archived, canceled, approved)
