@@ -37,7 +37,7 @@
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <div class="form-group form-float form-group">
                       <div class="form-line">
-                        <input type="text" class="form-control" id="account_number" name="account_number[]" placeholder="Enter student student number" value="{{ old('account_number') }}" required autofocus>
+                        <input type="text" class="form-control" id="account_number" name="account_number[]" placeholder="Enter student number" value="{{ old('account_number') }}" required autofocus>
                         @if ($errors->has('account_number'))
                           <span class="help-block"> <strong>{{ $errors->first('account_number') }}</strong> </span>
                         @endif
@@ -69,7 +69,7 @@
                       <div class="form-group form-float">
                       <div class="form-line focused">
                         <select class="form-control show-tick" id="position_id" name="position_id[]">
-                          <option value="{{ old('position_id') }}" id="position-option">-- Select Position --</option>
+                          <option value="{{ old('position_id') }}" id="position-option">- Select Position -</option>
                           @foreach ($positions as $key => $position)
                             <option value="{{ $position->id }}">{{ $position->name }}</option>
                           @endforeach
@@ -106,7 +106,7 @@
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
       <div class="form-group form-float form-group">
         <div class="form-line">
-          <input type="text" class="form-control" name="account_number[]" placeholder="Enter student student number" value="" required>
+          <input type="text" class="form-control" name="account_number[]" placeholder="Enter student number" value="" required>
         </div>
       </div>
     </div>
@@ -129,7 +129,7 @@
         <div class="form-group form-float">
           <div class="form-line focused">
             <select class="form-control show-tick" name="position_id[]" required>
-              <option value="" id="position-option">-- Select Position --</option>
+              <option value="" id="position-option">- Select Position -</option>
               @foreach ($positions as $key => $position)
                 <option value="{{ $position->id }}">{{ $position->name }}</option>
               @endforeach

@@ -99,7 +99,7 @@
             <li><a href="{{ route('Attendances.show', 'Local') }}"><span>Local Events</span></a></li>
           </ul>
         </li>
-      </ul>
+      </ul> 
     </div>
     <div class="legal">
       <div class="copyright">

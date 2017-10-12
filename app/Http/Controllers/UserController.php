@@ -77,7 +77,7 @@ class UserController extends Controller
       return view('auth/register')->with([
         'courses'    => Course::all(),
         'accounts'   => UserType::all(),
-        'positions'   => Position::all()
+        'positions'   => Position::all()->except(2)->except(5)->except(7)->except(3)
       ]);
     }
 
@@ -89,17 +89,83 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-      dd($request);
+      // d($request); exit;
+      // $this->validateUser($this, $request); ///  FIX VALIDATION LATER
+
+      $u   = [];
+      $pos = [];
+      for($x = 0; $x <= sizeof($request->keys()[1]); $x++){
+        $u[$x] = [
+          'full_name'      => $request->full_name[$x],
+          'account_number' => $request->account_number[$x],
+          'email'          => $request->email[$x],
+          'user_type_id'    => 2,
+        ];
+        $pos[$x] = ['position_id'    => $request->position_id[$x], ]; //separating this since this field is availale in Organizaition Group model
+
+        $user_email = User::where('email', $request->email[$x])->get();
+        $user_acc_num = User::where('account_number', $request->account_number[$x])->get();
+        $user_full_name = User::where('full_name', $request->full_name[$x])->get();
+
+        if ($user_email->count() >= 1) {
+          return back()
+            ->withInput()
+            ->with('status_warning', 'Email already taken in the system');
+        }
+        if ($user_acc_num->count() >= 1) {
+          return back()
+            ->withInput()
+            ->with('status_warning', 'Student already a user of the system');
+        }
+        $new_user = User::create( $u[$x] );
+        // dd($new_user->id);
+        /**
+         * get current user's org id to know what org id to assign to the members being registered
+         */
+        $current_user_org_g = OrganizationGroup::where('user_id', Auth::user()->id)->where('position_id', 3)->get();
+        // dd($current_user_org_g[0]->organization->id);
+
+        if( $pos[$x] != 1){ //filters if the position assigned is not 'Not Applicable', because 'Not Applicable' position can be repeatedly assigned to many users
+          $org_grp = OrganizationGroup::where('organization_id', $current_user_org_g[0]->organization->id)->where('position_id', $pos[$x])->get();
+          // d($org_grp); exit;
+          if ($org_grp->count() > 0) {
+          //checks if the position in an organization has been assigned to someone
+            return back()
+              ->withInput()
+              ->with('status_warning', 'Position is already taken');
+          } 
+        }
+
+        if (OrganizationGroup::where('organization_id', $current_user_org_g[0]->organization->id)->where('user_id', $new_user->id)->get()->exists()) {
+            //checks if the position in an organization has been assigned to someone
+            return back()
+              ->withInput()
+              ->with('status_warning', 'The user is already a member of this organization');
+        } 
+        // if ($user_position_id->count() > 1) {
+        //   return back()
+        //     ->withInput()
+        //     ->with('status_warning', 'Position is already taken');
+        // }
+        // //if there are no already existing account number, full name, or email, the particular set of parameters will be stored as an instance of User
+         $new_org_member = OrganizationGroup::create([
+           'user_id'         => $new_user->id,
+           'organization_id' => $current_user_org_g[0]->organization->id,
+           'position_id'     => $pos[$x],
+         ]); 
+
+         d($new_user, $new_org_member);
+      }
       
-      $this->validateUser($this, $request);
+      exit;
 
-      $user = User::where('email', $request->email)->get();
 
-      if ($user->count() >= 1) {
+      if ($user->wasRecentlyCreated) {
         return back()
           ->withInput()
-          ->with('status_warning', 'Email already exist');
+          ->with('status', 'Successfully added new user');
       }
+
 
       // Issue 24
       // $password          = str_random(15);
@@ -113,13 +179,8 @@ class UserController extends Controller
       // $data = $request->all();
       // $data['password'] = bcrypt($password);
 
-      $user = User::create( $data );
+      // $user = User::create( $data );
 
-      if ($user->wasRecentlyCreated) {
-        return back()
-          ->withInput()
-          ->with('status', 'Successfully added new user');
-      }
     }
 
     /**

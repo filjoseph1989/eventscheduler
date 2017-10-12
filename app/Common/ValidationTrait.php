@@ -39,7 +39,7 @@ trait ValidationTrait
    * @return void
    */
   public function validateUser(&$data, &$request)
-  {
+  {   
       $data->validate($request, [
         'full_name'      => 'Required',
         'account_number' => 'Required',
