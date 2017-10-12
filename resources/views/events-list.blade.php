@@ -46,7 +46,7 @@
                       <th>End</th>
                       <th>Status</th>
                       @if ($eventType == 'true' or $eventType == 'false')
-                        <th> Is Approve</th>
+                        <th>Approved?</th>
                       @endif
                     </thead>
                     <tbody>
@@ -67,7 +67,7 @@
                           <td>{{ ucfirst($event->status) }}</td>
                           @if ($eventType == 'true' or $eventType == 'false')
                             <td>
-                              <?php $is_approve = ($event->is_approve == 'true') ? 'Yes' : 'No'; ?>
+                              @php $is_approve = ($event->is_approve == 'true') ? 'Yes' : 'No'; @endphp
                               <a href="#">{{ $is_approve }}</a>
                             </td>
                           @endif
