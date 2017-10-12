@@ -52,7 +52,13 @@
                     <tbody>
                       @foreach ($events as $key => $event)
                         <tr data-event="{{ $event->id }}" data-route="{{ route('Event.edit', $event->id) }}" data-action="{{ route('Event.update', $event->id) }}">
-                          <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ $event->title }}</a></td>
+                          <td>
+                            @if (Auth::user()->user_type_id == 1)
+                              <a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ $event->title }}</a>
+                            @else
+                              <a href="#" class="">{{ $event->title }}</a>
+                            @endif
+                          </td>
                           <td><a href="#">{{ $event->venue }}</a></td>
                           <td>
                             @if ($event['organization']->count() > 0)
