@@ -112,6 +112,11 @@ Phase 1:
         ✔ By department @done(2017-10-03 22:33)
         ✔ By organization @done(2017-10-03 22:33)
       ☐ complete routes in Home blade display
+      ☐ org head must only be the one to have the ability to edit members position
+      ☐ add 'My Organizations' tab inside 'Organization Tab' in side bar
+
+      ☐ in Register Users:
+        ☐ create a new blade (this is for assigning position of a user which already exists in the User table when being registeres by the org head)
 
     My Organization:
       ✔ view organization profile
@@ -143,18 +148,7 @@ Phase 1:
     ☐ View Attendance
     ✔ View Calendar
     ☐ complete routes in Home blade display
-
+    ☐ add 'My Organizations' tab inside 'Organization Tab' in side bar
 
   5. Separation of Authority:
     ✔ Plan how to separate what actions and pages or data can OSA, Organization Head and Member can view (done logic, ongoing execution)
-
-
-
-
-
-
-Ang sa register blade.. Try ra gud open test.dev/User/create,
-
-Pag add og daghan nga form-line,  tapos itry pindot ang pinakalast na close button, mawala ang 2 ka close button tapos muabot sa point na wala nay close button mabilin.
-test.dev
-test.dev
