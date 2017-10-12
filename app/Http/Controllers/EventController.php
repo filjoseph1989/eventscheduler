@@ -110,6 +110,8 @@ class EventController extends Controller
     {
       $events = self::getEvents($id);
 
+      self::getDateComparison($events);
+
       self::getOrganization($events);
 
       return view('events-list')->with([
@@ -209,7 +211,7 @@ class EventController extends Controller
           ->get();
       }
 
-      # Return All official or local event 
+      # Return All official or local event
       # within University or organization category
       if ($id > 0) {
         return Event::where('event_type_id', $id)
@@ -217,5 +219,79 @@ class EventController extends Controller
           ->orWhere('category', 'organization')
           ->get();
       }
+    }
+
+    /**
+     * This method compare the given date to current date
+     * @return [type] [description]
+     */
+    private function getDateComparison(&$events)
+    {
+      foreach ($events as $key => $event) {
+        if (self::matchDate($event->date_start)) {
+          $events[$key]->status = "on going";
+
+          # Issue 25
+        }
+      }
+    }
+
+    /**
+     * Match the current month with the given month
+     *
+     * @param int $date
+     * @return void
+     */
+    private function matchDate($date)
+    {
+      list($year, $month, $day) = explode('-', $date);
+
+      if (self::matchYear($year) and self::matchMonth($month) and self::matchDay($day)) {
+        return true;
+      }
+
+      return false;
+    }
+
+    /**
+     * Match the current year with the given year
+     *
+     * @param int $year
+     * @return void
+     */
+    private function matchYear($year)
+    {
+      if (date('Y') ==  $year){
+        return true;
+      }
+      return false;
+    }
+
+    /**
+     * Match the given month with the current month
+     *
+     * @param int $month
+     * @return void
+     */
+    private function matchMonth($month)
+    {
+      if (date('m') ==  $month){
+        return true;
+      }
+      return false;
+    }
+
+    /**
+     * Match the given day with current day
+     *
+     * @param int $day
+     * @return void
+     */
+    private function matchDay($day)
+    {
+      if (date('d') ==  $day){
+        return true;
+      }
+      return false;
     }
 }

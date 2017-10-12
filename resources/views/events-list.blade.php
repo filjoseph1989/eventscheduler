@@ -70,7 +70,7 @@
                           </td>
                           <td>{{ date('M d, Y', strtotime($event->date_start)) }} {{ date('h:i A', strtotime($event->date_start_time)) }}</td>
                           <td>{{ date('M d, Y', strtotime($event->date_end)) }} {{ date('h:i A', strtotime($event->date_end_time)) }}</td>
-                          <td>{{ ucfirst($event->status) }}</td>
+                          <td>{{ ucwords($event->status) }}</td>
                           @if ($eventType == 'true' or $eventType == 'false')
                             <td>
                               @php $is_approve = ($event->is_approve == 'true') ? 'Yes' : 'No'; @endphp
