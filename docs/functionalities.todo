@@ -110,6 +110,7 @@ Phase 1:
         ✔ By department @done(2017-10-03 22:33)
         ✔ By organization @done(2017-10-03 22:33)
       ☐ complete routes in Home blade display
+      ☐ org head must only be the one to have the ability to edit members position
 
     My Organization:
       ✔ view organization profile
