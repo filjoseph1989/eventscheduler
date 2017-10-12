@@ -21,7 +21,7 @@
             </div>
             <div class="body">
               <div class="list-group">
-                <a href="{{ route('Event.show', 'false') }}" class="list-group-item">
+                <a href="{{ route('Event.index') }}" class="list-group-item">
                   <span class="badge bg-pink">14 For Approval</span> Official Events
                   {{--  sa side-bar na lang ang create events, dri kay mag check na lang jud sa list of events tapos approve..
                    kulang pa ata ang list of event og is_approve status
