@@ -20,7 +20,7 @@ use App\Models\User;
  */
 class ApproveEventController extends Controller
 {
-    /** 
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -32,6 +32,7 @@ class ApproveEventController extends Controller
       $event = Event::find($id);
 
       $event->is_approve = 'true';
+      $event->status     = 'upcoming';
 
       if ($event->save()) {
         $event = Event::with('organization')
