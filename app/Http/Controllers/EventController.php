@@ -193,27 +193,29 @@ class EventController extends Controller
      */
     private function getEvents($id)
     {
+      # Return All event within University or organization category
       if ($id == '0') {
-        return Event::all();
+        return Event::Where('category', 'university')
+          ->orWhere('category', 'organization')
+          ->get();
       }
+
+      # Return All approve or disapprove event
+      # within University or organization category
       if ($id == 'true' or $id == 'false') {
-        return Event::where('is_approve', $id)->get();
+        return Event::where('is_approve', $id)
+          ->orWhere('category', 'university')
+          ->orWhere('category', 'organization')
+          ->get();
       }
+
+      # Return All official or local event 
+      # within University or organization category
       if ($id > 0) {
-        return Event::where('event_type_id', $id)->get();
+        return Event::where('event_type_id', $id)
+          ->Where('category', 'university')
+          ->orWhere('category', 'organization')
+          ->get();
       }
     }
-}
-
-/**
- * Independent functions and not belong to a class
- *
- * @param string  $url
- * @param boolean $permanent
- */
-function Redirect($url, $permanent = false)
-{
-    header('Location: ' . $url, true, $permanent ? 301 : 302);
-
-    exit();
 }
