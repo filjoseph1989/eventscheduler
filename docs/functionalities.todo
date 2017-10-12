@@ -111,6 +111,7 @@ Phase 1:
         ✔ By organization @done(2017-10-03 22:33)
       ☐ complete routes in Home blade display
       ☐ org head must only be the one to have the ability to edit members position
+      ☐ add 'My Organizations' tab inside 'Organization Tab' in side bar
 
     My Organization:
       ✔ view organization profile
@@ -142,6 +143,8 @@ Phase 1:
     ☐ View Attendance
     ✔ View Calendar
     ☐ complete routes in Home blade display
+    ☐ add 'My Organizations' tab inside 'Organization Tab' in side bar
+    
 
 
   5. Separation of Authority:
