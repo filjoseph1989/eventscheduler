@@ -89,9 +89,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-      // d($request); exit;
       // $this->validateUser($this, $request); ///  FIX VALIDATION LATER
-
       $u   = [];
       $pos = [];
       for($x = 0; $x <= sizeof($request->keys()[1]); $x++){
@@ -129,24 +127,20 @@ class UserController extends Controller
           ->with('status_warning', 'Student' . $user_acc_num[0]['full_name'] . 'is already a user of the system, assign this member a position in your organization.');
           ///NGANO DILI MUDISPLAY ANG STATUS_WARNING?          
         }
-
         //if there are no duplicates of records for email or account number, system stores this new instance of User model
         $new_user = User::create( $u[$x] );
-
         /**
          * get current user's org id to know what org id to assign to the members being registered
          */
         $current_user_org_g = OrganizationGroup::where('user_id', Auth::user()->id)->where('position_id', 3)->get();
-        // dd($current_user_org_g[0]->organization->id);
+        // dd($pos[$x]);
 
         if( $pos[$x] != 1){ 
           //filters if the position assigned is not 'Not Applicable', because 'Not Applicable' position can be repeatedly assigned to many users
           $org_grp = OrganizationGroup::where('organization_id', $current_user_org_g[0]->organization->id)->where('position_id', $pos[$x])->get();
           if ($org_grp->count() > 0) {
           //checks if the position in an organization has been assigned to someone
-            return back()
-              ->withInput()
-              ->with('status_warning', 'Position is already taken');
+            return back()->withInput()->with('status_warning', 'Position is already taken');
           } 
         }
 
