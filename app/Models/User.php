@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\FaceBookNotification;
 
 class User extends Authenticatable
 {
@@ -64,5 +65,14 @@ class User extends Authenticatable
     public function userType()
     {
       return $this->belongsTo('App\Models\UserType');
+    }
+
+    /**
+     * Send Notifications to facebook
+     */
+    public static function send($message)
+    {
+      $user = new User();
+      return $user->notify(new FaceBookNotification($message));
     }
 }

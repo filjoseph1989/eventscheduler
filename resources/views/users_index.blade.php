@@ -34,13 +34,12 @@
                     <i class="material-icons">more_vert</i>
                   </a>
                   <ul class="dropdown-menu pull-right">
-                    <li><a href="{{ route('User.show', 'all') }}">All System Members</a></li>
                     <li><a href="{{ route('User.show', 'active') }}">Active System Members</a></li>
                     <li><a href="{{ route('User.show', 'inactive') }}">Inactive System Members</a></li>
                   </ul>
                 </li>
               </ul>
-            </div> 
+            </div>
             <div class="body">
               @php extract($help::dataTableClass($users)) @endphp
               <table class="table table-bordered table-striped table-hover {{ $class }}">
@@ -50,10 +49,9 @@
                   <th>Position</th>
                   <th>Organization</th>
                   <th>Status</th>
-                  {{-- Appear if the loggedin account is an OSA --}}
-                  <th>Action</th>
-                  {{-- Appear when the loggedin account is org hevad --}}
-                  {{-- <th>Membershi Status</th> --}}
+                  @if (isset($filter) and $filter === true)
+                    <th>Action</th>
+                  @endif
                 </thead>
                 <tbody>
                   @if (isset($users))
@@ -86,21 +84,27 @@
                           @endif
                         </td>
                         <td><a href="#">{{ $user->status == 'true' ? 'Active' : 'Inactive' }}</a></td>
-                        <td>
-                          <a href="#" onclick="event.preventDefault(); document.getElementById('form-activate').submit();">Activate</a> |
-                          <a href="#" onclick="event.preventDefault(); document.getElementById('form-deactivate').submit();">Deactivate</a> |
-                          <a href="#" class="user-edit" data-route="{{ route('User.edit', $user->id ) }}" data-toggle="modal" data-target="#modal-edit">Edit</a>
-                          <form id="form-activate" action="{{ route('User.update', $user->id) }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                            {{ method_field('PUT') }}
-                            <input type="hidden" name="status" value="true">
-                          </form>
-                          <form id="form-deactivate" action="{{ route('User.update', $user->id) }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                            {{ method_field('PUT') }}
-                            <input type="hidden" name="status" value="false">
-                          </form>
-                        </td>
+                        @if (isset($filter) and $filter === true)
+                          <td>
+                            <a href="#" onclick="event.preventDefault(); document.getElementById('form-activate').submit();">Activate</a> |
+                            <a href="#" onclick="event.preventDefault(); document.getElementById('form-deactivate').submit();">Deactivate</a>
+                            @if (Auth::user()->user_type_id == 2)
+                            | <a href="#" class="user-edit" data-route="{{ route('User.edit', $user->id ) }}" data-toggle="modal" data-target="#modal-edit">Edit</a>
+                            @endif
+
+                            {{--  Forms  --}}
+                            <form id="form-activate" action="{{ route('User.update', $user->id) }}" method="POST" style="display: none;">
+                              {{ csrf_field() }}
+                              {{ method_field('PUT') }}
+                              <input type="hidden" name="status" value="true">
+                            </form>
+                            <form id="form-deactivate" action="{{ route('User.update', $user->id) }}" method="POST" style="display: none;">
+                              {{ csrf_field() }}
+                              {{ method_field('PUT') }}
+                              <input type="hidden" name="status" value="false">
+                            </form>
+                          </td>
+                        @endif
                       </tr>
                     @endforeach
                   @endif
@@ -317,9 +321,9 @@
 @endsection
 
 @section('js')
-  <script src="{{ asset('js/bootstrap-select.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/jquery.dataTables.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/jquery-datatable.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/admin.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/app.js') }}"?v=2.3></script>
+  <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/jquery.dataTables.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/jquery-datatable.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/admin.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.7"></script>
 @endsection

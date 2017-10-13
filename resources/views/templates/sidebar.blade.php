@@ -77,9 +77,11 @@
                 <li><a href="{{ route('Event.show', 2) }}"> <span>Personal</span></span></a></li>
               </ul>
             </li>
-            <li>
-              <a href="{{ route('Event.index') }}"><span>Approved Events</span></a>
-            </li>
+            @if (Auth::user()->user_type_id == 3)
+              <li>
+                <a href="{{ route('Event.index') }}"><span>Approved Events</span></a>
+              </li>
+            @endif
             <li>
               <a href="#" class="menu-toggle"> <span>Calendar</span> </a>
               <ul class="ml-menu">

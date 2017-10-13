@@ -166,6 +166,7 @@ class UserController extends Controller
           ->with('status', 'Successfully added new user');
       }
 
+<<<<<<< HEAD
 
       // Issue 24
       // $password          = str_random(15);
@@ -180,6 +181,9 @@ class UserController extends Controller
       // $data['password'] = bcrypt($password);
 
       // $user = User::create( $data );
+=======
+      $user = User::create( $data );
+>>>>>>> develop
 
     }
 
@@ -200,9 +204,6 @@ class UserController extends Controller
         }
       ]);
 
-      if ($id == 'all') {
-        $users = $users->get();
-      }
       if ($id == 'active') {
         $users = $users->where('status', 'true')->get();
       }
@@ -211,8 +212,9 @@ class UserController extends Controller
       }
 
       return view('users_index')->with([
-        'users'      => $users,
-        'help'       => $help
+        'users'  => $users,
+        'help'   => $help,
+        'filter' => true
       ]);
     }
 
@@ -249,6 +251,16 @@ class UserController extends Controller
         $user->user_type_id   = empty($request->user_type_id) ? $user->user_type_id : $request->user_type_id;
       } else {
         $user->status = $request->status;
+
+        if ($user->password == null) {
+          $password          = str_random(15);
+          $request->password = $password;
+          
+          $request->email = $user->email;
+          Mail::to($user->email)->send(new EmailNotification($request));
+          
+          $user->password = bcrypt($password);
+        }
       }
 
       if ($user->save()) {

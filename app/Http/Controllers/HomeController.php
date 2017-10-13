@@ -13,7 +13,7 @@ use App\Models\Organization;
 use App\Models\OrganizationGroup;
 
 /**
- * A landing controller after loggedin 
+ * A landing controller after loggedin
  *
  * @author Liz <janicalizdeguzman@gmail.com>
  * @version 2.0.0
@@ -46,13 +46,13 @@ class HomeController extends Controller
     public function index()
     {
         self::getUserAccountProperty();
- 
+
          # Does the user is active?
         if (self::isStatus()) {
 
             session([
               'loginClass'   => $this->theme,
-              'user_account' => $this->account_name
+              'user_account' => str_replace('-', ' ', $this->account_name)
             ]);
 
             # Render View
