@@ -89,8 +89,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-      dd($request);
-      
       $this->validateUser($this, $request);
 
       $user = User::where('email', $request->email)->get();
