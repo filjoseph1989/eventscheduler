@@ -268,9 +268,9 @@
   });
 
   /**
-  * Provide user list on the modal for confirmed attendance
-  * @return {void}
-  */
+   * Provide user list on the modal for confirmed attendance
+   * @return {void}
+   */
   $(document).on('click', '.event-attendance-confirmed', function () {
      var id = $(this).parents('tr').data('event');
      var data = {
@@ -295,11 +295,11 @@
   });
 
   /**
-  * Provide user list on the modal for expected attendance
-  * @return {void}
-  */
+   * Provide user list on the modal for expected attendance
+   * @return {void}
+   */
   $(document).on('click', '.event-attendance-expected', function () {
-    var id = $(this).parents('tr').data('event');
+    var id   = $(this).parents('tr').data('event');
     var data = {
       id: id
     }
@@ -307,6 +307,7 @@
     axios_post('/attendance/get/expected/attendance', data, function (data) {
       var event_type = data.event_type;
       var html = "";
+
       data.result.map(function (data) {
         html +=
         '<tr>';
@@ -327,11 +328,11 @@
       $('#event-attendees').html(html);
     });
   });
-
+  
   /**
- * Provide user list on the modal for declined attendance
- * @return {void}
- */
+   * Provide user list on the modal for declined attendance
+   * @return {void}
+   */
   $(document).on('click', '.event-attendance-declined', function () {
     var id = $(this).parents('tr').data('event');
     var data = {
