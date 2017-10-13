@@ -16,7 +16,7 @@ use App\Models\User;
  *
  * @version 1
  * @date 10-04-2017
- * @date 10-04-2017 Updated
+ * @date 10-13-2017 Updated
  */
 class ApproveEventController extends Controller
 {
@@ -39,7 +39,9 @@ class ApproveEventController extends Controller
           ->where('id', $id)
           ->get();
 
+        # Post on social media
         self::facebookPost($event[0]);
+        self::twitterPost($event[0]);
 
         return back()
           ->with('status', 'Successfully approve the event');
@@ -53,59 +55,30 @@ class ApproveEventController extends Controller
      * @return void
      */
     private function facebookPost ($event) {
-      $data['fb_message'] = self::smsMessage($event->category, $event);
-      User::send($data['fb_message']);
+      if (is_null($event->facebook_msg)) {
+        return false;
+      }
+
+      User::send([
+        'fb_message' => $event->facebook_msg
+      ]);
     }
 
     /**
-     * Compose message post or notification
+     * Twitter notification
      *
-     * @param [type] $category
-     * @param [type] $event
+     * @param object $event
      * @return void
      */
-    private function smsMessage($category, $event)
+    private function twitterPost($event)
     {
-      switch ($category) {
-        case 'university':
-          $heading = "Hello UP Mindanao! You have an upcoming event! ";
-          break;
-        case 'within':
-          $heading = "Hello UP Mindanao! You have an upcoming event! ";
-          break;
-        case 'organization':
-          $heading = "Hello UP Mindanao! You have an upcoming event! ";
-          break;
-        case 'personal':
-          $heading = "Hello UP Mindanao! You have an upcoming event! ";
-          break;
-
-        case 1:
-          $heading = "Hello UP Mindanao! You have an upcoming event! ";
-          break;
-
-        case 2:
-          $heading = "Hello {$event->organization->name}! You have an upcoming event!";
-          break;
-
-        case 3:
-          $heading = "Hello Student Leaders! You have an upcoming event!";
-          break;
-
-        case 4:
-          $heading = "Hello {$event->fname}! Your {$value->title} event has been approved.";
-          break;
+      if (is_null($event->twitter_msg)) {
+        return false;
       }
 
-      $new_line = "";
-
-      $heading .=
-        "{$new_line}{$event->title} headed by {$event->organization->name}." .
-        "{$new_line}Venue: {$event->venue}" .
-        "{$new_line}Duration: {$event->date_start}, {$event->date_start_time} to {$event->date_end}, {$event->date_end_time} " .
-        "{$new_line}{$event->facebook_msg}" .
-        "{$new_line}Please be guided accordingly. Thank You!";
-
-      return $heading;
+      return Twitter::postTweet([
+        'status' => $event->twitter_msg,
+        'format' => 'json'
+      ]);
     }
 }
