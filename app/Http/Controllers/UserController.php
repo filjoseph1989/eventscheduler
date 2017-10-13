@@ -165,13 +165,13 @@ class UserController extends Controller
            'position_id'     => $pos[$x],
          ]); 
 
-         d($new_user, $new_org_member);
+        //  d($new_user, $new_org_member);
       }
       
-      exit;
+      // exit;
 
 
-      if ($user->wasRecentlyCreated) {
+      if ($new_org_member->wasRecentlyCreated) {
         return back()
           ->withInput()
           ->with('status', 'Successfully added new user');
@@ -191,7 +191,7 @@ class UserController extends Controller
       // $data['password'] = bcrypt($password);
 
       // $user = User::create( $data );
-      $user = User::create( $data );
+      // $user = User::create( $data );
 
     }
 
@@ -290,7 +290,8 @@ class UserController extends Controller
 
     public function assignPositionToExistingUser(Request $request){
       // d((json_decode($request->existing_user))->id); exit;
-      // d($request->position_id); exit;
+      $exist_user = json_decode($request->existing_user);
+      // d($exist_user[0]->id); exit;
         /**
          * get current user's org id to know what org id to assign to the members being registered
         */
@@ -311,7 +312,7 @@ class UserController extends Controller
         }
 
 
-        if (OrganizationGroup::where('organization_id', $current_user_org_g[0]->organization->id)->where('user_id', (json_decode($request->existing_user))->id)->get()->exists()) {
+        if ( OrganizationGroup::where('organization_id', $current_user_org_g[0]->organization->id)->where('user_id', $exist_user[0]->id)->get()->exists() ) {
             //checks if the user record is already a member of the org
             return back()
               ->withInput()
@@ -326,5 +327,10 @@ class UserController extends Controller
            'position_id'     => $request->position_id,
          ]); 
 
+        if ($new_org_member->wasRecentlyCreated) {
+          return back()
+          ->withInput()
+          ->with('status', 'Successfully added new user');
+        }
     }
 }
