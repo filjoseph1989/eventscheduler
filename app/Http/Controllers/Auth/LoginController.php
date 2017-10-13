@@ -39,8 +39,8 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-    } 
- 
+    }
+
     /**
      * Show the application's login form.
      *
@@ -56,13 +56,12 @@ class LoginController extends Controller
 
     public function myLogin(Request $request)
     {
-        # https://laravel.com/docs/5.5/hashing        
-        
+      # https://laravel.com/docs/5.5/hashing
+
       /**
        * This are the steps to replicate when making the login
        * for this system
        */
-
       $this->validateLogin($request);
 
       // If the class is using the ThrottlesLogins trait, we can automatically throttle
