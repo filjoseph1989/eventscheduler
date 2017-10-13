@@ -15,26 +15,14 @@
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <div class="card">
             <div class="header">
-              <h2> ADVERTISEMENT
-                <small>In this panel you set or approved for advertisement</small>
+              <h2> MANAGE NOTIFICATIONS
+                <small>you panel for notification management</small>
               </h2>
             </div>
             <div class="body">
               <div class="list-group">
-                <a href="{{ route('Event.index') }}" class="list-group-item">
-                  <span class="badge bg-pink">14 For Approval</span> Official Events
-                  {{--  sa side-bar na lang ang create events, dri kay mag check na lang jud sa list of events tapos approve..
-                   kulang pa ata ang list of event og is_approve status
-                   tapos kailangan pud makita iyang type of official event, kung university or organizations
-                   sa sulod na lang sa link sa event tung status na field --}}
-                </a>
-                <a href="{{ route('Event.show', 2) }}" class="list-group-item">
-                  <span class="badge bg-cyan">99 Upcoming</span> Personal Events
-                  {{--  sa side-bar na lang ang create events, dri kay mag check na lang jud sa list of events tapos approve..
-                   kulang pa ata ang list of event og is_approve status
-                   tapos kailangan pud makita iyang type of local event, kung within org or personal
-                   sa sulod na lang sa link sa event tung status na field --}}
-                </a>
+                <a href="javascript:void(0);" class="list-group-item"> Notification Settings </a>
+                <a href="javascript:void(0);" class="list-group-item"> Approved Events </a>
               </div>
             </div>
           </div>
@@ -59,8 +47,6 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="row clearfix">
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <div class="card">
             <div class="header">
@@ -86,21 +72,35 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <div class="card">
-            <div class="header">
-              <h2> MANAGE NOTIFICATIONS
-                <small>you panel for notification management</small>
-              </h2>
-            </div>
-            <div class="body">
-              <div class="list-group">
-                <a href="javascript:void(0);" class="list-group-item"> Notification Settings </a>
-                <a href="javascript:void(0);" class="list-group-item"> Approved Events </a>
+        @if (Auth::user()->user_type_id == 3)
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="card">
+              <div class="header">
+                <h2> ADVERTISEMENT
+                  <small>In this panel you set or approved for advertisement</small>
+                </h2>
               </div>
-            </div>
-          </div>
-        </div>
+              <div class="body">
+                <div class="list-group">
+                  <a href="{{ route('Event.index') }}" class="list-group-item">
+                    <span class="badge bg-pink">14 For Approval</span> Official Events
+                    {{--  sa side-bar na lang ang create events, dri kay mag check na lang jud sa list of events tapos approve..
+                      kulang pa ata ang list of event og is_approve status
+                      tapos kailangan pud makita iyang type of official event, kung university or organizations
+                      sa sulod na lang sa link sa event tung status na field --}}
+                    </a>
+                    <a href="{{ route('Event.show', 2) }}" class="list-group-item">
+                      <span class="badge bg-cyan">99 Upcoming</span> Personal Events
+                      {{--  sa side-bar na lang ang create events, dri kay mag check na lang jud sa list of events tapos approve..
+                        kulang pa ata ang list of event og is_approve status
+                        tapos kailangan pud makita iyang type of local event, kung within org or personal
+                        sa sulod na lang sa link sa event tung status na field --}}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        @endif
       </div>
     </div>
   </section>
