@@ -52,7 +52,8 @@ class HomeController extends Controller
 
             session([
               'loginClass'   => $this->theme,
-              'user_account' => str_replace('-', ' ', $this->account_name)
+            //   'user_account' => str_replace('-', ' ', $this->account_name)
+              'user_account' => $this->account_name,
             ]);
 
             # Render View

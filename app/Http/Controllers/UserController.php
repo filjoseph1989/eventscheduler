@@ -95,39 +95,53 @@ class UserController extends Controller
       $u   = [];
       $pos = [];
       for($x = 0; $x <= sizeof($request->keys()[1]); $x++){
+        //store every user record detail from form/s except the position in an array,
+        // then assign its user_type_id to 2 (for organization-member user type) 
         $u[$x] = [
           'full_name'      => $request->full_name[$x],
           'account_number' => $request->account_number[$x],
           'email'          => $request->email[$x],
           'user_type_id'    => 2,
         ];
-        $pos[$x] = ['position_id'    => $request->position_id[$x], ]; //separating this since this field is availale in Organizaition Group model
+        $pos[$x] = $request->position_id[$x]; 
+        //store each user position record in a separate array
+        //separating this since this field is availale in Organizaition Group model
 
-        $user_email = User::where('email', $request->email[$x])->get();
-        $user_acc_num = User::where('account_number', $request->account_number[$x])->get();
-        $user_full_name = User::where('full_name', $request->full_name[$x])->get();
+        $user_email = User::where('email', $u[$x]['email'])->get();
+        //searching an instance of User model with the current record of email in the array, and if exists, store it to a variable
+        $user_acc_num = User::where('account_number', $u[$x]['account_number'])->get();
+        //searching an instance of User model with the current record of account_number in the array, and if exists, store it to a variable
 
-        if ($user_email->count() >= 1) {
+        if ($user_email->count() > 0) { 
+          //checking if the instance with the email record already exists
+          //and will return to the form to ask user to input other email
           return back()
-            ->withInput()
+            ->withInput() 
             ->with('status_warning', 'Email already taken in the system');
         }
-        if ($user_acc_num->count() >= 1) {
-          return back()
-            ->withInput()
-            ->with('status_warning', 'Student already a user of the system');
+        if ($user_acc_num->count() > 0) {
+          //checking if the instance with the account_number record already exists
+          //if exists, the user will only be assigning a position to the organization-member and 
+          //the system will store another instance in OrganizationGroup with the user_id of the org-member and
+          // the current user's organization_id  
+          return view('assign_position')
+          ->with([ 'existing_user' =>  $user_acc_num, 'positions' => Position::all()->except(2)->except(5)->except(7)->except(3)])
+          ->with('status_warning', 'Student' . $user_acc_num[0]['full_name'] . 'is already a user of the system, assign this member a position in your organization.');
+          ///NGANO DILI MUDISPLAY ANG STATUS_WARNING?          
         }
+
+        //if there are no duplicates of records for email or account number, system stores this new instance of User model
         $new_user = User::create( $u[$x] );
-        // dd($new_user->id);
+
         /**
          * get current user's org id to know what org id to assign to the members being registered
          */
         $current_user_org_g = OrganizationGroup::where('user_id', Auth::user()->id)->where('position_id', 3)->get();
         // dd($current_user_org_g[0]->organization->id);
 
-        if( $pos[$x] != 1){ //filters if the position assigned is not 'Not Applicable', because 'Not Applicable' position can be repeatedly assigned to many users
+        if( $pos[$x] != 1){ 
+          //filters if the position assigned is not 'Not Applicable', because 'Not Applicable' position can be repeatedly assigned to many users
           $org_grp = OrganizationGroup::where('organization_id', $current_user_org_g[0]->organization->id)->where('position_id', $pos[$x])->get();
-          // d($org_grp); exit;
           if ($org_grp->count() > 0) {
           //checks if the position in an organization has been assigned to someone
             return back()
@@ -137,17 +151,14 @@ class UserController extends Controller
         }
 
         if (OrganizationGroup::where('organization_id', $current_user_org_g[0]->organization->id)->where('user_id', $new_user->id)->get()->exists()) {
-            //checks if the position in an organization has been assigned to someone
+            //checks if the user record is already a member of the org
             return back()
               ->withInput()
               ->with('status_warning', 'The user is already a member of this organization');
         } 
-        // if ($user_position_id->count() > 1) {
-        //   return back()
-        //     ->withInput()
-        //     ->with('status_warning', 'Position is already taken');
-        // }
-        // //if there are no already existing account number, full name, or email, the particular set of parameters will be stored as an instance of User
+
+        //if user record is not already a member or the position assigned in the organization is not taked,
+        //system created new instance of OrganizationGroup
          $new_org_member = OrganizationGroup::create([
            'user_id'         => $new_user->id,
            'organization_id' => $current_user_org_g[0]->organization->id,
@@ -166,7 +177,6 @@ class UserController extends Controller
           ->with('status', 'Successfully added new user');
       }
 
-<<<<<<< HEAD
 
       // Issue 24
       // $password          = str_random(15);
@@ -181,9 +191,7 @@ class UserController extends Controller
       // $data['password'] = bcrypt($password);
 
       // $user = User::create( $data );
-=======
       $user = User::create( $data );
->>>>>>> develop
 
     }
 
@@ -278,5 +286,45 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function assignPositionToExistingUser(Request $request){
+      // d((json_decode($request->existing_user))->id); exit;
+      // d($request->position_id); exit;
+        /**
+         * get current user's org id to know what org id to assign to the members being registered
+        */
+        $current_user_org_g = OrganizationGroup::where('user_id', Auth::user()->id)->where('position_id', 3)->get();
+        // dd($current_user_org_g[0]->organization->id);
+
+        if( $request->position_id != 1){ 
+          //checks if the position assigned is not 'Not Applicable',
+          // because the 'Not Applicable' position can be repeatedly assigned to many users
+          $org_grp = OrganizationGroup::where('organization_id', $current_user_org_g[0]->organization->id)->where('position_id', $request->position_id)->get();
+          // d($org_grp); exit;
+          if ($org_grp->count() > 0) {
+          //checks if the position in an organization has been assigned to someone
+            return back()
+              ->withInput()
+              ->with('status_warning', 'Position is already taken');
+          } 
+        }
+
+
+        if (OrganizationGroup::where('organization_id', $current_user_org_g[0]->organization->id)->where('user_id', (json_decode($request->existing_user))->id)->get()->exists()) {
+            //checks if the user record is already a member of the org
+            return back()
+              ->withInput()
+              ->with('status_warning', 'The user is already a member of this organization');
+        } 
+         
+        //if user record is not already a member or the position assigned in the organization is not taked,
+        //system created new instance of OrganizationGroup
+         $new_org_member = OrganizationGroup::create([
+           'user_id'         => (json_decode($request->existing_user))->id,
+           'organization_id' => $current_user_org_g[0]->organization->id,
+           'position_id'     => $request->position_id,
+         ]); 
+
     }
 }

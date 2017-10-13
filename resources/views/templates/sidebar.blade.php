@@ -40,7 +40,7 @@
           <a href="javascript:void(0);" class="menu-toggle">
             <i class="material-icons">account_circle</i>
             <span>All System Users</span>
-          </a>
+          </a> 
           <ul class="ml-menu">
             <li><a href="{{ route('User.index') }}">List of Users</a></li>
              @if (session('user_account') == 'organization-head-user')

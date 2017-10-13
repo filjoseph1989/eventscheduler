@@ -53,4 +53,9 @@ Route::group(['middleware'=>['auth']], function(){
       // Route::name('attendance.within')->post('/get/attendance','AttendanceController@getUserOrgs');  (<-edit)
       //for later when authenitcation is complete(for within orgs of a user)
     });
+
+    #additional routes for registering organization-member user type
+    Route::prefix('User')->group(function() {
+      Route::name('User.existing.assignPosition')->get('/existing-user/assign-position', 'UserController@assignPositionToExistingUser');
+    });
 });

@@ -150,11 +150,6 @@ Phase 1:
     ✔ View Calendar
     ☐ complete routes in Home blade display
     ☐ add 'My Organizations' tab inside 'Organization Tab' in side bar
-<<<<<<< HEAD
-    
-
-=======
->>>>>>> develop
 
   5. Separation of Authority:
     ✔ Plan how to separate what actions and pages or data can OSA, Organization Head and Member can view (done logic, ongoing execution)
