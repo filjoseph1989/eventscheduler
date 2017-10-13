@@ -177,8 +177,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         NotificationChannels\FacebookPoster\FacebookPosterServiceProvider::class,
-        //for Cross Origin Resource Sharing headers package
-        Barryvdh\Cors\ServiceProvider::class,
+        Thujohn\Twitter\TwitterServiceProvider::class,
     ],
 
     /*
@@ -228,6 +227,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Carbon' => Illuminate\Support\Carbon::class,
+        'Twitter' => Thujohn\Twitter\Facades\Twitter::class,
     ],
 
 ];
