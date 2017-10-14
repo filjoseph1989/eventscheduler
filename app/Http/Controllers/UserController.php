@@ -81,47 +81,6 @@ class UserController extends Controller
       ]);
     }
 
-    private function requestToArray($request)
-    {
-      $data = [];
-      foreach ($request->all()['account_number'] as $key => $account_number) {
-        $data[$key] = [
-          'account_number' => $account_number,
-          'full_name'      => $request->full_name[$key],
-          'email'          => $request->email[$key],
-          'position_id'    => $request->position_id[$key],
-        ];
-      }
-
-      return $data;
-    }
-
-    private function emailExists(&$user)
-    {
-      $count = User::where('email', $user['email'])
-        ->get()
-        ->count();
-
-      if ($count > 0) {
-        return true;
-      }
-
-      return false;
-    }
-
-    private function accountExists(&$user)
-    {
-      $count = User::where('account_number', $user['account_number'])
-        ->get()
-        ->count();
-
-      if ($count > 0) {
-        return true;
-      }
-
-      return false;
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -223,23 +182,6 @@ class UserController extends Controller
           ->withInput()
           ->with('status', 'Successfully added new user');
       }
-
-
-      // Issue 24
-      // $password          = str_random(15);
-      // $request->password = $password;
-
-      // Mail::to($request->email)->send(new EmailNotification($request));
-
-      # Validate sah
-
-      # save sa database
-      // $data = $request->all();
-      // $data['password'] = bcrypt($password);
-
-      // $user = User::create( $data );
-      // $user = User::create( $data );
-
     }
 
     /**
@@ -379,5 +321,64 @@ class UserController extends Controller
           ->withInput()
           ->with('status', 'Successfully added new user');
         }
+    }
+
+    /**
+     * Convert the request to array
+     *
+     * @param  object $request
+     * @return array
+     */
+    private function requestToArray($request)
+    {
+      $data = [];
+      foreach ($request->all()['account_number'] as $key => $account_number) {
+        $data[$key] = [
+          'account_number' => $account_number,
+          'full_name'      => $request->full_name[$key],
+          'email'          => $request->email[$key],
+          'position_id'    => $request->position_id[$key],
+        ];
+      }
+
+      return $data;
+    }
+
+    /**
+     * return true if the email exists in the database
+     *
+     * @param  array $user
+     * @return boolean
+     */
+    private function emailExists(&$user)
+    {
+      $count = User::where('email', $user['email'])
+        ->get()
+        ->count();
+
+      if ($count > 0) {
+        return true;
+      }
+
+      return false;
+    }
+
+    /**
+     * Return true if the account exists
+     *
+     * @param array $user
+     * @return boolean
+     */
+    private function accountExists(&$user)
+    {
+      $count = User::where('account_number', $user['account_number'])
+        ->get()
+        ->count();
+
+      if ($count > 0) {
+        return true;
+      }
+
+      return false;
     }
 }
