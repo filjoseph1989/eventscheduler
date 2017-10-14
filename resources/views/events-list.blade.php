@@ -25,24 +25,39 @@
           <div class="card">
             <div class="header">
               <h2> {{ ucwords($title) }} Events
-                <small>Showing all the events created by your Organization
-                  @if (Auth::user()->user_type_id == 2)
+                <?php
+                  $type               = "All the";
+                  $thirdPersonAddress = "your";
+
+                  if ($eventType == 1) {
+                    $type = 'Official';
+                  }
+                  if ($eventType == 2) {
+                    $type = 'Local';
+                  }
+                  if (Auth::user()->user_type_id == 3) {
+                    $thirdPersonAddress = "";
+                  }
+                ?>
+                <small>
+                  Showing {{ $type }} events {{ $eventType != 1 ? "created by $thirdPersonAddress Organization(s)" : "" }}
+                  @if (Auth::user()->user_type_id == 2 and $eventType != 1)
                     , the University and other organization you'd like to attend
                   @endif
                 </small>
               </h2>
               @if ($eventType == 0 AND Auth::user()->user_type_id == 1)
-              <ul class="header-dropdown m-r--5">
-                <li class="dropdown">
-                  <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="material-icons">more_vert</i>
-                  </a>
-                  <ul class="dropdown-menu pull-right">
-                      <li><a href="{{ route('Event.show', 'true') }}">Approved Events</a></li>
-                      <li><a href="{{ route('Event.show', 'false') }}">Disapproved Events</a></li>
-                  </ul>
-                </li>
-              </ul>
+                <ul class="header-dropdown m-r--5">
+                  <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                      <i class="material-icons">more_vert</i>
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+                        <li><a href="{{ route('Event.show', 'true') }}">Approved Events</a></li>
+                        <li><a href="{{ route('Event.show', 'false') }}">Disapproved Events</a></li>
+                    </ul>
+                  </li>
+                </ul>
               @endif
             </div>
             <div class="body">

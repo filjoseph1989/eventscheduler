@@ -211,23 +211,19 @@ class EventController extends Controller
         }
       }
 
-      # Return All approve or disapprove event
-      # within University or organization category
-      // if ($id == 'true' or $id == 'false') {
-      //   return Event::where('is_approve', $id)
-      //     ->orWhere('category', 'university')
-      //     ->orWhere('category', 'organization')
-      //     ->get();
-      // }
-
       # Return All official or local event
       # within University or organization category
-      // if ($id > 0) {
-      //   return Event::where('event_type_id', $id)
-      //     ->Where('category', 'university')
-      //     ->orWhere('category', 'organization')
-      //     ->get();
-      // }
+      if ($kind == 1) {
+        return Event::where('event_type_id', $kind)
+          ->Where('category', 'university')
+          ->get();
+      }
+      if ($kind == 2) {
+        return Event::where('event_type_id', $kind)
+          ->where('category', 'within')
+          ->orWhere('category', 'organization')
+          ->get();
+      }
     }
 
     /**
