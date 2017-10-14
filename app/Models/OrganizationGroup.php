@@ -42,11 +42,22 @@ class OrganizationGroup extends Model
   /**
    * Organzation group contains an ID that is
    * belong to a user makes them a ono to one relationship
-   * 
+   *
    * @return object
    */
   public function user()
   {
     return $this->belongsTo('App\Models\User');
+  }
+
+  /**
+   * Return the value of organization group
+   * property organization_id
+   *
+   * @return int
+   */
+  public function getOrganizationID()
+  {
+    return $this->organization_id;
   }
 }

@@ -13,9 +13,9 @@
  * @author Fil <filjoseph22@gmail.com>
  * @author Liz <janicalizdeguzman@gmail.com>
  * @since 0.1
- * @version 2.7
+ * @version 2.8
  * @date 09-30-2017
- * @date 10-02-2017 - last updated
+ * @date 10-14-2017 - last updated
  */
 (function() {
   /**
@@ -50,6 +50,8 @@
         $('#twitter_msg').html(currentValue.twitter_msg);
         $('#email_msg').html(currentValue.email_msg);
         $('#sms_msg').html(currentValue.sms_msg);
+        $('#modal-request-approval-form').attr('action', '/Request/'+currentValue.id);
+        $('#modal-request-approval-form > #id').val(currentValue.id);
       });
     });
   });
@@ -231,11 +233,6 @@
       $('#org-profile-description').html('<strong>Description</strong>: <a href="#">'+data.description+'</a>');
       $('#org-profile-url').html('<strong>URL</strong>: <a href="'+data.url+'" target="_blank">'+data.url+'</a>');
       $('#org-profile-aniversary').html('<strong>Aniversary</strong>: <a href="#">'+data.aniversary+'</a>');
-
-      // $('#org-profile-').html();
-      // $('#org-profile-').html();
-      // $('#org-profile-').html();
-      // $('#org-profile-').html();
     });
   });
 
@@ -250,7 +247,6 @@
     }
 
     axios_post('/attendance/get/official/attendance', data, function(data) {
-      console.log(data);
       var html = "";
       data.map(function (data) {
         html +=
@@ -278,7 +274,6 @@
       }
 
     axios_post('/attendance/get/official/attendance', data, function(data) {
-      console.log(data);
       var html = "";
       data.map(function (data) {
         html +=
@@ -312,10 +307,10 @@
         html +=
         '<tr>';
 
-        if (event_type == 1){ 
-          html +=   '<td><a href="#">' + data.full_name + '</a></td>'; 
-        } else { 
-          html += '<td><a href="#">' + data.user.full_name + '</a></td>'; 
+        if (event_type == 1){
+          html +=   '<td><a href="#">' + data.full_name + '</a></td>';
+        } else {
+          html += '<td><a href="#">' + data.user.full_name + '</a></td>';
         }
 
         html +=
@@ -340,7 +335,6 @@
     }
 
     axios_post('/attendance/get/declined/attendance', data, function (data) {
-      console.log(data);
       var html = "";
       data.map(function (data) {
         html +=

@@ -114,7 +114,11 @@ Phase 1:
       ☐ add 'My Organizations' tab inside 'Organization Tab' in side bar
 
       ☐ in Register Users:
+<<<<<<< HEAD
+        ☐ create a new blade (this is for assigning position of a user which already exists in the User table when being registeres by the org head) 
+=======
         ☐ create a new blade (this is for assigning position of a user which already exists in the User table when being registeres by the org head)
+>>>>>>> develop
 
     My Organization:
       ✔ view organization profile

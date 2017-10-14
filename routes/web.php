@@ -27,6 +27,7 @@ Route::group(['middleware'=>['auth']], function(){
     Route::resource('Attendances',  'AttendanceController');
     Route::resource('Approve',      'ApproveEventController');
     Route::resource('Profile',      'UserProfileController');
+    Route::resource('Request',      'EventRequestApprovalController');
     Route::resource('Event',        'EventController', ['parameters' =>[
       'Event' => 'id'
     ]]);
@@ -52,5 +53,10 @@ Route::group(['middleware'=>['auth']], function(){
       Route::name('attendance.showWithinEachOrg')->get('get/within-an-organization/attendance/{id}', 'AttendanceController@showWithinEachOrg');
       // Route::name('attendance.within')->post('/get/attendance','AttendanceController@getUserOrgs');  (<-edit)
       //for later when authenitcation is complete(for within orgs of a user)
+    });
+
+    #additional routes for registering organization-member user type
+    Route::prefix('User')->group(function() {
+      Route::name('User.existing.assignPosition')->get('/existing-user/assign-position', 'UserController@assignPositionToExistingUser');
     });
 });
