@@ -25,7 +25,11 @@
           <div class="card">
             <div class="header">
               <h2> {{ ucwords($title) }} Events
-                <small>Showing all the events created by your organization</small>
+                <small>Showing all the events created by your Organization
+                  @if (Auth::user()->user_type_id == 2)
+                    , the University and other organization you'd like to attend
+                  @endif
+                </small>
               </h2>
               @if ($eventType == 0 AND Auth::user()->user_type_id == 1)
               <ul class="header-dropdown m-r--5">
@@ -51,7 +55,9 @@
                       <th>Organizer</th>
                       <th>Start</th>
                       <th>End</th>
-                      <th>Status</th>
+                      @if (Auth::user()->user_type_id != 2)
+                        <th>Status</th>
+                      @endif
                       @if ($eventType == 'true' or $eventType == 'false')
                         <th>Approved?</th>
                       @endif
@@ -71,7 +77,9 @@
                             <td> No Organization </td>
                             <td>{{ date('M d, Y', strtotime($event->date_start)) }} {{ date('h:i A', strtotime($event->date_start_time)) }}</td>
                             <td>{{ date('M d, Y', strtotime($event->date_end)) }} {{ date('h:i A', strtotime($event->date_end_time)) }}</td>
-                            <td>{{ ucwords($event->status) }}</td>
+                            @if (Auth::user()->user_type_id != 2)
+                              <td>{{ ucwords($event->status) }}</td>
+                            @endif
                             @if ($eventType == 'true' or $eventType == 'false')
                               <td>
                                 @php $is_approve = ($event->is_approve == 'true') ? 'Yes' : 'No'; @endphp
@@ -90,7 +98,9 @@
                       <th>Organizer</th>
                       <th>Start</th>
                       <th>End</th>
-                      <th>Status</th>
+                      @if (Auth::user()->user_type_id != 2)
+                        <th>Status</th>
+                      @endif
                       @if ($eventType == 'true' or $eventType == 'false')
                         <th> Approved?</th>
                       @endif

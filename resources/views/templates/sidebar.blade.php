@@ -40,7 +40,7 @@
           <a href="javascript:void(0);" class="menu-toggle">
             <i class="material-icons">account_circle</i>
             <span>All System Users</span>
-          </a> 
+          </a>
           <ul class="ml-menu">
             <li><a href="{{ route('User.index') }}">List of Users</a></li>
             @if (Auth::user()->user_type_id != 2)
@@ -66,9 +66,11 @@
             <span>Events</span>
           </a>
           <ul class="ml-menu">
-            <li>
-              <a href="{{ route('Event.create') }}"> <span>Create Event</span> </a>
-            </li>
+            @if (Auth::user()->user_type_id != 2)
+              <li>
+                <a href="{{ route('Event.create') }}"> <span>Create Event</span> </a>
+              </li>
+            @endif
             <li>
               <a href="#" class="menu-toggle"><span>List of Events</span></a>
               <ul class="ml-menu">
@@ -101,7 +103,7 @@
             <li><a href="{{ route('Attendances.show', 'Local') }}"><span>Local Events</span></a></li>
           </ul>
         </li>
-      </ul> 
+      </ul>
     </div>
     <div class="legal">
       <div class="copyright">

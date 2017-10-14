@@ -181,6 +181,7 @@ class EventController extends Controller
      */
     private function getEvents($kind, $userType)
     {
+      /* Personal events are not included in this filtering */
       if ($kind == '0') {
         if ($userType == 'org-head') {
           return Event::where('category', '=', 'within')
@@ -188,8 +189,14 @@ class EventController extends Controller
             ->get();
         }
         if ($userType == 'osa') {
-          return Event::where('category', 'organizatio')
+          return Event::where('category', 'organization')
             ->orWhere('category', 'university')
+            ->get();
+        }
+        if ($userType == 'member') {
+          return Event::where('category', 'organization')
+            ->orWhere('category', 'university')
+            ->orWhere('category', 'within')
             ->get();
         }
       }
@@ -203,20 +210,6 @@ class EventController extends Controller
             ->get();
         }
       }
-      # Return All event within University or organization category
-      // if ($id == '0') {
-        # scene 1: OSA
-        # scene 2: ORg head
-          # check the  account if organization head's account
-          # get the organization head organization from the table organization group
-          # get the event base on the organization of the organization head
-
-        # scene 3: Org MEmber
-
-      //   return Event::where('category', 'university')
-      //     ->orWhere('category', 'organization')
-      //     ->get();
-      // }
 
       # Return All approve or disapprove event
       # within University or organization category
@@ -251,6 +244,10 @@ class EventController extends Controller
 
       if (parent::isOsa()) {
         return self::getEvents($id, 'osa');
+      }
+
+      if (parent::isOrgMember()) {
+        return self::getEvents($id, 'member');
       }
     }
 
