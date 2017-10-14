@@ -8,26 +8,12 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\RedirectResponse;
 
-use Auth; 
+use Auth;
 use App\Models\User;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests; 
-
-    /**
-     * Check if the user is currently login or not
-     *
-     * @return
-     */
-    public function loginCheck()
-    {
-      # Check if the user is loggedin
-      if (! Auth::check()) {
-        header('Location: '.action('Auth\LoginController@login'));
-        exit;
-      }
-    }
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     /**
      * Check if the user account type of the loggedin
@@ -46,7 +32,7 @@ class Controller extends BaseController
      *
      * @return boolean
      */
-    public function isOrgUser()
+    public function isOrgMember()
     {
       return self::accountCheck(2);
     }
@@ -57,23 +43,9 @@ class Controller extends BaseController
      *
      * @return boolean
      */
-    public function isOsaPersonnel()
+    public function isOsa()
     {
       return self::accountCheck(3);
-    }
-
-    /**
-     * Check if the account is an approver
-     *
-     * @return boolean
-     */
-    protected function isApprover()
-    {
-      # Check if this OSA account is an approver
-      if (User::find(Auth::user()->id)->is_approver == 'true')
-        return true;
-
-      return false;
     }
 
     /**
@@ -85,7 +57,7 @@ class Controller extends BaseController
     private function accountCheck($id)
     {
       if (Auth::check()) {
-        $user = User::find(Auth::user()->id);
+        $user = User::find(Auth::id());
         return ($user->user_type_id == $id) ? true : false;
       }
     }
