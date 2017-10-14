@@ -68,9 +68,9 @@ Phase 1:
       ✔ Approve Events @done (October 12th 2017, 9:53)
       ☐ Post to social media and send email to registered user after the approve of events
       ✔ Facebook @done (October 12th 2017, 11:14)
-      ☐ Twitter
+      ✔ Twitter @done(2017-10-14 23:16)
       ☐ SMS
-      ☐ Emai
+      ☐ Email
 
     Student Attendance:
       ✔ Display events @done(2017-10-12 08:11)
@@ -93,7 +93,7 @@ Phase 1:
     ☐ "Fill Out My Other Profile Details"<-(temp button name) (add this button at user-profile blade)
         and make it functional where the user will edit or add his/her other info in the fields in the users table in the database
     ✔ Register New User (will be disolved later because we will make register user mass registration)
-    ☐ Register Many Users
+    ✔ Register Many Users @done(2017-10-14 23:17)
 
     Display Users list:
       ☐ Display all members of the organization (organization sa head)
@@ -114,11 +114,7 @@ Phase 1:
       ☐ add 'My Organizations' tab inside 'Organization Tab' in side bar
 
       ☐ in Register Users:
-<<<<<<< HEAD
-        ☐ create a new blade (this is for assigning position of a user which already exists in the User table when being registeres by the org head) 
-=======
-        ☐ create a new blade (this is for assigning position of a user which already exists in the User table when being registeres by the org head)
->>>>>>> develop
+      ☐ create a new blade (this is for assigning position of a user which already exists in the User table when being registeres by the org head)
 
     My Organization:
       ✔ view organization profile
@@ -126,14 +122,14 @@ Phase 1:
 
     Events:
       ✔ Create new event @done(2017-10-04 15:23)
-      ☐ Display all official events approved by the OSA
+      ✔ Display all official events approved by the OSA @done(2017-10-14 23:18)
         ✔ Update additional messages @done(2017-10-01 13:13)
           ✔ This functionality should be sepate from OSA, OSA shouldn't have this, and must be hidden from them @done(2017-10-12 21:59)
         ✔ Display the additional message @done(2017-10-01 13:28)
         ☐ Update notification setting for each event
         ✔ Modal for event information, notification and additional messages setting for each event @done(2017-10-08 23:45)
-        ☐ Request for approval
-      ☐ Display Personal event exclusive to organization head/organization only
+        ✔ Request for approval @done(2017-10-14 23:18)
+      ✔ Display Personal event exclusive to organization head/organization only @done(2017-10-14 23:18)
       ✔ Display the calendar of events @done (10/7/2017, 3:25:58 PM)
         ✔ official @done (10/7/2017, 3:26:00 PM)
         ✔ personal @done (10/7/2017, 3:26:02 PM)
@@ -141,7 +137,7 @@ Phase 1:
   4. For Members:
     ✔ View profile
     ✔ View organization
-    ☐ View Events
+    ✔ View Events @done(2017-10-14 23:18)
       ☐ Attend and Decline (should show when members is loggedin)
     ☐ Change password
     ☐ Upload picture
