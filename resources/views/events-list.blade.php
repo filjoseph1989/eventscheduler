@@ -15,6 +15,13 @@
     <div class="container-fluid">
       <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+          @if (session('status'))
+            <div class="alert alert-success" role="alert">
+              {{ session('status') }}
+            </div>
+          @endif
+          
           <div class="card">
             <div class="header">
               <h2> {{ ucwords($title) }} Events
@@ -279,7 +286,15 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" data-color="green" class="btn bg-teal waves-effect" data-toggle="tooltip" data-placement="top" title="Request for advertisement approval">Request Approval</button>
+          <button type="button" data-color="teal" class="btn bg-teal waves-effect request-approval" id="modal-request-approval" data-toggle="tooltip" data-placement="top" title="Request for advertisement approval"
+            onclick="event.preventDefault(); document.getElementById('modal-request-approval-form').submit();">
+            Request Approval
+          </button>
+          <form class="" id="modal-request-approval-form" action="" method="post" style="display: none;">
+            {{ csrf_field() }}
+            {{ method_field('PUT') }}
+            <input type="hidden" id="id" name="id" value="">
+          </form>
           <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
         </div>
       </div>
@@ -295,5 +310,5 @@
   <script src="{{ asset('js/bootstrap-select.js') }}"?v=0.1></script>
   <script src="{{ asset('js/sweetalert.min.js') }}"?v=0.1></script>
   <script src="{{ asset('js/tooltips-popovers.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/app.js') }}?v=2.1" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.8" charset="utf-8"></script>
 @endsection

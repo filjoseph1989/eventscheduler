@@ -27,6 +27,7 @@ Route::group(['middleware'=>['auth']], function(){
     Route::resource('Attendances',  'AttendanceController');
     Route::resource('Approve',      'ApproveEventController');
     Route::resource('Profile',      'UserProfileController');
+    Route::resource('Request',      'EventRequestApprovalController');
     Route::resource('Event',        'EventController', ['parameters' =>[
       'Event' => 'id'
     ]]);
