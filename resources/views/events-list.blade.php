@@ -27,19 +27,19 @@
               <h2> {{ ucwords($title) }} Events
                 <small>Showing all the events created by your organization</small>
               </h2>
+              @if ($eventType == 0 AND Auth::user()->user_type_id == 1)
               <ul class="header-dropdown m-r--5">
                 <li class="dropdown">
                   <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <i class="material-icons">more_vert</i>
                   </a>
                   <ul class="dropdown-menu pull-right">
-                    @if ($eventType == 0)
                       <li><a href="{{ route('Event.show', 'true') }}">Approved Events</a></li>
                       <li><a href="{{ route('Event.show', 'false') }}">Disapproved Events</a></li>
-                    @endif
                   </ul>
                 </li>
               </ul>
+              @endif
             </div>
             <div class="body">
               <div class="row clearfix">

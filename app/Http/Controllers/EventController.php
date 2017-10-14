@@ -187,6 +187,11 @@ class EventController extends Controller
             ->where('organization_id', self::getOrganization())
             ->get();
         }
+        if ($userType == 'osa') {
+          return Event::where('category', 'organizatio')
+            ->orWhere('category', 'university')
+            ->get();
+        }
       }
 
       # return approve | disapprove events
@@ -242,6 +247,10 @@ class EventController extends Controller
     {
       if (parent::isOrgHead()) {
         return self::getEvents($id, 'org-head');
+      }
+
+      if (parent::isOsa()) {
+        return self::getEvents($id, 'osa');
       }
     }
 
