@@ -31,7 +31,7 @@
               </ul>
             </div>
             <div class="body">
-              <form class="" id="add-user-form" action="{{ route('User.store') }}" method="POST">
+              <form class="" id="add-user-form" action="{{ route('User.store') }}" method="POST"> 
                 {{ csrf_field() }}
                 <div class="row clearfix" id="input1">
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">

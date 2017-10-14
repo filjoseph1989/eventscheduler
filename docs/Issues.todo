@@ -12,6 +12,7 @@
 ☐ Issue 23: {inline} Check if the if the ID is already exists to prevent ID duplication
 ☐ Issue 24: {inline} Use the commented part to generate password when the OSA approve the user registeration
 ☐ Issue 25: {inline} Update the database table of events
+☐ Issue 26: What there's no user entry in the database at launch? Who will be the first to login?
 
 Archived:
     ✔ Issue 21: {inline} Update this, when the authentication or login functionality is completed @done(2017-10-04 09:08)
