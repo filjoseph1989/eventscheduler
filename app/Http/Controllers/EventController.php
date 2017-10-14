@@ -6,16 +6,22 @@ use Illuminate\Http\Request;
 use App\Common\ValidationTrait;
 use App\Helpers\RandomHelper;
 
+use Auth;
+
 # Models
 use App\Models\Event;
 use App\Models\Semester;
 use App\Models\EventType;
 use App\Models\EventGroup;
+use App\Models\OrganizationGroup;
 
 /**
  * CRUDS class for events
  *
  * @author Liz <janicalizdeguzman@gmail.com>
+ * @version 2.1
+ * @date 10-14-2017
+ * @date 10-14-2017 - updated
  */
 class EventController extends Controller
 {
@@ -108,17 +114,16 @@ class EventController extends Controller
      */
     public function show($id)
     {
-      $events = self::getEvents($id);
+      $events = self::whosGettingTheEvents($id);
 
       self::getDateComparison($events);
 
-      self::getOrganization($events);
-
-      return view('events-list')->with([
-        'title'      => $this->list[$id],
-        'events'     => $events,
-        'eventType'  => $id
-      ]);
+      return view('events-list')
+        ->with([
+          'title'      => $this->list[$id],
+          'events'     => $events,
+          'eventType'  => $id
+        ]);
     }
 
     /**
@@ -169,68 +174,119 @@ class EventController extends Controller
     }
 
     /**
-     * Modefy the events
-     *
-     * @param  objeect $events Reference to events
-     * @return void
-     */
-    private function getOrganization(&$events)
-    {
-      /*
-      need to change this because university events doesn't need eventroups
-      use organization_id in events
-       */
-      foreach ($events as $key => $event) {
-        $events[$key]['organization'] = EventGroup::with('organization')
-          ->where('event_id', '=', $event->id)
-          ->get();
-      }
-    }
-
-    /**
      * Return array of events
      *
      * @param mixed $id
      * @return void
      */
-    private function getEvents($id)
+    private function getEvents($kind, $userType)
     {
-      # Return All event within University or organization category
-      if ($id == '0') {
-        return Event::Where('category', 'university')
-          ->orWhere('category', 'organization')
-          ->get();
+      if ($kind == 'all') {
+        if ($userType == 'org-head') {
+          return Event::where('category', '=', 'within')
+            ->where('organization_id', self::getOrganization())
+            ->get();
+        }
       }
+      # Return All event within University or organization category
+      // if ($id == '0') {
+        # scene 1: OSA
+        # scene 2: ORg head
+          # check the  account if organization head's account
+          # get the organization head organization from the table organization group
+          # get the event base on the organization of the organization head
+
+        # scene 3: Org MEmber
+
+      //   return Event::where('category', 'university')
+      //     ->orWhere('category', 'organization')
+      //     ->get();
+      // }
 
       # Return All approve or disapprove event
       # within University or organization category
-      if ($id == 'true' or $id == 'false') {
-        return Event::where('is_approve', $id)
-          ->orWhere('category', 'university')
-          ->orWhere('category', 'organization')
-          ->get();
-      }
+      // if ($id == 'true' or $id == 'false') {
+      //   return Event::where('is_approve', $id)
+      //     ->orWhere('category', 'university')
+      //     ->orWhere('category', 'organization')
+      //     ->get();
+      // }
 
       # Return All official or local event
       # within University or organization category
-      if ($id > 0) {
-        return Event::where('event_type_id', $id)
-          ->Where('category', 'university')
-          ->orWhere('category', 'organization')
-          ->get();
+      // if ($id > 0) {
+      //   return Event::where('event_type_id', $id)
+      //     ->Where('category', 'university')
+      //     ->orWhere('category', 'organization')
+      //     ->get();
+      // }
+    }
+
+    /**
+     * Determine what account is looking to display all the
+     * events
+     *
+     * @return
+     */
+    private function whosGettingTheEvents($id)
+    {
+      if (parent::isOrgHead()) {
+        return self::getEvents(
+          self::whatKindOfEvents($id),
+          'org-head'
+        );
       }
     }
 
     /**
+     * Return the kind of events the user is looking for
+     *
+     * @param int $id
+     * @return mixed
+     */
+    private function whatKindOfEvents($id)
+    {
+      if ($id == '0') {
+        return 'all';
+      }
+      if ($id == 'true') {
+        return 'approved';
+      }
+      if ($id == 'false') {
+        return 'disapproved';
+      }
+      if ($id == '1') {
+        return 'official';
+      }
+      if ($id == '2') {
+        return 'local';
+      }
+    }
+
+    /**
+     * Return the user organizatoin ID
+     *
+     * @return void
+     */
+    private function getOrganization()
+    {
+      return OrganizationGroup::where('user_id', Auth::id())
+        ->get()
+        ->first()
+        ->getOrganizationId();
+    }
+
+    /**
      * This method compare the given date to current date
-     * @return [type] [description]
+     * and when true, set the status to on going
+     *
+     * @return void
      */
     private function getDateComparison(&$events)
     {
       foreach ($events as $key => $event) {
         if (self::matchDate($event->date_start)) {
           $events[$key]->status = "on going";
-
           # Issue 25
         }
       }

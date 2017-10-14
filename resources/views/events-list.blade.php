@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-  <title>{{ config('app.name', 'List of Events') }}</title>
+  <title>List of Events</title>
 @endsection
 
 @section('css')
@@ -18,7 +18,7 @@
           <div class="card">
             <div class="header">
               <h2> {{ ucwords($title) }} Events
-                <small>Display events in the system</small>
+                <small>Showing all the events created by your organization</small>
               </h2>
               <ul class="header-dropdown m-r--5">
                 <li class="dropdown">
@@ -50,35 +50,32 @@
                       @endif
                     </thead>
                     <tbody>
-                      @foreach ($events as $key => $event)
-                        <tr data-event="{{ $event->id }}" data-route="{{ route('Event.edit', $event->id) }}" data-action="{{ route('Event.update', $event->id) }}">
-                          <td>
-                            @if (Auth::user()->user_type_id == 1)
-                              <a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ $event->title }}</a>
-                            @else
-                              <a href="#" class="">{{ $event->title }}</a>
-                            @endif
-                          </td>
-                          <td><a href="#">{{ $event->venue }}</a></td>
-                          <td>
-                            @if ($event['organization']->count() > 0)
-                              @php $organization = $event['organization'][0]; @endphp
-                              {{ $organization->organization->name }}
-                            @else
-                              No Organization
-                            @endif
-                          </td>
-                          <td>{{ date('M d, Y', strtotime($event->date_start)) }} {{ date('h:i A', strtotime($event->date_start_time)) }}</td>
-                          <td>{{ date('M d, Y', strtotime($event->date_end)) }} {{ date('h:i A', strtotime($event->date_end_time)) }}</td>
-                          <td>{{ ucwords($event->status) }}</td>
-                          @if ($eventType == 'true' or $eventType == 'false')
+                      @if ($events->count() > 0)
+                        @foreach ($events as $key => $event)
+                          <tr data-event="{{ $event->id }}" data-route="{{ route('Event.edit', $event->id) }}" data-action="{{ route('Event.update', $event->id) }}">
                             <td>
-                              @php $is_approve = ($event->is_approve == 'true') ? 'Yes' : 'No'; @endphp
-                              <a href="#">{{ $is_approve }}</a>
+                              @if (Auth::user()->user_type_id == 1)
+                                <a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a>
+                              @else
+                                <a href="#" class="">{{ ucwords($event->title) }}</a>
+                              @endif
                             </td>
-                          @endif
-                        </tr>
-                      @endforeach
+                            <td><a href="#">{{ $event->venue }}</a></td>
+                            <td> No Organization </td>
+                            <td>{{ date('M d, Y', strtotime($event->date_start)) }} {{ date('h:i A', strtotime($event->date_start_time)) }}</td>
+                            <td>{{ date('M d, Y', strtotime($event->date_end)) }} {{ date('h:i A', strtotime($event->date_end_time)) }}</td>
+                            <td>{{ ucwords($event->status) }}</td>
+                            @if ($eventType == 'true' or $eventType == 'false')
+                              <td>
+                                @php $is_approve = ($event->is_approve == 'true') ? 'Yes' : 'No'; @endphp
+                                <a href="#">{{ $is_approve }}</a>
+                              </td>
+                            @endif
+                          </tr>
+                        @endforeach
+                      @else
+                        No Data Yet
+                      @endif
                     </tbody>
                     <tfoot>
                       <th><a href="#">Title</a></th>
