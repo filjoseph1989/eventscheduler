@@ -43,9 +43,9 @@
           </a> 
           <ul class="ml-menu">
             <li><a href="{{ route('User.index') }}">List of Users</a></li>
-             @if (session('user_account') == 'organization-head-user')
-                <li><a href="{{ route('User.create') }}">Register New Users</a></li>
-             @endif
+            @if (Auth::user()->user_type_id != 2)
+              <li><a href="{{ route('User.create') }}">Register New Users</a></li>
+            @endif
           </ul>
         </li>
         <li>
@@ -54,7 +54,7 @@
             <span>Organization</span>
           </a>
           <ul class="ml-menu">
-            @if(session('user_account') == 'osa-personnel')
+            @if(Auth::user()->user_type_id == 3)
               <li><a href="{{ route('Org.create') }}"><span>Add New</span></a></li>
             @endif
             <li><a href="{{ route('Org.index') }}"><span>University Organizations</span></a></li>
