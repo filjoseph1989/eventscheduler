@@ -181,10 +181,20 @@ class EventController extends Controller
      */
     private function getEvents($kind, $userType)
     {
-      if ($kind == 'all') {
+      if ($kind == '0') {
         if ($userType == 'org-head') {
           return Event::where('category', '=', 'within')
             ->where('organization_id', self::getOrganization())
+            ->get();
+        }
+      }
+
+      # return approve | disapprove events
+      if ($kind == 'true' or $kind == 'false') {
+        if ($userType == 'org-head') {
+          return Event::where('category', '=', 'within')
+            ->where('organization_id', self::getOrganization())
+            ->where('is_approve', $kind)
             ->get();
         }
       }
@@ -231,35 +241,7 @@ class EventController extends Controller
     private function whosGettingTheEvents($id)
     {
       if (parent::isOrgHead()) {
-        return self::getEvents(
-          self::whatKindOfEvents($id),
-          'org-head'
-        );
-      }
-    }
-
-    /**
-     * Return the kind of events the user is looking for
-     *
-     * @param int $id
-     * @return mixed
-     */
-    private function whatKindOfEvents($id)
-    {
-      if ($id == '0') {
-        return 'all';
-      }
-      if ($id == 'true') {
-        return 'approved';
-      }
-      if ($id == 'false') {
-        return 'disapproved';
-      }
-      if ($id == '1') {
-        return 'official';
-      }
-      if ($id == '2') {
-        return 'local';
+        return self::getEvents($id, 'org-head');
       }
     }
 
@@ -284,10 +266,12 @@ class EventController extends Controller
      */
     private function getDateComparison(&$events)
     {
-      foreach ($events as $key => $event) {
-        if (self::matchDate($event->date_start)) {
-          $events[$key]->status = "on going";
-          # Issue 25
+      if (! is_null($events)) {
+        foreach ($events as $key => $event) {
+          if (self::matchDate($event->date_start)) {
+            $events[$key]->status = "on going";
+            # Issue 25
+          }
         }
       }
     }

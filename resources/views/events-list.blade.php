@@ -21,7 +21,7 @@
               {{ session('status') }}
             </div>
           @endif
-          
+
           <div class="card">
             <div class="header">
               <h2> {{ ucwords($title) }} Events
@@ -57,7 +57,7 @@
                       @endif
                     </thead>
                     <tbody>
-                      @if ($events->count() > 0)
+                      @if (! is_null($events))
                         @foreach ($events as $key => $event)
                           <tr data-event="{{ $event->id }}" data-route="{{ route('Event.edit', $event->id) }}" data-action="{{ route('Event.update', $event->id) }}">
                             <td>
@@ -92,7 +92,7 @@
                       <th>End</th>
                       <th>Status</th>
                       @if ($eventType == 'true' or $eventType == 'false')
-                        <th> Is Approve</th>
+                        <th> Approved?</th>
                       @endif
                     </tfoot>
                   </table>
