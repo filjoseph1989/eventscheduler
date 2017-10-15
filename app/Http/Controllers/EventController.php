@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Common\ValidationTrait;
 use App\Helpers\RandomHelper;
+
+# Traits
+use App\Common\ValidationTrait;
+use App\Common\CommonMethodTrait;
 
 use Auth;
 
@@ -25,7 +28,7 @@ use App\Models\OrganizationGroup;
  */
 class EventController extends Controller
 {
-    use ValidationTrait;
+    use ValidationTrait, CommonMethodTrait;
 
     private $list  = [
       'all',
@@ -245,19 +248,6 @@ class EventController extends Controller
       if (parent::isOrgMember()) {
         return self::getEvents($id, 'member');
       }
-    }
-
-    /**
-     * Return the user organizatoin ID
-     *
-     * @return void
-     */
-    private function getOrganization()
-    {
-      return OrganizationGroup::where('user_id', Auth::id())
-        ->get()
-        ->first()
-        ->getOrganizationId();
     }
 
     /**
