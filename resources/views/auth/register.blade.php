@@ -52,9 +52,9 @@
                 {{ csrf_field() }}
 
                 @if (Auth::user()->user_type_id == '3')
-                  @$class = "col-lg-2 col-md-2 col-sm-2 col-xs-2"
+                  @php $class = "col-lg-2 col-md-2 col-sm-2 col-xs-2" @endphp
                 @else
-                  @$class = "col-lg-3 col-md-3 col-sm-3 col-xs-3"
+                  @php @$class = "col-lg-3 col-md-3 col-sm-3 col-xs-3" @endphp
                 @endif
 
                 <div class="row clearfix" id="input1">
@@ -68,7 +68,7 @@
                   <div class="{{ $class }}">
                     <div class="form-group form-float form-group">
                       <div class="form-line">
-                        <input type="text" class="form-control" id="full_name" name="full_name[]" placeholder="Student full name" value="" required>
+                        <input type="text" class="form-control" id="full_name" name="full_name[]" placeholder="Full name" value="" required>
                       </div>
                     </div>
                   </div>
@@ -167,10 +167,13 @@
     <div class="{{ $class }}">
       <div class="form-group form-float form-group">
         <div class="form-line">
-          <input type="text" class="form-control" name="email[]" placeholder="Student email" value="" required>
+          <input type="text" class="form-control" name="email[]" placeholder="Email" value="" required>
         </div>
       </div>
     </div>
+    @if (Auth::user()->user_type_id == 1)
+      <?php $class = "col-lg-2 col-md-2 col-sm-2 col-xs-2"; ?>
+    @endif
     <div class="{{ $class }}">
       <div class="form-group form-float form-group">
         <div class="form-group form-float">
@@ -185,6 +188,11 @@
         </div>
       </div>
     </div>
+    @if (Auth::user()->user_type_id == 1)
+      <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        <i class="material-icons remove" data-remove="templateremoveid">close</i>
+      </div>
+    @endif
     @if (Auth::user()->user_type_id == 3)
       <div class="{{ $class }}">
         <div class="form-group form-float form-group">

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Helpers\RandomHelper;
 use App\Mail\EmailNotification;
 use App\Common\ValidationTrait;
+use App\Common\CommonMethodTrait;
 
 #Models
 use App\Models\User;
@@ -32,7 +33,7 @@ class UserController extends Controller
 {
     private $validateWho;
 
-    use ValidationTrait;
+    use ValidationTrait, CommonMethodTrait;
 
     /**
      * Initial instance of the class
@@ -297,6 +298,11 @@ class UserController extends Controller
           'full_name'      => $request->full_name[$key],
           'email'          => $request->email[$key],
         ];
+
+        if (parent::isOrgHead()) {
+          $data[$key]['user_type_id']    = '2';
+          $data[$key]['organization_id'] = self::getOrganization(); # this is from a CommonMethodTrait
+        }
 
         if (parent::isOsa()) {
           $data[$key]['user_type_id']    = $request->user_type_id[$key];
