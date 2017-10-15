@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-  <title>{{ config('app.name', 'Assign Position To Existing User') }}</title>
+  <title>Assign Position To Existing User</title>
 @endsection
 
 @section('css')
@@ -39,9 +39,6 @@
                       <div class="form-line">
                         <input type="hidden" class="form-control" id="existing_user" name="existing_user" placeholder="" value="{{ $existing_user }}">
                         <input type="text" class="form-control" id="account_number" name="account_number" placeholder="{{ $existing_user[0]['account_number'] }}" value="{{ $existing_user[0]['account_number'] }}" readonly>
-                        {{--  @if ($errors->has('account_number'))
-                          <span class="help-block"> <strong>{{ $errors->first('account_number') }}</strong> </span>
-                        @endif  --}}
                       </div>
                     </div>
                   </div>
@@ -49,9 +46,6 @@
                     <div class="form-group form-float form-group">
                       <div class="form-line">
                         <input type="text" class="form-control" id="full_name" name="full_name" placeholder="{{ $existing_user[0]['full_name'] }}" value="{{ $existing_user[0]['full_name'] }}" readonly>
-                        {{--  @if ($errors->has('full_name'))
-                          <span class="help-block"> <strong>{{ $errors->first('full_name') }}</strong> </span>
-                        @endif  --}}
                       </div>
                     </div>
                   </div>
@@ -59,9 +53,6 @@
                     <div class="form-group form-float form-group">
                       <div class="form-line">
                         <input type="text" class="form-control" id="email" name="email" placeholder="{{ $existing_user[0]['email'] }}" value="{{ $existing_user[0]['email'] }}" readonly>
-                        {{--  @if ($errors->has('email'))
-                          <span class="help-block"> <strong>{{ $errors->first('email') }}</strong> </span>
-                        @endif  --}}
                       </div>
                     </div>
                   </div>
