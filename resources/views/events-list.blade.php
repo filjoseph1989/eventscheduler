@@ -82,7 +82,7 @@
                         @foreach ($events as $key => $event)
                           <tr data-event="{{ $event->id }}" data-route="{{ route('Event.edit', $event->id) }}" data-action="{{ route('Event.update', $event->id) }}">
                             <td>
-                              @if (Auth::user()->user_type_id == 1)
+                              @if (Auth::user()->user_type_id == 1 or Auth::user()->user_type_id == 2)
                                 <a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a>
                               @else
                                 <a href="#" class="">{{ ucwords($event->title) }}</a>
@@ -249,77 +249,90 @@
               </div>
             </div>
 
-            {{-- Issue 14 --}}
-            <div class="panel">
-              <div class="panel-heading" role="tab" id="headingThree_1">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_1" href="#collapseThree_1" aria-expanded="false" aria-controls="collapseThree_1">
-                    Additional Messages
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseThree_1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree_1" aria-expanded="false">
-                <div class="panel-body">
-                  <form class="" id="form-additional-message" action="" method="post">
-                    {{ csrf_field() }}
-                    {{ method_field('PUT') }}
-                    <div class="row clearfix">
-                      <div class="col-sm-12 col-md-12">
-                        <div class="form-group form-float form-group">
-                          <div class="form-line">
-                            <label for="facebook_msg">Facebook Message</label>
-                            <textarea rows="2" class="form-control no-resize" id="facebook_msg" name="facebook_msg" placeholder="Additional message for Facebook Notification"></textarea>
+            @if (Auth::user()->user_type_id == 1)
+              <div class="panel">
+                <div class="panel-heading" role="tab" id="headingThree_1">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_1" href="#collapseThree_1" aria-expanded="false" aria-controls="collapseThree_1">
+                      Additional Messages
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseThree_1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree_1" aria-expanded="false">
+                  <div class="panel-body">
+                    <form class="" id="form-additional-message" action="" method="post">
+                      {{ csrf_field() }}
+                      {{ method_field('PUT') }}
+                      <div class="row clearfix">
+                        <div class="col-sm-12 col-md-12">
+                          <div class="form-group form-float form-group">
+                            <div class="form-line">
+                              <label for="facebook_msg">Facebook Message</label>
+                              <textarea rows="2" class="form-control no-resize" id="facebook_msg" name="facebook_msg" placeholder="Additional message for Facebook Notification"></textarea>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="row clearfix">
-                      <div class="col-sm-12 col-md-12">
-                        <div class="form-group form-float form-group">
-                          <div class="form-line">
-                            <label for="twitter_msg">Twitter Message</label>
-                            <textarea rows="2" class="form-control no-resize" id="twitter_msg" name="twitter_msg" placeholder="Additional message for Twitter notification"></textarea>
+                      <div class="row clearfix">
+                        <div class="col-sm-12 col-md-12">
+                          <div class="form-group form-float form-group">
+                            <div class="form-line">
+                              <label for="twitter_msg">Twitter Message</label>
+                              <textarea rows="2" class="form-control no-resize" id="twitter_msg" name="twitter_msg" placeholder="Additional message for Twitter notification"></textarea>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="row clearfix">
-                      <div class="col-sm-12 col-md-12">
-                        <div class="form-group form-float form-group">
-                          <div class="form-line">
-                            <label for="email_msg">Email Message</label>
-                            <textarea rows="2" class="form-control no-resize" id="email_msg" name="email_msg" placeholder="Additional message for email notification"></textarea>
+                      <div class="row clearfix">
+                        <div class="col-sm-12 col-md-12">
+                          <div class="form-group form-float form-group">
+                            <div class="form-line">
+                              <label for="email_msg">Email Message</label>
+                              <textarea rows="2" class="form-control no-resize" id="email_msg" name="email_msg" placeholder="Additional message for email notification"></textarea>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="row clearfix">
-                      <div class="col-sm-12 col-md-12">
-                        <div class="form-group form-float form-group">
-                          <div class="form-line">
-                            <label for="sms_msg">Mobile Message</label>
-                            <textarea rows="2" class="form-control no-resize" id="sms_msg" name="sms_msg" placeholder="Additional message for mobile message"></textarea>
+                      <div class="row clearfix">
+                        <div class="col-sm-12 col-md-12">
+                          <div class="form-group form-float form-group">
+                            <div class="form-line">
+                              <label for="sms_msg">Mobile Message</label>
+                              <textarea rows="2" class="form-control no-resize" id="sms_msg" name="sms_msg" placeholder="Additional message for mobile message"></textarea>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <button type="button" id="modal-additional-messages" data-color="teal" class="btn bg-teal waves-effect pull-right">Save Changes</button>
-                  </form>
+                      <button type="button" id="modal-additional-messages" data-color="teal" class="btn bg-teal waves-effect pull-right">Save Changes</button>
+                    </form>
+                  </div>
                 </div>
               </div>
-            </div>
+            @endif
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" data-color="teal" class="btn bg-teal waves-effect request-approval" id="modal-request-approval" data-toggle="tooltip" data-placement="top" title="Request for advertisement approval"
-            onclick="event.preventDefault(); document.getElementById('modal-request-approval-form').submit();">
-            Request Approval
-          </button>
-          <form class="" id="modal-request-approval-form" action="" method="post" style="display: none;">
-            {{ csrf_field() }}
-            {{ method_field('PUT') }}
-            <input type="hidden" id="id" name="id" value="">
-          </form>
+          @if (Auth::user()->user_type_id == 1)
+            <button type="button" data-color="teal" class="btn bg-teal waves-effect request-approval" id="modal-request-approval" data-toggle="tooltip" data-placement="top" title="Request for advertisement approval"
+              onclick="event.preventDefault(); document.getElementById('modal-request-approval-form').submit();">
+              Request Approval
+            </button>
+            <form class="" id="modal-request-approval-form" action="" method="post" style="display: none;">
+              {{ csrf_field() }}
+              {{ method_field('PUT') }}
+              <input type="hidden" id="id" name="id" value="">
+            </form>
+          @endif
+          @if (Auth::user()->user_type_id == 2)
+            <button type="button" data-color="teal" class="btn bg-teal waves-effect request-approval" id="modal-attend" data-toggle="tooltip" data-placement="top" title="Attenda this event"
+              onclick="event.preventDefault(); document.getElementById('modal-attend-form').submit();">
+              Attend
+            </button>
+            <form class="" id="modal-attend-form" action="" method="post" style="display: none;">
+              {{ csrf_field() }}
+              {{ method_field('PUT') }}
+            </form>
+          @endif
           <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
         </div>
       </div>
@@ -335,5 +348,5 @@
   <script src="{{ asset('js/bootstrap-select.js') }}"?v=0.1></script>
   <script src="{{ asset('js/sweetalert.min.js') }}"?v=0.1></script>
   <script src="{{ asset('js/tooltips-popovers.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/app.js') }}?v=2.8" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.9" charset="utf-8"></script>
 @endsection

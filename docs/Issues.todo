@@ -3,7 +3,6 @@
 ☐ Issue 9: Dapat limit lang ang columns na kuhaon sa events in OSA account, para dili bug-at
 ☐ Issue 11: Buhat og provider para mag display og return value as a replacement sa -- select -- nga part sa dropdown during validation error return
 ☐ Issue 13: {inline} Please make a function for this which can be use across other functionalities
-☐ Issue 14: {inline} This panels should only show up when the type of account is organization head or maybe create a modal for OSA, u think that is the best
 ☐ Issue 15: {inline} Hide this in member
 ☐ Issue 18: Set the user into active once the user being invited via email login using the password generated for the first time
 ☐ Issue 20: Find icons on User table action column
@@ -20,6 +19,7 @@ Archived:
     ✔ Issue 19: {inline} Improve the validation trait by adding this
     ✔ Issue 17: {inline} Its better if you provide a link where a user can password for security purpose @done(2017-10-08 23:36)
     ✔ Issue 16: {inline} Validate if the user is loggedin before making update in the database
+    ✔ Issue 14: {inline} This panels should only show up when the type of account is organization head or maybe create a modal for OSA, u think that is the best @done(2017-10-15 20:27)
     ✔ Issue 12: {inline} Please add a login checker here and if the account is an OSA
     ✔ Issue 10: {events-list0.blade.php} Kani nga file kay gi reserved nako ni para sa member, naa man gud option nga attend|decline
     ✔ Issue 8: kadali ang kaning 'login-page' ba, balik-balik, pangita og lain way pag pasa ani niya

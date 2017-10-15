@@ -13,9 +13,9 @@
  * @author Fil <filjoseph22@gmail.com>
  * @author Liz <janicalizdeguzman@gmail.com>
  * @since 0.1
- * @version 2.8
+ * @version 2.9
  * @date 09-30-2017
- * @date 10-14-2017 - last updated
+ * @date 10-15-2017 - last updated
  */
 (function() {
   /**
@@ -52,6 +52,9 @@
         $('#sms_msg').html(currentValue.sms_msg);
         $('#modal-request-approval-form').attr('action', '/Request/'+currentValue.id);
         $('#modal-request-approval-form > #id').val(currentValue.id);
+
+        // Set route
+        $('#modal-attend-form').attr('action', '/Attendances/'+currentValue.id);
       });
     });
   });
