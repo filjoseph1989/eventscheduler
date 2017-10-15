@@ -55,8 +55,7 @@ class UserController extends Controller
         'organizationGroup' => function($query) {
           return $query->with(['position', 'organization'])->get();
         }
-      ])->where('status', 'true')
-        ->get();
+      ])->get();
 
       return view('users_index')->with([
         'users'      => $users,
@@ -197,21 +196,25 @@ class UserController extends Controller
       $users = User::with([
         'course',
         'organizationGroup' => function($query) {
-          return $query->with(['position', 'organization'])->get();
+          return $query->with(['position', 'organization'])
+            ->get();
         }
       ]);
 
       if ($id == 'active') {
-        $users = $users->where('status', 'true')->get();
+        $users = $users->where('status', 'true')
+          ->get();
       }
       if ($id == 'inactive') {
-        $users = $users->where('status', 'false')->get();
+        $users = $users->where('status', 'false')
+          ->get();
       }
 
       return view('users_index')->with([
         'users'  => $users,
         'help'   => $help,
-        'filter' => true
+        'filter' => true,
+        'id'     => $id
       ]);
     }
 
@@ -249,7 +252,8 @@ class UserController extends Controller
       } else {
         $user->status = $request->status;
 
-        if ($user->password == null) {
+        # Check the user password from the database
+        if (is_null($user->password)) {
           $password          = str_random(15);
           $request->password = $password;
 

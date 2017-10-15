@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-  <title>{{ config('app.name', 'Home Page') }}</title>
+  <title>List of Users</title>
 @endsection
 
 @section('css')
@@ -26,7 +26,13 @@
           <div class="card">
             <div class="header">
               <h2> System Members
-                <small>List of users</small>
+                @if (isset($id) and $id == 'active')
+                  <small>List of active users</small>
+                @elseif(isset($id) and $id == 'inactive')
+                  <small>List of inactive users</small>
+                @else
+                  <small>List of all users</small>
+                @endif
               </h2>
               <ul class="header-dropdown m-r--5">
                 <li class="dropdown">
@@ -86,10 +92,14 @@
                         <td><a href="#">{{ $user->status == 'true' ? 'Active' : 'Inactive' }}</a></td>
                         @if (isset($filter) and $filter === true)
                           <td>
-                            <a href="#" onclick="event.preventDefault(); document.getElementById('form-activate').submit();">Activate</a> |
-                            <a href="#" onclick="event.preventDefault(); document.getElementById('form-deactivate').submit();">Deactivate</a>
+                            @if (isset($id) and $id == 'inactive')
+                              <a href="#" onclick="event.preventDefault(); document.getElementById('form-activate').submit();">Activate</a>
+                            @else
+                              <a href="#" onclick="event.preventDefault(); document.getElementById('form-deactivate').submit();">Deactivate</a>
+                            @endif
+
                             @if (Auth::user()->user_type_id == 2)
-                            | <a href="#" class="user-edit" data-route="{{ route('User.edit', $user->id ) }}" data-toggle="modal" data-target="#modal-edit">Edit</a>
+                              | <a href="#" class="user-edit" data-route="{{ route('User.edit', $user->id ) }}" data-toggle="modal" data-target="#modal-edit">Edit</a>
                             @endif
 
                             {{--  Forms  --}}
