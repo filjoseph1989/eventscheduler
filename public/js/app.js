@@ -139,15 +139,22 @@
   $(document).on('click', '.user-course', function() {
     var $id = $(this).data('course-id');
 
-    axios_post('/modals/get/course', {id: $id}, function(data) {
-      $('#modal-course-title').html(data.name);
-      $('#modal-course-content').html(
-        '<p><strong>'+ data.name +'</strong> '+ data.description +'.</p>'
-      );
-      $('#modal-course-sourse').html(
-        '<a href="'+data.source+'" target="_blank">Source</a>'
-      );
-    });
+    if ($id == '') {
+      $('#modal-course-title').html("No Course Assign Yet");
+      $('#modal-course-content').html("");
+      $('#modal-course-sourse').html("");
+    } else {
+      axios_post('/modals/get/course', {id: $id}, function(data) {
+        $('#modal-course-title').html(data.name);
+        $('#modal-course-content').html(
+          '<p><strong>'+ data.name +'</strong> '+ data.description +'.</p>'
+        );
+        $('#modal-course-sourse').html(
+          '<a href="'+data.source+'" target="_blank">Source</a>'
+        );
+      });
+    }
+
   });
 
   /**
@@ -323,7 +330,7 @@
       $('#event-attendees').html(html);
     });
   });
-  
+
   /**
    * Provide user list on the modal for declined attendance
    * @return {void}

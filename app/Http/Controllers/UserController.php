@@ -16,6 +16,7 @@ use App\Models\User;
 use App\Models\Course;
 use App\Models\UserType;
 use App\Models\Position;
+use App\Models\Organization;
 use App\Models\OrganizationGroup;
 
 /**
@@ -71,12 +72,22 @@ class UserController extends Controller
     public function create()
     {
       # Determine if OSA
+      if (parent::isOsa()) {
+        $positions     = Position::all();
+        $accounts      = UserType::all();
+        $organizations = Organization::all();
+      } else {
+        $positions = Position::all()
+          ->except([2,3,4,5,6,7]);
+      }
 
       # View
       return view('auth/register')->with([
-        'courses'    => Course::all(),
-        'accounts'   => UserType::all(),
-        'positions'   => Position::all()->except(2)->except(5)->except(7)->except(3)
+        'courses'       => Course::all(),
+        'accounts'      => UserType::all(),
+        'positions'     => $positions,
+        'accounts'      => isset($accounts) ? $accounts : null,
+        'organizations' => isset($organizations) ? $organizations : null
       ]);
     }
 
@@ -94,93 +105,36 @@ class UserController extends Controller
         if (self::emailExists($user) or self::accountExists($user)) {
           $userReturn[] = $user;
         } else {
-          User::create($user);
-        }
-      }
+          $result = User::create($user);
 
-      exit;
+          if (isset($user['organization_id'])) {
+            # Get the user created ID
+            $user['user_id'] = $result->id;
 
-      // $this->validateUser($this, $request); ///  FIX VALIDATION LATER
-      $u   = [];
-      $pos = [];
-      for($x = 0; $x <= sizeof($request->keys()[1]); $x++){
-        //store every user record detail from form/s except the position in an array,
-        // then assign its user_type_id to 2 (for organization-member user type)
-        $u[$x] = [
-          'full_name'      => $request->full_name[$x],
-          'account_number' => $request->account_number[$x],
-          'email'          => $request->email[$x],
-          'user_type_id'    => 2,
-        ];
-        $pos[$x] = $request->position_id[$x];
-        //store each user position record in a separate array
-        //separating this since this field is availale in Organizaition Group model
+            # remove from arrays the following
+            unset($user['account_number']);
+            unset($user['full_name']);
+            unset($user['email']);
+            unset($user['user_type_id']);
+            unset($user['status']);
 
-        $user_email = User::where('email', $u[$x]['email'])->get();
-        //searching an instance of User model with the current record of email in the array, and if exists, store it to a variable
-        $user_acc_num = User::where('account_number', $u[$x]['account_number'])->get();
-        //searching an instance of User model with the current record of account_number in the array, and if exists, store it to a variable
-
-        if ($user_email->count() > 0) {
-          //checking if the instance with the email record already exists
-          //and will return to the form to ask user to input other email
-          return back()
-            ->withInput()
-            ->with('status_warning', 'Email already taken in the system');
-        }
-        if ($user_acc_num->count() > 0) {
-          //checking if the instance with the account_number record already exists
-          //if exists, the user will only be assigning a position to the organization-member and
-          //the system will store another instance in OrganizationGroup with the user_id of the org-member and
-          // the current user's organization_id
-          return view('assign_position')
-          ->with([ 'existing_user' =>  $user_acc_num, 'positions' => Position::all()->except(2)->except(5)->except(7)->except(3)])
-          ->with('status_warning', 'Student' . $user_acc_num[0]['full_name'] . 'is already a user of the system, assign this member a position in your organization.');
-          ///NGANO DILI MUDISPLAY ANG STATUS_WARNING?
-        }
-        //if there are no duplicates of records for email or account number, system stores this new instance of User model
-        $new_user = User::create( $u[$x] );
-        /**
-         * get current user's org id to know what org id to assign to the members being registered
-         */
-        $current_user_org_g = OrganizationGroup::where('user_id', Auth::user()->id)->where('position_id', 3)->get();
-        // dd($pos[$x]);
-
-        if( $pos[$x] != 1){
-          //filters if the position assigned is not 'Not Applicable', because 'Not Applicable' position can be repeatedly assigned to many users
-          $org_grp = OrganizationGroup::where('organization_id', $current_user_org_g[0]->organization->id)->where('position_id', $pos[$x])->get();
-          if ($org_grp->count() > 0) {
-          //checks if the position in an organization has been assigned to someone
-            return back()->withInput()->with('status_warning', 'Position is already taken');
+            OrganizationGroup::create($user);
           }
         }
-
-        if (OrganizationGroup::where('organization_id', $current_user_org_g[0]->organization->id)->where('user_id', $new_user->id)->get()->exists()) {
-            //checks if the user record is already a member of the org
-            return back()
-              ->withInput()
-              ->with('status_warning', 'The user is already a member of this organization');
-        }
-
-        //if user record is not already a member or the position assigned in the organization is not taked,
-        //system created new instance of OrganizationGroup
-         $new_org_member = OrganizationGroup::create([
-           'user_id'         => $new_user->id,
-           'organization_id' => $current_user_org_g[0]->organization->id,
-           'position_id'     => $pos[$x],
-         ]);
-
-        //  d($new_user, $new_org_member);
       }
 
-      // exit;
-
-
-      if ($new_org_member->wasRecentlyCreated) {
-        return back()
-          ->withInput()
-          ->with('status', 'Successfully added new user');
+      # Used to display the warning error
+      if (count($userReturn) > 0) {
+        $status = true;
       }
+
+      return back()
+        ->with([
+          'status'         => 'Successfully added users',
+          'status_warning' => isset($status) ? $status: null,
+          'status_message' => 'Some of the user are already exists, either an email or account number',
+          'user_return'    => $userReturn
+        ]);
     }
 
     /**
@@ -339,10 +293,16 @@ class UserController extends Controller
       foreach ($request->all()['account_number'] as $key => $account_number) {
         $data[$key] = [
           'account_number' => $account_number,
+          'position_id'    => $request->position_id[$key],
           'full_name'      => $request->full_name[$key],
           'email'          => $request->email[$key],
-          'position_id'    => $request->position_id[$key],
         ];
+
+        if (parent::isOsa()) {
+          $data[$key]['user_type_id']    = $request->user_type_id[$key];
+          $data[$key]['organization_id'] = $request->organization_id[$key];
+          $data[$key]['status']          = 'true';
+        }
       }
 
       return $data;

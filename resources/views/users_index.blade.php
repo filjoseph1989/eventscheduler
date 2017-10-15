@@ -64,7 +64,11 @@
                     @foreach ($users as $key => $user)
                       <tr>
                         <td><a href="#" class="user-name" data-toggle="modal" data-target="#profile" data-user-id="{{ $user->id }}">{{ $user->full_name }}</a></td>
-                        <td><a href="#" class="user-course" data-toggle="modal" data-target="#modal-course" data-course-id="{{ $user->course->id }}">{{ $user->course->name }}</a></td>
+                        <td>
+                          <a href="#" class="user-course" data-toggle="modal" data-target="#modal-course" data-course-id="{{ isset($user->course->id) ? $user->course->id : '' }}">
+                            {{ isset($user->course->name) ? $user->course->name : 'No Assign Course Yet' }}
+                          </a>
+                        </td>
                         <td>
                           @if ($user->organizationGroup->count() == 0)
                             No Position
@@ -335,5 +339,5 @@
   <script src="{{ asset('js/jquery.dataTables.js') }}?v=0.1"></script>
   <script src="{{ asset('js/jquery-datatable.js') }}?v=0.1"></script>
   <script src="{{ asset('js/admin.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/app.js') }}?v=2.7"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.8"></script>
 @endsection
