@@ -307,7 +307,6 @@ class UserController extends Controller
         if (parent::isOsa()) {
           $data[$key]['user_type_id']    = $request->user_type_id[$key];
           $data[$key]['organization_id'] = $request->organization_id[$key];
-          $data[$key]['status']          = 'true';
         }
       }
 
