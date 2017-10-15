@@ -58,6 +58,9 @@
               <li><a href="{{ route('Org.create') }}"><span>Add New</span></a></li>
             @endif
             <li><a href="{{ route('Org.index') }}"><span>University Organizations</span></a></li>
+            @if (Auth::user()->user_type_id == 2)
+              <li><a href="#"><span>My Organization</span></a></li>
+            @endif
           </ul>
         </li>
         <li>

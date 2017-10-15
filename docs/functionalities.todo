@@ -140,8 +140,7 @@ Phase 1:
     ☐ Create personal events
     ☐ View Attendance
     ✔ View Calendar
-    ☐ complete routes in Home blade display
-    ☐ add 'My Organizations' tab inside 'Organization Tab' in side bar
+    ✔ add 'My Organizations' tab inside 'Organization Tab' in side bar @done (October 15th 2017, 20:04)
 
   5. Separation of Authority:
     ✔ Plan how to separate what actions and pages or data can OSA, Organization Head and Member can view (done logic, ongoing execution)
