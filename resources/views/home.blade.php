@@ -96,5 +96,5 @@
 @endsection
 
 @section('js')
-  <script src="{{ asset('js/admin.js') }}"?v=0.1></script>
+  <script src="{{ asset('js/admin.js') }}?v=0.1"></script>
 @endsection

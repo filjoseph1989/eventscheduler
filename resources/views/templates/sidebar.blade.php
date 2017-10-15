@@ -102,8 +102,12 @@
             <span>Attendances</span>
           </a>
           <ul class="ml-menu">
-            <li><a href="{{ route('Attendances.show', 'Official') }}"><span>Official Events</span></a></li>
-            <li><a href="{{ route('Attendances.show', 'Local') }}"><span>Local Events</span></a></li>
+            <?php if (Auth::user()->user_type_id != 2): ?>
+              <li><a href="{{ route('Attendances.show', 'Official') }}"><span>Official Events</span></a></li>
+              <li><a href="{{ route('Attendances.show', 'Local') }}"><span>Local Events</span></a></li>
+            <?php else: ?>
+              <li><a href="{{ route('Attendances.index') }}"><span>My Event Attendance</span></a></li>
+            <?php endif; ?>
           </ul>
         </li>
       </ul>

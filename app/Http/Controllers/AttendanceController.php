@@ -15,18 +15,30 @@ use App\Models\EventGroup;
 use App\Models\Attendance;
 use App\Models\OrganizationGroup;
 
+/**
+ * Handle attendance request
+ * 
+ * @author Liz <janicalizdeguzman@gmail.com>
+ * @version 1.1.0
+ * @date 09-27-2017
+ * @date 10-15-2017 - Updated
+ */
 class AttendanceController extends Controller
 {
-    private $list = ['official', 'expected', 'confirm', 'decline'];
+    private $list  = ['official', 'expected', 'confirm', 'decline'];
     private $theme = 'theme-teal';
+
     /**
-     * Display a listing of the resource.
+     * Display the members attendance to different events.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(RandomHelper $helper)
     {
-        //
+        return view('my_event_attendance')
+            ->with([
+                'helper' => $helper
+            ]);
     }
 
     /**
@@ -129,18 +141,6 @@ class AttendanceController extends Controller
     {
         //
     }
-
-    //I COMMENTED THIS BECAUSE I THINK WE WILL NO LONGER NEED TO TAP EVENTGROUP SINCE ORGANIZATION ID IS ALREADY IN EVENT MODEL
-    // private function getOrganization(&$events)
-    // {
-    //     //need to change this because university events doesn't need eventroups
-    //     //use organization_id in events
-    //     foreach ($events as $key => $event) {
-    //         $events[$key]['organization'] = EventGroup::with('organization')
-    //         ->where('event_id', '=', $event->id)
-    //         ->get();
-    //     }
-    // }
 
     public function getOfficialAttendance(Request $event)
     {
