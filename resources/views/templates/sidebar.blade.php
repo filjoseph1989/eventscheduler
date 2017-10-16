@@ -45,7 +45,7 @@
           </a>
           <ul class="ml-menu">
             <li><a href="{{ route('User.index') }}">List of Users</a></li>
-            @if (Auth::user()->user_type_id != 2)
+            @if (Auth::user()->user_type_id == 1)
               <li><a href="{{ route('User.create') }}">Register New Users</a></li>
             @endif
           </ul>

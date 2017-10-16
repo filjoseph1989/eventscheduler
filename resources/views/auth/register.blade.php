@@ -14,9 +14,15 @@
 
       <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          @if (session('status'))
+          @if (! is_null(session('status')))
             <div class="alert alert-success" role="alert">
               {{ session('status') }}
+            </div>
+          @endif
+
+           @if (! is_null(session('status_position')))
+            <div class="alert alert-warning" role="alert">
+              {{ session('status_position') }}
             </div>
           @endif
 

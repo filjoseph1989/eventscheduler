@@ -79,7 +79,7 @@ class UserController extends Controller
         $organizations = Organization::all();
       } else {
         $positions = Position::all()
-          ->except([2,3,4,5,6,7]);
+          ->except([2,3,4,5,7]);
       }
 
       # View
@@ -103,10 +103,17 @@ class UserController extends Controller
       $userReturn = [];
 
       foreach (self::requestToArray($request) as $key => $user) {
-        if (self::emailExists($user) or self::accountExists($user)) {
+        if (self::emailExists($user) or self::accountExists($user) or self::positionIsTaken($user) ) {
           $userReturn[] = $user;
+          if(self::positionIsTaken($user)) {
+            $positionTaken = true;
+          }
         } else {
           $result = User::create($user);
+
+          if( $result->wasRecentlyCreated ){
+            $userCreated = true;  
+          } 
 
           if (isset($user['organization_id'])) {
             # Get the user created ID
@@ -128,11 +135,15 @@ class UserController extends Controller
       if (count($userReturn) > 0) {
         $status = true;
       }
+      if( isset($positionTaken) ){
+        $status = null;
+      }
 
       return back()
         ->with([
-          'status'         => 'Successfully added users',
-          'status_warning' => isset($status) ? $status: null,
+          'status'         => isset($userCreated) ? 'Successfully added users' : null,
+          'status_position'=> isset($positionTaken) ? 'Position already assigned' : null,
+          'status_warning' => isset($status) ? $status : null,
           'status_message' => 'Some of the user are already exists, either an email or account number',
           'user_return'    => $userReturn
         ]);
@@ -341,6 +352,21 @@ class UserController extends Controller
     private function accountExists(&$user)
     {
       $count = User::where('account_number', $user['account_number'])
+        ->get()
+        ->count();
+
+      if ($count > 0) {
+        return true;
+      }
+
+      return false;
+    }
+
+    private function positionIsTaken(&$user)
+    {
+            
+      $count = OrganizationGroup::where('position_id', $user['position_id'])
+        ->where('organization_id', self::getOrganization())
         ->get()
         ->count();
 

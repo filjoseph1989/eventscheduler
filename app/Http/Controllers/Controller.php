@@ -21,7 +21,7 @@ class Controller extends BaseController
      *
      * @return boolean
      */
-    public function isOrgHead()
+    public function isOrgHead() 
     {
       return self::accountCheck(1);
     }
