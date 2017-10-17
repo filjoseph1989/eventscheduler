@@ -145,7 +145,7 @@ Phase 1:
     ✔ View profile
     ✔ View organization
     ✔ View Events @done(2017-10-14 23:18)
-      ☐ Attend and Decline (should show when members is loggedin)
+      ☐ Attend and Decline(not button, once attend button is not clicked, automatically declined) (should show when members is loggedin)
     ✔ change personal password
     ✔ Upload personal picture
     ☐ Create personal events
