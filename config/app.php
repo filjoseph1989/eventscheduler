@@ -228,6 +228,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Carbon' => Illuminate\Support\Carbon::class,
         'Twitter' => Thujohn\Twitter\Facades\Twitter::class,
+        'Nexmo' => Nexmo\Laravel\Facade\Nexmo::class,
     ],
 
 ];
