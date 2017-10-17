@@ -113,7 +113,9 @@ Phase 1:
         ✔ By course @done(2017-10-03 22:33)
         ✔ By department @done(2017-10-03 22:33)
         ✔ By organization @done(2017-10-03 22:33)
-      ☐ org head must only be the one to have the ability to edit members position
+      ☐ org head must only be the one to have the ability to edit members position (note today 17 Oct 2017 9:57AM ) 
+        user_type = org head
+        click (All System Users > List of Users > name of user(link to modal) , only position is edittable by the org head user)
       ✔ change personal password
       ✔ Upload personal picture
       ✔ Edit personal profile details except own status, position, user_type, and created_at
