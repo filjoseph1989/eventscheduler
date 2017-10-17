@@ -51,7 +51,7 @@ Phase 1:
       ✔ Upload personal picture
       ✔ Edit personal profile details except own status, position, user_type, and created_at
       ✔ display all users
-      
+
 
     Organization:
       ✔ Add new organization @done(2017-10-03 21:48) (changed)
@@ -75,8 +75,8 @@ Phase 1:
       ☐ Post to social media and send email to registered user after the approve of events
         ✔ Facebook @done (October 12th 2017, 11:14) //try later
         ✔ Twitter @done(2017-10-14 23:16) //try later
-        ☐ SMS //try later
-        ☐ Email //try later
+        ✔ SMS //try later @done(2017-10-17 21:58)
+        ✔ Email //try later @done(2017-10-17 21:58)
 
     Student Attendance:
       ✔ Display events @done(2017-10-12 08:11)
@@ -94,7 +94,7 @@ Phase 1:
 
   3. For Organization Head:
     ✔ View Profile @done(2017-10-10 21:52)
-    ✔ Change password 
+    ✔ Change password
         and make it functional where the user will edit or add his/her other info in the fields in the users table in the database
     ✔ Register New User  @done (October 15th 2017, 20:00)
     ✔ Register Many Users @done (October 15th 2017, 20:00)
@@ -113,15 +113,15 @@ Phase 1:
         ✔ By course @done(2017-10-03 22:33)
         ✔ By department @done(2017-10-03 22:33)
         ✔ By organization @done(2017-10-03 22:33)
-      ☐ org head must only be the one to have the ability to edit members position (note today 17 Oct 2017 9:57AM ) 
+      ☐ org head must only be the one to have the ability to edit members position (note today 17 Oct 2017 9:57AM )
         user_type = org head
         click (All System Users > List of Users > name of user(link to modal) , only position is edittable by the org head user)
       ✔ change personal password
       ✔ Upload personal picture
       ✔ Edit personal profile details except own status, position, user_type, and created_at
       ✔ display org users
-      
-      
+
+
 
     My Organization:
       ✔ view organization profile
@@ -154,9 +154,7 @@ Phase 1:
     ✔ add 'My Organizations' tab inside 'Organization Tab' in side bar @done (October 15th 2017, 20:04)
     ✔ Edit personal profile details except own status, position, user_type, and created_at
     ✔ display org users
-    
+
 
   5. Separation of Authority:
     ✔ Plan how to separate what actions and pages or data can OSA, Organization Head and Member can view (done logic, ongoing execution)
-
-
