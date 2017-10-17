@@ -18,6 +18,7 @@ class Event extends Model
     'event_type_id',
     'semester_id',
     'title',
+    'category',
     'description',
     'venue',
     'date_start',

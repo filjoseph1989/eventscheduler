@@ -90,7 +90,7 @@ class EventController extends Controller
 
       $org_id = OrganizationGroup::where('user_id', Auth::id())
         ->where('position_id', 3)->get();
-      // dd($request->category);
+    //   dd($request->category);
       if( $request->category == "university" || $request->category == "organization" ) {
         $event_type_id = 1;
       } elseif ( $request->category == "within" || $request->category == "personal" ) {
