@@ -88,8 +88,11 @@ class EventController extends Controller
     {
       $this->validateRequest($this, $request);
 
+      $org_id = OrganizationGroup::where('user_id', Auth::id())
+        ->where('position_id', 3)->get();
       $event = Event::create(
         [
+          "user_id"         => Auth::id(),
           "event_type_id"   => $request->event_type_id,
           "semester_id"     => $request->semester_id,
           "title"           => $request->title,

@@ -90,7 +90,7 @@ class UserController extends Controller
         $organizations = Organization::all();
       } else {
         $positions = Position::all()
-          ->except([2,3,4,5,7]);
+          ->except([2,3,4]);
       }
 
       # View
