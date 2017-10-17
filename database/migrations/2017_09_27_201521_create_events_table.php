@@ -19,7 +19,7 @@ class CreateEventsTable extends Migration
             $table->integer('organization_id')->unsigned()->index();
             $table->integer('event_type_id')->unsigned()->index();
             $table->integer('semester_id')->unsigned()->index();
-            $table->enum('category', ['within','personal','university','organization'])->default('university');
+            $table->enum('category', ['within','personal','university','organization'])->nullable();
             $table->string('title');
             $table->text('description');
             $table->string('venue');

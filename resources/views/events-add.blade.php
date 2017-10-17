@@ -61,6 +61,7 @@
                     <div class="form-group form-float form-group">
                       <div class="form-line">
                         <input type="text" class="form-control" id="title" name="title" placeholder="Title of the event" value="{{ old('title') }}" required autofocus>
+                        <input type="hidden" class="form-control" id="user_id" name="user_id"  value="{{ Auth::id() }}" required>
                         @if ($errors->has('title'))
                           <span class="help-block"> <strong>{{ $errors->first('title') }}</strong> </span>
                         @endif
@@ -157,11 +158,12 @@
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group form-float">
                       <div class="form-line focused">
-                        <select class="form-control show-tick" id="event_type_id" name="event_type_id">
-                          <option value="{{ old('event_type_id') }}" id="event-category-option">-- Select Event Category --</option>
-                          @foreach ($eventTypes as $key => $type)
-                            <option value="{{ $type->id }}">{{ $type->name }}</option>
-                          @endforeach
+                        <select class="form-control show-tick" id="category" name="category">
+                          <option value="{{ old('category') }}" id="event-category-option">-- Select Event Category --</option>
+                            <option value="university"> University </option>
+                            <option value="organization"> Organizations </option>
+                            <option value="within"> My Organization </option>
+                            <option value="personal"> Personal </option>
                         </select>
                       </div>
                     </div>

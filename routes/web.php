@@ -64,7 +64,7 @@ Route::group(['middleware'=>['auth']], function() {
     });
 
     #additional routes for registering organization-member user type
-    Route::prefix('User')->group(function() {
+    Route::prefix('User')->group(function() { 
       Route::name('User.existing.assignPosition')->get('/existing-user/assign-position', 'UserController@assignPositionToExistingUser');
       Route::name('User.changePassword')->post('/change-password', 'UserController@changePassword');
       Route::name('user.profile.upload')->post('/upload-profilepic', 'UserController@uploadProfilePic');

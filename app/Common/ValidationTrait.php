@@ -20,7 +20,8 @@ trait ValidationTrait
   public function validateRequest(&$data, &$request)
   {
     $data->validate($request, [
-      'event_type_id'   => 'Required',
+      'user_id'         => 'Required',
+      'category'        => 'Required',
       'semester_id'     => 'Required',
       'title'           => 'Required',
       'description'     => 'Required',

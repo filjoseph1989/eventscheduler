@@ -13,6 +13,8 @@ class Event extends Model
    * @var array
    */
   protected $fillable = [
+    'user_id',
+    'organization_id',
     'event_type_id',
     'semester_id',
     'title',
@@ -52,5 +54,10 @@ class Event extends Model
   public function organization()
   {
     return $this->belongsTo('App\Models\Organization');
+  }
+
+  public function user()
+  {
+    return $this->belongsTo('App\Models\User');
   }
 }

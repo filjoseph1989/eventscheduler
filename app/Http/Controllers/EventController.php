@@ -73,7 +73,7 @@ class EventController extends Controller
     {
       # view
       return  view('events-add')->with([
-        'eventTypes' => EventType::all(),
+        // 'eventTypes' => EventType::all(),
         'semesters'  => Semester::all()
       ]);
     }
@@ -90,11 +90,20 @@ class EventController extends Controller
 
       $org_id = OrganizationGroup::where('user_id', Auth::id())
         ->where('position_id', 3)->get();
+      // dd($request->category);
+      if( $request->category == "university" || $request->category == "organization" ) {
+        $event_type_id = 1;
+      } elseif ( $request->category == "within" || $request->category == "personal" ) {
+        $event_type_id = 2;        
+      }
+      
       $event = Event::create(
         [
-          "user_id"         => Auth::id(),
-          "event_type_id"   => $request->event_type_id,
+          "user_id"         => $request->user_id,
+          "organization_id" => $org_id[0]->organization_id,
+          "event_type_id"   => $event_type_id,
           "semester_id"     => $request->semester_id,
+          "category"        => $request->category,
           "title"           => $request->title,
           "description"     => $request->description,
           "venue"           => $request->venue,
