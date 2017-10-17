@@ -103,6 +103,10 @@ class ApproveEventController extends Controller
        Unsa pa gali ni 'within' nga category?
        og and 'organization'
         */
+        /**
+         * answer: within, katong org kung asa org-head ang user (sa org group position_id
+         *     organization, tanang user na naay organizations, so except osa user)
+         */
 
        # Within organization
        if($event->category == 'within') {
