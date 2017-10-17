@@ -50,6 +50,8 @@ Phase 1:
       ✔ change personal password
       ✔ Upload personal picture
       ✔ Edit personal profile details except own status, position, user_type, and created_at
+      ✔ display all users
+      
 
     Organization:
       ✔ Add new organization @done(2017-10-03 21:48) (changed)
@@ -115,6 +117,8 @@ Phase 1:
       ✔ change personal password
       ✔ Upload personal picture
       ✔ Edit personal profile details except own status, position, user_type, and created_at
+      ✔ display org users
+      
       
 
     My Organization:
@@ -147,6 +151,7 @@ Phase 1:
     ✔ View Calendar
     ✔ add 'My Organizations' tab inside 'Organization Tab' in side bar @done (October 15th 2017, 20:04)
     ✔ Edit personal profile details except own status, position, user_type, and created_at
+    ✔ display org users
     
 
   5. Separation of Authority:

@@ -53,12 +53,22 @@ class UserController extends Controller
     {
       # Get the list of user together with their
       # course, organization and position in an orgainization
-      $users = User::with([
-        'course',
-        'organizationGroup' => function($query) {
-          return $query->with(['position', 'organization'])->get();
-        }
-      ])->get();
+
+      if( Auth::user()->user_type_id != 3 ) { //if user is not osa, will display list of users under the same org
+        $org_id = OrganizationGroup::where('user_id', Auth::id())->get();
+        $org_grp = OrganizationGroup::with('user')
+          ->with('organization')
+          ->with('position')
+          ->where('organization_id', $org_id[0]->organization_id)
+          ->get(); 
+        $users = $org_grp;
+      } else{
+        $users = User::with([
+          'course',
+          'organizationGroup' => function($query) {
+            return $query->with(['position', 'organization'])->get();
+          }]) ->get();
+      }
 
       return view('users_index')->with([
         'users'      => $users,
