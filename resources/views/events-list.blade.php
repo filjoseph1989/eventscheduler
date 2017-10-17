@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+ 
 @section('title')
   <title>List of Events</title>
 @endsection

@@ -13,6 +13,12 @@
       <div class="container-fluid">
         <div class="row clearfix">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            @if (! is_null(session('status_warning')))
+              <div class="alert alert-warning" role="alert">
+                {{ session('status_warning') }}
+              </div>
+            @endif
+
             <div class="card">
               <div class="header">
                 <h2> MY PROFILE </h2>
@@ -20,23 +26,28 @@
               <div class="body">
                 <div class="row">
                   <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <img class="org-logo" src="{{ asset("img/profile.png") }}" alt="Profile Picture">
-                    <form action="" enctype="multipart/form-data" method="POST">
-                      {{ csrf_field() }}
-                      <div class="row">&nbsp;</div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <input type="hidden" name="id" value="">
-                          <input type="file" name="image">
-                          <button type="submit" class="btn btn-success" style="margin-top: 3px; "><i class="material-icons">file_upload</i> Upload</button>
-                        </div>
+                    @if( $prof_pic != "profile.png"  )
+                      <img class="org-logo" src="{{ asset("img/profile/$prof_pic") }}" alt="Profile Picture">
+                    @else
+                      <img class="org-logo" src="{{ asset("img/profile/profile.png") }}" alt="Profile Picture">
+                    @endif
+                  <form action="{{ route('user.profile.upload') }}" enctype="multipart/form-data" method="POST">
+                    {{ csrf_field() }}
+                    <div class="row">&nbsp;</div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input type="hidden" name="id" value="{{ Auth::id() }}">
+                        <input type="file" name="image">
+                        <button type="submit" class="btn btn-success" style="margin-top: 3px; ">
+                          <i class="material-icons">file_upload</i> Upload</button>
                       </div>
-                    </form>
+                    </div>
+                  </form>
                   </div>
                   <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
                     <?php if (Auth::user()->user_type_id == 2): ?>
-                      <?php $id = "mainTable"; ?>
                     <?php endif; ?>
+                    <?php $id = "mainTable"; ?>
                     <table class="table" id="{{ $id }}">
                       <thead>
                         <th>&nbsp;</th>
@@ -103,13 +114,46 @@
                         </tr>
                       </tbody>
                     </table>
-                    <div class="" id="user-put-method">
-                      {{ method_field('PUT') }}
-                    </div>
                     <form class="hidden" id="user-edit-form" action="" method="post">
                       {{ csrf_field() }}
                       {{ method_field('PUT') }}
                       <input type="hidden" id="user-form-input" name="" value="">
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row clearfix">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+              <div class="header">
+                <h2> Change Password </h2>
+              </div>
+              <div class="body">
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <form action="{{ route('User.changePassword') }}" method="POST">
+                      {{ csrf_field() }}
+                      <div class="form-group form-float form-group">
+                        <div class="form-line">
+                          <input type="password" class="form-control" id="old_password" name="old_password" placeholder="Old Password" value="" required="">
+                        </div>
+                      </div>
+                      <div class="form-group form-float form-group">
+                        <div class="form-line">
+                          <input type="password" class="form-control" id="new_password" name="new_password" placeholder="New Password" value="" required="">
+                        </div>
+                      </div>
+                      <div class="form-group form-float form-group">
+                        <div class="form-line">
+                          <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password" value="" required="">
+                        </div>
+                      </div>
+                      <div class="form-group form-float form-group">
+                        <button class="btn btn-primary">Save</button>
+                      </div>
                     </form>
                   </div>
                 </div>

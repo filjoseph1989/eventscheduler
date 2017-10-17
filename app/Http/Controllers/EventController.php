@@ -26,7 +26,7 @@ use App\Models\OrganizationGroup;
  * @date 10-14-2017
  * @date 10-14-2017 - updated
  */
-class EventController extends Controller
+class EventController extends Controller 
 {
     use ValidationTrait, CommonMethodTrait;
 

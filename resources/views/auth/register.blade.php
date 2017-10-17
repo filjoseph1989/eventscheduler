@@ -20,7 +20,7 @@
             </div>
           @endif
 
-           @if (! is_null(session('status_position')))
+          @if (! is_null(session('status_position')))
             <div class="alert alert-warning" role="alert">
               {{ session('status_position') }}
             </div>
@@ -112,7 +112,7 @@
                                 <option value="{{ $account->id }}">{{ $account->name }}</option>
                               @endforeach
                             </select>
-                          </div>
+                          </div> 
                         </div>
                       </div>
                     </div>

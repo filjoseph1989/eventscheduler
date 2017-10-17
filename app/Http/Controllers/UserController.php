@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -206,7 +207,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id) 
     {
       $user = User::find($id);
 
@@ -375,5 +376,54 @@ class UserController extends Controller
       }
 
       return false;
+    }
+
+    public function changePassword(Request $request)
+    {
+      // d($request); exit;
+      $user = User::find(Auth::id());
+      if (Hash::check($request->old_password, $user->password))
+      {
+          if( $request->new_password == $request->confirm_password ) {
+            $user->password = bcrypt($request->new_password);
+
+            $request->email    = $user->email;
+            $request->password = $request->new_password;
+
+            Mail::to($user->email)->send(new EmailNotification($request));
+
+            $user->save();
+            return back()->with('status_warning', 'successfully changed password');            
+          } else {
+            return back()->with('status_warning', 'new password and confirm password doesn\'t match');
+          }
+      } else {
+            return back()->with('status_warning', 'old password is incorrect');        
+      }
+    }
+
+    public function uploadProfilePic (Request $request) {
+      $this->validate($request, [
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        
+        # Get image, rename and save to images folder
+        $imageName = time().'.'.$request->image->getClientOriginalExtension();
+        $request->image->move(public_path('img/profile'), $imageName);
+
+      # Save to database
+      $user = User::find($request->id);
+      $picture       = $user->picture;
+      $user->picture = $imageName;
+
+      # Delete old pic except default
+      if ($user->save() and file_exists("img/profile/$picture")) {
+        unlink("img/profile/$picture");
+      }
+
+      $sucessOrFailed = "Image Uploaded successfully.";
+
+      # Return to uploader page
+      return back()->with('status_warning', $sucessOrFailed);
     }
 }

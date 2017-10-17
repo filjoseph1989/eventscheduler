@@ -52,15 +52,25 @@ class UserProfileController extends Controller
           $og = 'Not Yet Specified';
         }
 
+        
         return view('user-profile')->with([
           'course'            => $cour,
           'account'           => $acc,
-          'organizationGroup' => $og
+          'organizationGroup' => $og,
+          'prof_pic'          => Auth::user()->picture,
         ]);
     }
 
     public function update(Request $request, $id)
     {
+      if($request->has('organization_id') || 
+        $request->has('position_id') ||
+        $request->has('user_type_id') ||
+        $request->has('status') ||
+        $request->has('created_at') ){
+        return back();
+      }
+
       $user = User::find($id);
       if ($request->has('full_name')) {
         $user->full_name = $request->full_name;

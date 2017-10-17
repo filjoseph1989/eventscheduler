@@ -298,7 +298,7 @@
       $('#event-attendees').html(html);
     });
   });
-
+ 
   /**
    * Provide user list on the modal for expected attendance
    * @return {void}

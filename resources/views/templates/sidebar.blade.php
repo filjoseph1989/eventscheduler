@@ -86,7 +86,7 @@
             </li>
             @if (Auth::user()->user_type_id == 3)
               <li>
-                <a href="{{ route('Event.index') }}"><span>Approved Events</span></a>
+                <a href="{{ route('Event.index') }}"><span>Approve Events</span></a>
               </li>
             @endif
             <li>
