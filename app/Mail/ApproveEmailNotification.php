@@ -7,20 +7,20 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class EmailNotification extends Mailable
+class ApproveEmailNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $email;
+    public $event;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($email) 
+    public function __construct($event)
     {
-        $this->email = $email;
+      $this->event = $event;
     }
 
     /**
@@ -30,6 +30,6 @@ class EmailNotification extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.mailable');
+        return $this->view('mails.mailable0');
     }
 }

@@ -13,6 +13,7 @@
 ☐ Issue 25: {inline} Update the database table of events
 ☐ Issue 26: What there's no user entry in the database at launch? Who will be the first to login?
 ☐ Issue 27: Provide a way for the organizition head to view event created by other organization, as of now this is not part of his/her account
+☐ Issue 28: {inline} Dapat kani nga mga Notifications sa background ni sila mag run, kay madugay mag load ang page
 
 Archived:
     ✔ Issue 21: {inline} Update this, when the authentication or login functionality is completed @done(2017-10-04 09:08)

@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+
 use Nexmo\Laravel\Facade\Nexmo;
 use Thujohn\Twitter\Facades\Twitter;
+
 use App\Notifications\FacebookPublished;
+use App\Mail\ApproveEmailNotification;
 
 # Models
 use App\Models\Event;
@@ -39,11 +43,13 @@ class ApproveEventController extends Controller
           ->where('id', $id)
           ->get();
 
+        // Issue 28
+
         # Post on social media
-        // self::facebookPost($event[0]);
-        // self::twitterPost($event[0]);
+        self::facebookPost($event[0]);
+        self::twitterPost($event[0]);
         self::smsPost($event[0]);
-        // self::emailPost($event[0]);
+        self::emailPost($event[0]);
 
         return back()
           ->with('status', 'Successfully approve the event');
@@ -56,7 +62,7 @@ class ApproveEventController extends Controller
      * @param object $event
      * @return void
      */
-      private function facebookPost ($event) {
+    protected function facebookPost ($event) {
       $data['fb_message'] = self::smsMessage($event->category, $event);
       User::send($data['fb_message']);
     }
@@ -67,12 +73,67 @@ class ApproveEventController extends Controller
      * @param object $event
      * @return void
      */
-    private function twitterPost($event)
+    protected function twitterPost($event)
     {
-      $this->twitter = true;
-      $tweet = self::twitterMessage($value);
-      $this->twitter = false;
-      return Twitter::postTweet(['status' => $tweet, 'format' => 'json']);
+      $tweet = self::twitterMessage($event);
+
+      return Twitter::postTweet([
+        'status' => $tweet,
+        'format' => 'json'
+      ]);
+    }
+
+    /**
+    * SMS notification
+    *
+    * @param object $event
+    * @return void
+    */
+   protected function smsPost($event)
+   {
+       # Composr message
+       $message = self::smsMessage($event->category, $event);
+
+       # Public event
+       if($event->category == 'university') {
+         $users = User::all();
+       }
+
+       /*
+       Unsa pa gali ni 'within' nga category?
+       og and 'organization'
+        */
+
+       # Within organization
+       if($event->category == 'within') {
+         $users = OrganizationGroup::with('user')
+             ->where('organization_id', '=', $value->organization_id )
+             ->get();
+       }
+
+       # Send notification
+       self::sendSms($users, $message);
+   }
+
+   /**
+   * Email notification
+   *
+   * @param object $event
+   * @return void
+   */
+    protected function emailPost($event)
+    {
+      if ($event->category == 'university' || $event->category == 'organization') {
+        $users = User::all();
+      }
+
+      if ($event->category == 'within') {
+        $users = OrganizationGroup::with('user')
+          ->where('organization_id', '=', $event->organization_id )
+          ->get();
+      }
+
+      self::sendEmail($users, $event);
     }
 
     /**
@@ -82,68 +143,22 @@ class ApproveEventController extends Controller
      */
     private function twitterMessage($event)
     {
-      $message = self::smsMessage($event->event_category_id, $event);
+      $message = self::smsMessage($event->category, $event, true);
       return str_limit($message, 100);
     }
 
-     /**
-     * SMS notification
+    /**
+     * Send email to a User
      *
+     * @param  object $users
      * @param object $event
      * @return void
      */
-    private function smsPost($event)
+    private function sendEmail($users, $event)
     {
-        # Composr message
-        $message = self::smsMessage($event->category, $event);
-
-        # Public event
-        if($event->category == 'university') {
-          $users = User::all();
-        }
-
-        /*
-        Unsa pa gali ni 'within' nga category?
-        og and 'organization'
-         */
-
-        # Within organization
-        if($event->category == 'within') {
-          $users = OrganizationGroup::with('user')
-              ->where('organization_id', '=', $value->organization_id )
-              ->get();
-        }
-
-        # Send notification
-        self::sendSms($users, $message);
-    }
-
-
-     /**
-     * Email notification
-     *
-     * @param object $event
-     * @return void
-     */
-    private function emailPost($event)
-    {
-      if($value->category == 'university' || $value->category == 'organization') {
-        $users = User::all();
-      }
-
-      if($value->category == 'within') {
-        $users = OrganizationGroup::with('user')
-          ->where('organization_id', '=', $value->organization_id )
-          ->get();
-      }
-
-      self::sendEmail($users);
-    }
-
-    private function sendEmail($users)
-    {
-      foreach($users as $key => $val ) {
-        Mail::to($val->user->email)->send(new Mailtrap($value));
+      foreach($users as $key => $user) {
+        Mail::to($user->email)
+          ->send(new ApproveEmailNotification($event));
       }
     }
 
@@ -172,7 +187,7 @@ class ApproveEventController extends Controller
      * @param  object $event
      * @return string
      */
-    private function smsMessage($category, $event)
+    private function smsMessage($category, $event, $twit = false)
     {
       switch ($category) {
         case 'university':
@@ -189,15 +204,15 @@ class ApproveEventController extends Controller
       }
 
       $new_line = "";
-      // if (! $this->twitter) {
-      //   $new_line = "\n";
-      // }
+      if ($twit === true) {
+        $new_line = "\n";
+      }
 
       $heading .= "{$new_line}{$event->title} headed by {$event->organization->name}.";
 
-      // if (! $this->twitter) {
-      //   $heading .= "{$new_line}Description: {$event->description}";
-      // }
+      if ($twit === true) {
+        $heading .= "{$new_line}Description: {$event->description}";
+      }
 
       $heading .=
         "{$new_line}Venue: {$event->venue}" .

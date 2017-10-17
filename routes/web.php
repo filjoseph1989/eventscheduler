@@ -19,8 +19,16 @@ Auth::routes();
 
 Route::name('my.login')->post('/my-login', 'Auth\LoginController@myLogin');
 
-Route::group(['middleware'=>['auth']], function(){ 
-    Route::resource('home',         'HomeController'); 
+Route::group(['middleware'=>['auth']], function() {
+    /*
+      TO preview email, remove this later
+     */
+    Route::get('/mailable', function () {
+      $event = App\Models\Event::find(1);
+      return new App\Mail\ApproveEmailNotification($event);
+    });
+
+    Route::resource('home',         'HomeController');
     Route::resource('User',         'UserController');
     Route::resource('Org',          'OrganizationController');
     Route::resource('Calendar',     'CalendarController');
@@ -43,8 +51,8 @@ Route::group(['middleware'=>['auth']], function(){
       Route::name('modal.getOrganization')->post('/get/organization','ModalController@getOrganization');
       Route::name('modal.getAttendance')->post('/get/attendance','ModalController@getAttendance');
     });
-    
-    # Used for attendances  
+
+    # Used for attendances
     Route::prefix('attendance')->group(function() {
       Route::name('attendance.official')->post('/get/official/attendance','AttendanceController@getOfficialAttendance');
       Route::name('attendance.expected')->post('/get/expected/attendance','AttendanceController@getExpectedAttendance');
