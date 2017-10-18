@@ -17,6 +17,8 @@ use App\Models\Semester;
 use App\Models\EventType;
 use App\Models\EventGroup;
 use App\Models\OrganizationGroup;
+use App\Models\PersonalEvent;
+
 
 /**
  * CRUDS class for events
@@ -54,8 +56,10 @@ class EventController extends Controller
      */
     public function index(RandomHelper $helper)
     {
+    
       $events = Event::where('event_type_id', 1)
         ->where('is_approve', 'false')
+        ->where('status', 'requested')
         ->get();
 
       return view('approve-events')->with([
@@ -88,32 +92,50 @@ class EventController extends Controller
     {
       $this->validateRequest($this, $request);
 
-      $org_id = OrganizationGroup::where('user_id', Auth::id())
-        ->where('position_id', 3)->get();
-    //   dd($request->category);
+      $org_id = OrganizationGroup::where('user_id', Auth::id() )->get();
+
       if( $request->category == "university" || $request->category == "organization" ) {
         $event_type_id = 1;
       } elseif ( $request->category == "within" || $request->category == "personal" ) {
         $event_type_id = 2;        
       }
       
-      $event = Event::create(
-        [
-          "user_id"         => $request->user_id,
-          "organization_id" => $org_id[0]->organization_id,
-          "event_type_id"   => $event_type_id,
-          "semester_id"     => $request->semester_id,
-          "category"        => $request->category,
-          "title"           => $request->title,
-          "description"     => $request->description,
-          "venue"           => $request->venue,
-          "date_start"      => date('Y-m-d', strtotime($request->date_start)),
-          "date_end"        => date('Y-m-d', strtotime($request->date_end)),
-          "date_start_time" => date('H:i:s', strtotime($request->date_start_time)),
-          "date_end_time"   => date('H:i:s', strtotime($request->date_end_time)),
-          "whole_day"       => ($request->whole_day == "1") ? 'true': 'false',
-        ]
-      );
+      if( $request->category != "personal" ) {
+        $event = Event::create(
+          [
+            "user_id"         => $request->user_id,
+            "organization_id" => $org_id[0]->organization_id,
+            "event_type_id"   => $event_type_id,
+            "semester_id"     => $request->semester_id,
+            "category"        => $request->category,
+            "title"           => $request->title,
+            "description"     => $request->description,
+            "venue"           => $request->venue,
+            "date_start"      => date('Y-m-d', strtotime($request->date_start)),
+            "date_end"        => date('Y-m-d', strtotime($request->date_end)),
+            "date_start_time" => date('H:i:s', strtotime($request->date_start_time)),
+            "date_end_time"   => date('H:i:s', strtotime($request->date_end_time)),
+            "whole_day"       => ($request->whole_day == "1") ? 'true': 'false',
+          ]
+        );
+      } else {
+          $event = PersonalEvent::create(
+          [
+            "user_id"         => $request->user_id,
+            "event_type_id"   => $event_type_id,
+            "semester_id"     => $request->semester_id,
+            "category"        => $request->category,
+            "title"           => $request->title,
+            "description"     => $request->description,
+            "venue"           => $request->venue,
+            "date_start"      => date('Y-m-d', strtotime($request->date_start)),
+            "date_end"        => date('Y-m-d', strtotime($request->date_end)),
+            "date_start_time" => date('H:i:s', strtotime($request->date_start_time)),
+            "date_end_time"   => date('H:i:s', strtotime($request->date_end_time)),
+            "whole_day"       => ($request->whole_day == "1") ? 'true': 'false',
+          ]
+        );
+      }
 
       if ($event->wasRecentlyCreated) {
         return back()
@@ -130,6 +152,8 @@ class EventController extends Controller
     public function show($id)
     {
       $events = self::whosGettingTheEvents($id);
+      
+      // d($events, parent::isOrgMember(), parent::isOrgHead(), $id); exit;
 
       self::getDateComparison($events);
 
@@ -186,7 +210,7 @@ class EventController extends Controller
     public function destroy($id)
     {
         //
-    }
+    } 
 
     /**
      * Return array of events
@@ -233,11 +257,27 @@ class EventController extends Controller
           ->Where('category', 'university')
           ->get();
       }
+
       if ($kind == 2) {
-        return Event::where('event_type_id', $kind)
-          ->where('category', 'within')
-          ->orWhere('category', 'organization')
+        $org_id = OrganizationGroup::where('user_id', Auth::id() )
           ->get();
+        
+        $localEv = [];
+        foreach ($org_id as $key => $value) {
+          $localEv['within'][$value->id] = Event::where('organization_id', $value->organization_id)
+            ->where('event_type_id', $kind)
+            ->where('category', 'within')
+            ->get()
+            ->toArray();
+        }
+        
+        $localEv['personal'] = PersonalEvent::where('event_type_id', $kind)
+          ->where('user_id', Auth::id() )
+          ->where('category', 'personal')
+          ->get()
+          ->toArray();
+
+        return $localEv;
       }
     }
 

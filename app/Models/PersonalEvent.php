@@ -3,18 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Event extends Model
+class PersonalEvent extends Model
 {
-  /**
-   * The attributes that are mass assignable.
-   * 
-   * @var array
-   */
-  protected $fillable = [
+     protected $fillable = [
     'user_id',
-    'organization_id',
     'event_type_id',
     'semester_id',
     'title',
@@ -52,10 +45,6 @@ class Event extends Model
     return $this->belongsTo('App\Models\EventType');
   }
 
-  public function organization()
-  {
-    return $this->belongsTo('App\Models\Organization');
-  }
 
   public function user()
   {
