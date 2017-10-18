@@ -156,19 +156,8 @@ class EventController extends Controller
     public function show($id)
     {
       $events = self::whosGettingTheEvents($id);
-      // foreach ($events as $key => $value) {
-      //   foreach ($value as $key => $event) {
-      //     d($event);
-      //   }
-      // }
-      // exit;
-
-      // d($events, parent::isOrgMember(), parent::isOrgHead(), $id); exit;
+      
       self::getDateComparison($events);
-      // foreach ($events as $key => $value) {
-        // d($value);
-      // }
-      // exit;
       
       return view('events-list')
         ->with([

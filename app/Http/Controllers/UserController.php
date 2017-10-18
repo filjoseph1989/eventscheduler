@@ -323,7 +323,7 @@ class UserController extends Controller
 
         if (parent::isOrgHead()) {
           $data[$key]['user_type_id']    = '2';
-          $data[$key]['organization_id'] = self::getOrganization(); # this is from a CommonMethodTrait
+          $data[$key]['organization_id'] = self::getOrganizations(); # this is from a CommonMethodTrait
         }
 
         if (parent::isOsa()) {
@@ -377,7 +377,7 @@ class UserController extends Controller
     {
             
       $count = OrganizationGroup::where('position_id', $user['position_id'])
-        ->where('organization_id', self::getOrganization())
+        ->where('organization_id', self::getOrganizations())
         ->get()
         ->count();
 
