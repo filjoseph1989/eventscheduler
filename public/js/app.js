@@ -63,8 +63,6 @@
    * A beautiful alert message will show up
    * after a Successful transactions
    *
-   * Issue 13
-   *
    * @return {void}
    */
   $(document).on('click', '#modal-additional-messages', function() {
@@ -298,7 +296,7 @@
       $('#event-attendees').html(html);
     });
   });
- 
+
   /**
    * Provide user list on the modal for expected attendance
    * @return {void}
