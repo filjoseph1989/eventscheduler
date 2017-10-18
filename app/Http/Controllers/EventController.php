@@ -26,7 +26,7 @@ use App\Models\OrganizationGroup;
  * @date 10-14-2017
  * @date 10-14-2017 - updated
  */
-class EventController extends Controller 
+class EventController extends Controller
 {
     use ValidationTrait, CommonMethodTrait;
 
@@ -73,8 +73,7 @@ class EventController extends Controller
     {
       # view
       return  view('events-add')->with([
-        // 'eventTypes' => EventType::all(),
-        'semesters'  => Semester::all()
+        'semesters' => Semester::all()
       ]);
     }
 
@@ -89,14 +88,15 @@ class EventController extends Controller
       $this->validateRequest($this, $request);
 
       $org_id = OrganizationGroup::where('user_id', Auth::id())
-        ->where('position_id', 3)->get();
-    //   dd($request->category);
-      if( $request->category == "university" || $request->category == "organization" ) {
+        ->where('position_id', 3)
+        ->get();
+
+      if ($request->category == "university" || $request->category == "organization") {
         $event_type_id = 1;
-      } elseif ( $request->category == "within" || $request->category == "personal" ) {
-        $event_type_id = 2;        
+      } elseif ($request->category == "within" || $request->category == "personal") {
+        $event_type_id = 2;
       }
-      
+
       $event = Event::create(
         [
           "user_id"         => $request->user_id,
@@ -283,6 +283,8 @@ class EventController extends Controller
     /**
      * Match the current month with the given month
      *
+     * Issue 29
+     *
      * @param int $date
      * @return void
      */
@@ -300,6 +302,8 @@ class EventController extends Controller
     /**
      * Match the current year with the given year
      *
+     * Issue 29
+     *
      * @param int $year
      * @return void
      */
@@ -314,6 +318,8 @@ class EventController extends Controller
     /**
      * Match the given month with the current month
      *
+     * Issue 29
+     *
      * @param int $month
      * @return void
      */
@@ -327,6 +333,8 @@ class EventController extends Controller
 
     /**
      * Match the given day with current day
+     *
+     * Issue 29
      *
      * @param int $day
      * @return void
