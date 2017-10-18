@@ -23,5 +23,5 @@
 
 ✔ if osa, display all system users
 ✔ if org-head or org-user, display all members of the user's organizations
-
+✔ if org-head or org-user user_type, instead of "All System Users", it will display "Organizaition Co-Member" at the sidebar
 ☐ from login page, then logged in, then pressed back button, must not go back to login page 

@@ -41,7 +41,11 @@
         <li>
           <a href="javascript:void(0);" class="menu-toggle">
             <i class="material-icons">account_circle</i>
-            <span>All System Users</span>
+            @if( Auth::user()->user_type_id == 3 )
+              <span>All System Users</span>
+            @else
+              <span>Organization Co-Members</span>
+            @endif
           </a>
           <ul class="ml-menu">
             <li><a href="{{ route('User.index') }}">List of Users</a></li>
