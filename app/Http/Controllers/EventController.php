@@ -28,7 +28,7 @@ use App\Models\PersonalEvent;
  * @date 10-14-2017
  * @date 10-14-2017 - updated
  */
-class EventController extends Controller 
+class EventController extends Controller
 {
     use ValidationTrait, CommonMethodTrait;
 
@@ -77,8 +77,7 @@ class EventController extends Controller
     {
       # view
       return  view('events-add')->with([
-        // 'eventTypes' => EventType::all(),
-        'semesters'  => Semester::all()
+        'semesters' => Semester::all()
       ]);
     }
 
@@ -92,13 +91,22 @@ class EventController extends Controller
     {
       $this->validateRequest($this, $request);
 
+<<<<<<< HEAD
       $org_id = OrganizationGroup::where('user_id', Auth::id() )->get();
 
       if( $request->category == "university" || $request->category == "organization" ) {
+=======
+      $org_id = OrganizationGroup::where('user_id', Auth::id())
+        ->where('position_id', 3)
+        ->get();
+
+      if ($request->category == "university" || $request->category == "organization") {
+>>>>>>> develop
         $event_type_id = 1;
-      } elseif ( $request->category == "within" || $request->category == "personal" ) {
-        $event_type_id = 2;        
+      } elseif ($request->category == "within" || $request->category == "personal") {
+        $event_type_id = 2;
       }
+<<<<<<< HEAD
       
       if( $request->category != "personal" ) {
         $event = Event::create(
@@ -136,6 +144,26 @@ class EventController extends Controller
           ]
         );
       }
+=======
+
+      $event = Event::create(
+        [
+          "user_id"         => $request->user_id,
+          "organization_id" => $org_id[0]->organization_id,
+          "event_type_id"   => $event_type_id,
+          "semester_id"     => $request->semester_id,
+          "category"        => $request->category,
+          "title"           => $request->title,
+          "description"     => $request->description,
+          "venue"           => $request->venue,
+          "date_start"      => date('Y-m-d', strtotime($request->date_start)),
+          "date_end"        => date('Y-m-d', strtotime($request->date_end)),
+          "date_start_time" => date('H:i:s', strtotime($request->date_start_time)),
+          "date_end_time"   => date('H:i:s', strtotime($request->date_end_time)),
+          "whole_day"       => ($request->whole_day == "1") ? 'true': 'false',
+        ]
+      );
+>>>>>>> develop
 
       if ($event->wasRecentlyCreated) {
         return back()
@@ -323,6 +351,8 @@ class EventController extends Controller
     /**
      * Match the current month with the given month
      *
+     * Issue 29
+     *
      * @param int $date
      * @return void
      */
@@ -340,6 +370,8 @@ class EventController extends Controller
     /**
      * Match the current year with the given year
      *
+     * Issue 29
+     *
      * @param int $year
      * @return void
      */
@@ -354,6 +386,8 @@ class EventController extends Controller
     /**
      * Match the given month with the current month
      *
+     * Issue 29
+     *
      * @param int $month
      * @return void
      */
@@ -367,6 +401,8 @@ class EventController extends Controller
 
     /**
      * Match the given day with current day
+     *
+     * Issue 29
      *
      * @param int $day
      * @return void

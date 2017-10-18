@@ -1,5 +1,5 @@
 @extends('layouts.app')
- 
+
 @section('title')
   <title>List of Events</title>
 @endsection
@@ -176,7 +176,9 @@
                     <thead>
                       <th>Advertising Options</th>
                       <th colspan="2">Reminders</th> {{-- Issue 4 --}}
-                      <th>Audience</th> {{-- Issue 15 --}}
+                      @if (Auth::user()->user_type_id != 2)
+                        <th>Audience</th>
+                      @endif
                     </thead>
                     <tbody>
                       <tr>
@@ -206,11 +208,12 @@
                           </select>
                         </td>
                         <td>
-                          {{-- Issue 15 --}}
-                          <select class="form-control show-tick" name="">
-                            <option value="">University</option>
-                            <option value="">Organization</option>
-                          </select>
+                          @if (Auth::user()->user_type_id != 2)
+                            <select class="form-control show-tick" name="">
+                              <option value="">University</option>
+                              <option value="">Organization</option>
+                            </select>
+                          @endif
                         </td>
                       </tr>
                       <tr>

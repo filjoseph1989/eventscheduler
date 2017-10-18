@@ -9,7 +9,7 @@ class Event extends Model
 {
   /**
    * The attributes that are mass assignable.
-   * 
+   *
    * @var array
    */
   protected $fillable = [
@@ -25,7 +25,7 @@ class Event extends Model
     'date_end', 
     'date_start_time',
     'date_end_time',
-    'whole_day', 
+    'whole_day',
     'status',
     'is_approve',
     'twitter',
@@ -41,22 +41,30 @@ class Event extends Model
     'email_img',
   ];
 
-  
-  public function eventGroup()
-  {
-    return $this->belongsTo('App\Models\EventGroup');
-  }
-
+  /**
+   * One to one relationship with event_type table
+   *
+   * @return object
+   */
   public function eventType()
   {
     return $this->belongsTo('App\Models\EventType');
   }
 
+  /**
+   * One to one relationship with table organization
+   *
+   * @return object
+   */
   public function organization()
   {
     return $this->belongsTo('App\Models\Organization');
   }
 
+  /**
+   * One to one relationship with user table
+   * @return [type] [description]
+   */
   public function user()
   {
     return $this->belongsTo('App\Models\User');
