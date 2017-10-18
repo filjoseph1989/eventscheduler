@@ -89,7 +89,7 @@
                                     @else
                                     <a href="#" class="">{{ ucwords($ev->title) }}</a>
                                     @endif
-                                  </td>
+                                  </td> 
                                   <td>
                                     <a href="#">{{ $ev->venue }}</a>
                                   </td>
@@ -150,6 +150,7 @@
         </div>
         <div class="modal-body">
           <div class="panel-group" id="accordion_1" role="tablist" aria-multiselectable="true">
+            
             <div class="panel">
               <div class="panel-heading" role="tab" id="headingOne_1">
                 <h4 class="panel-title">
@@ -321,6 +322,7 @@
             @endif
           </div>
         </div>
+
         <div class="modal-footer">
           @if (Auth::user()->user_type_id == 1)
             <button type="button" data-color="teal" class="btn bg-teal waves-effect request-approval" id="modal-request-approval" data-toggle="tooltip" data-placement="top" title="Request for advertisement approval"
@@ -343,8 +345,10 @@
               {{ method_field('PUT') }}
             </form>
           @endif
+          
           <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
         </div>
+
       </div>
     </div>
   </div>
