@@ -56,8 +56,19 @@ class OrganizationGroup extends Model
    *
    * @return int
    */
-  public function getOrganizationID()
+  public function getOrganizationId()
   {
     return $this->organization_id;
+  }
+
+   /**
+   * Return the value of organization group
+   * property user_id
+   *
+   * @return int
+   */
+  public function getUserId()
+  {
+    return $this->user_id;
   }
 }

@@ -61,9 +61,9 @@ class UserController extends Controller
           ->with('position')
           ->where('organization_id', $org_id[0]->organization_id)
           ->get(); 
-        $users = $org_grp;
+        $users[] = $org_grp;
       } else{
-        $users = User::with([
+        $users[] = User::with([
           'course',
           'organizationGroup' => function($query) {
             return $query->with(['position', 'organization'])->get();

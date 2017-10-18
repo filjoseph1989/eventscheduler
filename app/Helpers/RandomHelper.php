@@ -21,7 +21,7 @@ class RandomHelper
         if ($value->count() > 10) {
           $class = "js-basic-example dataTable";
         }
-    
+     
         return [
           'class' => $class
         ];

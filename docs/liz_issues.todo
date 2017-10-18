@@ -21,4 +21,7 @@
 ✔ functional my organizations for org head or user
 ✔ fixed university organizations for all user_type
 
+✔ if osa, display all system users
+✔ if org-head or org-user, display all members of the user's organizations
+
 ☐ from login page, then logged in, then pressed back button, must not go back to login page 

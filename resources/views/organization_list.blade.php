@@ -42,7 +42,7 @@
                     <tbody>
                       @if ( is_null($organizations) )
                         <tr>
-                          <td>{{ "No entry yet" }}</td>
+                          <td>{{ "No entry yet" }}</td> 
                         </tr>
                       @else
                         @foreach ($organizations as $key => $org)

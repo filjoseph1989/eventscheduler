@@ -48,7 +48,7 @@
             @if (Auth::user()->user_type_id == 1)
               <li><a href="{{ route('User.create') }}">Register New Users</a></li>
             @endif
-          </ul>
+          </ul> 
         </li>
         <li>
           <a href="javascript:void(0);" class="menu-toggle">
