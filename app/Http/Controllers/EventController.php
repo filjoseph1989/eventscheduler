@@ -237,6 +237,7 @@ class EventController extends Controller
     {
       /* Personal events are not included in this filtering */
       //I assigned all Events to $events to have a uniform array data-type except for the LOCAL EVENTS 
+      if( $kind == 0) {
         if ($userType == 'org-head') {
           $events[] = Event::with('organization')
             ->where('category', '=', 'within')
@@ -271,6 +272,8 @@ class EventController extends Controller
             return $events;
           }
         }
+      }
+        
       # return approve | disapprove events
       if ($kind == 'true' or $kind == 'false') {
         if ($userType == 'org-head') {
