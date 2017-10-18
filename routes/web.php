@@ -9,7 +9,7 @@
 | routes are loaded by the RouteServiceProvider within a group which
 |
 | contains the "web" middleware group. Now create something great!
-*/
+*/ 
 
 Route::get('/', function () {
   return redirect()->route('login');
@@ -68,5 +68,10 @@ Route::group(['middleware'=>['auth']], function() {
       Route::name('User.existing.assignPosition')->get('/existing-user/assign-position', 'UserController@assignPositionToExistingUser');
       Route::name('User.changePassword')->post('/change-password', 'UserController@changePassword');
       Route::name('user.profile.upload')->post('/upload-profilepic', 'UserController@uploadProfilePic');
+    });
+
+     #additional routes for registering organization-member user type
+    Route::prefix('Organization')->group(function() { 
+      Route::name('Organization.myOrganizations')->get('/my-organizations', 'OrganizationController@myOrganizations');
     });
 });

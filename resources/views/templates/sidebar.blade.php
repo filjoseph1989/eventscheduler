@@ -60,8 +60,8 @@
               <li><a href="{{ route('Org.create') }}"><span>Add New</span></a></li>
             @endif
             <li><a href="{{ route('Org.index') }}"><span>University Organizations</span></a></li>
-            @if (Auth::user()->user_type_id == 2)
-              <li><a href="#"><span>My Organization</span></a></li>
+            @if (Auth::user()->user_type_id < 3)
+              <li><a href="{{ route('Organization.myOrganizations') }}"><span>My Organizations</span></a></li>
             @endif
           </ul>
         </li>
@@ -78,7 +78,7 @@
             @endif
             <li>
               <a href="#" class="menu-toggle"><span>List of Events</span></a>
-              <ul class="ml-menu">
+              <ul class="ml-menu"> 
                 @if( Auth::user()->user_type_id == 3)
                   <li><a href="{{ route('Event.show', 0) }}"><span>All Events</span></a></li>
                 @elseif( Auth::user()->user_type_id == 1 || Auth::user()->user_type_id == 2 )

@@ -16,13 +16,17 @@ class RandomHelper
   public static function dataTableClass($reference)
   {
     $class = "";
-    if ($reference->count() > 10) {
-      $class = "js-basic-example dataTable";
+    foreach ($reference as $key => $org) {
+      foreach ($org as $key => $value) {
+        if ($value->count() > 10) {
+          $class = "js-basic-example dataTable";
+        }
+    
+        return [
+          'class' => $class
+        ];
+      }
     }
-
-    return [
-      'class' => $class
-    ];
   }
 }
 

@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Helpers\RandomHelper;
 
 # Apps
 use App\Mail\EmailNotification;
+use App\Common\CommonMethodTrait;
 
 # Models
 use App\Models\User;
@@ -17,6 +20,7 @@ use App\Models\OrganizationHeadGroup;
 
 class OrganizationController extends Controller
 {
+    use CommonMethodTrait;
     /**
      * Display a listing of the resource.
      *
@@ -24,11 +28,11 @@ class OrganizationController extends Controller
      */
     public function index(RandomHelper $helper)
     {
-        $organizations = OrganizationGroup::with('organization')
+        $organizations[] = OrganizationGroup::with('organization')
           ->where('position_id', 3)
           ->with('user')
           ->get();
-
+    
         return view('organization_list')->with([
           'organizations' => $organizations,
           'helper'        => $helper,
@@ -104,6 +108,23 @@ class OrganizationController extends Controller
       }
     }
 
+    public function myOrganizations (RandomHelper $helper){
+      $org_ids = self::getOrganizations();
+
+      foreach ($org_ids as $key => $value) {
+        # code...
+        $organizations[ $value ] = OrganizationGroup::with('organization')
+            ->where('organization_id', $value)
+            ->where('position_id', 3)
+            ->with('user')
+            ->get();
+      }
+
+      return view('organization_list')->with([
+        'organizations' => $organizations,
+        'helper'        => $helper,
+      ]); 
+    }
     /**
      * Display the specified resource.
      *

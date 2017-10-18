@@ -17,4 +17,8 @@
     since org-user(member) can belong to many orgs
 
 ✔ made private function getOrganizationLeading() in CommonMethodTrait for org-head-user and org-adviser user
+
+✔ functional my organizations for org head or user
+✔ fixed university organizations for all user_type
+
 ☐ from login page, then logged in, then pressed back button, must not go back to login page 
