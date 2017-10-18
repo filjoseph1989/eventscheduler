@@ -42,27 +42,6 @@ class AttendanceController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * Display the different attendances
@@ -81,26 +60,13 @@ class AttendanceController extends Controller
 
       // get all user's organization for the dropdown pull right menu of local within orgs in attendance blade
       $user_orgs = self::getUserOrgs(Auth::user()->id);  //{{--  magwork na ni pag naa nay auth  --}}
-    //   self::getOrganization($events);
-    // d($user_orgs); exit;
 
       return view('attendance')->with([
         'events'       => $events,
         'eventType'    => $id,
         'helper'       => $helper,
-        'user_orgs'    => $user_orgs, // {{--  magwork na sulod ani pag naa nay auth  --}}
+        'user_orgs'    => $user_orgs,
       ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -126,17 +92,6 @@ class AttendanceController extends Controller
               'status' => 'See you on the event'
             ]);
         }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     /**

@@ -17,6 +17,8 @@ use App\Models\Semester;
 use App\Models\EventType;
 use App\Models\EventGroup;
 use App\Models\OrganizationGroup;
+use App\Models\PersonalEvent;
+
 
 /**
  * CRUDS class for events
@@ -54,8 +56,11 @@ class EventController extends Controller
      */
     public function index(RandomHelper $helper)
     {
-      $events = Event::where('event_type_id', 1)
+    
+      $events = Event::with('organization')
+        ->where('event_type_id', 1)
         ->where('is_approve', 'false')
+        ->where('status', 'requested')
         ->get();
 
       return view('approve-events')->with([
@@ -96,24 +101,45 @@ class EventController extends Controller
       } elseif ($request->category == "within" || $request->category == "personal") {
         $event_type_id = 2;
       }
-
-      $event = Event::create(
-        [
-          "user_id"         => $request->user_id,
-          "organization_id" => $org_id[0]->organization_id,
-          "event_type_id"   => $event_type_id,
-          "semester_id"     => $request->semester_id,
-          "category"        => $request->category,
-          "title"           => $request->title,
-          "description"     => $request->description,
-          "venue"           => $request->venue,
-          "date_start"      => date('Y-m-d', strtotime($request->date_start)),
-          "date_end"        => date('Y-m-d', strtotime($request->date_end)),
-          "date_start_time" => date('H:i:s', strtotime($request->date_start_time)),
-          "date_end_time"   => date('H:i:s', strtotime($request->date_end_time)),
-          "whole_day"       => ($request->whole_day == "1") ? 'true': 'false',
-        ]
-      );
+      
+      if( $request->category != "personal" ) {
+        $event = Event::with('organization')
+          ->create(
+          [
+            "user_id"         => $request->user_id,
+            "organization_id" => $org_id[0]->organization_id,
+            "event_type_id"   => $event_type_id,
+            "semester_id"     => $request->semester_id,
+            "category"        => $request->category,
+            "title"           => $request->title,
+            "description"     => $request->description,
+            "venue"           => $request->venue,
+            "date_start"      => date('Y-m-d', strtotime($request->date_start)),
+            "date_end"        => date('Y-m-d', strtotime($request->date_end)),
+            "date_start_time" => date('H:i:s', strtotime($request->date_start_time)),
+            "date_end_time"   => date('H:i:s', strtotime($request->date_end_time)),
+            "whole_day"       => ($request->whole_day == "1") ? 'true': 'false',
+          ]
+        );
+      } else {
+          $event = PersonalEvent::with('organization')
+            ->create(
+          [
+            "user_id"         => $request->user_id,
+            "event_type_id"   => $event_type_id,
+            "semester_id"     => $request->semester_id,
+            "category"        => $request->category,
+            "title"           => $request->title,
+            "description"     => $request->description,
+            "venue"           => $request->venue,
+            "date_start"      => date('Y-m-d', strtotime($request->date_start)),
+            "date_end"        => date('Y-m-d', strtotime($request->date_end)),
+            "date_start_time" => date('H:i:s', strtotime($request->date_start_time)),
+            "date_end_time"   => date('H:i:s', strtotime($request->date_end_time)),
+            "whole_day"       => ($request->whole_day == "1") ? 'true': 'false',
+          ]
+        );
+      }
 
       if ($event->wasRecentlyCreated) {
         return back()
@@ -130,9 +156,9 @@ class EventController extends Controller
     public function show($id)
     {
       $events = self::whosGettingTheEvents($id);
-
+      
       self::getDateComparison($events);
-
+      
       return view('events-list')
         ->with([
           'title'      => $this->list[$id],
@@ -149,7 +175,8 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-      return Event::where('id', $id)->get();
+      return Event::with('organization')
+        ->where('id', $id)->get();
     }
 
     /**
@@ -161,7 +188,8 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $event = Event::find($id);
+      $event = Event::with('organization')
+        ->find($id);
 
       $event->facebook_msg = $request->facebook_msg;
       $event->twitter_msg  = $request->twitter_msg;
@@ -186,7 +214,7 @@ class EventController extends Controller
     public function destroy($id)
     {
         //
-    }
+    } 
 
     /**
      * Return array of events
@@ -197,47 +225,88 @@ class EventController extends Controller
     private function getEvents($kind, $userType)
     {
       /* Personal events are not included in this filtering */
-      if ($kind == '0') {
+      //I assigned all Events to $events to have a uniform array data-type except for the LOCAL EVENTS 
+      if( $kind == 0) {
         if ($userType == 'org-head') {
-          return Event::where('category', '=', 'within')
-            ->where('organization_id', self::getOrganization())
+          $events[] = Event::with('organization')
+            ->where('category', '=', 'within')
+            ->where('organization_id', self::getOrganizationLeading())
             ->get();
+            return $events;
         }
         if ($userType == 'osa') {
-          return Event::where('category', 'organization')
+          $events[] = Event::with('organization')
+            ->where('category', 'organization')
             ->orWhere('category', 'university')
             ->get();
+            return $events;
         }
         if ($userType == 'member') {
-          return Event::where('category', 'organization')
-            ->orWhere('category', 'university')
-            ->orWhere('category', 'within')
-            ->get();
+          if( self::getOrganizationLeading() == null) {
+            //if org-user is not an org-adviser 
+            $org_ids = self::getOrganizations();
+            foreach ($org_ids as $key => $value) {
+              $events[ $value ] =  Event::with('organization')
+                ->where('category', 'within')
+                ->where('organization_id', $value)
+                ->get();
+            }
+            return $events;
+          } else {
+            //if the org-user is an org-adviser 
+            $events[] = Event::with('organization')
+              ->where('category', '=', 'within')
+              ->where('organization_id', self::getOrganizationLeading())
+              ->get();
+            return $events;
+          }
         }
       }
-
+        
       # return approve | disapprove events
       if ($kind == 'true' or $kind == 'false') {
         if ($userType == 'org-head') {
-          return Event::where('category', '=', 'within')
-            ->where('organization_id', self::getOrganization())
-            ->where('is_approve', $kind)
-            ->get();
+          $events[] = Event::with('organization')
+          ->where('category', '=', 'within')
+          ->where('organization_id', self::getOrganizations())
+          ->where('is_approve', $kind)
+          ->get();
+          return $events;
         }
       }
 
       # Return All official or local event
       # within University or organization category
       if ($kind == 1) {
-        return Event::where('event_type_id', $kind)
-          ->Where('category', 'university')
-          ->get();
+        $events[] = Event::with('organization')
+        ->where('event_type_id', $kind)
+        ->Where('category', 'university')
+        ->get();
       }
+      return $events;
+
       if ($kind == 2) {
-        return Event::where('event_type_id', $kind)
-          ->where('category', 'within')
-          ->orWhere('category', 'organization')
+        $org_id = OrganizationGroup::where('user_id', Auth::id() )
           ->get();
+        
+        $localEv = [];
+        foreach ($org_id as $key => $value) {
+          $localEv['within'][$value->id] = Event::with('organization')
+            ->where('organization_id', $value->organization_id)
+            ->where('event_type_id', $kind)
+            ->where('category', 'within')
+            ->get()
+            ->toArray();
+        }
+        
+        $localEv['personal'] = PersonalEvent::with('organization')
+          ->where('event_type_id', $kind)
+          ->where('user_id', Auth::id() )
+          ->where('category', 'personal')
+          ->get()
+          ->toArray();
+
+        return $localEv;
       }
     }
 
@@ -270,13 +339,15 @@ class EventController extends Controller
      */
     private function getDateComparison(&$events)
     {
-      if (! is_null($events)) {
+      if ( ! is_null($events) ) {
         foreach ($events as $key => $event) {
-          if (self::matchDate($event->date_start)) {
-            $events[$key]->status = "on going";
-            # Issue 25
+          foreach ($event as $key => $value) {
+            if (self::matchDate($value->date_start)) {
+              $event[$key]->status = "on going";
+              # Issue 25
+            }
           }
-        }
+        } 
       }
     }
 

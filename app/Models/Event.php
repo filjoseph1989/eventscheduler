@@ -22,7 +22,7 @@ class Event extends Model
     'description',
     'venue',
     'date_start',
-    'date_end',
+    'date_end', 
     'date_start_time',
     'date_end_time',
     'whole_day',

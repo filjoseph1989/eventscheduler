@@ -14,7 +14,8 @@
         "nesbot/carbon": "^1.22",
         "nexmo/laravel": "^1.0",
         "thujohn/twitter": "^2.2",
-        "tightenco/ziggy": "^0.2.2"
+        "tightenco/ziggy": "^0.2.2",
+        "wnx/laravel-stats": "1.0.0-beta-2"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

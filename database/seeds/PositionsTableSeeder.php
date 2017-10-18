@@ -31,7 +31,7 @@ class PositionsTableSeeder extends Seeder
         'updated_at'  => date('Y-m-d H:i:s')
       ),
       array(
-        'name'        => 'Instructor',
+        'name'        => 'Organization Adviser',
         'description' => 'No description yet',
         'created_at'  => date('Y-m-d H:i:s'),
         'updated_at'  => date('Y-m-d H:i:s')
@@ -86,6 +86,12 @@ class PositionsTableSeeder extends Seeder
       ),
       array(
         'name'        => '3rd Year Representative',
+        'description' => 'No description yet',
+        'created_at'  => date('Y-m-d H:i:s'),
+        'updated_at'  => date('Y-m-d H:i:s')
+      ),
+      array(
+        'name'        => 'Organization Co-Adviser',
         'description' => 'No description yet',
         'created_at'  => date('Y-m-d H:i:s'),
         'updated_at'  => date('Y-m-d H:i:s')

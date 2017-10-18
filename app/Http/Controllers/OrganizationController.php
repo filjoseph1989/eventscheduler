@@ -24,7 +24,8 @@ class OrganizationController extends Controller
      */
     public function index(RandomHelper $helper)
     {
-        $organizations = OrganizationHeadGroup::with('organization')
+        $organizations = OrganizationGroup::with('organization')
+          ->where('position_id', 3)
           ->with('user')
           ->get();
 

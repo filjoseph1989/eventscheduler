@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEventsTable extends Migration
-{ 
+class CreatePersonalEventsTable extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -13,10 +13,9 @@ class CreateEventsTable extends Migration
      */
     public function up()
     {
-        Schema::create('events', function (Blueprint $table) {
+         Schema::create('personal_events', function (Blueprint $table) {
             $table->increments('id'); 
             $table->integer('user_id')->unsigned()->index();
-            $table->integer('organization_id')->unsigned()->index();
             $table->integer('event_type_id')->unsigned()->index();
             $table->integer('semester_id')->unsigned()->index();
             $table->enum('category', ['within','personal','university','organization'])->nullable();
@@ -46,7 +45,6 @@ class CreateEventsTable extends Migration
 
             # Foreign keys
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('organization_id')->references('id')->on('organizations');
             $table->foreign('event_type_id')->references('id')->on('event_types');
             $table->foreign('semester_id')->references('id')->on('semesters');
         });
@@ -59,6 +57,6 @@ class CreateEventsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('events');
+        Schema::dropIfExists('personal_events');
     }
 }
