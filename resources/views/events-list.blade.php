@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-  <section class="content">
+  <section class="content"> 
     <div class="container-fluid">
       <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -89,7 +89,7 @@
                               @endif
                             </td>
                             <td><a href="#">{{ $event->venue }}</a></td>
-                            <td> No Organization </td>
+                            <td> {{ $event->organization->name }} </td>
                             <td>{{ date('M d, Y', strtotime($event->date_start)) }} {{ date('h:i A', strtotime($event->date_start_time)) }}</td>
                             <td>{{ date('M d, Y', strtotime($event->date_end)) }} {{ date('h:i A', strtotime($event->date_end_time)) }}</td>
                             @if (Auth::user()->user_type_id != 2)
