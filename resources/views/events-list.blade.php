@@ -77,31 +77,38 @@
                         <th>Approved?</th>
                       @endif
                     </thead>
-                    <tbody>
-                      @if (! is_null($events))
+                    <tbody> 
+                      @if (! is_null($events)) 
                         @foreach ($events as $key => $event)
-                          <tr data-event="{{ $event->id }}" data-route="{{ route('Event.edit', $event->id) }}" data-action="{{ route('Event.update', $event->id) }}">
-                            <td>
-                              @if (Auth::user()->user_type_id == 1 or Auth::user()->user_type_id == 2)
-                                <a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a>
-                              @else
-                                <a href="#" class="">{{ ucwords($event->title) }}</a>
-                              @endif
-                            </td>
-                            <td><a href="#">{{ $event->venue }}</a></td>
-                            <td> {{ $event->organization->name }} </td>
-                            <td>{{ date('M d, Y', strtotime($event->date_start)) }} {{ date('h:i A', strtotime($event->date_start_time)) }}</td>
-                            <td>{{ date('M d, Y', strtotime($event->date_end)) }} {{ date('h:i A', strtotime($event->date_end_time)) }}</td>
-                            @if (Auth::user()->user_type_id != 2)
-                              <td>{{ ucwords($event->status) }}</td>
-                            @endif
-                            @if ($eventType == 'true' or $eventType == 'false')
-                              <td>
-                                @php $is_approve = ($event->is_approve == 'true') ? 'Yes' : 'No'; @endphp
-                                <a href="#">{{ $is_approve }}</a>
-                              </td>
-                            @endif
-                          </tr>
+                          @if ( ! is_null($event) )
+                             @foreach ($event as $key => $ev)
+                                <tr data-event="{{ $ev->id }}" data-route="{{ route('Event.edit', $ev->id) }}" data-action="{{ route('Event.update', $ev->id) }}">
+                                  <td>
+                                    @if (Auth::user()->user_type_id == 1 or Auth::user()->user_type_id == 2)
+                                    <a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($ev->title) }}</a>
+                                    @else
+                                    <a href="#" class="">{{ ucwords($ev->title) }}</a>
+                                    @endif
+                                  </td>
+                                  <td>
+                                    <a href="#">{{ $ev->venue }}</a>
+                                  </td>
+                                  <td> {{ $ev->organization->name }} </td>
+                                  <td>{{ date('M d, Y', strtotime($ev->date_start)) }} {{ date('h:i A', strtotime($ev->date_start_time)) }}</td>
+                                  <td>{{ date('M d, Y', strtotime($ev->date_end)) }} {{ date('h:i A', strtotime($ev->date_end_time)) }}</td>
+                                  @if (Auth::user()->user_type_id != 2)
+                                  <td>{{ ucwords($ev->status) }}</td>
+                                  @endif @if ($eventType == 'true' or $eventType == 'false')
+                                  <td>
+                                    @php $is_approve = ($ev->is_approve == 'true') ? 'Yes' : 'No'; @endphp
+                                    <a href="#">{{ $is_approve }}</a>
+                                  </td>
+                                  @endif
+                                </tr>
+                             @endforeach
+                          @else
+                              No Data Yet
+                          @endif
                         @endforeach
                       @else
                         No Data Yet

@@ -3,5 +3,18 @@
     ☐ only for official events (which is audience/category: university/organization) 
         ☐ if org-user, this button will not display
         ☐ if org-head, will display
-☐ if org-user, make functional the "attend" button for each event under university, organization, and within org
+        (the organization where she/he is the head or the adviser)
+        
+        ☐ if org-user, make functional the "attend" button for each event under university, organization, and within org
+✔ when org-head and org-user(adviser) presses "my organization events", user will see events of the organization he/she is leading
+✔ when org-user(not adviser) presses "my organization events", user will see events of his/her organizations
+//which is events with category->within, with organization_id->id of organizations the org-user belongs
+
+✔ fix the organizer column of the event-list.blade  
+
+✔ if user accesses getOrganizations() function from CommonMethodTrait, 
+    array of organizationGroup instance must be returned where organnization_id are the id of orgs the user belongs to,
+    since org-user(member) can belong to many orgs
+
+✔ made private function getOrganizationLeading() in CommonMethodTrait for org-head-user and org-adviser user
 ☐ from login page, then logged in, then pressed back button, must not go back to login page 
