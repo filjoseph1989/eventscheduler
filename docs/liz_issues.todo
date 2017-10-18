@@ -1,0 +1,7 @@
+☐ fix dsiplay of local events
+☐ make functional "request event approval" button
+    ☐ only for official events (which is audience/category: university/organization) 
+        ☐ if org-user, this button will not display
+        ☐ if org-head, will display
+☐ if org-user, make functional the "attend" button for each event under university, organization, and within org
+☐ from login page, then logged in, then pressed back button, must not go back to login page 
