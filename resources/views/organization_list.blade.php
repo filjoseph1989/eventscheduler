@@ -48,7 +48,14 @@
                         @foreach ($organizations as $key => $org)
                           @foreach( $org as $key => $value )
                             <tr data-organization-id="{{ $value->organization->id }}">
-                              <td><a href="#" class="organization-list-name" data-target="#org-profile" data-toggle="modal">{{ $value->organization->name }}</a></td>
+                              <td>
+                                <a href="#" class="organization-list-name" data-target="#org-profile" data-toggle="modal">
+                                  {{ $value->organization->name }} 
+                                  @if( $value->user->id == Auth::id() )
+                                    (I am the head)
+                                  @endif
+                                </a>
+                              </td>
                               <td>{{ $value->organization->acronym }}</a></td>
                               <td>{{ $value->user->full_name }}</td>
                               <td>{{ ucwords($value->organization->status) }}</td>
