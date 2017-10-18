@@ -20,7 +20,7 @@ use App\Models\User;
  *
  * @version 1
  * @date 10-04-2017
- * @date 10-13-2017 Updated
+ * @date 10-18-2017 Updated
  */
 class ApproveEventController extends Controller
 {
@@ -91,32 +91,23 @@ class ApproveEventController extends Controller
     */
    protected function smsPost($event)
    {
-       # Composr message
-       $message = self::smsMessage($event->category, $event);
+      # Composr message
+      $message = self::smsMessage($event->category, $event);
 
-       # Public event
-       if($event->category == 'university') {
-         $users = User::all();
-       }
+      # Public event
+      if($event->category == 'university') {
+       $users = User::all();
+      }
 
-       /*
-       Unsa pa gali ni 'within' nga category?
-       og and 'organization'
-        */
-        /**
-         * answer: within, katong org kung asa org-head ang user (sa org group position_id
-         *     organization, tanang user na naay organizations, so except osa user)
-         */
+      # Within organization
+      if($event->category == 'within' OR $event->category == 'organization') {
+       $users = OrganizationGroup::with('user')
+         ->where('organization_id', '=', $value->organization_id )
+         ->get();
+      }
 
-       # Within organization
-       if($event->category == 'within') {
-         $users = OrganizationGroup::with('user')
-             ->where('organization_id', '=', $value->organization_id )
-             ->get();
-       }
-
-       # Send notification
-       self::sendSms($users, $message);
+      # Send notification
+      self::sendSms($users, $message);
    }
 
    /**
