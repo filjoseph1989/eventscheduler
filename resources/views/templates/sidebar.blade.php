@@ -2,7 +2,7 @@
   <aside id="leftsidebar" class="sidebar">
     <div class="user-info">
       <div class="image">
-        <img src="/img/profile.png" width="48" height="48" alt="User">
+        <img src="/img/profile/profile.png" width="48" height="48" alt="User">
       </div>
       <div class="info-container">
         <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -112,12 +112,12 @@
             <span>Attendances</span>
           </a>
           <ul class="ml-menu">
-            <?php if (Auth::user()->user_type_id != 2): ?>
+            @if (Auth::user()->user_type_id != 2)
               <li><a href="{{ route('Attendances.show', 'Official') }}"><span>Official Events</span></a></li>
               <li><a href="{{ route('Attendances.show', 'Local') }}"><span>Local Events</span></a></li>
-            <?php else: ?>
+            @else
               <li><a href="{{ route('Attendances.index') }}"><span>My Event Attendance</span></a></li>
-            <?php endif; ?>
+            @endif
           </ul>
         </li>
       </ul>
