@@ -280,7 +280,8 @@ class EventController extends Controller
       if ($kind == 1) {
         $events[] = Event::with('organization')
         ->where('event_type_id', $kind)
-        ->Where('category', 'university')
+        ->where('category', 'organization')
+        ->orWhere('category', 'university')
         ->get();
       }
       return $events;
