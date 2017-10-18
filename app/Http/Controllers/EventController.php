@@ -91,22 +91,15 @@ class EventController extends Controller
     {
       $this->validateRequest($this, $request);
 
-<<<<<<< HEAD
-      $org_id = OrganizationGroup::where('user_id', Auth::id() )->get();
-
-      if( $request->category == "university" || $request->category == "organization" ) {
-=======
       $org_id = OrganizationGroup::where('user_id', Auth::id())
         ->where('position_id', 3)
         ->get();
 
       if ($request->category == "university" || $request->category == "organization") {
->>>>>>> develop
         $event_type_id = 1;
       } elseif ($request->category == "within" || $request->category == "personal") {
         $event_type_id = 2;
       }
-<<<<<<< HEAD
       
       if( $request->category != "personal" ) {
         $event = Event::create(
@@ -144,26 +137,6 @@ class EventController extends Controller
           ]
         );
       }
-=======
-
-      $event = Event::create(
-        [
-          "user_id"         => $request->user_id,
-          "organization_id" => $org_id[0]->organization_id,
-          "event_type_id"   => $event_type_id,
-          "semester_id"     => $request->semester_id,
-          "category"        => $request->category,
-          "title"           => $request->title,
-          "description"     => $request->description,
-          "venue"           => $request->venue,
-          "date_start"      => date('Y-m-d', strtotime($request->date_start)),
-          "date_end"        => date('Y-m-d', strtotime($request->date_end)),
-          "date_start_time" => date('H:i:s', strtotime($request->date_start_time)),
-          "date_end_time"   => date('H:i:s', strtotime($request->date_end_time)),
-          "whole_day"       => ($request->whole_day == "1") ? 'true': 'false',
-        ]
-      );
->>>>>>> develop
 
       if ($event->wasRecentlyCreated) {
         return back()
@@ -252,7 +225,7 @@ class EventController extends Controller
       if ($kind == '0') {
         if ($userType == 'org-head') {
           return Event::where('category', '=', 'within')
-            ->where('organization_id', self::getOrganization())
+            ->where('organization_id', self::getOrganizations())
             ->get();
         }
         if ($userType == 'osa') {
@@ -260,6 +233,9 @@ class EventController extends Controller
             ->orWhere('category', 'university')
             ->get();
         }
+
+        /// fix this issue here later, when org-user presses my organization events, user will see events of his/her organizations
+        //which is events with category->within, with organization_id->id of organizations the org-user belongs
         if ($userType == 'member') {
           return Event::where('category', 'organization')
             ->orWhere('category', 'university')
@@ -272,7 +248,7 @@ class EventController extends Controller
       if ($kind == 'true' or $kind == 'false') {
         if ($userType == 'org-head') {
           return Event::where('category', '=', 'within')
-            ->where('organization_id', self::getOrganization())
+            ->where('organization_id', self::getOrganizations())
             ->where('is_approve', $kind)
             ->get();
         }
