@@ -21,12 +21,23 @@ class RandomHelper
         if ($value->count() > 10) {
           $class = "js-basic-example dataTable";
         }
-     
+
         return [
           'class' => $class
         ];
       }
     }
+  }
+
+  /**
+   * format the display of local events
+   *
+   * @param  object $events
+   * @return void
+   */
+  public static function formatLocalEvents($events)
+  {
+
   }
 }
 
@@ -42,4 +53,3 @@ function Redirect($url, $permanent = false)
 
     exit();
 }
-

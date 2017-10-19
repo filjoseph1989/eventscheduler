@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-  <section class="content"> 
+  <section class="content">
     <div class="container-fluid">
       <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -21,8 +21,6 @@
               {{ session('status') }}
             </div>
           @endif
-
-          <?php d($events); ?>
 
           <div class="card">
             <div class="header">
@@ -36,22 +34,49 @@
                   <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                     <thead>
                         <tr>
-                            <th>Title</th>
-                            <th>Organizer</th>
-                            <th>Date Start</th>
-                            <th>Date End</th>
-                            <th>Status</th>
+                          <th>Title</th>
+                          <th>Organizer</th>
+                          <th>Date Start</th>
+                          <th>Date End</th>
+                          <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
+                      <?php if (count($events['within']) > 0): ?>
+                        <?php foreach ($events['within'] as $key => $localEvents): ?>
+                          <?php foreach ($localEvents as $key => $event): ?>
+                            <?php $event = (object)$event; ?>
+                            <tr>
+                              <td>{{ $event->title }}</td>
+                              <td><?php $event->organization = (object)$event->organization; ?>{{ $event->organization->name }}</td>
+                              <td>{{ $event->date_start }}</td>
+                              <td>{{ $event->date_end }}</td>
+                              <td>{{ $event->status }}</td>
+                            </tr>
+                          <?php endforeach; ?>
+                        <?php endforeach; ?>
+                      <?php endif; ?>
+
+                      <?php if ($events['personal']): ?>
+                        <?php foreach ($events['personal'] as $key => $event): ?>
+                          <?php $event = (object)$event; ?>
+                          <tr>
+                            <td>{{ $event->title }}</td>
+                            <td>Personal</td>
+                            <td>{{ $event->date_start }}</td>
+                            <td>{{ $event->date_end }}</td>
+                            <td>Upcomming</td>
+                          </tr>
+                        <?php endforeach; ?>
+                      <?php endif; ?>
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>Title</th>
-                            <th>Organizer</th>
-                            <th>Date Start</th>
-                            <th>Date End</th>
-                            <th>Status</th>
+                          <th>Title</th>
+                          <th>Organizer</th>
+                          <th>Date Start</th>
+                          <th>Date End</th>
+                          <th>Status</th>
                         </tr>
                     </tfoot>
                   </table>

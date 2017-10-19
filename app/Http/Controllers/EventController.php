@@ -47,6 +47,7 @@ class EventController extends Controller
      */
     public function __construct()
     {
+      $this->middleware('auth');
     }
 
     /**
@@ -56,7 +57,6 @@ class EventController extends Controller
      */
     public function index(RandomHelper $helper)
     {
-    
       $events = Event::with('organization')
         ->where('event_type_id', 1)
         ->where('is_approve', 'false')
@@ -101,11 +101,10 @@ class EventController extends Controller
       } elseif ($request->category == "within" || $request->category == "personal") {
         $event_type_id = 2;
       }
-      
+
       if( $request->category != "personal" ) {
         $event = Event::with('organization')
-          ->create(
-          [
+          ->create([
             "user_id"         => $request->user_id,
             "organization_id" => $org_id[0]->organization_id,
             "event_type_id"   => $event_type_id,
@@ -119,12 +118,10 @@ class EventController extends Controller
             "date_start_time" => date('H:i:s', strtotime($request->date_start_time)),
             "date_end_time"   => date('H:i:s', strtotime($request->date_end_time)),
             "whole_day"       => ($request->whole_day == "1") ? 'true': 'false',
-          ]
-        );
+          ]);
       } else {
-          $event = PersonalEvent::with('organization')
-            ->create(
-          [
+        $event = PersonalEvent::with('organization')
+          ->create([
             "user_id"         => $request->user_id,
             "event_type_id"   => $event_type_id,
             "semester_id"     => $request->semester_id,
@@ -137,8 +134,7 @@ class EventController extends Controller
             "date_start_time" => date('H:i:s', strtotime($request->date_start_time)),
             "date_end_time"   => date('H:i:s', strtotime($request->date_end_time)),
             "whole_day"       => ($request->whole_day == "1") ? 'true': 'false',
-          ]
-        );
+          ]);
       }
 
       if ($event->wasRecentlyCreated) {
@@ -156,9 +152,9 @@ class EventController extends Controller
     public function show($id)
     {
       $events = self::whosGettingTheEvents($id);
-      
+
       self::getDateComparison($events); //fix later, not functioning for local events
-      
+
       return view('events-list')
         ->with([
           'title'      => $this->list[$id],
@@ -214,7 +210,45 @@ class EventController extends Controller
     public function destroy($id)
     {
         //
-    } 
+    }
+
+    /**
+     * Display the local events
+     *
+     * @param  int $id
+     * @param  RandomHelper $helper
+     * @return \Illuminate\Response
+     */
+    public function dlv($id, RandomHelper $helper)
+    {
+      if ($id == 2) {
+        $org_id = OrganizationGroup::where('user_id', Auth::id())
+          ->get();
+
+        $events = [];
+
+        foreach ($org_id as $key => $value) {
+          $events['within'][$value->id] = Event::with('organization')
+            ->where('organization_id', $value->organization_id)
+            ->where('event_type_id', $id)
+            ->where('category', 'within')
+            ->get()
+            ->toArray();
+        }
+
+        $events['personal'] = PersonalEvent::where('event_type_id', $id)
+          ->where('user_id', Auth::id())
+          ->where('category', 'personal')
+          ->get()
+          ->toArray();
+
+        return view('local_events')
+          ->with([
+            'events' => $events,
+            'helper' => $helper
+          ]);
+      }
+    }
 
     /**
      * Return array of events
@@ -225,7 +259,7 @@ class EventController extends Controller
     private function getEvents($kind, $userType)
     {
       /* Personal events are not included in this filtering */
-      //I assigned all Events to $events to have a uniform array data-type except for the LOCAL EVENTS 
+      //I assigned all Events to $events to have a uniform array data-type except for the LOCAL EVENTS
       if( $kind == 0) {
         if ($userType == 'org-head') {
           $events[] = Event::with('organization')
@@ -243,7 +277,7 @@ class EventController extends Controller
         }
         if ($userType == 'member') {
           if( self::getOrganizationLeading() == null) {
-            //if org-user is not an org-adviser 
+            //if org-user is not an org-adviser
             $org_ids = self::getOrganizations();
             foreach ($org_ids as $key => $value) {
               $events[ $value ] =  Event::with('organization')
@@ -253,7 +287,7 @@ class EventController extends Controller
             }
             return $events;
           } else {
-            //if the org-user is an org-adviser 
+            //if the org-user is an org-adviser
             $events[] = Event::with('organization')
               ->where('category', '=', 'within')
               ->where('organization_id', self::getOrganizationLeading())
@@ -262,7 +296,7 @@ class EventController extends Controller
           }
         }
       }
-        
+
       # return approve | disapprove events
       if ($kind == 'true' or $kind == 'false') {
         if ($userType == 'org-head') {
@@ -286,7 +320,7 @@ class EventController extends Controller
         return $events;
       }
 
-  
+
     }
 
     /**
@@ -326,36 +360,8 @@ class EventController extends Controller
               # Issue 25
             }
           }
-        } 
+        }
       }
-    }
-
-    public function dlv($id) {
-      if ($id == 2) {
-        $org_id = OrganizationGroup::where('user_id', Auth::id() )
-          ->get();
-     
-        $events = [];
-        foreach ($org_id as $key => $value) {
-          //for within organization events
-          $events['within'][$value->id] = Event::with('organization')
-            ->where('organization_id', $value->organization_id)
-            ->where('event_type_id', $id)
-            ->where('category', 'within')
-            ->get()
-            ->toArray();
-        }
-        
-        $events['personal'] = PersonalEvent::where('event_type_id', $id)
-          ->where('user_id', Auth::id() )
-          ->where('category', 'personal')
-          ->get()
-          ->toArray();
-
-        return view('local_events') ->with([
-            'events'     => $events,
-          ]);
-        }
     }
 
     /**
