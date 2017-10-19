@@ -56,8 +56,9 @@ class AttendanceController extends Controller
        * it will direct to a link for what type of event(LOCAL: within or personal, or WITHIN: university or organizations),
        * then by clicking, it will direct the user to the particular list of events he/she is looking for.
        */
-      $events = self::getEventsWithOrganization($id);
-
+      $events[] = self::getEventsWithOrganization($id);
+    //   d( $events ); exit;
+ 
       // get all user's organization for the dropdown pull right menu of local within orgs in attendance blade
       $user_orgs = self::getUserOrgs(Auth::user()->id);  //{{--  magwork na ni pag naa nay auth  --}}
 

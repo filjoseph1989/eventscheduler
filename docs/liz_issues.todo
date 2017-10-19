@@ -1,4 +1,4 @@
-☐ fix dsiplay of local events
+✔ fix dsiplay of local events
 ☐ make functional "request event approval" button
     ☐ only for official events (which is audience/category: university/organization) 
         ☐ if org-user, this button will not display
@@ -17,4 +17,18 @@
     since org-user(member) can belong to many orgs
 
 ✔ made private function getOrganizationLeading() in CommonMethodTrait for org-head-user and org-adviser user
+
+✔ functional my organizations for org head or user
+✔ fixed university organizations for all user_type
+
+✔ if osa, display all system users
+✔ if org-head or org-user, display all members of the user's organizations
+✔ if org-head or org-user user_type, instead of "All System Users", it will display "Organizaition Co-Member" at the sidebar
+
+✔ fixed the display of official events where events displayed has category of university or organization
+
+☐ fix the display of local events
+☐  self::getDateComparison($events); //fix later, not functioning for local events 
+
+☐ make profile picture dynamic to display pro pic of those users who are assigned to
 ☐ from login page, then logged in, then pressed back button, must not go back to login page 

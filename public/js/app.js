@@ -38,13 +38,15 @@
     var $url = $(this).parents('tr').data('route');
     action   = $(this).parents('tr').data('action');
 
-    // Make http request for editing the event
+    // Make http request for editing the event 
     axios_get($url, function(data) {
       data.forEach(function(currentValue, index, arr) {
         $('#modal-event-title').html(currentValue.title);
         $('#modal-event-ptitle').html("Title: " + currentValue.title);
         $('#modal-event-venue').html("Venue: " + currentValue.venue);
         $('#modal-event-description').html("Description: " + currentValue.description);
+        $('#modal-event-organization').html("Organizer: " + currentValue.organization.name);
+        $('#modal-event-category').html("Category: " + currentValue.category + " event");
         $('#form-additional-message').attr('action', action);
         $('#facebook_msg').html(currentValue.facebook_msg);
         $('#twitter_msg').html(currentValue.twitter_msg);

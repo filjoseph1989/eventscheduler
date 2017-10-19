@@ -23,7 +23,6 @@ trait CommonMethodTrait
     // ☐ if user accesses getOrganization() function from CommonMethodTrait, 
     // array of organizationGroup instance must be returned where organnization_id are the id of orgs the user belongs to,
     // since org-user(member) can belong to many orgs
-
     $orgs = OrganizationGroup::where('user_id', Auth::id())
       ->get(); 
     
@@ -56,3 +55,4 @@ trait CommonMethodTrait
     } 
   }
 }
+ 

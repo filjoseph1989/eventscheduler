@@ -157,7 +157,7 @@ class EventController extends Controller
     {
       $events = self::whosGettingTheEvents($id);
       
-      self::getDateComparison($events);
+      self::getDateComparison($events); //fix later, not functioning for local events
       
       return view('events-list')
         ->with([
@@ -280,34 +280,13 @@ class EventController extends Controller
       if ($kind == 1) {
         $events[] = Event::with('organization')
         ->where('event_type_id', $kind)
-        ->Where('category', 'university')
+        ->where('category', 'organization')
+        ->orWhere('category', 'university')
         ->get();
+        return $events;
       }
-      return $events;
 
-      if ($kind == 2) {
-        $org_id = OrganizationGroup::where('user_id', Auth::id() )
-          ->get();
-        
-        $localEv = [];
-        foreach ($org_id as $key => $value) {
-          $localEv['within'][$value->id] = Event::with('organization')
-            ->where('organization_id', $value->organization_id)
-            ->where('event_type_id', $kind)
-            ->where('category', 'within')
-            ->get()
-            ->toArray();
-        }
-        
-        $localEv['personal'] = PersonalEvent::with('organization')
-          ->where('event_type_id', $kind)
-          ->where('user_id', Auth::id() )
-          ->where('category', 'personal')
-          ->get()
-          ->toArray();
-
-        return $localEv;
-      }
+  
     }
 
     /**
@@ -351,6 +330,38 @@ class EventController extends Controller
       }
     }
 
+ public function dlv() {
+   dd('ambot');
+   return view('local_events') ->with([
+      'title'      => $this->list[$id],
+      'events'     => $events,
+      'eventType'  => $id
+    ]);
+
+     if ($kind == 2) {
+        $org_id = OrganizationGroup::where('user_id', Auth::id() )
+        ->get();
+        
+        $events = [];
+        foreach ($org_id as $key => $value) {
+          //for within organization events
+          $events['within'][$value->id] = Event::with('organization')
+            ->where('organization_id', $value->organization_id)
+            ->where('event_type_id', $kind)
+            ->where('category', 'within')
+            ->get()
+            ->toArray();
+          }
+          
+        $events['personal'] = PersonalEvent::where('event_type_id', $kind)
+        //for personal events        
+        ->where('user_id', Auth::id() )
+        ->where('category', 'personal')
+        ->get()
+        ->toArray();
+        
+    }
+ }
     /**
      * Match the current month with the given month
      *
@@ -417,4 +428,5 @@ class EventController extends Controller
       }
       return false;
     }
+
 }

@@ -8,7 +8,7 @@
   <link href="{{ asset('css/dataTables.bootstrap.css') }}?v=1" rel="stylesheet">
   <link href="{{ asset('css/all-themes.css') }}" rel="stylesheet">
 @endsection
-
+ 
 @section('content') 
   <section class="content">
     <div class="container-fluid">
@@ -51,15 +51,17 @@
                       <th>Declined Attendance</th>
                     </thead>
                     <tbody>
-                      @foreach ($events as $key => $event)
-                        <tr data-event="{{ $event->id }}" data-route="{{ route('Event.edit', $event->id) }}" data-action="{{ route('Event.update', $event->id) }}">
-                          <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ $event->title }}</a></td>
-                          <td><button type="submit" class="btn btn-success event-attendance-official" data-target="#modal-attendances" data-toggle="modal">View</button></td>
-                          <td><button type="submit" class="btn btn-success event-attendance-expected" data-target="#modal-attendances"  data-toggle="modal">View</button></td>
-                          <td><button type="submit" class="btn btn-success event-attendance-confirmed" data-target="#modal-attendances" data-toggle="modal">View</button></td>
-                          <td><button type="submit" class="btn btn-success event-attendance-declined" data-target="#modal-attendances"  data-toggle="modal">View</button></td>
-                        </tr>
-                      @endforeach
+                      @foreach ($events as $key => $ev)
+                        @foreach ($ev as $key => $event)
+                          <tr data-event="{{ $event->id }}" data-route="{{ route('Event.edit', $event->id) }}" data-action="{{ route('Event.update', $event->id) }}">
+                            <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ $event->title }}</a></td>
+                            <td><button type="submit" class="btn btn-success event-attendance-official" data-target="#modal-attendances" data-toggle="modal">View</button></td>
+                            <td><button type="submit" class="btn btn-success event-attendance-expected" data-target="#modal-attendances"  data-toggle="modal">View</button></td>
+                            <td><button type="submit" class="btn btn-success event-attendance-confirmed" data-target="#modal-attendances" data-toggle="modal">View</button></td>
+                            <td><button type="submit" class="btn btn-success event-attendance-declined" data-target="#modal-attendances"  data-toggle="modal">View</button></td>
+                          </tr>
+                          @endforeach
+                        @endforeach
                     </tbody>
                   </table>
                 </div> 
@@ -99,6 +101,43 @@
         <div class="modal-footer">
           ...
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-event" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="event" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="event-title">Event Information</h4>
+        </div>
+        <div class="modal-body">
+          <div class="panel-group" id="accordion_1" role="tablist" aria-multiselectable="true">
+            
+            <div class="panel">
+              <div class="panel-heading" role="tab" id="headingOne_1">
+                <h4 class="panel-title">
+                  <a id="modal-event-title" role="button" data-toggle="collapse" data-parent="#accordion_1" href="#collapseOne_1" aria-expanded="false" aria-controls="collapseOne_1" class="collapsed">
+                    Event Title
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseOne_1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne_1" aria-expanded="false" style="height: 0px;">
+                <div class="panel-body">
+                  <p id="modal-event-ptitle">&nbsb;</p>
+                  <p id="modal-event-venue">&nbsb;</p>
+                  <p id="modal-event-description">&nbsb;</p>
+                  <p id="modal-event-organization">&nbsb;</p>
+                  <p id="modal-event-category">&nbsb;</p>
+                </div>
+              </div>
+            </div>
+            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+        </div>
+
       </div>
     </div>
   </div>
