@@ -286,28 +286,7 @@ class EventController extends Controller
         return $events;
       }
 
-      if ($kind == 2) {
-        $org_id = OrganizationGroup::where('user_id', Auth::id() )
-        ->get();
-        
-        $events = [];
-        foreach ($org_id as $key => $value) {
-          $events['within'][$value->id] = Event::with('organization')
-            ->where('organization_id', $value->organization_id)
-            ->where('event_type_id', $kind)
-            ->where('category', 'within')
-            ->get()
-            ->toArray();
-          }
-          
-          $events['personal'] = PersonalEvent::where('event_type_id', $kind)
-          ->where('user_id', Auth::id() )
-          ->where('category', 'personal')
-          ->get()
-          ->toArray();
-          // d($events); exit;
-          return $events;
-      }
+  
     }
 
     /**
@@ -351,6 +330,38 @@ class EventController extends Controller
       }
     }
 
+ public function dlv() {
+   dd('ambot');
+   return view('local_events') ->with([
+      'title'      => $this->list[$id],
+      'events'     => $events,
+      'eventType'  => $id
+    ]);
+
+     if ($kind == 2) {
+        $org_id = OrganizationGroup::where('user_id', Auth::id() )
+        ->get();
+        
+        $events = [];
+        foreach ($org_id as $key => $value) {
+          //for within organization events
+          $events['within'][$value->id] = Event::with('organization')
+            ->where('organization_id', $value->organization_id)
+            ->where('event_type_id', $kind)
+            ->where('category', 'within')
+            ->get()
+            ->toArray();
+          }
+          
+        $events['personal'] = PersonalEvent::where('event_type_id', $kind)
+        //for personal events        
+        ->where('user_id', Auth::id() )
+        ->where('category', 'personal')
+        ->get()
+        ->toArray();
+        
+    }
+ }
     /**
      * Match the current month with the given month
      *
@@ -417,4 +428,5 @@ class EventController extends Controller
       }
       return false;
     }
+
 }

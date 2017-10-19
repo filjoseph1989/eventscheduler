@@ -85,11 +85,11 @@
               <ul class="ml-menu"> 
                 @if( Auth::user()->user_type_id == 3)
                   <li><a href="{{ route('Event.show', 0) }}"><span>All Events</span></a></li>
-                @elseif( Auth::user()->user_type_id == 1 || Auth::user()->user_type_id == 2 )
+                @elseif( Auth::user()->user_type_id != 3 )
                   <li><a href="{{ route('Event.show', 0) }}"><span>My Organization Events</span></a></li>                
                 @endif
                 <li><a href="{{ route('Event.show', 1) }}"> <span>Official</span></a></li>
-                <li><a href="{{ route('Event.show', 2) }}"> <span>Local</span></span></a></li>
+                <li><a href="{{ route('event.dlv') }}"> <span>Local</span></a></li>
               </ul> 
             </li>
             @if (Auth::user()->user_type_id == 3)
