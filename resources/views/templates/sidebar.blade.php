@@ -89,7 +89,7 @@
                   <li><a href="{{ route('Event.show', 0) }}"><span>My Organization Events</span></a></li>                
                 @endif
                 <li><a href="{{ route('Event.show', 1) }}"> <span>Official</span></a></li>
-                <li><a href="{{ route('event.dlv') }}"> <span>Local</span></a></li>
+                <li><a href="{{ route('event.dlv', 2) }}"> <span>Local</span></a></li>
               </ul> 
             </li>
             @if (Auth::user()->user_type_id == 3)

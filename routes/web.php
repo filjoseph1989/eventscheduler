@@ -77,6 +77,6 @@ Route::group(['middleware'=>['auth']], function() {
 
      #additional routes for events user type
     Route::prefix('event')->group(function() { 
-      Route::name('event.dlv')->get('/local-events', 'EventController@dlv');
+      Route::name('event.dlv')->get('/local-events/{id}', 'EventController@dlv');
     });
 });

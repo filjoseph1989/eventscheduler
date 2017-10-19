@@ -75,7 +75,7 @@ class ModalController extends Controller
    * @param  Request $data
    * @return json
    */
-  public function getOrganization(Request $data)
+  public function getOrganization(Request $data) 
   {
     return Organization::find($data->id);
   }

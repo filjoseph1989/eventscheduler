@@ -330,38 +330,34 @@ class EventController extends Controller
       }
     }
 
- public function dlv() {
-   dd('ambot');
-   return view('local_events') ->with([
-      'title'      => $this->list[$id],
-      'events'     => $events,
-      'eventType'  => $id
-    ]);
-
-     if ($kind == 2) {
+    public function dlv($id) {
+      if ($id == 2) {
         $org_id = OrganizationGroup::where('user_id', Auth::id() )
-        ->get();
-        
+          ->get();
+     
         $events = [];
         foreach ($org_id as $key => $value) {
           //for within organization events
           $events['within'][$value->id] = Event::with('organization')
             ->where('organization_id', $value->organization_id)
-            ->where('event_type_id', $kind)
+            ->where('event_type_id', $id)
             ->where('category', 'within')
             ->get()
             ->toArray();
-          }
-          
-        $events['personal'] = PersonalEvent::where('event_type_id', $kind)
-        //for personal events        
-        ->where('user_id', Auth::id() )
-        ->where('category', 'personal')
-        ->get()
-        ->toArray();
+        }
         
+        $events['personal'] = PersonalEvent::where('event_type_id', $id)
+          ->where('user_id', Auth::id() )
+          ->where('category', 'personal')
+          ->get()
+          ->toArray();
+
+        return view('local_events') ->with([
+            'events'     => $events,
+          ]);
+        }
     }
- }
+
     /**
      * Match the current month with the given month
      *

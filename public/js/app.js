@@ -223,7 +223,7 @@
       $('#modal-edit-course').html(course);
       $('#modal-edit-user-account').html(user_type);
 
-      $('#modal-edit-user-form').attr('action', '/User/'+data.user.id);
+      $('#modal-edit-user-form').attr('action', '/User/'+data.user.id); 
     })
   });
 
