@@ -42,9 +42,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                      <?php if (count($events['within']) > 0): ?>
-                        <?php foreach ($events['within'] as $key => $localEvents): ?>
-                          <?php foreach ($localEvents as $key => $event): ?>
+                      @if (count($events['within']) > 0)
+                        @foreach ($events['within'] as $key => $localEvents)
+                          @foreach ($localEvents as $key => $event)
                             <?php $event = (object)$event; ?>
                             <tr>
                               <td>{{ $event->title }}</td>
@@ -53,12 +53,12 @@
                               <td>{{ $event->date_end }}</td>
                               <td>{{ $event->status }}</td>
                             </tr>
-                          <?php endforeach; ?>
-                        <?php endforeach; ?>
-                      <?php endif; ?>
+                          @endforeach
+                        @endforeach
+                      @endif
 
-                      <?php if ($events['personal']): ?>
-                        <?php foreach ($events['personal'] as $key => $event): ?>
+                      @if (count($events['personal']) > 0)
+                        @foreach ($events['personal'] as $key => $event)
                           <?php $event = (object)$event; ?>
                           <tr>
                             <td>{{ $event->title }}</td>
@@ -67,8 +67,8 @@
                             <td>{{ $event->date_end }}</td>
                             <td>Upcomming</td>
                           </tr>
-                        <?php endforeach; ?>
-                      <?php endif; ?>
+                        @endforeach
+                      @endif
                     </tbody>
                     <tfoot>
                         <tr>
