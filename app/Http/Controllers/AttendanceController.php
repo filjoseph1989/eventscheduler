@@ -29,6 +29,14 @@ class AttendanceController extends Controller
     private $theme = 'theme-teal';
 
     /**
+     * Build instance of a class
+     */
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
+
+    /**
      * Display the members attendance to different events.
      *
      * @return \Illuminate\Http\Response
@@ -58,7 +66,7 @@ class AttendanceController extends Controller
        */
       $events[] = self::getEventsWithOrganization($id);
     //   d( $events ); exit;
- 
+
       // get all user's organization for the dropdown pull right menu of local within orgs in attendance blade
       $user_orgs = self::getUserOrgs(Auth::user()->id);  //{{--  magwork na ni pag naa nay auth  --}}
 

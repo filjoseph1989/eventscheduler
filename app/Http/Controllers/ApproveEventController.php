@@ -25,6 +25,14 @@ use App\Models\User;
 class ApproveEventController extends Controller
 {
     /**
+     * create an instance
+     */
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

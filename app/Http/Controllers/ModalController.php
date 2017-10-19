@@ -21,12 +21,13 @@ use App\Models\OrganizationGroup;
  */
 class ModalController extends Controller
 {
-  /**
-   * [__construct description]
-   */
-  public function __construct()
-  {
-  }
+   /**
+    * Build instance of a class
+    */
+   public function __construct()
+   {
+     $this->middleware('auth');
+   }
 
   /**
    * Return the information of the user
@@ -66,7 +67,7 @@ class ModalController extends Controller
    */
   public function getPosition(Request $data)
   {
-    return Position::find($data->id); 
+    return Position::find($data->id);
   }
 
   /**
@@ -75,7 +76,7 @@ class ModalController extends Controller
    * @param  Request $data
    * @return json
    */
-  public function getOrganization(Request $data) 
+  public function getOrganization(Request $data)
   {
     return Organization::find($data->id);
   }

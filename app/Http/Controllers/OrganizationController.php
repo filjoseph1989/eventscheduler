@@ -21,6 +21,15 @@ use App\Models\OrganizationHeadGroup;
 class OrganizationController extends Controller
 {
     use CommonMethodTrait;
+
+    /**
+     * Build instance of a class
+     */
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -32,7 +41,7 @@ class OrganizationController extends Controller
           ->where('position_id', 3)
           ->with('user')
           ->get();
-    
+
         return view('organization_list')->with([
           'organizations' => $organizations,
           'helper'        => $helper,
@@ -123,7 +132,7 @@ class OrganizationController extends Controller
       return view('organization_list')->with([
         'organizations' => $organizations,
         'helper'        => $helper,
-      ]); 
+      ]);
     }
     /**
      * Display the specified resource.

@@ -37,11 +37,11 @@ class UserController extends Controller
     use ValidationTrait, CommonMethodTrait;
 
     /**
-     * Initial instance of the class
+     * Build instance of a class
      */
     public function __construct()
     {
-
+      $this->middleware('auth');
     }
 
     /**
@@ -60,7 +60,7 @@ class UserController extends Controller
           ->with('organization')
           ->with('position')
           ->where('organization_id', $org_id[0]->organization_id)
-          ->get(); 
+          ->get();
         $users[] = $org_grp;
       } else{
         $users[] = User::with([
@@ -123,8 +123,8 @@ class UserController extends Controller
           $result = User::create($user);
 
           if( $result->wasRecentlyCreated ){
-            $userCreated = true;  
-          } 
+            $userCreated = true;
+          }
 
           if (isset($user['organization_id'])) {
             # Get the user created ID
@@ -217,7 +217,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) 
+    public function update(Request $request, $id)
     {
       $user = User::find($id);
 
@@ -375,7 +375,7 @@ class UserController extends Controller
 
     private function positionIsTaken(&$user)
     {
-            
+
       $count = OrganizationGroup::where('position_id', $user['position_id'])
         ->where('organization_id', self::getOrganizations())
         ->get()
@@ -403,12 +403,12 @@ class UserController extends Controller
             Mail::to($user->email)->send(new EmailNotification($request));
 
             $user->save();
-            return back()->with('status_warning', 'successfully changed password');            
+            return back()->with('status_warning', 'successfully changed password');
           } else {
             return back()->with('status_warning', 'new password and confirm password doesn\'t match');
           }
       } else {
-            return back()->with('status_warning', 'old password is incorrect');        
+            return back()->with('status_warning', 'old password is incorrect');
       }
     }
 
@@ -416,7 +416,7 @@ class UserController extends Controller
       $this->validate($request, [
         'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        
+
         # Get image, rename and save to images folder
         $imageName = time().'.'.$request->image->getClientOriginalExtension();
         $request->image->move(public_path('img/profile'), $imageName);
