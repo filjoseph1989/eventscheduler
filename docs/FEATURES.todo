@@ -39,11 +39,41 @@ DISPLAYS AND FUNCTIONALITIES:
                         ☐ hash entered password at the database 
                         ☐ SYSTEM will send PASSWORD to the ORG HEAD's email
                     ☐ University Organizations:
-                        ☐ org title is link to modal view of the org's INFORMATION:
-                        ☐ 
+                        ☐ org name is link to modal view of the org's INFORMATION:
+                            ☐ ORG TITLE
+                            ☐ ACRONYM
+                            ☐ DESCRIPTION
+                            ☐ URL
+                            ☐ ANNIVERSARY
+                            ☐ OFFICIAL EVENTS button
+                            ☐ ORGANIZATION LOCAL EVENTS button
+                            ☐ ORGANIZATION MEMBERS button
                 ☐ Events:
+                    ☐ Create Event
+                        ☐ FORM
+                            ☐ fields
+                            ☐ SAVE button
+                            ☐ REQUEST EVENT APPROVAL button 
+                                ☐ (display if the category is university or organization)
+                                ☐ if successful, 
+                                    ☐ automatic save event to database with status->requested
+                        ☐ if successful CREATE EVENT, add to database the new event for the right table
+                            ☐ personal event table
+                            ☐ event table
+                        ☐ 
+                    ☐ List of Events:
+                        ☐ All Events (if not osa, this would be My Organization Events)
+                        ☐ Official
+                        ☐ Local
+                    ☐ APPROVE EVENTS
+                    ☐ CALENDAR:
+                        ☐ Official
+                        ☐ Local
                 ☐ Attendances:
+                    ☐ Official Events
+                    ☐ Local Events
     ☐ HOMEPAGE FUNCTIONALITIES:
+
 ☐ ORG HEAD:
 
 ☐ ORG USER:
