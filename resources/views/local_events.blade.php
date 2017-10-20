@@ -55,6 +55,8 @@
                             </tr>
                           @endforeach
                         @endforeach
+                      @else
+                        NO DATA
                       @endif
 
                       @if (count($events['personal']) > 0)
