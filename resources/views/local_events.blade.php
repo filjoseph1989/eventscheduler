@@ -42,23 +42,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                      @if (count($events['within']) > 0)
-                        @foreach ($events['within'] as $key => $localEvents)
-                          @foreach ($localEvents as $key => $event)
-                            <?php $event = (object)$event; ?>
-                            <tr>
-                              <td>{{ $event->title }}</td>
-                              <td><?php $event->organization = (object)$event->organization; ?>{{ $event->organization->name }}</td>
-                              <td>{{ $event->date_start }}</td>
-                              <td>{{ $event->date_end }}</td>
-                              <td>{{ $event->status }}</td>
-                            </tr>
+                        @if($events['within'] == [])
+                           {{--  <tr>
+                              <td>NO DATA</td>
+                              <td>NO DATA</td>
+                              <td>NO DATA</td>
+                              <td>NO DATA</td>
+                              <td>NO DATA</td>
+                            </tr>  --}}
+                        @elseif (count($events['within']) > 0)
+                          @foreach ($events['within'] as $key => $localEvents)
+                            @foreach ($localEvents as $key => $event)
+                              <?php $event = (object)$event; ?>
+                              <tr>
+                                <td>{{ $event->title }}</td>
+                                <td><?php $event->organization = (object)$event->organization; ?>{{ $event->organization->name }}</td>
+                                <td>{{ $event->date_start }}</td>
+                                <td>{{ $event->date_end }}</td>
+                                <td>{{ $event->status }}</td>
+                              </tr>
+                            @endforeach
                           @endforeach
-                        @endforeach
-                      @else
-                        NO DATA
-                      @endif
-
+                        @endif
                       @if (count($events['personal']) > 0)
                         @foreach ($events['personal'] as $key => $event)
                           <?php $event = (object)$event; ?>

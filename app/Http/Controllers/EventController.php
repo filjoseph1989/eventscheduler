@@ -233,9 +233,20 @@ class EventController extends Controller
     {
       if ($id == 2) {
         $org_id = OrganizationGroup::where('user_id', Auth::id())
-          ->get();
-
+        ->get();
+        
         $events = [];
+        
+        if( $org_id->isEmpty() ){
+          // d($org_id); exit;
+          $events['within'] = [];
+          // d( $events['within'] == [] ); exit; 
+          $events['personal'] = PersonalEvent::where('event_type_id', $id)
+          ->where('user_id', Auth::id())
+          ->where('category', 'personal')
+          ->get()
+          ->toArray();
+        } 
 
         foreach ($org_id as $key => $value) {
           $events['within'][$value->id] = Event::with('organization')
@@ -244,6 +255,7 @@ class EventController extends Controller
             ->where('category', 'within')
             ->get()
             ->toArray();
+            d($events['within']); exit;
         }
 
         $events['personal'] = PersonalEvent::where('event_type_id', $id)
@@ -251,7 +263,6 @@ class EventController extends Controller
           ->where('category', 'personal')
           ->get()
           ->toArray();
-
         return view('local_events')
           ->with([
             'events' => $events,
