@@ -27,8 +27,12 @@
 
 ✔ fixed the display of official events where events displayed has category of university or organization
 
-☐ fix the display of local events
+✔ fix the display of local events
 ☐  self::getDateComparison($events); //fix later, not functioning for local events 
+☐ make the title of local events modal to its details
+
 
 ☐ make profile picture dynamic to display pro pic of those users who are assigned to
 ☐ from login page, then logged in, then pressed back button, must not go back to login page 
+
+☐ 
