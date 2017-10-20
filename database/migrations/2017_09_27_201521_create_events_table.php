@@ -27,7 +27,7 @@ class CreateEventsTable extends Migration
             $table->date('date_end')->nullable();
             $table->time('date_start_time')->default('00:00:00');
             $table->time('date_end_time')->nullable()->default('00:00:00');
-            $table->enum('whole_day', ['true', 'false'])->default('false');
+            $table->enum('whole_day', ['true', 'false'])->default('false'); ///for the purpose of a calendar's functionality
             $table->enum('status', ['new', 'requested', 'upcoming', 'on-going', 'canceled', 'archived'])->default('new');
             $table->enum('is_approve', ['true', 'false'])->default('false');
             $table->enum('twitter', ['on','off'])->default('off');

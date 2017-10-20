@@ -40,6 +40,11 @@ class EventController extends Controller
       'false' => 'Unapproved Events'
     ];
 
+    private $date_start;
+    private $date_end;
+    private $time_start;
+    private $time_end;
+
     private $theme = 'theme-teal';
 
     /**
@@ -95,12 +100,17 @@ class EventController extends Controller
       $org_id = OrganizationGroup::where('user_id', Auth::id())
         ->where('position_id', 3)
         ->get();
-
+ 
       if ($request->category == "university" || $request->category == "organization") {
         $event_type_id = 1;
       } elseif ($request->category == "within" || $request->category == "personal") {
         $event_type_id = 2;
       }
+
+      $this->date_start = date('Y-m-d', strtotime($request->date_start));
+      $this->date_end   = date('Y-m-d', strtotime($request->date_end));
+      $this->time_start = date('H: i: s', strtotime($request->date_start_time));
+      $this->time_end   = date('H: i: s', strtotime($request->date_end_time));
 
       if( $request->category != "personal" ) {
         $event = Event::with('organization')
@@ -113,11 +123,12 @@ class EventController extends Controller
             "title"           => $request->title,
             "description"     => $request->description,
             "venue"           => $request->venue,
-            "date_start"      => date('Y-m-d', strtotime($request->date_start)),
-            "date_end"        => date('Y-m-d', strtotime($request->date_end)),
-            "date_start_time" => date('H:i:s', strtotime($request->date_start_time)),
-            "date_end_time"   => date('H:i:s', strtotime($request->date_end_time)),
-            "whole_day"       => ($request->whole_day == "1") ? 'true': 'false',
+            "date_start"      => $this->date_start,
+            "date_end"        => $this->date_end,
+            "date_start_time" => $this->time_start,
+            "date_end_time"   => $this->time_end,
+            // "whole_day"       => ($request->whole_day == "1") ? 'true': 'false',
+            "whole_day"       => self::wholeDayOrNot(),
           ]);
       } else {
         $event = PersonalEvent::with('organization')
@@ -133,7 +144,7 @@ class EventController extends Controller
             "date_end"        => date('Y-m-d', strtotime($request->date_end)),
             "date_start_time" => date('H:i:s', strtotime($request->date_start_time)),
             "date_end_time"   => date('H:i:s', strtotime($request->date_end_time)),
-            "whole_day"       => ($request->whole_day == "1") ? 'true': 'false',
+            "whole_day"       => self::wholeDayOrNot(),
           ]);
       }
 
@@ -379,7 +390,6 @@ class EventController extends Controller
       if (self::matchYear($year) and self::matchMonth($month) and self::matchDay($day)) {
         return true;
       }
-
       return false;
     }
 
@@ -431,4 +441,49 @@ class EventController extends Controller
       return false;
     }
 
+    private function wholeDayOrNot(){
+      list($year1, $month1, $day1) = explode('-', $this->date_start);
+      list($year2, $month2, $day2) = explode('-', $this->date_end);
+      list($hr1, $sec1, $milisec1) = explode(':', $this->time_start);
+      list($hr2, $sec2, $milisec2) = explode(':', $this->time_end);
+
+      if( self::matchDates( $year1, $year2, $month1, $month2, $day1, $day2) ){
+        if( self::matchTimes($hr1, $sec1, $milisec1, $hr2, $sec2, $milisec2) ) {
+          return false;
+        }
+        else {
+          if( self::twelveHoursOrMore($hr1, $sec1, $milisec1, $hr2, $sec2, $milisec2) ) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      } else {
+        return false;
+      }
+    }
+
+    private function matchDates($ye1, $ye2, $mon1, $mon2, $d1, $d2){
+      if( ($ye1 == $ye2) && ($mon1 == $mon2) && ($d1 == $d2) ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    private function matchTimes($h1, $se1, $milise1, $h2, $se2, $milise2){
+      if( ($h1 == $h2) && ($se1 == $se2) && ($milise1 == $milise2) ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    private function twelveHoursOrMore($h1, $se1, $milise1, $h2, $se2, $milise2){
+       if( ($h1 - $h2) >= 12 && ($se1 == $se2) && ($milise1 == $milise2) ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
 }
