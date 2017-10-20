@@ -1,0 +1,52 @@
+DISPLAYS AND FUNCTIONALITIES:
+
+☐ OSA:
+    ☐ PROFILE FUNCTIONALITIES:
+        ☐ MY PROFILE CARD:
+            ✔ PROFILE PICTURE (CHANGEABLE, DYNAMIC FOR EACH USER)
+            ☐ NAME (EDITABLE)
+            ☐ EMAIL (EDITABLE)
+            ☐ MOBILE NUMBER (EDITABLE)
+            ☐ COURSE (NOT EDITABLE, HIDDEN)
+            ☐ POSITION (NOT EDITABLE)
+            ☐ OFFICE (HIDDEN, NOT EDITABLE, ONE OR MANY, SET THE PRIMARY(ADD TOOLTIP FOR THE DEFINITION OF PRIMARY))
+            ☐ ACCOUNT TYPE (NOT EDITABLE)
+            ☐ FACEBOOK (EDITABLE)
+            ☐ TWITTER (EDITABLE)
+            ☐ STATUS (NOT EDITABLE)
+            ☐ MEMBER SINCE ((CREATED_AT field) NOT EDITABLE)
+        ☐ CHANGE PASSWORD CARD:
+            ☐ if OLD PASSWORD DOESN'T MATCH, prompt error message
+            ☐ if NEW PASSWORD and CONFIRM PASSWORD doesn't match, prompt error message
+            ☐ change password successful: 
+                ☐ hash entered password at the database
+                ☐ user will receive email of his/her new password 
+    ☐ SIDE-BAR FUNTIONALITIES:
+        ✔ functional HOME LOGO button
+        ☐ USER "info-container":
+            ✔ PROFILE PICTURE changes after an upload at User Profile Page
+            ✔ USER's full name
+            ✔ USER's email
+            ✔ USER's user account type
+            ☐ MAIN NAVIGATION:
+                ☐ functional Home BAR button 
+                ☐ All System Users:
+                ☐ Organizations:
+                    ☐ Add New:
+                        ☐ ORGANIZATION will be added to the organization table in the database
+                        ☐ ORG HEAD will be added to the users table with user_type = 1
+                        ☐ ORGANIZATION and ORG HEAD will be added to the organization_group table
+                        ☐ hash entered password at the database 
+                        ☐ SYSTEM will send PASSWORD to the ORG HEAD's email
+                    ☐ University Organizations:
+                        ☐ org title is link to modal view of the org's INFORMATION:
+                        ☐ 
+                ☐ Events:
+                ☐ Attendances:
+    ☐ HOMEPAGE FUNCTIONALITIES:
+☐ ORG HEAD:
+
+☐ ORG USER:
+    ☐ org member:
+    ☐ org adviser:
+    ☐ org co-adviser:
