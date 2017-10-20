@@ -127,7 +127,6 @@ class EventController extends Controller
             "date_end"        => $this->date_end,
             "date_start_time" => $this->time_start,
             "date_end_time"   => $this->time_end,
-            // "whole_day"       => ($request->whole_day == "1") ? 'true': 'false',
             "whole_day"       => self::wholeDayOrNot(),
           ]);
       } else {
@@ -140,10 +139,10 @@ class EventController extends Controller
             "title"           => $request->title,
             "description"     => $request->description,
             "venue"           => $request->venue,
-            "date_start"      => date('Y-m-d', strtotime($request->date_start)),
-            "date_end"        => date('Y-m-d', strtotime($request->date_end)),
-            "date_start_time" => date('H:i:s', strtotime($request->date_start_time)),
-            "date_end_time"   => date('H:i:s', strtotime($request->date_end_time)),
+            "date_start"      => $this->date_start,
+            "date_end"        => $this->date_end,
+            "date_start_time" => $this->time_start,
+            "date_end_time"   => $this->time_end,
             "whole_day"       => self::wholeDayOrNot(),
           ]);
       }
