@@ -94,7 +94,7 @@
                         </tr>
                         <tr>
                           <td><strong>Account Type: </strong></td>
-                          <td id="user_type_id"><a href="#">{{ $account }}</a></td>
+                          <td id="user_type_id"><a href="#">{{ strtoupper(session('user_account')) }}</a></td>
                         </tr>
                         <tr>
                           <td><strong>Facebook: </strong></td>

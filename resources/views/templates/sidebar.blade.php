@@ -14,7 +14,7 @@
           {{ Auth::user()->full_name }}
         </div>
         <div class="email">{{ Auth::user()->email }}</div>
-        <div class="email">{{ session('user_account') }}</div>
+        <div class="email">{{ strtoupper(session('user_account')) }}</div>
 
         <div class="btn-group user-helper-dropdown">
           <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
