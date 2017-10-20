@@ -20,7 +20,7 @@ class CreateEventsTable extends Migration
             $table->integer('event_type_id')->unsigned()->index();
             $table->integer('semester_id')->unsigned()->index();
             $table->enum('category', ['within','personal','university','organization'])->nullable();
-            $table->string('title');
+            $table->string('title'); //this is not unique because there are events with same titles at both semesters
             $table->text('description');
             $table->string('venue');
             $table->date('date_start');
