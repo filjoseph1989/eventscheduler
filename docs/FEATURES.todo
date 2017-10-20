@@ -53,7 +53,7 @@ DISPLAYS AND FUNCTIONALITIES:
                         ☐ FORM
                             ☐ fields
                             ☐ SAVE button
-                            ☐ REQUEST EVENT APPROVAL button 
+                            ☐ (REQUEST EVENT APPROVAL button (if ORG HEAD) ) 
                                 ☐ (display if the category is university or organization)
                                 ☐ if successful, 
                                     ☐ automatic save event to database with status->requested
@@ -63,9 +63,34 @@ DISPLAYS AND FUNCTIONALITIES:
                         ☐ 
                     ☐ List of Events:
                         ☐ All Events (if not osa, this would be My Organization Events)
-                        ☐ Official
-                        ☐ Local
-                    ☐ APPROVE EVENTS
+                            ☐ EVENT title is link to modal view of the event's INFORMATION:
+                                ☐ panel for event details
+                                ☐ (if org head, panel for CONFIGURE SOCIAL NOTIFICATION) 
+                                ☐ (if org head, panel for ADDITIONAL MESSAGE) 
+                                ☐ ATTEND button
+                                ☐ (display REQUEST APPROVAL button, if org user && event->is_approve == false)
+                        ☐ Official:
+                            ☐ EVENT title is link to modal view of the event's INFORMATION:
+                                ☐ panel for event details
+                                ☐ (if org head, panel for CONFIGURE SOCIAL NOTIFICATION) 
+                                ☐ (if org head, panel for ADDITIONAL MESSAGE) 
+                                ☐ ATTEND button
+                                ☐ (display REQUEST APPROVAL button, if org user && event->is_approve == false)
+                        ☐ Local:
+                            ☐ CARD for WITHIN ORGANICATION EVENTS:
+                                ☐ EVENT title is link to modal view of the event's INFORMATION:
+                                    ☐ panel for event details
+                                    ☐ (if org head, panel for CONFIGURE SOCIAL NOTIFICATION) 
+                                    ☐ (if org head, panel for ADDITIONAL MESSAGE) 
+                                    ☐ ATTEND button
+                            ☐ CARD for PERSONAL EVENTS
+                                ☐ EVENT title is link to modal view of the event's INFORMATION:
+                                    ☐ panel for event details
+                                    ☐ (if org head, panel for CONFIGURE SOCIAL NOTIFICATION) 
+                                    ☐ (if org head, panel for ADDITIONAL MESSAGE) 
+                                    ☐ ATTEND button
+                    ☐ APPROVE EVENTS (if osa only):
+
                     ☐ CALENDAR:
                         ☐ Official
                         ☐ Local
