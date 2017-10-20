@@ -2,7 +2,7 @@ DISPLAYS AND FUNCTIONALITIES:
 
 ☐ OSA:
     ☐ PROFILE FUNCTIONALITIES:
-        ☐ MY PROFILE CARD:
+        ☐ MY PROFILE CARD (COMPLETED AND CORRRECTLY LABELED):
             ✔ PROFILE PICTURE (CHANGEABLE, DYNAMIC FOR EACH USER)
             ☐ NAME (EDITABLE)
             ☐ EMAIL (EDITABLE)
@@ -15,7 +15,7 @@ DISPLAYS AND FUNCTIONALITIES:
             ☐ TWITTER (EDITABLE)
             ☐ STATUS (NOT EDITABLE)
             ☐ MEMBER SINCE ((CREATED_AT field) NOT EDITABLE)
-        ☐ CHANGE PASSWORD CARD:
+        ☐ CHANGE PASSWORD CARD (COMPLETED AND CORRRECTLY LABELED):
             ☐ if OLD PASSWORD DOESN'T MATCH, prompt error message
             ☐ if NEW PASSWORD and CONFIRM PASSWORD doesn't match, prompt error message
             ☐ change password successful: 
@@ -32,13 +32,13 @@ DISPLAYS AND FUNCTIONALITIES:
                 ☐ functional Home BAR button 
                 ☐ All System Users:
                 ☐ Organizations:
-                    ☐ Add New:
+                    ☐ Add New (CARD IS CORRRECTLY LABELED AND COMPLETED FUNCTIONALITY):
                         ☐ ORGANIZATION will be added to the organization table in the database
                         ☐ ORG HEAD will be added to the users table with user_type = 1
                         ☐ ORGANIZATION and ORG HEAD will be added to the organization_group table
                         ☐ hash entered password at the database 
                         ☐ SYSTEM will send PASSWORD to the ORG HEAD's email
-                    ☐ University Organizations:
+                    ☐ University Organizations (CARD IS CORRRECTLY LABELED AND COMPLETED FUNCTIONALITY):
                         ☐ org name is link to modal view of the org's INFORMATION:
                             ☐ ORG TITLE
                             ☐ ACRONYM
@@ -50,7 +50,7 @@ DISPLAYS AND FUNCTIONALITIES:
                             ☐ ORGANIZATION MEMBERS button
                 ☐ Events:
                     ☐ Create Event
-                        ☐ FORM
+                        ☐ FORM (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
                             ☐ fields
                             ☐ SAVE button
                             ☐ (REQUEST EVENT APPROVAL button (if ORG HEAD) ) 
@@ -60,16 +60,15 @@ DISPLAYS AND FUNCTIONALITIES:
                         ☐ if successful CREATE EVENT, add to database the new event for the right table
                             ☐ personal event table
                             ☐ event table
-                        ☐ 
-                    ☐ List of Events:
-                        ☐ All Events (if not osa, this would be My Organization Events)
+                    ☐ List of Events (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
+                        ☐ All Events (if not osa, this would be My Organization Events) (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
                             ☐ EVENT title is link to modal view of the event's INFORMATION:
                                 ☐ panel for event details
                                 ☐ (if org head, panel for CONFIGURE SOCIAL NOTIFICATION) 
                                 ☐ (if org head, panel for ADDITIONAL MESSAGE) 
                                 ☐ ATTEND button
                                 ☐ (display REQUEST APPROVAL button, if org user && event->is_approve == false)
-                        ☐ Official:
+                        ☐ Official (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
                             ☐ EVENT title is link to modal view of the event's INFORMATION:
                                 ☐ panel for event details
                                 ☐ (if org head, panel for CONFIGURE SOCIAL NOTIFICATION) 
@@ -77,23 +76,29 @@ DISPLAYS AND FUNCTIONALITIES:
                                 ☐ ATTEND button
                                 ☐ (display REQUEST APPROVAL button, if org user && event->is_approve == false)
                         ☐ Local:
-                            ☐ CARD for WITHIN ORGANICATION EVENTS:
+                            ☐ CARD for WITHIN ORGANICATION EVENTS (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
                                 ☐ EVENT title is link to modal view of the event's INFORMATION:
                                     ☐ panel for event details
                                     ☐ (if org head, panel for CONFIGURE SOCIAL NOTIFICATION) 
                                     ☐ (if org head, panel for ADDITIONAL MESSAGE) 
                                     ☐ ATTEND button
-                            ☐ CARD for PERSONAL EVENTS
+                            ☐ CARD for PERSONAL EVENTS (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
                                 ☐ EVENT title is link to modal view of the event's INFORMATION:
                                     ☐ panel for event details
                                     ☐ (if org head, panel for CONFIGURE SOCIAL NOTIFICATION) 
                                     ☐ (if org head, panel for ADDITIONAL MESSAGE) 
                                     ☐ ATTEND button
-                    ☐ APPROVE EVENTS (if osa only):
-
+                    ☐ APPROVE EVENTS (if osa only) (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
+                        ☐ TITLE IS LINK FOR EVENT DETAILS MODAL
+                        ☐ WHEN APPROVE button is clicked:
+                             ☐ the event disappears in the display and 
+                             ☐ $event->status = 'on going' and $event->is_approve = true in the database
                     ☐ CALENDAR:
-                        ☐ Official
-                        ☐ Local
+                        ☐ Official:
+                            (no filtering since osa can access all official events)
+                            ☐ color red for $event->category == 'organization' from events table only
+                        ☐ Personal (if org head or org user, Local Events) 
+                            ☐ color blue for $event->category == 'personal' from personal_events table only
                 ☐ Attendances:
                     ☐ Official Events
                     ☐ Local Events
