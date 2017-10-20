@@ -65,7 +65,7 @@
                             <td>Personal</td>
                             <td>{{ $event->date_start }}</td>
                             <td>{{ $event->date_end }}</td>
-                            <td>Upcomming</td>
+                            <td>Upcoming</td>
                           </tr>
                         @endforeach
                       @endif
