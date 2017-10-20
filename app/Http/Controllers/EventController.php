@@ -109,8 +109,8 @@ class EventController extends Controller
 
       $this->date_start = date('Y-m-d', strtotime($request->date_start));
       $this->date_end   = date('Y-m-d', strtotime($request->date_end));
-      $this->time_start = date('H: i: s', strtotime($request->date_start_time));
-      $this->time_end   = date('H: i: s', strtotime($request->date_end_time));
+      $this->time_start = date('H:i:s', strtotime($request->date_start_time));
+      $this->time_end   = date('H:i:s', strtotime($request->date_end_time));
 
       if( $request->category != "personal" ) {
         $event = Event::with('organization')
@@ -449,17 +449,17 @@ class EventController extends Controller
 
       if( self::matchDates( $year1, $year2, $month1, $month2, $day1, $day2) ){
         if( self::matchTimes($hr1, $sec1, $milisec1, $hr2, $sec2, $milisec2) ) {
-          return false;
+          return 'false';
         }
         else {
-          if( self::twelveHoursOrMore($hr1, $sec1, $milisec1, $hr2, $sec2, $milisec2) ) {
-            return true;
+          if( self::twelveHoursOrMore($this->time_start, $this->time_end) ) {
+            return 'true';
           } else {
-            return false;
+            return 'false';
           }
         }
       } else {
-        return false;
+        return 'true';
       }
     }
 
@@ -479,11 +479,16 @@ class EventController extends Controller
       }
     }
 
-    private function twelveHoursOrMore($h1, $se1, $milise1, $h2, $se2, $milise2){
-       if( ($h1 - $h2) >= 12 && ($se1 == $se2) && ($milise1 == $milise2) ) {
-        return true;
-      } else {
-        return false;
-      }
+    private function twelveHoursOrMore($time1, $time2){
+      $startTime = new DateTime($time1);
+      $endTime = new DateTime($time2);
+      $duration = $time1->diff($time2); //$duration is a DateInterval object
+      list($hr, $sec, $milisec) = explode(':', $duration);
+        if( ($hr >= 12) && ($sec >= 0) && ($milisec >= 0) ){
+          return true;
+        }
+        else {
+          return false;
+        } 
     }
 }
