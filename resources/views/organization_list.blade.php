@@ -51,7 +51,7 @@
                               <td>
                                 <a href="#" class="organization-list-name" data-target="#org-profile" data-toggle="modal">
                                   {{ $value->organization->name }} 
-                                  @if( $value->user->id == Auth::id() )
+                                  @if( $value->user->id == Auth::id() && Auth::user()->user_type_id != 3)
                                     (I am the head)
                                   @endif
                                 </a>
@@ -109,7 +109,7 @@
             </tbody>
           </table>
           <button type="button" class="btn btn-success" name="button">Official Events</button>
-          <button type="button" class="btn btn-success" name="button">Organization Private Events</button>
+          <button type="button" class="btn btn-success" name="button">Organization Local Events</button>
         </div>
         <div class="modal-footer">
           ...
