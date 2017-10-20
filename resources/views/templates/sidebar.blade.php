@@ -3,7 +3,7 @@
     <div class="user-info">
       <div class="image">
         @if( Auth::user()->picture != "profile.png" )
-          <img src="{{ asset("img/profile/Auth::user()->picture ") }}" width="48" height="48" alt="Profile Picture"> 
+          <img src="{{ asset("img/profile"."/".Auth::user()->picture) }}" width="48" height="48" alt="Profile Picture"> 
         @else
           <img src="{{ asset("img/profile/profile.png ") }}" width="48" height="48" alt="Profile Picture"> 
         @endif
