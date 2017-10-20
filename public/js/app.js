@@ -13,7 +13,7 @@
  * @author Fil <filjoseph22@gmail.com>
  * @author Liz <janicalizdeguzman@gmail.com>
  * @since 0.1
- * @version 2.9
+ * @version 2.10
  * @date 09-30-2017
  * @date 10-15-2017 - last updated
  */
@@ -38,7 +38,7 @@
     var $url = $(this).parents('tr').data('route');
     action   = $(this).parents('tr').data('action');
 
-    // Make http request for editing the event 
+    // Make http request for editing the event
     axios_get($url, function(data) {
       data.forEach(function(currentValue, index, arr) {
         $('#modal-event-title').html(currentValue.title);
@@ -399,6 +399,16 @@
 
     // Remove field
     $(fieldID).remove();
+  });
+
+  /**
+   * [description]
+   * @return {[type]} [description]
+   */
+  $(document).on('click', '#facebook .lever.switch-col-teal', function() {
+    var facebook = $('#facebook [name="facebook"]').val();
+    var t =  $('#facebook [name="facebook"]').prop('checked');
+    console.log(facebook, t);
   });
 
   /**

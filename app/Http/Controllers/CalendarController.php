@@ -20,40 +20,17 @@ use App\Models\Event;
 class CalendarController extends Controller
 {
     use CalendarTrait;
-    
+
     const ALL_DAY_REGEX = '/^\d{4}-\d\d-\d\d$/'; // matches strings like "2013-12-29";
 
     private $list = ['', 'official', 'personal'];
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Build instance of a class
      */
-    public function index()
+    public function __construct()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+      $this->middleware('auth');
     }
 
     /**
@@ -71,7 +48,7 @@ class CalendarController extends Controller
           'whole_day'
         )->where('event_type_id', $id)
          ->where('is_approve', 'true')
-          ->get();
+         ->get();
 
         $output_arrays = array();
         foreach ($events as $key => $event) {
@@ -84,39 +61,5 @@ class CalendarController extends Controller
             'title'          => $this->list[$id],
             'calendarEvents' => json_encode($output_arrays),
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

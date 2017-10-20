@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-  <section class="content"> 
+  <section class="content">
     <div class="container-fluid">
       <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -77,19 +77,19 @@
                         <th>Approved?</th>
                       @endif
                     </thead>
-                    <tbody> 
-                      @if (! is_null($events)) 
+                    <tbody>
+                      @if (! is_null($events))
                         @foreach ($events as $key => $event)
                           @if ( ! is_null($event) )
                              @foreach ($event as $key => $ev)
                                 <tr data-event="{{ $ev->id }}" data-route="{{ route('Event.edit', $ev->id) }}" data-action="{{ route('Event.update', $ev->id) }}">
                                   <td>
                                     @if (Auth::user()->user_type_id == 1 or Auth::user()->user_type_id == 2)
-                                    <a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($ev->title) }}</a>
+                                      <a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($ev->title) }}</a>
                                     @else
                                     <a href="#" class="">{{ ucwords($ev->title) }}</a>
                                     @endif
-                                  </td> 
+                                  </td>
                                   <td>
                                     <a href="#">{{ $ev->venue }}</a>
                                   </td>
@@ -150,7 +150,7 @@
         </div>
         <div class="modal-body">
           <div class="panel-group" id="accordion_1" role="tablist" aria-multiselectable="true">
-            
+
             <div class="panel">
               <div class="panel-heading" role="tab" id="headingOne_1">
                 <h4 class="panel-title">
@@ -184,16 +184,19 @@
                     <thead>
                       <th>Advertising Options</th>
                       <th colspan="2">Reminders</th> {{-- Issue 4 --}}
-                      @if (Auth::user()->user_type_id != 2)
-                        <th>Audience</th>
-                      @endif
+                      <th>Audience</th>
                     </thead>
                     <tbody>
                       <tr>
                         <td>
                           <div class="demo-switch">
                             <div class="switch" id="facebook">
-                              <label>OFF<input type="checkbox" name="facebook" checked><span class="lever switch-col-teal"></span>ON</label> Facebook
+                              <label>
+                                OFF
+                                <input type="checkbox" name="facebook" checked>
+                                <span class="lever switch-col-teal"></span>
+                                ON
+                              </label> Facebook
                             </div>
                           </div>
                         </td>
@@ -345,7 +348,7 @@
               {{ method_field('PUT') }}
             </form>
           @endif
-          
+
           <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
         </div>
 
@@ -355,12 +358,12 @@
 @endsection
 
 @section('js')
-  <script src="{{ asset('js/admin.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/bootstrap-select.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/jquery.dataTables.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/jquery-datatable.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/bootstrap-select.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/sweetalert.min.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/tooltips-popovers.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/app.js') }}?v=2.9" charset="utf-8"></script>
+  <script src="{{ asset('js/admin.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/jquery.dataTables.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/jquery-datatable.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/sweetalert.min.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/tooltips-popovers.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.10" charset="utf-8"></script>
 @endsection
