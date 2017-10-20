@@ -141,7 +141,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="row clearfix">
+                {{--  <div class="row clearfix">
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group form-float">
                       <div class="form-line focused">
@@ -153,7 +153,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div>  --}}
                 <div class="row clearfix">
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group form-float">
