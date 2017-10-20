@@ -2,7 +2,12 @@
   <aside id="leftsidebar" class="sidebar">
     <div class="user-info">
       <div class="image">
-        <img src="/img/profile/profile.png" width="48" height="48" alt="User">
+        @if( Auth::user()->picture != "profile.png" )
+          <img src="{{ asset("img/profile/Auth::user()->picture ") }}" width="48" height="48" alt="Profile Picture"> 
+        @else
+          <img src="{{ asset("img/profile/profile.png ") }}" width="48" height="48" alt="Profile Picture"> 
+        @endif
+        {{--  <img src="/img/profile/profile.png" width="48" height="48" alt="User">  --}}
       </div>
       <div class="info-container">
         <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -10,6 +15,7 @@
         </div>
         <div class="email">{{ Auth::user()->email }}</div>
         <div class="email">{{ session('user_account') }}</div>
+
         <div class="btn-group user-helper-dropdown">
           <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
           <ul class="dropdown-menu pull-right">
@@ -68,7 +74,7 @@
               <li><a href="{{ route('Organization.myOrganizations') }}"><span>My Organizations</span></a></li>
             @endif
           </ul>
-        </li>
+        </li> 
         <li>
           <a href="javascript:void(0);" class="menu-toggle">
             <i class="material-icons">alarm</i>

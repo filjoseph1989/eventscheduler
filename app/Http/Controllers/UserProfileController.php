@@ -57,23 +57,40 @@ class UserProfileController extends Controller
           'course'            => $cour,
           'account'           => $acc,
           'organizationGroup' => $og,
-          'prof_pic'          => Auth::user()->picture,
+          'prof_pic'          => Auth::user()->picture, 
         ]);
     }
 
     public function update(Request $request, $id)
-    {
-      if($request->has('organization_id') || 
-        $request->has('position_id') ||
-        $request->has('user_type_id') ||
-        $request->has('status') ||
-        $request->has('created_at') ){
-        return back();
+    {  
+      //THE NON-EDITTABLES
+      //if osa, 
+      if( Auth::user()->user_type_id == 3 )
+      {
+        if (
+            $request->has('position_id') ||
+            $request->has('user_type_id') ||
+            $request->has('status') ||
+            $request->has('created_at')
+           ) { return back(); }
+      } 
+      // if user or org-head
+      else
+      {
+        if (
+            $request->has('organization_id') || 
+            $request->has('position_id') ||
+            $request->has('user_type_id') ||
+            $request->has('status') ||
+            $request->has('full_name') ||
+            $request->has('created_at') 
+           ) { return back(); }
       }
 
+      //EDITTABLES
       $user = User::find($id);
-      if ($request->has('full_name')) {
-        $user->full_name = $request->full_name;
+      if ($request->has('email')) {
+        $user->email = $request->email;
         $user->save();
       }
 

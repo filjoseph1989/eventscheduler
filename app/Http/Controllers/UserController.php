@@ -409,7 +409,7 @@ class UserController extends Controller
           }
       } else {
             return back()->with('status_warning', 'old password is incorrect');
-      }
+      } 
     }
 
     public function uploadProfilePic (Request $request) {
