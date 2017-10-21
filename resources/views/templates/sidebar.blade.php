@@ -3,11 +3,10 @@
     <div class="user-info">
       <div class="image">
         @if( Auth::user()->picture != "profile.png" )
-          <img src="{{ asset("img/profile"."/".Auth::user()->picture) }}" width="48" height="48" alt="Profile Picture"> 
+          <img src="{{ asset("img/profile/".Auth::user()->picture) }}" width="48" height="48" alt="Profile Picture">
         @else
-          <img src="{{ asset("img/profile/profile.png ") }}" width="48" height="48" alt="Profile Picture"> 
+          <img src="{{ asset("img/profile/profile.png ") }}" width="48" height="48" alt="Profile Picture">
         @endif
-        {{--  <img src="/img/profile/profile.png" width="48" height="48" alt="User">  --}}
       </div>
       <div class="info-container">
         <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -58,7 +57,7 @@
             @if (Auth::user()->user_type_id == 1)
               <li><a href="{{ route('User.create') }}">Register New Users</a></li>
             @endif
-          </ul> 
+          </ul>
         </li>
         <li>
           <a href="javascript:void(0);" class="menu-toggle">
@@ -74,7 +73,7 @@
               <li><a href="{{ route('Organization.myOrganizations') }}"><span>My Organizations</span></a></li>
             @endif
           </ul>
-        </li> 
+        </li>
         <li>
           <a href="javascript:void(0);" class="menu-toggle">
             <i class="material-icons">alarm</i>
@@ -88,17 +87,17 @@
             @endif
             <li>
               <a href="#" class="menu-toggle"><span>List of Events</span></a>
-              <ul class="ml-menu"> 
+              <ul class="ml-menu">
                 @if( Auth::user()->user_type_id == 3)
                   <li><a href="{{ route('Event.show', 0) }}"><span>All Events</span></a></li>
                 @elseif( Auth::user()->user_type_id == 1 )
-                  <li><a href="{{ route('Event.show', 0) }}"><span>My Primary Organization Events</span></a></li> 
+                  <li><a href="{{ route('Event.show', 0) }}"><span>My Primary Organization Events</span></a></li>
                 @elseif( Auth::user()->user_type_id == 2 )
-                  <li><a href="{{ route('Event.show', 0) }}"><span>My Organization Events</span></a></li>                
+                  <li><a href="{{ route('Event.show', 0) }}"><span>My Organization Events</span></a></li>
                 @endif
                 <li><a href="{{ route('Event.show', 1) }}"> <span>Official</span></a></li>
                 <li><a href="{{ route('event.dlv', 2) }}"> <span>Local</span></a></li>
-              </ul> 
+              </ul>
             </li>
             @if (Auth::user()->user_type_id == 3)
               <li>

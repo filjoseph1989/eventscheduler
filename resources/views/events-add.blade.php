@@ -141,19 +141,6 @@
                     </div>
                   </div>
                 </div>
-                {{--  <div class="row clearfix">
-                  <div class="col-sm-8 col-sm-offset-2">
-                    <div class="form-group form-float">
-                      <div class="form-line focused">
-                        <select class="form-control show-tick" id="whole-day" name="whole_day">
-                          <option value="0" id="whole_day-option">-- Whole day? --</option>
-                          <option value="1">YES</option>
-                          <option value="0">NO</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                </div>  --}}
                 <div class="row clearfix">
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group form-float">
@@ -212,15 +199,16 @@
   <script src="{{ asset('js/tooltips-popovers.js') }}"?v=0.1></script>
   <script type="text/javascript">
     $('.event-datepicker').bootstrapMaterialDatePicker({
-       format: 'YYYY/MM/DD',
-       clearButton: true,
-       weekStart: 1,
-       time: false
-     });
-     $('.event-timepicker').bootstrapMaterialDatePicker({
-       format: 'HH:mm',
-       clearButton: true,
-       date: false
-     });
+      format: 'YYYY/MM/DD',
+      clearButton: true,
+      weekStart: 1,
+      time: false
+    });
+
+    $('.event-timepicker').bootstrapMaterialDatePicker({
+      format: 'HH:mm',
+      clearButton: true,
+      date: false
+    });
   </script>
 @endsection

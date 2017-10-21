@@ -22,7 +22,7 @@
               </button>
               {{ session('status') }}
             </div>
-          @endif 
+          @endif
 
           <div class="card">
             <div class="header">
@@ -33,17 +33,15 @@
             <div class="body">
               <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  {{--  @php extract($helper->dataTableClass($events)) @endphp  --}}
-                  {{--  <table class="table table-bordered table-striped table-hover {{ $class }}">  --}}
                   <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                     <thead>
                       <tr>
-                        <th><a href="#">Organization Name</a></th>
+                        <th>Organization Name</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                       @if (! is_null($events)) 
+                      @if (! is_null($events))
                         @foreach ($events as $key => $event)
                           <tr class="approve-event" data-event-id="{{ $event->id }}">
                             <td>{{ $event->title }}</td>
@@ -56,7 +54,6 @@
                             </td>
                           </tr>
                         @endforeach
-                       @else
                       @endif
                     </tbody>
                     <tfoot>

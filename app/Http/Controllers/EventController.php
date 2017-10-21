@@ -26,7 +26,7 @@ use App\Models\PersonalEvent;
  * @author Liz <janicalizdeguzman@gmail.com>
  * @version 2.1
  * @date 10-14-2017
- * @date 10-14-2017 - updated
+ * @date 10-20-2017 - updated
  */
 class EventController extends Controller
 {
@@ -69,8 +69,8 @@ class EventController extends Controller
         ->get();
 
       return view('approve-events')->with([
-        'events'     => $events,
-        'helper'     => $helper
+        'events' => $events,
+        'helper' => $helper
       ]);
     }
 
@@ -100,10 +100,10 @@ class EventController extends Controller
       $org_id = OrganizationGroup::where('user_id', Auth::id())
         ->where('position_id', 3)
         ->get();
- 
+
       if ($request->category == "university" || $request->category == "organization") {
         $event_type_id = 1;
-      } elseif ($request->category == "within" || $request->category == "personal") {
+      } else { # if doesnt satisfy above, event type automatically 2
         $event_type_id = 2;
       }
 
@@ -112,39 +112,27 @@ class EventController extends Controller
       $this->time_start = date('H:i:s', strtotime($request->date_start_time));
       $this->time_end   = date('H:i:s', strtotime($request->date_end_time));
 
-      if( $request->category != "personal" ) {
-        $event = Event::with('organization')
-          ->create([
-            "user_id"         => $request->user_id,
-            "organization_id" => $org_id[0]->organization_id,
-            "event_type_id"   => $event_type_id,
-            "semester_id"     => $request->semester_id,
-            "category"        => $request->category,
-            "title"           => $request->title,
-            "description"     => $request->description,
-            "venue"           => $request->venue,
-            "date_start"      => $this->date_start,
-            "date_end"        => $this->date_end,
-            "date_start_time" => $this->time_start,
-            "date_end_time"   => $this->time_end,
-            "whole_day"       => self::wholeDayOrNot(),
-          ]);
+      $data = [
+        "user_id"         => $request->user_id,
+        "event_type_id"   => $event_type_id,
+        "organization_id" => $org_id[0]->organization_id,
+        "semester_id"     => $request->semester_id,
+        "category"        => $request->category,
+        "title"           => $request->title,
+        "description"     => $request->description,
+        "venue"           => $request->venue,
+        "date_start"      => $this->date_start,
+        "date_end"        => $this->date_end,
+        "date_start_time" => $this->time_start,
+        "date_end_time"   => $this->time_end,
+        "whole_day"       => self::wholeDayOrNot(),
+      ];
+
+      if ($request->category == 'personal') {
+        unset($data['organization_id']);
+        $event = Event::create($data);
       } else {
-        $event = PersonalEvent::with('organization')
-          ->create([
-            "user_id"         => $request->user_id,
-            "event_type_id"   => $event_type_id,
-            "semester_id"     => $request->semester_id,
-            "category"        => $request->category,
-            "title"           => $request->title,
-            "description"     => $request->description,
-            "venue"           => $request->venue,
-            "date_start"      => $this->date_start,
-            "date_end"        => $this->date_end,
-            "date_start_time" => $this->time_start,
-            "date_end_time"   => $this->time_end,
-            "whole_day"       => self::wholeDayOrNot(),
-          ]);
+        $event = PersonalEvent::create($data);
       }
 
       if ($event->wasRecentlyCreated) {
@@ -163,7 +151,7 @@ class EventController extends Controller
     {
       $events = self::whosGettingTheEvents($id);
 
-      self::getDateComparison($events); //fix later, not functioning for local events
+      self::getDateComparison($events);
 
       return view('events-list')
         ->with([
@@ -212,17 +200,6 @@ class EventController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    /**
      * Display the local events
      *
      * @param  int $id
@@ -234,19 +211,17 @@ class EventController extends Controller
       if ($id == 2) {
         $org_id = OrganizationGroup::where('user_id', Auth::id())
         ->get();
-        
+
         $events = [];
-        
+
         if( $org_id->isEmpty() ){
-          // d($org_id); exit;
           $events['within'] = [];
-          // d( $events['within'] == [] ); exit; 
           $events['personal'] = PersonalEvent::where('event_type_id', $id)
           ->where('user_id', Auth::id())
           ->where('category', 'personal')
           ->get()
           ->toArray();
-        } 
+        }
 
         foreach ($org_id as $key => $value) {
           $events['within'][$value->id] = Event::with('organization')
@@ -279,14 +254,15 @@ class EventController extends Controller
      */
     private function getEvents($kind, $userType)
     {
-      /* Personal events are not included in this filtering */
-      //I assigned all Events to $events to have a uniform array data-type except for the LOCAL EVENTS
+      # Personal events are not included in this filtering
+      # I assigned all Events to $events to have a uniform array data-type except for the LOCAL EVENTS
       if( $kind == 0) {
         if ($userType == 'org-head') {
           $events[] = Event::with('organization')
             ->where('category', '=', 'within')
             ->where('organization_id', self::getOrganizationLeading())
             ->get();
+
             return $events;
         }
         if ($userType == 'osa') {
@@ -294,18 +270,21 @@ class EventController extends Controller
             ->where('category', 'organization')
             ->orWhere('category', 'university')
             ->get();
+
             return $events;
         }
         if ($userType == 'member') {
-          if( self::getOrganizationLeading() == null) {
+          if (is_null(self::getOrganizationLeading())) {
             //if org-user is not an org-adviser
             $org_ids = self::getOrganizations();
+
             foreach ($org_ids as $key => $value) {
               $events[ $value ] =  Event::with('organization')
                 ->where('category', 'within')
                 ->where('organization_id', $value)
                 ->get();
             }
+
             return $events;
           } else {
             //if the org-user is an org-adviser
@@ -313,6 +292,7 @@ class EventController extends Controller
               ->where('category', '=', 'within')
               ->where('organization_id', self::getOrganizationLeading())
               ->get();
+
             return $events;
           }
         }
@@ -326,6 +306,7 @@ class EventController extends Controller
           ->where('organization_id', self::getOrganizations())
           ->where('is_approve', $kind)
           ->get();
+
           return $events;
         }
       }
@@ -338,6 +319,7 @@ class EventController extends Controller
         ->where('category', 'organization')
         ->orWhere('category', 'university')
         ->get();
+
         return $events;
       }
 
@@ -451,18 +433,24 @@ class EventController extends Controller
       return false;
     }
 
-    private function wholeDayOrNot(){
+    /**
+     * Determine if the given must be a whole day event or
+     * not
+     *
+     * @return boolean
+     */
+    private function wholeDayOrNot()
+    {
       list($year1, $month1, $day1) = explode('-', $this->date_start);
       list($year2, $month2, $day2) = explode('-', $this->date_end);
       list($hr1, $sec1, $milisec1) = explode(':', $this->time_start);
       list($hr2, $sec2, $milisec2) = explode(':', $this->time_end);
 
-      if( self::matchDates( $year1, $year2, $month1, $month2, $day1, $day2) ){
-        if( self::matchTimes($hr1, $sec1, $milisec1, $hr2, $sec2, $milisec2) ) {
+      if (self::matchDates( $year1, $year2, $month1, $month2, $day1, $day2)) {
+        if (self::matchTimes($hr1, $sec1, $milisec1, $hr2, $sec2, $milisec2)) {
           return 'false';
-        }
-        else {
-          if( self::twelveHoursOrMore($this->time_start, $this->time_end) ) {
+        } else {
+          if (self::twelveHoursOrMore($this->time_start, $this->time_end)) {
             return 'true';
           } else {
             return 'false';
@@ -473,32 +461,66 @@ class EventController extends Controller
       }
     }
 
-    private function matchDates($ye1, $ye2, $mon1, $mon2, $d1, $d2){
-      if( ($ye1 == $ye2) && ($mon1 == $mon2) && ($d1 == $d2) ) {
+    /**
+     * Use to compare time
+     *
+     * @param  int $ye1
+     * @param  int $ye2
+     * @param  int $mon1
+     * @param  int $mon2
+     * @param  int $d1
+     * @param  int $d2
+     * @return boolean
+     */
+    private function matchDates($ye1, $ye2, $mon1, $mon2, $d1, $d2)
+    {
+      if (($ye1 == $ye2) && ($mon1 == $mon2) && ($d1 == $d2)) {
         return true;
       } else {
         return false;
       }
     }
 
-    private function matchTimes($h1, $se1, $milise1, $h2, $se2, $milise2){
-      if( ($h1 == $h2) && ($se1 == $se2) && ($milise1 == $milise2) ) {
+    /**
+     * Used to compare time
+     *
+     * @param  int $h1
+     * @param  int $se1
+     * @param  int $milise1
+     * @param  int $h2
+     * @param  int $se2
+     * @param  int $milise2
+     * @return int boolean
+     */
+    private function matchTimes($h1, $se1, $milise1, $h2, $se2, $milise2)
+    {
+      if (($h1 == $h2) && ($se1 == $se2) && ($milise1 == $milise2)) {
         return true;
       } else {
         return false;
       }
     }
 
-    private function twelveHoursOrMore($time1, $time2){
+    /**
+     * Check if the time is within the range of
+     * 12 hours
+     *
+     * @param  int $time1
+     * @param  int $time2
+     * @return int boolean
+     */
+    private function twelveHoursOrMore($time1, $time2)
+    {
       $startTime = new DateTime($time1);
-      $endTime = new DateTime($time2);
-      $duration = $time1->diff($time2); //$duration is a DateInterval object
+      $endTime   = new DateTime($time2);
+      $duration  = $time1->diff($time2); //$duration is a DateInterval object
+
       list($hr, $sec, $milisec) = explode(':', $duration);
-        if( ($hr >= 12) && ($sec >= 0) && ($milisec >= 0) ){
-          return true;
-        }
-        else {
-          return false;
-        } 
+
+      if (($hr >= 12) && ($sec >= 0) && ($milisec >= 0)) {
+        return true;
+      } else {
+        return false;
+      }
     }
 }
