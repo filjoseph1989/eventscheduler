@@ -59,7 +59,7 @@ trait CalendarTrait
 
 
 	/**
-   * Returns whether the date range of our event intersects with the given all-day range.
+   * Returns whether the date range of our event intersects with the given all-day range. 
    * $rangeStart and $rangeEnd are assumed to be dates in UTC with 00:00:00 time.
    *
 	 * @param  [type]  $rangeStart [description]
