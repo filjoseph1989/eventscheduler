@@ -22,7 +22,7 @@ class Event extends Model
     'description',
     'venue',
     'date_start',
-    'date_end', 
+    'date_end',
     'date_start_time',
     'date_end_time',
     'whole_day',
@@ -68,5 +68,113 @@ class Event extends Model
   public function user()
   {
     return $this->belongsTo('App\Models\User');
+  }
+
+  /**
+   * Return the list of event need approval
+   *
+   * @return object
+   */
+  public static function getEventsForApproval()
+  {
+     return static::with('organization')
+      ->where('event_type_id', 1)
+      ->where('is_approve', 'false')
+      ->where('status', 'requested')
+      ->get();
+  }
+
+  /**
+   * Return the organization leader events
+   *
+   * @param  int $leaderId
+   * @return object
+   */
+  public static function getOrgHeadEvents($leaderId)
+  {
+    return static::with('organization')
+      ->where('category', 'within')
+      ->where('organization_id', $leaderId)
+      ->get();
+  }
+
+  /**
+   * Return the approve events for organization head
+   *
+   * @param  int $organizationId
+   * @param  int $kind
+   * @return object
+   */
+  public static function getOrgHeadApprovedEvents($organizationId, $kind)
+  {
+    return static::with('organization')
+      ->where('category', 'within')
+      ->where('organization_id', $organizationId)
+      ->where('is_approve', $kind)
+      ->get();
+  }
+
+  /**
+   * return the events for OSA
+   *
+   * @param  int $leaderId
+   * @return object
+   */
+  public static function getOsaEvents()
+  {
+    return static::with('organization')
+      ->where('category', 'organization')
+      ->orWhere('category', 'university')
+      ->get();
+  }
+
+  /**
+   * return the members events
+   *
+   * @return object
+   */
+  public static function getMemberEvents($id)
+  {
+    return static::with('organization')
+      ->where('category', 'within')
+      ->where('organization_id', $id)
+      ->get();
+  }
+
+  /**
+   * Return approve or unapproved events
+   *
+   * @param  int $kind
+   * @return object
+   */
+  public static function getApproveOrUnapproveEvents($kind)
+  {
+    return static::with('organization')
+      ->where(function($query) {
+        return $query
+          ->where('category', 'organization')
+          ->orWhere('category', 'university');
+      })
+      ->where('status', 'requested')
+      ->where('is_approve', $kind)
+      ->get();
+  }
+
+  /**
+   * Return official Events
+   *
+   * @param  int $kind
+   * @return object
+   */
+  public static function getOfficialEvents($kind)
+  {
+    return Event::with('organization')
+      ->where(function($query) {
+        return $query
+          ->where('category', 'organization')
+          ->orWhere('category', 'university');
+      })
+      ->where('event_type_id', $kind)
+      ->get();
   }
 }

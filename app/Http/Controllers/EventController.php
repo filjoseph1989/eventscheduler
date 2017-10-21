@@ -62,11 +62,7 @@ class EventController extends Controller
      */
     public function index(RandomHelper $helper)
     {
-      $events = Event::with('organization')
-        ->where('event_type_id', 1)
-        ->where('is_approve', 'false')
-        ->where('status', 'requested')
-        ->get();
+      $events = Event::getEventsForApproval(); # this is located in the event model
 
       return view('approve-events')->with([
         'events' => $events,
@@ -230,7 +226,6 @@ class EventController extends Controller
             ->where('category', 'within')
             ->get()
             ->toArray();
-            d($events['within']); exit;
         }
 
         $events['personal'] = PersonalEvent::where('event_type_id', $id)
@@ -254,76 +249,50 @@ class EventController extends Controller
      */
     private function getEvents($kind, $userType)
     {
-      # Personal events are not included in this filtering
-      # I assigned all Events to $events to have a uniform array data-type except for the LOCAL EVENTS
-      if( $kind == 0) {
-        if ($userType == 'org-head') {
-          $events[] = Event::with('organization')
-            ->where('category', '=', 'within')
-            ->where('organization_id', self::getOrganizationLeading())
-            ->get();
-
-            return $events;
-        }
-        if ($userType == 'osa') {
-          $events[] = Event::with('organization')
-            ->where('category', 'organization')
-            ->orWhere('category', 'university')
-            ->get();
-
-            return $events;
-        }
-        if ($userType == 'member') {
-          if (is_null(self::getOrganizationLeading())) {
-            //if org-user is not an org-adviser
-            $org_ids = self::getOrganizations();
-
-            foreach ($org_ids as $key => $value) {
-              $events[ $value ] =  Event::with('organization')
-                ->where('category', 'within')
-                ->where('organization_id', $value)
-                ->get();
-            }
-
-            return $events;
-          } else {
-            //if the org-user is an org-adviser
-            $events[] = Event::with('organization')
-              ->where('category', '=', 'within')
-              ->where('organization_id', self::getOrganizationLeading())
-              ->get();
-
-            return $events;
-          }
-        }
+      # All event for org head
+      if ($kind == '0' and $userType == 'org-head') {
+        return Event::getOrgHeadEvents(self::leaderID());
       }
 
-      # return approve | disapprove events
-      if ($kind == 'true' or $kind == 'false') {
-        if ($userType == 'org-head') {
-          $events[] = Event::with('organization')
-          ->where('category', '=', 'within')
-          ->where('organization_id', self::getOrganizations())
-          ->where('is_approve', $kind)
-          ->get();
+      # All event for osa
+      if ($kind == '0' and $userType == 'osa') {
+        return Event::getOsaEvents();
+      }
+
+      # All event for member
+      if ($kind == '0' and $userType == 'member') {
+        # If org-user is not an org-adviser
+        if (is_null(self::leaderID())) {
+          $IDs = self::getOrganizationsID();
+
+          # Get Events
+          $events = [];
+          foreach ($IDs as $key => $id) {
+            $events[$id] = Event::getMemberEvents($id);
+          }
 
           return $events;
         }
+
+        # if the org-user is an org-adviser
+        return Event::getOrgHeadEvents(self::leaderID());
+      }
+
+      # return approve | disapprove events for organization head
+      if (($kind == 'true' or $kind == 'false') and $userType == 'org-head') {
+        return Event::getOrgHeadApprovedEvents(self::getOrganizationsID(), $kind);
+      }
+
+      # return approve | disapprove events for osa
+      if (($kind == 'true' or $kind == 'false') and $userType == 'osa') {
+        return Event::getApproveOrUnapproveEvents($kind);
       }
 
       # Return All official or local event
       # within University or organization category
       if ($kind == 1) {
-        $events[] = Event::with('organization')
-        ->where('event_type_id', $kind)
-        ->where('category', 'organization')
-        ->orWhere('category', 'university')
-        ->get();
-
-        return $events;
+        return Event::getOfficialEvents($kind);
       }
-
-
     }
 
     /**
@@ -357,10 +326,14 @@ class EventController extends Controller
     {
       if ( ! is_null($events) ) {
         foreach ($events as $key => $event) {
-          foreach ($event as $key => $value) {
-            if (self::matchDate($value->date_start)) {
-              $event[$key]->status = "on going";
+          if ($events->count() > 1) {
+            if (self::matchDate($event->date_start)) {
+              $events[$key]->status = "on going";
               # Issue 25
+            }
+          } else {
+            if (self::matchDate($event->date_start)) {
+              $events[0]->status = "on going";
             }
           }
         }

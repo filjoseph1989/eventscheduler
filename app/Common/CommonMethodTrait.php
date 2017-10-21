@@ -4,6 +4,7 @@ namespace App\Common;
 
 use App\Models\OrganizationGroup;
 use Auth;
+
 /**
  * Written by Fil for common validation process
  *
@@ -18,29 +19,35 @@ trait CommonMethodTrait
    *
    * @return void
    */
-  private function getOrganizations()
+  private function getOrganizationsID()
   {
-    // ☐ if user accesses getOrganization() function from CommonMethodTrait, 
-    // array of organizationGroup instance must be returned where organnization_id are the id of orgs the user belongs to,
-    // since org-user(member) can belong to many orgs
+    # if user accesses getOrganization() function from CommonMethodTrait,
+    # array of organizationGroup instance must be returned where organnization_id are the id of orgs the user belongs to,
+    # since org-user(member) can belong to many orgs
     $orgs = OrganizationGroup::where('user_id', Auth::id())
-      ->get(); 
-    
-    $org_ids = [];
+      ->get();
+
+    $IDs = [];
     foreach ($orgs as $key => $value) {
-      $org_ids[$value->id] = $value->getOrganizationId();
+      $IDs[$value->id] = $value->getOrganizationId();
     }
-    return $org_ids;
+
+    return $IDs;
   }
 
-  private function getOrganizationLeading()
+  /**
+   * Determine whos the leader of the organization
+   *
+   * @return
+   */
+  private function leaderID()
   {
-    if( Auth::user()->user_type_id < 3 ){ 
+    if (Auth::user()->user_type_id < 3) {
       //if org-head or org-user(and must be adviser)
       $my_primary_organization_id = OrganizationGroup::where('user_id', Auth::id())
         ->where('position_id', 3)
         ->orWhere('position_id', 4)
-        ->get() 
+        ->get()
         ->first();
 
       if( $my_primary_organization_id != null ) {
@@ -50,9 +57,8 @@ trait CommonMethodTrait
       }
     } else {
       //temporary error trapping
-      echo 'You are not an organization head, niether an organization adviser. 
+      echo 'You are not an organization head, niether an organization adviser.
       You cannot access this functionality';
-    } 
+    }
   }
 }
- 

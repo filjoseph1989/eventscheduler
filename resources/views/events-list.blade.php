@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-  <section class="content"> 
+  <section class="content">
     <div class="container-fluid">
       <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -46,15 +46,17 @@
                   @endif
                 </small>
               </h2>
-              @if ($eventType == 0 AND Auth::user()->user_type_id == 1)
+              <?php $userType = Auth::user()->user_type_id;  ?>
+
+              @if ($eventType == 0 AND ($userType == 1 OR $userType == 3))
                 <ul class="header-dropdown m-r--5">
                   <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                       <i class="material-icons">more_vert</i>
                     </a>
                     <ul class="dropdown-menu pull-right">
-                        <li><a href="{{ route('Event.show', 'true') }}">Approved Events</a></li>
-                        <li><a href="{{ route('Event.show', 'false') }}">Disapproved Events</a></li>
+                      <li><a href="{{ route('Event.show', 'true') }}">Approved Events</a></li>
+                      <li><a href="{{ route('Event.show', 'false') }}">Disapproved Events</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -73,45 +75,12 @@
                       @if (Auth::user()->user_type_id != 2)
                         <th>Status</th>
                       @endif
-                      @if ($eventType == 'true' or $eventType == 'false')
-                        <th>Approved?</th>
-                      @endif
                     </thead>
-                    <tbody> 
-                      @if (! is_null($events)) 
+                    <tbody>
+                      @if (! is_null($events))
                         @foreach ($events as $key => $event)
-                          @if ( ! is_null($event) )
-                             @foreach ($event as $key => $ev)
-                                <tr data-event="{{ $ev->id }}" data-route="{{ route('Event.edit', $ev->id) }}" data-action="{{ route('Event.update', $ev->id) }}">
-                                  <td>
-                                    @if (Auth::user()->user_type_id == 1 or Auth::user()->user_type_id == 2)
-                                    <a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($ev->title) }}</a>
-                                    @else
-                                    <a href="#" class="">{{ ucwords($ev->title) }}</a>
-                                    @endif
-                                  </td> 
-                                  <td>
-                                    <a href="#">{{ $ev->venue }}</a>
-                                  </td>
-                                  <td> {{ $ev->organization->name }} </td>
-                                  <td>{{ date('M d, Y', strtotime($ev->date_start)) }} {{ date('h:i A', strtotime($ev->date_start_time)) }}</td>
-                                  <td>{{ date('M d, Y', strtotime($ev->date_end)) }} {{ date('h:i A', strtotime($ev->date_end_time)) }}</td>
-                                  @if (Auth::user()->user_type_id != 2)
-                                  <td>{{ ucwords($ev->status) }}</td>
-                                  @endif @if ($eventType == 'true' or $eventType == 'false')
-                                  <td>
-                                    @php $is_approve = ($ev->is_approve == 'true') ? 'Yes' : 'No'; @endphp
-                                    <a href="#">{{ $is_approve }}</a>
-                                  </td>
-                                  @endif
-                                </tr>
-                             @endforeach
-                          @else
-                              No Data Yet
-                          @endif
+                          @include('partials/events')
                         @endforeach
-                      @else
-                        No Data Yet
                       @endif
                     </tbody>
                     <tfoot>
@@ -122,9 +91,6 @@
                       <th>End</th>
                       @if (Auth::user()->user_type_id != 2)
                         <th>Status</th>
-                      @endif
-                      @if ($eventType == 'true' or $eventType == 'false')
-                        <th> Approved?</th>
                       @endif
                     </tfoot>
                   </table>
@@ -150,7 +116,7 @@
         </div>
         <div class="modal-body">
           <div class="panel-group" id="accordion_1" role="tablist" aria-multiselectable="true">
-            
+
             <div class="panel">
               <div class="panel-heading" role="tab" id="headingOne_1">
                 <h4 class="panel-title">
@@ -184,16 +150,19 @@
                     <thead>
                       <th>Advertising Options</th>
                       <th colspan="2">Reminders</th> {{-- Issue 4 --}}
-                      @if (Auth::user()->user_type_id != 2)
-                        <th>Audience</th>
-                      @endif
+                      <th>Audience</th>
                     </thead>
                     <tbody>
                       <tr>
                         <td>
                           <div class="demo-switch">
                             <div class="switch" id="facebook">
-                              <label>OFF<input type="checkbox" name="facebook" checked><span class="lever switch-col-teal"></span>ON</label> Facebook
+                              <label>
+                                OFF
+                                <input type="checkbox" name="facebook" checked>
+                                <span class="lever switch-col-teal"></span>
+                                ON
+                              </label> Facebook
                             </div>
                           </div>
                         </td>
@@ -345,7 +314,7 @@
               {{ method_field('PUT') }}
             </form>
           @endif
-          
+
           <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
         </div>
 
@@ -355,12 +324,12 @@
 @endsection
 
 @section('js')
-  <script src="{{ asset('js/admin.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/bootstrap-select.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/jquery.dataTables.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/jquery-datatable.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/bootstrap-select.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/sweetalert.min.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/tooltips-popovers.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/app.js') }}?v=2.9" charset="utf-8"></script>
+  <script src="{{ asset('js/admin.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/jquery.dataTables.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/jquery-datatable.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/sweetalert.min.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/tooltips-popovers.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.10" charset="utf-8"></script>
 @endsection
