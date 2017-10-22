@@ -32,6 +32,12 @@ DISPLAYS AND FUNCTIONALITIES:
             ☐ MAIN NAVIGATION:
                 ☐ functional Home BAR button 
                 ☐ All System Users:
+                    ☐ names are link to modal user-details
+                    ☐ courses are link to modal information about the course
+                    ☐ positions are link to modal info about the position
+                    ☐ user type
+                    ☐ organizations are link to modal info about the organization
+                    ☐ status 
                 ☐ Organizations:
                     ☐ Add New (CARD IS CORRRECTLY LABELED AND COMPLETED FUNCTIONALITY):
                         ☐ ORGANIZATION will be added to the organization table in the database
