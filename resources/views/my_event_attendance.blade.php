@@ -22,15 +22,20 @@
             <div class="body">
               <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  {{--  @php  extract($helper->dataTableClass($events)) @endphp  --}}
-                  <table class="table table-bordered table-striped table-hover {{-- $class --}}">
+                  <table class="table table-bordered table-striped table-hover">
                     <thead>
                       <tr>
-                        <th><a href="#">Event Title</a></th>
+                        <th><a href="#">Event</a></th>
 												<th>Status</th>
                       </tr>
                     </thead>
                     <tbody>
+											<?php foreach ($attendance as $key => $value): ?>
+												<tr>
+													<td>{{ $value->event->title }}</td>
+													<td>{{ ucwords($value->status) }}</td>
+												</tr>
+											<?php endforeach; ?>
                     </tbody>
                     <tfoot>
                       <th>Event Title</th>

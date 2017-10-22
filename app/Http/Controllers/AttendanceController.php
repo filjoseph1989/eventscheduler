@@ -43,10 +43,13 @@ class AttendanceController extends Controller
      */
     public function index(RandomHelper $helper)
     {
-        return view('my_event_attendance')
-            ->with([
-                'helper' => $helper
-            ]);
+      $attendance = Attendance::getMyAttendance(Auth::id());
+
+      return view('my_event_attendance')
+        ->with([
+          'helper'     => $helper ,
+          'attendance' => $attendance
+        ]);
     }
 
     /**

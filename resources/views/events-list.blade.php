@@ -338,9 +338,6 @@
       </div>
     </div>
   </div>
-  <div class="" id="method-put">
-    {{ method_field('PUT') }}
-  </div>
 @endsection
 
 @section('js')
