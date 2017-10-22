@@ -19,12 +19,13 @@
             <h2> ADVERTISE / SET EVENT
               <small>In this panel you set event/s or approve event/s for advertisement</small>
             </h2>
-          @else
-             <h2> SET EVENT
-              @if(Auth::user()->user_type_id == 1)
+          @elseif(Auth::user()->user_type_id == 1)
+            <h2> SET EVENT
                 <small>In this panel you set your personal event/s or events within your organization</small>
-              @else
-                <small>In this panel you set your personal event/s</small>
+            </h2>
+          @else
+            <h2>
+              <small>In this panel you set your personal event/s</small>              
             </h2>
           @endif
           </div>
@@ -106,4 +107,4 @@
 
 @section('js')
   <script src="{{ asset('js/admin.js') }}?v=0.1"></script>
-@endsection
+@endsection 
