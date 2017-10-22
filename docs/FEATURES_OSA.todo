@@ -45,7 +45,7 @@ DISPLAYS AND FUNCTIONALITIES:
                         ☐ ORGANIZATION will be added to the organization table in the database
                             ☐ catch if the organization name already exists (not case sensitive)
                             ☐ catch if the acronym already exists (Case Sensitive)
-                            ☐ catch : the format of account number must be 20XX-XXXXX (where the X's are all digit-numbers)
+                            ✔ catch : the format of account number must be 20XX-XXXXX (where the X's are all digit-numbers)
                             ☐ catch if the org head assigned already an existing org head
                             ☐ catch the format of email must be char*.@char*.com
                         ☐ ORG HEAD will be added to the users table with user_type = 1

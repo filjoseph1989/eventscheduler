@@ -75,11 +75,12 @@ class OrganizationController extends Controller
       //catch existing organization acronym
 
       //catch invalid student number
-      $str = $request->account_number;
+      $str1 = substr($request->account_number, 0, -6);
+      $str2 = substr($request->account_number, -5);
       if( strlen($request->account_number) != 10 ||
           $request->account_number[4] != '-' ||
-          !ctype_digit(substr($str), 0, -6) || 
-          !ctype_digit(substr($str), -5) 
+          !ctype_digit($str1) || 
+          !ctype_digit($str2) 
         ) {
         return back()->with(['status_warning' => 'Invalid student number. (Format is 20XX-XXXXX). X\'s are number-digits']);
       }
