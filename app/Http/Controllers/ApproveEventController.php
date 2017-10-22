@@ -47,6 +47,7 @@ class ApproveEventController extends Controller
       $event->status     = 'upcoming';
 
       if ($event->save()) {
+        # get the organization name
         $event = Event::with('organization')
           ->where('id', $id)
           ->get();
@@ -54,10 +55,18 @@ class ApproveEventController extends Controller
         // Issue 28
 
         # Post on social media
-        self::facebookPost($event[0]);
-        self::twitterPost($event[0]);
-        self::smsPost($event[0]);
-        self::emailPost($event[0]);
+        if ($event->facebook == 'on') {
+          self::facebookPost($event[0]);
+        }
+        if ($event->twitter == 'on') {
+          self::twitterPost($event[0]);
+        }
+        if ($event->sms == 'on') {
+          self::smsPost($event[0]);
+        }
+        if ($event->email == 'on') {
+          self::emailPost($event[0]);
+        }
 
         return back()
           ->with('status', 'Successfully approve the event');
