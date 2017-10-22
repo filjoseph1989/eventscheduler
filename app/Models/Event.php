@@ -168,7 +168,7 @@ class Event extends Model
    */
   public static function getOfficialEvents($kind)
   {
-    return Event::with('organization')
+    return static::with('organization')
       ->where(function($query) {
         return $query
           ->where('category', 'organization')
