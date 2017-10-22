@@ -2,22 +2,24 @@ DISPLAYS AND FUNCTIONALITIES:
 
 ☐ OSA:
     ☐ PROFILE FUNCTIONALITIES:
-        ☐ MY PROFILE CARD (COMPLETED AND CORRRECTLY LABELED):
+        ✔ MY PROFILE CARD (COMPLETED AND CORRRECTLY LABELED):
             ✔ PROFILE PICTURE (CHANGEABLE, DYNAMIC FOR EACH USER)
-            ☐ NAME (EDITABLE)
-            ☐ EMAIL (EDITABLE)
-            ☐ MOBILE NUMBER (EDITABLE)
-            ☐ COURSE (NOT EDITABLE, HIDDEN)
-            ☐ POSITION (NOT EDITABLE)
-            ☐ OFFICE (HIDDEN, NOT EDITABLE, ONE OR MANY, SET THE PRIMARY(ADD TOOLTIP FOR THE DEFINITION OF PRIMARY))
-            ☐ ACCOUNT TYPE (NOT EDITABLE)
-            ☐ FACEBOOK (EDITABLE)
-            ☐ TWITTER (EDITABLE)
-            ☐ STATUS (NOT EDITABLE)
-            ☐ MEMBER SINCE ((CREATED_AT field) NOT EDITABLE)
+            ✔ NAME @editable-1
+            ✔ EMAIL @editable-2
+            ✔ MOBILE NUMBER @editable-3
+                ✔ catch if more than 12 char
+                ✔ catch if mobile number entered contains non-numbers
+            ✔ COURSE (NOT EDITABLE, HIDDEN (since osa doesn't have course)) @not-editable-1
+            ✔ POSITION (NOT EDITABLE) @not-editable-2
+            ✔ OFFICE/ORGANIZATION (HIDDEN, NOT EDITABLE) @not-editable-3
+            ✔ ACCOUNT TYPE (NOT EDITABLE) @not-editable-4
+            ✔ FACEBOOK (EDITABLE) @editable-4
+            ✔ TWITTER (EDITABLE) @editable-5
+            ✔ STATUS (NOT EDITABLE) @not-editable-5
+            ✔ MEMBER SINCE ((CREATED_AT field) NOT EDITABLE) @not-editable-5
         ☐ CHANGE PASSWORD CARD (COMPLETED AND CORRRECTLY LABELED):
-            ☐ if OLD PASSWORD DOESN'T MATCH, prompt error message
-            ☐ if NEW PASSWORD and CONFIRM PASSWORD doesn't match, prompt error message
+            ✔ if OLD PASSWORD DOESN'T MATCH, prompt error message
+            ✔ if NEW PASSWORD and CONFIRM PASSWORD doesn't match, prompt error message
             ☐ change password successful: 
                 ☐ hash entered password at the database
                 ☐ user will receive email of his/her new password 

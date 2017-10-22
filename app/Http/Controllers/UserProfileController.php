@@ -65,17 +65,17 @@ class UserProfileController extends Controller
     {  
       //THE NON-EDITTABLES
       //if osa, 
-      if( Auth::user()->user_type_id == 3 )
+      if( Auth::user()->user_type_id == 3 ) 
       {
         if (
             $request->has('position_id') ||
             $request->has('user_type_id') ||
             $request->has('status') ||
             $request->has('created_at')
-           ) { return back(); }
+           ) { return back()->with(['status_warning' => 'This field are accessible for authorized-user only.']); }
       } 
       // if user or org-head
-      else
+      else 
       {
         if (
             $request->has('organization_id') || 
@@ -84,16 +84,46 @@ class UserProfileController extends Controller
             $request->has('status') ||
             $request->has('full_name') ||
             $request->has('created_at') 
-           ) { return back(); }
+           ) { return back()->with(['status_warning' => 'These fields are accessible for authorized-user only.']); }
       }
 
       //EDITTABLES
-      $user = User::find($id);
-      if ($request->has('email')) {
-        $user->email = $request->email;
-        $user->save();
-      }
+      //if osa,
+      if( Auth::user()->user_type_id == 3 )
+      {
+        $user = User::find($id);
 
+        if ($request->has('full_name')) {
+          $user->full_name = $request->full_name;
+          $user->save();          
+        }
+
+        if($request->has('email')) {
+          $user->email = $request->email;
+          $user->save();
+        }
+
+        if($request->has('mobile_number')) {
+          if(strlen($request->mobile_number) != 12 ) {
+            return back()->with(['status_warning' => 'Entered mobile number must not be more than or less than 12 characters.']);
+          }
+          if (!ctype_digit($request->mobile_number)) {
+            return back()->with(['status_warning' => 'Contains non-numbers.']);
+          }
+          $user->mobile_number = $request->mobile_number;
+          $user->save();
+        }
+
+        if($request->has('facebook')) {
+          $user->facebook = $request->facebook;
+          $user->save();
+        }
+             
+        if($request->has('twitter')) {
+          $user->twitter = $request->twitter;
+          $user->save();
+        }           
+      }
       return back();
     }
 }

@@ -84,27 +84,18 @@
                             </a>
                           </td>
                         </tr>
+                        @if( Auth::user()->user_type_id !=3 )
                         <tr>
-                          @if( Auth::user()->user_type_id !=3 )
-                            <td><strong>Organization:</strong></td>
-                            <td id="organization_id">
-                                @if($organizationGroup == "Not Yet Specified")
-                                  Not Yet Specified
-                                @else
-                                  {{ $organizationGroup[0]->organization->name }}
-                                @endif
-                            </td>
-                          @else
-                            <td><strong>Office:</strong></td>
-                            <td id="organization_id">
-                                @if($organizationGroup == "Not Yet Specified")
-                                  Office of the Student Affairs
-                                @else
-                                  Office of the Student Affairs
-                                @endif
-                            </td>
-                          @endif
+                          <td><strong>Organization:</strong></td>
+                          <td id="organization_id">
+                              @if($organizationGroup == "Not Yet Specified")
+                                Not Yet Specified
+                              @else
+                                {{ $organizationGroup[0]->organization->name }}
+                              @endif
+                          </td>
                         </tr>
+                        @endif
                         <tr>
                           <td><strong>Account Type: </strong></td>
                           <td id="user_type_id"><a href="#">{{ strtoupper(session('user_account')) }}</a></td>
