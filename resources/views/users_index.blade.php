@@ -53,6 +53,7 @@
                   <th>Name</th>
                   <th>Course</th>
                   <th>Position</th>
+                  <th>User Type</th>
                   <th>Organization</th>
                   <th>Status</th>
                   @if (isset($filter) and $filter === true)
@@ -80,6 +81,7 @@
                                 </a>
                               @endif
                           </td>
+                          
                           <td>
                               @if( Auth::user()->user_type_id != 3 )
                                 @if ($user->count() == 0)
@@ -104,6 +106,15 @@
                                   @endforeach
                                 @endif
                               @endif
+                          </td>
+                          <td>
+                            @if( $user->user_type_id == 3 )
+                              OSA staff
+                            @elseif( $user->user_type_id == 2 )
+                              Org member
+                            @else
+                              Org head
+                            @endif
                           </td>
                           <td>
                              @if( Auth::user()->user_type_id != 3 )
