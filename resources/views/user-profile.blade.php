@@ -66,10 +66,12 @@
                           <td><strong>Mobile Number: </strong></td>
                           <td id="mobile_number">{{ Auth::user()->mobile_number }}</td>
                         </tr>
+                        @if(Auth::user()->user_type_id != 3)
                         <tr>
                           <td><strong>Course: </strong></td>
                           <td id="course"><a href="#" data-id="">{{ $course }}</a></td>
                         </tr>
+                        @endif
                         <tr>
                           <td><strong>Position: </strong></td>
                           <td id="position_id">
