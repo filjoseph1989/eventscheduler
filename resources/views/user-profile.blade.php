@@ -128,8 +128,7 @@
                     <form class="hidden" id="user-edit-form" action="" method="post">
                       {{ csrf_field() }}
                       {{ method_field('PUT') }}
-                      <input type="hidde
-                      n" id="user-form-input" name="" value="">
+                      <input type="hidden" id="user-form-input" name="" value="">
                     </form>
                   </div>
                 </div>
