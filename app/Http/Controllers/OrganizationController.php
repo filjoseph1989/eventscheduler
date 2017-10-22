@@ -65,10 +65,29 @@ class OrganizationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    { 
       # Get form data
       # validate form data
       # add to database
+
+      //catch existing Organization Name
+
+      //catch existing organization acronym
+
+      //catch invalid student number
+      $str = $request->account_number;
+      if( strlen($request->account_number) != 10 ||
+          $request->account_number[4] != '-' ||
+          !ctype_digit(substr($str), 0, -6) || 
+          !ctype_digit(substr($str), -5) 
+        ) {
+        return back()->with(['status_warning' => 'Invalid student number. (Format is 20XX-XXXXX). X\'s are number-digits']);
+      }
+
+      //catch if the org head assigned already an existing org head
+
+      //catch the format of email must be char*.@char*.com
+
       $this->validate($request, [
         'name'           => 'Required',
         'acronym'        => 'Required',
