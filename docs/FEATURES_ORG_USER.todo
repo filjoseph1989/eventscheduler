@@ -5,23 +5,23 @@ DISPLAYS AND FUNCTIONALITIES:
     ☐ PROFILE FUNCTIONALITIES:
         ☐ MY PROFILE CARD (COMPLETED AND CORRRECTLY LABELED):
             ✔ PROFILE PICTURE (CHANGEABLE, DYNAMIC FOR EACH USER)
-            ☐ NAME (EDITABLE)
-            ☐ EMAIL (EDITABLE)
-            ☐ MOBILE NUMBER (EDITABLE)
-            ☐ COURSE (NOT EDITABLE, HIDDEN)
-            ☐ POSITION (NOT EDITABLE)
-            ☐ OFFICE (HIDDEN, NOT EDITABLE, ONE OR MANY, SET THE PRIMARY(ADD TOOLTIP FOR THE DEFINITION OF PRIMARY))
-            ☐ ACCOUNT TYPE (NOT EDITABLE)
-            ☐ FACEBOOK (EDITABLE)
-            ☐ TWITTER (EDITABLE)
-            ☐ STATUS (NOT EDITABLE)
-            ☐ MEMBER SINCE ((CREATED_AT field) NOT EDITABLE)
-        ☐ CHANGE PASSWORD CARD (COMPLETED AND CORRRECTLY LABELED):
-            ☐ if OLD PASSWORD DOESN'T MATCH, prompt error message
-            ☐ if NEW PASSWORD and CONFIRM PASSWORD doesn't match, prompt error message
-            ☐ change password successful: 
-                ☐ hash entered password at the database
-                ☐ user will receive email of his/her new password 
+            ☐ NAME (NOT EDITABLE) @not-editable-1
+            ☐ EMAIL (EDITABLE) @editable-1
+            ☐ MOBILE NUMBER (EDITABLE) @editable-2
+            ☐ COURSE (NOT EDITABLE) @not-editable-2
+            ☐ POSITION (NOT EDITABLE) @not-editable-3
+            ☐ ORGANIZATION (NOT EDITABLE, ONE OR MANY, SET THE PRIMARY(ADD TOOLTIP FOR THE DEFINITION OF PRIMARY)) @not-editable-4
+            ☐ ACCOUNT TYPE (NOT EDITABLE) @not-editable-5
+            ☐ FACEBOOK (EDITABLE) @editable-3
+            ☐ TWITTER (EDITABLE) @editable-4
+            ☐ STATUS (NOT EDITABLE) @not-editable-6
+            ☐ MEMBER SINCE ((CREATED_AT field) NOT EDITABLE) @not-editable-7
+        ✔ CHANGE PASSWORD CARD (COMPLETED AND CORRRECTLY LABELED):
+            ✔ if OLD PASSWORD DOESN'T MATCH, prompt error message
+            ✔ if NEW PASSWORD and CONFIRM PASSWORD doesn't match, prompt error message
+            ✔ change password successful: 
+                ✔ hash entered password at the database
+                ✔ user will receive email of his/her new password 
     ☐ SIDE-BAR FUNTIONALITIES:
         ✔ functional HOME LOGO button
         ☐ USER "info-container":

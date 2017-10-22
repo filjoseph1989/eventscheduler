@@ -20,9 +20,10 @@ DISPLAYS AND FUNCTIONALITIES:
         ☐ CHANGE PASSWORD CARD (COMPLETED AND CORRRECTLY LABELED):
             ✔ if OLD PASSWORD DOESN'T MATCH, prompt error message
             ✔ if NEW PASSWORD and CONFIRM PASSWORD doesn't match, prompt error message
-            ☐ change password successful: 
-                ☐ hash entered password at the database
-                ☐ user will receive email of his/her new password 
+            ✔ change password successful: 
+                ✔ hash entered password at the database
+                ✔ user will receive email of his/her new password 
+
     ☐ SIDE-BAR FUNTIONALITIES:
         ✔ functional HOME LOGO button
         ☐ USER "info-container":
