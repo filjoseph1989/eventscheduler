@@ -178,18 +178,37 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $event = Event::with('organization')
-        ->find($id);
+      $event = Event::find($id);
 
-      $event->facebook_msg = $request->facebook_msg;
-      $event->twitter_msg  = $request->twitter_msg;
-      $event->email_msg    = $request->email_msg;
-      $event->sms_msg      = $request->sms_msg;
+      if ($request->has('facebook')) {
+        $event->facebook = ($request->facebook === true) ? 'off' : 'on';
+      }
+      if ($request->has('twitter')) {
+        $event->twitter = ($request->twitter === true) ? 'off' : 'on';
+      }
+      if ($request->has('sms')) {
+        $event->sms = ($request->sms === true) ? 'off' : 'on';
+      }
+      if ($request->has('email')) {
+        $event->email = ($request->email === true) ? 'off' : 'on';
+      }
+      if ($request->has('facebook_msg')) {
+        $event->facebook_msg = $request->facebook_msg;
+      }
+      if ($request->has('twitter_msg')) {
+        $event->twitter_msg = $request->twitter_msg;
+      }
+      if ($request->has('email_msg')) {
+        $event->email_msg = $request->email_msg;
+      }
+      if ($request->has('sms_msg')) {
+        $event->sms_msg = $request->sms_msg;
+      }
 
       if ($event->save()) {
-        $result = ['result' => 'true'];
+        $result['result'] = true;
       } else {
-        $result = ['result' => 'false'];
+        $result['result'] = false;
       }
 
       echo json_encode($result);

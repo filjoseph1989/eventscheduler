@@ -23,6 +23,11 @@
   @yield('css')
   <link href="{{ asset('css/style.css') }}?v=1.2" rel="stylesheet">
 
+  <script>
+    window.Laravel = <?php echo json_encode([
+      'base_url'  => \URL::to('/'),
+    ]); ?>
+  </script>
 </head>
 
 @if (session('loginClass'))

@@ -13,20 +13,21 @@
 ☐ Issue 29: {inline} Ibalhin ni sila as trait para magamit sa uban
 ☐ Issue 30: {inline} go to this
 ☐ Issue 31: Uploading a profile picture should have a limit or create a thumbnails and delete the original
+☐ Issue 32: {inline} murag wala ni gamita nga function, i check daw ni
 
 Archived:
     ✔ Issue 21: {inline} Update this, when the authentication or login functionality is completed @done(2017-10-04 09:08)
-    ✔ Issue 19: {inline} Improve the validation trait by adding this
+    ✔ Issue 19: {inline} Improve the validation trait by adding this @done(2017-10-22 15:32)
     ✔ Issue 17: {inline} Its better if you provide a link where a user can password for security purpose @done(2017-10-08 23:36)
-    ✔ Issue 16: {inline} Validate if the user is loggedin before making update in the database
+    ✔ Issue 16: {inline} Validate if the user is loggedin before making update in the database @done(2017-10-22 15:32)
     ✔ Issue 15: {inline} Hide this in member @done(2017-10-18 12:33)
     ✔ Issue 14: {inline} This panels should only show up when the type of account is organization head or maybe create a modal for OSA, u think that is the best @done(2017-10-15 20:27)
     ✔ Issue 13: {inline} Please make a function for this which can be use across other functionalities @done(2017-10-18 12:30)
-    ✔ Issue 12: {inline} Please add a login checker here and if the account is an OSA
+    ✔ Issue 12: {inline} Please add a login checker here and if the account is an OSA @done(2017-10-22 15:32)
     ✔ Issue 11: Buhat og provider para mag display og return value as a replacement sa -- select -- nga part sa dropdown during validation error return @done(2017-10-18 12:29)
-    ✔ Issue 10: {events-list0.blade.php} Kani nga file kay gi reserved nako ni para sa member, naa man gud option nga attend|decline
+    ✔ Issue 10: {events-list0.blade.php} Kani nga file kay gi reserved nako ni para sa member, naa man gud option nga attend|decline @done(2017-10-22 15:32)
     ✔ Issue 9: Dapat limit lang ang columns na kuhaon sa events in OSA account, para dili bug-at @done(2017-10-18 12:29)
-    ✔ Issue 8: kadali ang kaning 'login-page' ba, balik-balik, pangita og lain way pag pasa ani niya
+    ✔ Issue 8: kadali ang kaning 'login-page' ba, balik-balik, pangita og lain way pag pasa ani niya @done(2017-10-22 15:32)
     ✔ Issue 7: Dapat ma change ang content sa <title></title> @done(2017-09-28 19:56)
     ✔ Issue 6: Dapat sa organization table, during final test or release, wala dapat content ni sya @done(2017-09-29 22:54)
     ✔ Issue 5: Dapat ang color consistent @done(2017-10-03 22:43)

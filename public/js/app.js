@@ -13,7 +13,7 @@
  * @author Fil <filjoseph22@gmail.com>
  * @author Liz <janicalizdeguzman@gmail.com>
  * @since 0.1
- * @version 2.9
+ * @version 2.11
  * @date 09-30-2017
  * @date 10-15-2017 - last updated
  */
@@ -38,7 +38,7 @@
     var $url = $(this).parents('tr').data('route');
     action   = $(this).parents('tr').data('action');
 
-    // Make http request for editing the event 
+    // Make http request for editing the event
     axios_get($url, function(data) {
       data.forEach(function(currentValue, index, arr) {
         $('#modal-event-title').html(currentValue.title);
@@ -54,6 +54,10 @@
         $('#sms_msg').html(currentValue.sms_msg);
         $('#modal-request-approval-form').attr('action', '/Request/'+currentValue.id);
         $('#modal-request-approval-form > #id').val(currentValue.id);
+        $('#facebook').attr('data-event-id', currentValue.id);
+        $('#twitter').attr('data-event-id', currentValue.id);
+        $('#sms').attr('data-event-id', currentValue.id);
+        $('#email').attr('data-event-id', currentValue.id);
 
         // Set route
         $('#modal-attend-form').attr('action', '/Attendances/'+currentValue.id);
@@ -223,7 +227,7 @@
       $('#modal-edit-course').html(course);
       $('#modal-edit-user-account').html(user_type);
 
-      $('#modal-edit-user-form').attr('action', '/User/'+data.user.id); 
+      $('#modal-edit-user-form').attr('action', '/User/'+data.user.id);
     })
   });
 
@@ -399,6 +403,51 @@
 
     // Remove field
     $(fieldID).remove();
+  });
+
+  /**
+   * Update the facebook notification settings
+   *
+   * @return {void}
+   */
+  $(document).on('click', '#facebook .lever.switch-col-teal', function() {
+    var id = $('#facebook').data('event-id');
+    var data = {
+      '_method': 'PUT',
+      'facebook': $('#facebook [name="facebook"]').prop('checked')
+    };
+
+    axios_post('/Event/'+id, data, function(data) { })
+  });
+
+  $(document).on('click', '#twitter .lever.switch-col-teal', function() {
+    var id = $('#twitter').data('event-id');
+    var data = {
+      '_method': 'PUT',
+      'twitter': $('#twitter [name="twitter"]').prop('checked')
+    };
+
+    axios_post('/Event/'+id, data, function(data) {})
+  });
+
+  $(document).on('click', '#sms .lever.switch-col-teal', function() {
+    var id = $('#sms').data('event-id');
+    var data = {
+      '_method': 'PUT',
+      'sms': $('#sms [name="sms"]').prop('checked')
+    };
+
+    axios_post('/Event/'+id, data, function(data) {})
+  });
+
+  $(document).on('click', '#email .lever.switch-col-teal', function() {
+    var id = $('#email').data('event-id');
+    var data = {
+      '_method': 'PUT',
+      'email': $('#email [name="email"]').prop('checked')
+    };
+
+    axios_post('/Event/'+id, data, function(data) {})
   });
 
   /**

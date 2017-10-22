@@ -79,12 +79,29 @@
                     <tbody>
                       @if (! is_null($events))
                         @foreach ($events as $key => $event)
-                          @include('partials/events')
+                          <tr data-event="{{ $event->id }}" data-route="{{ route('Event.edit', $event->id) }}" data-action="{{ route('Event.update', $event->id) }}">
+                            <td>
+                              @if (Auth::user()->user_type_id == 1 or Auth::user()->user_type_id == 2)
+                                <a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a>
+                              @else
+                                <a href="#" class="">{{ ucwords($event->title) }}</a>
+                              @endif
+                            </td>
+                            <td><a href="#">{{ $event->venue }}</a></td>
+                            <td> {{ $event->organization->name }} </td>
+                            <td>{{ date('M d, Y', strtotime($event->date_start)) }} {{ date('h:i A', strtotime($event->date_start_time)) }}</td>
+                            <td>{{ date('M d, Y', strtotime($event->date_end)) }} {{ date('h:i A', strtotime($event->date_end_time)) }}</td>
+                            @if (Auth::user()->user_type_id != 2)
+                              <td>{{ ucwords($event->status) }}</td>
+                            @endif
+                          </tr>
                         @endforeach
+                      @else
+                        No data
                       @endif
                     </tbody>
                     <tfoot>
-                      <th><a href="#">Title</a></th>
+                      <th>Title</th>
                       <th>Venue</th>
                       <th>Organizer</th>
                       <th>Start</th>
@@ -149,7 +166,7 @@
                     <table class="table table-bordered table-striped">
                     <thead>
                       <th>Advertising Options</th>
-                      <th colspan="2">Reminders</th> {{-- Issue 4 --}}
+                      <th colspan="2">Reminders</th>
                       <th>Audience</th>
                     </thead>
                     <tbody>
@@ -215,8 +232,8 @@
                       <tr>
                         <td>
                           <div class="demo-switch">
-                            <div class="switch" id="mobile">
-                              <label>OFF<input type="checkbox" name="mobile" checked><span class="lever switch-col-teal"></span>ON</label> Mobile
+                            <div class="switch" id="sms">
+                              <label>OFF<input type="checkbox" name="sms" checked><span class="lever switch-col-teal"></span>ON</label> Mobile
                             </div>
                           </div>
                         </td>
@@ -321,6 +338,9 @@
       </div>
     </div>
   </div>
+  <div class="" id="method-put">
+    {{ method_field('PUT') }}
+  </div>
 @endsection
 
 @section('js')
@@ -331,5 +351,5 @@
   <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}?v=0.1"></script>
   <script src="{{ asset('js/tooltips-popovers.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/app.js') }}?v=2.10" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.11" charset="utf-8"></script>
 @endsection
