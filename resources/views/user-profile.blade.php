@@ -83,14 +83,25 @@
                           </td>
                         </tr>
                         <tr>
-                          <td><strong>Organization:</strong></td>
-                          <td id="organization_id">
-                              @if($organizationGroup == "Not Yet Specified")
-                                Not Yet Specified
-                              @else
-                                {{ $organizationGroup[0]->organization->name }}
-                              @endif
-                          </td>
+                          @if( Auth::user()->user_type_id !=3 )
+                            <td><strong>Organization:</strong></td>
+                            <td id="organization_id">
+                                @if($organizationGroup == "Not Yet Specified")
+                                  Not Yet Specified
+                                @else
+                                  {{ $organizationGroup[0]->organization->name }}
+                                @endif
+                            </td>
+                          @else
+                            <td><strong>Office:</strong></td>
+                            <td id="organization_id">
+                                @if($organizationGroup == "Not Yet Specified")
+                                  Office of the Student Affairs
+                                @else
+                                  Office of the Student Affairs
+                                @endif
+                            </td>
+                          @endif
                         </tr>
                         <tr>
                           <td><strong>Account Type: </strong></td>
@@ -117,7 +128,8 @@
                     <form class="hidden" id="user-edit-form" action="" method="post">
                       {{ csrf_field() }}
                       {{ method_field('PUT') }}
-                      <input type="hidden" id="user-form-input" name="" value="">
+                      <input type="hidde
+                      n" id="user-form-input" name="" value="">
                     </form>
                   </div>
                 </div>
