@@ -82,6 +82,17 @@
                          @endif
                       </div>
                     </div>
+                     <div class="form-group">
+                      <div class="form-line">
+                        {{--  <input type="text" class="form-control" id="course" name="course" placeholder="Organization Leader Name" value="{{ old('course') }}" required>  --}}
+                        <select class="form-control show-tick" id="course_id" name="course_id">
+                          <option value="{{ old('course_id') }}" id="course-option">- Select the Org Head's Course -</option>
+                          @foreach ($course as $key => $course)
+                            <option value="{{ $course->id }}">{{ $course->name }}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                    </div>
                     <div class="form-group">
                       <div class="form-line">
                         <input type="text" class="form-control" id="student_email" name="email" placeholder="Organization Leader Email" value="{{ old('email') }}" required>

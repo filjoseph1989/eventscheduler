@@ -47,7 +47,8 @@ DISPLAYS AND FUNCTIONALITIES:
                             ✔ catch if the acronym already exists (Case Sensitive)
                             ✔ catch : the format of account number must be 20XX-XXXXX (where the X's are all digit-numbers)
                             ✔ catch if the org head assigned already an existing org head (catch by account number since there are people with same names)
-                            ✔ catch the format of email must be char*.@char*.com
+                            ✔ added course of org head in the form 
+                            ✔ catch the format of email is valid
                         ✔ ORG HEAD will be added to the users table with user_type = 1
                         ✔ ORGANIZATION and ORG HEAD will be added to the organization_group table
                         ✔ hash entered password at the database 

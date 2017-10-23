@@ -14,6 +14,7 @@ use App\Common\CommonMethodTrait;
 
 # Models
 use App\Models\User;
+use App\Models\Course;
 use App\Models\Organization;
 use App\Models\OrganizationGroup;
 use App\Models\OrganizationHeadGroup;
@@ -55,7 +56,8 @@ class OrganizationController extends Controller
      */
     public function create()
     {
-        return view('organization_add');
+        $course = Course::all();
+        return view('organization_add', compact('course'));
     }
 
     /**
@@ -113,6 +115,7 @@ class OrganizationController extends Controller
         'acronym'        => 'Required',
         'account_number' => 'Required',
         'full_name'      => 'Required',
+        'course_id'      => 'Required',
         'email'          => 'Required',
       ]);
 
@@ -132,6 +135,7 @@ class OrganizationController extends Controller
         'account_number' => $request->account_number,
         'full_name'      => $request->full_name,
         'email'          => $request->email,
+        'course_id'      => $request->course_id,      
         'user_type_id'   => 1,
         'password'       => bcrypt($password),
       ];
@@ -150,7 +154,6 @@ class OrganizationController extends Controller
 
         if ($org_g->wasRecentlyCreated) {
           return back()
-            ->withInput()
             ->with('status', 'Successfully added organization and sent email for password to the organization head ');
         }
       }
