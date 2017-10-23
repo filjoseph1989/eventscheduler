@@ -9,24 +9,33 @@
 @endsection
 
 @section('content')
+
+  <?php
+    if (isset($partials)) {
+      extract($partials);
+    }
+  ?>
+
   <section class="content">
     <div class="container-fluid">
-      <div class="row clearfix">
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          @include ('partials.set_event')
+      @if (isset($partials))
+        <div class="row clearfix">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            @include ($partial1)
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            @include ($partial2)
+          </div>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          @include ('partials.manage_notification')
+        <div class="row clearfix">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            @include ($partial3)
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            @include ($partial4)
+          </div>
         </div>
-      </div>
-      <div class="row clearfix">
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          @include ('partials.view_calendar')
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          @include ('partials.generate_attendance')
-        </div>
-      </div>
+      @endif
     </div>
   </section>
 @endsection

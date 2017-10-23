@@ -56,7 +56,8 @@ class HomeController extends Controller
             ]);
 
             # Render View
-            return view('home');
+            return view('home')
+              ->with('partials', self::getPartials());
         } else {
             # logout and redirect to register page if status is not active
             Auth::guard('web')->logout();
@@ -93,5 +94,21 @@ class HomeController extends Controller
         $this->account_name = $userAccount->name;
         $this->theme        = $userAccount->theme;
         $this->color        = $userAccount->color;
+    }
+
+    /**
+     * Return the homepage partials for different accounts
+     * @return [type] [description]
+     */
+    private function getPartials()
+    {
+      if (parent::isOrgHead()) {
+        return [
+          'partial1' => 'partials.set_event',
+          'partial2' => 'partials.manage_notification',
+          'partial3' => 'partials.view_calendar',
+          'partial4' => 'partials.generate_attendance'
+        ];
+      }
     }
 }
