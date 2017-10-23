@@ -7,13 +7,18 @@
     </div>
     <div class="card">
       <div class="body">
-        <form id="sign_in" id="sign_in" role="form" method="POST" action="{{ route('my.login') }}">
+        <?php if (session('status')): ?>
+          <div class="alert alert-warning" role="alert">
+            {{ session('status') }}
+          </div>
+        <?php endif; ?>
+        <form id="sign_in" id="sign_in" role="form" method="POST" action="{{ route('login') }}">
           {{ csrf_field() }}
           <div class="msg">Sign in to start your session</div>
           <div class="input-group form-group">
             <span class="input-group-addon"><i class="material-icons">person</i></span>
             <div class="form-line">
-              <input type="email" class="form-control" id="email" name="email" value="" placeholder="Username" required autofocus>
+              <input type="email" class="form-control" id="email" name="email" value="" placeholder="Username" value="{{ old('email') }}" required autofocus>
             </div>
           </div>
           <div class="input-group form-group">
@@ -32,11 +37,9 @@
             </div>
           </div>
           <div class="row m-t-15 m-b--20">
-            <div class="col-xs-6">
-              <a href="{{ route('register') }}">Register Now!</a>
-            </div>
+            <div class="col-xs-6">&nbsp;</div>
             <div class="col-xs-6 align-right">
-              <a href="{{ route('password.request') }}">Forgot Password?</a> 
+              <a href="{{ route('password.request') }}">Forgot Password?</a>
             </div>
           </div>
         </form>

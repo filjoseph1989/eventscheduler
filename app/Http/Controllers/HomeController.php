@@ -19,7 +19,7 @@ use App\Models\OrganizationGroup;
  * @version 2.0.0
  * @company DevCaffee
  * @date 09-24-2017
- * @date 10-10-2017 - Updated
+ * @date 10-23-2017 - Updated
  */
 class HomeController extends Controller
 {
@@ -64,7 +64,7 @@ class HomeController extends Controller
             session(['loginClass' => 'login-page']);
 
             return redirect()
-                ->route('register')
+                ->route('login')
                 ->with('status', 'Your registration is not yet complete. </br> Please wait for the confirmation of your account of the administrator');
         }
     }
