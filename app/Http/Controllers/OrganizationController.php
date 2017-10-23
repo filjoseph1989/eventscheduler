@@ -70,14 +70,17 @@ class OrganizationController extends Controller
       # validate form data
       # add to database
 
-      //catch existing Organization Name
+      //catch existing Organization Name (not case-sensitive)
       if( Organization::where( 'name', $request->name )->exists() ){
-        return back()->with(['status_warning' => 'The Organization name has been taken. Please use another name.']);        
+        return back()->with(['status_warning' => 'The organization name is already taken. Please use another name.']);        
       }
       
-
-      //catch existing organization acronym
-
+      //catch existing organization acronym (case-sensitive)
+      $str1 = Organization::where( 'acronym', $request->acronym )->get();
+      if( strcmp ( $request->acronym , $str1[0]->acronym ) == 0 ); {
+        return back()->with(['status_warning' => 'The acronym is already taken. Please use another acronym.']);        
+      }
+      
       //catch invalid student number
       $str1 = substr($request->account_number, 0, -6);
       $str2 = substr($request->account_number, -5);
@@ -90,6 +93,10 @@ class OrganizationController extends Controller
       }
 
       //catch if the org head assigned already an existing org head
+      // if( ::where( 'name', $request->name )->exists() ){
+        // return back()->with(['status_warning' => 'The Organization name has been taken. Please use another name.']);        
+      // }
+      
 
       //catch the format of email must be char*.@char*.com
 
