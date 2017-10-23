@@ -101,7 +101,7 @@ class UserProfileController extends Controller
         if($request->has('email')) {
           $user->email = $request->email;
           $user->save();
-        }
+        }  
 
         if($request->has('mobile_number')) {
           if(strlen($request->mobile_number) != 12 ) {

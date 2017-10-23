@@ -102,7 +102,7 @@ class HomeController extends Controller
      */
     private function getPartials()
     {
-      if (parent::isOrgHead()) {
+      if ( parent::isOrgHead() || parent::isOsa() ) {
         return [
           'partial1' => 'partials.set_event',
           'partial2' => 'partials.manage_notification',
