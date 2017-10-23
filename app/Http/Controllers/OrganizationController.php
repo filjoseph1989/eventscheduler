@@ -71,6 +71,10 @@ class OrganizationController extends Controller
       # add to database
 
       //catch existing Organization Name
+      if( Organization::where( 'name', $request->name )->exists() ){
+        return back()->with(['status_warning' => 'The Organization name has been taken. Please use another name.']);        
+      }
+      
 
       //catch existing organization acronym
 
