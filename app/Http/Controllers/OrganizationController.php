@@ -72,14 +72,14 @@ class OrganizationController extends Controller
 
       //catch existing Organization Name (not case-sensitive)
       if( Organization::where( 'name', $request->name )->exists() ){
-        return back()->with(['status_warning' => 'The organization name is already taken. Please use another name.']);        
+        return back()->withInput()->with(['status_warning' => 'The organization name is already taken. Please use another name.']);        
       }
       
       //catch existing organization acronym (case-sensitive)
       if( Organization::where( 'acronym', $request->acronym )->exists() ){
         $str1 = Organization::where( 'acronym', $request->acronym )->get();
         if( strcmp ( $request->acronym , $str1[0]->acronym ) == 0 ); {
-          return back()->with(['status_warning' => 'The acronym is already taken. Please use another acronym.']);        
+          return back()->withInput()->with(['status_warning' => 'The acronym is already taken. Please use another acronym.']);        
         }
       }
       
@@ -91,18 +91,22 @@ class OrganizationController extends Controller
           !ctype_digit($str1) || 
           !ctype_digit($str2) 
         ) {
-        return back()->with(['status_warning' => 'Invalid student number. (Format is 20XX-XXXXX). X\'s are number-digits']);
+        return back()->withInput()->with(['status_warning' => 'Invalid student number. (Format is 20XX-XXXXX). X\'s are number-digits']);
       }
 
       // catch if the org head assigned already an existing org head
+      //take note, once a school year ends, soft-delete all org-head users and org-users, all organizationGroup instances 
       if( User::where('account_number', $request->account_number)->exists() ){
         $u_id = User::where('account_number', $request->account_number)->get();
         if ( OrganizationGroup::where('user_id', $u_id[0]->id)->where('position_id', 3)->exists() ){
-          return back()->with(['status_warning' => 'The Organization name has been taken. Please use another name.']);        
+          return back()->withInput()->with(['status_warning' => 'The entered organization head already leads an org. A student must only head one organization per school year.']);        
         }
       }
 
       //catch the format of email must be char*.@char*.com
+      if( filter_var($request->email, FILTER_VALIDATE_EMAIL) == false ){
+          return back()->withInput()->with(['status_warning' => 'The entered email is invalid.']);                
+      }
 
       $this->validate($request, [
         'name'           => 'Required',
