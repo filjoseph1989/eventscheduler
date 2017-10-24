@@ -67,47 +67,57 @@ class OrganizationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    { 
+    {
       # Get form data
       # validate form data
       # add to database
 
-      //catch existing Organization Name (not case-sensitive)
+      # catch existing Organization Name (not case-sensitive)
       if( Organization::where( 'name', $request->name )->exists() ){
-        return back()->withInput()->with(['status_warning' => 'The organization name is already taken. Please use another name.']);        
+        return back()
+          ->withInput()
+          ->with(['status_warning' => 'The organization name is already taken. Please use another name.']);
       }
-      
-      //catch existing organization acronym (case-sensitive)
+
+      # catch existing organization acronym (case-sensitive)
       if( Organization::where( 'acronym', $request->acronym )->exists() ){
         $str1 = Organization::where( 'acronym', $request->acronym )->get();
         if( strcmp ( $request->acronym , $str1[0]->acronym ) == 0 ); {
-          return back()->withInput()->with(['status_warning' => 'The acronym is already taken. Please use another acronym.']);        
+          return back()
+            ->withInput()
+            ->with(['status_warning' => 'The acronym is already taken. Please use another acronym.']);
         }
       }
-      
-      //catch invalid student number
+
+      # catch invalid student number
       $str1 = substr($request->account_number, 0, -6);
       $str2 = substr($request->account_number, -5);
       if( strlen($request->account_number) != 10 ||
           $request->account_number[4] != '-' ||
-          !ctype_digit($str1) || 
-          !ctype_digit($str2) 
+          !ctype_digit($str1) ||
+          !ctype_digit($str2)
         ) {
-        return back()->withInput()->with(['status_warning' => 'Invalid student number. (Format is 20XX-XXXXX). X\'s are number-digits']);
+        return back()
+          ->withInput()
+          ->with(['status_warning' => 'Invalid student number. (Format is 20XX-XXXXX). X\'s are number-digits']);
       }
 
-      // catch if the org head assigned already an existing org head
-      //take note, once a school year ends, soft-delete all org-head users and org-users, all organizationGroup instances 
+      # catch if the org head assigned already an existing org head
+      # take note, once a school year ends, soft-delete all org-head users and org-users, all organizationGroup instances
       if( User::where('account_number', $request->account_number)->exists() ){
         $u_id = User::where('account_number', $request->account_number)->get();
         if ( OrganizationGroup::where('user_id', $u_id[0]->id)->where('position_id', 3)->exists() ){
-          return back()->withInput()->with(['status_warning' => 'The entered organization head already leads an org. A student must only head one organization per school year.']);        
+          return back()
+            ->withInput()
+            ->with(['status_warning' => 'The entered organization head already leads an org. A student must only head one organization per school year.']);
         }
       }
 
-      //catch the format of email must be char*.@char*.com
+      #catch the format of email must be char*.@char*.com
       if( filter_var($request->email, FILTER_VALIDATE_EMAIL) == false ){
-          return back()->withInput()->with(['status_warning' => 'The entered email is invalid.']);                
+          return back()
+            ->withInput()
+            ->with(['status_warning' => 'The entered email is invalid.']);
       }
 
       $this->validate($request, [
@@ -135,7 +145,7 @@ class OrganizationController extends Controller
         'account_number' => $request->account_number,
         'full_name'      => $request->full_name,
         'email'          => $request->email,
-        'course_id'      => $request->course_id,      
+        'course_id'      => $request->course_id,
         'user_type_id'   => 1,
         'password'       => bcrypt($password),
       ];
@@ -159,7 +169,13 @@ class OrganizationController extends Controller
       }
     }
 
-    public function myOrganizations (RandomHelper $helper){
+    /**
+     * Display the list of organizations
+     *
+     * @param  RandomHelper $helper
+     * @return Illuminate\Response
+     */
+    public function myOrganizations (RandomHelper $helper) {
       $org_ids = self::getOrganizations();
 
       foreach ($org_ids as $key => $value) {
@@ -175,49 +191,5 @@ class OrganizationController extends Controller
         'organizations' => $organizations,
         'helper'        => $helper,
       ]);
-    }
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
