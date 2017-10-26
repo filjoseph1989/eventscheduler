@@ -13,9 +13,9 @@
  * @author Fil <filjoseph22@gmail.com>
  * @author Liz <janicalizdeguzman@gmail.com>
  * @since 0.1
- * @version 2.11
+ * @version 2.12
  * @date 09-30-2017
- * @date 10-15-2017 - last updated
+ * @date 10-27-2017 - last updated
  */
 (function() { 
   /**
@@ -250,26 +250,10 @@
       $('#org-profile-url').html('<strong>URL</strong>: <a href="'+data.url+'" target="_blank">'+data.url+'</a>');
       $('#org-profile-aniversary').html('<strong>Aniversary</strong>: <a href="#">'+data.aniversary+'</a>');
 
-      $('#official-event-submit').attr('data-event-type', eventType);
-      $('#official-event-submit').attr('data-org-id', data.id);
+      // $('#official-event-submit').attr('data-event-type', eventType);
+      $('#official-event-submit').attr('href', '/event/org-events/1/' + data.id);
+      $('#local-event-submit').attr('href', '/event/org-events/2/' + data.id);
     });
-  });
-
-  /**
-   * from organization - list.blade.php button with id = "official-event-submit" at modal
-   */
-  $(document).on('click', '#official-event-submit', function () {
-    var id        = $(this).data('org-id');
-    var eventType = $(this).data('event-type');
-
-    data = {
-      id: id,
-      event_type: eventType
-    };
-
-    axios_post('/event/org-official-events', data, function (result) {
-      console.log(result);
-    })
   });
 
   /**

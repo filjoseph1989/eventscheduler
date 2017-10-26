@@ -307,8 +307,7 @@ class EventController extends Controller
         return Event::getApproveOrUnapproveEvents($kind);
       }
 
-      # Return All official or local event
-      # within University or organization category
+      # Return All official 
       if ($kind == 1) {
         return Event::getOfficialEvents($kind);
       }
@@ -519,11 +518,21 @@ class EventController extends Controller
     /**
      * shows organization's official events
      */
-    public function showOrgOfficialEvents(Request $data)
+    public function showOrgEvents($kind, $orgId)
     {
-      $submitted = $data->only(['id', 'event_type']);
 
-      echo json_encode($submitted);
+      $events = Event::where('organization_id', $orgId)
+        ->where('event_type_id', $kind)
+        ->where('is_approve', true)
+        ->get();
+    
+      self::getDateComparison($events);
+
+      return view('events-list')
+        ->with([
+          'title'      => $this->list[$kind],
+          'events'     => $events,
+          'eventType'  => $kind
+        ]);
     }
-
 }

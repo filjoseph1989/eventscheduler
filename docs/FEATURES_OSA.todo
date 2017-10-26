@@ -60,10 +60,12 @@ DISPLAYS AND FUNCTIONALITIES:
                             ✔ DESCRIPTION
                             ✔ URL
                             ✔ ANNIVERSARY
-                            ☐ OFFICIAL EVENTS button
-                            ☐ ORGANIZATION LOCAL EVENTS button
+                            ✔ OFFICIAL EVENTS button
+                            ✔ ORGANIZATION LOCAL EVENTS button
                             ☐ ORGANIZATION MEMBERS button
                 ☐ Events:
+                    ☐ local/within org event type = is_approve = true
+                    ☐ official event type is_approve = true
                     ☐ Create Event
                         ☐ FORM (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
                             ☐ fields

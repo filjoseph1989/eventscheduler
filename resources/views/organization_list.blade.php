@@ -47,7 +47,7 @@
                       @else
                         @foreach ($organizations as $key => $org)
                           @foreach( $org as $key => $value )
-                            <tr data-organization-id="{{ $value->organization->id }}" data-event-type="">
+                            <tr data-organization-id="{{ $value->organization->id }}">
                               <td>
                                 <a href="#" class="organization-list-name" data-target="#org-profile" data-toggle="modal">
                                   {{ $value->organization->name }} 
@@ -108,8 +108,8 @@
               </tr>
             </tbody>
           </table>
-          <button type="button" class="btn btn-success" id="official-event-submit" name="button"> Official Events </button>
-          {{--  <button type="button" class="btn btn-success" id="local-event-submit" name="button">Organization Local Events</button>  --}}
+          <a class="btn btn-success" id="official-event-submit"> Official Events</a>
+          <a class="btn btn-success" id="local-event-submit">Local Events</a>
           {{--  <button type="button" class="btn btn-success" id="local-event-submit" name="button">Organization Members</button>  --}}
         </div>
         <div class="modal-footer">
@@ -125,5 +125,5 @@
   <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
   <script src="{{ asset('js/jquery.dataTables.js') }}?v=0.1"></script>
   <script src="{{ asset('js/jquery-datatable.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/app.js') }}?v=2.11"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.13"></script>
 @endsection
