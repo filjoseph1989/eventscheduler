@@ -57,6 +57,8 @@ DISPLAYS AND FUNCTIONALITIES:
                             ☐ ORGANIZATION MEMBERS button
                 ☐ Events:
                     ☐ Create Event
+                        ☐ local/within org event type = is_approve = true
+                        ☐ official
                         ☐ FORM (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
                             ☐ fields
                             ☐ SAVE button
