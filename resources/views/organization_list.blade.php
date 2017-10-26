@@ -47,12 +47,12 @@
                       @else
                         @foreach ($organizations as $key => $org)
                           @foreach( $org as $key => $value )
-                            <tr data-organization-id="{{ $value->organization->id }}">
+                            <tr data-organization-id="{{ $value->organization->id }}" data-event-type="">
                               <td>
                                 <a href="#" class="organization-list-name" data-target="#org-profile" data-toggle="modal">
                                   {{ $value->organization->name }} 
                                   @if( $value->user->id == Auth::id() && Auth::user()->user_type_id != 3)
-                                    (I am the head)
+                                    (I am the head)aria
                                   @endif
                                 </a>
                               </td>
@@ -89,7 +89,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          <h4 class="modal-title" id="org-profile-title"></h4>
+          <h4 class="modal-title" id="org-profile-title"></h4> 
         </div>
         <div class="modal-body">
           <table class="table table-bordered table-striped">
@@ -108,8 +108,9 @@
               </tr>
             </tbody>
           </table>
-          <button type="button" class="btn btn-success" name="button">Official Events</button>
-          <button type="button" class="btn btn-success" name="button">Organization Local Events</button>
+          <button type="button" class="btn btn-success" id="official-event-submit" name="button"> Official Events </button>
+          {{--  <button type="button" class="btn btn-success" id="local-event-submit" name="button">Organization Local Events</button>  --}}
+          {{--  <button type="button" class="btn btn-success" id="local-event-submit" name="button">Organization Members</button>  --}}
         </div>
         <div class="modal-footer">
           ...
@@ -124,5 +125,5 @@
   <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
   <script src="{{ asset('js/jquery.dataTables.js') }}?v=0.1"></script>
   <script src="{{ asset('js/jquery-datatable.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/app.js') }}?v=2.5"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.11"></script>
 @endsection

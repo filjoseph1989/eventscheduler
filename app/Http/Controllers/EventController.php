@@ -515,4 +515,12 @@ class EventController extends Controller
         return false;
       }
     }
+    /**
+     * shows organization's official events
+     */
+    public function showOrgOfficialEvents(Request $data)
+    {
+      d($data); exit;
+    }
+
 }
