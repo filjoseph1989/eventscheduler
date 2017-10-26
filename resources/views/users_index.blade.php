@@ -47,8 +47,7 @@
               </ul>
             </div>
             <div class="body">
-              @php extract($help::dataTableClass($users)) @endphp
-              <table class="table table-bordered table-striped table-hover {{ $class }}">
+              <table class="table table-bordered table-striped table-hover {{-- $class --}}">
                 <thead>
                   <th>Name</th>
                   <th>Course</th>
@@ -84,23 +83,23 @@
                           
                           <td>
                               @if( Auth::user()->user_type_id != 3 )
-                                @if ($user->count() == 0)
+                                @if (count($user) == 0)
                                   No Position
                                 @else
                                   @foreach ($user->user->organizationGroup as $key => $pos)
                                     <a href="#" class="user-position" data-toggle="modal" data-target="#modal-position" data-position-id="{{ $pos->position->id }}">{{ $pos->position->name }}</a>
-                                    @if ($user->count() > 1)
+                                    @if (count($user) > 1)
                                       <br>
                                     @endif
                                   @endforeach
                                 @endif
                               @else
-                                @if ($user->organizationGroup->count() == 0)
+                                @if (count($user->organizationGroup) == 0)
                                   No Position
                                 @else
                                   @foreach ($user->organizationGroup as $key => $pos)
                                     <a href="#" class="user-position" data-toggle="modal" data-target="#modal-position" data-position-id="{{ $pos->position->id }}">{{ $pos->position->name }}</a>
-                                    @if ($user->organizationGroup->count() > 1)
+                                    @if (count($user->organizationGroup) > 1)
                                       <br>
                                     @endif
                                   @endforeach
@@ -123,18 +122,18 @@
                                 @else
                                   @foreach ($user->user->organizationGroup as $key => $pos)
                                     <a href="#" class="user-organization" data-toggle="modal" data-target="#modal-organization" data-organization-id="{{ $pos->organization->id }}">{{ $pos->organization->name }}</a>
-                                    @if ($user->count() > 1)
+                                    @if (count($user) > 1)
                                       <br>
                                     @endif
                                   @endforeach
                                 @endif
                               @else
-                                @if ($user->organizationGroup->count() == 0)
+                                @if (count($user->organizationGroup) == 0)
                                   No organization
                                 @else
                                   @foreach ($user->organizationGroup as $key => $pos)
                                     <a href="#" class="user-organization" data-toggle="modal" data-target="#modal-organization" data-organization-id="{{ $pos->organization->id }}">{{ $pos->organization->name }}</a>
-                                    @if ($user->organizationGroup->count() > 1)
+                                    @if (count($user->organizationGroup) > 1)
                                       <br>
                                     @endif
                                   @endforeach
