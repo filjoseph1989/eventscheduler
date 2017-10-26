@@ -62,7 +62,7 @@ DISPLAYS AND FUNCTIONALITIES:
                             ✔ ANNIVERSARY
                             ✔ OFFICIAL EVENTS button
                             ✔ ORGANIZATION LOCAL EVENTS button
-                            ☐ ORGANIZATION MEMBERS button
+                            ✔ ORGANIZATION MEMBERS button
                 ☐ Events:
                     ☐ local/within org event type = is_approve = true
                     ☐ official event type is_approve = true

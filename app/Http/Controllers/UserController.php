@@ -49,7 +49,8 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(RandomHelper $help)
+    // public function index(RandomHelper $help)
+    public function index()
     {
       # Get the list of user together with their
       # course, organization and position in an orgainization
@@ -72,7 +73,7 @@ class UserController extends Controller
 
       return view('users_index')->with([
         'users'      => $users,
-        'help'       => $help
+        // 'help'       => $help
       ]);
     }
 
@@ -436,5 +437,19 @@ class UserController extends Controller
       # Return to uploader page
       return back()
         ->with('status', $sucessOrFailed);
+    }
+
+    public function orgMembers($orgId){
+      $users = OrganizationGroup::with('user')
+          ->with('organization')
+          ->with('position')
+          ->where('organization_id', $orgId)
+          ->get();
+      $user[] = $users;
+      
+      return view('org_members')->with([
+        'users'      => $user,
+        // 'help'       => $help
+      ]);
     }
 }

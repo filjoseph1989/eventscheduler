@@ -110,7 +110,7 @@
           </table>
           <a class="btn btn-success" id="official-event-submit"> Official Events</a>
           <a class="btn btn-success" id="local-event-submit">Local Events</a>
-          {{--  <button type="button" class="btn btn-success" id="local-event-submit" name="button">Organization Members</button>  --}}
+          <a class="btn btn-success" id="member-list">Members</a>
         </div>
         <div class="modal-footer">
           ...
@@ -125,5 +125,5 @@
   <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
   <script src="{{ asset('js/jquery.dataTables.js') }}?v=0.1"></script>
   <script src="{{ asset('js/jquery-datatable.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/app.js') }}?v=2.13"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.15"></script>
 @endsection

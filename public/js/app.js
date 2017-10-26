@@ -253,6 +253,7 @@
       // $('#official-event-submit').attr('data-event-type', eventType);
       $('#official-event-submit').attr('href', '/event/org-events/1/' + data.id);
       $('#local-event-submit').attr('href', '/event/org-events/2/' + data.id);
+      $('#member-list').attr('href', '/User/org-member/'+data.id);
     });
   });
 
