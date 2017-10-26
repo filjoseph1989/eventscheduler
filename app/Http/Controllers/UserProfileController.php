@@ -17,7 +17,7 @@ use App\Models\OrganizationGroup;
  * @version 2.0.0
  * @company DevCaffee
  * @date 10-10-2017
- * @date 10-17-2017 - last update
+ * @date 10-26-2017 - last update
  */
 class UserProfileController extends Controller
 {
@@ -52,20 +52,27 @@ class UserProfileController extends Controller
           $og = 'Not Yet Specified';
         }
 
-        
+
         return view('user-profile')->with([
           'course'            => $cour,
           'account'           => $acc,
           'organizationGroup' => $og,
-          'prof_pic'          => Auth::user()->picture, 
+          'prof_pic'          => Auth::user()->picture,
         ]);
     }
 
+    /**
+     * Update profile
+     *
+     * @param  Request $request
+     * @param  int  $id
+     * @return Illuminate\Response
+     */
     public function update(Request $request, $id)
-    {  
+    {
       //THE NON-EDITTABLES
-      //if osa, 
-      if( Auth::user()->user_type_id == 3 ) 
+      //if osa,
+      if( Auth::user()->user_type_id == 3 )
       {
         if (
             $request->has('position_id') ||
@@ -73,17 +80,14 @@ class UserProfileController extends Controller
             $request->has('status') ||
             $request->has('created_at')
            ) { return back()->with(['status_warning' => 'This field are accessible for authorized-user only.']); }
-      } 
-      // if user or org-head
-      else 
-      {
+      } else { // if user or org-head
         if (
-            $request->has('organization_id') || 
+            $request->has('organization_id') ||
             $request->has('position_id') ||
             $request->has('user_type_id') ||
             $request->has('status') ||
             $request->has('full_name') ||
-            $request->has('created_at') 
+            $request->has('created_at')
            ) { return back()->with(['status_warning' => 'These fields are accessible for authorized-user only.']); }
       }
 
@@ -95,13 +99,13 @@ class UserProfileController extends Controller
 
         if ($request->has('full_name')) {
           $user->full_name = $request->full_name;
-          $user->save();          
+          $user->save();
         }
 
         if($request->has('email')) {
           $user->email = $request->email;
           $user->save();
-        }  
+        }
 
         if($request->has('mobile_number')) {
           if(strlen($request->mobile_number) != 12 ) {
@@ -118,11 +122,11 @@ class UserProfileController extends Controller
           $user->facebook = $request->facebook;
           $user->save();
         }
-             
+
         if($request->has('twitter')) {
           $user->twitter = $request->twitter;
           $user->save();
-        }           
+        }
       }
       return back();
     }

@@ -409,20 +409,20 @@ class UserController extends Controller
           }
       } else {
             return back()->with('status_warning', 'old password is incorrect');
-      } 
+      }
     }
 
     public function uploadProfilePic (Request $request) {
       $this->validate($request, [
         'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+      ]);
 
-        # Get image, rename and save to images folder
-        $imageName = time().'.'.$request->image->getClientOriginalExtension();
-        $request->image->move(public_path('img/profile'), $imageName);
+      # Get image, rename and save to images folder
+      $imageName = time().'.'.$request->image->getClientOriginalExtension();
+      $request->image->move(public_path('img/profile'), $imageName);
 
       # Save to database
-      $user = User::find($request->id);
+      $user          = User::find($request->id);
       $picture       = $user->picture;
       $user->picture = $imageName;
 
@@ -434,6 +434,7 @@ class UserController extends Controller
       $sucessOrFailed = "Image Uploaded successfully.";
 
       # Return to uploader page
-      return back()->with('status_warning', $sucessOrFailed);
+      return back()
+        ->with('status', $sucessOrFailed);
     }
 }

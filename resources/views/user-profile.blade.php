@@ -13,9 +13,9 @@
       <div class="container-fluid">
         <div class="row clearfix">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            @if (! is_null(session('status_warning')))
+            @if (! is_null(session('status')))
               <div class="alert alert-warning" role="alert">
-                {{ session('status_warning') }}
+                {{ session('status') }}
               </div>
             @endif
 
@@ -45,8 +45,6 @@
                   </form>
                   </div>
                   <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
-                    <?php if (Auth::user()->user_type_id == 2): ?>
-                    <?php endif; ?>
                     <?php $id = "mainTable"; ?>
                     <table class="table" id="{{ $id }}">
                       <thead>
