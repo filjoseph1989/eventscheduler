@@ -244,17 +244,14 @@
     eventType = $(this).parents('tr').data('event-type');
 
     axios_post(route('modal.getOrganization'), data, function(data) {
-      // $('#org-id-off').append('<a href="#" type="hidden">'+data.id+'<a>');
-      // $('#org-id-loc').html('Official Events'+data.id);
-      // $('#org-id-mem').html(data.id);
       $('#org-profile-title').html(data.name);
       $('#org-profile-acronym').html('<strong>Acronym</strong>: <a href="#">'+data.acronym+'</a>');
       $('#org-profile-description').html('<strong>Description</strong>: <a href="#">'+data.description+'</a>');
       $('#org-profile-url').html('<strong>URL</strong>: <a href="'+data.url+'" target="_blank">'+data.url+'</a>');
       $('#org-profile-aniversary').html('<strong>Aniversary</strong>: <a href="#">'+data.aniversary+'</a>');
 
-      $('official-event-submit').attr('data-event-type', eventType);
-      $('official-event-submit').attr('data-org-id', data.id);
+      $('#official-event-submit').attr('data-event-type', eventType);
+      $('#official-event-submit').attr('data-org-id', data.id);
     });
   });
 
@@ -262,7 +259,7 @@
    * from organization - list.blade.php button with id = "official-event-submit" at modal
    */
   $(document).on('click', '#official-event-submit', function () {
-    var id = $(this).data('org-id');
+    var id        = $(this).data('org-id');
     var eventType = $(this).data('event-type');
 
     data = {
@@ -270,12 +267,10 @@
       event_type: eventType
     };
 
-    axios_post(route('event.showOrgOfficialEvents'), data, function (result) {
+    axios_post('/event/org-official-events', data, function (result) {
       console.log(result);
     })
   });
-
-
 
   /**
    * Provide user list on the modal for official attendance

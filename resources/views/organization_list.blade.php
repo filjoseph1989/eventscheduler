@@ -31,8 +31,8 @@
             <div class="body">
               <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  @php extract($helper->dataTableClass($organizations)) @endphp
-                  <table class="table table-bordered table-striped table-hover {{ $class }}">
+                  {{--  @php extract($helper->dataTableClass($organizations)) @endphp  --}}
+                  <table class="table table-bordered table-striped table-hover {{-- $class --}}">
                     <thead>
                       <th>Organization Name</th>
                       <th>Acronym</th>

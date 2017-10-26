@@ -20,14 +20,6 @@ Auth::routes();
 Route::name('my.login')->post('/my-login', 'Auth\LoginController@myLogin');
 
 Route::group(['middleware'=>['auth']], function() {
-    /*
-      TO preview email, remove this later
-     */
-    Route::get('/mailable', function () {
-      $event = App\Models\Event::find(1);
-      return new App\Mail\ApproveEmailNotification($event);
-    });
-
     Route::resource('home',         'HomeController');
     Route::resource('User',         'UserController');
     Route::resource('Org',          'OrganizationController');
@@ -63,21 +55,21 @@ Route::group(['middleware'=>['auth']], function() {
       //for later when authenitcation is complete(for within orgs of a user)
     });
 
-    #additional routes for registering organization-member user type
+    # additional routes for registering organization-member user type
     Route::prefix('User')->group(function() { 
       Route::name('User.existing.assignPosition')->get('/existing-user/assign-position', 'UserController@assignPositionToExistingUser');
       Route::name('User.changePassword')->post('/change-password', 'UserController@changePassword');
       Route::name('user.profile.upload')->post('/upload-profilepic', 'UserController@uploadProfilePic');
     });
 
-     #additional routes for registering organization-member user type
+    # additional routes for registering organization-member user type
     Route::prefix('Organization')->group(function() { 
       Route::name('Organization.myOrganizations')->get('/my-organizations', 'OrganizationController@myOrganizations');
     });
 
-     #additional routes for events user type
+    # additional routes for events user type
     Route::prefix('event')->group(function() { 
-      Route::name('event.dlv')->get('/local-events/{id}', 'EventController@dlv');
       Route::name('event.showOrgOfficialEvents')->post('/org-official-events', 'EventController@showOrgOfficialEvents');
+      Route::name('event.dlv')->get('/local-events/{id}', 'EventController@dlv');
     });
 });

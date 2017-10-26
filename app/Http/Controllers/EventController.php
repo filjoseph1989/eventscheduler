@@ -515,12 +515,15 @@ class EventController extends Controller
         return false;
       }
     }
+
     /**
      * shows organization's official events
      */
     public function showOrgOfficialEvents(Request $data)
     {
-      d($data); exit;
+      $submitted = $data->only(['id', 'event_type']);
+
+      echo json_encode($submitted);
     }
 
 }
