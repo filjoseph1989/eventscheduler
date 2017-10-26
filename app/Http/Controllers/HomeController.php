@@ -98,7 +98,7 @@ class HomeController extends Controller
 
     /**
      * Return the homepage partials for different accounts
-     * @return [type] [description]
+     * @return
      */
     private function getPartials()
     {
@@ -108,6 +108,11 @@ class HomeController extends Controller
           'partial2' => 'partials.manage_notification',
           'partial3' => 'partials.view_calendar',
           'partial4' => 'partials.generate_attendance'
+        ];
+      }
+      if (parent::isOrgMember()) {
+        return [
+          'partial1' => 'partials.view_calendar',
         ];
       }
     }

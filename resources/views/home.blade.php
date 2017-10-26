@@ -18,24 +18,30 @@
 
   <section class="content">
     <div class="container-fluid">
-      @if (isset($partials))
-        <div class="row clearfix">
-          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="row clearfix">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          @if (isset($partial1)) 
             @include ($partial1)
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          @endif
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          @if (isset($partial2)) 
             @include ($partial2)
-          </div>
+          @endif
         </div>
-        <div class="row clearfix">
-          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      </div>
+      <div class="row clearfix">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          @if (isset($partial3)) 
             @include ($partial3)
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            @include ($partial4)
-          </div>
+          @endif
         </div>
-      @endif
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          @if (isset($partial4)) 
+            @include ($partial4)
+          @endif
+        </div>
+      </div>
     </div>
   </section>
 @endsection
