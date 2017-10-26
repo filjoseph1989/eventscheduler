@@ -55,11 +55,11 @@ DISPLAYS AND FUNCTIONALITIES:
                         ✔ SYSTEM will send PASSWORD to the ORG HEAD's email
                     ☐ University Organizations (CARD IS CORRRECTLY LABELED AND COMPLETED FUNCTIONALITY):
                         ☐ org name is link to modal view of the org's INFORMATION:
-                            ☐ ORG TITLE
-                            ☐ ACRONYM
-                            ☐ DESCRIPTION
-                            ☐ URL
-                            ☐ ANNIVERSARY
+                            ✔ ORG TITLE
+                            ✔ ACRONYM
+                            ✔ DESCRIPTION
+                            ✔ URL
+                            ✔ ANNIVERSARY
                             ☐ OFFICIAL EVENTS button
                             ☐ ORGANIZATION LOCAL EVENTS button
                             ☐ ORGANIZATION MEMBERS button
