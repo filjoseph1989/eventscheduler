@@ -82,11 +82,11 @@
                         @foreach ($events as $key => $event)
                           <tr data-event="{{ $event->id }}" data-route="{{ route('Event.edit', $event->id) }}" data-action="{{ route('Event.update', $event->id) }}">
                             <td>
-                              @if (Auth::user()->user_type_id == 1 or Auth::user()->user_type_id == 2)
+                              {{--  @if (Auth::user()->user_type_id == 1 or Auth::user()->user_type_id == 2)  --}}
                                 <a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a>
-                              @else
-                                <a href="#" class="">{{ ucwords($event->title) }}</a>
-                              @endif
+                              {{--  @else  --}}
+                                {{--  <a href="#" class="">{{ ucwords($event->title) }}</a>  --}}
+                              {{--  @endif  --}}
                             </td>
                             <td><a href="#">{{ $event->venue }}</a></td>
                             @if($event->organization != null)
@@ -153,10 +153,13 @@
                   <p id="modal-event-ptitle">&nbsb;</p>
                   <p id="modal-event-venue">&nbsb;</p>
                   <p id="modal-event-description">&nbsb;</p>
+                  <p id="modal-event-organization">&nbsb;</p>
+                  <p id="modal-event-category">&nbsb;</p>
                 </div>
               </div>
             </div>
 
+            @if (Auth::user()->user_type_id == 1)
             {{-- Issue 14 --}}
             <div class="panel">
               <div class="panel-heading" role="tab" id="headingTwo_1">
@@ -252,7 +255,6 @@
               </div>
             </div>
 
-            @if (Auth::user()->user_type_id == 1)
               <div class="panel">
                 <div class="panel-heading" role="tab" id="headingThree_1">
                   <h4 class="panel-title">
@@ -354,5 +356,5 @@
   <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}?v=0.1"></script>
   <script src="{{ asset('js/tooltips-popovers.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/app.js') }}?v=2.11" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.16" charset="utf-8"></script>
 @endsection

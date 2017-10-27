@@ -13,7 +13,7 @@
  * @author Fil <filjoseph22@gmail.com>
  * @author Liz <janicalizdeguzman@gmail.com>
  * @since 0.1
- * @version 2.12
+ * @version 2.16
  * @date 09-30-2017
  * @date 10-27-2017 - last updated
  */
@@ -47,6 +47,7 @@
         $('#modal-event-description').html("Description: " + currentValue.description);
         $('#modal-event-organization').html("Organizer: " + currentValue.organization.name);
         $('#modal-event-category').html("Category: " + currentValue.category + " event");
+        
         $('#form-additional-message').attr('action', action);
         $('#facebook_msg').html(currentValue.facebook_msg);
         $('#twitter_msg').html(currentValue.twitter_msg);
