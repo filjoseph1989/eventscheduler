@@ -30,7 +30,7 @@
                   $thirdPersonAddress = "your";
 
                   if ($eventType == 1) {
-                    $type = 'Official';
+                    $type = 'Official'; 
                   }
                   if ($eventType == 2) {
                     $type = 'Local';
@@ -75,6 +75,7 @@
                       @if (Auth::user()->user_type_id != 2)
                         <th>Status</th>
                       @endif
+                      <th>Approve Status</th>
                     </thead>
                     <tbody>
                       @if (! is_null($events))
@@ -88,12 +89,17 @@
                               @endif
                             </td>
                             <td><a href="#">{{ $event->venue }}</a></td>
-                            <td> {{ $event->organization->name }} </td>
+                            @if($event->organization != null)
+                            <td> {{ $event->organization->first()->name }} </td>
+                            @else
+                            <td> University Official Event  </td>
+                            @endif
                             <td>{{ date('M d, Y', strtotime($event->date_start)) }} {{ date('h:i A', strtotime($event->date_start_time)) }}</td>
                             <td>{{ date('M d, Y', strtotime($event->date_end)) }} {{ date('h:i A', strtotime($event->date_end_time)) }}</td>
                             @if (Auth::user()->user_type_id != 2)
                               <td>{{ ucwords($event->status) }}</td>
                             @endif
+                            <td><a href="#">{{ $event->is_approve == 'true' ? 'Approved' : 'Not Yet Approved' }}</a></td>
                           </tr>
                         @endforeach
                       @else

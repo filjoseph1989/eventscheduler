@@ -162,6 +162,11 @@ class EventController extends Controller
     public function show($id)
     {
       $events = self::whosGettingTheEvents($id);
+      // foreach ($events as $key => $value) {
+      //   if( $value->organization != null )
+      //   d($value->organization->first()->name);
+      // }
+      // exit;
 
       self::getDateComparison($events);
 
