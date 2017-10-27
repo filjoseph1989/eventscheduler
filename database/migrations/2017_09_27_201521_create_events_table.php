@@ -16,7 +16,7 @@ class CreateEventsTable extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id'); 
             $table->integer('user_id')->unsigned()->index();
-            $table->integer('organization_id')->unsigned()->index();
+            $table->integer('organization_id')->unsigned()->index()->nullable(); //made nullable for osa users
             $table->integer('event_type_id')->unsigned()->index();
             $table->integer('semester_id')->unsigned()->index();
             $table->enum('category', ['within','personal','university','organization'])->nullable();
