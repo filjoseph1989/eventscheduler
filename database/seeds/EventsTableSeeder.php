@@ -16,7 +16,7 @@ class EventsTableSeeder extends Seeder
         [
           'id'              => 1,
           'user_id'         => 1,
-          'organization_id' => 1,
+          'organization_id' => null,
           'event_type_id'   => 1,
           'semester_id'     => 1,
           'category'        => 'university',
@@ -47,7 +47,7 @@ class EventsTableSeeder extends Seeder
         [
           'id'              => 2,
           'user_id'         => 1,
-          'organization_id' => 1,
+          'organization_id' => null,
           'event_type_id'   => 1,
           'semester_id'     => 1,
           'category'        => 'university',
@@ -78,7 +78,7 @@ class EventsTableSeeder extends Seeder
         [
           'id'              => 3,
           'user_id'         => 1,
-          'organization_id' => 1,
+          'organization_id' => null,
           'event_type_id'   => 1,
           'semester_id'     => 1,
           'category'        => 'university',
@@ -109,7 +109,7 @@ class EventsTableSeeder extends Seeder
         [
           'id'              => 4,
           'user_id'         => 1,
-          'organization_id' => 1,
+          'organization_id' => null,
           'event_type_id'   => 1,
           'semester_id'     => 1,
           'category'        => 'university',
@@ -140,7 +140,7 @@ class EventsTableSeeder extends Seeder
         [
           'id'              => 5,
           'user_id'         => 1,
-          'organization_id' => 1,
+          'organization_id' => null,
           'event_type_id'   => 1,
           'semester_id'     => 1,
           'category'        => 'university',
@@ -171,7 +171,7 @@ class EventsTableSeeder extends Seeder
         [
           'id'              => 6,
           'user_id'         => 1,
-          'organization_id' => 1,
+          'organization_id' => null,
           'event_type_id'   => 1,
           'semester_id'     => 1,
           'category'        => 'university',
@@ -202,7 +202,7 @@ class EventsTableSeeder extends Seeder
         [
           'id'              => 7,
           'user_id'         => 1,
-          'organization_id' => 1,
+          'organization_id' => null,
           'event_type_id'   => 1,
           'semester_id'     => 1,
           'category'        => 'university',
@@ -233,7 +233,7 @@ class EventsTableSeeder extends Seeder
         [
           'id'              => 8,
           'user_id'         => 1,
-          'organization_id' => 1,
+          'organization_id' => null,
           'event_type_id'   => 1,
           'semester_id'     => 1,
           'category'        => 'university',
@@ -264,7 +264,7 @@ class EventsTableSeeder extends Seeder
         [
           'id'              => 9,
           'user_id'         => 1,
-          'organization_id' => 1,
+          'organization_id' => null,
           'event_type_id'   => 1,
           'semester_id'     => 1,
           'category'        => 'university',
@@ -295,7 +295,7 @@ class EventsTableSeeder extends Seeder
         [
           'id'              => 10,
           'user_id'         => 1,
-          'organization_id' => 1,
+          'organization_id' => null,
           'event_type_id'   => 1,
           'semester_id'     => 1,
           'category'        => 'university',
@@ -326,7 +326,7 @@ class EventsTableSeeder extends Seeder
         [
           'id'              => 11,
           'user_id'         => 1,
-          'organization_id' => 1,
+          'organization_id' => null,
           'event_type_id'   => 1,
           'semester_id'     => 1,
           'category'        => 'university',
@@ -357,7 +357,7 @@ class EventsTableSeeder extends Seeder
         [
           'id'              => 12,
           'user_id'         => 1,
-          'organization_id' => 1,
+          'organization_id' => null,
           'event_type_id'   => 1,
           'semester_id'     => 1,
           'category'        => 'university',
@@ -388,7 +388,7 @@ class EventsTableSeeder extends Seeder
         [
           'id'              => 13,
           'user_id'         => 1,
-          'organization_id' => 1,
+          'organization_id' => null,
           'event_type_id'   => 1,
           'semester_id'     => 1,
           'category'        => 'university',
@@ -419,7 +419,7 @@ class EventsTableSeeder extends Seeder
         [
           'id'              => 14,
           'user_id'         => 1,
-          'organization_id' => 1,
+          'organization_id' => null,
           'event_type_id'   => 1,
           'semester_id'     => 1,
           'category'        => 'university',
@@ -450,7 +450,7 @@ class EventsTableSeeder extends Seeder
         [
           'id'              => 15,
           'user_id'         => 1,
-          'organization_id' => 1,
+          'organization_id' => null,
           'event_type_id'   => 1,
           'semester_id'     => 1,
           'category'        => 'university',
@@ -481,7 +481,7 @@ class EventsTableSeeder extends Seeder
         [
           'id'              => 16,
           'user_id'         => 1,
-          'organization_id' => 1,
+          'organization_id' => null,
           'event_type_id'   => 1,
           'semester_id'     => 1,
           'category'        => 'university',
@@ -512,7 +512,7 @@ class EventsTableSeeder extends Seeder
         [
           'id'              => 17,
           'user_id'         => 1,
-          'organization_id' => 1,
+          'organization_id' => null,
           'event_type_id'   => 1,
           'semester_id'     => 1,
           'category'        => 'university',
@@ -543,7 +543,7 @@ class EventsTableSeeder extends Seeder
         [
           'id'              => 18,
           'user_id'         => 1,
-          'organization_id' => 1,
+          'organization_id' => null,
           'event_type_id'   => 1,
           'semester_id'     => 1,
           'category'        => 'university',
@@ -574,7 +574,7 @@ class EventsTableSeeder extends Seeder
         [
           'id'              => 19,
           'user_id'         => 1,
-          'organization_id' => 1,
+          'organization_id' => null,
           'event_type_id'   => 1,
           'semester_id'     => 1,
           'category'        => 'university',
@@ -605,7 +605,7 @@ class EventsTableSeeder extends Seeder
         [
           'id'              => 20,
           'user_id'         => 1,
-          'organization_id' => 1,
+          'organization_id' => null,
           'event_type_id'   => 1,
           'semester_id'     => 1,
           'category'        => 'university',
@@ -636,7 +636,7 @@ class EventsTableSeeder extends Seeder
         [
           'id'              => 21,
           'user_id'         => 1,
-          'organization_id' => 1,
+          'organization_id' => null,
           'event_type_id'   => 1,
           'semester_id'     => 1,
           'category'        => 'university',
@@ -667,7 +667,7 @@ class EventsTableSeeder extends Seeder
         [
           'id'              => 22,
           'user_id'         => 1,
-          'organization_id' => 1,
+          'organization_id' => null,
           'event_type_id'   => 1,
           'semester_id'     => 1,
           'category'        => 'university',
@@ -698,7 +698,7 @@ class EventsTableSeeder extends Seeder
         [
           'id'              => 23,
           'user_id'         => 1,
-          'organization_id' => 1,
+          'organization_id' => null,
           'event_type_id'   => 1,
           'semester_id'     => 1,
           'category'        => 'university',
@@ -729,7 +729,7 @@ class EventsTableSeeder extends Seeder
         [
           'id'              => 24,
           'user_id'         => 1,
-          'organization_id' => 1,
+          'organization_id' => null,
           'event_type_id'   => 1,
           'semester_id'     => 1,
           'category'        => 'university',
