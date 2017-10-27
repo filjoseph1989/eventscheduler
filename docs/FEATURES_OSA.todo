@@ -76,13 +76,6 @@ DISPLAYS AND FUNCTIONALITIES:
                             ✔ event table
                                 ✔ official (university / organization) event type is_approve = true    
                     ☐ List of Events (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
-                        ☐ All Events (if not osa, this would be My Organization Events) (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
-                            ☐ EVENT title is link to modal view of the event's INFORMATION:
-                                ☐ panel for event details
-                                ☐ (if org head, panel for CONFIGURE SOCIAL NOTIFICATION) 
-                                ☐ (if org head, panel for ADDITIONAL MESSAGE) 
-                                ☐ ATTEND button
-                                ☐ (display REQUEST APPROVAL button, if org user && event->is_approve == false)
                         ☐ Official (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
                             ☐ EVENT title is link to modal view of the event's INFORMATION:
                                 ☐ panel for event details
