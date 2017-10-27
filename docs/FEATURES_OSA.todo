@@ -64,19 +64,17 @@ DISPLAYS AND FUNCTIONALITIES:
                             ✔ ORGANIZATION LOCAL EVENTS button
                             ✔ ORGANIZATION MEMBERS button
                 ☐ Events:
-                    ☐ Create Event
-                         ☐ FORM (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
-                            ☐ fields
-                            ☐ SAVE button
-                            ☐ (REQUEST EVENT APPROVAL button (if ORG HEAD) ) 
-                                ☐ (display if the category is university or organization)
-                                ☐ if successful, 
-                                    ☐ automatic save event to database with status->requested
-                        ☐ if successful CREATE EVENT, (STORE) add to database the new event for the right table
-                            ☐ personal event table
-                                ☐ local (personal / within) org event type = is_approve = true
-                            ☐ event table
-                                ☐ official (university / organization) event type is_approve = true    
+                    ✔ Create Event
+                         ✔ FORM (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
+                            ✔ fields
+                            ✔ error-trapping 
+                                ✔ for every null field, return back with inputs and status_warning for the invalid or wrong field
+                            ✔ SAVE button
+                        ✔ if successful CREATE EVENT, (STORE) add to database the new event for the right table
+                            ✔ personal event table
+                                ✔ local (personal / within) org event type = is_approve = true
+                            ✔ event table
+                                ✔ official (university / organization) event type is_approve = true    
                     ☐ List of Events (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
                         ☐ All Events (if not osa, this would be My Organization Events) (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
                             ☐ EVENT title is link to modal view of the event's INFORMATION:
