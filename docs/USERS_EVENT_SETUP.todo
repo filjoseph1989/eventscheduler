@@ -1,0 +1,52 @@
+LEGEND:
+    ✔ - APPEAR
+    ✘ - HIDDEN
+
+OSA:
+    EVENTS:
+        OFFICIAL EVENTS
+            MODAL SECTIONS: 
+                    (BUT ONLY THOSE EVENTS WHERE THE ORGANIZATION_ID IS NULL(CREATED BY OSA/SEEDER) )
+                    ✔ Event Title
+                    ✔ Configure Social Notification
+                    ✔ Additional Message
+        PERSONAL EVENTS
+            MODAL SECTIONS:
+                    ✔ Event Title
+                    ✔ Configure Social Notification
+                    ✔ Additional Message
+ORG-HEAD:
+    EVENTS:
+        MY PRIMARY ORGANIZATION EVENTS
+            MODAL SECTIONS:
+                    (ONLY THOSE EVENTS WHOSE ORGANIZATION_ID IS THE ORG-HEAD'S PRIMARY-ORGANIZATION(OrganizationGroup->position_id = 3, OrganizationGroup->user_id = Auth:id() ) )
+                    ✔ Event Title
+                    ✔ Configure Social Notification  @hide if Event->is_approve == true
+                    ✔ Additional Message             @hide if Event->is_approve == true
+        OFFICIAL EVENTS
+            MODAL SECTIONS:
+                    ✔ Event Title
+                    ✔ Configure Social Notification  @hide if Event->organization_id is NOT ORG-HEAD'S PRIMARY ORGANIZATION || @hide if Event->is_approve == true
+                    ✔ Additional Message             @hide if Event->organization_id is NOT ORG-HEAD'S PRIMARY ORGANIZATION || @hide if Event->is_approve == true
+        LOCAL EVENTS
+            MODAL SECTIONS:
+                    ✔ Event Title
+                    ✔ Configure Social Notification
+                    ✔ Additional Message
+ORG-MEM:
+    EVENTS:
+        MY ORGANIZATION EVENTS
+            MODAL SECTIONS:
+                    ✔ Event Title
+                    ✘ Configure Social Notification
+                    ✘ Additional Message
+        OFFICIAL EVENTS
+            MODAL SECTIONS:
+                    ✔ Event Title
+                    ✘ Configure Social Notification
+                    ✘ Additional Message
+        LOCAL EVENTS
+            MODAL SECTIONS:
+                    ✔ Event Title
+                    ✔ Configure Social Notification @hide if Event->category == 'within'
+                    ✔ Additional Message            @hide if Event->category == 'within'
