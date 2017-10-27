@@ -10,6 +10,7 @@ use App\Common\ValidationTrait;
 use App\Common\CommonMethodTrait;
 
 use Auth;
+use DateTime;
 
 # Models
 use App\Models\Event;
@@ -91,17 +92,31 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
+      // d($request); exit;
       $this->validateRequest($this, $request);
 
-      $org_id = OrganizationGroup::where('user_id', Auth::id())
+      $orgId = null;
+      if(Auth::user()->user_type_id != 3) {
+        $org_id = OrganizationGroup::where('user_id', Auth::id())
         ->where('position_id', 3)
         ->get();
+        $orgId = $org_id[0]->organization_id;
+      }
 
       if ($request->category == "university" || $request->category == "organization") {
         $event_type_id = 1;
+        if(Auth::user()->user_type_id == 3) { 
+          //if osa  user, is_approve is always true
+          $is_approve = true;
+        } 
+        //if not osa, is_approve is default which is false because it needs approval from the osa all the time
       } else { # if doesnt satisfy above, event type automatically 2
         $event_type_id = 2;
+          $is_approve = true;
+          //always true for local events no matter what type of user_type_id because it's local events, doesn't need approval to advertise consent of the osa
       }
+
+      
 
       $this->date_start = date('Y-m-d', strtotime($request->date_start));
       $this->date_end   = date('Y-m-d', strtotime($request->date_end));
@@ -111,7 +126,7 @@ class EventController extends Controller
       $data = [
         "user_id"         => $request->user_id,
         "event_type_id"   => $event_type_id,
-        "organization_id" => $org_id[0]->organization_id,
+        "organization_id" => $orgId,
         "semester_id"     => $request->semester_id,
         "category"        => $request->category,
         "title"           => $request->title,
@@ -122,13 +137,14 @@ class EventController extends Controller
         "date_start_time" => $this->time_start,
         "date_end_time"   => $this->time_end,
         "whole_day"       => self::wholeDayOrNot(),
+        "is_approve"      => $is_approve,
       ];
 
       if ($request->category == 'personal') {
         unset($data['organization_id']);
-        $event = Event::create($data);
-      } else {
         $event = PersonalEvent::create($data);
+      } else {
+        $event = Event::create($data);
       }
 
       if ($event->wasRecentlyCreated) {
@@ -502,10 +518,9 @@ class EventController extends Controller
      */
     private function twelveHoursOrMore($time1, $time2)
     {
-      $startTime = new DateTime($time1);
-      $endTime   = new DateTime($time2);
-      $duration  = $time1->diff($time2); //$duration is a DateInterval object
-
+      $startTime = strtotime($time1);
+      $endTime   = strtotime($time2);
+      $duration = gmdate("H:i:s", ($endTime-$startTime));
       list($hr, $sec, $milisec) = explode(':', $duration);
 
       if (($hr >= 12) && ($sec >= 0) && ($milisec >= 0)) {

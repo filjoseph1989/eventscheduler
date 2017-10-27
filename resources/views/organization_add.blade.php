@@ -92,7 +92,7 @@
                           @endforeach
                         </select>
                       </div>
-                    </div>
+                    </div> 
                     <div class="form-group">
                       <div class="form-line">
                         <input type="text" class="form-control" id="student_email" name="email" placeholder="Organization Leader Email" value="{{ old('email') }}" required>
