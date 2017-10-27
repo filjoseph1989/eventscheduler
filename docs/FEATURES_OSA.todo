@@ -76,26 +76,23 @@ DISPLAYS AND FUNCTIONALITIES:
                             ✔ event table
                                 ✔ official (university / organization) event type is_approve = true    
                     ☐ List of Events (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
-                        ☐ Official (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
-                            ☐ EVENT title is link to modal view of the event's INFORMATION:
-                                ☐ panel for event details
-                                ☐ (if org head, panel for CONFIGURE SOCIAL NOTIFICATION) 
-                                ☐ (if org head, panel for ADDITIONAL MESSAGE) 
-                                ☐ ATTEND button
-                                ☐ (display REQUEST APPROVAL button, if org user && event->is_approve == false)
-                        ☐ Local:
-                            ☐ CARD for WITHIN ORGANICATION EVENTS (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
-                                ☐ EVENT title is link to modal view of the event's INFORMATION:
-                                    ☐ panel for event details
-                                    ☐ (if org head, panel for CONFIGURE SOCIAL NOTIFICATION) 
-                                    ☐ (if org head, panel for ADDITIONAL MESSAGE) 
-                                    ☐ ATTEND button
-                            ☐ CARD for PERSONAL EVENTS (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
-                                ☐ EVENT title is link to modal view of the event's INFORMATION:
-                                    ☐ panel for event details
-                                    ☐ (if org head, panel for CONFIGURE SOCIAL NOTIFICATION) 
-                                    ☐ (if org head, panel for ADDITIONAL MESSAGE) 
-                                    ☐ ATTEND button
+                        OFFICIAL EVENTS
+                            MODAL SECTIONS: 
+                                    (BUT ONLY THOSE EVENTS WHERE THE ORGANIZATION_ID IS NULL(CREATED BY OSA/SEEDER) )
+                                    ✔ Event Title
+                                    ✔ Configure Social Notification
+                                    ✔ Additional Message
+                                    ✔ ATTEND BUTTON    @hide if (Attendance->status == confirmed) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)
+                                    ✔ DECLINE BUTTON   @hide if (Attendance->status == declined) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)
+                                    ✘ REQUEST APPROVAL BUTTON
+                        PERSONAL EVENTS (no need for attendances in personal events)
+                            MODAL SECTIONS:
+                                    ✔ Event Title
+                                    ✔ Configure Social Notification
+                                    ✔ Additional Message
+                                    ✘ ATTEND BUTTON
+                                    ✘ DECLINE BUTTON
+                                    ✘ REQUEST APPROVAL BUTTON
                     ☐ APPROVE EVENTS (if osa only) (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
                         ☐ TITLE IS LINK FOR EVENT DETAILS MODAL
                         ☐ WHEN APPROVE button is clicked:
