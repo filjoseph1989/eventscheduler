@@ -27,7 +27,7 @@ DISPLAYS AND FUNCTIONALITIES:
         ☐ USER "info-container":
             ✔ PROFILE PICTURE changes after an upload at User Profile Page
             ✔ USER's full name
-            ✔ USER's email
+            ✔ USER's email 
             ✔ USER's user account type
             ☐ MAIN NAVIGATION:
                 ☐ functional Home BAR button 
@@ -68,33 +68,52 @@ DISPLAYS AND FUNCTIONALITIES:
                             ☐ personal event table
                             ☐ event table
                     ☐ List of Events (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
-                        ☐ All Events (if not osa, this would be My Organization Events) (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
-                            ☐ EVENT title is link to modal view of the event's INFORMATION:
-                                ☐ panel for event details
-                                ☐ (if org head, panel for CONFIGURE SOCIAL NOTIFICATION) 
-                                ☐ (if org head, panel for ADDITIONAL MESSAGE) 
-                                ☐ ATTEND button
-                                ☐ (display REQUEST APPROVAL button, if org user && event->is_approve == false)
-                        ☐ Official (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
-                            ☐ EVENT title is link to modal view of the event's INFORMATION:
-                                ☐ panel for event details
-                                ☐ (if org head, panel for CONFIGURE SOCIAL NOTIFICATION) 
-                                ☐ (if org head, panel for ADDITIONAL MESSAGE) 
-                                ☐ ATTEND button
-                                ☐ (display REQUEST APPROVAL button, if org user && event->is_approve == false)
-                        ☐ Local:
-                            ☐ CARD for WITHIN ORGANICATION EVENTS (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
-                                ☐ EVENT title is link to modal view of the event's INFORMATION:
-                                    ☐ panel for event details
-                                    ☐ (if org head, panel for CONFIGURE SOCIAL NOTIFICATION) 
-                                    ☐ (if org head, panel for ADDITIONAL MESSAGE) 
-                                    ☐ ATTEND button
-                            ☐ CARD for PERSONAL EVENTS (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
-                                ☐ EVENT title is link to modal view of the event's INFORMATION:
-                                    ☐ panel for event details
-                                    ☐ (if org head, panel for CONFIGURE SOCIAL NOTIFICATION) 
-                                    ☐ (if org head, panel for ADDITIONAL MESSAGE) 
-                                    ☐ ATTEND button
+                        LEGEND:
+                            ✔     - APPEAR
+                            ✘     - HIDDEN
+                            @hide - CONDITIONAL HIDDEN
+                             MY ORGANIZATION EVENTS
+                                MODAL SECTIONS:
+                                        ☐ 
+                                            ✔ Event Title
+                                        ☐ 
+                                            ✘ Configure Social Notification
+                                        ☐ 
+                                            ✘ Additional Message
+                                        ☐ 
+                                            ✔ ATTEND BUTTON                  @hide if ((Attendance->status == confirmed) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)) 
+                                        ☐ 
+                                            ✔ DECLINE BUTTON                 @hide if ((Attendance->status == declined) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)) 
+                                        ☐ 
+                                            ✘ REQUEST APPROVAL BUTTON
+                            OFFICIAL EVENTS
+                                MODAL SECTIONS:
+                                        ☐ 
+                                            ✔ Event Title
+                                        ☐ 
+                                            ✘ Configure Social Notification
+                                        ☐ 
+                                            ✘ Additional Message
+                                        ☐ 
+                                            ✔ ATTEND BUTTON                  @hide if ((Attendance->status == confirmed) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id))
+                                        ☐ 
+                                            ✔ DECLINE BUTTON                 @hide if ((Attendance->status == declined) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)) 
+                                        ☐ 
+                                            ✘ REQUEST APPROVAL BUTTON
+                            LOCAL EVENTS
+                                MODAL SECTIONS:
+                                        ☐ 
+                                            ✔ Event Title
+                                        ☐ 
+                                            ✔ Configure Social Notification @hide if Event->category == 'within'
+                                        ☐ 
+                                            ✔ Additional Message            @hide if Event->category == 'within'
+                                        ☐ 
+                                            ✔ ATTEND BUTTON                  @hide if ((Attendance->status == confirmed) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)) || Event->category == personal
+                                        ☐ 
+                                            ✔ DECLINE BUTTON                 @hide if ((Attendance->status == declined) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)) || Event->category == personal
+                                        ☐ 
+                                            ✘ REQUEST APPROVAL BUTTON
                     ☐ APPROVE EVENTS (if osa only) (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
                         ☐ TITLE IS LINK FOR EVENT DETAILS MODAL
                         ☐ WHEN APPROVE button is clicked:
