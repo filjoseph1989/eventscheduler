@@ -55,17 +55,19 @@ class ApproveEventController extends Controller
         // Issue 28
 
         # Post on social media
-        if ($event->facebook == 'on') {
-          self::facebookPost($event[0]);
-        }
-        if ($event->twitter == 'on') {
-          self::twitterPost($event[0]);
-        }
-        if ($event->sms == 'on') {
-          self::smsPost($event[0]);
-        }
-        if ($event->email == 'on') {
-          self::emailPost($event[0]);
+        if( $event->has('facebook') || $event->has('twitter') || $event->has('sms') || $event->has('email') ){
+          if ($event->facebook == 'on') {
+            self::facebookPost($event[0]);
+          }
+          if ($event->twitter == 'on') {
+            self::twitterPost($event[0]);
+          }
+          if ($event->sms == 'on') {
+            self::smsPost($event[0]);
+          }
+          if ($event->email == 'on') {
+            self::emailPost($event[0]);
+          }
         }
 
         return back()
