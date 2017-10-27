@@ -149,7 +149,10 @@
                           <option value="{{ old('category') }}" id="event-category-option">-- Select Event Category --</option>
                             <option value="university"> University </option>
                             <option value="organization"> Organizations </option>
-                            <option value="within"> My Organization </option>
+                            @if(Auth::user()->user_type_id == 1)
+                              {{--  user_type_id == 1 is org-head, because only the organization-head can create within organization events  --}}
+                              <option value="within"> My Organization </option>
+                            @endif
                             <option value="personal"> Personal </option>
                         </select>
                       </div>
