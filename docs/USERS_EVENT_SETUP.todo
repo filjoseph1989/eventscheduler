@@ -11,7 +11,8 @@ OSA:
                     ✔ Event Title
                     ✔ Configure Social Notification
                     ✔ Additional Message
-                    ✔ ATTEND BUTTON
+                    ✔ ATTEND BUTTON    @hide if (Attendance->status == confirmed) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)
+                    ✔ DECLINE BUTTON   @hide if (Attendance->status == declined) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)
                     ✘ REQUEST APPROVAL BUTTON
         PERSONAL EVENTS (no need for attendances in personal events)
             MODAL SECTIONS:
@@ -19,6 +20,7 @@ OSA:
                     ✔ Configure Social Notification
                     ✔ Additional Message
                     ✘ ATTEND BUTTON
+                    ✘ DECLINE BUTTON
                     ✘ REQUEST APPROVAL BUTTON
 ORG-HEAD:
     EVENTS:
@@ -28,22 +30,25 @@ ORG-HEAD:
                     ✔ Event Title
                     ✔ Configure Social Notification  @hide if Event->is_approve == true
                     ✔ Additional Message             @hide if Event->is_approve == true
-                    ☐ ATTEND BUTTON
-                    ☐ REQUEST APPROVAL BUTTON
+                    ✔ ATTEND BUTTON                  @hide if (Attendance->status == confirmed) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)
+                    ✔ DECLINE BUTTON                 @hide if (Attendance->status == declined) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)
+                    ✔ REQUEST APPROVAL BUTTON        @hide if Event->is_approve == true
         OFFICIAL EVENTS
             MODAL SECTIONS:
                     ✔ Event Title
                     ✔ Configure Social Notification  @hide if Event->organization_id is NOT ORG-HEAD'S PRIMARY ORGANIZATION || @hide if Event->is_approve == true
                     ✔ Additional Message             @hide if Event->organization_id is NOT ORG-HEAD'S PRIMARY ORGANIZATION || @hide if Event->is_approve == true
-                    ☐ ATTEND BUTTON
-                    ☐ REQUEST APPROVAL BUTTON
+                    ✔ ATTEND BUTTON                  @hide if (Attendance->status == confirmed) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)
+                    ✔ DECLINE BUTTON                 @hide if (Attendance->status == declined) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)
+                    ✔ REQUEST APPROVAL BUTTON        @hide if (Event->is_approve == true) || (Event->organization_id != org heads primary organization)
         LOCAL EVENTS
             MODAL SECTIONS:
                     ✔ Event Title
                     ✔ Configure Social Notification
                     ✔ Additional Message
-                    ☐ ATTEND BUTTON
-                    ☐ REQUEST APPROVAL BUTTON
+                    ✔ ATTEND BUTTON                  @hide if ((Attendance->status == confirmed) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)) || Event->category == personal
+                    ✔ DECLINE BUTTON                 @hide if ((Attendance->status == declined) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)) || Event->category == personal
+                    ✘ REQUEST APPROVAL BUTTON       ( (Event->event_type_id == local) && (Event->category == within) events does not need approval if org head created it)
 ORG-MEM:
     EVENTS:
         MY ORGANIZATION EVENTS
@@ -51,19 +56,22 @@ ORG-MEM:
                     ✔ Event Title
                     ✘ Configure Social Notification
                     ✘ Additional Message
-                    ☐ ATTEND BUTTON
-                    ☐ REQUEST APPROVAL BUTTON
+                    ✔ ATTEND BUTTON                  @hide if ((Attendance->status == confirmed) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)) 
+                    ✔ DECLINE BUTTON                 @hide if ((Attendance->status == declined) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)) 
+                    ✘ REQUEST APPROVAL BUTTON
         OFFICIAL EVENTS
             MODAL SECTIONS:
                     ✔ Event Title
                     ✘ Configure Social Notification
                     ✘ Additional Message
-                    ☐ ATTEND BUTTON
-                    ☐ REQUEST APPROVAL BUTTON
+                    ✔ ATTEND BUTTON                  @hide if ((Attendance->status == confirmed) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id))
+                    ✔ DECLINE BUTTON                 @hide if ((Attendance->status == declined) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)) 
+                    ✘ REQUEST APPROVAL BUTTON
         LOCAL EVENTS
             MODAL SECTIONS:
                     ✔ Event Title
                     ✔ Configure Social Notification @hide if Event->category == 'within'
                     ✔ Additional Message            @hide if Event->category == 'within'
-                    ☐ ATTEND BUTTON
-                    ☐ REQUEST APPROVAL BUTTON
+                    ✔ ATTEND BUTTON                  @hide if ((Attendance->status == confirmed) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)) || Event->category == personal
+                    ✔ DECLINE BUTTON                 @hide if ((Attendance->status == declined) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)) || Event->category == personal
+                    ✘ REQUEST APPROVAL BUTTON
