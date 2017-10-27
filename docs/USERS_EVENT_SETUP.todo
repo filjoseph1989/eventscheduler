@@ -11,11 +11,15 @@ OSA:
                     ✔ Event Title
                     ✔ Configure Social Notification
                     ✔ Additional Message
-        PERSONAL EVENTS
+                    ✔ ATTEND BUTTON
+                    ✘ REQUEST APPROVAL BUTTON
+        PERSONAL EVENTS (no need for attendances in personal events)
             MODAL SECTIONS:
                     ✔ Event Title
                     ✔ Configure Social Notification
                     ✔ Additional Message
+                    ✘ ATTEND BUTTON
+                    ✘ REQUEST APPROVAL BUTTON
 ORG-HEAD:
     EVENTS:
         MY PRIMARY ORGANIZATION EVENTS
@@ -24,16 +28,22 @@ ORG-HEAD:
                     ✔ Event Title
                     ✔ Configure Social Notification  @hide if Event->is_approve == true
                     ✔ Additional Message             @hide if Event->is_approve == true
+                    ☐ ATTEND BUTTON
+                    ☐ REQUEST APPROVAL BUTTON
         OFFICIAL EVENTS
             MODAL SECTIONS:
                     ✔ Event Title
                     ✔ Configure Social Notification  @hide if Event->organization_id is NOT ORG-HEAD'S PRIMARY ORGANIZATION || @hide if Event->is_approve == true
                     ✔ Additional Message             @hide if Event->organization_id is NOT ORG-HEAD'S PRIMARY ORGANIZATION || @hide if Event->is_approve == true
+                    ☐ ATTEND BUTTON
+                    ☐ REQUEST APPROVAL BUTTON
         LOCAL EVENTS
             MODAL SECTIONS:
                     ✔ Event Title
                     ✔ Configure Social Notification
                     ✔ Additional Message
+                    ☐ ATTEND BUTTON
+                    ☐ REQUEST APPROVAL BUTTON
 ORG-MEM:
     EVENTS:
         MY ORGANIZATION EVENTS
@@ -41,13 +51,19 @@ ORG-MEM:
                     ✔ Event Title
                     ✘ Configure Social Notification
                     ✘ Additional Message
+                    ☐ ATTEND BUTTON
+                    ☐ REQUEST APPROVAL BUTTON
         OFFICIAL EVENTS
             MODAL SECTIONS:
                     ✔ Event Title
                     ✘ Configure Social Notification
                     ✘ Additional Message
+                    ☐ ATTEND BUTTON
+                    ☐ REQUEST APPROVAL BUTTON
         LOCAL EVENTS
             MODAL SECTIONS:
                     ✔ Event Title
                     ✔ Configure Social Notification @hide if Event->category == 'within'
                     ✔ Additional Message            @hide if Event->category == 'within'
+                    ☐ ATTEND BUTTON
+                    ☐ REQUEST APPROVAL BUTTON
