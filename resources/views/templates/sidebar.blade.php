@@ -88,9 +88,7 @@
             <li>
               <a href="#" class="menu-toggle"><span>List of Events</span></a>
               <ul class="ml-menu">
-                @if( Auth::user()->user_type_id == 3)
-                  <li><a href="{{ route('Event.show', 0) }}"><span>All Events</span></a></li>
-                @elseif( Auth::user()->user_type_id == 1 )
+                @if( Auth::user()->user_type_id == 1 )
                   <li><a href="{{ route('Event.show', 0) }}"><span>My Primary Organization Events</span></a></li>
                 @elseif( Auth::user()->user_type_id == 2 )
                   <li><a href="{{ route('Event.show', 0) }}"><span>My Organization Events</span></a></li>
