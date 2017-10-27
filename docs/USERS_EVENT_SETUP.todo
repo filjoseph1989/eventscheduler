@@ -1,6 +1,7 @@
 LEGEND:
-    ✔ - APPEAR
-    ✘ - HIDDEN
+    ✔     - APPEAR
+    ✘     - HIDDEN
+    @hide - CONDITIONAL HIDDEN
 
 OSA:
     EVENTS:
