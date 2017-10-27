@@ -13,7 +13,7 @@
  * @author Fil <filjoseph22@gmail.com>
  * @author Liz <janicalizdeguzman@gmail.com>
  * @since 0.1
- * @version 2.16
+ * @version 2.17
  * @date 09-30-2017
  * @date 10-27-2017 - last updated
  */
@@ -35,33 +35,46 @@
    * @return {void}
    */
   $(document).on('click', '.event-title', function() {
-    var $url = $(this).parents('tr').data('route');
-    action   = $(this).parents('tr').data('action');
+    var _this = $(this).parents('tr');
 
-    // Make http request for editing the event
+    var $url     = _this.data('route');
+    var action   = _this.data('action');
+    var approval = _this.data('approval');
+    var organizationId = _this.data('organization-id');
+
+    if (approval == true && organizationId == "") {
+      $('.social-media-notification').hide();      
+    }
+
+    /**
+     * Make http request for editing the event using GET method
+     * and setup the modal elements data
+     */
     axios_get($url, function(data) {
       data.forEach(function(currentValue, index, arr) {
+        // write html
         $('#modal-event-title').html(currentValue.title);
         $('#modal-event-ptitle').html("Title: " + currentValue.title);
         $('#modal-event-venue').html("Venue: " + currentValue.venue);
         $('#modal-event-description').html("Description: " + currentValue.description);
         $('#modal-event-organization').html("Organizer: " + currentValue.organization.name);
         $('#modal-event-category').html("Category: " + currentValue.category + " event");
-        
-        $('#form-additional-message').attr('action', action);
         $('#facebook_msg').html(currentValue.facebook_msg);
         $('#twitter_msg').html(currentValue.twitter_msg);
         $('#email_msg').html(currentValue.email_msg);
         $('#sms_msg').html(currentValue.sms_msg);
+        
+        // set attributes
+        $('#form-additional-message').attr('action', action);
         $('#modal-request-approval-form').attr('action', '/Request/'+currentValue.id);
-        $('#modal-request-approval-form > #id').val(currentValue.id);
         $('#facebook').attr('data-event-id', currentValue.id);
         $('#twitter').attr('data-event-id', currentValue.id);
         $('#sms').attr('data-event-id', currentValue.id);
         $('#email').attr('data-event-id', currentValue.id);
-
-        // Set route
-        $('#modal-attend-form').attr('action', '/Attendances/'+currentValue.id);
+        $('#modal-attend-form').attr('action', '/Attendances/'+currentValue.id); // Set route
+        
+        // set value
+        $('#modal-request-approval-form > #id').val(currentValue.id);
       });
     });
   });

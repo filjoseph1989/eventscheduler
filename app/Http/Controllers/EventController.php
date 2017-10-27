@@ -41,12 +41,28 @@ class EventController extends Controller
       'false' => 'Unapproved Events'
     ];
 
+    /**
+     * Date
+     * @var int
+     */
     private $date_start;
     private $date_end;
     private $time_start;
     private $time_end;
 
+    # Issue 34
     private $theme = 'theme-teal';
+
+    /**
+     * User type
+     * @var int
+     */
+    private $account = 0;
+
+    /**
+     * Returned events
+     */
+    private $events;
 
     /**
      * Build instance of a class
@@ -161,15 +177,19 @@ class EventController extends Controller
      */
     public function show($id)
     {
-      $events = self::whosGettingTheEvents($id);
+      # Keep the account
+      $this->account = Auth::user()->user_type_id;
 
-      self::getDateComparison($events);
+      $this->events = self::whosGettingTheEvents($id);
+
+      self::getDateComparison($this->events);
 
       return view('events-list')
         ->with([
-          'title'      => $this->list[$id],
-          'events'     => $events,
-          'eventType'  => $id
+          'title'      => $this->list[$id], # title of the modal
+          'events'     => $this->events,
+          'eventType'  => $id,
+          'account'    => self::getAccount()
         ]);
     }
 
@@ -274,6 +294,27 @@ class EventController extends Controller
             'helper' => $helper
           ]);
       }
+    }
+
+    /**
+     * shows organization's official events
+     */
+    public function showOrgEvents($kind, $orgId)
+    {
+
+      $events = Event::where('organization_id', $orgId)
+        ->where('event_type_id', $kind)
+        ->where('is_approve', true)
+        ->get();
+    
+      self::getDateComparison($events);
+
+      return view('events-list')
+        ->with([
+          'title'      => $this->list[$kind],
+          'events'     => $events,
+          'eventType'  => $kind
+        ]);
     }
 
     /**
@@ -531,23 +572,21 @@ class EventController extends Controller
     }
 
     /**
-     * shows organization's official events
+     * Return account name
+     * 
+     * @param int $account
+     * @return string
      */
-    public function showOrgEvents($kind, $orgId)
+    private function getAccount()
     {
-
-      $events = Event::where('organization_id', $orgId)
-        ->where('event_type_id', $kind)
-        ->where('is_approve', true)
-        ->get();
-    
-      self::getDateComparison($events);
-
-      return view('events-list')
-        ->with([
-          'title'      => $this->list[$kind],
-          'events'     => $events,
-          'eventType'  => $kind
-        ]);
+      if ($this->account == 1) {
+        return "org-head";
+      }
+      if ($this->account == 2) {
+        return "org-member";
+      }
+      if ($this->account == 3) {
+        return "osa";
+      }
     }
 }
