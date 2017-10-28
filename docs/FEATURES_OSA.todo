@@ -83,17 +83,17 @@ DISPLAYS AND FUNCTIONALITIES:
                         OFFICIAL EVENTS
                             MODAL SECTIONS: 
                                     (BUT ONLY THOSE EVENTS WHERE THE ORGANIZATION_ID IS NULL(CREATED BY OSA/SEEDER) )
-                                    ☐ 
+                                    ✔ 
                                         ✔ Event Title
-                                    ☐ 
+                                    ✔ 
                                         ✔ Configure Social Notification  @hide if Event->organization_id != null
-                                    ☐ 
+                                    ✔ 
                                         ✔ Additional Message             @hide if Event->organization_id != null
-                                    ☐ 
-                                        ✔ ATTEND BUTTON    @hide if (Attendance->status == confirmed) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)
-                                    ☐ 
-                                        ✔ DECLINE BUTTON   @hide if (Attendance->status == declined) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)
-                                    ☐ 
+                                    ✔ 
+                                        ✘ ATTEND BUTTON    @hide if (Attendance->status == confirmed) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)
+                                    ✔ 
+                                        ✘ DECLINE BUTTON   @hide if (Attendance->status == declined) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)
+                                    ✔ 
                                         ✘ REQUEST APPROVAL BUTTON
                         PERSONAL EVENTS (no need for attendances in personal events)
                             MODAL SECTIONS:
