@@ -46,7 +46,7 @@
         <li>
           <a href="javascript:void(0);" class="menu-toggle">
             <i class="material-icons">account_circle</i>
-            @if( $account == 'osa' )
+            @if( session('account') == 'osa' )
               <span>All System Users</span>
             @else
               <span>Organization Co-Members</span>
@@ -54,7 +54,7 @@
           </a>
           <ul class="ml-menu">
             <li><a href="{{ route('User.index') }}">List of Users</a></li>
-            @if ($account == 'org-head')
+            @if (session('account') == 'org-head')
               <li><a href="{{ route('User.create') }}">Register New Users</a></li>
             @endif
           </ul>
@@ -65,11 +65,11 @@
             <span>Organization</span>
           </a>
           <ul class="ml-menu">
-            @if($account == 'osa')
+            @if(session('account') == 'osa')
               <li><a href="{{ route('Org.create') }}"><span>Add New</span></a></li>
             @endif
             <li><a href="{{ route('Org.index') }}"><span>University Organizations</span></a></li>
-            @if ($account != 'osa')
+            @if (session('account') != 'osa')
               <li><a href="{{ route('Organization.myOrganizations') }}"><span>My Organizations</span></a></li>
             @endif
           </ul>
@@ -80,7 +80,7 @@
             <span>Events</span>
           </a>
           <ul class="ml-menu">
-            @if ($account != 'org-member')
+            @if (session('account') != 'org-member')
               <li>
                 <a href="{{ route('Event.create') }}"> <span>Create Event</span> </a>
               </li>
@@ -88,20 +88,20 @@
             <li>
               <a href="#" class="menu-toggle"><span>List of Events</span></a>
               <ul class="ml-menu">
-                @if( $account == 'org-head')
+                @if( session('account') == 'org-head')
                   <li><a href="{{ route('Event.show', 0) }}"><span>My Primary Organization Events</span></a></li>
-                @elseif( $account == 'org-head' )
+                @elseif( session('account') == 'org-head' )
                   <li><a href="{{ route('Event.show', 0) }}"><span>My Organization Events</span></a></li>
                 @endif
                 <li><a href="{{ route('Event.show', 1) }}"> <span>Official</span></a></li>
-                @if( $account == 'osa' )
+                @if( session('account') == 'osa' )
                   <li><a href="{{ route('event.dlv', 2) }}"> <span>Personal</span></a></li>
                 @else
                   <li><a href="{{ route('event.dlv', 2) }}"> <span>Local</span></a></li>
                 @endif
               </ul>
             </li>
-            @if ($account == 'osa')
+            @if (session('account') == 'osa')
               <li>
                 <a href="{{ route('Event.index') }}"><span>Approve Events</span></a>
               </li>
@@ -121,7 +121,7 @@
             <span>Attendances</span>
           </a>
           <ul class="ml-menu">
-            @if ($account != 'org-member')
+            @if (session('account') != 'org-member')
               <li><a href="{{ route('Attendances.show', 'Official') }}"><span>Official Events</span></a></li>
               <li><a href="{{ route('Attendances.show', 'Local') }}"><span>Local Events</span></a></li>
             @else
