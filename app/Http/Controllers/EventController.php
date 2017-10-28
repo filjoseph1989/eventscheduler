@@ -119,20 +119,20 @@ class EventController extends Controller
         $orgId = $org_id[0]->organization_id;
       }
 
+      $is_approve = false;
+
       if ($request->category == "university" || $request->category == "organization") {
         $event_type_id = 1;
-        if(Auth::user()->user_type_id == 3) { 
+        if(Auth::user()->user_type_id == 3) {
           //if osa  user, is_approve is always true
           $is_approve = true;
-        } 
+        }
         //if not osa, is_approve is default which is false because it needs approval from the osa all the time
       } else { # if doesnt satisfy above, event type automatically 2
         $event_type_id = 2;
           $is_approve = true;
           //always true for local events no matter what type of user_type_id because it's local events, doesn't need approval to advertise consent of the osa
       }
-
-      
 
       $this->date_start = date('Y-m-d', strtotime($request->date_start));
       $this->date_end   = date('Y-m-d', strtotime($request->date_end));
@@ -189,7 +189,7 @@ class EventController extends Controller
           'title'      => $this->list[$id], # title of the modal
           'events'     => $this->events,
           'eventType'  => $id,
-          'account'    => self::getAccount()
+          'account'    => self::getAccount($this->event)
         ]);
     }
 
@@ -306,7 +306,7 @@ class EventController extends Controller
         ->where('event_type_id', $kind)
         ->where('is_approve', true)
         ->get();
-    
+
       self::getDateComparison($events);
 
       return view('events-list')
@@ -364,7 +364,7 @@ class EventController extends Controller
         return Event::getApproveOrUnapproveEvents($kind);
       }
 
-      # Return All official 
+      # Return All official
       if ($kind == 1) {
         return Event::getOfficialEvents($kind);
       }
@@ -568,25 +568,6 @@ class EventController extends Controller
         return true;
       } else {
         return false;
-      }
-    }
-
-    /**
-     * Return account name
-     * 
-     * @param int $account
-     * @return string
-     */
-    private function getAccount()
-    {
-      if ($this->account == 1) {
-        return "org-head";
-      }
-      if ($this->account == 2) {
-        return "org-member";
-      }
-      if ($this->account == 3) {
-        return "osa";
       }
     }
 }
