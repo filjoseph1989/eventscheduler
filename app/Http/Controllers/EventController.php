@@ -181,6 +181,7 @@ class EventController extends Controller
       $this->account = Auth::user()->user_type_id;
 
       $this->events = self::whosGettingTheEvents($id);
+      // d($this->events); exit;
 
       self::getDateComparison($this->events);
 
@@ -392,10 +393,12 @@ class EventController extends Controller
       }
 
       if (parent::isOsa()) {
+        d('member'); exit;
         return self::getEvents($id, 'osa');
       }
 
       if (parent::isOrgMember()) {
+        d('member'); exit;
         return self::getEvents($id, 'member');
       }
     }
