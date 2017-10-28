@@ -119,18 +119,18 @@ class EventController extends Controller
         $orgId = $org_id[0]->organization_id;
       }
 
-      $is_approve = false;
+      $is_approve = 'false';
 
       if ($request->category == "university" || $request->category == "organization") {
         $event_type_id = 1;
         if(Auth::user()->user_type_id == 3) {
           //if osa  user, is_approve is always true
-          $is_approve = true;
+          $is_approve = 'true';
         }
         //if not osa, is_approve is default which is false because it needs approval from the osa all the time
       } else { # if doesnt satisfy above, event type automatically 2
         $event_type_id = 2;
-          $is_approve = true;
+          $is_approve = 'true';
           //always true for local events no matter what type of user_type_id because it's local events, doesn't need approval to advertise consent of the osa
       }
 
@@ -189,7 +189,7 @@ class EventController extends Controller
           'title'      => $this->list[$id], # title of the modal
           'events'     => $this->events,
           'eventType'  => $id,
-          'account'    => self::getAccount($this->event)
+          'account'    => self::getAccount(Auth::user()->user_type_id)
         ]);
     }
 
