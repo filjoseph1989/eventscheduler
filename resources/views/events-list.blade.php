@@ -146,11 +146,11 @@
               </div>
               <div id="collapseOne_1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne_1" aria-expanded="false" style="height: 0px;">
                 <div class="panel-body">
-                  <p id="modal-event-ptitle">&nbsb;</p>
-                  <p id="modal-event-venue">&nbsb;</p>
-                  <p id="modal-event-description">&nbsb;</p>
-                  <p id="modal-event-organization">&nbsb;</p>
-                  <p id="modal-event-category">&nbsb;</p>
+                  <p id="modal-event-ptitle">&nbsp;</p>
+                  <p id="modal-event-venue">&nbsp;</p>
+                  <p id="modal-event-description">&nbsp;</p>
+                  <p id="modal-event-organization">&nbsp;</p>
+                  <p id="modal-event-category">&nbsp;</p>
                 </div>
               </div>
             </div>
@@ -250,64 +250,64 @@
                 </div>
               </div>
 
-                <div class="panel">
-                  <div class="panel-heading" role="tab" id="headingThree_1">
-                    <h4 class="panel-title">
-                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_1" href="#collapseThree_1" aria-expanded="false" aria-controls="collapseThree_1">
-                        Additional Messages
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="collapseThree_1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree_1" aria-expanded="false">
-                    <div class="panel-body">
-                      <form class="" id="form-additional-message" action="" method="post">
-                        {{ csrf_field() }}
-                        {{ method_field('PUT') }}
-                        <div class="row clearfix">
-                          <div class="col-sm-12 col-md-12">
-                            <div class="form-group form-float form-group">
-                              <div class="form-line">
-                                <label for="facebook_msg">Facebook Message</label>
-                                <textarea rows="2" class="form-control no-resize" id="facebook_msg" name="facebook_msg" placeholder="Additional message for Facebook Notification"></textarea>
-                              </div>
+              <div class="panel social-media-notification">
+                <div class="panel-heading" role="tab" id="headingThree_1">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_1" href="#collapseThree_1" aria-expanded="false" aria-controls="collapseThree_1">
+                      Additional Messages
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseThree_1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree_1" aria-expanded="false">
+                  <div class="panel-body">
+                    <form class="" id="form-additional-message" action="" method="post">
+                      {{ csrf_field() }}
+                      {{ method_field('PUT') }}
+                      <div class="row clearfix">
+                        <div class="col-sm-12 col-md-12">
+                          <div class="form-group form-float form-group">
+                            <div class="form-line">
+                              <label for="facebook_msg">Facebook Message</label>
+                              <textarea rows="2" class="form-control no-resize" id="facebook_msg" name="facebook_msg" placeholder="Additional message for Facebook Notification"></textarea>
                             </div>
                           </div>
                         </div>
-                        <div class="row clearfix">
-                          <div class="col-sm-12 col-md-12">
-                            <div class="form-group form-float form-group">
-                              <div class="form-line">
-                                <label for="twitter_msg">Twitter Message</label>
-                                <textarea rows="2" class="form-control no-resize" id="twitter_msg" name="twitter_msg" placeholder="Additional message for Twitter notification"></textarea>
-                              </div>
+                      </div>
+                      <div class="row clearfix">
+                        <div class="col-sm-12 col-md-12">
+                          <div class="form-group form-float form-group">
+                            <div class="form-line">
+                              <label for="twitter_msg">Twitter Message</label>
+                              <textarea rows="2" class="form-control no-resize" id="twitter_msg" name="twitter_msg" placeholder="Additional message for Twitter notification"></textarea>
                             </div>
                           </div>
                         </div>
-                        <div class="row clearfix">
-                          <div class="col-sm-12 col-md-12">
-                            <div class="form-group form-float form-group">
-                              <div class="form-line">
-                                <label for="email_msg">Email Message</label>
-                                <textarea rows="2" class="form-control no-resize" id="email_msg" name="email_msg" placeholder="Additional message for email notification"></textarea>
-                              </div>
+                      </div>
+                      <div class="row clearfix">
+                        <div class="col-sm-12 col-md-12">
+                          <div class="form-group form-float form-group">
+                            <div class="form-line">
+                              <label for="email_msg">Email Message</label>
+                              <textarea rows="2" class="form-control no-resize" id="email_msg" name="email_msg" placeholder="Additional message for email notification"></textarea>
                             </div>
                           </div>
                         </div>
-                        <div class="row clearfix">
-                          <div class="col-sm-12 col-md-12">
-                            <div class="form-group form-float form-group">
-                              <div class="form-line">
-                                <label for="sms_msg">Mobile Message</label>
-                                <textarea rows="2" class="form-control no-resize" id="sms_msg" name="sms_msg" placeholder="Additional message for mobile message"></textarea>
-                              </div>
+                      </div>
+                      <div class="row clearfix">
+                        <div class="col-sm-12 col-md-12">
+                          <div class="form-group form-float form-group">
+                            <div class="form-line">
+                              <label for="sms_msg">Mobile Message</label>
+                              <textarea rows="2" class="form-control no-resize" id="sms_msg" name="sms_msg" placeholder="Additional message for mobile message"></textarea>
                             </div>
                           </div>
                         </div>
-                        <button type="button" id="modal-additional-messages" data-color="teal" class="btn bg-teal waves-effect pull-right">Save Changes</button>
-                      </form>
-                    </div>
+                      </div>
+                      <button type="button" id="modal-additional-messages" data-color="teal" class="btn bg-teal waves-effect pull-right">Save Changes</button>
+                    </form>
                   </div>
                 </div>
+              </div>
             @endif
           </div>
         </div>
@@ -351,5 +351,5 @@
   <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}?v=0.1"></script>
   <script src="{{ asset('js/tooltips-popovers.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/app.js') }}?v=2.17" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.18" charset="utf-8"></script>
 @endsection
