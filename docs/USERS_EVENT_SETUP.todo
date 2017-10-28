@@ -5,23 +5,23 @@ LEGEND:
 
 OSA:
     EVENTS:
-        OFFICIAL EVENTS
+         OFFICIAL EVENTS
             MODAL SECTIONS: 
                     (BUT ONLY THOSE EVENTS WHERE THE ORGANIZATION_ID IS NULL(CREATED BY OSA/SEEDER) )
-                    ✔ Event Title
-                    ✔ Configure Social Notification @hide if Event->organization_id != null || Event->is_approve == true
-                    ✔ Additional Message            @hide if Event->organization_id != null || Event->is_approve == true
-                    ✘ ATTEND BUTTON    
-                    ✘ DECLINE BUTTON   
-                    ✘ REQUEST APPROVAL BUTTON
+                        ✔ Event Title
+                        ✔ Configure Social Notification  @hide if Event->organization_id != null && Event->event_type_id == 1
+                        ✔ Additional Message             @hide if Event->organization_id != null && Event->event_type_id == 1
+                        ✘ ATTEND BUTTON    
+                        ✘ DECLINE BUTTON   
+                        ✘ REQUEST APPROVAL BUTTON
         PERSONAL EVENTS (no need for attendances in personal events)
             MODAL SECTIONS:
-                    ✔ Event Title
-                    ✔ Configure Social Notification
-                    ✔ Additional Message
-                    ✘ ATTEND BUTTON
-                    ✘ DECLINE BUTTON
-                    ✘ REQUEST APPROVAL BUTTON
+                        ✔ Event Title
+                        ✔ Configure Social Notification
+                        ✔ Additional Message
+                        ✘ ATTEND BUTTON
+                        ✘ DECLINE BUTTON
+                        ✘ REQUEST APPROVAL BUTTON
 ORG-HEAD:
     EVENTS:
         MY PRIMARY ORGANIZATION EVENTS
