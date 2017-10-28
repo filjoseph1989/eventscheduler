@@ -90,9 +90,9 @@ DISPLAYS AND FUNCTIONALITIES:
                                     ✔ 
                                         ✔ Additional Message             @hide if Event->organization_id != null
                                     ✔ 
-                                        ✘ ATTEND BUTTON    @hide if (Attendance->status == confirmed) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)
+                                        ✘ ATTEND BUTTON    
                                     ✔ 
-                                        ✘ DECLINE BUTTON   @hide if (Attendance->status == declined) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)
+                                        ✘ DECLINE BUTTON   
                                     ✔ 
                                         ✘ REQUEST APPROVAL BUTTON
                         PERSONAL EVENTS (no need for attendances in personal events)
