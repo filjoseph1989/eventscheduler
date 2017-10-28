@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @author Liz <janicalizdeguzman@gmail.com>
  * @version 1.0.0
  * @company DevCaffee
- * @date
+ * @date 
  */
 class PersonalEvent extends Model
 {

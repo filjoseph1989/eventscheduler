@@ -195,13 +195,14 @@ class EventController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
+     * we'll get event data here for modal
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
       return Event::with('organization')
+        ->with('user')
         ->where('id', $id)->get();
     }
 
@@ -259,9 +260,10 @@ class EventController extends Controller
      */
     public function dlv($id, RandomHelper $helper)
     {
+
       if ($id == 2) {
         $org_id = OrganizationGroup::where('user_id', Auth::id())
-        ->get();
+          ->get();
 
         $events = [];
 
@@ -288,10 +290,16 @@ class EventController extends Controller
           ->where('category', 'personal')
           ->get()
           ->toArray();
+
+          $this->account = Auth::user()->user_type_id;
+
         return view('local_events')
           ->with([
-            'events' => $events,
-            'helper' => $helper
+            'eventsPersonal' => $events['personal'],
+            'eventsWithin'   => $events['within'],
+            'helper'         => $helper,
+            'eventType'      => $id,
+            'account'        => self::getAccount()
           ]);
       }
     }

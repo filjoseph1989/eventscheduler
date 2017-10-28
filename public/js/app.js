@@ -37,13 +37,18 @@
   $(document).on('click', '.event-title', function() {
     var _this = $(this).parents('tr');
 
-    var $url     = _this.data('route');
-    var action   = _this.data('action');
-    var approval = _this.data('approval');
+    var $url           = _this.data('route');
+    var action         = _this.data('action');
+    var approval       = _this.data('approval');
     var organizationId = _this.data('organization-id');
+    var eventTypeId    = _this.data('event-type');
+    var userTypeId = _this.data('user-type-id');
+    var personal     = _this.data('personal');
 
-    if (approval == true || organizationId != "") {
-      $('.social-media-notification').hide();      
+    if (userTypeId == 3 ){
+      if ((approval == true) || (organizationId != undefined && eventTypeId == 1) || (personal == undefined) ) {
+        $('.social-media-notification').hide();      
+      }
     }
 
     /**
@@ -57,7 +62,11 @@
         $('#modal-event-ptitle').html("Title: " + currentValue.title);
         $('#modal-event-venue').html("Venue: " + currentValue.venue);
         $('#modal-event-description').html("Description: " + currentValue.description);
-        $('#modal-event-organization').html("Organizer: " + currentValue.organization.name);
+        if ( currentValue.organization != null ) {
+          $('#modal-event-organization').html("Organizer: " + currentValue.organization.name);
+        } else {
+          $('#modal-event-organization').html("Organizer: " + currentValue.user.full_name );
+        }
         $('#modal-event-category').html("Category: " + currentValue.category + " event");
         $('#facebook_msg').html(currentValue.facebook_msg);
         $('#twitter_msg').html(currentValue.twitter_msg);

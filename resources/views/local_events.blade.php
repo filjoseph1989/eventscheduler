@@ -35,19 +35,27 @@
                     <thead>
                         <tr>
                           <th>Title</th>
+                          <th>Venue</th>
                           <th>Organizer</th>
                           <th>Date Start</th>
                           <th>Date End</th>
                           <th>Status</th>
-                        </tr>
+                        </tr> 
                     </thead>
                     <tbody>
-                      @if (count($events['within']) > 0)
-                        @foreach ($events['within'] as $key => $localEvents)
+                      @if (count($eventsWithin) > 0)
+                        @foreach ($eventsWithin as $key => $localEvents)
                           @foreach ($localEvents as $key => $event)
                             <?php $event = (object)$event; ?>
-                            <tr>
-                              <td>{{ $event->title }}</td>
+                            <tr data-event="{{ $event->id }}"
+                              data-event-type = "{{ $event->event_type_id }}" 
+                              data-route="{{ route('Event.edit', $event->id) }}" 
+                              data-action="{{ route('Event.update', $event->id) }}"
+                              data-organization-id="{{ $event->organization_id }}"
+                              data-user-type-id="{{ Auth::user()->user_type_id }}"
+                              data-approval="{{ $event->is_approve }}">
+                              <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
+                              <td>{{ $event->venue }}</td>
                               <td><?php $event->organization = (object)$event->organization; ?>{{ $event->organization->name }}</td>
                               <td>{{ $event->date_start }}</td>
                               <td>{{ $event->date_end }}</td>
@@ -55,15 +63,20 @@
                             </tr>
                           @endforeach
                         @endforeach
-                      @else
-                        No Data
                       @endif
 
-                      @if (count($events['personal']) > 0)
-                        @foreach ($events['personal'] as $key => $event)
+                      @if (count($eventsPersonal) > 0)
+                        @foreach ($eventsPersonal as $key => $event)
                           <?php $event = (object)$event; ?>
-                          <tr>
-                            <td>{{ $event->title }}</td>
+                          <tr data-event="{{ $event->id }}" 
+                              data-event-type = "{{ $event->event_type_id }}"
+                              data-route="{{ route('PersonalEvent.edit', $event->id) }}" 
+                              data-action="{{ route('PersonalEvent.update', $event->id) }}"
+                              data-user-type-id="{{ Auth::user()->user_type_id }}"                              
+                              data-approval="{{ $event->is_approve }}"
+                              data-personal="true">
+                            <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
+                            <td>{{ $event->venue }}</td>
                             <td>Personal</td>
                             <td>{{ $event->date_start }}</td>
                             <td>{{ $event->date_end }}</td>
@@ -75,6 +88,7 @@
                     <tfoot>
                         <tr>
                           <th>Title</th>
+                          <th>Venue</th>
                           <th>Organizer</th>
                           <th>Date Start</th>
                           <th>Date End</th>
@@ -93,6 +107,222 @@
 @endsection
 
 @section('modals')
+  <div id="modal-event" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="event" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="event-title">Event Information</h4>
+        </div>
+        <div class="modal-body">
+          <div class="panel-group" id="accordion_1" role="tablist" aria-multiselectable="true">
+
+            <div class="panel">
+              <div class="panel-heading" role="tab" id="headingOne_1">
+                <h4 class="panel-title">
+                  <a id="modal-event-title" role="button" data-toggle="collapse" data-parent="#accordion_1" href="#collapseOne_1" aria-expanded="false" aria-controls="collapseOne_1" class="collapsed">
+                    Event Title
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseOne_1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne_1" aria-expanded="false" style="height: 0px;">
+                <div class="panel-body">
+                  <p id="modal-event-ptitle">&nbsp;</p>
+                  <p id="modal-event-venue">&nbsp;</p>
+                  <p id="modal-event-description">&nbsp;</p>
+                  <p id="modal-event-organization">&nbsp;</p>
+                  <p id="modal-event-category">&nbsp;</p>
+                </div>
+              </div>
+            </div>
+
+            @if ($account == 'org-head' || $account == 'osa') 
+              <div class="panel social-media-notification">
+                <div class="panel-heading" role="tab" id="headingTwo_1">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_1" href="#collapseTwo_1" aria-expanded="false" aria-controls="collapseTwo_1">
+                      Configure Social Notification
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo_1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo_1" aria-expanded="false">
+                  <div class="panel-body">
+                    <form class="" action="" method="post">
+                      <table class="table table-bordered table-striped">
+                      <thead>
+                        <th>Advertising Options</th>
+                        <th colspan="2">Reminders</th>
+                        <th>Audience</th>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <div class="demo-switch">
+                              <div class="switch" id="facebook">
+                                <label>
+                                  OFF
+                                  <input type="checkbox" name="facebook" checked>
+                                  <span class="lever switch-col-teal"></span>
+                                  ON
+                                </label> Facebook
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            {{-- Issue 4 --}}
+                            <select class="form-control show-tick" name="">
+                              <option value="">1</option>
+                              <option value="">2</option>
+                              <option value="">3</option>
+                              <option value="">4</option>
+                            </select>
+                          </td>
+                          <td>
+                            {{-- Issue 4 --}}
+                            <select class="form-control show-tick" name="">
+                              <option value="">day</option>
+                              <option value="">week</option>
+                              <option value="">month</option>
+                              <option value="">year</option>
+                            </select>
+                          </td>
+                          <td>
+                            @if ($account != 'org-member')
+                              <select class="form-control show-tick" name="">
+                                <option value="">University</option>
+                                <option value="">Organization</option>
+                              </select>
+                            @endif
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="demo-switch">
+                              <div class="switch" id="twitter">
+                                <label>OFF<input type="checkbox" name="twitter" checked><span class="lever switch-col-teal"></span>ON</label> Twitter
+                              </div>
+                            </div>
+                          </td>
+                          <td rowspan="4" colspan="3">Occuppied</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="demo-switch">
+                              <div class="switch" id="email">
+                                <label>OFF<input type="checkbox" name="email" checked><span class="lever switch-col-teal"></span>ON</label> Email
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="demo-switch">
+                              <div class="switch" id="sms">
+                                <label>OFF<input type="checkbox" name="sms" checked><span class="lever switch-col-teal"></span>ON</label> Mobile
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                      <button type="button" id="modal-event-notification" data-color="green" class="btn bg-teal waves-effect pull-right">Save Changes</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="panel social-media-notification">
+                <div class="panel-heading" role="tab" id="headingThree_1">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_1" href="#collapseThree_1" aria-expanded="false" aria-controls="collapseThree_1">
+                      Additional Messages
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseThree_1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree_1" aria-expanded="false">
+                  <div class="panel-body">
+                    <form class="" id="form-additional-message" action="" method="post">
+                      {{ csrf_field() }}
+                      {{ method_field('PUT') }}
+                      <div class="row clearfix">
+                        <div class="col-sm-12 col-md-12">
+                          <div class="form-group form-float form-group">
+                            <div class="form-line">
+                              <label for="facebook_msg">Facebook Message</label>
+                              <textarea rows="2" class="form-control no-resize" id="facebook_msg" name="facebook_msg" placeholder="Additional message for Facebook Notification"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row clearfix">
+                        <div class="col-sm-12 col-md-12">
+                          <div class="form-group form-float form-group">
+                            <div class="form-line">
+                              <label for="twitter_msg">Twitter Message</label>
+                              <textarea rows="2" class="form-control no-resize" id="twitter_msg" name="twitter_msg" placeholder="Additional message for Twitter notification"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row clearfix">
+                        <div class="col-sm-12 col-md-12">
+                          <div class="form-group form-float form-group">
+                            <div class="form-line">
+                              <label for="email_msg">Email Message</label>
+                              <textarea rows="2" class="form-control no-resize" id="email_msg" name="email_msg" placeholder="Additional message for email notification"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row clearfix">
+                        <div class="col-sm-12 col-md-12">
+                          <div class="form-group form-float form-group">
+                            <div class="form-line">
+                              <label for="sms_msg">Mobile Message</label>
+                              <textarea rows="2" class="form-control no-resize" id="sms_msg" name="sms_msg" placeholder="Additional message for mobile message"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <button type="button" id="modal-additional-messages" data-color="teal" class="btn bg-teal waves-effect pull-right">Save Changes</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            @endif
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          @if ($account == 'org-head')
+            <button type="button" data-color="teal" class="btn bg-teal waves-effect request-approval" id="modal-request-approval" data-toggle="tooltip" data-placement="top" title="Request for advertisement approval"
+              onclick="event.preventDefault(); document.getElementById('modal-request-approval-form').submit();">
+              Request Approval
+            </button>
+            <form class="" id="modal-request-approval-form" action="" method="post" style="display: none;">
+              {{ csrf_field() }}
+              {{ method_field('PUT') }}
+              <input type="hidden" id="id" name="id" value="">
+            </form>
+          @endif
+          @if ($account == 'org-member')
+            <button type="button" data-color="teal" class="btn bg-teal waves-effect request-approval" id="modal-attend" data-toggle="tooltip" data-placement="top" title="Attenda this event"
+              onclick="event.preventDefault(); document.getElementById('modal-attend-form').submit();">
+              Attend
+            </button>
+            <form class="" id="modal-attend-form" action="" method="post" style="display: none;">
+              {{ csrf_field() }}
+              {{ method_field('PUT') }}
+            </form>
+          @endif
+
+          <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
 @endsection
 
 @section('js')

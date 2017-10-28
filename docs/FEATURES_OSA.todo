@@ -86,9 +86,9 @@ DISPLAYS AND FUNCTIONALITIES:
                                     ✔ 
                                         ✔ Event Title
                                     ✔ 
-                                        ✔ Configure Social Notification  @hide if Event->organization_id != null
+                                        ✔ Configure Social Notification  @hide if Event->organization_id != null && Event->event_type_id == 1
                                     ✔ 
-                                        ✔ Additional Message             @hide if Event->organization_id != null
+                                        ✔ Additional Message             @hide if Event->organization_id != null && Event->event_type_id == 1
                                     ✔ 
                                         ✘ ATTEND BUTTON    
                                     ✔ 
@@ -97,17 +97,17 @@ DISPLAYS AND FUNCTIONALITIES:
                                         ✘ REQUEST APPROVAL BUTTON
                         PERSONAL EVENTS (no need for attendances in personal events)
                             MODAL SECTIONS:
-                                    ☐ 
+                                    ✔ 
                                         ✔ Event Title
-                                    ☐ 
+                                    ✔ 
                                         ✔ Configure Social Notification
-                                    ☐ 
+                                    ✔ 
                                         ✔ Additional Message
-                                    ☐ 
+                                    ✔ 
                                         ✘ ATTEND BUTTON
-                                    ☐ 
+                                    ✔ 
                                         ✘ DECLINE BUTTON
-                                    ☐ 
+                                    ✔ 
                                         ✘ REQUEST APPROVAL BUTTON
                     ☐ APPROVE EVENTS (if osa only) (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
                         ☐ TITLE IS LINK FOR EVENT DETAILS MODAL

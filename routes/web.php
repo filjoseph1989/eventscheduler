@@ -31,6 +31,9 @@ Route::group(['middleware'=>['auth']], function() {
     Route::resource('Event',        'EventController', ['parameters' =>[
       'Event' => 'id'
     ]]);
+    Route::resource('PersonalEvent',        'PersonalEventController', ['parameters' =>[
+      'Event' => 'id'
+    ]]);
     Route::resource('Attendances', 'AttendanceController', ['parameters' =>[
       'Attendance' => 'id'
     ]]);
