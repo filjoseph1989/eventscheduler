@@ -56,12 +56,14 @@ class HomeController extends Controller
             session([
               'loginClass'   => $this->theme,
               'user_account' => str_replace('-', ' ', $this->account_name),
-              'account'      => self::getAccount(Auth::user()->user_type_id)
             ]);
 
             # Render View
             return view('home')
-              ->with('partials', self::getPartials());
+              ->with([
+                'partials' => self::getPartials(),
+                'account'  => self::getAccount(Auth::user()->user_type_id)
+              ]);
         } else {
             # logout and redirect to register page if status is not active
             Auth::guard('web')->logout();
