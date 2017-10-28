@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use App\Notifications\FacebookPublished;
+use App\Common\CommonMethodTrait;
 
 # Models
 use App\Models\User;
@@ -23,6 +24,8 @@ use App\Models\OrganizationGroup;
  */
 class HomeController extends Controller
 {
+    use CommonMethodTrait;
+
     private $status       = "";
     private $account_name = "";
     private $theme        = "";
@@ -52,7 +55,8 @@ class HomeController extends Controller
 
             session([
               'loginClass'   => $this->theme,
-              'user_account' => str_replace('-', ' ', $this->account_name)
+              'user_account' => str_replace('-', ' ', $this->account_name),
+              'account'      => self::getAccount(Auth::user()->user_type_id)
             ]);
 
             # Render View

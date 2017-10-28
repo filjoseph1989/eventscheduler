@@ -61,4 +61,23 @@ trait CommonMethodTrait
       You cannot access this functionality';
     }
   }
+
+  /**
+   * Return account name
+   *
+   * @param int $count
+   * @return string
+   */
+  private function getAccount($account)
+  {
+    if ($account == 1) {
+      return "org-head";
+    }
+    if ($account == 2) {
+      return "org-member";
+    }
+    if ($account == 3) {
+      return "osa";
+    }
+  }
 }
