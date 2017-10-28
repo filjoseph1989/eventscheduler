@@ -68,6 +68,7 @@
                       <th><a href="#">Title</a></th>
                       <th>Venue</th>
                       <th>Organizer</th>
+                      <th>Type</th>
                       <th>Start</th>
                       <th>End</th>
                       @if ($account != 'org-member')
@@ -91,6 +92,7 @@
                             @else
                               <td> University Official Event  </td>
                             @endif
+                              <td> {{ $event->eventType->first()->name }} </td>
                             <td>{{ date('M d, Y', strtotime($event->date_start)) }} {{ date('h:i A', strtotime($event->date_start_time)) }}</td>
                             <td>{{ date('M d, Y', strtotime($event->date_end)) }} {{ date('h:i A', strtotime($event->date_end_time)) }}</td>
                             @if ($account != 'org-member')
@@ -107,6 +109,7 @@
                       <th>Title</th>
                       <th>Venue</th>
                       <th>Organizer</th>
+                      <th>Type</th>                      
                       <th>Start</th>
                       <th>End</th>
                       @if ($account != 'org-member')

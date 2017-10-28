@@ -203,6 +203,7 @@ class EventController extends Controller
     {
       return Event::with('organization')
         ->with('user')
+        ->with('eventType')
         ->where('id', $id)->get();
     }
 
