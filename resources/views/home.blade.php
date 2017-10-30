@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+ 
 @section('title')
   <title>Home Page</title>
 @endsection
