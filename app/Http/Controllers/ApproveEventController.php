@@ -119,7 +119,7 @@ class ApproveEventController extends Controller
       }
 
       # Within organization
-      if($event->category == 'within' OR $event->category == 'organization') {
+      if($event->category == 'within' OR $event->category == 'organization' OR $event->category == 'university') {
        $users = OrganizationGroup::with('user')
          ->where('organization_id', '=', $value->organization_id )
          ->get();
@@ -137,7 +137,7 @@ class ApproveEventController extends Controller
    */
     protected function emailPost($event)
     {
-      if ($event->category == 'university' || $event->category == 'organization') {
+      if($event->category == 'within' OR $event->category == 'organization' OR $event->category == 'university') {
         $users = User::all();
       }
 
