@@ -39,7 +39,7 @@
 
     var $url           = _this.data('route');
     var action         = _this.data('action');
-    var approval       = _this.data('approval');
+    var approval       = _this.data('approval'); 
     var organizationId = _this.data('organization-id');
     var eventTypeId    = _this.data('event-type');
     var userTypeId = _this.data('user-type-id');
@@ -334,7 +334,7 @@
        id: id
       }
 
-    axios_post('/attendance/get/official/attendance', data, function(data) {
+    axios_post('/attendance/get/confirmed/attendance', data, function(data) {
       var html = "";
       data.map(function (data) {
         html +=
