@@ -8,6 +8,7 @@ use Carbon\Carbon;
 
 # Models
 use App\Models\Event;
+use App\Models\PersonalEvent;
 
 /**
  * Handle the calendar request
@@ -41,22 +42,42 @@ class CalendarController extends Controller
      */
     public function show($id)
     {
-        $events = Event::select(
-          'title',
-          'date_start',
-          'date_end',
-          'whole_day'
-        )->where('event_type_id', $id)
-         ->where('is_approve', 'true')
-         ->get();
-
-        $output_arrays = array();
-        foreach ($events as $key => $event) {
-            # Convert the input array into a useful Event object
-            $event = $this->setEvent($event, new \DateTimeZone('Asia/Manila'));
-            $output_arrays[] = $this->toArray();
+        if( $id == 1 ) {
+            $events = Event::select(
+              'title',
+              'date_start',
+              'date_end',
+              'whole_day'
+            )->where('event_type_id', $id)
+             ->where('is_approve', 'true') 
+             ->get();
+    
+            $output_arrays = array();
+            foreach ($events as $key => $event) {
+                # Convert the input array into a useful Event object
+                $event = $this->setEvent($event, new \DateTimeZone('Asia/Manila'));
+                $output_arrays[] = $this->toArray();
+            }
         }
-
+        else {
+            $events = PersonalEvent::select(
+              'title',
+              'date_start',
+              'date_end',
+              'whole_day'
+            )->where('event_type_id', $id)
+             ->where('is_approve', 'true') 
+             ->get();
+    
+            $output_arrays = array();
+            foreach ($events as $key => $event) {
+                # Convert the input array into a useful Event object
+                $event = $this->setEvent($event, new \DateTimeZone('Asia/Manila'));
+                $output_arrays[] = $this->toArray();
+            }
+        }
+        
+        dd($output_arrays);
         return view("calendar")->with([
             'title'          => $this->list[$id],
             'calendarEvents' => json_encode($output_arrays),

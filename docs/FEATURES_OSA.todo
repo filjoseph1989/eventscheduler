@@ -116,12 +116,12 @@ DISPLAYS AND FUNCTIONALITIES:
                              ✔ $event->status = 'on going' and $event->is_approve = true in the database
                              ✔ $event->category = 'organization' OR $event->category = 'university' 
                              ✔ $event->event_type_id = 1 (which is official)
-                    ☐ CALENDAR:
-                        ☐ Official (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
+                    ✔ CALENDAR:
+                        ✔ Official (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
                             (no filtering since osa can access all official events)
-                            ☐ color red for $event->category == 'organization' from events table only
-                        ☐ Personal (if org head or org user, Local Events) 
-                            ☐ color blue for $event->category == 'personal' from personal_events table only
+                            ✘ color red for $event->category == 'organization' from events table only (sunod na)
+                        ✔ Personal (if org head or org user, Local Events) 
+                            ✘ color blue for $event->category == 'personal' from personal_events table only (sunod na)
                 ☐ Attendances:
                     ☐ Official Events (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
                         ☐ title link to event detail modal
