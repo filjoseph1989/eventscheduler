@@ -10,10 +10,13 @@ use Thujohn\Twitter\Facades\Twitter;
 
 use App\Notifications\FacebookPublished;
 use App\Mail\ApproveEmailNotification;
+use App\Common\CommonMethodTrait;
+
 
 # Models
 use App\Models\Event;
 use App\Models\User;
+use App\Models\OrganizationGroup;
 
 /**
  * Written by Liz <janicalizdeguzman@gmail.com>
@@ -52,12 +55,8 @@ class ApproveEventController extends Controller
         $event = Event::with('organization')
           ->where('id', $id)
           ->get();
-        // dd($event[0]->facebook);
         // Issue 28
 
-        # Post on social media
-        // if( $event->has('facebook') || $event->has('twitter') || $event->has('sms') || $event->has('email') ){
-          
           if ($event[0]->facebook == 'on') {
             // dd($event[0]->facebook);
             self::facebookPost($event[0]);
@@ -71,10 +70,6 @@ class ApproveEventController extends Controller
           if ($event[0]->email == 'on') {
             self::emailPost($event[0]);
           }
-        // } else {
-          // return back()
-          // ->with('status', 'Successfully approve the event but no advertisements made since there are no advertisements activated.');
-        // }
 
         return back()
           ->with('status', 'Successfully approve the event');
@@ -83,7 +78,7 @@ class ApproveEventController extends Controller
 
     /**
      * facabook notification
-     *
+     * this will post to the Event Scheduler V1 Facebook Page
      * @param object $event
      * @return void
      */
@@ -94,7 +89,7 @@ class ApproveEventController extends Controller
 
     /**
      * Twitter notification
-     *
+     * this will post to Schedule Handler Twitter Account
      * @param object $event
      * @return void
      */
@@ -120,19 +115,20 @@ class ApproveEventController extends Controller
       $message = self::smsMessage($event->category, $event);
 
       # Public event
-      if($event->category == 'university') {
-       $users = User::all();
+      if($event->category == 'university' OR $event->category == 'organization') {
+       $users = User::where('status', 'true')->get();
       }
 
       # Within organization
-      if($event->category == 'within' OR $event->category == 'organization' OR $event->category == 'university') {
+      if($event->category == 'within') {
        $users = OrganizationGroup::with('user')
-         ->where('organization_id', '=', $value->organization_id )
+         ->with('organization')
+         ->where('organization_id', $event->organization_id )
          ->get();
       }
 
       # Send notification
-      self::sendSms($users, $message);
+      self::sendSms($users, $message, $event);
    }
 
    /**
@@ -143,12 +139,13 @@ class ApproveEventController extends Controller
    */
     protected function emailPost($event)
     {
-      if($event->category == 'within' OR $event->category == 'organization' OR $event->category == 'university') {
+      if($event->category == 'organization' OR $event->category == 'university') {
         $users = User::all();
       }
 
       if ($event->category == 'within') {
         $users = OrganizationGroup::with('user')
+          ->with('organization')
           ->where('organization_id', '=', $event->organization_id )
           ->get();
       }
@@ -176,9 +173,16 @@ class ApproveEventController extends Controller
      */
     private function sendEmail($users, $event)
     {
-      foreach($users as $key => $user) {
-        Mail::to($user->email)
-          ->send(new ApproveEmailNotification($event));
+      if( $event->category == 'university' OR $event->category == 'organization' ){
+        foreach($users as $key => $user) {
+          Mail::to($user->email)
+            ->send(new ApproveEmailNotification($event));
+        }
+      } else {
+        foreach($users as $key => $user) {
+          Mail::to($user->user->email)
+            ->send(new ApproveEmailNotification($event));
+        }
       }
     }
 
@@ -189,14 +193,24 @@ class ApproveEventController extends Controller
      * @param  string $notification_message
      * @return void
      */
-    private function sendSms($users, $message)
+    private function sendSms($users, $message, $event)
     {
-      foreach($users as $key => $user) {
-        Nexmo::message()->send([
-          'to'   => $user->mobile_number,
-          'from' => '639778378388',
-          'text' => $message
-        ]);
+      if( $event->category == 'university' OR $event->category == 'organization' ) {
+        foreach($users as $key => $user) {
+          Nexmo::message()->send([
+            'to'   => $user->mobile_number,
+            'from' => '639778378388',
+            'text' => $message
+          ]);
+        }
+      } else {
+        foreach($users as $key => $user) {
+          Nexmo::message()->send([
+            'to'   => $user->user->mobile_number,
+            'from' => '639778378388',
+            'text' => $message
+          ]);
+        }
       }
     }
 

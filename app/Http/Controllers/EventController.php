@@ -83,7 +83,8 @@ class EventController extends Controller
 
       return view('approve-events')->with([
         'events' => $events,
-        'helper' => $helper
+        'helper' => $helper,
+        'account'    => self::getAccount(Auth::user()->user_type_id)
       ]);
     }
 
@@ -301,7 +302,7 @@ class EventController extends Controller
             'eventsWithin'   => $events['within'],
             'helper'         => $helper,
             'eventType'      => $id,
-            'account'        => self::getAccount()
+            'account'        => self::getAccount(Auth::user()->user_type_id)
           ]);
       }
     }

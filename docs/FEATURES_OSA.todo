@@ -109,11 +109,13 @@ DISPLAYS AND FUNCTIONALITIES:
                                         ✘ DECLINE BUTTON
                                     ✔ 
                                         ✘ REQUEST APPROVAL BUTTON
-                    ☐ APPROVE EVENTS (if osa only) (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
-                        ☐ TITLE IS LINK FOR EVENT DETAILS MODAL
-                        ☐ WHEN APPROVE button is clicked:
-                             ☐ the event disappears in the display and 
-                             ☐ $event->status = 'on going' and $event->is_approve = true in the database
+                    ✔ APPROVE EVENTS (if osa only) (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
+                        ✔ TITLE IS LINK FOR EVENT DETAILS MODAL
+                        ✔ WHEN APPROVE button is clicked:
+                             ✔ the event disappears in the display and 
+                             ✔ $event->status = 'on going' and $event->is_approve = true in the database
+                             ✔ $event->category = 'organization' OR $event->category = 'university' 
+                             ✔ $event->event_type_id = 1 (which is official)
                     ☐ CALENDAR:
                         ☐ Official (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
                             (no filtering since osa can access all official events)

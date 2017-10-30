@@ -172,7 +172,7 @@
                         </tr>
                         <tr>
                           <td style="font-family: Helvetica, arial, sans-serif; font-size: 13px; color: #95a5a6; text-align:left;line-height: 24px;" st-content="rightimage-paragraph">
-                            <p>Please be informed that you have an upcomming event this {{ date('M d, Y', strtotime($event->date_start)) }}
+                            <p>{{ $event->organization->name }} members, please be informed that you have an upcoming event this {{ date('M d, Y', strtotime($event->date_start)) }}
                             titled, <strong>{{ ucwords($event->title) }}</strong>. {{ $event->description }} held at {{ ucwords($event->venue) }}</p>
                           </td>
                         </tr>
