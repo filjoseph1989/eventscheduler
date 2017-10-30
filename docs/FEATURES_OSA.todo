@@ -123,12 +123,12 @@ DISPLAYS AND FUNCTIONALITIES:
                         ✔ Personal (if org head or org user, Local Events) 
                             ✘ color blue for $event->category == 'personal' from personal_events table only (sunod na)
                 ☐ Attendances:
-                    ☐ Official Events (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
-                        ☐ title link to event detail modal
-                        ☐ official attendance list of users modal
-                        ☐ expected attendance list of users modal
-                        ☐ confirmed attendance list of users modal
-                        ☐ declined attendance list of users modal
+                    ✔ Official Events (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
+                        ✔ title link to event detail modal
+                        ✔ official attendance list of users modal
+                        ✔ expected attendance list of users modal
+                        ✔ confirmed attendance list of users modal
+                        ✔ declined attendance list of users modal
                     ☐ Local Events (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
                         ☐ title link to event detail modal
                         ☐ official attendance list of users modal
