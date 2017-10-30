@@ -77,7 +77,6 @@ class CalendarController extends Controller
             }
         }
         
-        dd($output_arrays);
         return view("calendar")->with([
             'title'          => $this->list[$id],
             'calendarEvents' => json_encode($output_arrays),
