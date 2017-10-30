@@ -281,6 +281,23 @@
   });
 
   /**
+   * from organization - list.blade.php button with id = "official-event-submit" at modal
+   */
+  $(document).on('click', '#official-event-submit', function () {
+    var id        = $(this).data('org-id');
+    var eventType = $(this).data('event-type');
+
+    data = {
+      id: id,
+      event_type: eventType
+    };
+
+    axios_post('/event/org-official-events', data, function (result) {
+      window.location = "/path/here/";
+    })
+  });
+
+  /**
    * Provide user list on the modal for official attendance
    * @return {void}
    */
