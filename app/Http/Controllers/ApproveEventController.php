@@ -41,6 +41,7 @@ class ApproveEventController extends Controller
      */
     public function update(Request $request, $id)
     {
+     
       $event = Event::find($id);
 
       $event->is_approve = 'true';
@@ -51,24 +52,29 @@ class ApproveEventController extends Controller
         $event = Event::with('organization')
           ->where('id', $id)
           ->get();
-
+        // dd($event[0]->facebook);
         // Issue 28
 
         # Post on social media
-        if( $event->has('facebook') || $event->has('twitter') || $event->has('sms') || $event->has('email') ){
-          if ($event->facebook == 'on') {
+        // if( $event->has('facebook') || $event->has('twitter') || $event->has('sms') || $event->has('email') ){
+          
+          if ($event[0]->facebook == 'on') {
+            // dd($event[0]->facebook);
             self::facebookPost($event[0]);
           }
-          if ($event->twitter == 'on') {
+          if ($event[0]->twitter == 'on') {
             self::twitterPost($event[0]);
           }
-          if ($event->sms == 'on') {
+          if ($event[0]->sms == 'on') {
             self::smsPost($event[0]);
           }
-          if ($event->email == 'on') {
+          if ($event[0]->email == 'on') {
             self::emailPost($event[0]);
           }
-        }
+        // } else {
+          // return back()
+          // ->with('status', 'Successfully approve the event but no advertisements made since there are no advertisements activated.');
+        // }
 
         return back()
           ->with('status', 'Successfully approve the event');
