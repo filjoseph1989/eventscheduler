@@ -135,10 +135,11 @@ DISPLAYS AND FUNCTIONALITIES:
                         ✘ expected attendance list of users modal
                         ✘ confirmed attendance list of users modal
                         ✘ declined attendance list of users modal
-    ☐ HOMEPAGE FUNCTIONALITIES:
-         ☐ Advertise / Set Event:
-            ☐ Official Events
-            ☐ Personal Events
+    ✔ HOMEPAGE FUNCTIONALITIES:
+         ✔ Approve Advertise:
+            ✔ Approve Official Events
+            ✔ Official Events
+            ✔ Personal Events
         ☐ Manage Notifications:
             ☐ Edit Notification Settings
             ☐ Approve Events
