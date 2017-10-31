@@ -35,7 +35,7 @@
                   <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                     <thead>
                         <tr>
-                          <th>Title</th>
+                          <th>Title</th> 
                           <th>Venue</th>
                           <th>Organizer</th>
                           <th>Date Start</th>

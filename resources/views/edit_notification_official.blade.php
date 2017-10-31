@@ -66,7 +66,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                     <thead>
-                      <th><a href="#">Title</a></th>
+                      <th><a href="#">Title</a></th> 
                       <th>Venue</th>
                       <th>Organizer</th>
                       <th>Type</th>

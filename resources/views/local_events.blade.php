@@ -29,7 +29,14 @@
               </h2>
             </div>
             <div class="body">
-              <a href="{{ route('Event.create') }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right">Create Event</a>                          
+              <a href="{{ route('Event.create') }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right"  style="margin-left:10px;">Create Event</a>
+              @if(Auth::user()->user_type_id == 3)   
+                &nbsp;     
+                <a href="{{ route('EventNotification.show', 2) }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right"> Edit Notification Settings of Personal Events </a>                  
+              @else
+                &nbsp;
+                <a href="{{ route('EventNotification.show', 2) }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right"> Edit Notification Settings of Local Events </a>                  
+              @endif
               <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
@@ -52,7 +59,7 @@
                             <tr data-event="{{ $event->id }}"
                               data-event-type = "{{ $event->event_type_id }}" 
                               data-route="{{ route('Event.edit', $event->id) }}" 
-                              data-action="{{ route('Event.update', $event->id) }}"
+                              data-action="{{ route('Event.update', $event->id) }}" 
                               data-organization-id="{{ $event->organization_id }}"
                               data-user-type-id="{{ Auth::user()->user_type_id }}"
                               data-approval="{{ $event->is_approve }}">
