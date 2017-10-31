@@ -31,37 +31,6 @@ class EventNotificationController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -101,15 +70,13 @@ class EventNotificationController extends Controller
 
             $events['personal'] = PersonalEvent::getLocalPersonalEventsNotification(Auth::id());
 
-            // dd($events);
-            
             return view('edit_notification_local')
-            ->with([
-                'eventsPersonal' => $events['personal'],
-                'eventsWithin'   => $events['within'],
-                'eventType'      => $id,
-                'account'        => self::getAccount(Auth::user()->user_type_id)
-            ]);
+                ->with([
+                    'eventsPersonal' => $events['personal'],
+                    'eventsWithin'   => $events['within'],
+                    'eventType'      => $id,
+                    'account'        => self::getAccount(Auth::user()->user_type_id)
+                ]);
         }
 
       //if ang personal/local, show events made by the user with is_approve == 'false'  with event_type_id = 2

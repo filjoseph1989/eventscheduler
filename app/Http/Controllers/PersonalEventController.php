@@ -25,12 +25,11 @@ class PersonalEventController extends Controller
   
   public function update(Request $request, $id) 
   { 
-    return $request;
-    // $event = PersonalEvent::find($id); 
+    $event = PersonalEvent::find($id); 
 
-    // if ($request->has('facebook')) { 
-    //   $event->facebook = ($request->facebook === true) ? 'off' : 'on'; 
-    // }
+    if ($request->has('facebook')) { 
+      $event->facebook = ($request->facebook === true) ? 'off' : 'on'; 
+    }
     // if ($request->has('twitter')) {
     //   $event->twitter = ($request->twitter === true) ? 'off' : 'on';
     // }
@@ -53,12 +52,13 @@ class PersonalEventController extends Controller
     //   $event->sms_msg = $request->sms_msg;
     // }
 
-    // if ($event->save()) {
-    //   $result['result'] = true;
-    // } else {
-    //   $result['result'] = false;
-    // }
+    if ($event->save()) {
+      $result['result'] = true;
+      $result['facebook'] = $event->facebook;
+    } else {
+      $result['result'] = false;
+    }
 
-    // echo json_encode($result);
+    echo json_encode($result);
   }
 }

@@ -112,6 +112,7 @@
      */
     axios_get($url, function (data) {
       data.forEach(function (currentValue, index, arr) {
+        console.log(currentValue);
         // write html
         $('#modal-event-title').html(currentValue.title);
         $('#modal-event-ptitle').html("Title: " + currentValue.title);
@@ -131,12 +132,34 @@
         // set attributes
         $('#form-additional-message').attr('action', action);
         $('#modal-request-approval-form').attr('action', '/Request/' + currentValue.id);
+
         $('#facebook').attr('data-event-id', currentValue.id);
         $('#facebook .lever').attr('data-event-type-id', eventTypeId);
+        
         $('#twitter').attr('data-event-id', currentValue.id);
+        $('#twitter .lever').attr('data-event-type-id', eventTypeId);
+
         $('#sms').attr('data-event-id', currentValue.id);
+        $('#sms .lever').attr('data-event-type-id', eventTypeId);
+
         $('#email').attr('data-event-id', currentValue.id);
+        $('#email .lever').attr('data-event-type-id', eventTypeId);
+
         $('#modal-attend-form').attr('action', '/Attendances/' + currentValue.id); // Set route
+
+        // If the following is off, remove checked attribute
+        if (currentValue.facebook == 'off') {
+          $('#facebook [name="facebook"]').prop('checked', null);
+        }
+        if (currentValue.twitter == 'off') {
+          $('#twitter [name="twitter"]').prop('checked', null);
+        }
+        if (currentValue.sms == 'off') {
+          $('#sms [name="sms"]').prop('checked', null);
+        }
+        if (currentValue.email == 'off') {
+          $('#email [name="email"]').prop('checked', null);
+        }
 
         // set value
         $('#modal-request-approval-form > #id').val(currentValue.id);
@@ -516,12 +539,16 @@
    */
   $(document).on('click', '#facebook .lever.switch-col-teal', function() {
     var id        = $('#facebook').data('event-id');
-    var eventType = $(this).data('event-type');
+    var eventType = $(this).data('event-type-id');
     var url       = '/Event/' + id;
+
+    // naa pa problem kay ang eventtyp naa pud sa event table '2' ang value
 
     if (eventType == 2) {
       url = '/PersonalEvent/' + id;
     }
+
+    console.log(url, eventType);
 
     var data = {
       '_method': 'PUT',
