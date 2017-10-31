@@ -34,7 +34,11 @@ class UserController extends Controller
 {
     private $validateWho;
 
-    use ValidationTrait, CommonMethodTrait;
+    /**
+     * Include some traits
+     */
+    use ValidationTrait;
+    use CommonMethodTrait;
 
     /**
      * Build instance of a class
@@ -45,36 +49,53 @@ class UserController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display the list of users
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    // public function index(RandomHelper $help)
     public function index()
     {
       # Get the list of user together with their
       # course, organization and position in an orgainization
+      if (! parent::isOsa()) {
+        $org_id = OrganizationGroup::where('user_id', Auth::id())
+          ->get();
 
-      if( Auth::user()->user_type_id != 3 ) { //if user is not osa, will display list of users under the same org
-        $org_id = OrganizationGroup::where('user_id', Auth::id())->get();
-        $org_grp = OrganizationGroup::with('user')
-          ->with('organization')
-          ->with('position')
+        $users = OrganizationGroup::with(['user', 'organization', 'position'])
           ->where('organization_id', $org_id[0]->organization_id)
           ->get();
-        $users[] = $org_grp;
-      } else{
-        $users[] = User::with([
+      } else {
+        $users = User::with([
           'course',
           'organizationGroup' => function($query) {
-            return $query->with(['position', 'organization'])->get();
-          }]) ->get();
+            return $query
+              ->with(['position', 'organization'])
+              ->get();
+          }])->get();
       }
 
       return view('users_index')->with([
-        'users'      => $users,
-        // 'help'       => $help
+        'users'   => $users,
+        'account' => self::whatAccount()
       ]);
+    }
+
+    /**
+     * Determin the user type
+     *
+     * @return
+     */
+    private function whatAccount()
+    {
+      if (parent::isOsa()) {
+        return 'osa';
+      }
+      if (parent::isOrgHead()) {
+        return 'org-head';
+      }
+      if (parent::isOrgMember()) {
+        return 'org-member';
+      }
     }
 
     /**
@@ -446,7 +467,7 @@ class UserController extends Controller
           ->where('organization_id', $orgId)
           ->get();
       $user[] = $users;
-      
+
       return view('org_members')->with([
         'users'      => $user,
         // 'help'       => $help

@@ -61,119 +61,39 @@
                 </thead>
                 <tbody>
                   @if (isset($users))
-                    @foreach ($users as $key => $us)
-                      @foreach ($us as $key => $user)
-                        <tr>
-                          @if( Auth::user()->user_type_id !=3 )
-                            <td><a href="#" class="user-name" data-toggle="modal" data-target="#profile" data-user-id="{{ $user->user->id }}">{{ $user->user->full_name }}</a></td>                        
-                          @else
-                            <td><a href="#" class="user-name" data-toggle="modal" data-target="#profile" data-user-id="{{ $user->id }}">{{ $user->full_name }}</a></td>
+                    @foreach ($users as $key => $user)
+                      <tr>
+                        @if( $account != 'osa' and ! is_null($user->user))
+                          <td><a href="#" class="user-name" data-toggle="modal" data-target="#profile" data-user-id="{{-- $user->user->id --}}">{{ $user->user->full_name }}</a></td>
+                        @elseif(! is_null($user->user))
+                          <td><a href="#" class="user-name" data-toggle="modal" data-target="#profile" data-user-id="{{ $user->id }}">{{ $user->full_name }}</a></td>
+                        @endif
+                        <td>
+                          @if( $account != 'osa' and ! is_null($user->user))
+                            <a href="#" class="user-course"
+                              data-toggle="modal"
+                              data-target="#modal-course"
+                              data-course-id="{{ isset($user->user->course->id) ? $user->user->course->id : '' }}">
+                              {{ isset($user->user->course->name) ? $user->user->course->name : 'No Assign Course Yet' }}
+                            </a>
+                          @elseif(! is_null($user->user))
+                            <a href="#" class="user-course"
+                              data-toggle="modal"
+                              data-target="#modal-course"
+                              data-course-id="{{ isset($user->course->id) ? $user->course->id : '' }}">
+                              {{ isset($user->course->name) ? $user->course->name : 'No Assign Course Yet' }}
+                            </a>
                           @endif
-                          <td>
-                              @if( Auth::user()->user_type_id !=3 )
-                                <a href="#" class="user-course" data-toggle="modal" data-target="#modal-course" data-course-id="{{ isset($user->user->course->id) ? $user->user->course->id : '' }}">
-                                  {{ isset($user->user->course->name) ? $user->user->course->name : 'No Assign Course Yet' }}
-                                </a>
-                              @else
-                                <a href="#" class="user-course" data-toggle="modal" data-target="#modal-course" data-course-id="{{ isset($user->course->id) ? $user->course->id : '' }}">
-                                  {{ isset($user->course->name) ? $user->course->name : 'No Assign Course Yet' }}
-                                </a>
-                              @endif
-                          </td>
-                          
-                          <td>
-                              @if( Auth::user()->user_type_id != 3 )
-                                @if (count($user) == 0)
-                                  No Position
-                                @else
-                                  @foreach ($user->user->organizationGroup as $key => $pos)
-                                    <a href="#" class="user-position" data-toggle="modal" data-target="#modal-position" data-position-id="{{ $pos->position->id }}">{{ $pos->position->name }}</a>
-                                    @if (count($user) > 1)
-                                      <br>
-                                    @endif
-                                  @endforeach
-                                @endif
-                              @else
-                                @if (count($user->organizationGroup) == 0)
-                                  No Position
-                                @else
-                                  @foreach ($user->organizationGroup as $key => $pos)
-                                    <a href="#" class="user-position" data-toggle="modal" data-target="#modal-position" data-position-id="{{ $pos->position->id }}">{{ $pos->position->name }}</a>
-                                    @if (count($user->organizationGroup) > 1)
-                                      <br>
-                                    @endif
-                                  @endforeach
-                                @endif
-                              @endif
-                          </td>
-                          <td>
-                            @if( $user->user_type_id == 3 )
-                              OSA staff
-                            @elseif( $user->user_type_id == 2 )
-                              Org member
-                            @else
-                              Org head
-                            @endif
-                          </td>
-                          <td>
-                             @if( Auth::user()->user_type_id != 3 )
-                                @if ($user->count() == 0)
-                                  No organization
-                                @else
-                                  @foreach ($user->user->organizationGroup as $key => $pos)
-                                    <a href="#" class="user-organization" data-toggle="modal" data-target="#modal-organization" data-organization-id="{{ $pos->organization->id }}">{{ $pos->organization->name }}</a>
-                                    @if (count($user) > 1)
-                                      <br>
-                                    @endif
-                                  @endforeach
-                                @endif
-                              @else
-                                @if (count($user->organizationGroup) == 0)
-                                  No organization
-                                @else
-                                  @foreach ($user->organizationGroup as $key => $pos)
-                                    <a href="#" class="user-organization" data-toggle="modal" data-target="#modal-organization" data-organization-id="{{ $pos->organization->id }}">{{ $pos->organization->name }}</a>
-                                    @if (count($user->organizationGroup) > 1)
-                                      <br>
-                                    @endif
-                                  @endforeach
-                                @endif
-                              @endif
-                          </td>
-                          @if( Auth::user()->user_type_id != 3 )
-                            <td><a href="#">{{ $user->user->status == 'true' ? 'Active' : 'Inactive' }}</a></td>
-                          @else
-                            <td><a href="#">{{ $user->status == 'true' ? 'Active' : 'Inactive' }}</a></td>                        
+                        </td>
+                        <td>
+                          @if( $account != 'osa' and ! is_null($user))
+                            <a href="#" class="user-position" data-toggle="modal" data-target="#modal-position" data-position-id="{{ $user->position->id }}">{{ $user->position->name }}</a>
                           @endif
-                          @if (isset($filter) and $filter === true)
-                            <td>
-                              @if (isset($id) and $id == 'inactive')
-                                <a href="#" onclick="event.preventDefault(); document.getElementById('form-activate').submit();">Activate</a>
-                              @else
-                                <a href="#" onclick="event.preventDefault(); document.getElementById('form-deactivate').submit();">Deactivate</a>
-                              @endif
-
-                              @if (Auth::user()->user_type_id == 2)
-                                | <a href="#" class="user-edit" data-route="{{ route('User.edit', $user->id ) }}" data-toggle="modal" data-target="#modal-edit">Edit</a>
-                              @elseif (Auth::user()->user_type_id == 1)
-                                | <a href="#" class="user-edit" data-route="{{ route('User.edit', $user->user->id ) }}" data-toggle="modal" data-target="#modal-edit">Edit</a>                              
-                              @endif
-
-                              {{--  Forms  --}}
-                              <form id="form-activate" action="{{ route('User.update', $user->id) }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                                {{ method_field('PUT') }}
-                                <input type="hidden" name="status" value="true">
-                              </form>
-                              <form id="form-deactivate" action="{{ route('User.update', $user->id) }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                                {{ method_field('PUT') }}
-                                <input type="hidden" name="status" value="false">
-                              </form>
-                            </td>
-                          @endif
-                        </tr>
-                      @endforeach
+                        </td>
+                        <td>{{ ucwords(str_replace('-', ' ', $account)) }}</td>
+                        <td>{{ $user->organization->name }}</td>
+                        <td>{{ ($user->user->status == 'true') ? 'Active' : 'Inactive' }}</td>
+                      </tr>
                     @endforeach
                   @endif
                 </tbody>
