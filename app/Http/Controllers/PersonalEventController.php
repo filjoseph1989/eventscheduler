@@ -27,18 +27,21 @@ class PersonalEventController extends Controller
   { 
     $event = PersonalEvent::find($id); 
 
+    
     if ($request->has('facebook')) { 
       $event->facebook = ($request->facebook === true) ? 'off' : 'on'; 
     }
-    // if ($request->has('twitter')) {
-    //   $event->twitter = ($request->twitter === true) ? 'off' : 'on';
-    // }
-    // if ($request->has('sms')) {
-    //   $event->sms = ($request->sms === true) ? 'off' : 'on';
-    // }
-    // if ($request->has('email')) {
-    //   $event->email = ($request->email === true) ? 'off' : 'on';
-    // }
+    if ($request->has('twitter')) {
+      $event->twitter = ($request->twitter === true) ? 'off' : 'on';
+    }
+    if ($request->has('sms')) {
+      $event->sms = ($request->sms === true) ? 'off' : 'on';
+    }
+    if ($request->has('email')) {
+      $event->email = ($request->email === true) ? 'off' : 'on';
+    }
+
+   
     // if ($request->has('facebook_msg')) {
     //   $event->facebook_msg = $request->facebook_msg;
     // }
@@ -54,7 +57,7 @@ class PersonalEventController extends Controller
 
     if ($event->save()) {
       $result['result'] = true;
-      $result['facebook'] = $event->facebook;
+      $result['email'] = $request->email;
     } else {
       $result['result'] = false;
     }

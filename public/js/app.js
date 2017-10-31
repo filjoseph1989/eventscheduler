@@ -42,10 +42,8 @@
     var approval       = _this.data('approval'); 
     var organizationId = _this.data('organization-id');
     var eventTypeId    = _this.data('event-type-id');
-    var userTypeId = _this.data('user-type-id');
-    var personal     = _this.data('personal');
-
-    console.log(eventTypeId);
+    var userTypeId     = _this.data('user-type-id');
+    var personal       = _this.data('personal');
 
     if ( userTypeId == 3 ) {
       if (organizationId != undefined || personal == undefined || approval == true || eventTypeId == 2) {
@@ -59,33 +57,7 @@
      */
     axios_get($url, function(data) {
       data.forEach(function(currentValue, index, arr) {
-        // write html
-        $('#modal-event-title').html(currentValue.title);
-        $('#modal-event-ptitle').html("Title: " + currentValue.title);
-        $('#modal-event-venue').html("Venue: " + currentValue.venue);
-        $('#modal-event-description').html("Description: " + currentValue.description);
-        if ( currentValue.organization != null ) {
-          $('#modal-event-organization').html("Organizer: " + currentValue.organization.name);
-        } else {
-          $('#modal-event-organization').html("Organizer: " + currentValue.user.full_name );
-        }
-        $('#modal-event-category').html("Category: " + currentValue.category + " event");
-        $('#facebook_msg').html(currentValue.facebook_msg);
-        $('#twitter_msg').html(currentValue.twitter_msg);
-        $('#email_msg').html(currentValue.email_msg);
-        $('#sms_msg').html(currentValue.sms_msg);
-        
-        // set attributes
-        $('#form-additional-message').attr('action', action);
-        $('#modal-request-approval-form').attr('action', '/Request/'+currentValue.id);
-        $('#facebook').attr('data-event-id', currentValue.id);
-        $('#twitter').attr('data-event-id', currentValue.id);
-        $('#sms').attr('data-event-id', currentValue.id);
-        $('#email').attr('data-event-id', currentValue.id);
-        $('#modal-attend-form').attr('action', '/Attendances/'+currentValue.id); // Set route
-        
-        // set value
-        $('#modal-request-approval-form > #id').val(currentValue.id);
+        eventModal(currentValue, eventTypeId);
       });
     });
   });
@@ -112,57 +84,7 @@
      */
     axios_get($url, function (data) {
       data.forEach(function (currentValue, index, arr) {
-        console.log(currentValue);
-        // write html
-        $('#modal-event-title').html(currentValue.title);
-        $('#modal-event-ptitle').html("Title: " + currentValue.title);
-        $('#modal-event-venue').html("Venue: " + currentValue.venue);
-        $('#modal-event-description').html("Description: " + currentValue.description);
-        if (currentValue.organization != null) {
-          $('#modal-event-organization').html("Organizer: " + currentValue.organization.name);
-        } else {
-          $('#modal-event-organization').html("Organizer: " + currentValue.user.full_name);
-        }
-        $('#modal-event-category').html("Category: " + currentValue.category + " event");
-        $('#facebook_msg').html(currentValue.facebook_msg);
-        $('#twitter_msg').html(currentValue.twitter_msg);
-        $('#email_msg').html(currentValue.email_msg);
-        $('#sms_msg').html(currentValue.sms_msg);
-
-        // set attributes
-        $('#form-additional-message').attr('action', action);
-        $('#modal-request-approval-form').attr('action', '/Request/' + currentValue.id);
-
-        $('#facebook').attr('data-event-id', currentValue.id);
-        $('#facebook .lever').attr('data-event-type-id', eventTypeId);
-        
-        $('#twitter').attr('data-event-id', currentValue.id);
-        $('#twitter .lever').attr('data-event-type-id', eventTypeId);
-
-        $('#sms').attr('data-event-id', currentValue.id);
-        $('#sms .lever').attr('data-event-type-id', eventTypeId);
-
-        $('#email').attr('data-event-id', currentValue.id);
-        $('#email .lever').attr('data-event-type-id', eventTypeId);
-
-        $('#modal-attend-form').attr('action', '/Attendances/' + currentValue.id); // Set route
-
-        // If the following is off, remove checked attribute
-        if (currentValue.facebook == 'off') {
-          $('#facebook [name="facebook"]').prop('checked', null);
-        }
-        if (currentValue.twitter == 'off') {
-          $('#twitter [name="twitter"]').prop('checked', null);
-        }
-        if (currentValue.sms == 'off') {
-          $('#sms [name="sms"]').prop('checked', null);
-        }
-        if (currentValue.email == 'off') {
-          $('#email [name="email"]').prop('checked', null);
-        }
-
-        // set value
-        $('#modal-request-approval-form > #id').val(currentValue.id);
+        eventModal(currentValue, eventTypeId);
       });
     });
   });
@@ -548,46 +470,71 @@
       url = '/PersonalEvent/' + id;
     }
 
-    console.log(url, eventType);
-
     var data = {
       '_method': 'PUT',
       'facebook': $('#facebook [name="facebook"]').prop('checked')
     };
 
     axios_post(url, data, function(data) { 
-      console.log(data);
+      // no code for here as of a moment
     })
   });
 
   $(document).on('click', '#twitter .lever.switch-col-teal', function() {
-    var id = $('#twitter').data('event-id');
+    var id        = $('#twitter').data('event-id');
+    var eventType = $(this).data('event-type-id');
+    var url       = '/Event/' + id;
+
+    // naa pa problem kay ang eventtyp naa pud sa event table '2' ang value
+
+    if (eventType == 2) {
+      url = '/PersonalEvent/' + id;
+    }
+
     var data = {
       '_method': 'PUT',
       'twitter': $('#twitter [name="twitter"]').prop('checked')
     };
 
-    axios_post('/Event/'+id, data, function(data) {})
+    axios_post(url, data, function(data) {})
   });
 
   $(document).on('click', '#sms .lever.switch-col-teal', function() {
-    var id = $('#sms').data('event-id');
+    var id        = $('#sms').data('event-id');
+    var eventType = $(this).data('event-type-id');
+    var url       = '/Event/' + id;
+
+    // naa pa problem kay ang eventtyp naa pud sa event table '2' ang value
+
+    if (eventType == 2) {
+      url = '/PersonalEvent/' + id;
+    }
+
     var data = {
       '_method': 'PUT',
       'sms': $('#sms [name="sms"]').prop('checked')
     };
 
-    axios_post('/Event/'+id, data, function(data) {})
+    axios_post(url, data, function (data) { })
   });
 
   $(document).on('click', '#email .lever.switch-col-teal', function() {
-    var id = $('#email').data('event-id');
+    var id        = $('#email').data('event-id');
+    var eventType = $(this).data('event-type-id');
+    var url       = '/Event/' + id;
+
+    // naa pa problem kay ang eventtyp naa pud sa event table '2' ang value
+
+    if (eventType == 2) {
+      url = '/PersonalEvent/' + id;
+    }
+
     var data = {
       '_method': 'PUT',
       'email': $('#email [name="email"]').prop('checked')
     };
 
-    axios_post('/Event/'+id, data, function(data) {})
+    axios_post(url, data, function (data) { })
   });
 
   /**
@@ -599,9 +546,6 @@
    */
   var axios_get = function(url, callback)
   {
-    // can be performed also using this
-    // axios.get(url, { params: data })
-
     axios.get(url)
       .then(function (response) {
         callback(response.data);
@@ -630,5 +574,64 @@
       .catch(function (error) {
         console.log(error);
       });
+  }
+
+  /**
+   * Modify the event modal
+   * 
+   * @param {object} currentValue 
+   * @param {int} eventTypeId 
+   */
+  var eventModal = function (currentValue, eventTypeId) {
+    // write html
+    $('#modal-event-title').html(currentValue.title);
+    $('#modal-event-ptitle').html("Title: " + currentValue.title);
+    $('#modal-event-venue').html("Venue: " + currentValue.venue);
+    $('#modal-event-description').html("Description: " + currentValue.description);
+    if (currentValue.organization != null) {
+      $('#modal-event-organization').html("Organizer: " + currentValue.organization.name);
+    } else {
+      $('#modal-event-organization').html("Organizer: " + currentValue.user.full_name);
+    }
+    $('#modal-event-category').html("Category: " + currentValue.category + " event");
+    $('#facebook_msg').html(currentValue.facebook_msg);
+    $('#twitter_msg').html(currentValue.twitter_msg);
+    $('#email_msg').html(currentValue.email_msg);
+    $('#sms_msg').html(currentValue.sms_msg);
+
+    // set attributes
+    $('#form-additional-message').attr('action', action);
+    $('#modal-request-approval-form').attr('action', '/Request/' + currentValue.id);
+
+    $('#facebook').attr('data-event-id', currentValue.id);
+    $('#facebook .lever').attr('data-event-type-id', eventTypeId);
+
+    $('#twitter').attr('data-event-id', currentValue.id);
+    $('#twitter .lever').attr('data-event-type-id', eventTypeId);
+
+    $('#sms').attr('data-event-id', currentValue.id); eventTypeId
+    $('#sms .lever').attr('data-event-type-id', eventTypeId);
+
+    $('#email').attr('data-event-id', currentValue.id); eventTypeId;
+    $('#email .lever').attr('data-event-type-id', eventTypeId);
+
+    $('#modal-attend-form').attr('action', '/Attendances/' + currentValue.id); // Set route
+
+    // If the following is off, remove checked attribute
+    if (currentValue.facebook == 'off') {
+      $('#facebook [name="facebook"]').prop('checked', null);
+    }
+    if (currentValue.twitter == 'off') {
+      $('#twitter [name="twitter"]').prop('checked', null);
+    }
+    if (currentValue.sms == 'off') {
+      $('#sms [name="sms"]').prop('checked', null);
+    }
+    if (currentValue.email == 'off') {
+      $('#email [name="email"]').prop('checked', null);
+    }
+
+    // set value
+    $('#modal-request-approval-form > #id').val(currentValue.id);
   }
 })();
