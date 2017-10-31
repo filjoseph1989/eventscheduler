@@ -124,7 +124,7 @@ class EventController extends Controller
 
       if ($request->category == "university" || $request->category == "organization") {
         $event_type_id = 1;
-      } else { # if doesnt satisfy above, event type automatically 2
+      } else { 
         $event_type_id = 2;
       }
 

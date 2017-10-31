@@ -318,10 +318,10 @@
             </form>
           @endif
           @if ($account == 'osa')
-            <button type="button" data-color="teal" class="btn bg-teal waves-effect request-approval" id="modal-request-approval" data-toggle="tooltip" data-placement="top" title="Request for advertisement approval"
+            {{--  <button type="button" data-color="teal" class="btn bg-teal waves-effect request-approval" id="modal-request-approval" data-toggle="tooltip" data-placement="top" title="Request for advertisement approval"
               onclick="event.preventDefault(); document.getElementById('modal-request-approval-form').submit();">
               Request Approval
-            </button>
+            </button>  --}}
             <form class="" id="modal-request-approval-form" action="" method="post" style="display: none;">
               {{ csrf_field() }}
               {{ method_field('PUT') }}

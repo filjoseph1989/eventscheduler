@@ -45,8 +45,8 @@
     var userTypeId = _this.data('user-type-id');
     var personal     = _this.data('personal');
 
-    if (userTypeId == 3 ){
-      if ((approval == true) || (organizationId != undefined && eventTypeId == 1) || (personal == undefined) ) {
+    if ((userTypeId == 3 && eventTypeId == 1) || approval == true) {
+      if ( organizationId != undefined || (personal == undefined ) {
         $('.social-media-notification').hide();      
       }
     }
@@ -393,7 +393,7 @@
     var id = $(this).parents('tr').data('event');
     var data = {
       id: id
-    }
+    }    
 
     axios_post('/attendance/get/declined/attendance', data, function (data) {
       var html = "";
