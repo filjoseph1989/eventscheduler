@@ -124,15 +124,8 @@ class EventController extends Controller
 
       if ($request->category == "university" || $request->category == "organization") {
         $event_type_id = 1;
-        if(Auth::user()->user_type_id == 3) {
-          //if osa  user, is_approve is always true
-          $is_approve = 'true';
-        }
-        //if not osa, is_approve is default which is false because it needs approval from the osa all the time
       } else { # if doesnt satisfy above, event type automatically 2
         $event_type_id = 2;
-          $is_approve = 'true';
-          //always true for local events no matter what type of user_type_id because it's local events, doesn't need approval to advertise consent of the osa
       }
 
       $this->date_start = date('Y-m-d', strtotime($request->date_start));
@@ -165,8 +158,13 @@ class EventController extends Controller
       }
 
       if ($event->wasRecentlyCreated) {
-        return back()
-          ->with('status', 'Successfully created new event');
+        if( $request->category == 'personal' ){
+          return back()
+            ->with('status', 'Successfully saved your event to "Personal" List Of Events');
+        } else {
+          return back()
+            ->with('status', 'Successfully saved your event to "Official" List Of Events');
+        }
       }
     }
 
@@ -397,7 +395,7 @@ class EventController extends Controller
       }
 
       if (parent::isOrgMember()) {
-        return self::getEvents($id, 'member');
+        return self::getEvents($id, 'member'); 
       }
     }
 
