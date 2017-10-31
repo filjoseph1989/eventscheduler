@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes; 
 
 class Event extends Model
 {
@@ -83,6 +83,7 @@ class Event extends Model
       ->where('status', 'requested')
       ->get();
   }
+  
 
   /**
    * Return the organization leader events
@@ -177,5 +178,33 @@ class Event extends Model
       })
       ->where('event_type_id', $kind)
       ->get();
+  }
+
+  /**
+   * returns official events for edit notification settings
+   * @param $id user_id
+   */
+  public static function getOfficialEventsForEditNotification($id)
+  {
+    return static::with(['organization', 'user'])
+      ->where('user_id', $id)
+      ->where('event_type_id', 1)
+      ->where('is_approve', 'false')
+      ->get();
+  }
+
+   /**
+   * returns local events for edit notification settings
+   * @param $id user_id
+   */
+  public static function getLocalEventsNotification($id, $value)
+  {
+    return static::with('organization')
+      ->where('organization_id', $value->organization_id)
+      ->where('event_type_id', $id)
+      ->where('category', 'within')
+      ->where('is_approve', 'false')            
+      ->get()
+      ->toArray();   
   }
 }

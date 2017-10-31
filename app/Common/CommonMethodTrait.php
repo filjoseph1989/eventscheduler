@@ -80,4 +80,95 @@ trait CommonMethodTrait
       return "osa";
     }
   }
+
+ /**
+     * This method compare the given date to current date
+     * and when true, set the status to on going
+     *
+     * @return void
+     */
+    private function getDateComparison(&$events)
+    {
+      if ( ! is_null($events) ) {
+        foreach ($events as $key => $event) {
+          if ($events->count() > 1) {
+            if (self::matchDate($event->date_start)) {
+              $events[$key]->status = "on going";
+              # Issue 25
+            }
+          } else {
+            if (self::matchDate($event->date_start)) {
+              $events[0]->status = "on going";
+            }
+          }
+        }
+      }
+    }
+
+    /**
+     * Match the current month with the given month
+     *
+     * Issue 29
+     *
+     * @param int $date
+     * @return void
+     */
+    private function matchDate($date)
+    {
+      list($year, $month, $day) = explode('-', $date);
+
+      if (self::matchYear($year) and self::matchMonth($month) and self::matchDay($day)) {
+        return true;
+      }
+      return false;
+    }
+
+    /**
+     * Match the current year with the given year
+     *
+     * Issue 29
+     *
+     * @param int $year
+     * @return void
+     */
+    private function matchYear($year)
+    {
+      if (date('Y') ==  $year){
+        return true;
+      }
+      return false;
+    }
+
+    /**
+     * Match the given month with the current month
+     *
+     * Issue 29
+     *
+     * @param int $month
+     * @return void
+     */
+    private function matchMonth($month)
+    {
+      if (date('m') ==  $month){
+        return true;
+      }
+      return false;
+    }
+
+    /**
+     * Match the given day with current day
+     *
+     * Issue 29
+     *
+     * @param int $day
+     * @return void
+     */
+    private function matchDay($day)
+    {
+      if (date('d') ==  $day){
+        return true;
+      }
+      return false;
+    }
+
 }

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-  <title>List of Events</title>
+  <title>Local Events</title>
 @endsection
 
 @section('css')
@@ -12,7 +12,7 @@
 
 @section('content')
   <section class="content">
-    <div class="container-fluid"> 
+    <div class="container-fluid">
       <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
@@ -24,99 +24,81 @@
 
           <div class="card">
             <div class="header">
-              <h2> {{ ucwords($title) }} Events
-                <?php
-                  $type               = "All the";
-                  $thirdPersonAddress = "your";
-
-                  if ($eventType == 1) {
-                    $type = 'Official'; 
-                  }
-                  if ($eventType == 2) {
-                    $type = 'Local';
-                  }
-                  if ($account == 'osa') {
-                    $thirdPersonAddress = "";
-                  }
-                ?>
-                <small>
-                  Showing {{ $type }} events {{ $eventType != 1 ? "created by $thirdPersonAddress Organization(s)" : "" }}
-                  @if ($account == 'org-member' and $eventType != 1)
-                    , the University and other organization you'd like to attend
-                  @endif
-                </small>
+              <h2> Local Events
+              <small>Display the local event</small>
               </h2>
-              @if ($eventType == 0 AND ($account == 'org-head' OR $account == 'osa'))
-                <ul class="header-dropdown m-r--5">
-                  <li class="dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                      <i class="material-icons">more_vert</i>
-                    </a>
-                    <ul class="dropdown-menu pull-right">
-                      <li><a href="{{ route('Event.show', 'true') }}">Approved Events</a></li>
-                      <li><a href="{{ route('Event.show', 'false') }}">Disapproved Events</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              @endif
             </div>
             <div class="body">
-              <a href="{{ route('Event.create') }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right">Create Event</a>              
+              <a href="{{ route('Event.create') }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right">Create Event</a>                          
               <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                     <thead>
-                      <th><a href="#">Title</a></th>
-                      <th>Venue</th>
-                      <th>Organizer</th>
-                      <th>Type</th>
-                      <th>Start</th>
-                      <th>End</th>
-                      @if ($account != 'org-member')
-                        <th>Status</th>
-                      @endif
-                      <th>Approve Status</th>
+                        <tr>
+                          <th>Title</th>
+                          <th>Venue</th>
+                          <th>Organizer</th>
+                          <th>Date Start</th>
+                          <th>Date End</th>
+                          <th>Status</th>
+                          <th>Approve Status</th>
+                        </tr> 
                     </thead>
                     <tbody>
-                      @if (! is_null($events))
-                        @foreach ($events as $key => $event)
-                          <tr data-event="{{ $event->id }}" 
+                      @if (count($eventsWithin) > 0)
+                        @foreach ($eventsWithin as $key => $localEvents)
+                          @foreach ($localEvents as $key => $event)
+                            <?php $event = (object)$event; ?>
+                            <tr data-event="{{ $event->id }}"
+                              data-event-type = "{{ $event->event_type_id }}" 
                               data-route="{{ route('Event.edit', $event->id) }}" 
                               data-action="{{ route('Event.update', $event->id) }}"
                               data-organization-id="{{ $event->organization_id }}"
-                              data-event-type-id="{{ $event->event_type_id }}"
-                              data-user-type-id="{{ Auth::user()->user_type_id }}"                              
+                              data-user-type-id="{{ Auth::user()->user_type_id }}"
                               data-approval="{{ $event->is_approve }}">
-                            <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
+                              <td><a href="#" class="edit-notif" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
+                              <td>{{ $event->venue }}</td>
+                              <td><?php $event->organization = (object)$event->organization; ?>{{ $event->organization->name }}</td>
+                              <td>{{ $event->date_start }}</td>
+                              <td>{{ $event->date_end }}</td>
+                              <td>{{ $event->status }}</td>
+                              <td>{{ $event->is_approve == 'true' ? 'Approved' : 'Not Yet Approved' }}</td>
+                            </tr>
+                          @endforeach
+                        @endforeach
+                      @endif
+
+                      @if (count($eventsPersonal) > 0)
+                        @foreach ($eventsPersonal as $key => $event)
+                          <?php $event = (object)$event; ?>
+                          <tr data-event="{{ $event->id }}" 
+                              data-event-type = "{{ $event->event_type_id }}"
+                              data-route="{{ route('PersonalEvent.edit', $event->id) }}" 
+                              data-action="{{ route('PersonalEvent.update', $event->id) }}"
+                              data-user-type-id="{{ Auth::user()->user_type_id }}"                              
+                              data-approval="{{ $event->is_approve }}"
+                              data-personal="true">
+                            <td><a href="#" class="edit-notif" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
                             <td>{{ $event->venue }}</td>
-                            @if($event->organization != null)
-                              <td> {{ $event->organization->first()->name }} </td>
-                            @else
-                              <td> University Official Event  </td>
-                            @endif
-                              <td> {{ $event->eventType->first()->name }} </td>
-                            <td>{{ date('M d, Y', strtotime($event->date_start)) }} {{ date('h:i A', strtotime($event->date_start_time)) }}</td>
-                            <td>{{ date('M d, Y', strtotime($event->date_end)) }} {{ date('h:i A', strtotime($event->date_end_time)) }}</td>
-                            @if ($account != 'org-member')
-                              <td>{{ ucwords($event->status) }}</td>
-                            @endif
+                            <td>Personal</td>
+                            <td>{{ $event->date_start }}</td>
+                            <td>{{ $event->date_end }}</td>
+                            <td>{{ $event->status }}</td>
                             <td>{{ $event->is_approve == 'true' ? 'Approved' : 'Not Yet Approved' }}</td>
                           </tr>
                         @endforeach
-                      @else
-                        No data
                       @endif
                     </tbody>
                     <tfoot>
-                      <th>Title</th>
-                      <th>Venue</th>
-                      <th>Organizer</th>
-                      <th>Type</th>                      
-                      <th>Start</th>
-                      <th>End</th>
-                      @if ($account != 'org-member')
-                        <th>Status</th>
-                      @endif
+                        <tr>
+                          <th>Title</th>
+                          <th>Venue</th>
+                          <th>Organizer</th>
+                          <th>Date Start</th>
+                          <th>Date End</th>
+                          <th>Status</th>
+                          <th>Approve Status</th>
+                        </tr>
                     </tfoot>
                   </table>
                 </div>
@@ -255,7 +237,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="panel social-media-notification">
                 <div class="panel-heading" role="tab" id="headingThree_1">
                   <h4 class="panel-title">
@@ -340,7 +321,17 @@
               {{ method_field('PUT') }}
             </form>
           @endif
-
+          @if ($account == 'osa')
+            {{--  <button type="button" data-color="teal" class="btn bg-teal waves-effect request-approval" id="modal-request-approval" data-toggle="tooltip" data-placement="top" title="Request for advertisement approval"
+              onclick="event.preventDefault(); document.getElementById('modal-request-approval-form').submit();">
+              Request Approval
+            </button>  --}}
+            <form class="" id="modal-request-approval-form" action="" method="post" style="display: none;">
+              {{ csrf_field() }}
+              {{ method_field('PUT') }}
+              <input type="hidden" id="id" name="id" value="">
+            </form>
+          @endif
           <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
         </div>
 
@@ -354,8 +345,6 @@
   <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
   <script src="{{ asset('js/jquery.dataTables.js') }}?v=0.1"></script>
   <script src="{{ asset('js/jquery-datatable.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/sweetalert.min.js') }}?v=0.1"></script>
   <script src="{{ asset('js/tooltips-popovers.js') }}?v=0.1"></script>
   <script src="{{ asset('js/app.js') }}?v=2.18" charset="utf-8"></script>
 @endsection

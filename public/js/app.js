@@ -47,8 +47,8 @@
 
     console.log(eventTypeId);
 
-    if ( userTypeId == 3 && eventTypeId == 1 ) {
-      if (organizationId != undefined || personal == undefined || approval == true ) {
+    if ( userTypeId == 3 ) {
+      if (organizationId != undefined || personal == undefined || approval == true || eventTypeId == 2) {
         $('.social-media-notification').hide();      
       }
     }
@@ -90,6 +90,61 @@
     });
   });
 
+    /**
+     * Work when the user click on edit-notif
+     *
+     * @return {void}
+     */
+  $(document).on('click', '.edit-notif', function () {
+    var _this = $(this).parents('tr');
+
+    var $url           = _this.data('route');
+    var action         = _this.data('action');
+    var approval       = _this.data('approval');
+    var organizationId = _this.data('organization-id');
+    var eventTypeId    = _this.data('event-type');
+    var userTypeId     = _this.data('user-type-id');
+    var personal       = _this.data('personal');
+
+    /**
+     * Make http request for editing the event using GET method
+     * and setup the modal elements data
+     */
+    axios_get($url, function (data) {
+      data.forEach(function (currentValue, index, arr) {
+        // write html
+        $('#modal-event-title').html(currentValue.title);
+        $('#modal-event-ptitle').html("Title: " + currentValue.title);
+        $('#modal-event-venue').html("Venue: " + currentValue.venue);
+        $('#modal-event-description').html("Description: " + currentValue.description);
+        if (currentValue.organization != null) {
+          $('#modal-event-organization').html("Organizer: " + currentValue.organization.name);
+        } else {
+          $('#modal-event-organization').html("Organizer: " + currentValue.user.full_name);
+        }
+        $('#modal-event-category').html("Category: " + currentValue.category + " event");
+        $('#facebook_msg').html(currentValue.facebook_msg);
+        $('#twitter_msg').html(currentValue.twitter_msg);
+        $('#email_msg').html(currentValue.email_msg);
+        $('#sms_msg').html(currentValue.sms_msg);
+
+        // set attributes
+        $('#form-additional-message').attr('action', action);
+        $('#modal-request-approval-form').attr('action', '/Request/' + currentValue.id);
+        $('#facebook').attr('data-event-id', currentValue.id);
+        $('#facebook .lever').attr('data-event-type-id', eventTypeId);
+        $('#twitter').attr('data-event-id', currentValue.id);
+        $('#sms').attr('data-event-id', currentValue.id);
+        $('#email').attr('data-event-id', currentValue.id);
+        $('#modal-attend-form').attr('action', '/Attendances/' + currentValue.id); // Set route
+
+        // set value
+        $('#modal-request-approval-form > #id').val(currentValue.id);
+      });
+    });
+  });
+
+  
   /**
    * A beautiful alert message will show up
    * after a Successful transactions
@@ -460,13 +515,22 @@
    * @return {void}
    */
   $(document).on('click', '#facebook .lever.switch-col-teal', function() {
-    var id = $('#facebook').data('event-id');
+    var id        = $('#facebook').data('event-id');
+    var eventType = $(this).data('event-type');
+    var url       = '/Event/' + id;
+
+    if (eventType == 2) {
+      url = '/PersonalEvent/' + id;
+    }
+
     var data = {
       '_method': 'PUT',
       'facebook': $('#facebook [name="facebook"]').prop('checked')
     };
 
-    axios_post('/Event/'+id, data, function(data) { })
+    axios_post(url, data, function(data) { 
+      console.log(data);
+    })
   });
 
   $(document).on('click', '#twitter .lever.switch-col-teal', function() {

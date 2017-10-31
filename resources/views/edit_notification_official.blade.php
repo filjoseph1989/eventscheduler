@@ -75,7 +75,6 @@
                       @if ($account != 'org-member')
                         <th>Status</th>
                       @endif
-                      <th>Approve Status</th>
                     </thead>
                     <tbody>
                       @if (! is_null($events))
@@ -87,7 +86,7 @@
                               data-event-type-id="{{ $event->event_type_id }}"
                               data-user-type-id="{{ Auth::user()->user_type_id }}"                              
                               data-approval="{{ $event->is_approve }}">
-                            <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
+                            <td><a href="#" class="edit-notif" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
                             <td>{{ $event->venue }}</td>
                             @if($event->organization != null)
                               <td> {{ $event->organization->first()->name }} </td>
@@ -100,7 +99,6 @@
                             @if ($account != 'org-member')
                               <td>{{ ucwords($event->status) }}</td>
                             @endif
-                            <td>{{ $event->is_approve == 'true' ? 'Approved' : 'Not Yet Approved' }}</td>
                           </tr>
                         @endforeach
                       @else
@@ -114,9 +112,7 @@
                       <th>Type</th>                      
                       <th>Start</th>
                       <th>End</th>
-                      @if ($account != 'org-member')
-                        <th>Status</th>
-                      @endif
+                      <th>Status</th>
                     </tfoot>
                   </table>
                 </div>

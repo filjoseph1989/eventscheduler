@@ -41,6 +41,7 @@
                           <th>Date Start</th>
                           <th>Date End</th>
                           <th>Status</th>
+                          <th>Approve Status</th>
                         </tr> 
                     </thead>
                     <tbody>
@@ -61,6 +62,7 @@
                               <td>{{ $event->date_start }}</td>
                               <td>{{ $event->date_end }}</td>
                               <td>{{ $event->status }}</td>
+                              <td>{{ $event->is_approve == 'true' ? 'Approved' : 'Not Yet Approved' }}</td>
                             </tr>
                           @endforeach
                         @endforeach
@@ -81,7 +83,8 @@
                             <td>Personal</td>
                             <td>{{ $event->date_start }}</td>
                             <td>{{ $event->date_end }}</td>
-                            <td>Upcoming</td>
+                            <td>{{ $event->status }}</td>
+                            <td>{{ $event->is_approve == 'true' ? 'Approved' : 'Not Yet Approved' }}</td>
                           </tr>
                         @endforeach
                       @endif
@@ -94,6 +97,7 @@
                           <th>Date Start</th>
                           <th>Date End</th>
                           <th>Status</th>
+                          <th>Approve Status</th>
                         </tr>
                     </tfoot>
                   </table>

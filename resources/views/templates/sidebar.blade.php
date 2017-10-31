@@ -90,15 +90,17 @@
               <ul class="ml-menu">
                 @if( session('account') == 'org-head')
                   <li><a href="{{ route('Event.show', 0) }}"><span>My Primary Organization Events</span></a></li>
-                @elseif( session('account') == 'org-head' )
+                @elseif( session('account') == 'org-member' )
                   <li><a href="{{ route('Event.show', 0) }}"><span>My Organization Events</span></a></li>
                 @endif
                 <li><a href="{{ route('Event.show', 1) }}"> <span>Official</span></a></li>
-                @if( session('account') == 'osa' )
-                  <li><a href="{{ route('event.dlv', 2) }}"> <span>Personal</span></a></li>
-                @else
-                  <li><a href="{{ route('event.dlv', 2) }}"> <span>Local</span></a></li>
-                @endif
+                <li><a href="{{ route('event.dlv', 2) }}"> 
+                  @if( session('account') != 'org-head' )
+                    <span>Personal</span></a>
+                  @else
+                    <span>Local</span></a></li>
+                  @endif
+                </li>
               </ul>
             </li>
             @if (session('account') == 'osa')

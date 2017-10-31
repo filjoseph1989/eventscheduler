@@ -31,6 +31,9 @@ Route::group(['middleware'=>['auth']], function() {
     Route::resource('Event',        'EventController', ['parameters' =>[
       'Event' => 'id'
     ]]);
+    Route::resource('EventNotification', 'EventNotificationController', ['parameters' =>[
+      'Event' => 'id'
+    ]]);
     Route::resource('PersonalEvent',        'PersonalEventController', ['parameters' =>[
       'Event' => 'id'
     ]]);
@@ -76,4 +79,6 @@ Route::group(['middleware'=>['auth']], function() {
       Route::name('event.showOrgEvents')->get('/org-events/{kind}/{orgId}', 'EventController@showOrgEvents');
       Route::name('event.dlv')->get('/local-events/{id}', 'EventController@dlv');
     });
+
+
 });

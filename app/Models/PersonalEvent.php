@@ -76,4 +76,18 @@ class PersonalEvent extends Model
     {
       return $this->belongsTo('App\Models\User');
     }
+
+    /**
+     * Return personal event notification
+     */
+    public static function getLocalPersonalEventsNotification($id)
+    {
+      return static::where('event_type_id', 2)
+        ->where('user_id', $id)
+        ->where('category', 'personal')
+        ->where('is_approve', 'false')
+        ->get()
+        ->toArray();
+    }
+
 }
