@@ -6,10 +6,14 @@
   </div>
   <div class="body">
     <div class="list-group">
-      <a href="javascript:void(0);" class="list-group-item"> Official </a>
-      <a href="javascript:void(0);" class="list-group-item"> Expected </a>
-      <a href="javascript:void(0);" class="list-group-item"> Confirmed </a>
-      <a href="javascript:void(0);" class="list-group-item"> Declined </a>
+      @if (session('account') == 'org-head')
+        <a href="{{ route('Attendances.show', 'Official') }}" class="list-group-item">Official Events</a>
+        <a href="{{ route('Attendances.show', 'Local') }}" class="list-group-item">Local Events</a>
+      @elseif (session('account') == 'osa')
+        <a href="{{ route('Attendances.show', 'Official') }}" class="list-group-item">Official Events</a>
+      @else
+        <a href="{{ route('Attendances.index') }}" class="list-group-item">My Event Attendance</a>
+      @endif
     </div>
   </div>
 </div>

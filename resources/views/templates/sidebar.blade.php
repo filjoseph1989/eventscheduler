@@ -112,7 +112,7 @@
               <a href="#" class="menu-toggle"> <span>Calendar</span> </a>
               <ul class="ml-menu">
                 <li><a href="{{ route('Calendar.show', 1) }}"><span>Official</span></a></li>
-                <li><a href="{{ route('Calendar.show', 2) }}"><span>Personal</span></a></li>
+                <li><a href="{{ route('Calendar.show', 2) }}"><span>Personal</span></a></li> 
               </ul>
             </li>
           </ul>
