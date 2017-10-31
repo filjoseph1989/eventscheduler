@@ -41,12 +41,14 @@
     var action         = _this.data('action');
     var approval       = _this.data('approval'); 
     var organizationId = _this.data('organization-id');
-    var eventTypeId    = _this.data('event-type');
+    var eventTypeId    = _this.data('event-type-id');
     var userTypeId = _this.data('user-type-id');
     var personal     = _this.data('personal');
 
-    if ((userTypeId == 3 && eventTypeId == 1) || approval == true) {
-      if ( organizationId != undefined || (personal == undefined ) {
+    console.log(eventTypeId);
+
+    if ( userTypeId == 3 && eventTypeId == 1 ) {
+      if (organizationId != undefined || personal == undefined || approval == true ) {
         $('.social-media-notification').hide();      
       }
     }

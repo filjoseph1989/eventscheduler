@@ -84,6 +84,7 @@
                               data-route="{{ route('Event.edit', $event->id) }}" 
                               data-action="{{ route('Event.update', $event->id) }}"
                               data-organization-id="{{ $event->organization_id }}"
+                              data-event-type-id="{{ $event->event_type_id }}"
                               data-user-type-id="{{ Auth::user()->user_type_id }}"                              
                               data-approval="{{ $event->is_approve }}">
                             <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
