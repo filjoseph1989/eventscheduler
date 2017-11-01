@@ -24,7 +24,7 @@ DISPLAYS AND FUNCTIONALITIES:
                 ✔ user will receive email of his/her new password 
     ☐ SIDE-BAR FUNTIONALITIES:
         ✔ functional HOME LOGO button
-        ☐ USER "info-container":
+        ✔ USER "info-container":
             ✔ PROFILE PICTURE changes after an upload at User Profile Page
             ✔ USER's full name
             ✔ USER's email
