@@ -1,20 +1,20 @@
 TO BE EDITED
 DISPLAYS AND FUNCTIONALITIES: 
-
+ 
 ☐ OSA:
-    ☐ PROFILE FUNCTIONALITIES:
-        ☐ MY PROFILE CARD (COMPLETED AND CORRRECTLY LABELED):
+    ✔ PROFILE FUNCTIONALITIES:
+        ✔ MY PROFILE CARD (COMPLETED AND CORRRECTLY LABELED):
             ✔ PROFILE PICTURE (CHANGEABLE, DYNAMIC FOR EACH USER)
-            ☐ NAME (NOT EDITABLE) @not-editable-1
-            ☐ EMAIL (EDITABLE) @editable-1
-            ☐ MOBILE NUMBER (EDITABLE) @editable-2
-            ☐ COURSE (NOT EDITABLE) @not-editable-2
-            ☐ POSITION (NOT EDITABLE) @not-editable-3
-            ☐ ORGANIZATION (NOT EDITABLE, ONE OR MANY, SET THE PRIMARY(ADD TOOLTIP FOR THE DEFINITION OF PRIMARY)) @not-editable-4
-            ☐ ACCOUNT TYPE (NOT EDITABLE) @not-editable-5
-            ☐ FACEBOOK (EDITABLE) @editable-3
-            ☐ TWITTER (EDITABLE) @editable-4
-            ☐ STATUS (NOT EDITABLE) @not-editable-6
+            ✔ NAME (NOT EDITABLE) @not-editable-1
+            ✔ EMAIL (EDITABLE) @editable-1
+            ✔ MOBILE NUMBER (EDITABLE) @editable-2
+            ✔ COURSE (NOT EDITABLE) @not-editable-2
+            ✔ POSITION (NOT EDITABLE) @not-editable-3
+            ✔ ORGANIZATION (NOT EDITABLE, ONE OR MANY, SET THE PRIMARY(ADD TOOLTIP FOR THE DEFINITION OF PRIMARY)) @not-editable-4
+            ✔ ACCOUNT TYPE (NOT EDITABLE) @not-editable-5
+            ✔ FACEBOOK (EDITABLE) @editable-3
+            ✔ TWITTER (EDITABLE) @editable-4
+            ✔ STATUS (NOT EDITABLE) @not-editable-6
             ✔ MEMBER SINCE ((CREATED_AT field) NOT EDITABLE) @not-editable-7
         ✔ CHANGE PASSWORD CARD (COMPLETED AND CORRRECTLY LABELED):
             ✔ if OLD PASSWORD DOESN'T MATCH, prompt error message

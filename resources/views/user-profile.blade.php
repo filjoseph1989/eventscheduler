@@ -70,30 +70,14 @@
                           <td id="course"><a href="#" data-id="">{{ $course }}</a></td>
                         </tr>
                         @endif
-                        <tr>
-                          <td><strong>Position: </strong></td>
-                          <td id="position_id">
-                            <a href="#" data-id="">
-                              @if ($organizationGroup == "Not Yet Specified")
-                                Not Yet Specified
-                              @else
-                                {{ $organizationGroup[0]->position->name }}
-                              @endif
-                            </a>
-                          </td>
-                        </tr>
-                        @if( Auth::user()->user_type_id !=3 )
-                        <tr>
-                          <td><strong>Organization:</strong></td>
-                          <td id="organization_id">
-                              @if($organizationGroup == "Not Yet Specified")
-                                Not Yet Specified
-                              @else
-                                {{ $organizationGroup[0]->organization->name }}
-                              @endif
-                          </td>
-                        </tr>
-                        @endif
+                        @foreach($organizationGroup as $key => $og)
+                          @if( Auth::user()->user_type_id !=3 )
+                            <tr>
+                              <td id="organization_id"><strong>Organization #{{ $key+1 }}: </strong> {{ $og->organization->name }} </td>
+                              <td id="position_id"><strong>Position: </strong>{{ $og->position->name }} </td>
+                            </tr>
+                          @endif
+                        @endforeach
                         <tr>
                           <td><strong>Account Type: </strong></td>
                           <td id="user_type_id"><a href="#">{{ strtoupper(session('user_account')) }}</a></td>

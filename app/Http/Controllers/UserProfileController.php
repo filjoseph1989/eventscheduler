@@ -41,7 +41,7 @@ class UserProfileController extends Controller
         $og   = OrganizationGroup::with(['position', 'organization'])
           ->where('user_id', Auth::id())
           ->get();
-
+        // dd( count($og) > 1 );
         if ($cour == null) {
           $cour = 'Not Yet Specified';
         } else {
@@ -92,22 +92,21 @@ class UserProfileController extends Controller
       }
 
       //EDITTABLES
-      //if osa,
-      if( Auth::user()->user_type_id == 3 )
-      {
+      //if osa, org-head
+      
         $user = User::find($id);
 
-        if ($request->has('full_name')) {
+        if ( $request->has('full_name') && Auth::user()->user_type_id == 3 ) {
           $user->full_name = $request->full_name;
           $user->save();
         }
 
-        if($request->has('email')) {
+        if( $request->has('email') && ( Auth::user()->user_type_id == 3 || Auth::user()->user_type_id == 1 ) ) {
           $user->email = $request->email;
-          $user->save();
+          $user->save(); 
         }
 
-        if($request->has('mobile_number')) {
+        if( $request->has('mobile_number') && ( Auth::user()->user_type_id == 3 || Auth::user()->user_type_id == 1 ) ) {
           if(strlen($request->mobile_number) != 12 ) {
             return back()->with(['status_warning' => 'Entered mobile number must not be more than or less than 12 characters.']);
           }
@@ -118,16 +117,15 @@ class UserProfileController extends Controller
           $user->save();
         }
 
-        if($request->has('facebook')) {
+        if( $request->has('facebook') && ( Auth::user()->user_type_id == 3 || Auth::user()->user_type_id == 1 ) ) {
           $user->facebook = $request->facebook;
           $user->save();
         }
 
-        if($request->has('twitter')) {
+        if( $request->has('twitter') && ( Auth::user()->user_type_id == 3 || Auth::user()->user_type_id == 1 ) ) {
           $user->twitter = $request->twitter;
           $user->save();
         }
-      }
-      return back();
+        return back();
     }
 }
