@@ -1,25 +1,23 @@
 @extends('layouts.app')
 
 @section('title')
-  <title>{{ config('app.name', 'Attendance') }}</title>
+  <title>Attendance</title>
 @endsection
 
 @section('css')
   <link href="{{ asset('css/dataTables.bootstrap.css') }}?v=1" rel="stylesheet">
   <link href="{{ asset('css/all-themes.css') }}" rel="stylesheet">
 @endsection
- 
-@section('content') 
+
+@section('content')
   <section class="content">
     <div class="container-fluid">
       <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="card">
             <div class="header">
-              <h2>
-                {{--  {{ ucwords($title) }}   --}}
-                Events for List of Attendance
-                <small>Display events in the system</small>
+              <h2> Events for List of Attendance
+                <small>Display different attendace for each events</small>
               </h2>
               <ul class="header-dropdown m-r--5">
                 <li class="dropdown">
@@ -31,9 +29,10 @@
                       <li><a href = "{{ route('Attendances.show', 'university') }}">University Events</a></li>
                       <li><a href = "{{ route('Attendances.show', 'organizations') }}">Organizations Events</a></li>
                     @endif ($eventType == 'Local')
-                      @foreach ($user_orgs as $key => $user_org)
-                          <li><a href = "{{ route('attendance.showWithinEachOrg', $user_org->organization->id) }}">My Org: {{ $user_org->organization->name }} Events</a></li>          
-                      @endforeach
+
+                    @foreach ($user_orgs as $key => $user_org)
+                      <li><a href = "{{ route('attendance.showWithinEachOrg', $user_org->organization->id) }}">My Org: {{ $user_org->organization->name }} Events</a></li>
+                    @endforeach
                   </ul>
                 </li>
               </ul>
@@ -44,7 +43,7 @@
                   @php extract($helper::dataTableClass($events)); @endphp
                   <table class="table table-bordered table-striped table-hover {{ $class }}">
                     <thead>
-                      <th><a href="#">Title</a></th>
+                      <th>Title</th>
                       <th>Official Attendance</th>
                       <th>Expected Attendance</th>
                       <th>Confirmed Attendance</th>
@@ -54,17 +53,17 @@
                       @foreach ($events as $key => $ev)
                         @foreach ($ev as $key => $event)
                           <tr data-event="{{ $event->id }}" data-route="{{ route('Event.edit', $event->id) }}" data-action="{{ route('Event.update', $event->id) }}">
-                            <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ $event->title }}</a></td>
+                            <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
                             <td><button type="submit" class="btn btn-success event-attendance-official" data-target="#modal-attendances" data-toggle="modal">View</button></td>
                             <td><button type="submit" class="btn btn-success event-attendance-expected" data-target="#modal-attendances"  data-toggle="modal">View</button></td>
                             <td><button type="submit" class="btn btn-success event-attendance-confirmed" data-target="#modal-attendances" data-toggle="modal">View</button></td>
                             <td><button type="submit" class="btn btn-success event-attendance-declined" data-target="#modal-attendances"  data-toggle="modal">View</button></td>
                           </tr>
-                          @endforeach
                         @endforeach
+                      @endforeach
                     </tbody>
                   </table>
-                </div> 
+                </div>
               </div>
             </div>
           </div>
@@ -85,7 +84,7 @@
           <h4 class="modal-title" id="myModalLabel">{{-- MUST SHOW WHAT TYPE OF ATTENDANCE--}} Attendance</h4>
         </div>
         <div class="modal-body">
-         
+
           <table class="table table-bordered table-striped table-hover">
             <thead>
               <tr>
@@ -116,7 +115,7 @@
         </div>
         <div class="modal-body">
           <div class="panel-group" id="accordion_1" role="tablist" aria-multiselectable="true">
-            
+
             <div class="panel">
               <div class="panel-heading" role="tab" id="headingOne_1">
                 <h4 class="panel-title">
