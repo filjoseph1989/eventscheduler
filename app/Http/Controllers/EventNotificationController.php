@@ -31,7 +31,7 @@ class EventNotificationController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * if ang official, show events made by the user with is_approve == 'false' with event_type_id = 1
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -39,19 +39,17 @@ class EventNotificationController extends Controller
     public function show($id)
     {
         if( $id == 1 ){
-            //if ang official, show events made by the user with is_approve == 'false' with event_type_id = 1   
-            # Keep the account
-      
             $events = Event::getOfficialEventsForEditNotification(Auth::id());
+
             self::getDateComparison($events);
-      
+
             return view('edit_notification_official')
               ->with([
                 'title'      => $this->list[$id], # title of the modal
                 'events'     => $events,
                 'eventType'  => $id,
                 'account'    => self::getAccount(Auth::user()->user_type_id)
-            ]);
+              ]);
         } elseif( $id == 2 ) {
 
             $org_id = OrganizationGroup::where('user_id', $id )
@@ -61,7 +59,7 @@ class EventNotificationController extends Controller
 
             if( $org_id->isEmpty() ){
                 $events['within'] = [];
-                $events['personal'] = Personal::getLocalPersonalEventsNotification(Auth::id());
+                $events['personal'] = PersonalEvent::getLocalPersonalEventsNotification(Auth::id());
             }
 
             foreach ($org_id as $key => $value) {
@@ -71,15 +69,13 @@ class EventNotificationController extends Controller
             $events['personal'] = PersonalEvent::getLocalPersonalEventsNotification(Auth::id());
 
             return view('edit_notification_local')
-                ->with([
-                    'eventsPersonal' => $events['personal'],
-                    'eventsWithin'   => $events['within'],
-                    'eventType'      => $id,
-                    'account'        => self::getAccount(Auth::user()->user_type_id)
-                ]);
+              ->with([
+                  'eventsPersonal' => $events['personal'],
+                  'eventsWithin'   => $events['within'],
+                  'eventType'      => $id,
+                  'account'        => self::getAccount(Auth::user()->user_type_id)
+              ]);
         }
-
-      //if ang personal/local, show events made by the user with is_approve == 'false'  with event_type_id = 2
     }
 
     /**
