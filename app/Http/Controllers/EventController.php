@@ -96,9 +96,10 @@ class EventController extends Controller
     public function create()
     {
       # view
-      return  view('events-add')->with([
-        'semesters' => Semester::all()
-      ]);
+      return  view('events-add')
+        ->with([
+          'semesters' => Semester::all()
+        ]);
     }
 
     /**
@@ -109,14 +110,14 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-      // d($request); exit;
       $this->validateRequest($this, $request);
 
       $orgId = null;
-      if(Auth::user()->user_type_id != 3) {
+      if (! parent::isOsa()) {
         $org_id = OrganizationGroup::where('user_id', Auth::id())
-        ->where('position_id', 3)
-        ->get();
+          ->where('position_id', 3)
+          ->get();
+
         $orgId = $org_id[0]->organization_id;
       }
 
@@ -151,6 +152,10 @@ class EventController extends Controller
       ];
 
       if ($request->category == 'personal') {
+        if (parent::isMember()) {
+          return back()
+            ->with('status_warning', 'You are not allowed to created official event');
+        }
         unset($data['organization_id']);
         $event = PersonalEvent::create($data);
       } else {
@@ -194,7 +199,7 @@ class EventController extends Controller
 
     /**
      * Response to the event information
-     * 
+     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

@@ -22,6 +22,14 @@
               {{ session('status') }}
             </div>
           @endif
+          @if (session('status_warning'))
+            <div class="alert alert-warning" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" data-toggle="tooltip" data-placement="top" title="Dismiss alert">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              {{ session('status_warning') }}
+            </div>
+          @endif
           @if ($errors->any())
             <div class="alert alert-warning" role="alert">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close" data-toggle="tooltip" data-placement="top" title="Dismiss alert">
