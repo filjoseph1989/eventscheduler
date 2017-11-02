@@ -81,24 +81,6 @@ class UserController extends Controller
     }
 
     /**
-     * Determin the user type
-     *
-     * @return
-     */
-    private function whatAccount()
-    {
-      if (parent::isOsa()) {
-        return 'osa';
-      }
-      if (parent::isOrgHead()) {
-        return 'org-head';
-      }
-      if (parent::isOrgMember()) {
-        return 'org-member';
-      }
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -195,7 +177,8 @@ class UserController extends Controller
       $users = User::with([
         'course',
         'organizationGroup' => function($query) {
-          return $query->with(['position', 'organization'])
+          return $query
+            ->with(['position', 'organization'])
             ->get();
         }
       ]);
@@ -213,7 +196,8 @@ class UserController extends Controller
         'users'  => $users,
         'help'   => $help,
         'filter' => true,
-        'id'     => $id
+        'id'     => $id,
+        'account' => self::whatAccount()
       ]);
     }
 
@@ -370,6 +354,12 @@ class UserController extends Controller
         ->with('status', $sucessOrFailed);
     }
 
+    /**
+     * Organization member
+     *
+     * @param  [type] $orgId [description]
+     * @return [type]        [description]
+     */
     public function orgMembers($orgId){
       $users = OrganizationGroup::with('user')
           ->with('organization')
@@ -489,6 +479,24 @@ class UserController extends Controller
           }
       } else {
             return back()->with('status_warning', 'old password is incorrect');
+      }
+    }
+
+    /**
+     * Determin the user type
+     *
+     * @return
+     */
+    private function whatAccount()
+    {
+      if (parent::isOsa()) {
+        return 'osa';
+      }
+      if (parent::isOrgHead()) {
+        return 'org-head';
+      }
+      if (parent::isOrgMember()) {
+        return 'org-member';
       }
     }
 }
