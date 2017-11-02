@@ -24,25 +24,19 @@
 
           <div class="card">
             <div class="header">
-              <h2> Local Events
+              <h2> Edit Notification for Local Events
               <small>Display the local event</small>
               </h2>
             </div>
             <div class="body">
-              <a href="{{ route('Event.create') }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right">Create Event</a>                          
+              <a href="{{ route('Event.create') }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right">Create Event</a>
               <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                     <thead>
                         <tr>
-                          <th>Title</th> 
-                          <th>Venue</th>
-                          <th>Organizer</th>
-                          <th>Date Start</th>
-                          <th>Date End</th>
-                          <th>Status</th>
-                          <th>Approve Status</th>
-                        </tr> 
+                          <th>Title</th>
+                        </tr>
                     </thead>
                     <tbody>
                       @if (count($eventsWithin) > 0)
@@ -50,19 +44,13 @@
                           @foreach ($localEvents as $key => $event)
                             <?php $event = (object)$event; ?>
                             <tr data-event="{{ $event->id }}"
-                              data-event-type = "{{ $event->event_type_id }}" 
-                              data-route="{{ route('Event.edit', $event->id) }}" 
+                              data-event-type = "{{ $event->event_type_id }}"
+                              data-route="{{ route('Event.edit', $event->id) }}"
                               data-action="{{ route('Event.update', $event->id) }}"
                               data-organization-id="{{ $event->organization_id }}"
                               data-user-type-id="{{ Auth::user()->user_type_id }}"
                               data-approval="{{ $event->is_approve }}">
                               <td><a href="#" class="edit-notif" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
-                              <td>{{ $event->venue }}</td>
-                              <td><?php $event->organization = (object)$event->organization; ?>{{ $event->organization->name }}</td>
-                              <td>{{ $event->date_start }}</td>
-                              <td>{{ $event->date_end }}</td>
-                              <td>{{ $event->status }}</td>
-                              <td>{{ $event->is_approve == 'true' ? 'Approved' : 'Not Yet Approved' }}</td>
                             </tr>
                           @endforeach
                         @endforeach
@@ -71,20 +59,14 @@
                       @if (count($eventsPersonal) > 0)
                         @foreach ($eventsPersonal as $key => $event)
                           <?php $event = (object)$event; ?>
-                          <tr data-event="{{ $event->id }}" 
+                          <tr data-event="{{ $event->id }}"
                               data-event-type = "{{ $event->event_type_id }}"
-                              data-route="{{ route('PersonalEvent.edit', $event->id) }}" 
+                              data-route="{{ route('PersonalEvent.edit', $event->id) }}"
                               data-action="{{ route('PersonalEvent.update', $event->id) }}"
-                              data-user-type-id="{{ Auth::user()->user_type_id }}"                              
+                              data-user-type-id="{{ Auth::user()->user_type_id }}"
                               data-approval="{{ $event->is_approve }}"
                               data-personal="true">
                             <td><a href="#" class="edit-notif" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
-                            <td>{{ $event->venue }}</td>
-                            <td>Personal</td>
-                            <td>{{ $event->date_start }}</td>
-                            <td>{{ $event->date_end }}</td>
-                            <td>{{ $event->status }}</td>
-                            <td>{{ $event->is_approve == 'true' ? 'Approved' : 'Not Yet Approved' }}</td>
                           </tr>
                         @endforeach
                       @endif
@@ -92,12 +74,6 @@
                     <tfoot>
                         <tr>
                           <th>Title</th>
-                          <th>Venue</th>
-                          <th>Organizer</th>
-                          <th>Date Start</th>
-                          <th>Date End</th>
-                          <th>Status</th>
-                          <th>Approve Status</th>
                         </tr>
                     </tfoot>
                   </table>
@@ -143,7 +119,7 @@
               </div>
             </div>
 
-            @if ($account == 'org-head' || $account == 'osa') 
+            @if ($account == 'org-head' || $account == 'osa')
               <div class="panel social-media-notification">
                 <div class="panel-heading" role="tab" id="headingTwo_1">
                   <h4 class="panel-title">

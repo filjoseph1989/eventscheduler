@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-  <title>{{ config('app.name', 'Attendance') }}</title>
+  <title>Attendance</title>
 @endsection
 
 @section('css')
@@ -16,8 +16,8 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="card">
             <div class="header">
-              <h2> Events for List of Attendance
-                <small>Display events in the system</small>
+              <h2> List of Attendance for each Events
+                <small>Display different attendace for each events</small>
               </h2>
               <ul class="header-dropdown m-r--5">
                 <li class="dropdown">
@@ -42,24 +42,24 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                     <thead>
-                      <th><a href="#">Title</a></th>
+                      <th>Title</th>
                       <th>Official Attendance</th>
                       <th>Expected Attendance</th>
                       <th>Confirmed Attendance</th>
                       <th>Declined Attendance</th>
                     </thead>
                     <tbody>
-                      @foreach ($events as $key => $ev)
-                        @foreach ($ev as $key => $event)
+                      <?php if (! empty($events)): ?>
+                        @foreach ($events as $key => $event)
                           <tr data-event="{{ $event->id }}" data-route="{{ route('Event.edit', $event->id) }}" data-action="{{ route('Event.update', $event->id) }}">
-                            <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ $event->title }}</a></td>
+                            <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
                             <td><button type="submit" class="btn btn-success event-attendance-official" data-target="#modal-attendances" data-toggle="modal">View</button></td>
                             <td><button type="submit" class="btn btn-success event-attendance-expected" data-target="#modal-attendances"  data-toggle="modal">View</button></td>
                             <td><button type="submit" class="btn btn-success event-attendance-confirmed" data-target="#modal-attendances" data-toggle="modal">View</button></td>
                             <td><button type="submit" class="btn btn-success event-attendance-declined" data-target="#modal-attendances"  data-toggle="modal">View</button></td>
                           </tr>
                         @endforeach
-                      @endforeach
+                      <?php endif; ?>
                     </tbody>
                   </table>
                 </div>
@@ -113,29 +113,30 @@
           <h4 class="modal-title" id="event-title">Event Information</h4>
         </div>
         <div class="modal-body">
-          <div class="panel-group" id="accordion_1" role="tablist" aria-multiselectable="true">
-
-            <div class="panel">
-              <div class="panel-heading" role="tab" id="headingOne_1">
-                <h4 class="panel-title">
-                  <a id="modal-event-title" role="button" data-toggle="collapse" data-parent="#accordion_1" href="#collapseOne_1" aria-expanded="false" aria-controls="collapseOne_1" class="collapsed">
-                    Event Title
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseOne_1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne_1" aria-expanded="false" style="height: 0px;">
-                <div class="panel-body">
-                  <p id="modal-event-ptitle">&nbsb;</p>
-                  <p id="modal-event-venue">&nbsb;</p>
-                  <p id="modal-event-description">&nbsb;</p>
-                  <p id="modal-event-organization">&nbsb;</p>
-                  <p id="modal-event-category">&nbsb;</p>
-                </div>
-              </div>
-            </div>
-            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
-        </div>
-
+          <table class="table table-bordered table-striped table-hover">
+            <thead>
+              <tr>
+                <th class="modal-event" id="modal-event-title">Event Title</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="modal-event" id="modal-event-venue"></td>
+              </tr>
+              <tr>
+                <td class="modal-event" id="modal-event-description"></td>
+              </tr>
+              <tr>
+                <td class="modal-event" id="modal-event-organization"></td>
+              </tr>
+              <tr>
+                <td class="modal-event" id="modal-event-category"></td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-link waves-effect pull-right" data-dismiss="modal">CLOSE</button>
       </div>
     </div>
   </div>

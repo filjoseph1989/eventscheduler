@@ -12,7 +12,7 @@
 
 @section('content')
   <section class="content">
-    <div class="container-fluid"> 
+    <div class="container-fluid">
       <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
@@ -30,7 +30,7 @@
                   $thirdPersonAddress = "your";
 
                   if ($eventType == 1) {
-                    $type = 'Official'; 
+                    $type = 'Official';
                   }
                   if ($eventType == 2) {
                     $type = 'Local';
@@ -61,8 +61,7 @@
               @endif
             </div>
             <div class="body">
-              <a href="{{ route('Event.create') }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right" style="margin-left:10px;">Create Event</a>          
-              <a href="{{ route('EventNotification.show', 1) }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right"> Edit Notification Settings of Official Events </a>              
+              <a href="{{ route('Event.create') }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right" style="margin-left:10px;">Create Event</a>
               <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
@@ -80,13 +79,13 @@
                     </thead>
                     <tbody>
                       @if (! is_null($events))
-                        @foreach ($events as $key => $event) 
-                          <tr data-event="{{ $event->id }}" 
-                              data-route="{{ route('Event.edit', $event->id) }}" 
+                        @foreach ($events as $key => $event)
+                          <tr data-event="{{ $event->id }}"
+                              data-route="{{ route('Event.edit', $event->id) }}"
                               data-action="{{ route('Event.update', $event->id) }}"
                               data-organization-id="{{ $event->organization_id }}"
                               data-event-type-id="{{ $event->event_type_id }}"
-                              data-user-type-id="{{ Auth::user()->user_type_id }}"                              
+                              data-user-type-id="{{ Auth::user()->user_type_id }}"
                               data-approval="{{ $event->is_approve }}">
                             <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
                             <td>{{ $event->venue }}</td>
@@ -112,7 +111,7 @@
                       <th>Title</th>
                       <th>Venue</th>
                       <th>Organizer</th>
-                      <th>Type</th>                      
+                      <th>Type</th>
                       <th>Start</th>
                       <th>End</th>
                       @if ($account != 'org-member')
@@ -162,7 +161,7 @@
               </div>
             </div>
 
-            @if ($account == 'org-head' || $account == 'osa') 
+            @if ($account == 'org-head' || $account == 'osa')
               <div class="panel social-media-notification">
                 <div class="panel-heading" role="tab" id="headingTwo_1">
                   <h4 class="panel-title">

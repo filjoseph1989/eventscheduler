@@ -12,7 +12,7 @@
 
 @section('content')
   <section class="content">
-    <div class="container-fluid"> 
+    <div class="container-fluid">
       <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
@@ -24,13 +24,13 @@
 
           <div class="card">
             <div class="header">
-              <h2> {{ ucwords($title) }} Events
+              <h2> Edit Notification for {{ ucwords($title) }} Events
                 <?php
                   $type               = "All the";
                   $thirdPersonAddress = "your";
 
                   if ($eventType == 1) {
-                    $type = 'Official'; 
+                    $type = 'Official';
                   }
                   if ($eventType == 2) {
                     $type = 'Local';
@@ -61,44 +61,24 @@
               @endif
             </div>
             <div class="body">
-              <a href="{{ route('Event.create') }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right">Create Event</a>              
+              <a href="{{ route('Event.create') }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right">Create Event</a>
               <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                     <thead>
-                      <th><a href="#">Title</a></th> 
-                      <th>Venue</th>
-                      <th>Organizer</th>
-                      <th>Type</th>
-                      <th>Start</th>
-                      <th>End</th>
-                      @if ($account != 'org-member')
-                        <th>Status</th>
-                      @endif
+                      <th>Title</th>
                     </thead>
                     <tbody>
                       @if (! is_null($events))
                         @foreach ($events as $key => $event)
                           <tr data-event="{{ $event->id }}" 
-                              data-route="{{ route('Event.edit', $event->id) }}" 
+                              data-route="{{ route('Event.edit', $event->id) }}"
                               data-action="{{ route('Event.update', $event->id) }}"
                               data-organization-id="{{ $event->organization_id }}"
                               data-event-type-id="{{ $event->event_type_id }}"
-                              data-user-type-id="{{ Auth::user()->user_type_id }}"                              
+                              data-user-type-id="{{ Auth::user()->user_type_id }}"
                               data-approval="{{ $event->is_approve }}">
                             <td><a href="#" class="edit-notif" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
-                            <td>{{ $event->venue }}</td>
-                            @if($event->organization != null)
-                              <td> {{ $event->organization->first()->name }} </td>
-                            @else
-                              <td> University Official Event  </td>
-                            @endif
-                              <td> {{ $event->eventType->first()->name }} </td>
-                            <td>{{ date('M d, Y', strtotime($event->date_start)) }} {{ date('h:i A', strtotime($event->date_start_time)) }}</td>
-                            <td>{{ date('M d, Y', strtotime($event->date_end)) }} {{ date('h:i A', strtotime($event->date_end_time)) }}</td>
-                            @if ($account != 'org-member')
-                              <td>{{ ucwords($event->status) }}</td>
-                            @endif
                           </tr>
                         @endforeach
                       @else
@@ -107,12 +87,6 @@
                     </tbody>
                     <tfoot>
                       <th>Title</th>
-                      <th>Venue</th>
-                      <th>Organizer</th>
-                      <th>Type</th>                      
-                      <th>Start</th>
-                      <th>End</th>
-                      <th>Status</th>
                     </tfoot>
                   </table>
                 </div>
@@ -157,7 +131,7 @@
               </div>
             </div>
 
-            @if ($account == 'org-head' || $account == 'osa') 
+            @if ($account == 'org-head' || $account == 'osa')
               <div class="panel social-media-notification">
                 <div class="panel-heading" role="tab" id="headingTwo_1">
                   <h4 class="panel-title">

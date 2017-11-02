@@ -81,24 +81,6 @@ class UserController extends Controller
     }
 
     /**
-     * Determin the user type
-     *
-     * @return
-     */
-    private function whatAccount()
-    {
-      if (parent::isOsa()) {
-        return 'osa';
-      }
-      if (parent::isOrgHead()) {
-        return 'org-head';
-      }
-      if (parent::isOrgMember()) {
-        return 'org-member';
-      }
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -159,6 +141,15 @@ class UserController extends Controller
             unset($user['user_type_id']);
             unset($user['status']);
 
+            # get organization ID
+            if (is_array($user['organization_id'])) {
+              $id_t;
+              foreach ($user['organization_id'] as $key => $id) {
+                $id_t = $id;
+              }
+              $user['organization_id'] = $id_t;
+            }
+
             OrganizationGroup::create($user);
           }
         }
@@ -195,7 +186,8 @@ class UserController extends Controller
       $users = User::with([
         'course',
         'organizationGroup' => function($query) {
-          return $query->with(['position', 'organization'])
+          return $query
+            ->with(['position', 'organization'])
             ->get();
         }
       ]);
@@ -213,7 +205,8 @@ class UserController extends Controller
         'users'  => $users,
         'help'   => $help,
         'filter' => true,
-        'id'     => $id
+        'id'     => $id,
+        'account' => self::whatAccount()
       ]);
     }
 
@@ -280,32 +273,42 @@ class UserController extends Controller
         //
     }
 
-    public function assignPositionToExistingUser(Request $request){
-      // d((json_decode($request->existing_user))->id); exit;
+    /**
+     * Assign position
+     *
+     * @param  Request $request
+     * @return
+     */
+    public function assignPositionToExistingUser(Request $request)
+    {
       $exist_user = json_decode($request->existing_user);
-      // d($exist_user[0]->id); exit;
         /**
          * get current user's org id to know what org id to assign to the members being registered
         */
-        $current_user_org_g = OrganizationGroup::where('user_id', Auth::user()->id)->where('position_id', 3)->get();
-        // dd($current_user_org_g[0]->organization->id);
+        $current_user_org_g = OrganizationGroup::where('user_id', Auth::user()->id)
+          ->where('position_id', 3)
+          ->get();
 
         if( $request->position_id != 1){
           //checks if the position assigned is not 'Not Applicable',
           // because the 'Not Applicable' position can be repeatedly assigned to many users
-          $org_grp = OrganizationGroup::where('organization_id', $current_user_org_g[0]->organization->id)->where('position_id', $request->position_id)->get();
-          // d($org_grp); exit;
+          $org_grp = OrganizationGroup::where('organization_id', $current_user_org_g[0]->organization->id)
+            ->where('position_id', $request->position_id)
+            ->get();
+
           if ($org_grp->count() > 0) {
-          //checks if the position in an organization has been assigned to someone
             return back()
               ->withInput()
               ->with('status_warning', 'Position is already taken');
           }
         }
 
+        $existing = OrganizationGroup::where('organization_id', $current_user_org_g[0]->organization->id)
+          ->where('user_id', $exist_user[0]->id)
+          ->get()
+          ->exists();
 
-        if ( OrganizationGroup::where('organization_id', $current_user_org_g[0]->organization->id)->where('user_id', $exist_user[0]->id)->get()->exists() ) {
-            //checks if the user record is already a member of the org
+        if ( $existing ) {
             return back()
               ->withInput()
               ->with('status_warning', 'The user is already a member of this organization');
@@ -327,6 +330,60 @@ class UserController extends Controller
     }
 
     /**
+     * Upload new profile picture
+     *
+     * @param  Request $request
+     * @return Illuminate\Response
+     */
+    public function uploadProfilePic (Request $request) {
+      $this->validate($request, [
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+      ]);
+
+      # Get image, rename and save to images folder
+      $imageName = time().'.'.$request->image->getClientOriginalExtension();
+      $request->image->move(public_path('img/profile'), $imageName);
+
+      # Save to database
+      $user          = User::find($request->id);
+      $picture       = $user->picture;
+      $user->picture = $imageName;
+
+      $user->save();
+
+      # Delete old pic except default
+      if (file_exists("img/profile/$picture") and $picture != 'profile.png') {
+        unlink("img/profile/$picture");
+      }
+
+      $sucessOrFailed = "Image Uploaded successfully.";
+
+      # Return to uploader page
+      return back()
+        ->with('status', $sucessOrFailed);
+    }
+
+    /**
+     * Organization member
+     *
+     * @param  [type] $orgId [description]
+     * @return [type]        [description]
+     */
+    public function orgMembers($orgId){
+      $users = OrganizationGroup::with('user')
+          ->with('organization')
+          ->with('position')
+          ->where('organization_id', $orgId)
+          ->get();
+      $user[] = $users;
+
+      return view('org_members')->with([
+        'users'      => $user,
+        // 'help'       => $help
+      ]);
+    }
+
+    /**
      * Convert the request to array
      *
      * @param  object $request
@@ -345,7 +402,7 @@ class UserController extends Controller
 
         if (parent::isOrgHead()) {
           $data[$key]['user_type_id']    = '2';
-          $data[$key]['organization_id'] = self::getOrganizations(); # this is from a CommonMethodTrait
+          $data[$key]['organization_id'] = self::getOrganizationsID(); # this is from a CommonMethodTrait
         }
 
         if (parent::isOsa()) {
@@ -399,7 +456,7 @@ class UserController extends Controller
     {
 
       $count = OrganizationGroup::where('position_id', $user['position_id'])
-        ->where('organization_id', self::getOrganizations())
+        ->where('organization_id', self::getOrganizationsID())
         ->get()
         ->count();
 
@@ -434,43 +491,21 @@ class UserController extends Controller
       }
     }
 
-    public function uploadProfilePic (Request $request) {
-      $this->validate($request, [
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-      ]);
-
-      # Get image, rename and save to images folder
-      $imageName = time().'.'.$request->image->getClientOriginalExtension();
-      $request->image->move(public_path('img/profile'), $imageName);
-
-      # Save to database
-      $user          = User::find($request->id);
-      $picture       = $user->picture;
-      $user->picture = $imageName;
-
-      # Delete old pic except default
-      if ($user->save() and file_exists("img/profile/$picture")) {
-        unlink("img/profile/$picture");
+    /**
+     * Determin the user type
+     *
+     * @return
+     */
+    private function whatAccount()
+    {
+      if (parent::isOsa()) {
+        return 'osa';
       }
-
-      $sucessOrFailed = "Image Uploaded successfully.";
-
-      # Return to uploader page
-      return back()
-        ->with('status', $sucessOrFailed);
-    }
-
-    public function orgMembers($orgId){
-      $users = OrganizationGroup::with('user')
-          ->with('organization')
-          ->with('position')
-          ->where('organization_id', $orgId)
-          ->get();
-      $user[] = $users;
-
-      return view('org_members')->with([
-        'users'      => $user,
-        // 'help'       => $help
-      ]);
+      if (parent::isOrgHead()) {
+        return 'org-head';
+      }
+      if (parent::isOrgMember()) {
+        return 'org-member';
+      }
     }
 }

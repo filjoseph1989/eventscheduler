@@ -139,14 +139,15 @@ DISPLAYS AND FUNCTIONALITIES:
          ✔ Set Events:
             ✔ Official Events
             ✔ Personal Events
-        ☐ Manage Notifications:
-            ☐ Edit Notification Settings
-            ☐ Approve Events
-        ☐ View Calendar:
-            ☐ Official Events
-            ☐ Personal Events
-        ☐ Generate Attendance:
-            ☐ Official 
-            ☐ Expected 
-            ☐ Confirmed 
-            ☐ Declined 
+        ✔ Manage Notifications:
+            ✔ Edit Notification Settings
+            ✔ Approve Events
+        ✔ View Calendar:
+            ✔ Official Events
+            ✔ Personal Events
+        ✔ Generate Attendance:
+            ✔ Official Events:
+                ✔ Official 
+                ✔ Expected 
+                ✔ Confirmed 
+                ✔ Declined 

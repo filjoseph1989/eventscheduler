@@ -55,9 +55,6 @@
                   <th>User Type</th>
                   <th>Organization</th>
                   <th>Status</th>
-                  @if (isset($filter) and $filter === true)
-                    <th>Action</th>
-                  @endif
                 </thead>
                 <tbody>
                   @if (isset($users))
@@ -65,11 +62,11 @@
                       <tr>
                         @if( $account != 'osa' and ! is_null($user->user))
                           <td><a href="#" class="user-name" data-toggle="modal" data-target="#profile" data-user-id="{{-- $user->user->id --}}">{{ $user->user->full_name }}</a></td>
-                        @elseif(! is_null($user->user))
+                        @elseif(! is_null($user))
                           <td><a href="#" class="user-name" data-toggle="modal" data-target="#profile" data-user-id="{{ $user->id }}">{{ $user->full_name }}</a></td>
                         @endif
                         <td>
-                          @if( $account != 'osa' and ! is_null($user->user))
+                          @if( $account != 'osa' and ! is_null($user))
                             <a href="#" class="user-course"
                               data-toggle="modal"
                               data-target="#modal-course"
@@ -87,12 +84,21 @@
                         </td>
                         <td>
                           @if( $account != 'osa' and ! is_null($user))
-                            <a href="#" class="user-position" data-toggle="modal" data-target="#modal-position" data-position-id="{{ $user->position->id }}">{{ $user->position->name }}</a>
+                            <a href="#" class="user-position" data-toggle="modal" data-target="#modal-position"
+                              <?php if (isset($user->organizationGroup[0]->position->name)): ?>
+                                data-position-id="{{ $user->organizationGroup[0]->position->id }}">{{ $user->organizationGroup[0]->position->name }}</a>
+                              <?php else: ?>
+                                data-position-id="{{ $user->position->id }}">{{ $user->position->name }}</a>
+                              <?php endif; ?>
                           @endif
                         </td>
                         <td>{{ ucwords(str_replace('-', ' ', $account)) }}</td>
-                        <td>{{ $user->organization->name }}</td>
-                        <td>{{ ($user->user->status == 'true') ? 'Active' : 'Inactive' }}</td>
+                        <?php if (isset($user->organizationGroup[0]->organization->name)): ?>
+                          <td>{{ $user->organizationGroup[0]->organization->name }}</td>
+                        <?php else: ?>
+                          <td>{{ $user->organization->name }}</td>
+                        <?php endif; ?>
+                        <td>{{ ($user->status == 'true') ? 'Active' : 'Inactive' }}</td>
                       </tr>
                     @endforeach
                   @endif

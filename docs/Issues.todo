@@ -14,9 +14,9 @@
 ☐ Issue 30: {inline} go to this
 ☐ Issue 31: Uploading a profile picture should have a limit or create a thumbnails and delete the original
 ☐ Issue 32: {inline} murag wala ni gamita nga function, i check daw ni
-☐ Issue 33: http://liz1.local/Profile editing a name doesn't work
 
 Archived:
+    ✔ Issue 33: http://liz1.local/Profile editing a name doesn't work @done(2017-11-02 21:41)
     ✔ Issue 21: {inline} Update this, when the authentication or login functionality is completed @done(2017-10-04 09:08)
     ✔ Issue 19: {inline} Improve the validation trait by adding this @done(2017-10-22 15:32)
     ✔ Issue 17: {inline} Its better if you provide a link where a user can password for security purpose @done(2017-10-08 23:36)
