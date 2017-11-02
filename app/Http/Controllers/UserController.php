@@ -356,8 +356,10 @@ class UserController extends Controller
       $picture       = $user->picture;
       $user->picture = $imageName;
 
+      $user->save();
+
       # Delete old pic except default
-      if ($user->save() and file_exists("img/profile/$picture")) {
+      if (file_exists("img/profile/$picture") and $picture != 'profile.png') {
         unlink("img/profile/$picture");
       }
 
