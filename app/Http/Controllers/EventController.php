@@ -124,7 +124,7 @@ class EventController extends Controller
 
       if ($request->category == "university" || $request->category == "organization") {
         $event_type_id = 1;
-      } else { 
+      } else {
         $event_type_id = 2;
       }
 
@@ -268,12 +268,12 @@ class EventController extends Controller
         $events = [];
 
         if( $org_id->isEmpty() ){
-          $events['within'] = [];
+          $events['within']   = [];
           $events['personal'] = PersonalEvent::where('event_type_id', $id)
-          ->where('user_id', Auth::id())
-          ->where('category', 'personal')
-          ->get()
-          ->toArray();
+            ->where('user_id', Auth::id())
+            ->where('category', 'personal')
+            ->get()
+            ->toArray();
         }
 
         foreach ($org_id as $key => $value) {
@@ -395,11 +395,11 @@ class EventController extends Controller
       }
 
       if (parent::isOrgMember()) {
-        return self::getEvents($id, 'member'); 
+        return self::getEvents($id, 'member');
       }
     }
 
-   
+
 
 
     /**
