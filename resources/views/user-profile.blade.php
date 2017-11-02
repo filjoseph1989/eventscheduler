@@ -169,8 +169,8 @@
         var $url  = "<?php echo route('Profile.update', Auth::id()) ?>";
 
         $('#user-edit-form').attr('action', $url);
-        $('#user-form-input').attr('name', $name);
         $('#user-form-input').val(newValue);
+        var name = $('#user-form-input').attr('name', $name);
 
         $('#user-edit-form').submit();
       });

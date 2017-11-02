@@ -70,40 +70,19 @@ class UserProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-      if (parent::isOsa()) {
-        if (
-            $request->has('position_id') ||
-            $request->has('user_type_id') ||
-            $request->has('status') ||
-            $request->has('created_at')
-           ) { return back()->with(['status_warning' => 'This field are accessible for authorized-user only.']); }
-      } else { // if user or org-head
-        if (
-            $request->has('organization_id') ||
-            $request->has('position_id') ||
-            $request->has('user_type_id') ||
-            $request->has('status') ||
-            $request->has('full_name') ||
-            $request->has('created_at')
-           ) {
-             return back()
-               ->with(['status_warning' => 'These fields are accessible for authorized-user only.']);
-           }
-      }
-
       $user = User::find($id);
 
-      if ($request->has('full_name') && parent::isOsa()) {
+      if ($request->has('full_name') && (parent::isOsa() OR parent::isOrgHead() OR parent::isMember())) {
         $user->full_name = $request->full_name;
         $user->save();
       }
 
-      if ($request->has('email') && ( parent::isOsa() || parent::isOrgHead() )) {
+      if ($request->has('email') && ( parent::isOsa() || parent::isOrgHead())) {
         $user->email = $request->email;
         $user->save();
       }
 
-      if ($request->has('mobile_number') && (parent::isOsa() || parent::isOrgHead())) {
+      if ($request->has('mobile_number') && (parent::isOsa() || parent::isOrgHead() OR parent::isMember())) {
         if (strlen($request->mobile_number) != 12 ) {
           return back()
             ->with(['status_warning' => 'Entered mobile number must not be more than or less than 12 characters.']);
@@ -117,12 +96,12 @@ class UserProfileController extends Controller
         $user->save();
       }
 
-      if ($request->has('facebook') && (parent::isOsa() || parent::isOrgHead())) {
+      if ($request->has('facebook') && (parent::isOsa() || parent::isOrgHead() OR parent::isMember())) {
         $user->facebook = $request->facebook;
         $user->save();
       }
 
-      if ($request->has('twitter') && (parent::isOsa() || parent::isOrgHead())) {
+      if ($request->has('twitter') && (parent::isOsa() || parent::isOrgHead() OR parent::isMember())) {
         $user->twitter = $request->twitter;
         $user->save();
       }
