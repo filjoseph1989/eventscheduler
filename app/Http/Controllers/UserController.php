@@ -141,6 +141,15 @@ class UserController extends Controller
             unset($user['user_type_id']);
             unset($user['status']);
 
+            # get organization ID
+            if (is_array($user['organization_id'])) {
+              $id_t;
+              foreach ($user['organization_id'] as $key => $id) {
+                $id_t = $id;
+              }
+              $user['organization_id'] = $id_t;
+            }
+
             OrganizationGroup::create($user);
           }
         }
@@ -393,7 +402,7 @@ class UserController extends Controller
 
         if (parent::isOrgHead()) {
           $data[$key]['user_type_id']    = '2';
-          $data[$key]['organization_id'] = self::getOrganizations(); # this is from a CommonMethodTrait
+          $data[$key]['organization_id'] = self::getOrganizationsID(); # this is from a CommonMethodTrait
         }
 
         if (parent::isOsa()) {
@@ -447,7 +456,7 @@ class UserController extends Controller
     {
 
       $count = OrganizationGroup::where('position_id', $user['position_id'])
-        ->where('organization_id', self::getOrganizations())
+        ->where('organization_id', self::getOrganizationsID())
         ->get()
         ->count();
 
