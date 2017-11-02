@@ -152,13 +152,14 @@ class EventController extends Controller
       ];
 
       if ($request->category == 'personal') {
-        if (parent::isMember()) {
-          return back()
-            ->with('status_warning', 'You are not allowed to created official event');
-        }
         unset($data['organization_id']);
         $event = PersonalEvent::create($data);
       } else {
+        if (parent::isOrgMember()) {
+          return back()
+            ->withInput()
+            ->with('status_warning', 'You are not allowed to created official event');
+        }
         $event = Event::create($data);
       }
 
