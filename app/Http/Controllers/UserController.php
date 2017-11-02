@@ -280,32 +280,42 @@ class UserController extends Controller
         //
     }
 
-    public function assignPositionToExistingUser(Request $request){
-      // d((json_decode($request->existing_user))->id); exit;
+    /**
+     * Assign position
+     *
+     * @param  Request $request
+     * @return
+     */
+    public function assignPositionToExistingUser(Request $request)
+    {
       $exist_user = json_decode($request->existing_user);
-      // d($exist_user[0]->id); exit;
         /**
          * get current user's org id to know what org id to assign to the members being registered
         */
-        $current_user_org_g = OrganizationGroup::where('user_id', Auth::user()->id)->where('position_id', 3)->get();
-        // dd($current_user_org_g[0]->organization->id);
+        $current_user_org_g = OrganizationGroup::where('user_id', Auth::user()->id)
+          ->where('position_id', 3)
+          ->get();
 
         if( $request->position_id != 1){
           //checks if the position assigned is not 'Not Applicable',
           // because the 'Not Applicable' position can be repeatedly assigned to many users
-          $org_grp = OrganizationGroup::where('organization_id', $current_user_org_g[0]->organization->id)->where('position_id', $request->position_id)->get();
-          // d($org_grp); exit;
+          $org_grp = OrganizationGroup::where('organization_id', $current_user_org_g[0]->organization->id)
+            ->where('position_id', $request->position_id)
+            ->get();
+
           if ($org_grp->count() > 0) {
-          //checks if the position in an organization has been assigned to someone
             return back()
               ->withInput()
               ->with('status_warning', 'Position is already taken');
           }
         }
 
+        $existing = OrganizationGroup::where('organization_id', $current_user_org_g[0]->organization->id)
+          ->where('user_id', $exist_user[0]->id)
+          ->get()
+          ->exists();
 
-        if ( OrganizationGroup::where('organization_id', $current_user_org_g[0]->organization->id)->where('user_id', $exist_user[0]->id)->get()->exists() ) {
-            //checks if the user record is already a member of the org
+        if ( $existing ) {
             return back()
               ->withInput()
               ->with('status_warning', 'The user is already a member of this organization');
@@ -324,6 +334,52 @@ class UserController extends Controller
           ->withInput()
           ->with('status', 'Successfully added new user');
         }
+    }
+
+    /**
+     * Upload new profile picture
+     *
+     * @param  Request $request
+     * @return Illuminate\Response
+     */
+    public function uploadProfilePic (Request $request) {
+      $this->validate($request, [
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+      ]);
+
+      # Get image, rename and save to images folder
+      $imageName = time().'.'.$request->image->getClientOriginalExtension();
+      $request->image->move(public_path('img/profile'), $imageName);
+
+      # Save to database
+      $user          = User::find($request->id);
+      $picture       = $user->picture;
+      $user->picture = $imageName;
+
+      # Delete old pic except default
+      if ($user->save() and file_exists("img/profile/$picture")) {
+        unlink("img/profile/$picture");
+      }
+
+      $sucessOrFailed = "Image Uploaded successfully.";
+
+      # Return to uploader page
+      return back()
+        ->with('status', $sucessOrFailed);
+    }
+
+    public function orgMembers($orgId){
+      $users = OrganizationGroup::with('user')
+          ->with('organization')
+          ->with('position')
+          ->where('organization_id', $orgId)
+          ->get();
+      $user[] = $users;
+
+      return view('org_members')->with([
+        'users'      => $user,
+        // 'help'       => $help
+      ]);
     }
 
     /**
@@ -432,45 +488,5 @@ class UserController extends Controller
       } else {
             return back()->with('status_warning', 'old password is incorrect');
       }
-    }
-
-    public function uploadProfilePic (Request $request) {
-      $this->validate($request, [
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-      ]);
-
-      # Get image, rename and save to images folder
-      $imageName = time().'.'.$request->image->getClientOriginalExtension();
-      $request->image->move(public_path('img/profile'), $imageName);
-
-      # Save to database
-      $user          = User::find($request->id);
-      $picture       = $user->picture;
-      $user->picture = $imageName;
-
-      # Delete old pic except default
-      if ($user->save() and file_exists("img/profile/$picture")) {
-        unlink("img/profile/$picture");
-      }
-
-      $sucessOrFailed = "Image Uploaded successfully.";
-
-      # Return to uploader page
-      return back()
-        ->with('status', $sucessOrFailed);
-    }
-
-    public function orgMembers($orgId){
-      $users = OrganizationGroup::with('user')
-          ->with('organization')
-          ->with('position')
-          ->where('organization_id', $orgId)
-          ->get();
-      $user[] = $users;
-
-      return view('org_members')->with([
-        'users'      => $user,
-        // 'help'       => $help
-      ]);
     }
 }

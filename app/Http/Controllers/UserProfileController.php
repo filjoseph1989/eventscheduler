@@ -41,7 +41,7 @@ class UserProfileController extends Controller
         $og   = OrganizationGroup::with(['position', 'organization'])
           ->where('user_id', Auth::id())
           ->get();
-        // dd( count($og) > 1 );
+
         if ($cour == null) {
           $cour = 'Not Yet Specified';
         } else {
@@ -52,13 +52,13 @@ class UserProfileController extends Controller
           $og = 'Not Yet Specified';
         }
 
-
-        return view('user-profile')->with([
-          'course'            => $cour,
-          'account'           => $acc,
-          'organizationGroup' => $og,
-          'prof_pic'          => Auth::user()->picture,
-        ]);
+        return view('user-profile')
+          ->with([
+            'course'            => $cour,
+            'account'           => $acc,
+            'organizationGroup' => $og,
+            'prof_pic'          => Auth::user()->picture,
+          ]);
     }
 
     /**
@@ -70,10 +70,7 @@ class UserProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-      //THE NON-EDITTABLES
-      //if osa,
-      if( Auth::user()->user_type_id == 3 )
-      {
+      if (parent::isOsa()) {
         if (
             $request->has('position_id') ||
             $request->has('user_type_id') ||
@@ -88,44 +85,48 @@ class UserProfileController extends Controller
             $request->has('status') ||
             $request->has('full_name') ||
             $request->has('created_at')
-           ) { return back()->with(['status_warning' => 'These fields are accessible for authorized-user only.']); }
+           ) {
+             return back()
+               ->with(['status_warning' => 'These fields are accessible for authorized-user only.']);
+           }
       }
 
-      //EDITTABLES
-      //if osa, org-head
-      
-        $user = User::find($id);
+      $user = User::find($id);
 
-        if ( $request->has('full_name') && Auth::user()->user_type_id == 3 ) {
-          $user->full_name = $request->full_name;
-          $user->save();
+      if ($request->has('full_name') && parent::isOsa()) {
+        $user->full_name = $request->full_name;
+        $user->save();
+      }
+
+      if ($request->has('email') && ( parent::isOsa() || parent::isOrgHead() )) {
+        $user->email = $request->email;
+        $user->save();
+      }
+
+      if ($request->has('mobile_number') && (parent::isOsa() || parent::isOrgHead())) {
+        if (strlen($request->mobile_number) != 12 ) {
+          return back()
+            ->with(['status_warning' => 'Entered mobile number must not be more than or less than 12 characters.']);
+        }
+        if (!ctype_digit($request->mobile_number)) {
+          return back()
+            ->with(['status_warning' => 'Contains non-numbers.']);
         }
 
-        if( $request->has('email') && ( Auth::user()->user_type_id == 3 || Auth::user()->user_type_id == 1 ) ) {
-          $user->email = $request->email;
-          $user->save(); 
-        }
+        $user->mobile_number = $request->mobile_number;
+        $user->save();
+      }
 
-        if( $request->has('mobile_number') && ( Auth::user()->user_type_id == 3 || Auth::user()->user_type_id == 1 ) ) {
-          if(strlen($request->mobile_number) != 12 ) {
-            return back()->with(['status_warning' => 'Entered mobile number must not be more than or less than 12 characters.']);
-          }
-          if (!ctype_digit($request->mobile_number)) {
-            return back()->with(['status_warning' => 'Contains non-numbers.']);
-          }
-          $user->mobile_number = $request->mobile_number;
-          $user->save();
-        }
+      if ($request->has('facebook') && (parent::isOsa() || parent::isOrgHead())) {
+        $user->facebook = $request->facebook;
+        $user->save();
+      }
 
-        if( $request->has('facebook') && ( Auth::user()->user_type_id == 3 || Auth::user()->user_type_id == 1 ) ) {
-          $user->facebook = $request->facebook;
-          $user->save();
-        }
+      if ($request->has('twitter') && (parent::isOsa() || parent::isOrgHead())) {
+        $user->twitter = $request->twitter;
+        $user->save();
+      }
 
-        if( $request->has('twitter') && ( Auth::user()->user_type_id == 3 || Auth::user()->user_type_id == 1 ) ) {
-          $user->twitter = $request->twitter;
-          $user->save();
-        }
-        return back();
+      return back();
     }
 }
