@@ -193,8 +193,8 @@ class EventController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     * we'll get event data here for modal
+     * Response to the event information
+     * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -203,7 +203,8 @@ class EventController extends Controller
       return Event::with('organization')
         ->with('user')
         ->with('eventType')
-        ->where('id', $id)->get();
+        ->where('id', $id)
+        ->get();
     }
 
     /**

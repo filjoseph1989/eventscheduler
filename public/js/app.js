@@ -17,7 +17,7 @@
  * @date 09-30-2017
  * @date 10-27-2017 - last updated
  */
-(function() { 
+(function() {
   /**
    * Global variable for this file
    * @type {mixed}
@@ -28,7 +28,7 @@
   var param     = '';
   var action    = "";
   var next      = 1;
- 
+
   /**
    * Work when the user click on event title
    *
@@ -39,7 +39,7 @@
 
     var $url           = _this.data('route');
     var action         = _this.data('action');
-    var approval       = _this.data('approval'); 
+    var approval       = _this.data('approval');
     var organizationId = _this.data('organization-id');
     var eventTypeId    = _this.data('event-type-id');
     var userTypeId     = _this.data('user-type-id');
@@ -47,7 +47,7 @@
 
     if ( userTypeId == 3 ) {
       if (organizationId != undefined || personal == undefined || approval == true || eventTypeId == 2) {
-        $('.social-media-notification').hide();      
+        $('.social-media-notification').hide();
       }
     }
 
@@ -62,11 +62,11 @@
     });
   });
 
-    /**
-     * Work when the user click on edit-notif
-     *
-     * @return {void}
-     */
+  /**
+   * Work when the user click on edit-notif
+   *
+   * @return {void}
+   */
   $(document).on('click', '.edit-notif', function () {
     var _this = $(this).parents('tr');
 
@@ -89,7 +89,6 @@
     });
   });
 
-  
   /**
    * A beautiful alert message will show up
    * after a Successful transactions
@@ -395,7 +394,7 @@
     var id = $(this).parents('tr').data('event');
     var data = {
       id: id
-    }    
+    }
 
     axios_post('/attendance/get/declined/attendance', data, function (data) {
       var html = "";
@@ -475,7 +474,7 @@
       'facebook': $('#facebook [name="facebook"]').prop('checked')
     };
 
-    axios_post(url, data, function(data) { 
+    axios_post(url, data, function(data) {
       // no code for here as of a moment
     })
   });
@@ -578,9 +577,9 @@
 
   /**
    * Modify the event modal
-   * 
-   * @param {object} currentValue 
-   * @param {int} eventTypeId 
+   *
+   * @param {object} currentValue
+   * @param {int} eventTypeId
    */
   var eventModal = function (currentValue, eventTypeId) {
     // write html
@@ -588,7 +587,7 @@
     $('#modal-event-ptitle').html("Title: " + currentValue.title);
     $('#modal-event-venue').html("Venue: " + currentValue.venue);
     $('#modal-event-description').html("Description: " + currentValue.description);
-    if (currentValue.organization != null) {
+    if (currentValue.organization.name != undefined) {
       $('#modal-event-organization').html("Organizer: " + currentValue.organization.name);
     } else {
       $('#modal-event-organization').html("Organizer: " + currentValue.user.full_name);

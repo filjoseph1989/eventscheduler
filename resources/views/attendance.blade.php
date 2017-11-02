@@ -114,29 +114,30 @@
           <h4 class="modal-title" id="event-title">Event Information</h4>
         </div>
         <div class="modal-body">
-          <div class="panel-group" id="accordion_1" role="tablist" aria-multiselectable="true">
-
-            <div class="panel">
-              <div class="panel-heading" role="tab" id="headingOne_1">
-                <h4 class="panel-title">
-                  <a id="modal-event-title" role="button" data-toggle="collapse" data-parent="#accordion_1" href="#collapseOne_1" aria-expanded="false" aria-controls="collapseOne_1" class="collapsed">
-                    Event Title
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseOne_1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne_1" aria-expanded="false" style="height: 0px;">
-                <div class="panel-body">
-                  <p id="modal-event-ptitle">&nbsb;</p>
-                  <p id="modal-event-venue">&nbsb;</p>
-                  <p id="modal-event-description">&nbsb;</p>
-                  <p id="modal-event-organization">&nbsb;</p>
-                  <p id="modal-event-category">&nbsb;</p>
-                </div>
-              </div>
-            </div>
-            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
-        </div>
-
+          <table class="table table-bordered table-striped table-hover">
+            <thead>
+              <tr>
+                <th class="modal-event" id="modal-event-title">Event Title</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="modal-event" id="modal-event-venue"></td>
+              </tr>
+              <tr>
+                <td class="modal-event" id="modal-event-description"></td>
+              </tr>
+              <tr>
+                <td class="modal-event" id="modal-event-organization"></td>
+              </tr>
+              <tr>
+                <td class="modal-event" id="modal-event-category"></td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-link waves-effect pull-right" data-dismiss="modal">CLOSE</button>
       </div>
     </div>
   </div>
