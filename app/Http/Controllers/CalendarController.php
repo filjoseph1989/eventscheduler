@@ -49,34 +49,27 @@ class CalendarController extends Controller
               'date_end',
               'whole_day'
             )->where('event_type_id', $id)
-             ->where('is_approve', 'true') 
+             ->where('is_approve', 'true')
              ->get();
-    
-            $output_arrays = array();
-            foreach ($events as $key => $event) {
-                # Convert the input array into a useful Event object
-                $event = $this->setEvent($event, new \DateTimeZone('Asia/Manila'));
-                $output_arrays[] = $this->toArray();
-            }
-        }
-        else {
+        } else {
             $events = PersonalEvent::select(
               'title',
               'date_start',
               'date_end',
               'whole_day'
             )->where('event_type_id', $id)
-             ->where('is_approve', 'true') 
+             ->where('is_approve', 'true')
              ->get();
-    
-            $output_arrays = array();
-            foreach ($events as $key => $event) {
-                # Convert the input array into a useful Event object
-                $event = $this->setEvent($event, new \DateTimeZone('Asia/Manila'));
-                $output_arrays[] = $this->toArray();
-            }
         }
-        
+
+        $output_arrays = array();
+
+        # Convert the input array into a useful Event object
+        foreach ($events as $key => $event) {
+          $event = $this->setEvent($event, new \DateTimeZone('Asia/Manila'));
+          $output_arrays[] = self::toArray(); # naa ni sa CalendarTrait
+        }
+
         return view("calendar")->with([
             'title'          => $this->list[$id],
             'calendarEvents' => json_encode($output_arrays),
