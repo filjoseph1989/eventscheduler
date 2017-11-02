@@ -68,17 +68,17 @@ class AttendanceController extends Controller
        * then by clicking, it will direct the user to the particular list of events he/she is looking for.
        */
       $events[] = self::getEventsWithOrganization($id);
-    //   d( $events ); exit;
 
       // get all user's organization for the dropdown pull right menu of local within orgs in attendance blade
-      $user_orgs = self::getUserOrgs(Auth::user()->id);  //{{--  magwork na ni pag naa nay auth  --}}
+      $user_orgs = self::getUserOrgs(Auth::user()->id);
 
-      return view('attendance')->with([
-        'events'       => $events,
-        'eventType'    => $id,
-        'helper'       => $helper,
-        'user_orgs'    => $user_orgs,
-      ]);
+      return view('attendance')
+        ->with([
+          'events'    => $events,
+          'eventType' => $id,
+          'helper'    => $helper,
+          'user_orgs' => $user_orgs,
+        ]);
     }
 
     /**

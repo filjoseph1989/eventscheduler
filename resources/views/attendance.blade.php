@@ -8,17 +8,15 @@
   <link href="{{ asset('css/dataTables.bootstrap.css') }}?v=1" rel="stylesheet">
   <link href="{{ asset('css/all-themes.css') }}" rel="stylesheet">
 @endsection
- 
-@section('content') 
+
+@section('content')
   <section class="content">
     <div class="container-fluid">
       <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="card">
             <div class="header">
-              <h2>
-                {{--  {{ ucwords($title) }}   --}}
-                Events for List of Attendance
+              <h2> Events for List of Attendance
                 <small>Display events in the system</small>
               </h2>
               <ul class="header-dropdown m-r--5">
@@ -31,9 +29,10 @@
                       <li><a href = "{{ route('Attendances.show', 'university') }}">University Events</a></li>
                       <li><a href = "{{ route('Attendances.show', 'organizations') }}">Organizations Events</a></li>
                     @endif ($eventType == 'Local')
-                      @foreach ($user_orgs as $key => $user_org)
-                          <li><a href = "{{ route('attendance.showWithinEachOrg', $user_org->organization->id) }}">My Org: {{ $user_org->organization->name }} Events</a></li>          
-                      @endforeach
+
+                    @foreach ($user_orgs as $key => $user_org)
+                      <li><a href = "{{ route('attendance.showWithinEachOrg', $user_org->organization->id) }}">My Org: {{ $user_org->organization->name }} Events</a></li>
+                    @endforeach
                   </ul>
                 </li>
               </ul>
@@ -41,8 +40,7 @@
             <div class="body">
               <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  @php extract($helper::dataTableClass($events)); @endphp
-                  <table class="table table-bordered table-striped table-hover {{ $class }}">
+                  <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                     <thead>
                       <th><a href="#">Title</a></th>
                       <th>Official Attendance</th>
@@ -60,11 +58,11 @@
                             <td><button type="submit" class="btn btn-success event-attendance-confirmed" data-target="#modal-attendances" data-toggle="modal">View</button></td>
                             <td><button type="submit" class="btn btn-success event-attendance-declined" data-target="#modal-attendances"  data-toggle="modal">View</button></td>
                           </tr>
-                          @endforeach
                         @endforeach
+                      @endforeach
                     </tbody>
                   </table>
-                </div> 
+                </div>
               </div>
             </div>
           </div>
@@ -85,7 +83,7 @@
           <h4 class="modal-title" id="myModalLabel">{{-- MUST SHOW WHAT TYPE OF ATTENDANCE--}} Attendance</h4>
         </div>
         <div class="modal-body">
-         
+
           <table class="table table-bordered table-striped table-hover">
             <thead>
               <tr>
@@ -116,7 +114,7 @@
         </div>
         <div class="modal-body">
           <div class="panel-group" id="accordion_1" role="tablist" aria-multiselectable="true">
-            
+
             <div class="panel">
               <div class="panel-heading" role="tab" id="headingOne_1">
                 <h4 class="panel-title">
