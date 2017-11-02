@@ -62,7 +62,6 @@
             </div>
             <div class="body">
               <a href="{{ route('Event.create') }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right" style="margin-left:10px;">Create Event</a>
-              <a href="{{ route('EventNotification.show', 1) }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right"> Edit Notification Settings of Official Events </a>
               <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
