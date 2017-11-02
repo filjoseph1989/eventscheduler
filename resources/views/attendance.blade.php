@@ -16,7 +16,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="card">
             <div class="header">
-              <h2> Events for List of Attendance
+              <h2> List of Attendance for each Events
                 <small>Display different attendace for each events</small>
               </h2>
               <ul class="header-dropdown m-r--5">
@@ -40,8 +40,7 @@
             <div class="body">
               <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  @php extract($helper::dataTableClass($events)); @endphp
-                  <table class="table table-bordered table-striped table-hover {{ $class }}">
+                  <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                     <thead>
                       <th>Title</th>
                       <th>Official Attendance</th>
@@ -50,8 +49,8 @@
                       <th>Declined Attendance</th>
                     </thead>
                     <tbody>
-                      @foreach ($events as $key => $ev)
-                        @foreach ($ev as $key => $event)
+                      <?php if (! empty($events)): ?>
+                        @foreach ($events as $key => $event)
                           <tr data-event="{{ $event->id }}" data-route="{{ route('Event.edit', $event->id) }}" data-action="{{ route('Event.update', $event->id) }}">
                             <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
                             <td><button type="submit" class="btn btn-success event-attendance-official" data-target="#modal-attendances" data-toggle="modal">View</button></td>
@@ -60,7 +59,7 @@
                             <td><button type="submit" class="btn btn-success event-attendance-declined" data-target="#modal-attendances"  data-toggle="modal">View</button></td>
                           </tr>
                         @endforeach
-                      @endforeach
+                      <?php endif; ?>
                     </tbody>
                   </table>
                 </div>

@@ -67,7 +67,7 @@ class AttendanceController extends Controller
        * it will direct to a link for what type of event(LOCAL: within or personal, or WITHIN: university or organizations),
        * then by clicking, it will direct the user to the particular list of events he/she is looking for.
        */
-      $events[] = self::getEventsWithOrganization($id);
+      $events = self::getEventsWithOrganization($id);
 
       // get all user's organization for the dropdown pull right menu of local within orgs in attendance blade
       $user_orgs = self::getUserOrgs(Auth::user()->id);  //{{--  magwork na ni pag naa nay auth  --}}
@@ -203,18 +203,31 @@ class AttendanceController extends Controller
     private function getEventsWithOrganization($id)
     {
       if ($id == 'Official') {
-        $events = Event::where('event_type_id', 1)->where('is_approve', 'true')->with('organization')->with('eventType')->get();
+        return Event::with(['organization', 'eventType'])
+          ->where('event_type_id', 1)
+          ->where('is_approve', 'true')
+          ->get();
       }
       if ($id == 'university') {
-          $events = Event::where('event_type_id', 1)->where('category', 'university')->where('is_approve', 'true')->with('organization')->with('eventType')->get();
+        return Event::with(['organization', 'eventType'])
+          ->where('event_type_id', 1)
+          ->where('category', 'university')
+          ->where('is_approve', 'true')
+          ->get();
       }
       if ($id == 'organizations') {
-          $events = Event::where('event_type_id', 1)->where('category', 'organization')->where('is_approve', 'true')->with('organization')->with('eventType')->get();
+        return Event::with(['organization', 'eventType'])
+          ->where('event_type_id', 1)
+          ->where('category', 'organization')
+          ->where('is_approve', 'true')
+          ->get();
       }
       if ($id == 'Local') {
-        $events = Event::where('event_type_id', 2)->where('is_approve', 'true')->with('organization')->with('eventType')->get();
+        return Event::with(['organization', 'eventType'])
+          ->where('event_type_id', 2)
+          ->where('is_approve', 'true')
+          ->get();
       }
-      return $events;
     }
 
     /**
