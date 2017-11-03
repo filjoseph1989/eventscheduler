@@ -176,10 +176,9 @@ class OrganizationController extends Controller
      * @return Illuminate\Response
      */
     public function myOrganizations (RandomHelper $helper) {
-      $org_ids = self::getOrganizations();
+      $org_ids = self::getOrganizationsID();
 
       foreach ($org_ids as $key => $value) {
-        # code...
         $organizations[ $value ] = OrganizationGroup::with('organization')
             ->where('organization_id', $value)
             ->where('position_id', 3)
