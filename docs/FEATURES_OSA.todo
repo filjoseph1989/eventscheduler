@@ -54,6 +54,11 @@ DISPLAYS AND FUNCTIONALITIES:
                         ✔ hash entered password at the database 
                         ✔ SYSTEM will send PASSWORD to the ORG HEAD's email
                     ✔ University Organizations (CARD IS CORRRECTLY LABELED AND COMPLETED FUNCTIONALITY):
+                        ✔ datacard
+                            ✔ org name
+                            ✔ acronym
+                            ✔ leader
+                            ✔ status
                         ✔ org name is link to modal view of the org's INFORMATION:
                             ✔ ORG TITLE
                             ✔ ACRONYM

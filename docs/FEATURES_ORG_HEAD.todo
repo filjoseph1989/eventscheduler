@@ -39,13 +39,12 @@ DISPLAYS AND FUNCTIONALITIES:
                     ✔ user type
                     ✔ status 
                 ☐ Organizations:
-                    ☐ Add New (CARD IS CORRRECTLY LABELED AND COMPLETED FUNCTIONALITY):
-                        ☐ ORGANIZATION will be added to the organization table in the database
-                        ☐ ORG HEAD will be added to the users table with user_type = 1
-                        ☐ ORGANIZATION and ORG HEAD will be added to the organization_group table
-                        ☐ hash entered password at the database 
-                        ☐ SYSTEM will send PASSWORD to the ORG HEAD's email
-                    ☐ University Organizations (CARD IS CORRRECTLY LABELED AND COMPLETED FUNCTIONALITY):
+                    ☐ My Organizations (CARD IS CORRRECTLY LABELED AND COMPLETED FUNCTIONALITY):
+                        ☐ datacard
+                            ☐ org name
+                            ☐ acronym
+                            ☐ leader
+                            ☐ status
                         ☐ org name is link to modal view of the org's INFORMATION:
                             ☐ ORG TITLE
                             ☐ ACRONYM

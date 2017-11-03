@@ -35,18 +35,18 @@
                   if ($eventType == 2) {
                     $type = 'Local';
                   }
-                  if ($account == 'osa') {
+                  if (session('account') == 'osa') {
                     $thirdPersonAddress = "";
                   }
                 ?>
                 <small>
                   Showing {{ $type }} events {{ $eventType != 1 ? "created by $thirdPersonAddress Organization(s)" : "" }}
-                  @if ($account == 'org-member' and $eventType != 1)
+                  @if (session('account') == 'org-member' and $eventType != 1)
                     , the University and other organization you'd like to attend
                   @endif
                 </small>
               </h2>
-              @if ($eventType == 0 AND ($account == 'org-head' OR $account == 'osa'))
+              @if ($eventType == 0 AND (session('account') == 'org-head' OR session('account') == 'osa'))
                 <ul class="header-dropdown m-r--5">
                   <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -62,7 +62,7 @@
             </div>
             <div class="body">
               <a href="{{ route('Event.create') }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right" style="margin-left:10px;">Create Event</a>
-              @if ($account == 'osa')
+              @if ( session('account') == 'osa')
                 <button class="bg-teal waves-effect btn pull-right" data-toggle="modal" data-target="#edit-notification-modal">Edit Notification</button>
               @endif
               <div class="row clearfix">
@@ -75,7 +75,7 @@
                       <th>Type</th>
                       <th>Start</th>
                       <th>End</th>
-                      @if ($account != 'org-member')
+                      @if (session('account') != 'org-member')
                         <th>Status</th>
                       @endif
                       <th>Approve Status</th>
@@ -100,7 +100,7 @@
                               <td> {{ $event->eventType->first()->name }} </td>
                             <td>{{ date('M d, Y', strtotime($event->date_start)) }} {{ date('h:i A', strtotime($event->date_start_time)) }}</td>
                             <td>{{ date('M d, Y', strtotime($event->date_end)) }} {{ date('h:i A', strtotime($event->date_end_time)) }}</td>
-                            @if ($account != 'org-member')
+                            @if (session('account') != 'org-member')
                               <td>{{ ucwords($event->status) }}</td>
                             @endif
                             <td>{{ $event->is_approve == 'true' ? 'Approved' : 'Not Yet Approved' }}</td>
@@ -117,7 +117,7 @@
                       <th>Type</th>
                       <th>Start</th>
                       <th>End</th>
-                      @if ($account != 'org-member')
+                      @if (session('account') != 'org-member')
                         <th>Status</th>
                       @endif
                     </tfoot>
@@ -163,7 +163,7 @@
               </div>
             </div>
 
-            @if ($account == 'org-head' || $account == 'osa')
+            @if (session('account') == 'org-head' || session('account') == 'osa')
               <div class="panel social-media-notification">
                 <div class="panel-heading" role="tab" id="headingTwo_1">
                   <h4 class="panel-title">
@@ -209,7 +209,7 @@
                               </select>
                             </td>
                             <td>
-                              @if ($account != 'org-member')
+                              @if (session('account') != 'org-member')
                                 <select class="form-control show-tick" name="">
                                   <option value="">University</option>
                                   <option value="">Organization</option>
@@ -316,7 +316,7 @@
         </div>
 
         <div class="modal-footer">
-          @if ($account == 'org-head')
+          @if (session('account') == 'org-head')
             <button type="button" data-color="teal" class="btn bg-teal waves-effect request-approval" id="modal-request-approval" data-toggle="tooltip" data-placement="top" title="Request for advertisement approval"
               onclick="event.preventDefault(); document.getElementById('modal-request-approval-form').submit();">
               Request Approval
@@ -327,7 +327,7 @@
               <input type="hidden" id="id" name="id" value="">
             </form>
           @endif
-          @if ($account == 'org-member')
+          @if (session('account') == 'org-member')
             <button type="button" data-color="teal" class="btn bg-teal waves-effect request-approval" id="modal-attend" data-toggle="tooltip" data-placement="top" title="Attenda this event"
               onclick="event.preventDefault(); document.getElementById('modal-attend-form').submit();">
               Attend
