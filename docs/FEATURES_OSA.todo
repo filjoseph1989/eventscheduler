@@ -24,23 +24,23 @@ DISPLAYS AND FUNCTIONALITIES:
                 ✔ hash entered password at the database
                 ✔ user will receive email of his/her new password 
 
-    ☐ SIDE-BAR FUNTIONALITIES:
+    ✔ SIDE-BAR FUNTIONALITIES:
         ✔ functional HOME LOGO button
         ✔ USER "info-container":
             ✔ PROFILE PICTURE changes after an upload at User Profile Page
             ✔ USER's full name
             ✔ USER's email
             ✔ USER's user account type
-            ☐ MAIN NAVIGATION:
+            ✔ MAIN NAVIGATION:
                 ✔ functional Home BAR button 
                 ✔ All System Users:
                     ✔ names are link to modal user-details
                     ✔ courses are link to modal information about the course
                     ✔ positions are link to modal info about the position
                     ✔ user type
-                    ✔ organizations are link to modal info about the organization
+                    ✘ organizations are link to modal info about the organization
                     ✔ status 
-                ☐ Organizations:
+                ✔ Organizations:
                     ✔ Add New (CARD IS CORRRECTLY LABELED AND COMPLETED FUNCTIONALITY):
                         ✔ ORGANIZATION will be added to the organization table in the database
                             ✔ catch if the organization name already exists (not case sensitive)
@@ -63,7 +63,7 @@ DISPLAYS AND FUNCTIONALITIES:
                             ✔ OFFICIAL EVENTS button
                             ✔ ORGANIZATION LOCAL EVENTS button
                             ✔ ORGANIZATION MEMBERS button
-                ☐ Events:
+                ✔ Events:
                     ✔ Create Event
                          ✔ FORM (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
                             ✔ fields
@@ -122,7 +122,7 @@ DISPLAYS AND FUNCTIONALITIES:
                             ✘ color red for $event->category == 'organization' from events table only (sunod na)
                         ✔ Personal (if org head or org user, Local Events) 
                             ✘ color blue for $event->category == 'personal' from personal_events table only (sunod na)
-                ☐ Attendances:
+                ✔ Attendances:
                     ✔ Official Events (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
                         ✔ title link to event detail modal
                         ✔ official attendance list of users modal

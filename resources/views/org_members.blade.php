@@ -78,7 +78,7 @@
                                   @foreach ($user->user->organizationGroup as $key => $pos)
                                     <a href="#" class="user-position" data-toggle="modal" data-target="#modal-position" data-position-id="{{ $pos->position->id }}">{{ $pos->position->name }}</a>
                                     @if (count($user) > 1)
-                                      <br>
+                                      {{--  <br>  --}}
                                     @endif
                                   @endforeach
                                 @endif
@@ -99,7 +99,7 @@
                                   @foreach ($user->user->organizationGroup as $key => $pos)
                                     <a href="#" class="user-organization" data-toggle="modal" data-target="#modal-organization" data-organization-id="{{ $pos->organization->id }}">{{ $pos->organization->name }}</a>
                                     @if (count($user) > 1)
-                                      <br>
+                                      {{--  <br>  --}}
                                     @endif
                                   @endforeach
                                 @endif

@@ -184,7 +184,7 @@
           '<a href="'+data.source+'" target="_blank">Source</a>'
         );
       });
-    }
+    } 
 
   });
 

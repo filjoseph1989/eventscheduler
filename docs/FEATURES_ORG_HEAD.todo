@@ -30,14 +30,14 @@ DISPLAYS AND FUNCTIONALITIES:
             ✔ USER's email
             ✔ USER's user account type
             ☐ MAIN NAVIGATION:
-                ☐ functional Home BAR button 
-                ☐ All System Users:
-                    ☐ names are link to modal user-details
-                    ☐ courses are link to modal information about the course
-                    ☐ positions are link to modal info about the position
-                    ☐ user type
-                    ☐ organizations are link to modal info about the organization
-                    ☐ status 
+                ✔ functional Home BAR button 
+                ✔ Primary Org Co-Members:
+                    ✔ names are link to modal user-details
+                    ✔ courses are link to modal information about the course
+                    ✔ positions are link to modal info about the position
+                    ✘ organizations are link to modal info about the organization
+                    ✔ user type
+                    ✔ status 
                 ☐ Organizations:
                     ☐ Add New (CARD IS CORRRECTLY LABELED AND COMPLETED FUNCTIONALITY):
                         ☐ ORGANIZATION will be added to the organization table in the database

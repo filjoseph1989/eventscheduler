@@ -40,7 +40,7 @@
                       <th>Status</th>
                     </thead>
                     <tbody>
-                      @if ( is_null($organizations) )
+                      @if ( is_null($organizations) ) 
                         <tr>
                           <td>{{ "No entry yet" }}</td> 
                         </tr>
@@ -52,7 +52,7 @@
                                 <a href="#" class="organization-list-name" data-target="#org-profile" data-toggle="modal">
                                   {{ $value->organization->name }} 
                                   @if( $value->user->id == Auth::id() && Auth::user()->user_type_id != 3)
-                                    (I am the head)aria
+                                    (I am the head)
                                   @endif
                                 </a>
                               </td>
