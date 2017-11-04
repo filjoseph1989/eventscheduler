@@ -16,6 +16,7 @@ use App\Notifications\FacebookPublished;
 use App\Common\CommonMethodTrait;
 
 # models
+use App\Models\User;
 use App\Models\Event;
 use App\Models\Attendance;
 use App\Models\OrganizationGroup;
