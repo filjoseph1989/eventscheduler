@@ -44,32 +44,35 @@
           </a>
         </li>
         <li>
-          <a href="javascript:void(0);" class="menu-toggle">
-            <i class="material-icons">account_circle</i>
-            @if( session('account') == 'osa' )
-              <span>All System Users</span>
-            @else
-              <span>Organization Co-Members</span>
-            @endif
-          </a>
-          <ul class="ml-menu">
-            <li><a href="{{ route('User.index') }}">List of Users</a></li>
-            @if (session('account') == 'org-head')
-              <li><a href="{{ route('User.create') }}">Register New Users</a></li>
-            @endif
-          </ul>
+          @if( session('account') != 'org-member' )
+            <a href="javascript:void(0);" class="menu-toggle">
+              <i class="material-icons">account_circle</i>
+              @if( session('account') == 'osa' )
+                <span>All System Users</span>
+              @else
+                <span>Primary Org Co-Members</span>
+              @endif
+            </a>
+            <ul class="ml-menu">
+              @if (session('account') == 'org-head')
+                <li><a href="{{ route('User.index') }}">List of Members</a></li>
+                <li><a href="{{ route('User.create') }}">Register Members</a></li>
+              @elseif(session('account') == 'osa')
+                <li><a href="{{ route('User.index') }}">List of System Users</a></li>            
+              @endif
+            </ul>
+          @endif
         </li>
         <li>
           <a href="javascript:void(0);" class="menu-toggle">
             <i class="material-icons">group_work</i>
-            <span>Organization</span>
+            <span>Organization/s</span>
           </a>
           <ul class="ml-menu">
             @if(session('account') == 'osa')
               <li><a href="{{ route('Org.create') }}"><span>Add New</span></a></li>
-            @endif
-            <li><a href="{{ route('Org.index') }}"><span>University Organizations</span></a></li>
-            @if (session('account') != 'osa')
+              <li><a href="{{ route('Org.index') }}"><span>University Organizations</span></a></li>
+            @elseif(session('account') != 'osa')
               <li><a href="{{ route('Organization.myOrganizations') }}"><span>My Organizations</span></a></li>
             @endif
           </ul>

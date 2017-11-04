@@ -27,6 +27,7 @@ use App\Models\OrganizationGroup;
  * @author Liz <janicalizdeguzman@gmail.com>
  * @version 1.0.0
  * @company DevCaffee
+ *
  * @date 09-26-2017
  * @date 10-08-2017 - Updated
  */
@@ -58,15 +59,18 @@ class UserController extends Controller
       # Get the list of user together with their
       # course, organization and position in an orgainization
       if (! parent::isOsa()) {
-        $org_id = OrganizationGroup::where('user_id', Auth::id())
+        $org_id = OrganizationGroup::with('organization')
+          ->where('user_id', Auth::id())
           ->get();
 
         $users = OrganizationGroup::with(['user', 'organization', 'position'])
           ->where('organization_id', $org_id[0]->organization_id)
           ->get();
       } else {
-        $users = User::with([
+        $org_id = null;
+        $users  = User::with([
           'course',
+          'userType',
           'organizationGroup' => function($query) {
             return $query
               ->with(['position', 'organization'])
@@ -74,10 +78,12 @@ class UserController extends Controller
           }])->get();
       }
 
-      return view('users_index')->with([
-        'users'   => $users,
-        'account' => self::whatAccount()
-      ]);
+      return view('users_index')
+        ->with([
+          'users'   => $users,
+          'org'     => $org_id,
+          'account' => self::whatAccount(),
+        ]);
     }
 
     /**
@@ -185,21 +191,22 @@ class UserController extends Controller
       # course, organization and position in an orgainization
       $users = User::with([
         'course',
+        'userType',
         'organizationGroup' => function($query) {
           return $query
-            ->with(['position', 'organization'])
-            ->get();
+          ->with(['position', 'organization'])
+          ->get();
         }
-      ]);
+        ]);
 
-      if ($id == 'active') {
-        $users = $users->where('status', 'true')
+        if ($id == 'active') {
+          $users = $users->where('status', 'true')
           ->get();
-      }
-      if ($id == 'inactive') {
-        $users = $users->where('status', 'false')
+        }
+        if ($id == 'inactive') {
+          $users = $users->where('status', 'false')
           ->get();
-      }
+        }
 
       return view('users_index')->with([
         'users'  => $users,
