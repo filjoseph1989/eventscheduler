@@ -6,8 +6,14 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 
+# packages
+use Nexmo\Laravel\Facade\Nexmo;
+use Thujohn\Twitter\Facades\Twitter;
+
 # app
 use App\Mail\ApproveEmailNotification;
+use App\Notifications\FacebookPublished;
+use App\Common\CommonMethodTrait;
 
 # models
 use App\Models\Event;
@@ -70,6 +76,7 @@ class SendNotifications extends Command
           # Send an email reminder to user
           if ($month == date('m') AND ($day == 1 OR $day == 2 OR $day == 3)) {
             self::sendEmail($event);
+            self::facebookPost($event);
           }
         }
     }
@@ -142,5 +149,59 @@ class SendNotifications extends Command
         Mail::to($email)
           ->send(new ApproveEmailNotification($event));
       }
+    }
+
+    /**
+     * Send notification on facebook
+     *
+     * @param  object $event
+     * @return void
+     */
+    private function facebookPost($event) {
+      $data['fb_message'] = self::smsMessage($event->category, $event);
+      User::send($data['fb_message']);
+    }
+
+    /**
+     * Compose a message
+     *
+     * @param  string $category
+     * @param  object $event
+     * @return string
+     */
+    private function smsMessage($category, $event, $twit = false)
+    {
+      switch ($category) {
+        case 'university':
+          $heading = "Hello UP Mindanao! You have an upcoming event! ";
+          break;
+
+        case 'within':
+          $heading = "Hello {$event->organization->name}! You have an upcoming event!";
+          break;
+
+        case 'organization':
+          $heading = "Hello Student Leaders! You have an upcoming event!";
+          break;
+      }
+
+      $new_line = "";
+      if ($twit === true) {
+        $new_line = "\n";
+      }
+
+      $heading .= "{$new_line}{$event->title} headed by {$event->organization->name}.";
+
+      if ($twit === true) {
+        $heading .= "{$new_line}Description: {$event->description}";
+      }
+
+      $heading .=
+        "{$new_line}Venue: {$event->venue}" .
+        "{$new_line}Duration: {$event->date_start}, {$event->date_start_time} to {$event->date_end}, {$event->date_end_time} " .
+        "{$new_line}{$event->additional_msg_sms}" .
+        "{$new_line}Please be guided accordingly. Thank You!";
+
+      return $heading;
     }
 }

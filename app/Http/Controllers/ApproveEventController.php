@@ -12,7 +12,6 @@ use App\Notifications\FacebookPublished;
 use App\Mail\ApproveEmailNotification;
 use App\Common\CommonMethodTrait;
 
-
 # Models
 use App\Models\Event;
 use App\Models\User;
@@ -44,7 +43,7 @@ class ApproveEventController extends Controller
      */
     public function update(Request $request, $id)
     {
-     
+
       $event = Event::find($id);
 
       $event->is_approve = 'true';
