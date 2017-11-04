@@ -77,7 +77,8 @@ class SendNotifications extends Command
           if ($month == date('m') AND ($day == 1 OR $day == 2 OR $day == 3)) {
             self::sendEmail($event);
             self::facebookPost($event);
-            self::twitterPost($event) 
+            self::twitterPost($event);
+            self::smsPost($event);
           }
         }
     }
@@ -189,6 +190,62 @@ class SendNotifications extends Command
       $message = self::smsMessage($event->category, $event, true);
       return str_limit($message, 100);
     }
+
+    /**
+    * SMS notification
+    *
+    * @param object $event
+    * @return void
+    */
+   protected function smsPost($event)
+   {
+      # Composr message
+      $message = self::smsMessage($event->category, $event);
+
+      # Public event
+      if($event->category == 'university' OR $event->category == 'organization') {
+       $users = User::where('status', 'true')->get();
+      }
+
+      # Within organization
+      if($event->category == 'within') {
+       $users = OrganizationGroup::with('user')
+         ->with('organization')
+         ->where('organization_id', $event->organization_id )
+         ->get();
+      }
+
+      # Send notification
+      self::sendSms($users, $message, $event);
+   }
+
+   /**
+    * Send text messages
+    *
+    * @param  obj $users
+    * @param  string $notification_message
+    * @return void
+    */
+   private function sendSms($users, $message, $event)
+   {
+     if( $event->category == 'university' OR $event->category == 'organization' ) {
+       foreach($users as $key => $user) {
+         Nexmo::message()->send([
+           'to'   => $user->mobile_number,
+           'from' => '639778378388',
+           'text' => $message
+         ]);
+       }
+     } else {
+       foreach($users as $key => $user) {
+         Nexmo::message()->send([
+           'to'   => $user->user->mobile_number,
+           'from' => '639778378388',
+           'text' => $message
+         ]);
+       }
+     }
+   }
 
     /**
      * Compose a message
