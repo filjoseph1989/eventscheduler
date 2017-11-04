@@ -2,8 +2,14 @@
 
 namespace App\Console\Commands;
 
+# Illuminate
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 
+# app
+use App\Mail\ApproveEmailNotification;
+
+# models
 use App\Models\Event;
 use App\Models\Attendance;
 use App\Models\OrganizationGroup;
