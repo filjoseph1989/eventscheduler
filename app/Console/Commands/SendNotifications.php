@@ -77,6 +77,7 @@ class SendNotifications extends Command
           if ($month == date('m') AND ($day == 1 OR $day == 2 OR $day == 3)) {
             self::sendEmail($event);
             self::facebookPost($event);
+            self::twitterPost($event) 
           }
         }
     }
@@ -160,6 +161,33 @@ class SendNotifications extends Command
     private function facebookPost($event) {
       $data['fb_message'] = self::smsMessage($event->category, $event);
       User::send($data['fb_message']);
+    }
+
+    /**
+     * Twitter notification
+     * this will post to Schedule Handler Twitter Account
+     * @param object $event
+     * @return void
+     */
+    protected function twitterPost($event)
+    {
+      $tweet = self::twitterMessage($event);
+
+      return Twitter::postTweet([
+        'status' => $tweet,
+        'format' => 'json'
+      ]);
+    }
+
+    /**
+     * make tweet
+     *
+     * @return void
+     */
+    private function twitterMessage($event)
+    {
+      $message = self::smsMessage($event->category, $event, true);
+      return str_limit($message, 100);
     }
 
     /**
