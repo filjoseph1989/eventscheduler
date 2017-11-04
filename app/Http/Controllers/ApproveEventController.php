@@ -54,10 +54,8 @@ class ApproveEventController extends Controller
         $event = Event::with('organization')
           ->where('id', $id)
           ->get();
-        // Issue 28
 
           if ($event[0]->facebook == 'on') {
-            // dd($event[0]->facebook);
             self::facebookPost($event[0]);
           }
           if ($event[0]->twitter == 'on') {
