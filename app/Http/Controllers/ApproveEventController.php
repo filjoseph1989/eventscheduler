@@ -12,7 +12,6 @@ use App\Notifications\FacebookPublished;
 use App\Mail\ApproveEmailNotification;
 use App\Common\CommonMethodTrait;
 
-
 # Models
 use App\Models\Event;
 use App\Models\User;
@@ -44,7 +43,7 @@ class ApproveEventController extends Controller
      */
     public function update(Request $request, $id)
     {
-     
+
       $event = Event::find($id);
 
       $event->is_approve = 'true';
@@ -55,10 +54,8 @@ class ApproveEventController extends Controller
         $event = Event::with('organization')
           ->where('id', $id)
           ->get();
-        // Issue 28
 
           if ($event[0]->facebook == 'on') {
-            // dd($event[0]->facebook);
             self::facebookPost($event[0]);
           }
           if ($event[0]->twitter == 'on') {

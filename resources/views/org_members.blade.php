@@ -66,22 +66,19 @@
                         <tr>
                             <td><a href="#" class="user-name" data-toggle="modal" data-target="#profile" data-user-id="{{ $user->user->id }}">{{ $user->user->full_name }}</a></td>                        
                           <td>
-                                <a href="#" class="user-course" data-toggle="modal" data-target="#modal-course" data-course-id="{{ isset($user->user->course->id) ? $user->user->course->id : '' }}">
-                                  {{ isset($user->user->course->name) ? $user->user->course->name : 'No Assign Course Yet' }}
-                                </a>
+                            <a href="#" class="user-course" data-toggle="modal" data-target="#modal-course" data-course-id="{{ isset($user->user->course->id) ? $user->user->course->id : '' }}">
+                              {{ isset($user->user->course->name) ? $user->user->course->name : 'No Assign Course Yet' }}
+                            </a>
                           </td>
-                          
                           <td>
-                                @if (count($user) == 0)
-                                  No Position
-                                @else
-                                  @foreach ($user->user->organizationGroup as $key => $pos)
-                                    <a href="#" class="user-position" data-toggle="modal" data-target="#modal-position" data-position-id="{{ $pos->position->id }}">{{ $pos->position->name }}</a>
-                                    @if (count($user) > 1)
-                                      {{--  <br>  --}}
-                                    @endif
-                                  @endforeach
-                                @endif
+                            @if (count($user) == 0)
+                              No Position
+                            @else
+                              @foreach ($user->user->organizationGroup as $key => $pos)
+                                <a href="#" class="user-position" data-toggle="modal" data-target="#modal-position" data-position-id="{{ $pos->position->id }}">{{ $pos->position->name }}</a>
+                                </br>
+                              @endforeach
+                            @endif
                           </td>
                           <td>
                             @if( $user->user_type_id == 3 )
@@ -93,18 +90,16 @@
                             @endif
                           </td>
                           <td>
-                                @if ($user->count() == 0)
-                                  No organization
-                                @else
-                                  @foreach ($user->user->organizationGroup as $key => $pos)
-                                    <a href="#" class="user-organization" data-toggle="modal" data-target="#modal-organization" data-organization-id="{{ $pos->organization->id }}">{{ $pos->organization->name }}</a>
-                                    @if (count($user) > 1)
-                                      {{--  <br>  --}}
-                                    @endif
-                                  @endforeach
-                                @endif
+                            @if ($user->count() == 0)
+                              No organization
+                            @else
+                              @foreach ($user->user->organizationGroup as $key => $pos)
+                                <a href="#" class="user-organization" data-toggle="modal" data-target="#modal-organization" data-organization-id="{{ $pos->organization->id }}">{{ $pos->organization->name }} </a>
+                                </br>
+                              @endforeach
+                            @endif
                           </td>
-                            <td><a href="#">{{ $user->user->status == 'true' ? 'Active' : 'Inactive' }}</a></td>
+                          <td><a href="#">{{ $user->user->status == 'true' ? 'Active' : 'Inactive' }}</a></td>
                           @if (isset($filter) and $filter === true)
                             <td>
                               @if (isset($id) and $id == 'inactive')
@@ -113,10 +108,10 @@
                                 <a href="#" onclick="event.preventDefault(); document.getElementById('form-deactivate').submit();">Deactivate</a>
                               @endif
 
-                              @if (Auth::user()->user_type_id == 2)
+                              @if (Auth::user()->user_type_id == 2) 
                                 | <a href="#" class="user-edit" data-route="{{ route('User.edit', $user->id ) }}" data-toggle="modal" data-target="#modal-edit">Edit</a>
                               @elseif (Auth::user()->user_type_id == 1)
-                                | <a href="#" class="user-edit" data-route="{{ route('User.edit', $user->user->id ) }}" data-toggle="modal" data-target="#modal-edit">Edit</a>                              
+                                | <a href="#" class="user-edit" data-route="{{ route('User.edit', $user->user->id ) }}" data-toggle="modal" data-target="#modal-edit">Edit</a>
                               @endif
 
                               {{--  Forms  --}}

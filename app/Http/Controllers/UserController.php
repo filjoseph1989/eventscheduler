@@ -26,8 +26,8 @@ use App\Models\OrganizationGroup;
  *
  * @author Liz <janicalizdeguzman@gmail.com>
  * @version 1.0.0
- * @company DevCaffeehow
- * 
+ * @company DevCaffee
+ *
  * @date 09-26-2017
  * @date 10-08-2017 - Updated
  */
@@ -59,8 +59,8 @@ class UserController extends Controller
       # Get the list of user together with their
       # course, organization and position in an orgainization
       if (! parent::isOsa()) {
-        $org_id = OrganizationGroup::where('user_id', Auth::id())
-          ->with('organization')
+        $org_id = OrganizationGroup::with('organization')
+          ->where('user_id', Auth::id())
           ->get();
 
         $users = OrganizationGroup::with(['user', 'organization', 'position'])
@@ -68,7 +68,7 @@ class UserController extends Controller
           ->get();
       } else {
         $org_id = null;
-        $users = User::with([
+        $users  = User::with([
           'course',
           'userType',
           'organizationGroup' => function($query) {
@@ -79,11 +79,12 @@ class UserController extends Controller
         // dd($users->user[0]);
       }
 
-      return view('users_index')->with([
-        'users'   => $users,
-        'account' => self::whatAccount(),
-        'org'     => $org_id,
-      ]);
+      return view('users_index')
+        ->with([
+          'users'   => $users,
+          'org'     => $org_id,
+          'account' => self::whatAccount(),
+        ]);
     }
 
     /**
@@ -198,7 +199,7 @@ class UserController extends Controller
           ->get();
         }
         ]);
-        
+
         if ($id == 'active') {
           $users = $users->where('status', 'true')
           ->get();
@@ -207,7 +208,6 @@ class UserController extends Controller
           $users = $users->where('status', 'false')
           ->get();
         }
-        dd( $users );
 
       return view('users_index')->with([
         'users'  => $users,
@@ -384,7 +384,7 @@ class UserController extends Controller
           ->where('organization_id', $orgId)
           ->get();
       $user[] = $users;
-
+      // d( $users ); exit;
       return view('org_members')->with([
         'users'      => $user,
         // 'help'       => $help

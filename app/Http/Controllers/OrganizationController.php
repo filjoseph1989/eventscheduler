@@ -41,7 +41,7 @@ class OrganizationController extends Controller
         $organizations[] = OrganizationGroup::with('organization')
           ->where('position_id', 3)
           ->with('user')
-          ->get();
+          ->get(); 
 
         return view('organization_list')->with([
           'organizations' => $organizations,

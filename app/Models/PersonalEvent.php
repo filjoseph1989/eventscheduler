@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @author Liz <janicalizdeguzman@gmail.com>
  * @version 1.0.0
  * @company DevCaffee
- * @date 
+ * @date
  */
 class PersonalEvent extends Model
 {
@@ -41,20 +41,6 @@ class PersonalEvent extends Model
       'email_msg',
       'email_img',
     ];
-
-    /**
-     * One to one relationship of personal events
-     * to event group
-     *
-     * Issue 30
-     * No event group needed I think
-     *
-     * @return object
-     */
-    public function eventGroup()
-    {
-      return $this->belongsTo('App\Models\EventGroup');
-    }
 
     /**
      * One to one relationship with event_type talbe
