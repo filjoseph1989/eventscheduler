@@ -18,7 +18,7 @@
             <div class="alert alert-success" role="alert">
               {{ session('status') }}
             </div>
-          @endif
+          @endif 
 
           @if (! is_null(session('status_position')))
             <div class="alert alert-warning" role="alert">
@@ -29,11 +29,11 @@
           @if (! is_null(session('status_warning')))
             <div class="alert alert-warning" role="alert">
               {{ session('status_message') }}
-              <ul>
-                @foreach (session('user_return') as $key => $user)
+              {{--  <ul>
+                @foreach ($user_return as $key => $user)
                   <li>{{ $user['account_number'] }} or {{ $user['email'] }}</li>
-                @endforeach
-              </ul>
+                @endforeach 
+              </ul>  --}}
             </div>
           @endif
 

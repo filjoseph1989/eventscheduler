@@ -9,7 +9,7 @@ namespace App\Common;
  * @date 09-28-2017
  */
 trait ValidationTrait 
-{
+{ 
 
   /**
    * make validation for event entries
@@ -50,4 +50,17 @@ trait ValidationTrait
         'user_type_id'   => 'Required',
       ]);
   }
+
+  public function validateMembers( &$data, &$request ) {
+       
+      $data->validate($request, [
+        'full_name'      => 'required|string|max      : 255',
+        'email'          => 'required|string|email|max: 255|unique: users',
+        'account_number' => 'Required',
+        'mobile_number'  => 'Required',
+        'course_id'      => 'Required',
+        'user_type_id'   => 'Required',
+      ]);
+  }
 }
+ 

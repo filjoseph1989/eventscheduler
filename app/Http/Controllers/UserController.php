@@ -101,7 +101,7 @@ class UserController extends Controller
         $organizations = Organization::all();
       } else {
         $positions = Position::all()
-          ->except([2,3,4]);
+          ->except([2,3]);
       }
 
       # View
@@ -122,9 +122,52 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-      $userReturn = [];
-
+      
       foreach (self::requestToArray($request) as $key => $user) {
+        $userReturn = [];
+      // dd( $user['account_number'] );
+        # catch invalid student number
+        $str1 = substr($user['account_number'], 0, -6);
+        $str2 = substr($user['account_number'], -5);
+        if( strlen($user['account_number']) != 10 ||
+            $user['account_number'][4] != '-' ||
+            !ctype_digit($str1) ||
+            !ctype_digit($str2)
+          ) {
+          return back()
+            ->withInput()
+            ->with(['status_warning' => 'Invalid student number. (Format is 20XX-XXXXX). X\'s are number-digits']);
+        }
+
+        # catch if the org head assigned already an existing org head
+        # take note, once a school year ends, soft-delete all org-head users and org-users, all organizationGroup instances
+        if( User::where('account_number', $user['account_number'])->exists() ){
+          $u_id = User::where('account_number', $user['account_number'])->get();
+          if ( OrganizationGroup::where('user_id', $u_id[0]->id)->where('position_id', 3)->exists() ){
+            return back()
+              ->withInput()
+              ->with(['status_warning' => 'The entered organization head already leads an org. A student must only head one organization per school year.']);
+          }
+        }
+
+        #catch the format of email must be char*.@char*.com
+        if( filter_var($user['email'], FILTER_VALIDATE_EMAIL) == false ){
+            return back()
+              ->withInput()
+              ->with(['status_warning' => 'The entered email is invalid.']);
+        }
+
+        $this->validate($user, [
+          'name'           => 'Required',
+          'acronym'        => 'Required',
+          'account_number' => 'Required',
+          'full_name'      => 'Required',
+          'course_id'      => 'Required',
+          'email'          => 'Required',
+        ]);
+
+      ///////////////////
+
         if (self::emailExists($user) or self::accountExists($user) or self::positionIsTaken($user) ) {
           $userReturn[] = $user;
           if(self::positionIsTaken($user)) {
@@ -161,6 +204,7 @@ class UserController extends Controller
           }
         }
       }
+      // dd( isset($userReturn) );
 
       # Used to display the warning error
       if (count($userReturn) > 0) {
@@ -169,14 +213,13 @@ class UserController extends Controller
       if( isset($positionTaken) ){
         $status = null;
       }
-
       return back()
         ->with([
           'status'         => isset($userCreated) ? 'Successfully added users' : null,
           'status_position'=> isset($positionTaken) ? 'Position already assigned' : null,
           'status_warning' => isset($status) ? $status : null,
           'status_message' => 'Some of the user are already exists, either an email or account number',
-          'user_return'    => $userReturn
+          'user_return'    =>  $userReturn 
         ]);
     }
 

@@ -58,7 +58,7 @@ class RegisterController extends Controller
         //     'password' => 'required|string|min:6|confirmed',
         // ]);
             /**
-             * modifying validators for registration
+             * modifying validators for registration 
              */
         return Validator::make($data, [
             'full_name' => 'required|string|max:255',

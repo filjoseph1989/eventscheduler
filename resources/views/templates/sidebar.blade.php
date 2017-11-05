@@ -68,7 +68,7 @@
             <i class="material-icons">group_work</i>
             <span>Organization/s</span>
           </a>
-          <ul class="ml-menu">
+          <ul class="ml-menu"> 
             @if(session('account') == 'osa')
               <li><a href="{{ route('Org.create') }}"><span>Add New</span></a></li>
               <li><a href="{{ route('Org.index') }}"><span>University Organizations</span></a></li>
