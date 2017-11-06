@@ -18,7 +18,7 @@
             <div class="alert alert-success" role="alert">
               {{ session('status') }}
             </div>
-          @endif 
+          @endif
 
           @if (! is_null(session('status_position')))
             <div class="alert alert-warning" role="alert">
@@ -32,7 +32,7 @@
               {{--  <ul>
                 @foreach ($user_return as $key => $user)
                   <li>{{ $user['account_number'] }} or {{ $user['email'] }}</li>
-                @endforeach 
+                @endforeach
               </ul>  --}}
             </div>
           @endif
@@ -109,10 +109,10 @@
                             <select class="form-control show-tick" id="user_type_id" name="user_type_id[]">
                               <option value="" id="">- Select Account -</option>
                               @foreach ($accounts as $key => $account)
-                                <option value="{{ $account->id }}">{{ $account->name }}</option>
+                                <option value="{{ $account->id }}">{{ $account->name }}</option> 
                               @endforeach
                             </select>
-                          </div> 
+                          </div>
                         </div>
                       </div>
                     </div>

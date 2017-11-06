@@ -129,10 +129,10 @@ class UserController extends Controller
         # look for at first 4 character if it a number, followed by
         # hypen(-) and next 6 numbers patterns
         $regexp = "/^([0-9]{4})-([0-9]{6})$/";
+        $account = $user['account_number'];
 
-        if (! preg_match($regexp, $user['account_number'])) {
-          return back()
-            ->withInput()
+        if (! preg_match($regexp, $account)) {
+          return back();
             ->with('status_warning', 'Invalid student number. (Format is 20XX-XXXXX). X\'s are number-digits');
         }
 
