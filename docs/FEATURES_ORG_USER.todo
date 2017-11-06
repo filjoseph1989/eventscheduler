@@ -1,49 +1,47 @@
 TO BE EDITED
-DISPLAYS AND FUNCTIONALITIES: 
+DISPLAYS AND FUNCTIONALITIES:
 
 ☐ OSA:
     ☐ PROFILE FUNCTIONALITIES:
         ☐ MY PROFILE CARD (COMPLETED AND CORRRECTLY LABELED):
             ✔ PROFILE PICTURE (CHANGEABLE, DYNAMIC FOR EACH USER)
-            ☐ NAME (NOT EDITABLE) @not-editable-1
-            ☐ EMAIL (EDITABLE) @editable-1
+            ✔ NAME (NOT EDITABLE) @editable-1 @done(2017-11-07 02:23) @project(☐ OSA / ☐ PROFILE FUNCTIONALITIES / ☐ MY PROFILE CARD (COMPLETED AND CORRRECTLY LABELED))
+            ✔ EMAIL (EDITABLE) @editable-1 @done(2017-11-07 02:24) @project(☐ OSA / ☐ PROFILE FUNCTIONALITIES / ☐ MY PROFILE CARD (COMPLETED AND CORRRECTLY LABELED))
             ☐ MOBILE NUMBER (EDITABLE) @editable-2
-            ☐ COURSE (NOT EDITABLE) @not-editable-2
-            ☐ POSITION (NOT EDITABLE) @not-editable-3
-            ☐ ORGANIZATION (NOT EDITABLE, ONE OR MANY, SET THE PRIMARY(ADD TOOLTIP FOR THE DEFINITION OF PRIMARY)) @not-editable-4
-            ☐ ACCOUNT TYPE (NOT EDITABLE) @not-editable-5
-            ☐ FACEBOOK (EDITABLE) @editable-3
-            ☐ TWITTER (EDITABLE) @editable-4
-            ☐ STATUS (NOT EDITABLE) @not-editable-6
-            ☐ MEMBER SINCE ((CREATED_AT field) NOT EDITABLE) @not-editable-7
+            ✔ COURSE (NOT EDITABLE) @not-editable-2 @done(2017-11-07 02:25) @project(☐ OSA / ☐ PROFILE FUNCTIONALITIES / ☐ MY PROFILE CARD (COMPLETED AND CORRRECTLY LABELED))
+            ✔ ACCOUNT TYPE (NOT EDITABLE) @not-editable-5 @done(2017-11-07 02:26) @project(☐ OSA / ☐ PROFILE FUNCTIONALITIES / ☐ MY PROFILE CARD (COMPLETED AND CORRRECTLY LABELED))
+            ✔ FACEBOOK (EDITABLE) @editable-3 @done(2017-11-07 02:27) @project(☐ OSA / ☐ PROFILE FUNCTIONALITIES / ☐ MY PROFILE CARD (COMPLETED AND CORRRECTLY LABELED))
+            ✔ TWITTER (EDITABLE) @editable-4 @done(2017-11-07 02:27) @project(☐ OSA / ☐ PROFILE FUNCTIONALITIES / ☐ MY PROFILE CARD (COMPLETED AND CORRRECTLY LABELED))
+            ✔ STATUS (NOT EDITABLE) @not-editable-6 @done(2017-11-07 02:27) @project(☐ OSA / ☐ PROFILE FUNCTIONALITIES / ☐ MY PROFILE CARD (COMPLETED AND CORRRECTLY LABELED))
+            ✔ MEMBER SINCE ((CREATED_AT field) NOT EDITABLE) @not-editable-7 @done(2017-11-07 02:27) @project(☐ OSA / ☐ PROFILE FUNCTIONALITIES / ☐ MY PROFILE CARD (COMPLETED AND CORRRECTLY LABELED))
         ✔ CHANGE PASSWORD CARD (COMPLETED AND CORRRECTLY LABELED):
             ✔ if OLD PASSWORD DOESN'T MATCH, prompt error message
             ✔ if NEW PASSWORD and CONFIRM PASSWORD doesn't match, prompt error message
-            ✔ change password successful: 
+            ✔ change password successful:
                 ✔ hash entered password at the database
-                ✔ user will receive email of his/her new password 
+                ✔ user will receive email of his/her new password
     ☐ SIDE-BAR FUNTIONALITIES:
         ✔ functional HOME LOGO button
         ☐ USER "info-container":
             ✔ PROFILE PICTURE changes after an upload at User Profile Page
             ✔ USER's full name
-            ✔ USER's email 
+            ✔ USER's email
             ✔ USER's user account type
             ☐ MAIN NAVIGATION:
-                ☐ functional Home BAR button 
+                ☐ functional Home BAR button
                 ☐ All System Users:
                     ☐ names are link to modal user-details
                     ☐ courses are link to modal information about the course
                     ☐ positions are link to modal info about the position
                     ☐ user type
                     ☐ organizations are link to modal info about the organization
-                    ☐ status 
+                    ☐ status
                 ☐ Organizations:
                     ☐ Add New (CARD IS CORRRECTLY LABELED AND COMPLETED FUNCTIONALITY):
                         ☐ ORGANIZATION will be added to the organization table in the database
                         ☐ ORG HEAD will be added to the users table with user_type = 1
                         ☐ ORGANIZATION and ORG HEAD will be added to the organization_group table
-                        ☐ hash entered password at the database 
+                        ☐ hash entered password at the database
                         ☐ SYSTEM will send PASSWORD to the ORG HEAD's email
                     ☐ University Organizations (CARD IS CORRRECTLY LABELED AND COMPLETED FUNCTIONALITY):
                         ☐ org name is link to modal view of the org's INFORMATION:
@@ -60,9 +58,9 @@ DISPLAYS AND FUNCTIONALITIES:
                         ☐ FORM (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
                             ☐ fields
                             ☐ SAVE button
-                            ☐ (REQUEST EVENT APPROVAL button (if ORG HEAD) ) 
+                            ☐ (REQUEST EVENT APPROVAL button (if ORG HEAD) )
                                 ☐ (display if the category is university or organization)
-                                ☐ if successful, 
+                                ☐ if successful,
                                     ☐ automatic save event to database with status->requested
                         ☐ if successful CREATE EVENT, add to database the new event for the right table
                             ☐ personal event table
@@ -74,56 +72,56 @@ DISPLAYS AND FUNCTIONALITIES:
                             @hide - CONDITIONAL HIDDEN
                              MY ORGANIZATION EVENTS
                                 MODAL SECTIONS:
-                                        ☐ 
+                                        ☐
                                             ✔ Event Title
-                                        ☐ 
+                                        ☐
                                             ✘ Configure Social Notification
-                                        ☐ 
+                                        ☐
                                             ✘ Additional Message
-                                        ☐ 
-                                            ✔ ATTEND BUTTON                  @hide if ((Attendance->status == confirmed) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)) 
-                                        ☐ 
-                                            ✔ DECLINE BUTTON                 @hide if ((Attendance->status == declined) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)) 
-                                        ☐ 
+                                        ☐
+                                            ✔ ATTEND BUTTON                  @hide if ((Attendance->status == confirmed) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id))
+                                        ☐
+                                            ✔ DECLINE BUTTON                 @hide if ((Attendance->status == declined) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id))
+                                        ☐
                                             ✘ REQUEST APPROVAL BUTTON
                             OFFICIAL EVENTS
                                 MODAL SECTIONS:
-                                        ☐ 
+                                        ☐
                                             ✔ Event Title
-                                        ☐ 
+                                        ☐
                                             ✘ Configure Social Notification
-                                        ☐ 
+                                        ☐
                                             ✘ Additional Message
-                                        ☐ 
+                                        ☐
                                             ✔ ATTEND BUTTON                  @hide if ((Attendance->status == confirmed) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id))
-                                        ☐ 
-                                            ✔ DECLINE BUTTON                 @hide if ((Attendance->status == declined) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)) 
-                                        ☐ 
+                                        ☐
+                                            ✔ DECLINE BUTTON                 @hide if ((Attendance->status == declined) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id))
+                                        ☐
                                             ✘ REQUEST APPROVAL BUTTON
                             LOCAL EVENTS
                                 MODAL SECTIONS:
-                                        ☐ 
+                                        ☐
                                             ✔ Event Title
-                                        ☐ 
+                                        ☐
                                             ✔ Configure Social Notification @hide if Event->category == 'within'
-                                        ☐ 
+                                        ☐
                                             ✔ Additional Message            @hide if Event->category == 'within'
-                                        ☐ 
+                                        ☐
                                             ✔ ATTEND BUTTON                  @hide if ((Attendance->status == confirmed) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)) || Event->category == personal
-                                        ☐ 
+                                        ☐
                                             ✔ DECLINE BUTTON                 @hide if ((Attendance->status == declined) && (Attedance->user_id == Auth::id()) && (Attedance->event_id == event.id)) || Event->category == personal
-                                        ☐ 
+                                        ☐
                                             ✘ REQUEST APPROVAL BUTTON
                     ☐ APPROVE EVENTS (if osa only) (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
                         ☐ TITLE IS LINK FOR EVENT DETAILS MODAL
                         ☐ WHEN APPROVE button is clicked:
-                             ☐ the event disappears in the display and 
+                             ☐ the event disappears in the display and
                              ☐ $event->status = 'on going' and $event->is_approve = true in the database
                     ☐ CALENDAR:
                         ☐ Official (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
                             (no filtering since osa can access all official events)
                             ☐ color red for $event->category == 'organization' from events table only
-                        ☐ Personal (if org head or org user, Local Events) 
+                        ☐ Personal (if org head or org user, Local Events)
                             ☐ color blue for $event->category == 'personal' from personal_events table only
                 ☐ Attendances:
                     ☐ Official Events (CARD IS CORRRECTLY LABELED AND SPECIFIED AND COMPLETED FUNCTIONALITY):
@@ -148,7 +146,7 @@ DISPLAYS AND FUNCTIONALITIES:
             ☐ Official Events
             ☐ Personal Events
         ☐ Generate Attendance:
-            ☐ Official 
-            ☐ Expected 
-            ☐ Confirmed 
-            ☐ Declined 
+            ☐ Official
+            ☐ Expected
+            ☐ Confirmed
+            ☐ Declined
