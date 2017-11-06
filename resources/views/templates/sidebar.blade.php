@@ -58,7 +58,7 @@
                 <li><a href="{{ route('User.index') }}">List of Members</a></li>
                 <li><a href="{{ route('User.create') }}">Register Members</a></li>
               @elseif(session('account') == 'osa')
-                <li><a href="{{ route('User.index') }}">List of System Users</a></li>            
+                <li><a href="{{ route('User.index') }}">List of System Users</a></li>
               @endif
             </ul>
           @endif
@@ -68,12 +68,12 @@
             <i class="material-icons">group_work</i>
             <span>Organization/s</span>
           </a>
-          <ul class="ml-menu"> 
+          <ul class="ml-menu">
             @if(session('account') == 'osa')
               <li><a href="{{ route('Org.create') }}"><span>Add New</span></a></li>
               <li><a href="{{ route('Org.index') }}"><span>University Organizations</span></a></li>
             @elseif(session('account') != 'osa')
-              <li><a href="{{ route('Organization.myOrganizations') }}"><span>My Organizations</span></a></li>
+              <li><a href="{{ route('Org.show', 'false') }}"><span>My Organizations</span></a></li> 
             @endif
           </ul>
         </li>
@@ -97,7 +97,7 @@
                   <li><a href="{{ route('Event.show', 0) }}"><span>My Organization Events</span></a></li>
                 @endif
                 <li><a href="{{ route('Event.show', 1) }}"> <span>Official</span></a></li>
-                <li><a href="{{ route('event.dlv', 2) }}"> 
+                <li><a href="{{ route('event.dlv', 2) }}">
                   @if( session('account') != 'org-head' )
                     <span>Personal</span></a>
                   @else
@@ -115,7 +115,7 @@
               <a href="#" class="menu-toggle"> <span>Calendar</span> </a>
               <ul class="ml-menu">
                 <li><a href="{{ route('Calendar.show', 1) }}"><span>Official</span></a></li>
-                <li><a href="{{ route('Calendar.show', 2) }}"><span>Personal</span></a></li> 
+                <li><a href="{{ route('Calendar.show', 2) }}"><span>Personal</span></a></li>
               </ul>
             </li>
           </ul>

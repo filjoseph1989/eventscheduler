@@ -69,11 +69,6 @@ Route::group(['middleware'=>['auth']], function() {
       Route::name('user.org-members')->get('/org-member/{orgId}', 'UserController@orgMembers');
     });
 
-    # additional routes for registering organization-member user type
-    Route::prefix('Organization')->group(function() {
-      Route::name('Organization.myOrganizations')->get('/my-organizations', 'OrganizationController@myOrganizations');
-    });
-
     # additional routes for events user type
     Route::prefix('event')->group(function() {
       Route::name('event.showOrgEvents')->get('/org-events/{kind}/{orgId}', 'EventController@showOrgEvents');
