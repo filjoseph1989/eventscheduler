@@ -73,7 +73,7 @@
               <li><a href="{{ route('Org.create') }}"><span>Add New</span></a></li>
               <li><a href="{{ route('Org.index') }}"><span>University Organizations</span></a></li>
             @elseif(session('account') != 'osa')
-              <li><a href="{{ route('Org.show', 'false') }}"><span>My Organizations</span></a></li> 
+              <li><a href="{{ route('Org.show', 'false') }}"><span>My Organizations</span></a></li>
             @endif
           </ul>
         </li>
@@ -97,13 +97,20 @@
                   <li><a href="{{ route('Event.show', 0) }}"><span>My Organization Events</span></a></li>
                 @endif
                 <li><a href="{{ route('Event.show', 1) }}"> <span>Official</span></a></li>
-                <li><a href="{{ route('event.dlv', 2) }}">
-                  @if( session('account') != 'org-head' )
-                    <span>Personal</span></a>
-                  @else
-                    <span>Local</span></a></li>
-                  @endif
-                </li>
+                @if (session('account') == 'org-head')
+                  <li>
+                    <a href="{{ route('event.dlv', 2) }}">
+                      <span>Local</span>
+                    </a>
+                  </li>
+                @endif
+                @if (session('account') == 'org-member')
+                  <li>
+                    <a href="{{ route('PersonalEvent.index') }}">
+                      <span>Personal</span>
+                    </a>
+                  </li>
+                @endif
               </ul>
             </li>
             @if (session('account') == 'osa')
