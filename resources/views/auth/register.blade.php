@@ -57,14 +57,14 @@
                   <div class="{{ $class }}">
                     <div class="form-group form-float form-group">
                       <div class="form-line">
-                        <input type="text" class="form-control" id="account_number" name="account_number[]" placeholder="Student number" value="" pattern="^(20[0-9]{2})-([0-9]{5})$" required autofocus>
+                        <input type="text" class="form-control" id="account_number" name="account_number[]" placeholder="Student Number (20XX-XXXXX)" value="" pattern="^(20[0-9]{2})-([0-9]{5})$" required autofocus>
                       </div>
                     </div>
                   </div>
                   <div class="{{ $class }}">
                     <div class="form-group form-float form-group">
                       <div class="form-line">
-                        <input type="text" class="form-control" id="full_name" name="full_name[]" placeholder="Full name" value="" pattern="^[\\p{L} .'-]+$" required>
+                        <input type="text" class="form-control" id="full_name" name="full_name[]" placeholder="Full name" value="" required>
                       </div>
                     </div>
                   </div>
@@ -149,7 +149,7 @@
     <div class="{{ $class }}">
       <div class="form-group form-float form-group">
         <div class="form-line">
-          <input type="text" class="form-control" name="account_number[]" placeholder="Student number" value="" required>
+          <input type="text" class="form-control" name="account_number[]" placeholder="Student Number (20XX-XXXXX)" value="" required>
         </div>
       </div>
     </div>

@@ -157,7 +157,7 @@ class UserController extends Controller
 
           if ( $check ){
             return back()
-              ->withInput()
+              // ->withInput()
               ->with('status_warning', 'The entered organization head already leads an org. A student must only head one organization per school year.');
           }
         }
@@ -165,7 +165,7 @@ class UserController extends Controller
         #catch the format of email must be char*.@char*.com
         if( filter_var($user['email'], FILTER_VALIDATE_EMAIL) == false ){
             return back()
-              ->withInput()
+              // ->withInput()
               ->with('status_warning', 'The entered email is invalid.');
         }
 
@@ -216,7 +216,7 @@ class UserController extends Controller
 
       return back()
         ->with([
-          'status'         => isset($userCreated) ? 'Successfully added users' : null,
+          'status'         => isset($userCreated) ? 'Successfully added user/s' : null,
           'status_position'=> isset($positionTaken) ? 'Position already assigned' : null,
           'status_warning' => isset($status) ? $status : null,
           'status_message' => 'Some of the user are already exists, either an email or account number',
