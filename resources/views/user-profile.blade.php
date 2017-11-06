@@ -18,6 +18,11 @@
                 {{ session('status') }}
               </div>
             @endif
+            @if (! is_null(session('status_warning')))
+              <div class="alert alert-warning" role="alert">
+                {{ session('status_warning') }}
+              </div>
+            @endif
 
             <div class="card">
               <div class="header">
