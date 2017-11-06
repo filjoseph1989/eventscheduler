@@ -128,7 +128,7 @@ class UserController extends Controller
 
         # look for at first 4 character if it a number, followed by
         # hypen(-) and next 6 numbers patterns
-        $regexp = "/^20([0-9]{2})-([0-9]{5})$/";
+        $regexp = "/^(20[0-9]{2})-([0-9]{5})$/";
         $account = $user['account_number'];
 
         if (! preg_match($regexp, $account)) {

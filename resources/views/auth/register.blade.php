@@ -67,7 +67,7 @@
                   <div class="{{ $class }}">
                     <div class="form-group form-float form-group">
                       <div class="form-line">
-                        <input type="text" class="form-control" id="account_number" name="account_number[]" placeholder="Student number" value="" pattern="^20([0-9]{2})-([0-9]{5})$" required autofocus>
+                        <input type="text" class="form-control" id="account_number" name="account_number[]" placeholder="Student number" value="" pattern="^(20[0-9]{2})-([0-9]{5})$" required autofocus>
                       </div>
                     </div>
                   </div>
