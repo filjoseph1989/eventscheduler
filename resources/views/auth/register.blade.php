@@ -67,7 +67,7 @@
                   <div class="{{ $class }}">
                     <div class="form-group form-float form-group">
                       <div class="form-line">
-                        <input type="text" class="form-control" id="account_number" name="account_number[]" placeholder="Student number" value="" required autofocus>
+                        <input type="text" class="form-control" id="account_number" name="account_number[]" placeholder="Student number" value="" pattern="/^([0-9]{4})-([0-9]{6})$/" required autofocus>
                       </div>
                     </div>
                   </div>
@@ -109,7 +109,7 @@
                             <select class="form-control show-tick" id="user_type_id" name="user_type_id[]">
                               <option value="" id="">- Select Account -</option>
                               @foreach ($accounts as $key => $account)
-                                <option value="{{ $account->id }}">{{ $account->name }}</option> 
+                                <option value="{{ $account->id }}">{{ $account->name }}</option>
                               @endforeach
                             </select>
                           </div>
