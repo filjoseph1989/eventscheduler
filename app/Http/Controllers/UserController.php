@@ -122,18 +122,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-      
+
       foreach (self::requestToArray($request) as $key => $user) {
         $userReturn = [];
-      // dd( $user['account_number'] );
-        # catch invalid student number
-        $str1 = substr($user['account_number'], 0, -6);
-        $str2 = substr($user['account_number'], -5);
-        if( strlen($user['account_number']) != 10 ||
-            $user['account_number'][4] != '-' ||
-            !ctype_digit($str1) ||
-            !ctype_digit($str2)
-          ) {
+
+        # look for at first 4 character if it a number, followed by
+        # hypen(-) and next 6 numbers patterns
+        $regexp = "/^[0-9]{4}-[0-9]{6}$/";
+
+        if (! preg_match($regexp, $user['account_number'])) {
           return back()
             ->withInput()
             ->with(['status_warning' => 'Invalid student number. (Format is 20XX-XXXXX). X\'s are number-digits']);
@@ -143,7 +140,11 @@ class UserController extends Controller
         # take note, once a school year ends, soft-delete all org-head users and org-users, all organizationGroup instances
         if( User::where('account_number', $user['account_number'])->exists() ){
           $u_id = User::where('account_number', $user['account_number'])->get();
-          if ( OrganizationGroup::where('user_id', $u_id[0]->id)->where('position_id', 3)->exists() ){
+          $check = OrganizationGroup::where('user_id', $u_id[0]->id)
+            ->where('position_id', 3)
+            ->exists();
+            
+          if ( $check ){
             return back()
               ->withInput()
               ->with(['status_warning' => 'The entered organization head already leads an org. A student must only head one organization per school year.']);
@@ -219,7 +220,7 @@ class UserController extends Controller
           'status_position'=> isset($positionTaken) ? 'Position already assigned' : null,
           'status_warning' => isset($status) ? $status : null,
           'status_message' => 'Some of the user are already exists, either an email or account number',
-          'user_return'    =>  $userReturn 
+          'user_return'    =>  $userReturn
         ]);
     }
 
