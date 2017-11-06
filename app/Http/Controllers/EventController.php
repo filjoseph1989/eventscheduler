@@ -27,7 +27,7 @@ use App\Models\PersonalEvent;
  * @author Liz <janicalizdeguzman@gmail.com>
  * @version 2.1
  * @date 10-14-2017
- * @date 10-20-2017 - updated
+ * @date 11-06-2017 - updated
  */
 class EventController extends Controller
 {

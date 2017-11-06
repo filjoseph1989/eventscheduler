@@ -61,7 +61,9 @@
               @endif
             </div>
             <div class="body">
-              <a href="{{ route('Event.create') }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right" style="margin-left:10px;">Create Event</a>
+              <?php if ($account == 'org-head'): ?>
+                <a href="{{ route('Event.create') }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right" style="margin-left:10px;">Create Event</a>
+              <?php endif; ?>
               @if ( session('account') == 'osa')
                 <button class="bg-teal waves-effect btn pull-right" data-toggle="modal" data-target="#edit-notification-modal">Edit Notification</button>
               @endif
