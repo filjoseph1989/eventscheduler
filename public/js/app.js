@@ -275,7 +275,6 @@
       $('#org-profile-url').html('<strong>URL</strong>: <a href="'+data.url+'" target="_blank">'+data.url+'</a>');
       $('#org-profile-aniversary').html('<strong>Aniversary</strong>: <a href="#">'+data.aniversary+'</a>');
 
-      // $('#official-event-submit').attr('data-event-type', eventType);
       $('#official-event-submit').attr('href', '/event/org-events/1/' + data.id);
       $('#local-event-submit').attr('href', '/event/org-events/2/' + data.id);
       $('#member-list').attr('href', '/User/org-member/'+data.id);

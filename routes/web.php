@@ -57,8 +57,6 @@ Route::group(['middleware'=>['auth']], function() {
       Route::name('attendance.confirmed')->post('/get/confirmed/attendance','AttendanceController@getConfirmedAttendance');
       Route::name('attendance.declined')->post('/get/declined/attendance','AttendanceController@getDeclinedAttendance');
       Route::name('attendance.showWithinEachOrg')->get('get/within-an-organization/attendance/{id}', 'AttendanceController@showWithinEachOrg');
-      // Route::name('attendance.within')->post('/get/attendance','AttendanceController@getUserOrgs');  (<-edit)
-      //for later when authenitcation is complete(for within orgs of a user)
     });
 
     # additional routes for registering organization-member user type
@@ -74,6 +72,4 @@ Route::group(['middleware'=>['auth']], function() {
       Route::name('event.showOrgEvents')->get('/org-events/{kind}/{orgId}', 'EventController@showOrgEvents');
       Route::name('event.dlv')->get('/local-events/{id}', 'EventController@dlv');
     });
-
-
 });

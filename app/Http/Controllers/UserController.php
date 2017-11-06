@@ -421,18 +421,21 @@ class UserController extends Controller
      * @param  [type] $orgId [description]
      * @return [type]        [description]
      */
-    public function orgMembers($orgId){
+    public function orgMembers($orgId)
+    {
       $users = OrganizationGroup::with('user')
           ->with('organization')
           ->with('position')
           ->where('organization_id', $orgId)
           ->get();
-      $user[] = $users;
-      // d( $users ); exit;
-      return view('org_members')->with([
-        'users'      => $user,
-        // 'help'       => $help
-      ]);
+
+      $organizations = Organization::find($orgId);
+
+      return view('users_index')
+        ->with([
+          'users' => $users,
+          'org'   => $organizations
+        ]);
     }
 
     /**

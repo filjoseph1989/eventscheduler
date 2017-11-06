@@ -66,7 +66,11 @@
             <div class="header">
               <h2>
                 @if( $org != null)
-                  <strong>{{ $org[0]->organization->name }}<br></strong>
+                  <?php if (! isset($org[0])): ?>
+                    <strong>{{ $org->name }}</strong>
+                  <?php else: ?>
+                    <strong>{{ $org[0]->organization->name }}<br></strong>
+                  <?php endif; ?>
                   <small>System Members</small>
                 @else
                   System Members
