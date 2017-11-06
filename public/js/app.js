@@ -13,7 +13,7 @@
  * @author Fil <filjoseph22@gmail.com>
  * @author Liz <janicalizdeguzman@gmail.com>
  * @since 0.1
- * @version 2.19
+ * @version 2.20
  * @date 09-30-2017
  * @date 10-27-2017 - last updated
  */
@@ -44,6 +44,8 @@
     var eventTypeId    = _this.data('event-type-id');
     var userTypeId     = _this.data('user-type-id');
     var personal       = _this.data('personal');
+
+    // console.log(organizationId);
 
     if ( userTypeId == 3 ) {
       if (organizationId != undefined || personal == undefined || approval == true || eventTypeId == 2) {
@@ -582,12 +584,14 @@
    * @param {int} eventTypeId
    */
   var eventModal = function (currentValue, eventTypeId) {
+    // console.log(currentValue);
     // write html
     $('#modal-event-title').html(currentValue.title);
     $('#modal-event-ptitle').html("Title: " + currentValue.title);
     $('#modal-event-venue').html("Venue: " + currentValue.venue);
     $('#modal-event-description').html("Description: " + currentValue.description);
-    if (currentValue.organization.name != undefined) {
+
+    if (currentValue.organization != null || currentValue.organization != undefined) {
       $('#modal-event-organization').html("Organizer: " + currentValue.organization.name);
     } else {
       $('#modal-event-organization').html("Organizer: " + currentValue.user.full_name);
@@ -597,9 +601,20 @@
     $('#twitter_msg').html(currentValue.twitter_msg);
     $('#email_msg').html(currentValue.email_msg);
     $('#sms_msg').html(currentValue.sms_msg);
-
+   console.log(currentValue);
     // set attributes
+    if( currentValue.event_type_id == 2 ){
+      $('#modal-advertise-local-events').removeClass('hidden');
+      $('#modal-request-approval').addClass('hidden');
+    }
+
+
+    $('#modal-advertise-local-events-form').attr('action', '/event/AdvertiseEvent');
+    $('#advertise_id').val(currentValue.id);
+    $('#advertise_category').val(currentValue.category);
+
     $('#form-additional-message').attr('action', action);
+
     $('#modal-request-approval-form').attr('action', '/Request/' + currentValue.id);
 
     $('#facebook').attr('data-event-id', currentValue.id);

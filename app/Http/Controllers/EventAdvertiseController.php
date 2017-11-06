@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Mail;
 
 use Nexmo\Laravel\Facade\Nexmo;
@@ -14,62 +15,53 @@ use App\Common\CommonMethodTrait;
 
 # Models
 use App\Models\Event;
+use App\Models\PersonalEvent;
 use App\Models\User;
 use App\Models\OrganizationGroup;
 
-/**
- * Written by Liz <janicalizdeguzman@gmail.com>
- *
- * @version 1
- * @date 10-04-2017
- * @date 10-18-2017 Updated
- */
-class ApproveEventController extends Controller
+class EventAdvertiseController extends Controller
 {
     /**
-     * create an instance
+     * Create a new controller instance.
+     *
+     * @return void
      */
     public function __construct()
     {
-      $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the event status to make request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateEvent(Request $request)
     {
-
-      $event = Event::find($id);
-
+      if($request->category == 'personal' ){
+        // dd('true');
+        $event = PersonalEvent::where('id', $request->id)->with(['user', 'organization'])->get()->first();
+      } elseif($request->catergory == 'within' ) {
+        // dd('false');
+        $event = Event::where('id', $request->id)->with(['user', 'organization'])->get()->first();
+      }
+      // dd($event );
+      $event->status = 'upcoming';
       $event->is_approve = 'true';
-      $event->status     = 'upcoming';
 
       if ($event->save()) {
-        # get the organization name
-        $event = Event::with('organization')
-          ->where('id', $id)
-          ->get();
 
-          if ($event[0]->facebook == 'on') {
-            self::facebookPost($event[0]);
-          }
-          if ($event[0]->twitter == 'on') {
-            self::twitterPost($event[0]);
-          }
-          if ($event[0]->sms == 'on') {
-            self::smsPost($event[0]);
-          }
-          if ($event[0]->email == 'on') {
-            self::emailPost($event[0]);
-          }
+        if ($event->sms == 'on') {
+          self::smsPost($event);
+        }
+        if ($event->email == 'on') {
+          self::emailPost($event);
+        }
 
         return back()
-          ->with('status', 'Successfully approved ' . ucwords($event->title) . ' '. ucwords($event->category) . ' event.');
+          ->with('status', 'Successfully advertised ' . ucwords($event->title) . ' '. ucwords($event->category) . ' event.');
       }
     }
 
@@ -116,17 +108,17 @@ class ApproveEventController extends Controller
        $users = User::where('status', 'true')->get();
       }
 
-      #  # Within organization
-        if( $event->organization != null ){
-          if($event->category == 'within') {
-            $users = OrganizationGroup::with('user')
-            ->with('organization')
-            ->where('organization_id', $event->organization_id )
-            ->get();
-          }
-        } else { #personal event
-          $users = PersonalEvent::with('user')->where('user_id', $event->user_id)->get()->first();
+      # Within organization
+      if( $event->organization != null ){
+        if($event->category == 'within') {
+          $users = OrganizationGroup::with('user')
+          ->with('organization')
+          ->where('organization_id', $event->organization_id )
+          ->get();
         }
+      } else { #personal event
+        $users = PersonalEvent::with('user')->where('user_id', $event->user_id)->get()->first();
+      }
 
       # Send notification
       self::sendSms($users, $message, $event);
@@ -228,6 +220,7 @@ class ApproveEventController extends Controller
      */
     private function smsMessage($category, $event, $twit = false)
     {
+      // dd($event->user->full_name);
       switch ($category) {
         case 'university':
           $heading = "Hello UP Mindanao! You have an upcoming event! ";

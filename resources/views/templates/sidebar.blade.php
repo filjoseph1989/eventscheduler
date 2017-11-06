@@ -122,7 +122,14 @@
               <a href="#" class="menu-toggle"> <span>Calendar</span> </a>
               <ul class="ml-menu">
                 <li><a href="{{ route('Calendar.show', 1) }}"><span>Official</span></a></li>
-                <li><a href="{{ route('Calendar.show', 2) }}"><span>Personal</span></a></li>
+                <li><a href="{{ route('Calendar.show', 2) }}">
+                  <span>
+                    @if (session('account') != 'org-head')
+                      Personal
+                    @else
+                      Local
+                    @endif
+                  </span></a></li>
               </ul>
             </li>
           </ul>
@@ -147,7 +154,7 @@
     </div>
     <div class="legal">
       <div class="copyright">
-        &copy; 2017 <a href="#">Event Advertiser</a>.
+        &copy; 2017 <a href="#">Event Advertiser System</a>.
       </div>
       <div class="version">
         <b>Version: </b> 2.0.0 | <a href="#" data-toggle="modal" data-target="#webknights">Liz</a>

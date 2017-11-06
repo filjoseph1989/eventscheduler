@@ -28,6 +28,7 @@ Route::group(['middleware'=>['auth']], function() {
     Route::resource('Approve',      'ApproveEventController');
     Route::resource('Profile',      'UserProfileController');
     Route::resource('Request',      'EventRequestApprovalController');
+    Route::resource('Advertise',    'EventAdvertiseController');
     Route::resource('Event',        'EventController', ['parameters' =>[
       'Event' => 'id'
     ]]);
@@ -71,5 +72,7 @@ Route::group(['middleware'=>['auth']], function() {
     Route::prefix('event')->group(function() {
       Route::name('event.showOrgEvents')->get('/org-events/{kind}/{orgId}', 'EventController@showOrgEvents');
       Route::name('event.dlv')->get('/local-events/{id}', 'EventController@dlv');
+      Route::name('event.advertise')->post('/AdvertiseEvent', 'EventAdvertiseController@updateEvent');
     });
+
 });

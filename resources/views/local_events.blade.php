@@ -300,6 +300,15 @@
         </div>
 
         <div class="modal-footer">
+          <button type="button" data-color="teal" class="btn bg-teal waves-effect request-approval hidden" id="modal-advertise-local-events" data-toggle="tooltip" data-placement="top" title="Advertise Local Events"
+            onclick="event.preventDefault(); document.getElementById('modal-advertise-local-events-form').submit();">
+            Advertise
+          </button>
+          <form class="" id="modal-advertise-local-events-form" action="" method="post" style="display: none;">
+            {{ csrf_field() }}
+            <input type="hidden" id="advertise_id" name="id" value="">
+            <input type="hidden" id="advertise_category" name="category" value="">
+          </form>
           @if ($account == 'org-head')
             <button type="button" data-color="teal" class="btn bg-teal waves-effect request-approval" id="modal-request-approval" data-toggle="tooltip" data-placement="top" title="Request for advertisement approval"
               onclick="event.preventDefault(); document.getElementById('modal-request-approval-form').submit();">
@@ -322,7 +331,7 @@
             </form>
           @endif
           @if ($account == 'osa')
-            {{--  <button type="button" data-color="teal" class="btn bg-teal waves-effect request-approval" id="modal-request-approval" data-toggle="tooltip" data-placement="top" title="Request for advertisement approval"
+            {{-- <button type="button" data-color="teal" class="btn bg-teal waves-effect request-approval" id="modal-request-approval" data-toggle="tooltip" data-placement="top" title="Request for advertisement approval"
               onclick="event.preventDefault(); document.getElementById('modal-request-approval-form').submit();">
               Request Approval
             </button>  --}}
@@ -346,5 +355,5 @@
   <script src="{{ asset('js/jquery.dataTables.js') }}?v=0.1"></script>
   <script src="{{ asset('js/jquery-datatable.js') }}?v=0.1"></script>
   <script src="{{ asset('js/tooltips-popovers.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/app.js') }}?v=2.9" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.20" charset="utf-8"></script>
 @endsection

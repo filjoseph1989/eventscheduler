@@ -54,6 +54,17 @@ class PersonalEvent extends Model
     }
 
     /**
+     * One to one relationship with orga nization talbe
+     * to personal event
+     *
+     * @return object
+     */
+    public function organization()
+    {
+      return $this->belongsTo('App\Models\Organization');
+    }
+
+    /**
      * One to one relationship with the use
      *
      * @return object
