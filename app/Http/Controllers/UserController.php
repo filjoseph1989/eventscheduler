@@ -105,13 +105,14 @@ class UserController extends Controller
       }
 
       # View
-      return view('auth/register')->with([
-        'courses'       => Course::all(),
-        'accounts'      => UserType::all(),
-        'positions'     => $positions,
-        'accounts'      => isset($accounts) ? $accounts : null,
-        'organizations' => isset($organizations) ? $organizations : null
-      ]);
+      return view('auth/register')
+        ->with([
+          'courses'       => Course::all(),
+          'accounts'      => UserType::all(),
+          'positions'     => $positions,
+          'accounts'      => isset($accounts) ? $accounts : null,
+          'organizations' => isset($organizations) ? $organizations : null
+        ]);
     }
 
     /**
@@ -122,32 +123,37 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
       foreach (self::requestToArray($request) as $key => $user) {
         $userReturn = [];
 
         # look for at first 4 character if it a number, followed by
         # hypen(-) and next 6 numbers patterns
-        $regexp = "/^[0-9]{4}-[0-9]{6}$/";
+        $regexp = "/^([0-9]{4})-([0-9]{6})$/";
 
         if (! preg_match($regexp, $user['account_number'])) {
           return back()
             ->withInput()
-            ->with(['status_warning' => 'Invalid student number. (Format is 20XX-XXXXX). X\'s are number-digits']);
+            ->with('status_warning', 'Invalid student number. (Format is 20XX-XXXXX). X\'s are number-digits');
         }
 
         # catch if the org head assigned already an existing org head
         # take note, once a school year ends, soft-delete all org-head users and org-users, all organizationGroup instances
-        if( User::where('account_number', $user['account_number'])->exists() ){
-          $u_id = User::where('account_number', $user['account_number'])->get();
+        $existing = User::where('account_number', $user['account_number'])
+          ->exists();
+
+        if ($existing) {
+          $u_id  = User::where('account_number', $user['account_number'])
+            ->get();
+
+
           $check = OrganizationGroup::where('user_id', $u_id[0]->id)
             ->where('position_id', 3)
             ->exists();
-            
+
           if ( $check ){
             return back()
               ->withInput()
-              ->with(['status_warning' => 'The entered organization head already leads an org. A student must only head one organization per school year.']);
+              ->with('status_warning', 'The entered organization head already leads an org. A student must only head one organization per school year.');
           }
         }
 
@@ -155,19 +161,8 @@ class UserController extends Controller
         if( filter_var($user['email'], FILTER_VALIDATE_EMAIL) == false ){
             return back()
               ->withInput()
-              ->with(['status_warning' => 'The entered email is invalid.']);
+              ->with('status_warning', 'The entered email is invalid.');
         }
-
-        $this->validate($user, [
-          'name'           => 'Required',
-          'acronym'        => 'Required',
-          'account_number' => 'Required',
-          'full_name'      => 'Required',
-          'course_id'      => 'Required',
-          'email'          => 'Required',
-        ]);
-
-      ///////////////////
 
         if (self::emailExists($user) or self::accountExists($user) or self::positionIsTaken($user) ) {
           $userReturn[] = $user;
@@ -205,7 +200,6 @@ class UserController extends Controller
           }
         }
       }
-      // dd( isset($userReturn) );
 
       # Used to display the warning error
       if (count($userReturn) > 0) {
@@ -214,6 +208,7 @@ class UserController extends Controller
       if( isset($positionTaken) ){
         $status = null;
       }
+
       return back()
         ->with([
           'status'         => isset($userCreated) ? 'Successfully added users' : null,
