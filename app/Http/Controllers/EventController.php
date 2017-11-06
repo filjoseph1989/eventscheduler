@@ -312,11 +312,14 @@ class EventController extends Controller
     }
 
     /**
-     * shows organization's official events
+     * Display the list of event, depending on the requested type
+     *
+     * @param  int $kind
+     * @param  int $orgId
+     * @return Illuminate\Response
      */
     public function showOrgEvents($kind, $orgId)
     {
-
       $events = Event::where('organization_id', $orgId)
         ->where('event_type_id', $kind)
         ->where('is_approve', true)
@@ -326,9 +329,10 @@ class EventController extends Controller
 
       return view('events-list')
         ->with([
-          'title'      => $this->list[$kind],
-          'events'     => $events,
-          'eventType'  => $kind
+          'title'     => $this->list[$kind],
+          'events'    => $events,
+          'eventType' => $kind,
+          'account'   => self::getAccount(Auth::user()->user_type_id)
         ]);
     }
 
