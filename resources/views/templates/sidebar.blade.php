@@ -147,7 +147,7 @@
     </div>
     <div class="legal">
       <div class="copyright">
-        &copy; 2017 <a href="#">Event Scheduler System</a>.
+        &copy; 2017 <a href="#">Event Advertiser</a>.
       </div>
       <div class="version">
         <b>Version: </b> 2.0.0 | <a href="#" data-toggle="modal" data-target="#webknights">Liz</a>

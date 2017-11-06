@@ -42,6 +42,7 @@ class UserProfileController extends Controller
           ->where('user_id', Auth::id())
           ->get();
 
+          // dd($cour,$acc,$og);
         if ($cour == null) {
           $cour = 'Not Yet Specified';
         } else {
@@ -51,7 +52,6 @@ class UserProfileController extends Controller
         if ($og->isEmpty()) {
           $og = 'Not Yet Specified';
         }
-
         return view('user-profile')
           ->with([
             'course'            => $cour,
