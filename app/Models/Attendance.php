@@ -42,8 +42,11 @@ class Attendance extends Model
      */
     public static function getMyAttendance($userId)
     {
-      return static::with('event')
-        ->where('user_id', $userId)
+      return static::with(['event' => function($query) {
+        return $query
+          ->with('organization')
+          ->get();
+      }])->where('user_id', $userId)
         ->get();
     }
 }
