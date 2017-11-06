@@ -63,9 +63,15 @@ class UserController extends Controller
           ->where('user_id', Auth::id())
           ->get();
 
-        $users = OrganizationGroup::with(['user', 'organization', 'position'])
-          ->where('organization_id', $org_id[0]->organization_id)
-          ->get();
+        $users = OrganizationGroup::with([
+            'user' => function($query) {
+              return $query
+                ->with('course')
+                ->get();
+            },
+            'organization', 'position'
+          ])->where('organization_id', $org_id[0]->organization_id)
+            ->get();
       } else {
         $org_id = null;
         $users  = User::with([
@@ -76,7 +82,6 @@ class UserController extends Controller
               ->with(['position', 'organization'])
               ->get();
           }])->get();
-        // dd($users->user[0]);
       }
 
       return view('users_index')

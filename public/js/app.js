@@ -13,7 +13,7 @@
  * @author Fil <filjoseph22@gmail.com>
  * @author Liz <janicalizdeguzman@gmail.com>
  * @since 0.1
- * @version 2.18
+ * @version 2.19
  * @date 09-30-2017
  * @date 10-27-2017 - last updated
  */
@@ -134,6 +134,7 @@
       data = data[0];
 
       $('#full-name').html(data.full_name);
+      $('#profile-picture').html('<img class="org-logo" src="/img/profile/'+data.picture+'" alt="Profile Picture">');
       $('#account-number').html("<strong>Account Number</strong>: " + '<a href="#">'+data.account_number+'</a>');
       $('#course').html("<strong>Course</strong>: " + '<a href="#">'+data.course.name+'</a>');
       $('#email').html("<strong>Email</strong>: " + '<a href="#">'+data.email+'</a>');
@@ -184,7 +185,7 @@
           '<a href="'+data.source+'" target="_blank">Source</a>'
         );
       });
-    } 
+    }
 
   });
 
