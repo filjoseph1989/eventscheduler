@@ -170,25 +170,59 @@ class OrganizationController extends Controller
     }
 
     /**
-     * Display the list of organizations
+     * Show the list of organization
      *
-     * @param  RandomHelper $helper
+     * @param  boolean       $id fake id
+     * @param  RandomHelper $help
      * @return Illuminate\Response
      */
-    public function myOrganizations (RandomHelper $helper) {
-      $org_ids = self::getOrganizationsID();
+    public function show($id, RandomHelper $helper)
+    {
+      $ids = self::getOrganizationsID();
 
-      foreach ($org_ids as $key => $value) {
-        $organizations[ $value ] = OrganizationGroup::with('organization')
-            ->where('organization_id', $value)
+      foreach ($ids as $key => $id) {
+        $organizations[$id] = OrganizationGroup::with('organization')
+            ->where('organization_id', $id)
             ->where('position_id', 3)
             ->with('user')
             ->get();
       }
 
-      return view('organization_list')->with([
-        'organizations' => $organizations,
-        'helper'        => $helper,
-      ]);
+      return view('organization_list')
+        ->with([
+          'organizations' => $organizations,
+          'helper'        => $helper,
+        ]);
+    }
+
+    /**
+     * [update description]
+     * @param  Request $request [description]
+     * @param  [type]  $id      [description]
+     * @return [type]           [description]
+     */
+    public function update(Request $request, $id)
+    {
+      $org = OrganizationGroup::where('user_id', $id)
+        ->get();
+
+      $org = Organization::find($org[0]->organization_id);
+
+      if ($request->has('acronym')) {
+        $org->acronym = str_replace('Acronym: ', '', $request->acronym);
+      }
+      if ($request->has('description')) {
+        $org->description = str_replace('Description: ', '', $request->description);
+      }
+      if ($request->has('url')) {
+        $org->url = str_replace('Url: ', '', $request->url);
+      }
+      // if ($request->has('aniversary')) {
+      //   $org->aniversary = str_replace('Aniversary: ', '', $request->aniversary);
+      // }
+
+      if ($org->save()) {
+        return back();
+      }
     }
 }

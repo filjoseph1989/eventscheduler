@@ -13,7 +13,7 @@
  * @author Fil <filjoseph22@gmail.com>
  * @author Liz <janicalizdeguzman@gmail.com>
  * @since 0.1
- * @version 2.18
+ * @version 2.20
  * @date 09-30-2017
  * @date 10-27-2017 - last updated
  */
@@ -44,6 +44,8 @@
     var eventTypeId    = _this.data('event-type-id');
     var userTypeId     = _this.data('user-type-id');
     var personal       = _this.data('personal');
+
+    // console.log(organizationId);
 
     if ( userTypeId == 3 ) {
       if (organizationId != undefined || personal == undefined || approval == true || eventTypeId == 2) {
@@ -134,6 +136,7 @@
       data = data[0];
 
       $('#full-name').html(data.full_name);
+      $('#profile-picture').html('<img class="org-logo" src="/img/profile/'+data.picture+'" alt="Profile Picture">');
       $('#account-number').html("<strong>Account Number</strong>: " + '<a href="#">'+data.account_number+'</a>');
       $('#course').html("<strong>Course</strong>: " + '<a href="#">'+data.course.name+'</a>');
       $('#email').html("<strong>Email</strong>: " + '<a href="#">'+data.email+'</a>');
@@ -274,7 +277,6 @@
       $('#org-profile-url').html('<strong>URL</strong>: <a href="'+data.url+'" target="_blank">'+data.url+'</a>');
       $('#org-profile-aniversary').html('<strong>Aniversary</strong>: <a href="#">'+data.aniversary+'</a>');
 
-      // $('#official-event-submit').attr('data-event-type', eventType);
       $('#official-event-submit').attr('href', '/event/org-events/1/' + data.id);
       $('#local-event-submit').attr('href', '/event/org-events/2/' + data.id);
       $('#member-list').attr('href', '/User/org-member/'+data.id);
@@ -582,12 +584,14 @@
    * @param {int} eventTypeId
    */
   var eventModal = function (currentValue, eventTypeId) {
+    // console.log(currentValue);
     // write html
     $('#modal-event-title').html(currentValue.title);
     $('#modal-event-ptitle').html("Title: " + currentValue.title);
     $('#modal-event-venue').html("Venue: " + currentValue.venue);
     $('#modal-event-description').html("Description: " + currentValue.description);
-    if (currentValue.organization.name != undefined) {
+
+    if (currentValue.organization != null || currentValue.organization != undefined) {
       $('#modal-event-organization').html("Organizer: " + currentValue.organization.name);
     } else {
       $('#modal-event-organization').html("Organizer: " + currentValue.user.full_name);
@@ -597,9 +601,20 @@
     $('#twitter_msg').html(currentValue.twitter_msg);
     $('#email_msg').html(currentValue.email_msg);
     $('#sms_msg').html(currentValue.sms_msg);
-
+   console.log(currentValue);
     // set attributes
+    if( currentValue.event_type_id == 2 ){
+      $('#modal-advertise-local-events').removeClass('hidden');
+      $('#modal-request-approval').addClass('hidden');
+    }
+
+
+    $('#modal-advertise-local-events-form').attr('action', '/event/AdvertiseEvent');
+    $('#advertise_id').val(currentValue.id);
+    $('#advertise_category').val(currentValue.category);
+
     $('#form-additional-message').attr('action', action);
+
     $('#modal-request-approval-form').attr('action', '/Request/' + currentValue.id);
 
     $('#facebook').attr('data-event-id', currentValue.id);

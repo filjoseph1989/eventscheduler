@@ -27,7 +27,7 @@ use App\Models\PersonalEvent;
  * @author Liz <janicalizdeguzman@gmail.com>
  * @version 2.1
  * @date 10-14-2017
- * @date 10-20-2017 - updated
+ * @date 11-06-2017 - updated
  */
 class EventController extends Controller
 {
@@ -140,9 +140,9 @@ class EventController extends Controller
         "organization_id" => $orgId,
         "semester_id"     => $request->semester_id,
         "category"        => $request->category,
-        "title"           => $request->title,
+        "title"           => ucwords($request->title),
         "description"     => $request->description,
-        "venue"           => $request->venue,
+        "venue"           => ucwords($request->venue),
         "date_start"      => $this->date_start,
         "date_end"        => $this->date_end,
         "date_start_time" => $this->time_start,
@@ -222,7 +222,8 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $event = Event::find($id);
+      $event = Event::find($id)
+        ->with('organization');
 
       if ($request->has('facebook')) {
         $event->facebook = ($request->facebook === true) ? 'off' : 'on';
@@ -312,11 +313,14 @@ class EventController extends Controller
     }
 
     /**
-     * shows organization's official events
+     * Display the list of event, depending on the requested type
+     *
+     * @param  int $kind
+     * @param  int $orgId
+     * @return Illuminate\Response
      */
     public function showOrgEvents($kind, $orgId)
     {
-
       $events = Event::where('organization_id', $orgId)
         ->where('event_type_id', $kind)
         ->where('is_approve', true)
@@ -326,9 +330,10 @@ class EventController extends Controller
 
       return view('events-list')
         ->with([
-          'title'      => $this->list[$kind],
-          'events'     => $events,
-          'eventType'  => $kind
+          'title'     => $this->list[$kind],
+          'events'    => $events,
+          'eventType' => $kind,
+          'account'   => self::getAccount(Auth::user()->user_type_id)
         ]);
     }
 

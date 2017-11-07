@@ -28,6 +28,7 @@ Route::group(['middleware'=>['auth']], function() {
     Route::resource('Approve',      'ApproveEventController');
     Route::resource('Profile',      'UserProfileController');
     Route::resource('Request',      'EventRequestApprovalController');
+    Route::resource('Advertise',    'EventAdvertiseController');
     Route::resource('Event',        'EventController', ['parameters' =>[
       'Event' => 'id'
     ]]);
@@ -57,8 +58,6 @@ Route::group(['middleware'=>['auth']], function() {
       Route::name('attendance.confirmed')->post('/get/confirmed/attendance','AttendanceController@getConfirmedAttendance');
       Route::name('attendance.declined')->post('/get/declined/attendance','AttendanceController@getDeclinedAttendance');
       Route::name('attendance.showWithinEachOrg')->get('get/within-an-organization/attendance/{id}', 'AttendanceController@showWithinEachOrg');
-      // Route::name('attendance.within')->post('/get/attendance','AttendanceController@getUserOrgs');  (<-edit)
-      //for later when authenitcation is complete(for within orgs of a user)
     });
 
     # additional routes for registering organization-member user type
@@ -69,16 +68,11 @@ Route::group(['middleware'=>['auth']], function() {
       Route::name('user.org-members')->get('/org-member/{orgId}', 'UserController@orgMembers');
     });
 
-    # additional routes for registering organization-member user type
-    Route::prefix('Organization')->group(function() {
-      Route::name('Organization.myOrganizations')->get('/my-organizations', 'OrganizationController@myOrganizations');
-    });
-
     # additional routes for events user type
     Route::prefix('event')->group(function() {
       Route::name('event.showOrgEvents')->get('/org-events/{kind}/{orgId}', 'EventController@showOrgEvents');
       Route::name('event.dlv')->get('/local-events/{id}', 'EventController@dlv');
+      Route::name('event.advertise')->post('/AdvertiseEvent', 'EventAdvertiseController@updateEvent');
     });
-
 
 });

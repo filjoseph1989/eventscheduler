@@ -25,13 +25,19 @@
           @endif
           <div class="card">
             <div class="header">
-              <h2> System Members
-                @if (isset($id) and $id == 'active')
-                  <small>List of active users</small>
-                @elseif(isset($id) and $id == 'inactive')
-                  <small>List of inactive users</small>
+              <h2>
+                @if( $org != null)
+                  <strong>{{ $org[0]->organization->name }}<br></strong>
+                  <small>System Members</small>
                 @else
-                  <small>List of all users</small>
+                  System Members
+                  @if (isset($id) and $id == 'active')
+                    <small>List of active users</small>
+                  @elseif(isset($id) and $id == 'inactive')
+                    <small>List of inactive users</small>
+                  @else
+                    <small>List of all users</small>
+                  @endif
                 @endif
               </h2>
               <ul class="header-dropdown m-r--5">
@@ -51,84 +57,56 @@
                 <thead>
                   <th>Name</th>
                   <th>Course</th>
-                  <th>Position</th>
-                  <th>User Type</th>
-                  <th>Organization</th>
-                  <th>Status</th>
-                  @if (isset($filter) and $filter === true)
-                    <th>Action</th>
+                  @if ( session('account') != 'osa' )
+                    <th>Position</th>
                   @endif
+                  <th>User Type</th>
+                  <th>Status</th>
                 </thead>
                 <tbody>
                   @if (isset($users))
-                    @foreach ($users as $key => $us)
-                      @foreach ($us as $key => $user)
+                    @foreach ($users as $key => $user)
                         <tr>
-                            <td><a href="#" class="user-name" data-toggle="modal" data-target="#profile" data-user-id="{{ $user->user->id }}">{{ $user->user->full_name }}</a></td>                        
-                          <td>
-                            <a href="#" class="user-course" data-toggle="modal" data-target="#modal-course" data-course-id="{{ isset($user->user->course->id) ? $user->user->course->id : '' }}">
+                        @if( $account != 'osa' and ! is_null($user->user))
+                          <td><a href="#" class="user-name" data-toggle="modal" data-target="#profile" data-user-id="{{ $user->user->id }}">{{ $user->user->full_name }}</a></td>
+                        @elseif(! is_null($user))
+                          <td><a href="#" class="user-name" data-toggle="modal" data-target="#profile" data-user-id="{{ $user->id }}">{{ $user->full_name }}</a></td>
+                        @endif
+                        <td>
+                          @if( $account != 'osa' and ! is_null($user))
+                            <a href="#" class="user-course"
+                              data-toggle="modal"
+                              data-target="#modal-course"
+                              data-course-id="{{ isset($user->user->course->id) ? $user->user->course->id : '' }}">
                               {{ isset($user->user->course->name) ? $user->user->course->name : 'No Assign Course Yet' }}
                             </a>
-                          </td>
-                          <td>
-                            @if (count($user) == 0)
-                              No Position
-                            @else
-                              @foreach ($user->user->organizationGroup as $key => $pos)
-                                <a href="#" class="user-position" data-toggle="modal" data-target="#modal-position" data-position-id="{{ $pos->position->id }}">{{ $pos->position->name }}</a>
-                                </br>
-                              @endforeach
-                            @endif
-                          </td>
-                          <td>
-                            @if( $user->user_type_id == 3 )
-                              OSA staff
-                            @elseif( $user->user_type_id == 2 )
-                              Org member
-                            @else
-                              Org head
-                            @endif
-                          </td>
-                          <td>
-                            @if ($user->count() == 0)
-                              No organization
-                            @else
-                              @foreach ($user->user->organizationGroup as $key => $pos)
-                                <a href="#" class="user-organization" data-toggle="modal" data-target="#modal-organization" data-organization-id="{{ $pos->organization->id }}">{{ $pos->organization->name }} </a>
-                                </br>
-                              @endforeach
-                            @endif
-                          </td>
-                          <td><a href="#">{{ $user->user->status == 'true' ? 'Active' : 'Inactive' }}</a></td>
-                          @if (isset($filter) and $filter === true)
-                            <td>
-                              @if (isset($id) and $id == 'inactive')
-                                <a href="#" onclick="event.preventDefault(); document.getElementById('form-activate').submit();">Activate</a>
-                              @else
-                                <a href="#" onclick="event.preventDefault(); document.getElementById('form-deactivate').submit();">Deactivate</a>
-                              @endif
-
-                              @if (Auth::user()->user_type_id == 2) 
-                                | <a href="#" class="user-edit" data-route="{{ route('User.edit', $user->id ) }}" data-toggle="modal" data-target="#modal-edit">Edit</a>
-                              @elseif (Auth::user()->user_type_id == 1)
-                                | <a href="#" class="user-edit" data-route="{{ route('User.edit', $user->user->id ) }}" data-toggle="modal" data-target="#modal-edit">Edit</a>
-                              @endif
-
-                              {{--  Forms  --}}
-                              <form id="form-activate" action="{{ route('User.update', $user->id) }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                                {{ method_field('PUT') }}
-                                <input type="hidden" name="status" value="true">
-                              </form>
-                              <form id="form-deactivate" action="{{ route('User.update', $user->id) }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                                {{ method_field('PUT') }}
-                                <input type="hidden" name="status" value="false">
-                              </form>
-                            </td>
+                          @elseif(! is_null($user))
+                            <a href="#" class="user-course"
+                              data-toggle="modal"
+                              data-target="#modal-course"
+                              data-course-id="{{ isset($user->course->id) ? $user->course->id : '' }}">
+                              {{ isset($user->course->name) ? $user->course->name : 'No Assign Course Yet' }}
+                            </a>
                           @endif
-                        </tr>
-                      @endforeach
+                        </td>
+                        @if( $account != 'osa' and ! is_null($user))
+                          <td>
+                            <a href="#" class="user-position" data-toggle="modal" data-target="#modal-position"
+                              <?php if (isset($user->organizationGroup[0]->position->name)): ?>
+                                data-position-id="{{ $user->organizationGroup[0]->position->id }}">{{ $user->organizationGroup[0]->position->name }}</a>
+                              <?php else: ?>
+                                data-position-id="{{ $user->position->id }}">{{ $user->position->name }}</a>
+                              <?php endif; ?>
+                          </td>
+                        @endif
+                        @if( $account != 'osa' and ! is_null($user->user))
+                          <td>{{ ucwords(str_replace('-', ' ', $user->user->userType->name)) }}</td>
+                          <td>{{ ($user->status == 'true') ? 'Active' : 'Inactive' }}</td>
+                        @elseif(! is_null($user))
+                          <td>{{ ucwords(str_replace('-', ' ', $user->userType->name)) }}</td>
+                          <td>{{ ($user->status == 'true') ? 'Active' : 'Inactive' }}</td>
+                        @endif
+                      </tr>
                     @endforeach
                   @endif
                 </tbody>
@@ -209,7 +187,7 @@
       </div>
     </div>
   </div>
-  <div id="modal-organization" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  {{--  <div id="modal-organization" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -244,6 +222,42 @@
         </div>
         <div class="modal-footer">
           <i class="material-icons" data-dismiss="modal" style="cursor:pointer;">close</i>
+        </div>
+      </div>
+    </div>
+  </div>  --}}
+  <div id="org-profile" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="org-profile-title"></h4>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered table-striped">
+            <tbody>
+              <tr>
+                <td id="org-profile-acronym"></td>
+              </tr>
+              <tr>
+                <td id="org-profile-description"></td>
+              </tr>
+              <tr>
+                <td id="org-profile-url"></td>
+              </tr>
+              <tr>
+                <td id="org-profile-aniversary"></td>
+              </tr>
+            </tbody>
+          </table>
+          <a class="btn btn-success" id="official-event-submit"> Official Events</a>
+          <a class="btn btn-success" id="local-event-submit">Local Events</a>
+          <a class="btn btn-success" id="member-list">Members</a>
+        </div>
+        <div class="modal-footer">
+          ...
         </div>
       </div>
     </div>

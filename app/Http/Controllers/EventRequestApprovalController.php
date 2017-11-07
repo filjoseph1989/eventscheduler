@@ -41,7 +41,8 @@ class EventRequestApprovalController extends Controller
 
       if ($event->save()) {
         return back()
-          ->with('status', 'Successfully sent a request for approval');
+          ->with('status', 'Successfully sent a request for approval for ' . ucwords($event->title) . ' event.');
+
       }
     }
 }

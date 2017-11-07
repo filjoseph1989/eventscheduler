@@ -63,9 +63,15 @@ class UserController extends Controller
           ->where('user_id', Auth::id())
           ->get();
 
-        $users = OrganizationGroup::with(['user', 'organization', 'position'])
-          ->where('organization_id', $org_id[0]->organization_id)
-          ->get();
+        $users = OrganizationGroup::with([
+            'user' => function($query) {
+              return $query
+                ->with('course')
+                ->get();
+            },
+            'organization', 'position'
+          ])->where('organization_id', $org_id[0]->organization_id)
+            ->get();
       } else {
         $org_id = null;
         $users  = User::with([
@@ -100,17 +106,18 @@ class UserController extends Controller
         $organizations = Organization::all();
       } else {
         $positions = Position::all()
-          ->except([2,3,4]);
+          ->except([2,3]);
       }
 
       # View
-      return view('auth/register')->with([
-        'courses'       => Course::all(),
-        'accounts'      => UserType::all(),
-        'positions'     => $positions,
-        'accounts'      => isset($accounts) ? $accounts : null,
-        'organizations' => isset($organizations) ? $organizations : null
-      ]);
+      return view('auth/register')
+        ->with([
+          'courses'       => Course::all(),
+          'accounts'      => UserType::all(),
+          'positions'     => $positions,
+          'accounts'      => isset($accounts) ? $accounts : null,
+          'organizations' => isset($organizations) ? $organizations : null
+        ]);
     }
 
     /**
@@ -121,9 +128,47 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-      $userReturn = [];
-
       foreach (self::requestToArray($request) as $key => $user) {
+        $userReturn = [];
+
+        # look for at first 4 character if it a number, followed by
+        # hypen(-) and next 6 numbers patterns
+        $regexp = "/^(20[0-9]{2})-([0-9]{5})$/";
+        $account = $user['account_number'];
+
+        if (! preg_match($regexp, $account)) {
+          return back()
+            ->with('status_warning', 'Invalid student number. (Format is 20XX-XXXXX). X\'s are number-digits');
+        }
+
+        # catch if the org head assigned already an existing org head
+        # take note, once a school year ends, soft-delete all org-head users and org-users, all organizationGroup instances
+        $existing = User::where('account_number', $user['account_number'])
+          ->exists();
+
+        if ($existing) {
+          $u_id  = User::where('account_number', $user['account_number'])
+            ->get();
+
+
+          $check = OrganizationGroup::where('user_id', $u_id[0]->id)
+            ->where('position_id', 3)
+            ->exists();
+
+          if ( $check ){
+            return back()
+              // ->withInput()
+              ->with('status_warning', 'The entered organization head already leads an org. A student must only head one organization per school year.');
+          }
+        }
+
+        #catch the format of email must be char*.@char*.com
+        if( filter_var($user['email'], FILTER_VALIDATE_EMAIL) == false ){
+            return back()
+              // ->withInput()
+              ->with('status_warning', 'The entered email is invalid.');
+        }
+
         if (self::emailExists($user) or self::accountExists($user) or self::positionIsTaken($user) ) {
           $userReturn[] = $user;
           if(self::positionIsTaken($user)) {
@@ -171,11 +216,11 @@ class UserController extends Controller
 
       return back()
         ->with([
-          'status'         => isset($userCreated) ? 'Successfully added users' : null,
+          'status'         => isset($userCreated) ? 'Successfully added user/s' : null,
           'status_position'=> isset($positionTaken) ? 'Position already assigned' : null,
           'status_warning' => isset($status) ? $status : null,
           'status_message' => 'Some of the user are already exists, either an email or account number',
-          'user_return'    => $userReturn
+          'user_return'    =>  $userReturn
         ]);
     }
 
@@ -376,18 +421,21 @@ class UserController extends Controller
      * @param  [type] $orgId [description]
      * @return [type]        [description]
      */
-    public function orgMembers($orgId){
+    public function orgMembers($orgId)
+    {
       $users = OrganizationGroup::with('user')
           ->with('organization')
           ->with('position')
           ->where('organization_id', $orgId)
           ->get();
-      $user[] = $users;
 
-      return view('org_members')->with([
-        'users'      => $user,
-        // 'help'       => $help
-      ]);
+      $organizations = Organization::find($orgId);
+
+      return view('users_index')
+        ->with([
+          'users' => $users,
+          'org'   => $organizations
+        ]);
     }
 
     /**

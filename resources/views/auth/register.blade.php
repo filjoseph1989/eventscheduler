@@ -29,11 +29,11 @@
           @if (! is_null(session('status_warning')))
             <div class="alert alert-warning" role="alert">
               {{ session('status_message') }}
-              <ul>
-                @foreach (session('user_return') as $key => $user)
+              {{--  <ul>
+                @foreach ($user_return as $key => $user)
                   <li>{{ $user['account_number'] }} or {{ $user['email'] }}</li>
                 @endforeach
-              </ul>
+              </ul>  --}}
             </div>
           @endif
 
@@ -42,16 +42,6 @@
               <h2> Add New User
                 <small>Form to add new system user</small>
               </h2>
-              <ul class="header-dropdown m-r--5">
-                <li class="dropdown">
-                  <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="material-icons">more_vert</i>
-                  </a>
-                  <ul class="dropdown-menu pull-right">
-                    {{-- Options here --}}
-                  </ul>
-                </li>
-              </ul>
             </div>
             <div class="body">
               <form class="" id="add-user-form" action="{{ route('User.store') }}" method="POST">
@@ -67,7 +57,7 @@
                   <div class="{{ $class }}">
                     <div class="form-group form-float form-group">
                       <div class="form-line">
-                        <input type="text" class="form-control" id="account_number" name="account_number[]" placeholder="Student number" value="" required autofocus>
+                        <input type="text" class="form-control" id="account_number" name="account_number[]" placeholder="Student Number (20XX-XXXXX)" value="" pattern="^(20[0-9]{2})-([0-9]{5})$" required autofocus>
                       </div>
                     </div>
                   </div>
@@ -81,7 +71,7 @@
                   <div class="{{ $class }}">
                     <div class="form-group form-float form-group">
                       <div class="form-line">
-                        <input type="text" class="form-control" id="email" name="email[]" placeholder="Email" value="" required>
+                        <input type="email" class="form-control" id="email" name="email[]" placeholder="Email" value="" required>
                       </div>
                     </div>
                   </div>
@@ -112,7 +102,7 @@
                                 <option value="{{ $account->id }}">{{ $account->name }}</option>
                               @endforeach
                             </select>
-                          </div> 
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -159,7 +149,7 @@
     <div class="{{ $class }}">
       <div class="form-group form-float form-group">
         <div class="form-line">
-          <input type="text" class="form-control" name="account_number[]" placeholder="Student number" value="" required>
+          <input type="text" class="form-control" name="account_number[]" placeholder="Student Number (20XX-XXXXX)" value="" required>
         </div>
       </div>
     </div>

@@ -58,7 +58,7 @@
                 <li><a href="{{ route('User.index') }}">List of Members</a></li>
                 <li><a href="{{ route('User.create') }}">Register Members</a></li>
               @elseif(session('account') == 'osa')
-                <li><a href="{{ route('User.index') }}">List of System Users</a></li>            
+                <li><a href="{{ route('User.index') }}">List of System Users</a></li>
               @endif
             </ul>
           @endif
@@ -73,7 +73,7 @@
               <li><a href="{{ route('Org.create') }}"><span>Add New</span></a></li>
               <li><a href="{{ route('Org.index') }}"><span>University Organizations</span></a></li>
             @elseif(session('account') != 'osa')
-              <li><a href="{{ route('Organization.myOrganizations') }}"><span>My Organizations</span></a></li>
+              <li><a href="{{ route('Org.show', 'false') }}"><span>My Organizations</span></a></li>
             @endif
           </ul>
         </li>
@@ -97,13 +97,20 @@
                   <li><a href="{{ route('Event.show', 0) }}"><span>My Organization Events</span></a></li>
                 @endif
                 <li><a href="{{ route('Event.show', 1) }}"> <span>Official</span></a></li>
-                <li><a href="{{ route('event.dlv', 2) }}"> 
-                  @if( session('account') != 'org-head' )
-                    <span>Personal</span></a>
-                  @else
-                    <span>Local</span></a></li>
-                  @endif
-                </li>
+                @if (session('account') == 'org-head')
+                  <li>
+                    <a href="{{ route('event.dlv', 2) }}">
+                      <span>Local</span>
+                    </a>
+                  </li>
+                @endif
+                @if (session('account') == 'org-member')
+                  <li>
+                    <a href="{{ route('PersonalEvent.index') }}">
+                      <span>Personal</span>
+                    </a>
+                  </li>
+                @endif
               </ul>
             </li>
             @if (session('account') == 'osa')
@@ -115,7 +122,14 @@
               <a href="#" class="menu-toggle"> <span>Calendar</span> </a>
               <ul class="ml-menu">
                 <li><a href="{{ route('Calendar.show', 1) }}"><span>Official</span></a></li>
-                <li><a href="{{ route('Calendar.show', 2) }}"><span>Personal</span></a></li> 
+                <li><a href="{{ route('Calendar.show', 2) }}">
+                  <span>
+                    @if (session('account') != 'org-head')
+                      Personal
+                    @else
+                      Local
+                    @endif
+                  </span></a></li>
               </ul>
             </li>
           </ul>
@@ -140,7 +154,7 @@
     </div>
     <div class="legal">
       <div class="copyright">
-        &copy; 2017 <a href="#">Event Scheduler System</a>.
+        &copy; 2017 <a href="#">Event Advertiser System</a>.
       </div>
       <div class="version">
         <b>Version: </b> 2.0.0 | <a href="#" data-toggle="modal" data-target="#webknights">Liz</a>
