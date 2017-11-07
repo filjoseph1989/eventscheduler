@@ -117,7 +117,7 @@ class EventAdvertiseController extends Controller
           ->get();
         }
       } else { #personal event
-        $users = PersonalEvent::with('user')->where('user_id', $event->user_id)->get()->first();
+        $users = PersonalEvent::with('user')->where('user_id', $event->user_id)->get();
       }
 
       # Send notification
@@ -144,7 +144,7 @@ class EventAdvertiseController extends Controller
             ->get();
         }
       } else { #personal event
-        $users = PersonalEvent::with('user')->where('user_id', $event->user_id)->get()->first();
+        $users = PersonalEvent::with('user')->where('user_id', $event->user_id)->get();
       }
 
       self::sendEmail($users, $event);

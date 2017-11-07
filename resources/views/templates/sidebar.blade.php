@@ -83,11 +83,11 @@
             <span>Events</span>
           </a>
           <ul class="ml-menu">
-            @if (session('account') != 'org-member')
+            {{-- @if (session('account') != 'org-member') --}}
               <li>
                 <a href="{{ route('Event.create') }}"> <span>Create Event</span> </a>
               </li>
-            @endif
+            {{-- @endif --}}
             <li>
               <a href="#" class="menu-toggle"><span>List of Events</span></a>
               <ul class="ml-menu">
