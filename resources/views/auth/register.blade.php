@@ -29,11 +29,17 @@
           @if (! is_null(session('status_warning')))
             <div class="alert alert-warning" role="alert">
               {{ session('status_message') }}
-              {{--  <ul>
+              {{-- <ul>
                 @foreach ($user_return as $key => $user)
                   <li>{{ $user['account_number'] }} or {{ $user['email'] }}</li>
                 @endforeach
-              </ul>  --}}
+              </ul> --}}
+            </div>
+          @endif
+
+          @if (! is_null(session('status_notice')))
+            <div class="alert alert-warning" role="alert">
+              {{ session('status_notice') }}
             </div>
           @endif
 
@@ -89,6 +95,7 @@
                     </div>
                     </div>
                   </div>
+                  <button class="btn btn-primary pull-right" type="submit" name="save"><i class="material-icons">save</i></button>
 
                   {{--  This part will be display once the loggedin acccount is osa  --}}
                   @if (Auth::user()->user_type_id == 3)
@@ -129,7 +136,8 @@
                 </div>
                 <div class="row clearfix">
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <button class="btn btn-primary pull-right" type="submit" name="save"><i class="material-icons">save</i> Save</button>
+                    <a href="{{ route('User.index') }}" class="btn btn-primary pull-right">DONE</a>
+                    <!-- <button class="btn btn-primary pull-right" type="button" name="save"><i class="material-icons">save</i>DONE</button> -->
                   </div>
                 </div>
               </form>
@@ -187,6 +195,7 @@
     @if (Auth::user()->user_type_id == 1)
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
         <i class="material-icons remove" data-remove="templateremoveid">close</i>
+        <button class="btn btn-primary pull-right" type="submit" name="save"><i class="material-icons">save</i></button>
       </div>
     @endif
     @if (Auth::user()->user_type_id == 3)
@@ -222,6 +231,7 @@
           </div>
           <div class="col-md-1">
             <i class="material-icons remove" data-remove="templateremoveid">close</i>
+            <button class="btn btn-primary pull-right" type="submit" name="save"><i class="material-icons">save</i> Save</button>
           </div>
         </div>
       </div>
