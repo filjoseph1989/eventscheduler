@@ -128,7 +128,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-      dd($request);
+      // dd($request);
       foreach (self::requestToArray($request) as $key => $user) {
         $userReturn = [];
 
