@@ -20,7 +20,7 @@
                 <small>Display all registered organiztion in the system</small>
               </h2>
               <ul class="header-dropdown m-r--5">
-                <li class="dropdown"> 
+                <li class="dropdown">
                   <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <i class="material-icons">more_vert</i>
                   </a>
@@ -40,9 +40,9 @@
                       <th>Status</th>
                     </thead>
                     <tbody>
-                      @if ( is_null($organizations) ) 
+                      @if ( is_null($organizations) )
                         <tr>
-                          <td>{{ "No entry yet" }}</td> 
+                          <td>{{ "No entry yet" }}</td>
                         </tr>
                       @else
                         @foreach ($organizations as $key => $org)
@@ -50,7 +50,7 @@
                             <tr data-organization-id="{{ $value->organization->id }}">
                               <td>
                                 <a href="#" class="organization-list-name" data-target="#org-profile" data-toggle="modal">
-                                  {{ $value->organization->name }} 
+                                  {{ $value->organization->name }}
                                   @if( $value->user->id == Auth::id() && Auth::user()->user_type_id != 3)
                                     (I am the head)
                                   @endif
@@ -89,25 +89,36 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          <h4 class="modal-title" id="org-profile-title"></h4> 
+          <h4 class="modal-title" id="org-profile-title"></h4>
         </div>
         <div class="modal-body">
-          <table class="table table-bordered table-striped">
+          <?php
+            $id = "";
+            if (session('account') == 'org-head') {
+              $id = "mainTable";
+            }
+          ?>
+          <table class="table table-bordered table-striped" id="{{ $id }}">
             <tbody>
               <tr>
-                <td id="org-profile-acronym"></td>
+                <td id="org-profile-acronym" data-name="acronym"></td>
               </tr>
               <tr>
-                <td id="org-profile-description"></td>
+                <td id="org-profile-description" data-name="description"></td>
               </tr>
               <tr>
-                <td id="org-profile-url"></td>
+                <td id="org-profile-url" data-name="url"></td>
               </tr>
               <tr>
-                <td id="org-profile-aniversary"></td>
+                <td id="org-profile-aniversary" data-name="aniversary"></td>
               </tr>
             </tbody>
           </table>
+          <form class="hidden" id="organization-edit-form" action="" method="post">
+            {{ csrf_field() }}
+            {{ method_field('PUT') }}
+            <input type="text" id="organization-form-input" name="" value="">
+          </form>
           <a class="btn btn-success" id="official-event-submit"> Official Events</a>
           <a class="btn btn-success" id="local-event-submit">Local Events</a>
           <a class="btn btn-success" id="member-list">Members</a>
@@ -125,5 +136,25 @@
   <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
   <script src="{{ asset('js/jquery.dataTables.js') }}?v=0.1"></script>
   <script src="{{ asset('js/jquery-datatable.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/mindmup-editabletable.js') }}?v=0.1"></script>
   <script src="{{ asset('js/app.js') }}?v=2.15"></script>
+  <script>
+    // We inclode this into function to prevent missed up with
+    // Other
+    (function() {
+      $('#mainTable').editableTableWidget();
+
+      $('#mainTable td').on('change', function(evt, newValue) {
+        var $name = $(this).data('name');
+        var $url  = "<?php echo route('Org.update', Auth::id()) ?>";
+
+        $('#organization-edit-form').attr('action', $url);
+        $('#organization-form-input').val(newValue);
+        $('#organization-form-input').attr('name', $name);
+
+        $('#organization-edit-form').submit();
+      });
+
+    })();
+  </script>
 @endsection

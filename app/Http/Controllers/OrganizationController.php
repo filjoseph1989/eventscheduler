@@ -195,4 +195,35 @@ class OrganizationController extends Controller
           'helper'        => $helper,
         ]);
     }
+
+    /**
+     * [update description]
+     * @param  Request $request [description]
+     * @param  [type]  $id      [description]
+     * @return [type]           [description]
+     */
+    public function update(Request $request, $id)
+    {
+      $org = OrganizationGroup::where('user_id', $id)
+        ->get();
+
+      $org = Organization::find($org[0]->organization_id);
+
+      if ($request->has('acronym')) {
+        $org->acronym = str_replace('Acronym: ', '', $request->acronym);
+      }
+      if ($request->has('description')) {
+        $org->description = str_replace('Description: ', '', $request->description);
+      }
+      if ($request->has('url')) {
+        $org->url = str_replace('Url: ', '', $request->url);
+      }
+      // if ($request->has('aniversary')) {
+      //   $org->aniversary = str_replace('Aniversary: ', '', $request->aniversary);
+      // }
+
+      if ($org->save()) {
+        return back();
+      }
+    }
 }
