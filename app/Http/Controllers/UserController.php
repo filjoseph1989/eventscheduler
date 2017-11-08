@@ -128,6 +128,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+      dd($request);
       foreach (self::requestToArray($request) as $key => $user) {
         $userReturn = [];
 
@@ -145,11 +146,9 @@ class UserController extends Controller
         # take note, once a school year ends, soft-delete all org-head users and org-users, all organizationGroup instances
         $existing = User::where('account_number', $user['account_number'])
           ->exists();
-
         if ($existing) {
           $u_id  = User::where('account_number', $user['account_number'])
             ->get();
-
 
           $check = OrganizationGroup::where('user_id', $u_id[0]->id)
             ->where('position_id', 3)
