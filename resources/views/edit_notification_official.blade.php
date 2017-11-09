@@ -71,7 +71,7 @@
                     <tbody>
                       @if (! is_null($events))
                         @foreach ($events as $key => $event)
-                          <tr data-event="{{ $event->id }}" 
+                          <tr data-event="{{ $event->id }}"
                               data-route="{{ route('Event.edit', $event->id) }}"
                               data-action="{{ route('Event.update', $event->id) }}"
                               data-organization-id="{{ $event->organization_id }}"
@@ -111,7 +111,6 @@
         </div>
         <div class="modal-body">
           <div class="panel-group" id="accordion_1" role="tablist" aria-multiselectable="true">
-
             <div class="panel">
               <div class="panel-heading" role="tab" id="headingOne_1">
                 <h4 class="panel-title">
@@ -281,6 +280,60 @@
                       </div>
                       <button type="button" id="modal-additional-messages" data-color="teal" class="btn bg-teal waves-effect pull-right">Save Changes</button>
                     </form>
+                  </div>
+                </div>
+              </div>
+              <div class="panel social-media-notification">
+                <div class="panel-heading" role="tab" id="headingFour_3">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_1" href="#collapseFour_1" aria-expanded="false" aria-controls="collapseFour_1">
+                      Upload Photo
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseFour_1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour_1" aria-expanded="false">
+                  <div class="panel-body">
+                    <div class="row clearfix">
+                      <div class="col-sm-12 col-md-12">
+                        <form action="{{ route('user.profile.upload') }}" enctype="multipart/form-data" method="POST">
+                          {{ csrf_field() }}
+                          <label for="">Facebook</label>
+                          <input type="hidden" name="id" value="{{ Auth::id() }}">
+                          <input type="file" name="image">
+                          <button type="submit" name="facebook" class="btn btn-success" style="margin-top: 3px; ">
+                            <i class="material-icons">file_upload</i> Upload
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                    <div class="row">&nbsp;</div>
+                    <div class="row clearfix">
+                      <div class="col-sm-12 col-md-12">
+                        <form action="{{ route('user.profile.upload') }}" enctype="multipart/form-data" method="POST">
+                          {{ csrf_field() }}
+                          <label for="">Twitter</label>
+                          <input type="hidden" name="id" value="{{ Auth::id() }}">
+                          <input type="file" name="image">
+                          <button type="submit" class="btn btn-success" style="margin-top: 3px; ">
+                            <i class="material-icons">file_upload</i> Upload
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                    <div class="row">&nbsp;</div>
+                    <div class="row clearfix">
+                      <div class="col-sm-12 col-md-12">
+                        <form action="{{ route('user.profile.upload') }}" enctype="multipart/form-data" method="POST">
+                          {{ csrf_field() }}
+                          <label for="">Email</label>
+                          <input type="hidden" name="id" value="{{ Auth::id() }}">
+                          <input type="file" name="image">
+                          <button type="submit" class="btn btn-success" style="margin-top: 3px; ">
+                            <i class="material-icons">file_upload</i> Upload
+                          </button>
+                        </form>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

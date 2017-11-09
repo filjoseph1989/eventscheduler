@@ -75,4 +75,11 @@ Route::group(['middleware'=>['auth']], function() {
       Route::name('event.advertise')->post('/AdvertiseEvent', 'EventAdvertiseController@updateEvent');
     });
 
+    # Upload photo
+    Route::prefix('upload')->group(function() {
+      Route::name('facebook.photo')->get('/facabook/photo', 'UploadPhotoController@uploadFacebookPhoto');
+      Route::name('twitter.photo')->get('/twitter/photo', 'UploadPhotoController@uploadTwitterPhoto');
+      Route::name('email.photo')->get('/email/photo', 'UploadPhotoController@uploadEmailPhoto');
+    });
+
 });
