@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="{{ asset('css/fullcalendar.min.css') }}">
   <link rel="stylesheet" href="{{ asset('css/fullcalendar.print.min.css') }}" media="print">
 @endsection
-
+{{--wala ata ni ginagamit--}}
 @section('content')
   <section class="content">
     <div class="container-fluid">
