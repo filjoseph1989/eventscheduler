@@ -224,7 +224,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="panel social-media-notification">
                 <div class="panel-heading" role="tab" id="headingThree_1">
                   <h4 class="panel-title">
@@ -295,12 +294,13 @@
                   <div class="panel-body">
                     <div class="row clearfix">
                       <div class="col-sm-12 col-md-12">
-                        <form action="{{ route('user.profile.upload') }}" enctype="multipart/form-data" method="POST">
+                        <form action="{{ route('facebook.photo') }}" enctype="multipart/form-data" method="POST">
                           {{ csrf_field() }}
                           <label for="">Facebook</label>
-                          <input type="hidden" name="id" value="{{ Auth::id() }}">
+                          <input type="hidden" id="facebook-event" name="id" value="">
+                          <input type="hidden" name="facebook" value="true">
                           <input type="file" name="image">
-                          <button type="submit" name="facebook" class="btn btn-success" style="margin-top: 3px; ">
+                          <button type="submit" class="btn btn-success" style="margin-top: 3px; ">
                             <i class="material-icons">file_upload</i> Upload
                           </button>
                         </form>
@@ -340,7 +340,6 @@
             @endif
           </div>
         </div>
-
         <div class="modal-footer">
           @if ($account == 'org-head')
             <button type="button" data-color="teal" class="btn bg-teal waves-effect request-approval" id="modal-request-approval" data-toggle="tooltip" data-placement="top" title="Request for advertisement approval"
@@ -366,7 +365,6 @@
 
           <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
         </div>
-
       </div>
     </div>
   </div>

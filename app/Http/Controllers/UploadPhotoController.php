@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
  * @company DevCaffee
  *
  * @date 11-09-2017
- * @date 11-09-2017 - updated
+ * @date 11-10-2017 - updated
  */
 class UploadPhotoController extends Controller
 {
@@ -27,11 +27,45 @@ class UploadPhotoController extends Controller
 
   /**
    * Upload photo for facebook post
+   *
+   * Issue 35: Problem is how to remove those images not in the database
    * @return
    */
   public function uploadFacebookPhoto(Request $request)
   {
+    $this->validate($request, [
+      'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
 
+    /*
+    Do it here.
+    Get the ID of the event and then get the upload picture,
+    deleted it
+     */
+
+    # Get image, rename and save to images folder
+    $imageName = time().'.'.$request->image->getClientOriginalExtension();
+    $request->image->move(public_path('img/social'), $imageName);
+
+    /*
+    # Save to database
+    $user          = User::find($request->id);
+    $picture       = $user->picture;
+    $user->picture = $imageName;
+
+    $user->save();
+
+    # Delete old pic except default
+    if (file_exists("img/profile/$picture") and $picture != 'profile.png') {
+      unlink("img/profile/$picture");
+    }
+
+    $sucessOrFailed = "Image Uploaded successfully.";
+
+    # Return to uploader page
+    return back()
+      ->with('status', $sucessOrFailed);
+     */
   }
 
   /**
@@ -51,6 +85,6 @@ class UploadPhotoController extends Controller
    */
   public function uploadEmailPhoto(Request $request)
   {
-    
+
   }
 }

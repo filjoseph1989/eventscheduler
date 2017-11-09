@@ -77,9 +77,9 @@ Route::group(['middleware'=>['auth']], function() {
 
     # Upload photo
     Route::prefix('upload')->group(function() {
-      Route::name('facebook.photo')->get('/facabook/photo', 'UploadPhotoController@uploadFacebookPhoto');
-      Route::name('twitter.photo')->get('/twitter/photo', 'UploadPhotoController@uploadTwitterPhoto');
-      Route::name('email.photo')->get('/email/photo', 'UploadPhotoController@uploadEmailPhoto');
+      Route::name('facebook.photo')->post('/facabook/photo', 'UploadPhotoController@uploadFacebookPhoto');
+      Route::name('twitter.photo')->post('/twitter/photo', 'UploadPhotoController@uploadTwitterPhoto');
+      Route::name('email.photo')->post('/email/photo', 'UploadPhotoController@uploadEmailPhoto');
     });
 
 });
