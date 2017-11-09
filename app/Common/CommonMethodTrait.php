@@ -171,4 +171,20 @@ trait CommonMethodTrait
       return false;
     }
 
+    /**
+     * Return Organization ID
+     *
+     * @param  array $referrence
+     * @return
+     */
+    private function extractID($referrence)
+    {
+      $temp;
+      foreach ($referrence as $key => $id) {
+        $temp = $id;
+      }
+
+      return $temp;
+    }
+
 }

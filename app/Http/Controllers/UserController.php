@@ -134,6 +134,77 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+      $user = $request->only([
+        'account_number', 'full_name', 'email', 'position_id'
+      ]);
+
+      if (parent::isOrgHead()) {
+        $user['user_type_id']    = '2';
+        $user['organization_id'] = self::extractID(self::getOrganizationsID()); # this is from a CommonMethodTrait
+      }
+
+      if (parent::isOsa()) {
+        $user['user_type_id']    = $request->user_type_id[$key];
+        $user['organization_id'] = $request->organization_id[$key];
+      }
+
+      # Return the invalid account number
+      if (! preg_match('/^(20[0-9]{2})-([0-9]{5})$/', $user['account_number'])) {
+        $user['error']                = true;
+        $user['error_account_number'] = $user['account_number'];
+        return json_encode($user);
+      }
+
+      # return invalid email
+      if (! filter_var($user['email'], FILTER_VALIDATE_EMAIL)) {
+        $statusNotice        = "The email address {$user['email']} is not valid";
+        $user['error']       = true;
+        $user['error_email'] = $statusNotice;
+        return json_encode($user);
+      }
+
+      if (self::emailExists($user) or self::accountExists($user)) {
+        $statusNotice        = "The email address or the account number already exist";
+        $user['error']       = true;
+        $user['error_email'] = $statusNotice;
+        return json_encode($user);
+      }
+
+      # catch if the position is already taken, the head must assign another position to the user
+      if (self::positionIsTaken($user)) {
+        $statusNotice = self::getPositionName() . " is already assigned to a member in your organization. " .
+          "Please assign other position to " . $user['full_name'] .
+          " or reassign the person who is currently " . self::getPositionName() . ".";
+
+        $user['error']          = true;
+        $user['error_position'] = $statusNotice;
+        return json_encode($user);
+      }
+
+      $result = User::create($user);
+
+      if( $result->wasRecentlyCreated ){
+        # Get the user created ID
+        $user['user_id'] = $result->id;
+
+        # remove from arrays the following
+        unset($user['account_number']);
+        unset($user['full_name']);
+        unset($user['email']);
+        unset($user['user_type_id']);
+        unset($user['status']);
+
+        OrganizationGroup::create($user);
+      }
+
+      $user = [
+        'success' => true
+      ];
+      return json_encode($user);
+    }
+
+    public function _store(Request $request)
+    {
       $statusNotice = "";
       foreach (self::requestToArray($request) as $key => $user) {
         # catch if the position is already taken, the head must assign another position to the user

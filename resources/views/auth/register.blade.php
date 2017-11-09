@@ -13,6 +13,8 @@
     <div class="container-fluid">
       <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="alert alert-warning hidden" id="user-errors" role="alert"></div>
+          <div class="alert alert-success hidden" id="user-success" role="alert"></div>
           <div class="card">
             <div class="header">
               <h2> Add New User
@@ -21,25 +23,26 @@
             </div>
             <div class="body">
               <div class="row clearfix" id="input1">
-                <form class="" action="" method="post">
+                <form class="" action="{{ route('User.store') }}" method="post">
+                  {{ csrf_field() }}
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <div class="form-group form-float form-group">
                       <div class="form-line">
-                        <input type="text" class="form-control" id="account_number" name="account_number[]" placeholder="Student Number (20XX-XXXXX)" value="" pattern="^(20[0-9]{2})-([0-9]{5})$" required autofocus>
+                        <input type="text" class="form-control" id="account_number" name="account_number" placeholder="Student Number (20XX-XXXXX)" value="" pattern="^(20[0-9]{2})-([0-9]{5})$" required autofocus>
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <div class="form-group form-float form-group">
                       <div class="form-line">
-                        <input type="text" class="form-control" id="full_name" name="full_name[]" placeholder="Full name" value="" required>
+                        <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Full name" value="" required>
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                     <div class="form-group form-float form-group">
                       <div class="form-line">
-                        <input type="email" class="form-control" id="email" name="email[]" placeholder="Email" value="" required>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="" required>
                       </div>
                     </div>
                   </div>
@@ -47,7 +50,7 @@
                     <div class="form-group form-float form-group">
                       <div class="form-group form-float">
                         <div class="form-line focused">
-                          <select class="form-control show-tick" id="position_id" name="position_id[]">
+                          <select class="form-control show-tick" id="position_id" name="position_id">
                             <option value="{{ old('position_id') }}" id="position-option">- Select Position -</option>
                             @foreach ($positions as $key => $position)
                             <option value="{{ $position->id }}">{{ $position->name }}</option>
@@ -59,7 +62,7 @@
                   </div>
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                     <button type="button" class="btn btn-success" name="button">Remove</button>
-                    <button type="button" class="btn btn-success" name="button">Save</button>
+                    <button type="button" class="btn btn-success user-details" name="button">Save</button>
                   </div>
                 </form>
               </div>
@@ -79,25 +82,26 @@
 @section('modals')
   <div class="" id="registration-form-template" style="display:none;">
     <div class="row clearfix" id="templateid">
-      <form class="" action="" method="post">
+      <form class="" action="{{ route('User.store') }}" method="post">
+        {{ csrf_field() }}
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
           <div class="form-group form-float form-group">
             <div class="form-line">
-              <input type="text" class="form-control" id="account_number" name="account_number[]" placeholder="Student Number (20XX-XXXXX)" value="" pattern="^(20[0-9]{2})-([0-9]{5})$" required autofocus>
+              <input type="text" class="form-control" id="account_number" name="account_number" placeholder="Student Number (20XX-XXXXX)" value="" pattern="^(20[0-9]{2})-([0-9]{5})$" required autofocus>
             </div>
           </div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
           <div class="form-group form-float form-group">
             <div class="form-line">
-              <input type="text" class="form-control" id="full_name" name="full_name[]" placeholder="Full name" value="" required>
+              <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Full name" value="" required>
             </div>
           </div>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
           <div class="form-group form-float form-group">
             <div class="form-line">
-              <input type="email" class="form-control" id="email" name="email[]" placeholder="Email" value="" required>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="" required>
             </div>
           </div>
         </div>
@@ -105,7 +109,7 @@
           <div class="form-group form-float form-group">
             <div class="form-group form-float">
               <div class="form-line focused">
-                <select class="form-control show-tick" id="position_id" name="position_id[]">
+                <select class="form-control show-tick" id="position_id" name="position_id">
                   <option value="{{ old('position_id') }}" id="position-option">- Select Position -</option>
                   @foreach ($positions as $key => $position)
                   <option value="{{ $position->id }}">{{ $position->name }}</option>
@@ -117,7 +121,7 @@
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
           <button type="button" class="btn btn-success remove" name="button" data-remove="templateremoveid">Remove</button>
-          <button type="button" class="btn btn-success" name="button">Save</button>
+          <button type="button" class="btn btn-success user-details" name="button">Save</button>
         </div>
       </form>
     </div>
@@ -126,5 +130,53 @@
 
 @section('js')
   <script src="{{ asset('js/admin.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/sweetalert.min.js') }}?v=0.1"></script>
   <script src="{{ asset('js/app.js') }}?v=2.7"></script>
+  <script type="text/javascript">
+    (function() {
+      $(document).on('click', '.user-details', function() {
+        var url = $(this).parents('form').attr('action');
+        var data = $(this).parents('form').serialize();
+
+        axios_post(url, data, function($details) {
+          /* Show error */
+          if ($details.error_account_number != undefined) {
+            $message = "Student Number should be in the following format (20XX-XXXXX)" + $details.error_account_number;
+            swal('Error!', $message, 'error');
+          }
+          if ($details.error_position != undefined) {
+            swal('Error!', $details.error_position, 'error');
+          }
+          if ($details.error_email != undefined) {
+            swal('Error!', $details.error_email, 'error');
+          }
+          if ($details.success != undefined) {
+            swal('Great!', 'Successfully added a new member', 'success');
+          }
+        });
+      });
+
+      /**
+       * Make http request using post
+       * but since we're using laravel not only put
+       * but put, patch and delete too
+       *
+       * @param  {string}   url
+       * @param  {object}   data
+       * @param  {Function} callback
+       * @return {void}
+       */
+      var axios_post = function(url, data, callback)
+      {
+        axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        axios.post(url, data)
+          .then(function (response) {
+            callback(response.data);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
+    })();
+  </script>
 @endsection

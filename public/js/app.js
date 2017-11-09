@@ -601,7 +601,7 @@
     $('#twitter_msg').html(currentValue.twitter_msg);
     $('#email_msg').html(currentValue.email_msg);
     $('#sms_msg').html(currentValue.sms_msg);
-   console.log(currentValue);
+
     // set attributes
     if( currentValue.event_type_id == 2 || currentValue.is_approve == 'true'){
       $('#modal-advertise-local-events').removeClass('hidden');
