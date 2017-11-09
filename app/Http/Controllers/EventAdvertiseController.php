@@ -117,7 +117,7 @@ class EventAdvertiseController extends Controller
           ->get();
         }
       } else { #personal event
-        $users = PersonalEvent::with('user')->where('user_id', $event->user_id)->get()->first();
+        $users = PersonalEvent::with('user')->where('user_id', $event->user_id)->get();
       }
 
       # Send notification
@@ -144,7 +144,7 @@ class EventAdvertiseController extends Controller
             ->get();
         }
       } else { #personal event
-        $users = PersonalEvent::with('user')->where('user_id', $event->user_id)->get()->first();
+        $users = PersonalEvent::with('user')->where('user_id', $event->user_id)->get();
       }
 
       self::sendEmail($users, $event);
@@ -235,9 +235,10 @@ class EventAdvertiseController extends Controller
           break;
 
         case 'personal':
-          $heading = "Hello {$event->user->full_name}";
+          $heading = "Hello {$event->user->full_name} ";
           break;
       }
+
 
       $new_line = "";
       if ($twit === true) {
@@ -245,19 +246,19 @@ class EventAdvertiseController extends Controller
       }
 
       if( $event->organization != null){
-        $heading .= "{$new_line}{$event->title} headed by {$event->organization->name}.";
+        $heading .= "{$new_line}{$event->title} headed by {$event->organization->name}. ";
       } else {
-        $heading .= "{$new_line}{$event->title} headed by {$event->user->full_name}.";
+        $heading .= "{$new_line}{$event->title} headed by {$event->user->full_name}. ";
       }
 
       if ($twit === true) {
-        $heading .= "{$new_line}Description: {$event->description}";
+        $heading .= "{$new_line}Description: {$event->description} ";
       }
 
       $heading .=
-        "{$new_line}Venue: {$event->venue}" .
+        "{$new_line}Venue: {$event->venue} " .
         "{$new_line}Duration: {$event->date_start}, {$event->date_start_time} to {$event->date_end}, {$event->date_end_time} " .
-        "{$new_line}{$event->additional_msg_sms}" .
+        "{$new_line}{$event->additional_msg_sms} " .
         "{$new_line}Please be guided accordingly. Thank You!";
 
       return $heading;

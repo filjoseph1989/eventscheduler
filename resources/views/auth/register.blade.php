@@ -53,9 +53,9 @@
                             <option value="{{ $position->id }}">{{ $position->name }}</option>
                             @endforeach
                           </select>
-                        </div>
                       </div>
                     </div>
+                  </div>
                   </div>
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                     <button type="button" class="btn btn-success" name="button">Remove</button>

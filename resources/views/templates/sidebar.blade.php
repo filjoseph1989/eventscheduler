@@ -83,11 +83,11 @@
             <span>Events</span>
           </a>
           <ul class="ml-menu">
-            @if (session('account') != 'org-member')
+            {{-- @if (session('account') != 'org-member') --}}
               <li>
                 <a href="{{ route('Event.create') }}"> <span>Create Event</span> </a>
               </li>
-            @endif
+            {{-- @endif --}}
             <li>
               <a href="#" class="menu-toggle"><span>List of Events</span></a>
               <ul class="ml-menu">
@@ -97,16 +97,15 @@
                   <li><a href="{{ route('Event.show', 0) }}"><span>My Organization Events</span></a></li>
                 @endif
                 <li><a href="{{ route('Event.show', 1) }}"> <span>Official</span></a></li>
-                @if (session('account') == 'org-head')
+                @if (session('account') != 'osa')
                   <li>
                     <a href="{{ route('event.dlv', 2) }}">
                       <span>Local</span>
                     </a>
                   </li>
-                @endif
-                @if (session('account') == 'org-member')
+                @else
                   <li>
-                    <a href="{{ route('PersonalEvent.index') }}">
+                    <a href="{{ route('event.dlv', 2) }}">
                       <span>Personal</span>
                     </a>
                   </li>

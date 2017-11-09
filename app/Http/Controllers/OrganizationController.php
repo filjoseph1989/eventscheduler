@@ -148,6 +148,7 @@ class OrganizationController extends Controller
         'course_id'      => $request->course_id,
         'user_type_id'   => 1,
         'password'       => bcrypt($password),
+        'status'         => 'true',
       ];
 
       $organization = Organization::create($data_organization);
@@ -157,7 +158,7 @@ class OrganizationController extends Controller
         $data_org_grp = [
           'user_id'         => $org_head->id,
           'organization_id' => $organization->id,
-          'position_id'     => 7,
+          'position_id'     => 3,
         ];
 
         $org_g = OrganizationGroup::create($data_org_grp);

@@ -145,11 +145,25 @@
                         <td>{{ AccounType($user->user->user_type_id) }}</td>
                         <td>{{ UserStatus($user->user->status) }}</td>
                       <?php else: ?>
-                        <td>name</td>
-                        <td>course</td>
-                        <td>position</td>
-                        <td>user type</td>
-                        <td>status</td>
+                          <td>
+                            <a href="#" class="user-name" data-toggle="modal" data-target="#profile" data-user-id="{{ $user->user->id }}">
+                              {{ $user->user->full_name }}
+                            </a>
+                          </td>
+                          <td>
+                            <?php if (! is_null($user->user->course)): ?>
+                              <a href="#" class="user-course"
+                                data-toggle="modal"
+                                data-target="#modal-course"
+                                data-course-id="{{ $user->user->course->id }}">
+                                  {{ $user->user->course->name }}
+                              </a>
+                              <?php else: ?>
+                                No Course
+                              <?php endif; ?>
+                          </td>
+                          <td>{{ AccounType($user->user->user_type_id) }}</td>
+                          <td>{{ UserStatus($user->user->status) }}</td>
                       <?php endif; ?>
                     </tr>
                   <?php endforeach; ?>

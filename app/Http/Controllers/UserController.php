@@ -36,6 +36,12 @@ class UserController extends Controller
     private $validateWho;
 
     /**
+     * Position name keepers
+     * @var string
+     */
+    private $positionName;
+
+    /**
      * Include some traits
      */
     use ValidationTrait;
@@ -128,45 +134,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+      $statusNotice = "";
       foreach (self::requestToArray($request) as $key => $user) {
-        $userReturn = [];
-
-        # look for at first 4 character if it a number, followed by
-        # hypen(-) and next 6 numbers patterns
-        $regexp = "/^(20[0-9]{2})-([0-9]{5})$/";
-        $account = $user['account_number'];
-
-        if (! preg_match($regexp, $account)) {
-          return back()
-            ->with('status_warning', 'Invalid student number. (Format is 20XX-XXXXX). X\'s are number-digits');
-        }
-
-        # catch if the org head assigned already an existing org head
-        # take note, once a school year ends, soft-delete all org-head users and org-users, all organizationGroup instances
-        $existing = User::where('account_number', $user['account_number'])
-          ->exists();
-
-        if ($existing) {
-          $u_id  = User::where('account_number', $user['account_number'])
-            ->get();
-
-
-          $check = OrganizationGroup::where('user_id', $u_id[0]->id)
-            ->where('position_id', 3)
-            ->exists();
-
-          if ( $check ){
-            return back()
-              // ->withInput()
-              ->with('status_warning', 'The entered organization head already leads an org. A student must only head one organization per school year.');
-          }
-        }
-
-        #catch the format of email must be char*.@char*.com
-        if( filter_var($user['email'], FILTER_VALIDATE_EMAIL) == false ){
-            return back()
-              // ->withInput()
-              ->with('status_warning', 'The entered email is invalid.');
+        # catch if the position is already taken, the head must assign another position to the user
+        if(self::positionIsTaken($user)) {
+          $statusNotice = $statusNotice . " " .
+            self::getPositionName() . " is already assigned to a member in your organization. " .
+            "Please assign other position to " . $user['full_name'] .
+            " or reassign the person who is currently " . self::getPositionName() . ".";
         }
 
         if (self::emailExists($user) or self::accountExists($user) or self::positionIsTaken($user) ) {
@@ -174,7 +149,8 @@ class UserController extends Controller
           if(self::positionIsTaken($user)) {
             $positionTaken = true;
           }
-        } else {
+        }
+        else {
           $result = User::create($user);
 
           if( $result->wasRecentlyCreated ){
@@ -219,8 +195,9 @@ class UserController extends Controller
           'status'         => isset($userCreated) ? 'Successfully added user/s' : null,
           'status_position'=> isset($positionTaken) ? 'Position already assigned' : null,
           'status_warning' => isset($status) ? $status : null,
-          'status_message' => 'Some of the user are already exists, either an email or account number',
-          'user_return'    =>  $userReturn
+          'status_message' => 'Some of the user are already exists, just assign their positions in your organization',
+          'status_notice' => $statusNotice,
+          // 'user_return'    =>  $userReturn
         ]);
     }
 
@@ -507,19 +484,35 @@ class UserController extends Controller
       return false;
     }
 
+    /**
+     * Determine whether the chosen position is already
+     * taken in an organization
+     *
+     * @param  object $user
+     * @return boolean
+     */
     private function positionIsTaken(&$user)
     {
-
-      $count = OrganizationGroup::where('position_id', $user['position_id'])
+      $position = OrganizationGroup::with('position')
+        ->where('position_id', $user['position_id'])
         ->where('organization_id', self::getOrganizationsID())
-        ->get()
-        ->count();
+        ->get();
 
-      if ($count > 0) {
+      if ($position->count() > 0) {
+        $this->positionName = $position[0]->position->name;
         return true;
       }
 
       return false;
+    }
+
+    /**
+     * Return the position name
+     * @return [type] [description]
+     */
+    private function getPositionName()
+    {
+      return $this->positionName;
     }
 
     public function changePassword(Request $request)

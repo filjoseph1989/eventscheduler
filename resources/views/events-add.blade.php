@@ -155,8 +155,10 @@
                       <div class="form-line focused">
                         <select class="form-control show-tick" id="category" name="category">
                           <option value="{{ old('category') }}" id="event-category-option">-- Select Event Category --</option>
+                            @if(Auth::user()->user_type_id != 2)
                             <option value="university"> University </option>
                             <option value="organization"> Organizations </option>
+                            @endif
                             @if(Auth::user()->user_type_id == 1)
                               {{--  user_type_id == 1 is org-head, because only the organization-head can create within organization events  --}}
                               <option value="within"> My Organization </option>

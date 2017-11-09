@@ -603,11 +603,10 @@
     $('#sms_msg').html(currentValue.sms_msg);
    console.log(currentValue);
     // set attributes
-    if( currentValue.event_type_id == 2 ){
+    if( currentValue.event_type_id == 2 || currentValue.is_approve == 'true'){
       $('#modal-advertise-local-events').removeClass('hidden');
       $('#modal-request-approval').addClass('hidden');
     }
-
 
     $('#modal-advertise-local-events-form').attr('action', '/event/AdvertiseEvent');
     $('#advertise_id').val(currentValue.id);

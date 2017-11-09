@@ -143,7 +143,7 @@
         </div>
         <div class="modal-footer">
           @if (session('account') == 'org-head')
-            <button type="button" data-color="teal" class="btn bg-teal waves-effect request-approval" id="modal-request-approval" data-toggle="tooltip" data-placement="top" title="Request for advertisement approval"
+            <button type="button" data-color="teal" class="btn bg-teal waves-effect request-approval hid" id="modal-request-approval" data-toggle="tooltip" data-placement="top" title="Request for advertisement approval"
               onclick="event.preventDefault(); document.getElementById('modal-request-approval-form').submit();">
               Request Approval
             </button>
@@ -153,7 +153,7 @@
               <input type="hidden" id="id" name="id" value="">
             </form>
           @endif
-          @if (session('account') == 'org-member')
+          @if (session('account') != 'osa' )
             <button type="button" data-color="teal" class="btn bg-teal waves-effect request-approval" id="modal-attend" data-toggle="tooltip" data-placement="top" title="Attenda this event"
               onclick="event.preventDefault(); document.getElementById('modal-attend-form').submit();">
               Attend
