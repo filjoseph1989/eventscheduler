@@ -378,5 +378,5 @@
   <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}?v=0.1"></script>
   <script src="{{ asset('js/tooltips-popovers.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/app.js') }}?v=2.18" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.21" charset="utf-8"></script>
 @endsection

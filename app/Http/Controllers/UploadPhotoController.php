@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 
+# Models
+use App\Models\Event;
+
 /**
  * Handle the user related request
  *
@@ -47,17 +50,15 @@ class UploadPhotoController extends Controller
     $imageName = time().'.'.$request->image->getClientOriginalExtension();
     $request->image->move(public_path('img/social'), $imageName);
 
-    /*
     # Save to database
-    $user          = User::find($request->id);
-    $picture       = $user->picture;
-    $user->picture = $imageName;
-
-    $user->save();
+    $event      = Event::find($request->id);
+    $picture    = (! is_null($event->img)) ? $event->img : "";
+    $event->img = $imageName;
+    $event->save();
 
     # Delete old pic except default
-    if (file_exists("img/profile/$picture") and $picture != 'profile.png') {
-      unlink("img/profile/$picture");
+    if (! empty($picture) and file_exists("img/social/$picture")) {
+      unlink("img/social/$picture");
     }
 
     $sucessOrFailed = "Image Uploaded successfully.";
@@ -65,7 +66,6 @@ class UploadPhotoController extends Controller
     # Return to uploader page
     return back()
       ->with('status', $sucessOrFailed);
-     */
   }
 
   /**

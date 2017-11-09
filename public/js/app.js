@@ -13,9 +13,9 @@
  * @author Fil <filjoseph22@gmail.com>
  * @author Liz <janicalizdeguzman@gmail.com>
  * @since 0.1
- * @version 2.20
+ * @version 2.21
  * @date 09-30-2017
- * @date 10-27-2017 - last updated
+ * @date 11-10-2017 - last updated
  */
 (function() {
   /**
@@ -44,8 +44,6 @@
     var eventTypeId    = _this.data('event-type-id');
     var userTypeId     = _this.data('user-type-id');
     var personal       = _this.data('personal');
-
-    // console.log(organizationId);
 
     if ( userTypeId == 3 ) {
       if (organizationId != undefined || personal == undefined || approval == true || eventTypeId == 2) {
@@ -586,6 +584,7 @@
   var eventModal = function (currentValue, eventTypeId) {
     // console.log(currentValue);
     // write html
+    $('#facebook-event').val(currentValue.id);
     $('#modal-event-title').html(currentValue.title);
     $('#modal-event-ptitle').html("Title: " + currentValue.title);
     $('#modal-event-venue').html("Venue: " + currentValue.venue);

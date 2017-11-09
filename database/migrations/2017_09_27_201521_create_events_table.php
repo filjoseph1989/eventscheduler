@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateEventsTable extends Migration
-{ 
+{
     /**
      * Run the migrations.
      *
@@ -14,7 +14,7 @@ class CreateEventsTable extends Migration
     public function up()
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->increments('id'); 
+            $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             $table->integer('organization_id')->unsigned()->index()->nullable(); //made nullable for osa users
             $table->integer('event_type_id')->unsigned()->index();
@@ -41,6 +41,7 @@ class CreateEventsTable extends Migration
             $table->enum('email', ['on','off'])->default('off');
             $table->string('email_msg')->nullable();
             $table->string('email_img')->nullable();
+            $table->string('img')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
