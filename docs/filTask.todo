@@ -1,4 +1,4 @@
-☐ Add new user redefining
+☐ Add user on OSA account
 ☐ Upload photo
 ☐ Check my attendance.
 ☐ Org head should have a button for members confirmation of attendance
@@ -9,6 +9,7 @@
 ☐ Display personal event for members
 ☐ Create personal event for members
 ☐ Dapat wala notong options sa taas sa list of organization {http://test.dev/Org/false}
+✔ Add new user redefining @done(2017-11-09 18:04)
 ✔ Organization head can edit the organization information @done(2017-11-09 14:46)
 ✔ Local event should be hide on member but not in head @done(2017-11-06 21:45)
 ✔ Display the event details on my attendance @done(2017-11-06 21:36)
