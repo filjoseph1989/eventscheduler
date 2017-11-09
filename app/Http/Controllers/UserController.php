@@ -170,6 +170,14 @@ class UserController extends Controller
         return json_encode($user);
       }
 
+      #if position is empty
+      if ( empty($user['position_id']) ) {
+        $statusNotice        = "Please choose position for {$user['full_name']}";
+        $user['error']       = true;
+        $user['error_position'] = $statusNotice;
+        return json_encode($user);
+      }
+
       # catch if the position is already taken, the head must assign another position to the user
       if (self::positionIsTaken($user)) {
         $statusNotice = self::getPositionName() . " is already assigned to a member in your organization. " .

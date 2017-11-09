@@ -140,17 +140,20 @@
 
         axios_post(url, data, function($details) {
           /* Show error */
-          if ($details.error_account_number != undefined) {
-            $message = "Student Number should be in the following format (20XX-XXXXX)" + $details.error_account_number;
+          if ($details.error_account_number != undefined || $details.error_account_number != null) {
+            $message = "Student Number should be in the following format (20XX-XXXXX) where X are natural numbers, not " + $details.error_account_number;
             swal('Error!', $message, 'error');
           }
-          if ($details.error_position != undefined) {
+          if ($details.error_position != undefined || $details.error_position != null) {
             swal('Error!', $details.error_position, 'error');
           }
-          if ($details.error_email != undefined) {
+          if ($details.error_email != undefined || $details.error_email != null) {
             swal('Error!', $details.error_email, 'error');
           }
-          if ($details.success != undefined) {
+          if ($details.error_position != undefined || $details.error_position != null) {
+            swal('Error!', $details.error_position, 'error');
+          }
+          if ($details.success != undefined || $details.success != null) {
             swal('Great!', 'Successfully added a new member', 'success');
           }
         });
