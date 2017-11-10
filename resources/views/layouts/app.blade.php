@@ -9,7 +9,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   @guest
-    <title>{{ config('app.name', 'EventScheduler') }}</title>
+    <title>{{ config('app.name', 'EventAdvertiser') }}</title>
   @else
     @yield('title')
   @endguest
