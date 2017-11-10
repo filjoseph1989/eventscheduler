@@ -118,17 +118,17 @@
                     <tr>
                       <?php if (session('account') != 'osa'): ?>
                         <td>
-                          <a href="#" class="user-name" data-toggle="modal" data-target="#profile" data-user-id="{{ $user->user->id }}">
-                            {{ $user->user->full_name }}
+                          <a href="#" class="user-name" data-toggle="modal" data-target="#profile" data-user-id="{{ $user->id }}">
+                            {{ $user->full_name }}
                           </a>
                         </td>
                         <td>
-                          <?php if (! is_null($user->user->course)): ?>
+                          <?php if (! is_null($user->course)): ?>
                             <a href="#" class="user-course"
                               data-toggle="modal"
                               data-target="#modal-course"
-                              data-course-id="{{ $user->user->course->id }}">
-                                {{ $user->user->course->name }}
+                              data-course-id="{{ $user->course->id }}">
+                                {{ $user->course->name }}
                             </a>
                             <?php else: ?>
                               No Course
@@ -138,12 +138,12 @@
                           <a href="#" class="user-position"
                             data-toggle="modal"
                             data-target="#modal-position"
-                            data-position-id="{{ $user->position->id }}">
-                              {{ $user->position->name }}
+                            data-position-id="{{-- $user->position->id --}}">
+                              {{ $user->organizationGroup[0]->position->name }}
                           </a>
                         </td>
-                        <td>{{ AccounType($user->user->user_type_id) }}</td>
-                        <td>{{ UserStatus($user->user->status) }}</td>
+                        <td>{{ AccounType($user->user_type_id) }}</td>
+                        <td>{{ UserStatus($user->status) }}</td>
                       <?php else: ?>
                           <td>
                             <a href="#" class="user-name" data-toggle="modal" data-target="#profile" data-user-id="{{ $user->id }}">
@@ -210,7 +210,6 @@
               </table>
             </div>
           </div>
-
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" name="button" data-dismiss="modal">Close</button>
