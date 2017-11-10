@@ -30,6 +30,7 @@
             </div>
             <div class="body">
               <a href="{{ route('Event.create') }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right"  style="margin-left:10px;">Create Event</a>
+              <button class="bg-teal waves-effect btn pull-right" data-toggle="modal" data-target="#edit-notification-modal" style="margin-left: 10px">Edit Notification</button>
               <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
