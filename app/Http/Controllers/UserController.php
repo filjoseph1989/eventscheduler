@@ -78,6 +78,7 @@ class UserController extends Controller
             'organization', 'position'
           ])->where('organization_id', $org_id[0]->organization_id)
             ->get();
+              // dd($users);
       } else {
         $org_id = null;
         $users  = User::with([
@@ -89,7 +90,7 @@ class UserController extends Controller
               ->get();
           }])->get();
       }
-
+      // dd($users);
       return view('users_index')
         ->with([
           'users'   => $users,
