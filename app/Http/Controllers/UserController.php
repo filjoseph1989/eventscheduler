@@ -211,75 +211,6 @@ class UserController extends Controller
       return json_encode($user);
     }
 
-    public function _store(Request $request)
-    {
-      $statusNotice = "";
-      foreach (self::requestToArray($request) as $key => $user) {
-        # catch if the position is already taken, the head must assign another position to the user
-        if(self::positionIsTaken($user)) {
-          $statusNotice = $statusNotice . " " .
-            self::getPositionName() . " is already assigned to a member in your organization. " .
-            "Please assign other position to " . $user['full_name'] .
-            " or reassign the person who is currently " . self::getPositionName() . ".";
-        }
-
-        if (self::emailExists($user) or self::accountExists($user) or self::positionIsTaken($user) ) {
-          $userReturn[] = $user;
-          if(self::positionIsTaken($user)) {
-            $positionTaken = true;
-          }
-        }
-        else {
-          $result = User::create($user);
-
-          if( $result->wasRecentlyCreated ){
-            $userCreated = true;
-          }
-
-          if (isset($user['organization_id'])) {
-            # Get the user created ID
-            $user['user_id'] = $result->id;
-
-            # remove from arrays the following
-            unset($user['account_number']);
-            unset($user['full_name']);
-            unset($user['email']);
-            unset($user['user_type_id']);
-            unset($user['status']);
-
-            # get organization ID
-            if (is_array($user['organization_id'])) {
-              $id_t;
-              foreach ($user['organization_id'] as $key => $id) {
-                $id_t = $id;
-              }
-              $user['organization_id'] = $id_t;
-            }
-
-            OrganizationGroup::create($user);
-          }
-        }
-      }
-
-      # Used to display the warning error
-      if (count($userReturn) > 0) {
-        $status = true;
-      }
-      if( isset($positionTaken) ){
-        $status = null;
-      }
-
-      return back()
-        ->with([
-          'status'         => isset($userCreated) ? 'Successfully added user/s' : null,
-          'status_position'=> isset($positionTaken) ? 'Position already assigned' : null,
-          'status_warning' => isset($status) ? $status : null,
-          'status_message' => 'Some of the user are already exists, just assign their positions in your organization',
-          'status_notice' => $statusNotice,
-          // 'user_return'    =>  $userReturn
-        ]);
-    }
-
     /**
      * Display the specified resource.
      *
@@ -309,13 +240,14 @@ class UserController extends Controller
           ->get();
         }
 
-      return view('users_index')->with([
-        'users'  => $users,
-        'help'   => $help,
-        'filter' => true,
-        'id'     => $id,
-        'account' => self::whatAccount()
-      ]);
+      return view('users_index')
+        ->with([
+          'users'  => $users,
+          'help'   => $help,
+          'filter' => true,
+          'id'     => $id,
+          'account' => self::whatAccount()
+        ]);
     }
 
     /**

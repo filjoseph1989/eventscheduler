@@ -65,7 +65,7 @@
           <div class="card">
             <div class="header">
               <h2>
-                @if( $org != null)
+                @if(isset($org[0]))
                   <?php if (! isset($org[0])): ?>
                     <strong>{{ $org->name }}</strong>
                   <?php else: ?>
