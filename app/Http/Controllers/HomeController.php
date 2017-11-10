@@ -111,14 +111,16 @@ class HomeController extends Controller
       if ( parent::isOrgHead() || parent::isOsa() ) {
         return [
           'partial1' => 'partials.set_event',
-          'partial2' => 'partials.manage_notification',
-          'partial3' => 'partials.view_calendar',
+          'partial3' => 'partials.manage_notification',
+          'partial2' => 'partials.view_calendar',
           'partial4' => 'partials.generate_attendance'
         ];
       }
       if (parent::isOrgMember()) {
         return [
           'partial1' => 'partials.view_calendar',
+          'partial3' => 'partials.view_calendar',
+          'partial2' => 'partials.generate_attendance'
         ];
       }
     }
