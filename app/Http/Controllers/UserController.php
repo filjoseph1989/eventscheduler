@@ -443,7 +443,7 @@ class UserController extends Controller
      * @param  Request $request
      * @return Illuminate\Response
      */
-    public function uploadProfilePic (Request $request) 
+    public function uploadProfilePic (Request $request)
     {
       $this->validate($request, [
         'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
