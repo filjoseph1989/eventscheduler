@@ -74,7 +74,7 @@
     var action         = _this.data('action');
     var approval       = _this.data('approval');
     var organizationId = _this.data('organization-id');
-    var eventTypeId    = _this.data('event-type');
+    var eventTypeId    = _this.data('event-type-id');
     var userTypeId     = _this.data('user-type-id');
     var personal       = _this.data('personal');
 
@@ -463,6 +463,8 @@
     var eventType = $(this).data('event-type-id');
     var url       = '/Event/' + id;
 
+    console.log(id, eventType, url);
+
     // naa pa problem kay ang eventtyp naa pud sa event table '2' ang value
 
     if (eventType == 2) {
@@ -582,7 +584,6 @@
    * @param {int} eventTypeId
    */
   var eventModal = function (currentValue, eventTypeId) {
-    // console.log(currentValue);
     // write html
     $('#facebook-event').val(currentValue.id);
     $('#modal-event-title').html(currentValue.title);
@@ -607,6 +608,11 @@
       $('#modal-request-approval').addClass('hidden');
     }
 
+    if( currentValue.event_type_id == 1 && currentValue.is_approve != 'true' ) {
+      $('#modal-advertise-official-events').removeClass('hidden');
+    }
+
+    $('#modal-advertise-official-events-form').attr('action', '/event/AdvertiseEvent');
     $('#modal-advertise-local-events-form').attr('action', '/event/AdvertiseEvent');
     $('#advertise_id').val(currentValue.id);
     $('#advertise_category').val(currentValue.category);

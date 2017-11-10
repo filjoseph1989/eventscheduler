@@ -43,10 +43,13 @@ class EventAdvertiseController extends Controller
       if($request->category == 'personal' ){
         // dd('true');
         $event = PersonalEvent::where('id', $request->id)->with(['user', 'organization'])->get()->first();
-      } elseif($request->catergory == 'within' ) {
+      } elseif($request->catergory == 'within') {
         // dd('false');
         $event = Event::where('id', $request->id)->with(['user', 'organization'])->get()->first();
+      } else {
+        $event = Event::where('id', $request->id)->with('user')->get()->first();
       }
+
       // dd($event );
       $event->status = 'upcoming';
       $event->is_approve = 'true';

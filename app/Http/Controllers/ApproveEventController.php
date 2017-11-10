@@ -69,7 +69,7 @@ class ApproveEventController extends Controller
           }
 
         return back()
-          ->with('status', 'Successfully approved ' . ucwords($event->title) . ' '. ucwords($event->category) . ' event.');
+          ->with('status', 'Successfully approved ' . ucwords($event[0]->title) . ' '. ucwords($event[0]->category) . ' event.');
       }
     }
 
@@ -81,7 +81,11 @@ class ApproveEventController extends Controller
      */
     protected function facebookPost ($event) {
       $data['fb_message'] = self::smsMessage($event->category, $event);
-      User::send($data['fb_message']);
+      if (! is_null($event->img)) {
+        User::send($data['fb_message'], $event->img);
+      } else {
+        User::send($data['fb_message']);
+      }
     }
 
     /**
@@ -234,11 +238,11 @@ class ApproveEventController extends Controller
           break;
 
         case 'within':
-          $heading = "Hello {$event->organization->name}! You have an upcoming event!";
+          $heading = "Hello {$event->organization->name}! You have an upcoming event! ";
           break;
 
         case 'organization':
-          $heading = "Hello Student Leaders! You have an upcoming event!";
+          $heading = "Hello Student Leaders! You have an upcoming event! ";
           break;
 
         case 'personal':
@@ -262,7 +266,7 @@ class ApproveEventController extends Controller
       }
 
       $heading .=
-        "{$new_line}Venue: {$event->venue}" .
+        "{$new_line}Venue: {$event->venue} " .
         "{$new_line}Duration: {$event->date_start}, {$event->date_start_time} to {$event->date_end}, {$event->date_end_time} " .
         "{$new_line}{$event->additional_msg_sms}" .
         "{$new_line}Please be guided accordingly. Thank You!";

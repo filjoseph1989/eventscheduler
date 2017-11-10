@@ -222,8 +222,7 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $event = Event::find($id)
-        ->with('organization');
+      $event = Event::find($id);
 
       if ($request->has('facebook')) {
         $event->facebook = ($request->facebook === true) ? 'off' : 'on';

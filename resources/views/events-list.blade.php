@@ -65,7 +65,8 @@
                 <a href="{{ route('Event.create') }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right" style="margin-left:10px;">Create Event</a>
               <?php endif; ?>
               @if ( session('account') == 'osa')
-                <button class="bg-teal waves-effect btn pull-right" data-toggle="modal" data-target="#edit-notification-modal">Edit Notification</button>
+                <button class="bg-teal waves-effect btn pull-right" data-toggle="modal" data-target="#edit-notification-modal" style="margin-left: 10px">Edit Notification</button>
+                <a href="{{ route('Event.create') }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right"  >Create Event</a>
               @endif
               <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -162,8 +163,17 @@
               {{ csrf_field() }}
               {{ method_field('PUT') }}
             </form>
+          @else
+            <button type="button" data-color="teal" class="btn bg-teal waves-effect request-approval hidden" id="modal-advertise-official-events" data-toggle="tooltip" data-placement="top" title="Advertise Official Events"
+              onclick="event.preventDefault(); document.getElementById('modal-advertise-official-events-form').submit();">
+              Advertise
+            </button>
+            <form class="" id="modal-advertise-official-events-form" action="" method="post" style="display: none;">
+              {{ csrf_field() }}
+              <input type="hidden" id="advertise_id" name="id" value="">
+              <input type="hidden" id="advertise_category" name="category" value="">
+            </form>
           @endif
-
           <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
         </div>
       </div>

@@ -18,14 +18,17 @@ class FaceBookNotification extends Notification
 
     private $message;
 
+    private $picture;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($message)
+    public function __construct($message, $picture = '')
     {
         $this->message = $message;
+        $this->picture = $picture;
     }
 
     /**
@@ -36,7 +39,7 @@ class FaceBookNotification extends Notification
      */
     public function via($notifiable)
     {
-        return [FacebookPosterChannel::class];    
+        return [FacebookPosterChannel::class];
     }
 
     /**
@@ -46,7 +49,12 @@ class FaceBookNotification extends Notification
      * @return object
      */
     public function toFacebookPoster($notifiable) {
+      if ($this->picture != '') {
+        return (new FacebookPosterPost($this->message))
+          ->withImage(url("img/social/{$this->picture}"));
+      } else {
         return new FacebookPosterPost($this->message);
+      }
     }
 
     /**
