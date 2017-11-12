@@ -111,15 +111,17 @@ class UserController extends Controller
         $positions     = Position::all();
         $accounts      = UserType::all();
         $organizations = Organization::all();
+        $courses       = Course::all();
       } else {
         $positions = Position::all()
           ->except([2,3]);
+        $courses       = Course::all();
       }
 
       # View
       return view('auth/register')
         ->with([
-          'courses'       => Course::all(),
+          'courses'       => $courses,
           'accounts'      => UserType::all(),
           'positions'     => $positions,
           'accounts'      => isset($accounts) ? $accounts : null,
@@ -135,10 +137,11 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-      $user = $request->only([
-        'account_number', 'full_name', 'email', 'position_id'
-      ]);
+      // dd( $request );
 
+      $user = $request->only([
+        'account_number', 'full_name', 'email', 'position_id', 'course_id'
+      ]);
       if (parent::isOrgHead()) {
         $user['user_type_id']    = '2';
         $user['organization_id'] = self::extractID(self::getOrganizationsID()); # this is from a CommonMethodTrait
@@ -152,7 +155,7 @@ class UserController extends Controller
       # Return the invalid account number
       if (! preg_match('/^(20[0-9]{2})-([0-9]{5})$/', $user['account_number'])) {
         $user['error']                = true;
-        $user['error_account_number'] = $user['account_number'];
+        $user['error_account_number'] = "Invalid format for {$user['account_number']}";
         return json_encode($user);
       }
 
@@ -168,6 +171,14 @@ class UserController extends Controller
         $statusNotice        = "The email address or the account number already exist";
         $user['error']       = true;
         $user['error_email'] = $statusNotice;
+        return json_encode($user);
+      }
+
+      #if course is empty
+      if ( empty($user['course_id']) ) {
+        $statusNotice        = "Please choose course for {$user['full_name']}";
+        $user['error']       = true;
+        $user['error_course'] = $statusNotice;
         return json_encode($user);
       }
 
@@ -190,6 +201,18 @@ class UserController extends Controller
         return json_encode($user);
       }
 
+
+      # Check the user password from the database
+      if (is_null($user->password)) {
+        $password          = str_random(10);
+        $request->password = $password;
+
+        $request->email = $user->email;
+        Mail::to($user->email)->send(new EmailNotification($request));
+
+        $user->password = bcrypt($password);
+      }
+
       $result = User::create($user);
 
       if( $result->wasRecentlyCreated ){
@@ -203,7 +226,12 @@ class UserController extends Controller
         unset($user['user_type_id']);
         unset($user['status']);
 
-        OrganizationGroup::create($user);
+        // $data = [
+        //   'user_id'         => $result->id;
+        //   'organization_id' =>
+        //   'position_id'     =>
+        // ];
+        // OrganizationGroup::create($user);
       }
 
       $user = [
@@ -287,7 +315,7 @@ class UserController extends Controller
 
         # Check the user password from the database
         if (is_null($user->password)) {
-          $password          = str_random(15);
+          $password          = str_random(10);
           $request->password = $password;
 
           $request->email = $user->email;
@@ -506,14 +534,16 @@ class UserController extends Controller
      */
     private function positionIsTaken(&$user)
     {
-      $position = OrganizationGroup::with('position')
+      if( $user['position_id'] != 1 ) {
+        $position = OrganizationGroup::with('position')
         ->where('position_id', $user['position_id'])
         ->where('organization_id', self::getOrganizationsID())
         ->get();
 
-      if ($position->count() > 0) {
-        $this->positionName = $position[0]->position->name;
-        return true;
+        if ($position->count() > 0) {
+          $this->positionName = $position[0]->position->name;
+          return true;
+        }
       }
 
       return false;

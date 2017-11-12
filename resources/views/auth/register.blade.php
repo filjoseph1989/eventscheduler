@@ -25,14 +25,14 @@
               <div class="row clearfix" id="input1">
                 <form class="" action="{{ route('User.store') }}" method="post">
                   {{ csrf_field() }}
-                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                  <div class="col-lg-2 col-md- col-sm-2 col-xs-2">
                     <div class="form-group form-float form-group">
                       <div class="form-line">
-                        <input type="text" class="form-control" id="account_number" name="account_number" placeholder="Student Number (20XX-XXXXX)" value="" pattern="^(20[0-9]{2})-([0-9]{5})$" required autofocus>
+                        <input type="text" class="form-control" id="account_number" name="account_number" placeholder="Student Number" value="" pattern="^(20[0-9]{2})-([0-9]{5})$" required autofocus>
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                     <div class="form-group form-float form-group">
                       <div class="form-line">
                         <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Full name" value="" required>
@@ -43,6 +43,20 @@
                     <div class="form-group form-float form-group">
                       <div class="form-line">
                         <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                    <div class="form-group form-float form-group">
+                      <div class="form-group form-float">
+                        <div class="form-line focused">
+                          <select class="form-control show-tick" id="course_id" name="course_id">
+                            <option value="{{ old('course_id') }}" id="course-option">- Select Course -</option>
+                            @foreach ($courses as $key => $course)
+                            <option value="{{ $course->id }}">{{ $course->name }}</option>
+                            @endforeach
+                          </select>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -84,14 +98,14 @@
     <div class="row clearfix" id="templateid">
       <form class="" action="{{ route('User.store') }}" method="post">
         {{ csrf_field() }}
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <div class="col-lg-2 col-md- col-sm-2 col-xs-2">
           <div class="form-group form-float form-group">
             <div class="form-line">
-              <input type="text" class="form-control" id="account_number" name="account_number" placeholder="Student Number (20XX-XXXXX)" value="" pattern="^(20[0-9]{2})-([0-9]{5})$" required autofocus>
+              <input type="text" class="form-control" id="account_number" name="account_number" placeholder="Student Number" value="" pattern="^(20[0-9]{2})-([0-9]{5})$" required autofocus>
             </div>
           </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
           <div class="form-group form-float form-group">
             <div class="form-line">
               <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Full name" value="" required>
@@ -102,6 +116,20 @@
           <div class="form-group form-float form-group">
             <div class="form-line">
               <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="" required>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+          <div class="form-group form-float form-group">
+            <div class="form-group form-float">
+              <div class="form-line focused">
+                <select class="form-control show-tick" id="course_id" name="course_id">
+                  <option value="{{ old('course_id') }}" id="course-option">- Select Course -</option>
+                  @foreach ($courses as $key => $course)
+                  <option value="{{ $course->id }}">{{ $course->name }}</option>
+                  @endforeach
+                </select>
+              </div>
             </div>
           </div>
         </div>
@@ -144,11 +172,14 @@
             $message = "Student Number should be in the following format (20XX-XXXXX) where X are natural numbers, not " + $details.error_account_number;
             swal('Error!', $message, 'error');
           }
-          if ($details.error_position != undefined || $details.error_position != null) {
-            swal('Error!', $details.error_position, 'error');
+          if ($details.error_account_number != undefined || $details.error_account_number != null) {
+            swal('Error!', $details.error_account_number, 'error');
           }
           if ($details.error_email != undefined || $details.error_email != null) {
             swal('Error!', $details.error_email, 'error');
+          }
+          if ($details.error_course != undefined || $details.error_course != null) {
+            swal('Error!', $details.error_course, 'error');
           }
           if ($details.error_position != undefined || $details.error_position != null) {
             swal('Error!', $details.error_position, 'error');

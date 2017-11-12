@@ -30,7 +30,8 @@
             </div>
             <div class="body">
               <a href="{{ route('Event.create') }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right"  style="margin-left:10px;">Create Event</a>
-              <button class="bg-teal waves-effect btn pull-right" data-toggle="modal" data-target="#edit-notification-modal" style="margin-left: 10px">Edit Notification</button>
+              <!-- <button class="bg-teal waves-effect btn pull-right" data-toggle="modal" data-target="#edit-notification-modal" style="margin-left: 10px">Edit Notification</button> -->
+
               <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
@@ -344,6 +345,32 @@
           @endif
           <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
         </div>
+
+          <div id="edit-notification-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="event" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <h4 class="modal-title" id="event-title">Edit Event Notification</h4>
+                </div>
+                <div class="modal-body">
+                  <div class="list-group">
+                    <a href="{{ route('EventNotification.show', 1) }}" class="list-group-item"> Edit Notification Settings of Official Events </a>
+                    @if(Auth::user()->user_type_id != 1)
+                      <a href="{{ route('EventNotification.show', 2) }}" class="list-group-item"> Edit Notification Settings of Personal Events </a>
+                    @else
+                      <a href="{{ route('EventNotification.show', 2) }}" class="list-group-item"> Edit Notification Settings of Local Events </a>
+                    @endif
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                </div>
+              </div>
+            </div>
+          </div>
 
       </div>
     </div>
