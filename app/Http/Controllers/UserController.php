@@ -140,7 +140,7 @@ class UserController extends Controller
       // dd( $request );
 
       $user = $request->only([
-        'account_number', 'full_name', 'email', 'position_id', 'course_id'
+        'account_number', 'full_name', 'email', 'position_id', 'course_id', 'password'
       ]);
       if (parent::isOrgHead()) {
         $user['user_type_id']    = '2';
@@ -201,37 +201,49 @@ class UserController extends Controller
         return json_encode($user);
       }
 
-
       # Check the user password from the database
-      if (is_null($user->password)) {
+      if (empty($user['password'])) {
         $password          = str_random(10);
         $request->password = $password;
 
-        $request->email = $user->email;
-        Mail::to($user->email)->send(new EmailNotification($request));
+        $request->email = $user['email'];
+        Mail::to($user['email'])->send(new EmailNotification($request));
 
-        $user->password = bcrypt($password);
+        $user['password'] = bcrypt($password);
+        $user['status']   = 'true';
       }
 
       $result = User::create($user);
 
-      if( $result->wasRecentlyCreated ){
+      if( $result->wasRecentlyCreated ) {
         # Get the user created ID
         $user['user_id'] = $result->id;
 
-        # remove from arrays the following
-        unset($user['account_number']);
-        unset($user['full_name']);
-        unset($user['email']);
-        unset($user['user_type_id']);
-        unset($user['status']);
+        $new_org_member = OrganizationGroup::create([
+          'user_id'         => $result->id,
+          'organization_id' => $user['organization_id'],
+          'position_id'     => $user['position_id'],
+        ]);
 
-        // $data = [
-        //   'user_id'         => $result->id;
-        //   'organization_id' =>
-        //   'position_id'     =>
-        // ];
-        // OrganizationGroup::create($user);
+      //  if ($new_org_member->wasRecentlyCreated) {
+      //    return back()
+      //    ->withInput()
+      //    ->with('status', 'Successfully added new user');
+      //  }
+
+        if( $new_org_member->wasRecentlyCreated ){
+          # remove from arrays the following
+          unset($user['account_number']);
+          unset($user['full_name']);
+          unset($user['email']);
+          unset($user['user_type_id']);
+          unset($user['status']);
+          unset($user['password']);
+          unset($user['position_id']);
+          unset($user['course_id']);
+          unset($user['organization_id']);
+        }
+
       }
 
       $user = [

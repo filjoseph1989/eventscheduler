@@ -29,6 +29,7 @@
                     <div class="form-group form-float form-group">
                       <div class="form-line">
                         <input type="text" class="form-control" id="account_number" name="account_number" placeholder="Student Number" value="" pattern="^(20[0-9]{2})-([0-9]{5})$" required autofocus>
+                        <input type="hidden" id="password" name="password" value="">
                       </div>
                     </div>
                   </div>
@@ -102,6 +103,7 @@
           <div class="form-group form-float form-group">
             <div class="form-line">
               <input type="text" class="form-control" id="account_number" name="account_number" placeholder="Student Number" value="" pattern="^(20[0-9]{2})-([0-9]{5})$" required autofocus>
+              <input type="hidden" id="password" name="password" value="">
             </div>
           </div>
         </div>
