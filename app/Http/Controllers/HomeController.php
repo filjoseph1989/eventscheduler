@@ -57,7 +57,7 @@ class HomeController extends Controller
               'loginClass'   => $this->theme,
               'user_account' => str_replace('-', ' ', $this->account_name),
               'account'  => self::getAccount(Auth::user()->user_type_id),
-              'org_name' => self::getOrgHeadOrgName(Auth::id()),
+              'org_name' => Auth::user()->user_type_id == 1 ? self::getOrgHeadOrgName(Auth::id()) : " ",
             ]);
 
             # Render View
@@ -109,20 +109,11 @@ class HomeController extends Controller
      */
     private function getPartials()
     {
-      if ( parent::isOrgHead() || parent::isOsa() ) {
         return [
           'partial1' => 'partials.set_event',
           'partial3' => 'partials.manage_notification',
           'partial2' => 'partials.view_calendar',
           'partial4' => 'partials.generate_attendance'
         ];
-      }
-      if (parent::isOrgMember()) {
-        return [
-          'partial1' => 'partials.view_calendar',
-          'partial3' => 'partials.view_calendar',
-          'partial2' => 'partials.generate_attendance'
-        ];
-      }
     }
 }

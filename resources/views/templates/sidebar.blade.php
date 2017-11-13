@@ -83,20 +83,18 @@
             <span>Events</span>
           </a>
           <ul class="ml-menu">
-            {{-- @if (session('account') != 'org-member') --}}
-              <li>
-                <a href="{{ route('Event.create') }}"> <span>Create Event</span> </a>
-              </li>
-            {{-- @endif --}}
+            <li>
+              <a href="{{ route('Event.create') }}"> <span>Create Event</span> </a>
+            </li>
             <li>
               <a href="#" class="menu-toggle"><span>List of Events</span></a>
               <ul class="ml-menu">
                 @if( session('account') == 'org-head')
-                  <li><a href="{{ route('Event.show', 0) }}"><span><strong>{{session('org_name')}}</strong> Events</span></a></li>
+                  <li><a href="{{ route('Event.show', 0) }}"><span><strong> {{ session('org_name') }} </strong> Events</span></a></li>
                 @elseif( session('account') == 'org-member' )
                   <li><a href="{{ route('Event.show', 0) }}"><span>My Organization Events</span></a></li>
                 @endif
-                <li><a href="{{ route('Event.show', 1) }}"> <span>Official</span></a></li>
+                  <li><a href="{{ route('Event.show', 1) }}"> <span>Official</span></a></li>
                 @if (session('account') != 'osa')
                   <li>
                     <a href="{{ route('event.dlv', 2) }}">
@@ -112,12 +110,19 @@
                 @endif
               </ul>
             </li>
-            @if (session('account') == 'osa')
-              <li>
-                <a href="{{ route('Event.index') }}"><span>Approve Events</span></a>
-              </li>
-            @endif
             <li>
+              <a href="#" class="menu-toggle"><span>Edit Notification Settings</span></a>
+              <ul class="ml-menu">
+                @if( session('account') == 'org-member' )
+                  <li><a href="{{ route('EventNotification.show', 2) }}"> Unadvertised Personal Events </a></li>
+                @elseif( session('account') == 'org-head' )
+                  <li><a href="{{ route('EventNotification.show', 1) }}"> Unadvertised Official Events </a></li>
+                  <li><a href="{{ route('EventNotification.show', 2) }}"> Unadvertised Local Events </a></li>
+                @elseif( session('account') == 'osa' )
+                  <li><a href="{{ route('EventNotification.show', 1) }}"> Unadvertised Official Events </a></li>
+                  <li><a href="{{ route('EventNotification.show', 2) }}"> Unadvertised Personal Events </a></li>
+                @endif
+              </ul>
               <a href="#" class="menu-toggle"> <span>Calendar</span> </a>
               <ul class="ml-menu">
                 <li><a href="{{ route('Calendar.show', 1) }}"><span>Official</span></a></li>
