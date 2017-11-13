@@ -121,14 +121,8 @@
               <a href="#" class="menu-toggle"> <span>Calendar</span> </a>
               <ul class="ml-menu">
                 <li><a href="{{ route('Calendar.show', 1) }}"><span>Official</span></a></li>
-                <li><a href="{{ route('Calendar.show', 2) }}">
-                  <span>
-                    @if (session('account') != 'org-head')
-                      Personal
-                    @else
-                      Local
-                    @endif
-                  </span></a></li>
+                @if( session('account') == 'org-head' ) <li><a href="{{ route('Calendar.show', 2) }}"> <span>Within Primary Organization</span></a></li> @endif
+                <li><a href="{{ route('Calendar.show', 3) }}"> <span>Personal</span></a></li>
               </ul>
             </li>
           </ul>

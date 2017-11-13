@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Common\CalendarTrait;
 use Carbon\Carbon;
-
+use Auth;
 # Models
 use App\Models\Event;
 use App\Models\PersonalEvent;
+use App\Models\OrganizationGroup;
 
 /**
  * Handle the calendar request
@@ -24,7 +25,8 @@ class CalendarController extends Controller
 
     const ALL_DAY_REGEX = '/^\d{4}-\d\d-\d\d$/'; // matches strings like "2013-12-29";
 
-    private $list = ['', 'official', 'personal'];
+
+    private $list = ['', 'official', '', 'personal'];
 
     /**
      * Build instance of a class
@@ -51,18 +53,36 @@ class CalendarController extends Controller
             )->where('event_type_id', $id)
              ->where('is_approve', 'true')
              ->get();
-        } else {
-            $events = PersonalEvent::select(
+        } else if ($id == 2) {
+            $events = Event::select(
               'title',
               'date_start',
               'date_end',
               'whole_day'
             )->where('event_type_id', $id)
              ->where('is_approve', 'true')
+             ->where('user_id', Auth::id())
              ->get();
+        } else if ($id == 3) {
+          $events = PersonalEvent::select(
+            'title',
+            'date_start',
+            'date_end',
+            'whole_day'
+          )->where('event_type_id', 2)
+           ->where('is_approve', 'true')
+           ->where('user_id', Auth::id())
+           ->get();
         }
 
         $output_arrays = array();
+
+        $orName = OrganizationGroup::with('organization')
+                    ->where('user_id', Auth::id())
+                    ->where('position_id', 3)
+                    ->get()
+                    ->first();
+        $this->list[2] = $orName->organization->name;
 
         # Convert the input array into a useful Event object
         foreach ($events as $key => $event) {

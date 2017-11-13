@@ -225,12 +225,6 @@ class UserController extends Controller
           'position_id'     => $user['position_id'],
         ]);
 
-      //  if ($new_org_member->wasRecentlyCreated) {
-      //    return back()
-      //    ->withInput()
-      //    ->with('status', 'Successfully added new user');
-      //  }
-
         if( $new_org_member->wasRecentlyCreated ){
           # remove from arrays the following
           unset($user['account_number']);
@@ -247,9 +241,15 @@ class UserController extends Controller
       }
 
       $user = [
-        'success' => true
+        'success' => true,
+        'message' => "Successfully added " . ucwords($result->full_name) . "as a new member",
       ];
       return json_encode($user);
+
+      //
+      // $statusNotice        = "Successfully added $result->full_name as a new member";
+      // $user['success'] = tr;
+      // return json_encode($user);
     }
 
     /**

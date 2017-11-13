@@ -187,7 +187,7 @@
             swal('Error!', $details.error_position, 'error');
           }
           if ($details.success != undefined || $details.success != null) {
-            swal('Great!', 'Successfully added a new member', 'success');
+            swal('Great!', $details.message, 'success');
           }
         });
       });

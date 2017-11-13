@@ -322,7 +322,6 @@ class EventController extends Controller
     {
       $events = Event::where('organization_id', $orgId)
         ->where('event_type_id', $kind)
-        ->where('is_approve', true)
         ->get();
 
       self::getDateComparison($events);

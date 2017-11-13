@@ -120,7 +120,7 @@
             <input type="text" id="organization-form-input" name="" value="">
           </form>
           <a class="btn btn-success" id="official-event-submit"> Official Events</a>
-          <a class="btn btn-success" id="local-event-submit">Local Events</a>
+          <a class="btn btn-success" id="local-event-submit"> Local Events</a>
           <a class="btn btn-success" id="member-list">Members</a>
         </div>
         <div class="modal-footer">
