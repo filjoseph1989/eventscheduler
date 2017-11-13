@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes; 
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Event extends Model
 {
@@ -83,7 +83,7 @@ class Event extends Model
       ->where('status', 'requested')
       ->get();
   }
-  
+
 
   /**
    * Return the organization leader events
@@ -201,10 +201,10 @@ class Event extends Model
   {
     return static::with('organization')
       ->where('organization_id', $value->organization_id)
-      ->where('event_type_id', $id)
+      ->where('event_type_id', 2)
       ->where('category', 'within')
-      ->where('is_approve', 'false')            
+      ->where('is_approve', 'false')
       ->get()
-      ->toArray();   
+      ->toArray();
   }
 }

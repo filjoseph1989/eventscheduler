@@ -52,8 +52,9 @@ class EventNotificationController extends Controller
               ]);
         } elseif( $id == 2 ) {
 
-            $org_id = OrganizationGroup::where('user_id', $id )
+            $org_id = OrganizationGroup::where('user_id', Auth::id() )
                 ->get();
+            // dd( $org_id );
 
             $events = [];
 
@@ -65,11 +66,12 @@ class EventNotificationController extends Controller
             foreach ($org_id as $key => $value) {
                 $events['within'][$value->id] = Event::getLocalEventsNotification(Auth::id(), $value);
             }
-
+            // dd($events);
             $events['personal'] = PersonalEvent::getLocalPersonalEventsNotification(Auth::id());
 
             return view('edit_notification_local')
               ->with([
+                  'title'          => $this->list[$id],
                   'eventsPersonal' => $events['personal'],
                   'eventsWithin'   => $events['within'],
                   'eventType'      => $id,

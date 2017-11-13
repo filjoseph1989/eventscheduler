@@ -24,7 +24,7 @@
 
           <div class="card">
             <div class="header">
-              <h2> Edit Notification for {{ ucwords($title) }} Events
+              <h2> Edit Notification for Unadvertised {{ ucwords($title) }} Events
                 <?php
                   $type               = "All the";
                   $thirdPersonAddress = "your";

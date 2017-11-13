@@ -24,7 +24,7 @@
 
           <div class="card">
             <div class="header">
-              <h2> Edit Notification for Local Events
+              <h2> Edit Notification for Unadvertised {{ ucwords($title) }} Events
               <small>Display the local event</small>
               </h2>
             </div>
@@ -36,6 +36,7 @@
                     <thead>
                         <tr>
                           <th>Title</th>
+                          <th>Type</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,6 +52,7 @@
                               data-user-type-id="{{ Auth::user()->user_type_id }}"
                               data-approval="{{ $event->is_approve }}">
                               <td><a href="#" class="edit-notif" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
+                              <td> Within Organization Event </td>
                             </tr>
                           @endforeach
                         @endforeach
@@ -67,6 +69,7 @@
                               data-approval="{{ $event->is_approve }}"
                               data-personal="true">
                             <td><a href="#" class="edit-notif" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
+                            <td>Personal Event</td>
                           </tr>
                         @endforeach
                       @endif
