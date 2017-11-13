@@ -92,7 +92,7 @@
               <a href="#" class="menu-toggle"><span>List of Events</span></a>
               <ul class="ml-menu">
                 @if( session('account') == 'org-head')
-                  <li><a href="{{ route('Event.show', 0) }}"><span>My Primary Organization Events</span></a></li>
+                  <li><a href="{{ route('Event.show', 0) }}"><span><strong>{{session('org_name')}}</strong> Events</span></a></li>
                 @elseif( session('account') == 'org-member' )
                   <li><a href="{{ route('Event.show', 0) }}"><span>My Organization Events</span></a></li>
                 @endif

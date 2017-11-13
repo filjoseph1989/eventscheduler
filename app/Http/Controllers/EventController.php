@@ -182,6 +182,12 @@ class EventController extends Controller
      */
     public function show($id)
     {
+      // $org = OrganizationGroup::with('organization')
+      //       ->where('user_id', Auth::id())
+      //       ->where('position_id', 3)
+      //       ->get()->first();
+      // dd($org->organization->name);
+      // dd( session('org_name') );
       # Keep the account
       $this->account = Auth::user()->user_type_id;
 

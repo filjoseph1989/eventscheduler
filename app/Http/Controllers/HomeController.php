@@ -56,7 +56,8 @@ class HomeController extends Controller
             session([
               'loginClass'   => $this->theme,
               'user_account' => str_replace('-', ' ', $this->account_name),
-              'account'  => self::getAccount(Auth::user()->user_type_id)
+              'account'  => self::getAccount(Auth::user()->user_type_id),
+              'org_name' => self::getOrgHeadOrgName(Auth::id()),
             ]);
 
             # Render View

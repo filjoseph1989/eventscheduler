@@ -81,6 +81,21 @@ trait CommonMethodTrait
     }
   }
 
+  /**
+   * [getOrgHeadOrgName description] : get primary organization name of org head
+   * @param  [type] $user_id [description]
+   * @return [type]          [description]
+   */
+
+  private function getOrgHeadOrgName($id)
+  {
+    $org = OrganizationGroup::with('organization')
+          ->where('user_id', $id )
+          ->where('position_id', 3)
+          ->get()->first();
+    $str = $org->organization->name;
+    return $str;
+  }
  /**
      * This method compare the given date to current date
      * and when true, set the status to on going
