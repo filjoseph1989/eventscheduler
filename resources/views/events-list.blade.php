@@ -72,7 +72,6 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                     <thead>
-                      <?php if ($account == 'org-member'): ?>
                         <th>Title</th>
                         <th>Venue</th>
                         <th>Organizer</th>
@@ -80,7 +79,6 @@
                         <th>Start</th>
                         <th>End</th>
                         <th>Status</th>
-                      <?php endif; ?>
                     </thead>
                     <tbody>
                       <?php if (! is_null($events)): ?>
