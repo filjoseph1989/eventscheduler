@@ -13,7 +13,7 @@
  * @author Fil <filjoseph22@gmail.com>
  * @author Liz <janicalizdeguzman@gmail.com>
  * @since 0.1
- * @version 2.21
+ * @version 2.22
  * @date 09-30-2017
  * @date 11-10-2017 - last updated
  */
@@ -536,6 +536,44 @@
     };
 
     axios_post(url, data, function (data) { })
+  });
+
+  $('#save-event').click(function(event) {
+    var data = $('#add-event-form').serialize();
+
+    axios_post('/EventChecker', data, function(data) {
+      var form_data = $('#add-event-form').serializeArray();
+      var date_start = data.date_start;
+
+      if (date_start == form_data[5].value) {
+        swal({
+          title: "Conflict",
+          text: "You have the same schedule with " + data.title,
+          icon: "warning",
+          buttons: {
+            cancel: {
+              text: "Save Anyway",
+              value: true,
+              visible: true,
+              className: "save-anyway"
+            },
+            confirm: {
+              text: "Cancel",
+              value: null
+            }
+          }
+        })
+        .then((value) => {
+          if (value == true) {
+            $('#add-event-form').submit();
+          } else {
+            $('#add-event-form').submit(function() {
+              return false;
+            });
+          }
+        });
+      } // end if
+    });
   });
 
   /**

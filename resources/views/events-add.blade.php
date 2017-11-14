@@ -211,6 +211,7 @@
   <script src="{{ asset('js/admin.js') }}?v=0.1"></script>
   <script src="{{ asset('js/tooltips-popovers.js') }}?v=0.1"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.22"></script>
   <script type="text/javascript">
     $('.event-datepicker').bootstrapMaterialDatePicker({
       format: 'YYYY/MM/DD',
@@ -223,48 +224,6 @@
       format: 'HH:mm',
       clearButton: true,
       date: false
-    });
-
-    $('#save-event').click(function(event) {
-      var data = $('#add-event-form').serialize();
-
-      axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-      axios.post('/EventChecker', data)
-        .then(function (response) {
-          var form_data = $('#add-event-form').serializeArray();
-          var date_start = response.data.date_start;
-
-          if (date_start == form_data[5].value) {
-            swal({
-              title: "Conflict",
-              text: "You have the same schedule with "+response.data.title,
-              icon: "warning",
-              buttons: {
-                cancel: {
-                  text: "Save Anyway",
-                  value: true,
-                  visible: true,
-                  className: "save-anyway"
-                },
-                confirm: {
-                  text: "Cancel",
-                  value: null
-                }
-              }
-            })
-            .then((value) => {
-              if (value == true) {
-                $('#add-event-form').submit();
-              } else {
-                $('#add-event-form').submit(function() {
-                  return false;
-                });
-              }
-            });
-          } // end if
-        }).catch(function (error) {
-          console.log(error);
-        });
     });
   </script>
 @endsection
