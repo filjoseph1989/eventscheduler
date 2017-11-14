@@ -119,6 +119,8 @@ class EventController extends Controller
           ->get();
 
         $orgId = $org_id[0]->organization_id;
+      } else {
+        $orgId = 1;
       }
 
       $is_approve = 'false';
