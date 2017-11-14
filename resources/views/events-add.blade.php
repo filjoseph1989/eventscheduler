@@ -186,7 +186,7 @@
                 <div class="row clearfix">
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group">
-                      <button type="submit" class="btn btn-primary" name="button">
+                      <button type="button" class="btn btn-primary" id="save-event" name="button">
                         <i class="material-icons">save</i> Save
                       </button>
                     </div>
@@ -225,15 +225,17 @@
       date: false
     });
 
-    var result;
-    $('#add-event-form').submit(function(event) {
+    $('#save-event').click(function(event) {
+      var data = $('#add-event-form').serialize();
+
       axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-      axios.get('/EventChecker/1')
+      axios.post('/EventChecker', data)
         .then(function (response) {
           var form_data = $('#add-event-form').serializeArray();
           var date_start = response.data.date_start;
+
           if (date_start == form_data[5].value) {
-            var ret = swal({
+            swal({
               title: "Conflict",
               text: "You have the same schedule with "+response.data.title,
               icon: "warning",
@@ -241,7 +243,8 @@
                 cancel: {
                   text: "Save Anyway",
                   value: true,
-                  visible: true
+                  visible: true,
+                  className: "save-anyway"
                 },
                 confirm: {
                   text: "Cancel",
@@ -251,19 +254,17 @@
             })
             .then((value) => {
               if (value == true) {
-                return true;
+                $('#add-event-form').submit();
               } else {
-                return false;
+                $('#add-event-form').submit(function() {
+                  return false;
+                });
               }
             });
-
-            console.log(ret); // Nag stop ko ani kay wala ko kabalo pa sa promise
-          }
+          } // end if
         }).catch(function (error) {
           console.log(error);
         });
-
-      return false;
     });
   </script>
 @endsection

@@ -29,7 +29,6 @@ Route::group(['middleware'=>['auth']], function() {
     Route::resource('Profile',      'UserProfileController');
     Route::resource('Request',      'EventRequestApprovalController');
     Route::resource('Advertise',    'EventAdvertiseController');
-    Route::resource('EventChecker', 'EventCheckerController');
     Route::resource('Event',        'EventController', ['parameters' =>[
       'Event' => 'id'
     ]]);
@@ -83,4 +82,5 @@ Route::group(['middleware'=>['auth']], function() {
       Route::name('email.photo')->post('/email/photo', 'UploadPhotoController@uploadEmailPhoto');
     });
 
+    Route::post('/EventChecker', 'EventCheckerController@getDate');
 });
