@@ -205,11 +205,12 @@
 @endsection
 
 @section('js')
-  <script src="{{ asset('js/autosize.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/moment.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/admin.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/tooltips-popovers.js') }}"?v=0.1></script>
+  <script src="{{ asset('js/autosize.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/moment.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/admin.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/tooltips-popovers.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/sweetalert.min.js') }}?v=0.1"></script>
   <script type="text/javascript">
     $('.event-datepicker').bootstrapMaterialDatePicker({
       format: 'YYYY/MM/DD',
@@ -222,6 +223,47 @@
       format: 'HH:mm',
       clearButton: true,
       date: false
+    });
+
+    var result;
+    $('#add-event-form').submit(function(event) {
+      axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      axios.get('/EventChecker/1')
+        .then(function (response) {
+          var form_data = $('#add-event-form').serializeArray();
+          var date_start = response.data.date_start;
+          if (date_start == form_data[5].value) {
+            var ret = swal({
+              title: "Conflict",
+              text: "You have the same schedule with "+response.data.title,
+              icon: "warning",
+              buttons: {
+                cancel: {
+                  text: "Save Anyway",
+                  value: true,
+                  visible: true
+                },
+                confirm: {
+                  text: "Cancel",
+                  value: null
+                }
+              }
+            })
+            .then((value) => {
+              if (value == true) {
+                return true;
+              } else {
+                return false;
+              }
+            });
+
+            console.log(ret); // Nag stop ko ani kay wala ko kabalo pa sa promise
+          }
+        }).catch(function (error) {
+          console.log(error);
+        });
+
+      return false;
     });
   </script>
 @endsection

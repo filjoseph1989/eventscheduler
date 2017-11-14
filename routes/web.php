@@ -29,6 +29,7 @@ Route::group(['middleware'=>['auth']], function() {
     Route::resource('Profile',      'UserProfileController');
     Route::resource('Request',      'EventRequestApprovalController');
     Route::resource('Advertise',    'EventAdvertiseController');
+    Route::resource('EventChecker', 'EventCheckerController');
     Route::resource('Event',        'EventController', ['parameters' =>[
       'Event' => 'id'
     ]]);
