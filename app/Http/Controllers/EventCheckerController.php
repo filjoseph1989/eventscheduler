@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Common\CommonMethodTrait;
 use App\Models\Event;
 
 /**
@@ -15,6 +16,14 @@ use App\Models\Event;
  */
 class EventCheckerController extends Controller
 {
+  use CommonMethodTrait;
+
+  /**
+   * return event date
+   *
+   * @param  Request $request
+   * @return json
+   */
   public function getDate(Request $request)
   {
     $event = Event::where('date_start', $request->date_start)
@@ -23,5 +32,20 @@ class EventCheckerController extends Controller
 
     $event->date_start = str_replace('-', '/', $event->date_start);
     return $event;
+  }
+
+  /**
+   * Check who is the event creator
+   *
+   * @param  Request $request
+   * @return string
+   */
+  public function checkEventCreator(Request $request)
+  {
+    $event = Event::find($request->id);
+
+    echo json_encode([
+      'account' => self::getAccount($event->user_id)
+    ]);
   }
 }

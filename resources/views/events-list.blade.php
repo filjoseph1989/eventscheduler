@@ -89,7 +89,8 @@
                               data-organization-id="{{ $event->organization_id }}"
                               data-event-type-id="{{ $event->event_type_id }}"
                               data-user-type-id="{{ Auth::user()->user_type_id }}"
-                              data-approval="{{ $event->is_approve }}">
+                              data-approval="{{ $event->is_approve }}"
+                              data-account="{{ $account }}">
                             <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
                             <td>{{ $event->venue }}</td>
                             <td>{{ ! is_null($event->organization) ? $event->organization->name : 'University Official Event' }}</td>
@@ -127,7 +128,8 @@
           <h4 class="modal-title" id="event-title">Event Information</h4>
         </div>
         <div class="modal-body">
-          <table class="table">
+          <button type="button" class="btn btn-primary pull-right hidden" id="edit-event" name="button">Edit</button>
+          <table class="table" id="modal-event-table">
             <thead>
               <tr> <th id="modal-event-title"></th> </tr>
             </thead>
@@ -139,6 +141,104 @@
               <tr> <td id="modal-event-category">&nbsp;</td> </tr>
             </tbody>
           </table>
+          <form class="hidden" id="edit-event-form" action="{{ route('Event.store') }}" method="POST">
+            {{ csrf_field() }}
+            <div class="row clearfix">
+              <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group form-float form-group">
+                  <div class="form-line">
+                    <input type="hidden" id="event-id" name="id" value="">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Title of the event" value="" required autofocus>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group form-float form-group">
+                  <div class="form-line">
+                    <textarea rows="4" class="form-control no-resize" id="description" name="description" required placeholder="Description of the event"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group form-float form-group">
+                  <div class="form-line">
+                    <input type="text" class="form-control" id="venue" name="venue" placeholder="Venue" value="" required>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group form-float form-group">
+                  <div class="form-line">
+                    <input type="text" class="form-control event-datepicker" id="date_start" name="date_start" placeholder="Select Date Start" value="">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group form-float form-group">
+                  <div class="form-line">
+                    <input type="text" class="form-control event-timepicker" id="date_start_time" name="date_start_time" placeholder="Select Time Start" value="">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group form-float form-group">
+                  <div class="form-line">
+                    <input type="text" class="form-control event-datepicker" id="date_end" name="date_end" placeholder="Select Date End" value="">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group form-float form-group">
+                  <div class="form-line">
+                    <input type="text" class="form-control event-timepicker" id="date_end_time" name="date_end_time" placeholder="Select Time End" value="">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group form-float">
+                  <div class="form-line focused">
+                    <select class="form-control show-tick" id="category" name="category">
+                      <option value="" id="event-category-option">-- Select Event Category --</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group form-float">
+                  <div class="form-line focused">
+                    <select class="form-control show-tick" id="semester_id" name="semester_id">
+                      <option value="" id="semester-option">-- Select Semester --</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                  <button type="button" class="btn btn-primary" id="save-event" name="button">
+                    <i class="material-icons">save</i> Save
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
         <div class="modal-footer">
           @if (session('account') == 'org-head')
@@ -213,5 +313,5 @@
   <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}?v=0.1"></script>
   <script src="{{ asset('js/tooltips-popovers.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/app.js') }}?v=2.18" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.23" charset="utf-8"></script>
 @endsection

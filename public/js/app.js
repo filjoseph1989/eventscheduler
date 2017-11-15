@@ -44,6 +44,19 @@
     var eventTypeId    = _this.data('event-type-id');
     var userTypeId     = _this.data('user-type-id');
     var personal       = _this.data('personal');
+    var eventId        = _this.data('event');
+    data = {
+      id: eventId
+    }
+
+    axios_post('/EventChecker/checkuser', data, function(data) {
+      var account = $('.event-title').data('account');
+      if (account == data) {
+        console.log(data);
+        $('#edit-event').removeClass('hidden');
+        $('#edit-event').attr('data-event-id', $('.event-title').data('event'));
+      }
+    });
 
     if ( userTypeId == 3 ) {
       if (organizationId != undefined || personal == undefined || approval == true || eventTypeId == 2) {
@@ -577,6 +590,22 @@
   });
 
   /**
+   * Display the edit event form on modal
+   * @return {void}
+   */
+  $('#edit-event').click(function() {
+    $('#modal-event-table').addClass('hidden');
+    $('#edit-event-form').removeClass('hidden');
+    $('#edit-event').addClass('hidden');
+
+    var $id = $(this).data('event-id');
+    axios_post('/EventGetter', { id: $id }, function(data) {
+      console.log(data);
+    });
+  });
+
+
+  /**
    * New player for deal with http request
    *
    * @param  {string}   url
@@ -689,5 +718,18 @@
 
     // set value
     $('#modal-request-approval-form > #id').val(currentValue.id);
+  }
+
+  /**
+   * Put a data on edit event form on modal
+   *
+   * @param  {} data
+   * @return {}
+   */
+  var fillUpEditForm = function(data)
+  {
+    console.log(data);
+    // data.forEach(function(currentValue, index, arr) {
+    // });
   }
 })();

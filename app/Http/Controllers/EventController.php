@@ -409,9 +409,6 @@ class EventController extends Controller
       }
     }
 
-
-
-
     /**
      * Determine if the given must be a whole day event or
      * not
