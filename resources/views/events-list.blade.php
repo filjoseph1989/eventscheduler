@@ -90,7 +90,7 @@
                               data-event-type-id="{{ $event->event_type_id }}"
                               data-user-type-id="{{ Auth::user()->user_type_id }}"
                               data-approval="{{ $event->is_approve }}"
-                              data-account="{{ $account }}">
+                              data-account="{{ Auth::id() }}">
                             <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
                             <td>{{ $event->venue }}</td>
                             <td>{{ ! is_null($event->organization) ? $event->organization->name : 'University Official Event' }}</td>

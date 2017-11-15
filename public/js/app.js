@@ -50,11 +50,11 @@
     }
 
     axios_post('/EventChecker/checkuser', data, function(data) {
-      var account = $('.event-title').data('account');
-      if (account == data) {
-        console.log(data);
+      var account = $('.event-title').parents('tr').data('account');
+      console.log(account, data.account);
+      if (account == data.account) {
         $('#edit-event').removeClass('hidden');
-        $('#edit-event').attr('data-event-id', $('.event-title').data('event'));
+        $('#edit-event').attr('data-event-id', $('.event-title').parents('tr').data('event'));
       }
     });
 

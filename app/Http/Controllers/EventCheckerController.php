@@ -45,7 +45,7 @@ class EventCheckerController extends Controller
     $event = Event::find($request->id);
 
     echo json_encode([
-      'account' => self::getAccount($event->user_id)
+      'account' => $event->user_id
     ]);
   }
 }
