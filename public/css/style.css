@@ -3641,6 +3641,7 @@ section.content {
     padding: 9px 15px 6px 15px !important;
 }
 
+
 .ms-container .ms-optgroup-label {
     padding: 5px 0 0 8px !important;
 }
@@ -7643,6 +7644,7 @@ fieldset[disabled] .form-control {
     border-radius: 0;
 }
 
+
 .list-group .list-group-item .list-group-item-heading {
     font-weight: bold;
     font-size: 17px;
@@ -10263,6 +10265,7 @@ fieldset[disabled] .form-control {
     font-weight: bold;
 }
 
+
 .sidebar .menu .list .header {
     background: #eee;
     font-size: 12px;
@@ -10996,3 +10999,9 @@ tr>td:nth-child(2) {
 .modal-event {
   text-transform: capitalize;
 }
+
+.list-group a.list-group-item:hover {
+  background-color: #FFEFD5;
+}
+
+a.ml-menu-item-links:hover { background-color: #FFEFD5; }
