@@ -113,7 +113,8 @@ class EventController extends Controller
       $this->validateRequest($this, $request);
 
       $orgId = null;
-      if (! parent::isOsa()) {
+
+      if (! parent::isOsa() && ( $request->category == "university" || $request->category == "organization" || $request->category == "within" ) ) {
         $org_id = OrganizationGroup::where('user_id', Auth::id())
           ->where('position_id', 3)
           ->get();
@@ -122,7 +123,6 @@ class EventController extends Controller
       }
 
       $is_approve = 'false';
-
       if ($request->category == "university" || $request->category == "organization") {
         $event_type_id = 1;
       } else {
@@ -163,15 +163,21 @@ class EventController extends Controller
         $event = Event::create($data);
       }
 
-      if ($event->wasRecentlyCreated) {
         if( $request->category == 'personal' ){
-          return back()
+          if( Auth::user()->user_type_id == 1){
+            return back()
+            ->with('status', 'Successfully saved your event to "Local" List Of Events');
+          } else {
+            return back()
             ->with('status', 'Successfully saved your event to "Personal" List Of Events');
+          }
+        } else if( $request->category == 'organization' || $request->category == 'university' ) {
+            return back()
+            ->with('status', 'Successfully saved your event to "Official" List Of Events');
         } else {
           return back()
-            ->with('status', 'Successfully saved your event to "Official" List Of Events');
+            ->with('status', 'Successfully saved your event to "Local" List Of Events');
         }
-      }
     }
 
     /**
@@ -220,6 +226,7 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
+      
       $event = Event::find($id);
 
       if ($request->has('facebook')) {

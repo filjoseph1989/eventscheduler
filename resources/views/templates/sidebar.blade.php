@@ -95,7 +95,7 @@
                   <li><a href="{{ route('Event.show', 0) }}"><span>My Organization Events</span></a></li>
                 @endif
                   <li><a href="{{ route('Event.show', 1) }}"> <span>Official</span></a></li>
-                @if (session('account') != 'osa')
+                @if (session('account') == 'org-head')
                   <li>
                     <a href="{{ route('event.dlv', 2) }}">
                       <span>Local</span>
@@ -110,6 +110,9 @@
                 @endif
               </ul>
             </li>
+            {{-- <li>
+              <a href="#"> <span>Conflicting Events</span> </a>
+            </li> --}}
             <li>
               <a href="#" class="menu-toggle"><span>Edit Notification Settings</span></a>
               <ul class="ml-menu">
