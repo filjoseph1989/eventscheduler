@@ -14,10 +14,9 @@ class CreatePersonalEventsTable extends Migration
     public function up()
     {
          Schema::create('personal_events', function (Blueprint $table) {
-            $table->increments('id'); 
+            $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             $table->integer('event_type_id')->unsigned()->index();
-            $table->integer('semester_id')->unsigned()->index();
             $table->enum('category', ['within','personal','university','organization'])->nullable();
             $table->string('title');
             $table->text('description');
@@ -46,7 +45,6 @@ class CreatePersonalEventsTable extends Migration
             # Foreign keys
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('event_type_id')->references('id')->on('event_types');
-            $table->foreign('semester_id')->references('id')->on('semesters');
         });
     }
 

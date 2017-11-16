@@ -16,7 +16,6 @@ class Event extends Model
     'user_id',
     'organization_id',
     'event_type_id',
-    'semester_id',
     'title',
     'category',
     'description',

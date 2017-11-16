@@ -17,7 +17,6 @@ class PersonalEvent extends Model
      protected $fillable = [
       'user_id',
       'event_type_id',
-      'semester_id',
       'title',
       'category',
       'description',

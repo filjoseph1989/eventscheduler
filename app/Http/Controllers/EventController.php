@@ -14,7 +14,6 @@ use DateTime;
 
 # Models
 use App\Models\Event;
-use App\Models\Semester;
 use App\Models\EventType;
 use App\Models\EventGroup;
 use App\Models\OrganizationGroup;
@@ -96,10 +95,7 @@ class EventController extends Controller
     public function create()
     {
       # view
-      return  view('events-add')
-        ->with([
-          'semesters' => Semester::all()
-        ]);
+      return  view('events-add');
     }
 
     /**
@@ -140,7 +136,6 @@ class EventController extends Controller
         "user_id"         => $request->user_id,
         "event_type_id"   => $event_type_id,
         "organization_id" => $orgId,
-        "semester_id"     => $request->semester_id,
         "category"        => $request->category,
         "title"           => ucwords($request->title),
         "description"     => $request->description,
@@ -228,7 +223,7 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-      
+
       $event = Event::find($id);
 
       if ($request->has('facebook')) {

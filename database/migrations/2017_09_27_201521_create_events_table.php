@@ -18,7 +18,6 @@ class CreateEventsTable extends Migration
             $table->integer('user_id')->unsigned()->index();
             $table->integer('organization_id')->unsigned()->index()->nullable(); //made nullable for osa users
             $table->integer('event_type_id')->unsigned()->index();
-            $table->integer('semester_id')->unsigned()->index();
             $table->enum('category', ['within','personal','university','organization'])->nullable();
             $table->string('title'); //this is not unique because there are events with same titles at both semesters
             $table->text('description');
@@ -49,7 +48,6 @@ class CreateEventsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('organization_id')->references('id')->on('organizations');
             $table->foreign('event_type_id')->references('id')->on('event_types');
-            $table->foreign('semester_id')->references('id')->on('semesters');
         });
     }
 

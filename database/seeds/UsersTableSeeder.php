@@ -23,13 +23,13 @@ class UsersTableSeeder extends Seeder
 
   /**
    * Seeder run
-   * 
+   *
    * @return void
    */
   public function run()
   {
       $faker = Faker::create();
-      for ($i = 0 ; $i < 10; $i++)
+      for ($i = 0 ; $i < 1; $i++)
       {
           $gender = ['male','female'];
           email:
@@ -60,7 +60,7 @@ class UsersTableSeeder extends Seeder
             'course_id'      => $faker->numberBetween($min = 1, $max = 9),
             'full_name'      => ucfirst(substr($faker->name($gender), 0)),
             'account_number' => $account_number,
-            'user_type_id'   => $faker->numberBetween($min = 1, $max = 3),
+            'user_type_id'   => 3,
             'email'          => $email,
             'password'       => bcrypt($account_number),
             'facebook'       => $facebook,
