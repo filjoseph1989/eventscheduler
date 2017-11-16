@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
           $table->string('twitter')->nullable()->unique();
           $table->string('mobile_number', '12')->nullable();
           $table->string('picture')->default('profile.png');
-          $table->enum('status', ['true', 'false'])->default('false');
+          $table->enum('status', ['true', 'false'])->default('true');
           $table->rememberToken();
           $table->timestamps();
           $table->softDeletes();
