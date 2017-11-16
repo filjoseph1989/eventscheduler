@@ -30,8 +30,12 @@ class EventCheckerController extends Controller
       ->get()
       ->first();
 
-    $event->date_start = str_replace('-', '/', $event->date_start);
-    return $event;
+    if (isset($event->date_start)) {
+      $event->date_start = str_replace('-', '/', $event->date_start);
+      return $event;
+    } else {
+      return false;
+    }
   }
 
   /**
