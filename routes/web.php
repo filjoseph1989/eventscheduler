@@ -82,4 +82,7 @@ Route::group(['middleware'=>['auth']], function() {
       Route::name('email.photo')->post('/email/photo', 'UploadPhotoController@uploadEmailPhoto');
     });
 
+    Route::post('/EventChecker', 'EventCheckerController@getDate');
+    Route::post('/EventChecker/checkuser', 'EventCheckerController@checkEventCreator');
+    Route::post('/EventGetter', 'EventGetterController@getEvent');
 });

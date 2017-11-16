@@ -186,7 +186,7 @@
                 <div class="row clearfix">
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group">
-                      <button type="submit" class="btn btn-primary" name="button">
+                      <button type="button" class="btn btn-primary" id="save-event" name="button">
                         <i class="material-icons">save</i> Save
                       </button>
                     </div>
@@ -205,11 +205,13 @@
 @endsection
 
 @section('js')
-  <script src="{{ asset('js/autosize.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/moment.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/admin.js') }}"?v=0.1></script>
-  <script src="{{ asset('js/tooltips-popovers.js') }}"?v=0.1></script>
+  <script src="{{ asset('js/autosize.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/moment.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/admin.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/tooltips-popovers.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/sweetalert.min.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.22"></script>
   <script type="text/javascript">
     $('.event-datepicker').bootstrapMaterialDatePicker({
       format: 'YYYY/MM/DD',

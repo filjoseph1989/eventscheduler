@@ -13,7 +13,7 @@
  * @author Fil <filjoseph22@gmail.com>
  * @author Liz <janicalizdeguzman@gmail.com>
  * @since 0.1
- * @version 2.21
+ * @version 2.22
  * @date 09-30-2017
  * @date 11-10-2017 - last updated
  */
@@ -44,6 +44,19 @@
     var eventTypeId    = _this.data('event-type-id');
     var userTypeId     = _this.data('user-type-id');
     var personal       = _this.data('personal');
+    var eventId        = _this.data('event');
+    data = {
+      id: eventId
+    }
+
+    axios_post('/EventChecker/checkuser', data, function(data) {
+      var account = $('.event-title').parents('tr').data('account');
+      console.log(account, data.account);
+      if (account == data.account) {
+        $('#edit-event').removeClass('hidden');
+        $('#edit-event').attr('data-event-id', $('.event-title').parents('tr').data('event'));
+      }
+    });
 
     if ( userTypeId == 3 ) {
       if (organizationId != undefined || personal == undefined || approval == true || eventTypeId == 2) {
@@ -538,6 +551,60 @@
     axios_post(url, data, function (data) { })
   });
 
+  $('#save-event').click(function(event) {
+    var data = $('#add-event-form').serialize();
+
+    axios_post('/EventChecker', data, function(data) {
+      var form_data = $('#add-event-form').serializeArray();
+      var date_start = data.date_start;
+
+      if (date_start == form_data[5].value) {
+        swal({
+          title: "Conflict",
+          text: "You have the same schedule with " + data.title,
+          icon: "warning",
+          buttons: {
+            cancel: {
+              text: "Save Anyway",
+              value: true,
+              visible: true,
+              className: "save-anyway"
+            },
+            confirm: {
+              text: "Cancel",
+              value: null
+            }
+          }
+        })
+        .then((value) => {
+          if (value == true) {
+            $('#add-event-form').submit();
+          } else {
+            $('#add-event-form').submit(function() {
+              return false;
+            });
+          }
+        });
+      } // end if
+    });
+  });
+
+  /**
+   * Display the edit event form on modal
+   * @return {void}
+   */
+  $('#edit-event').click(function() {
+    $('#modal-event-table').addClass('hidden');
+    $('#edit-event-form').removeClass('hidden');
+    $('#edit-event').addClass('hidden');
+
+    var $id = $(this).data('event-id');
+    axios_post('/EventGetter', { id: $id }, function(data) {
+      console.log(data);
+    });
+  });
+
+
   /**
    * New player for deal with http request
    *
@@ -651,5 +718,18 @@
 
     // set value
     $('#modal-request-approval-form > #id').val(currentValue.id);
+  }
+
+  /**
+   * Put a data on edit event form on modal
+   *
+   * @param  {} data
+   * @return {}
+   */
+  var fillUpEditForm = function(data)
+  {
+    console.log(data);
+    // data.forEach(function(currentValue, index, arr) {
+    // });
   }
 })();

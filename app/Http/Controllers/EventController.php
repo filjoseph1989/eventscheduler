@@ -120,6 +120,8 @@ class EventController extends Controller
           ->get();
 
         $orgId = $org_id[0]->organization_id;
+      } else {
+        $orgId = 1;
       }
 
       $is_approve = 'false';
@@ -413,9 +415,6 @@ class EventController extends Controller
         return self::getEvents($id, 'member');
       }
     }
-
-
-
 
     /**
      * Determine if the given must be a whole day event or

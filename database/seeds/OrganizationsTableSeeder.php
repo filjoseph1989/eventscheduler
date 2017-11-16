@@ -13,7 +13,8 @@ class OrganizationsTableSeeder extends Seeder
     {
        DB::table('organizations')->insert([
         array(
-            'name'        => 'Temp Organization',
+            'name'        => 'University',
+            'acronym'     => 'UP',
             'description' => 'No description yet',
             'created_at'  => date('Y-m-d H:i:s'),
             'updated_at'  => date('Y-m-d H:i:s')
@@ -24,6 +25,6 @@ class OrganizationsTableSeeder extends Seeder
             'created_at'  => date('Y-m-d H:i:s'),
             'updated_at'  => date('Y-m-d H:i:s')
         ),
-        ]);
+      ]);
     }
 }
