@@ -16,7 +16,7 @@
       </h2>
     @else
       <h2> SET EVENT
-        <small>In this panel you set your personal event/s</small>
+        <small>In this panel you view or set your personal event/s</small>
       </h2>
     @endif
   </div>
