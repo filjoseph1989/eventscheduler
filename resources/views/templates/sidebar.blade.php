@@ -1,5 +1,5 @@
 <section class="sidebar">
-  <aside id="leftsidebar" class="sidebar">
+  <aside id="leftsidebar">
     <div class="user-info" >
       <div class="image">
         @if( Auth::user()->picture != "profile.png" )
@@ -110,9 +110,6 @@
                 @endif
               </ul>
             </li>
-            {{-- <li>
-              <a href="#"> <span>Conflicting Events</span> </a>
-            </li> --}}
             <li>
               <a href="#" class="menu-toggle"><span>Edit Notification Settings</span></a>
               <ul class="ml-menu">
@@ -124,10 +121,14 @@
                 @elseif( session('account') == 'osa' )
                   <li><a href="{{ route('EventNotification.show', 1) }}" class="ml-menu-item-links"> Unadvertised Official Events </a></li>
                   <li><a href="{{ route('EventNotification.show', 2) }}" class="ml-menu-item-links"> Unadvertised Personal Events </a></li>
-                  <li><a href="{{ route('Event.index') }}" class="ml-menu-item-links"> Approve Advertisement Request for Official Events </a></li>
                 @endif
               </ul>
             </li>
+            @if( session('account') == 'osa' )
+              <li>
+                <a href="{{ route('Event.index') }}" class="ml-menu-item-links"> <span>Approve Advertisement Request for Official Events</span> </a>
+              </li>
+            @endif
             <li>
               <a href="#" class="menu-toggle"> <span>Calendar</span> </a>
               <ul class="ml-menu">

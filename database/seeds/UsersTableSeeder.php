@@ -31,11 +31,14 @@ class UsersTableSeeder extends Seeder
       $faker = Faker::create();
       for ($i = 0 ; $i < 1; $i++)
       {
+          $password = str_random(10);
+
           $gender = ['male','female'];
           email:
           $email = $faker->email;
           account_number:
-          $account_number = "2017-" . $faker->numberBetween($min = 10000, $max = 90000);
+          // $account_number = "2017-" . $faker->numberBetween($min = 10000, $max = 90000);
+          $account_number = $password;
           facebook:
           $facebook = strtolower("{$faker->name}@facebook.com");
           $facebook = str_replace(' ', '', $facebook);

@@ -26,8 +26,8 @@
     </div>
   </div>  --}}
 
-  <nav class="navbar">
-    <div class="container-fluid" style="border:1px none none none dashed black">
+  <nav class="navbar" {{-- style="border: 2px; border-style: none none solid none" --}} >
+    <div class="container-fluid">
       <div class="navbar-header">
         <a href="#" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
         <a href="#" class="bars"></a>

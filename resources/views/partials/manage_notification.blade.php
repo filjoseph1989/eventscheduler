@@ -1,5 +1,11 @@
 <div class="card">
-  <div class="header bg-blue-grey">
+  @if (session('account') == 'osa')
+    <div class="header bg-purple">
+  @elseif (session('account') == 'org-head')
+    <div class="header bg-brown">
+  @else
+    <div class="header bg-blue-grey">
+  @endif
     <h2> MANAGE NOTIFICATIONS
       @if (Auth::user()->user_type_id == 1)
         <small>your panel for notification management for your org's events or your personal events</small>
@@ -11,7 +17,7 @@
       @endif
     </h2>
   </div>
-  <div class="body" style="border: 2px; border-style: none dashed dashed dashed">
+  <div class="body">
     <div class="list-group">
       @if( session('account') == 'org-member' )
         <a href="{{ route('EventNotification.show', 2) }}" class="list-group-item"  style="border:none"> <strong> Edit Notification Settings for Unadvertised Personal Events </strong>  </a>
@@ -23,7 +29,7 @@
         <a href="{{ route('EventNotification.show', 2) }}" class="list-group-item"  style="border:none"> <strong> Edit Notification Settings for Unadvertised Personal Events </strong> </a>
       @endif
       @if (Auth::user()->user_type_id == 3)
-        <a href="{{ route('Event.index') }}" class="list-group-item"  style="border:none"> Approve Advertisement Request for Official Events </a>
+        <a href="{{ route('Event.index') }}" class="list-group-item"  style="border:none"><strong> Approve Advertisement Request for Official Events </strong> </a>
       @endif
     </div>
   </div>

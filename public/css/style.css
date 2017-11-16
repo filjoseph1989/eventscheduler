@@ -3830,6 +3830,7 @@ section.content {
     font-size: 18px;
     font-weight: normal;
     color: #111;
+      /*color: white;*/
 }
 
 .card .header h2 small {
@@ -3837,6 +3838,7 @@ section.content {
     font-size: 12px;
     margin-top: 5px;
     color: #999;
+    /*color: white;*/
     line-height: 15px;
 }
 
@@ -10991,6 +10993,7 @@ tr>td:nth-child(2) {
     cursor: pointer;
 }
 
+
 #modal-event-title,
 #modal-event-ptitle {
   text-transform: capitalize;
@@ -11001,7 +11004,7 @@ tr>td:nth-child(2) {
 }
 
 .list-group a.list-group-item:hover {
-  background-color: #FFEFD5;
+  background-color:	#FFDAB9;
 }
 
-a.ml-menu-item-links:hover { background-color: #FFEFD5; }
+a.ml-menu-item-links:hover { background-color:	#FFDAB9; }
