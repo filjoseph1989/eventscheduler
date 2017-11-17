@@ -59,7 +59,7 @@
                       <tbody>
                         <tr>
                           <td><strong>Name: </strong></td>
-                          <td id="full_name">{{ Auth::user()->full_name }}</td>
+                          <td {{-- id="full_name" --}}>{{ Auth::user()->full_name }}</td>
                         </tr>
                         <tr>
                           <td><strong>Email: </strong></td>
