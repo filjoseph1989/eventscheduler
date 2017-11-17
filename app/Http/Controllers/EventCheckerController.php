@@ -26,15 +26,18 @@ class EventCheckerController extends Controller
    */
   public function getDate(Request $request)
   {
+    $request->date_start = str_replace('/', '-', $request->date_start);
     $event = Event::where('date_start', $request->date_start)
       ->get()
       ->first();
 
-    if (isset($event->date_start)) {
+    if (! is_null($event)) {
       $event->date_start = str_replace('-', '/', $event->date_start);
       return $event;
     } else {
-      return false;
+      return json_encode([
+        'false' => false
+      ]);
     }
   }
 

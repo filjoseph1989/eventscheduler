@@ -89,11 +89,17 @@ trait CommonMethodTrait
   private function getOrgHeadOrgName($id)
   {
     $org = OrganizationGroup::with('organization')
-          ->where('user_id', $id )
-          ->where('position_id', 3)
-          ->get()->first();
-    $str = $org->organization->name;
-    return $str;
+      ->where('user_id', $id )
+      ->where('position_id', 3)
+      ->get()
+      ->first();
+
+    if (! is_null($org)) {
+      $str = $org->organization->name;
+      return $str;
+    } else {
+      return "";
+    }
   }
  /**
      * This method compare the given date to current date
