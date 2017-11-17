@@ -135,6 +135,15 @@
                         <?php endforeach; ?>
                       @endif
                     </tbody>
+                    <tfoot>
+                        <th>Title</th>
+                        <th>Venue</th>
+                        <th>Organizer</th>
+                        <th>Type</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Status</th>
+                    </tfoot>
                   </table>
                 </div>
               </div>

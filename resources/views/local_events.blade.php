@@ -24,9 +24,15 @@
 
           <div class="card">
             <div class="header">
-              <h2> Local Events
-              <small>Display the local event</small>
-              </h2>
+              @if(session('account') != 'osa')
+                <h2> Local Events
+                  <small>Display the local events</small>
+                </h2>
+              @else
+                <h2> Personal Events
+                  <small>Display the personal events</small>
+                </h2>
+              @endif
             </div>
             <div class="body">
               <a href="{{ route('Event.create') }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right"  style="margin-left:10px;">Create Event</a>
@@ -118,14 +124,12 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
           <h4 class="modal-title" id="event-title">Event Information</h4>
         </div>
         <div class="modal-body">
+          <!-- <button type="button" class="btn btn-primary pull-right hidden" id="edit-local-event" name="button">Edit</button> -->
           <div class="panel-group" id="accordion_1" role="tablist" aria-multiselectable="true">
-
             <div class="panel">
               <div class="panel-heading" role="tab" id="headingOne_1">
                 <h4 class="panel-title">
