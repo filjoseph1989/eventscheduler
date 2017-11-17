@@ -24,12 +24,23 @@ trait CommonMethodTrait
     # if user accesses getOrganization() function from CommonMethodTrait,
     # array of organizationGroup instance must be returned where organnization_id are the id of orgs the user belongs to,
     # since org-user(member) can belong to many orgs
-    $orgs = OrganizationGroup::where('user_id', Auth::id())
-      ->get();
+    if(Auth::user()->user_type_id == 3){
+      $orgs = OrganizationGroup::where('position_id', 3)
+        ->get();
 
-    $IDs = [];
-    foreach ($orgs as $key => $value) {
-      $IDs[$value->id] = $value->getOrganizationId();
+      $IDs = [];
+      foreach ($orgs as $key => $value) {
+        $IDs[$value->id] = $value->getOrganizationId();
+      }
+    }
+    else {
+      $orgs = OrganizationGroup::where('user_id', Auth::id())
+        ->get();
+
+      $IDs = [];
+      foreach ($orgs as $key => $value) {
+        $IDs[$value->id] = $value->getOrganizationId();
+      }
     }
 
     return $IDs;

@@ -80,15 +80,15 @@ class UserController extends Controller
             ->get();
               // dd($users);
       } else {
-        $org_id = null;
-        $users  = User::with([
-          'course',
-          'userType',
-          'organizationGroup' => function($query) {
-            return $query
-              ->with(['position', 'organization'])
-              ->get();
-          }])->get();
+        $org_id = self::getOrganizationsID();
+        $users = OrganizationGroup::with([
+            'user' => function($query) {
+              return $query
+                ->with('course')
+                ->get();
+            },
+            'organization', 'position'
+          ])->get();
       }
       // dd($users);
       return view('users_index')

@@ -58,7 +58,7 @@
                 <li><a href="{{ route('User.index') }}" class="ml-menu-item-links">List of Members</a></li>
                 <li><a href="{{ route('User.create') }}" class="ml-menu-item-links">Register Members</a></li>
               @elseif(session('account') == 'osa')
-                <li><a href="{{ route('User.index') }}"class="ml-menu-item-links" >List of System Users</a></li>
+                <li><a href="{{ route('User.index') }}"class="ml-menu-item-links" >List of Users</a></li>
               @endif
             </ul>
           @endif
@@ -71,7 +71,8 @@
           <ul class="ml-menu">
             @if(session('account') == 'osa')
               <li><a href="{{ route('Org.create') }}" class="ml-menu-item-links"><span>Add New</span></a></li>
-              <li><a href="{{ route('Org.index') }}" class="ml-menu-item-links"><span>University Organizations</span></a></li>
+              <!-- <li><a href="{{ route('Org.index') }}" class="ml-menu-item-links"><span>University Organizations</span></a></li> -->
+              <li><a href="{{ route('Org.show', 'false') }}" class="ml-menu-item-links"><span>University Organizations</span></a></li>
             @elseif(session('account') != 'osa')
               <li><a href="{{ route('Org.show', 'false') }}" class="ml-menu-item-links"><span>My Organizations</span></a></li>
             @endif

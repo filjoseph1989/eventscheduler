@@ -42,7 +42,7 @@ class OrganizationController extends Controller
           ->where('position_id', 3)
           ->with('user')
           ->get();
-
+          // dd($organizations);
 
         return view('organization_list')->with([
           'organizations' => $organizations,
