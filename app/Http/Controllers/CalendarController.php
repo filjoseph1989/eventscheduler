@@ -26,7 +26,7 @@ class CalendarController extends Controller
     const ALL_DAY_REGEX = '/^\d{4}-\d\d-\d\d$/'; // matches strings like "2013-12-29";
 
 
-    private $list = ['', 'official', '', 'personal'];
+    private $list = ['', 'official', 'local', 'personal'];
 
     /**
      * Build instance of a class
@@ -77,16 +77,16 @@ class CalendarController extends Controller
 
         $output_arrays = array();
 
-        if(Auth::user()->user_type_id == 1){
-          $orName = OrganizationGroup::with('organization')
-          ->where('user_id', Auth::id())
-          ->where('position_id', 3)
-          ->get()
-          ->first();
-          $this->list[2] = $orName->organization->name;
-        } else {
-          $this->list[2] = '';
-        }
+        // if(Auth::user()->user_type_id == 1){
+        //   $orName = OrganizationGroup::with('organization')
+        //   ->where('user_id', Auth::id())
+        //   ->where('position_id', 3)
+        //   ->get()
+        //   ->first();
+        //   $this->list[2] = $orName->organization->name;
+        // } else {
+        //   $this->list[2] = '';
+        // }
 
         # Convert the input array into a useful Event object
         foreach ($events as $key => $event) {

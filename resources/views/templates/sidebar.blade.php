@@ -134,7 +134,7 @@
               <a href="#" class="menu-toggle"> <span>Calendar</span> </a>
               <ul class="ml-menu">
                 <li><a href="{{ route('Calendar.show', 1) }}" class="ml-menu-item-links" ><span>Official</span></a></li>
-                @if( session('account') != 'osa' ) <li><a href="{{ route('Calendar.show', 2) }}" class="ml-menu-item-links" ><span>Local</span></a></li> @endif
+                @if( session('account') != 'osa' ) <li><a href="{{ route('Calendar.show', 2) }}" class="ml-menu-item-links" ><span>Within Organization/s</span></a></li> @endif
                 <li><a href="{{ route('Calendar.show', 3) }}" class="ml-menu-item-links"> <span>Personal</span></a></li>
               </ul>
             </li>
