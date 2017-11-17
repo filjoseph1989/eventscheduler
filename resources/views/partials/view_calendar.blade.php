@@ -13,7 +13,10 @@
   <div class="body">
     <div class="list-group">
       <a href="{{ route('Calendar.show', 1) }}" class="list-group-item" >  Official Events  </a>
-      <a href="{{ route('Calendar.show', 2) }}" class="list-group-item" >  Personal Events </a>
+        @if (session('account') != 'osa')
+          <a href="{{ route('Calendar.show', 2) }}" class="list-group-item" >Local Events</a>
+        @endif
+          <a href="{{ route('Calendar.show', 3) }}" class="list-group-item" >Personal Events</a>
     </div>
   </div>
 </div>

@@ -8,15 +8,15 @@
   @endif
     @if (Auth::user()->user_type_id == 3)
       <h2> MANAGE SCHEDULE
-        <small>In this panel you view or set your personal event/s or events for your office</small>
+        <small>In this panel you view or create your personal event/s or events for your office</small>
       </h2>
     @elseif(Auth::user()->user_type_id == 1)
       <h2> SET EVENT
-        <small>In this panel you view or set your personal event/s or events for your organization</small>
+        <small>In this panel you view or create your personal event/s or events for your organization</small>
       </h2>
     @else
       <h2> SET EVENT
-        <small>In this panel you view or set your personal event/s</small>
+        <small>In this panel you view or create your personal event/s</small>
       </h2>
     @endif
   </div>
@@ -33,6 +33,7 @@
       @else
           <a href="{{ route('event.dlv', 2) }}" class="list-group-item"> Personal Events </a>
       @endif
+        <a href="{{ route('event.dlv', 2) }}" class="list-group-item"> Create Event </a>
     </div>
   </div>
 </div>
