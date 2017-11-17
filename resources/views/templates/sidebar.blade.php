@@ -50,7 +50,7 @@
               @if( session('account') == 'osa' )
                 <span>All System Users</span>
               @else
-                <span>Primary Org Co-Members</span>
+                <span>{{ session('org_name') }} Members</span>
               @endif
             </a>
             <ul class="ml-menu">
