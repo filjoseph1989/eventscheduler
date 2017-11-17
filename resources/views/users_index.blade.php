@@ -161,7 +161,7 @@
                           </td>
                           <td>
                             <a href="#" class="user-name" data-toggle="modal" data-target="#profile" data-user-id="{{ $user->id }}">
-                              {{ $user->userType->name }}
+                              {{ AccounType($user->user_type_id) }}
                             </a>
                           </td>
                           <td>

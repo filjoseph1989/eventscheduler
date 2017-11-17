@@ -31,7 +31,7 @@ class UsersTableSeeder extends Seeder
       $faker = Faker::create();
       for ($i = 0 ; $i < 1; $i++)
       {
-          $password = str_random(10);
+          $password = rand(100000000,900000000);
 
           $gender = ['male','female'];
           email:
@@ -60,7 +60,7 @@ class UsersTableSeeder extends Seeder
           }
 
           User::create([
-            'course_id'      => $faker->numberBetween($min = 1, $max = 9),
+            'course_id'      => 1,/* $faker->numberBetween($min = 1, $max = 9), */
             'full_name'      => ucfirst(substr($faker->name($gender), 0)),
             'account_number' => $account_number,
             'user_type_id'   => 3,
@@ -68,7 +68,7 @@ class UsersTableSeeder extends Seeder
             'password'       => bcrypt($account_number),
             'facebook'       => $facebook,
             'twitter'        => $twitter,
-            'mobile_number'  => "63" . $this->mobilePrefix[array_rand($this->mobilePrefix, 1)] . $faker->numberBetween($min = 1000000, $max = 9000000),
+            'mobile_number'  => 639958633866/*"63" . $this->mobilePrefix[array_rand($this->mobilePrefix, 1)] . $faker->numberBetween($min = 1000000, $max = 9000000),*/
           ]);
       }
   }
