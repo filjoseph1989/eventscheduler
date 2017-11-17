@@ -31,15 +31,12 @@ class CreateEventsTable extends Migration
             $table->enum('is_approve', ['true', 'false'])->default('false');
             $table->enum('twitter', ['on','off'])->default('off');
             $table->string('twitter_msg')->nullable();
-            $table->string('twitter_img')->nullable();
             $table->enum('facebook', ['on','off'])->default('off');
             $table->string('facebook_msg')->nullable();
-            $table->string('facebook_img')->nullable();
             $table->enum('sms', ['on','off'])->default('off');
             $table->string('sms_msg')->nullable();
             $table->enum('email', ['on','off'])->default('off');
             $table->string('email_msg')->nullable();
-            $table->string('email_img')->nullable();
             $table->string('img')->nullable();
             $table->timestamps();
             $table->softDeletes();

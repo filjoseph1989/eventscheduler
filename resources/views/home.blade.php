@@ -8,7 +8,7 @@
   <link href="{{ asset('css/all-themes.css') }}" rel="stylesheet">
 @endsection
 
-@section('content') 
+@section('content')
 
   <?php
     if (isset($partials)) {

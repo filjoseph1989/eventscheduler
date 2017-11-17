@@ -20,16 +20,16 @@
   <div class="body">
     <div class="list-group">
       @if( session('account') == 'org-member' )
-        <a href="{{ route('EventNotification.show', 2) }}" class="list-group-item"  style="border:none"> <strong> Edit Notification Settings for Unadvertised Personal Events </strong>  </a>
+        <a href="{{ route('EventNotification.show', 2) }}" class="list-group-item">  Edit Notification Settings for Unadvertised Personal Events  </a>
       @elseif( session('account') == 'org-head' )
-        <a href="{{ route('EventNotification.show', 1) }}" class="list-group-item"  style="border:none"> <strong> Edit Notification Settings for Unadvertised Official Events </strong> </a>
-          <a href="{{ route('EventNotification.show', 2) }}" class="list-group-item"  style="border:none"> <strong> Edit Notification Settings for Unadvertised Local Events </strong> </a>
+        <a href="{{ route('EventNotification.show', 1) }}" class="list-group-item">  Edit Notification Settings for Unadvertised Official Events </a>
+          <a href="{{ route('EventNotification.show', 2) }}" class="list-group-item">  Edit Notification Settings for Unadvertised Local Events </a>
       @elseif( session('account') == 'osa' )
-        <a href="{{ route('EventNotification.show', 1) }}" class="list-group-item"  style="border:none"> <strong> Edit Notification Settings for Unadvertised Official Events </strong> </a>
-        <a href="{{ route('EventNotification.show', 2) }}" class="list-group-item"  style="border:none"> <strong> Edit Notification Settings for Unadvertised Personal Events </strong> </a>
+        <a href="{{ route('EventNotification.show', 1) }}" class="list-group-item">  Edit Notification Settings for Unadvertised Official Events </a>
+        <a href="{{ route('EventNotification.show', 2) }}" class="list-group-item">  Edit Notification Settings for Unadvertised Personal Events </a>
       @endif
       @if (Auth::user()->user_type_id == 3)
-        <a href="{{ route('Event.index') }}" class="list-group-item"  style="border:none"><strong> Approve Advertisement Request for Official Events </strong> </a>
+        <a href="{{ route('Event.index') }}" class="list-group-item"> Approve Advertisement Request for Official Events </a>
       @endif
     </div>
   </div>

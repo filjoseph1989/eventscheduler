@@ -112,8 +112,8 @@ class HomeController extends Controller
         return [
           'partial1' => 'partials.set_event',
           'partial3' => 'partials.manage_notification',
-          'partial2' => 'partials.view_calendar',
-          'partial4' => 'partials.generate_attendance'
+          'partial4' => 'partials.view_calendar',
+          'partial2' => 'partials.generate_attendance'
         ];
     }
 }

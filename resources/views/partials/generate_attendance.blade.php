@@ -13,14 +13,14 @@
   <div class="body">
     <div class="list-group">
       @if (session('account') == 'org-head')
-        <a href="{{ route('Attendances.show', 'Official') }}" class="list-group-item"  style="border:none"> <strong> Official Events </strong> </a>
-        <a href="{{ route('Attendances.show', 'Local') }}" class="list-group-item"  style="border:none"> <strong> Local Events </strong> </a>
-        <a href="{{ route('Attendances.index') }}" class="list-group-item"  style="border:none"> <strong> My Event Attendance </strong> </a>
+        <a href="{{ route('Attendances.show', 'Official') }}" class="list-group-item"> Official Events</a>
+        <a href="{{ route('Attendances.show', 'Local') }}" class="list-group-item"> Local Events</a>
+        <a href="{{ route('Attendances.index') }}" class="list-group-item"> My Event Attendance</a>
       @elseif (session('account') == 'osa')
-        <a href="{{ route('Attendances.show', 'Official') }}" class="list-group-item"  style="border:none"> <strong> Official Events </strong> </a>
-        <a href="{{ route('Attendances.index') }}" class="list-group-item"  style="border:none"> <strong> My Event Attendance </strong> </a>
+        <a href="{{ route('Attendances.show', 'Official') }}" class="list-group-item"> Official Events</a>
+        <a href="{{ route('Attendances.index') }}" class="list-group-item"> My Event Attendance</a>
       @else
-        <a href="{{ route('Attendances.index') }}" class="list-group-item"  style="border:none"> <strong> My Event Attendance </strong> </a>
+        <a href="{{ route('Attendances.index') }}" class="list-group-item"> My Event Attendance</a>
       @endif
     </div>
   </div>

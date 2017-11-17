@@ -1,19 +1,19 @@
 <div class="card">
   @if (session('account') == 'osa')
-    <div class="header bg-purple">
+    <div class="header bg-teal">
   @elseif (session('account') == 'org-head')
-    <div class="header bg-brown">
+    <div class="header bg-teal">
   @else
-    <div class="header bg-blue-grey">
+    <div class="header bg-teal">
   @endif
     <h2> VIEW CALENDAR
-      <small>View events in the calendar of particular event type</small>
+      <small>View approved events in the calendar of particular event type</small>
     </h2>
   </div>
   <div class="body">
     <div class="list-group">
-      <a href="{{ route('Calendar.show', 1) }}" class="list-group-item"  style="border:none"> <strong> Official Events </strong>  </a>
-      <a href="{{ route('Calendar.show', 2) }}" class="list-group-item"  style="border:none"> <strong> Personal Events </strong> </a>
+      <a href="{{ route('Calendar.show', 1) }}" class="list-group-item" >  Official Events  </a>
+      <a href="{{ route('Calendar.show', 2) }}" class="list-group-item" >  Personal Events </a>
     </div>
   </div>
 </div>
