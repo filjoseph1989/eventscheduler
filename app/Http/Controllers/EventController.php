@@ -33,7 +33,7 @@ class EventController extends Controller
     use ValidationTrait, CommonMethodTrait;
 
     private $list  = [
-      'all',
+      ' ',
       'official',
       'local',
       'true'  => 'Approved Events',
@@ -187,6 +187,7 @@ class EventController extends Controller
     {
       $this->account = Auth::user()->user_type_id;
       $this->events = self::whosGettingTheEvents($id);
+      $ids = self::getOrganizationsID();
 
       self::getDateComparison($this->events);
 
@@ -195,7 +196,8 @@ class EventController extends Controller
           'title'      => $this->list[$id], # title of the modal
           'events'     => $this->events,
           'eventType'  => $id,
-          'account'    => self::getAccount(Auth::user()->user_type_id)
+          'account'    => self::getAccount(Auth::user()->user_type_id),
+          'org_ids'    => $ids,
         ]);
     }
 

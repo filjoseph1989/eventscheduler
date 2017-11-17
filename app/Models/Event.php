@@ -137,7 +137,6 @@ class Event extends Model
   public static function getMemberEvents($id)
   {
     return static::with('organization')
-      ->where('category', 'within')
       ->where('organization_id', $id)
       ->get();
   }

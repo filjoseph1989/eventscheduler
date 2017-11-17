@@ -81,7 +81,8 @@
                         <th>Status</th>
                     </thead>
                     <tbody>
-                      <?php if (! is_null($events)): ?>
+                      @if( session('account') != 'org-member' )
+                        <?php if (! is_null($events)): ?>
                         <?php foreach ($events as $key => $event): ?>
                           <tr data-event="{{ $event->id }}"
                               data-route="{{ route('Event.edit', $event->id) }}"
@@ -105,6 +106,34 @@
                           </tr>
                         <?php endforeach; ?>
                       <?php endif; ?>
+                      @else
+                        <?php foreach ($org_ids as $key => $id): ?>
+                          <?php if (! is_null($events[$id])): ?>
+                            <?php foreach ($events[$id] as $key => $event): ?>
+                              <tr data-event="{{ $event->id }}"
+                                  data-route="{{ route('Event.edit', $event->id) }}"
+                                  data-action="{{ route('Event.update', $event->id) }}"
+                                  data-organization-id="{{ $event->organization_id }}"
+                                  data-event-type-id="{{ $event->event_type_id }}"
+                                  data-user-type-id="{{ Auth::user()->user_type_id }}"
+                                  data-approval="{{ $event->is_approve }}"
+                                  data-account="{{ Auth::id() }}">
+                                <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
+                                <td>{{ $event->venue }}</td>
+                                <td>{{ ! is_null($event->organization) ? $event->organization->name : 'University Official Event' }}</td>
+                                <td>{{ $event->eventType->name }}</td>
+                                <td>{{ date('M d, Y', strtotime($event->date_start)) }} {{ date('h:i A', strtotime($event->date_start_time)) }}</td>
+                                <td>{{ date('M d, Y', strtotime($event->date_end)) }} {{ date('h:i A', strtotime($event->date_end_time)) }}</td>
+                                <?php if ($account == 'org-member'): ?>
+                                  <td>{{ ucwords($event->status) }}</td>
+                                <?php else: ?>
+                                  <td>{{ ($event->is_approve == 'true') ? 'Approved' : 'Not' }}</td>
+                                <?php endif; ?>
+                              </tr>
+                            <?php endforeach; ?>
+                          <?php endif; ?>
+                        <?php endforeach; ?>
+                      @endif
                     </tbody>
                   </table>
                 </div>

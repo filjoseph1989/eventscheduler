@@ -46,7 +46,6 @@ trait CommonMethodTrait
       //if org-head or org-user(and must be adviser)
       $my_primary_organization_id = OrganizationGroup::where('user_id', Auth::id())
         ->where('position_id', 3)
-        ->orWhere('position_id', 4)
         ->get()
         ->first();
 
@@ -104,16 +103,36 @@ trait CommonMethodTrait
      */
     private function getDateComparison(&$events)
     {
-      if ( ! is_null($events) ) {
-        foreach ($events as $key => $event) {
-          if ($events->count() > 1) {
-            if (self::matchDate($event->date_start)) {
-              $events[$key]->status = "on going";
-              # Issue 25
+      if( Auth::user()->user_type_id != 2 ){
+        if ( ! is_null($events) ) {
+          foreach ($events as $key => $event) {
+            if ($events->count() > 1) {
+              if (self::matchDate($event->date_start)) {
+                $events[$key]->status = "on going";
+                # Issue 25
+              }
+            } else {
+              if (self::matchDate($event->date_start)) {
+                $events[0]->status = "on going";
+              }
             }
-          } else {
-            if (self::matchDate($event->date_start)) {
-              $events[0]->status = "on going";
+          }
+        }
+      } else {
+        $ids = self::getOrganizationsID();
+        foreach ($ids as $key => $value) {
+          if ( ! is_null($events[$value]) ) {
+            foreach ($events[$value] as $key => $event) {
+              if ($events[$value]->count() > 1) {
+                if (self::matchDate($event->date_start)) {
+                  $events[$value][$key]->status = "on going";
+                  # Issue 25
+                }
+              } else {
+                if (self::matchDate($event->date_start)) {
+                  $events[0]->status = "on going";
+                }
+              }
             }
           }
         }
