@@ -122,8 +122,8 @@
                                 <td>{{ $event->venue }}</td>
                                 <td>{{ ! is_null($event->organization) ? $event->organization->name : 'University Official Event' }}</td>
                                 <td>{{ $event->eventType->name }}</td>
-                                <td>{{ date('M d, Y', strtotime($event->date_start)) }} {{ date('h:i A', strtotime($event->date_start_time)) }}</td>
-                                <td>{{ date('M d, Y', strtotime($event->date_end)) }} {{ date('h:i A', strtotime($event->date_end_time)) }}</td>
+                                <td>{{ date('M d, Y', strtotime($event->date_start)) }}, {{ date('h:i A', strtotime($event->date_start_time)) }}</td>
+                                <td>{{ date('M d, Y', strtotime($event->date_end)) }}, {{ date('h:i A', strtotime($event->date_end_time)) }}</td>
                                 <?php if ($account == 'org-member'): ?>
                                   <td>{{ ucwords($event->status) }}</td>
                                 <?php else: ?>

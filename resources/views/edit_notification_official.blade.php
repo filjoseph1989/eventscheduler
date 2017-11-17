@@ -65,9 +65,13 @@
               <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
-                    <thead>
+                    <tr>
                       <th>Title</th>
-                    </thead>
+                      <th>Type</th>
+                      <th>Venue</th>
+                      <th>Start</th>
+                      <th>End</th>
+                    </tr>
                     <tbody>
                       @if (! is_null($events))
                         @foreach ($events as $key => $event)
@@ -79,6 +83,10 @@
                               data-user-type-id="{{ Auth::user()->user_type_id }}"
                               data-approval="{{ $event->is_approve }}">
                             <td><a href="#" class="edit-notif" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
+                            <td> {{ ucwords($event->category) }} Event</td>
+                            <td> {{ ucwords($event->venue) }} Event</td>
+                            <td>{{ date('M d, Y', strtotime($event->date_start)) }}, {{ date('h:i A', strtotime($event->date_start_time)) }}</td>
+                            <td>{{ date('M d, Y', strtotime($event->date_end)) }}, {{ date('h:i A', strtotime($event->date_end_time)) }}</td>
                           </tr>
                         @endforeach
                       @else
@@ -87,6 +95,10 @@
                     </tbody>
                     <tfoot>
                       <th>Title</th>
+                      <th>Type</th>
+                      <th>Venue</th>
+                      <th>Start</th>
+                      <th>End</th>
                     </tfoot>
                   </table>
                 </div>

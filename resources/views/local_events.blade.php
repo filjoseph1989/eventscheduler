@@ -67,8 +67,8 @@
                               <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
                               <td>{{ $event->venue }}</td>
                               <td><?php $event->organization = (object)$event->organization; ?>{{ $event->organization->name }}</td>
-                              <td>{{ $event->date_start }}</td>
-                              <td>{{ $event->date_end }}</td>
+                              <td>{{ date('M d, Y', strtotime($event->date_start)) }} {{ date('h:i A', strtotime($event->date_start_time)) }}</td>
+                              <td>{{ date('M d, Y', strtotime($event->date_end)) }} {{ date('h:i A', strtotime($event->date_end_time)) }}</td>
                               <td>{{ $event->status }}</td>
                               <td>{{ $event->is_approve == 'true' ? 'Approved' : 'Not Yet Approved' }}</td>
                             </tr>
@@ -89,8 +89,8 @@
                             <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
                             <td>{{ $event->venue }}</td>
                             <td>Personal</td>
-                            <td>{{ $event->date_start }}</td>
-                            <td>{{ $event->date_end }}</td>
+                            <td>{{ date('M d, Y', strtotime($event->date_start)) }}, {{ date('h:i A', strtotime($event->date_start_time)) }}</td>
+                            <td>{{ date('M d, Y', strtotime($event->date_end)) }}, {{ date('h:i A', strtotime($event->date_end_time)) }}</td>
                             <td>{{ $event->status }}</td>
                             <td>{{ $event->is_approve == 'true' ? 'Approved' : 'Not Yet Approved' }}</td>
                           </tr>
