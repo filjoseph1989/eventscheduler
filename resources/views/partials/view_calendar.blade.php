@@ -2,9 +2,9 @@
   @if (session('account') == 'osa')
     <div class="header" style="background-color: #9FA8DA ">
   @elseif (session('account') == 'org-head')
-    <div class="header bg-teal">
+    <div class="header" style="background-color:#FFAB91">
   @else
-    <div class="header bg-teal">
+    <div class="header" style="background-color:#80CBC4">
   @endif
     <h2 style="color:black"> VIEW CALENDAR
       <small style="color:black">View approved events in the calendar of particular event type</small>

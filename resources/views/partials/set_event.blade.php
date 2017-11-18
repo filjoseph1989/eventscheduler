@@ -1,21 +1,21 @@
 <div class="card" dir="">
   @if (session('account') == 'osa')
-    <div class="header" style="background-color:#3F51B5">
+    <div class="header bg-indigo">
   @elseif (session('account') == 'org-head')
-    <div class="header bg-red">
+    <div class="header" style="background-color:#FF5722">
   @else
-    <div class="header bg-blue-grey">
+    <div class="header bg-teal">
   @endif
-    @if (Auth::user()->user_type_id == 3)
+    @if (session('account') == 'osa')
       <h2 style="color:white"> MANAGE SCHEDULE
         <small style="color:white">In this panel you view or create your personal event/s or events for your office</small>
       </h2>
-    @elseif(Auth::user()->user_type_id == 1)
-      <h2> SET EVENT
-        <small style="color:white">In this panel you view or create your personal event/s or events for your organization</small>
+    @elseif (session('account') == 'org-head')
+      <h2 style="color:black"> MANAGE SCHEDULE
+        <small style="color:black">In this panel you view or create your personal event/s or events for your organization</small>
       </h2>
     @else
-      <h2> SET EVENT
+      <h2 style="color:white"> MANAGE SCHEDULE
         <small style="color:white">In this panel you view or create your personal event/s</small>
       </h2>
     @endif

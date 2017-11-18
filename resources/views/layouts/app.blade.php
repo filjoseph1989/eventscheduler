@@ -33,8 +33,14 @@
 @if (session('loginClass'))
   @php $loginClass = session('loginClass') @endphp
 @endif
-
+@if(session('account') == 'osa')
 <body class="{{ isset($loginClass) ? $loginClass : "" }}" style="background-color:#C5CAE9">
+@elseif(session('account') == 'org-head')
+<body class="{{ isset($loginClass) ? $loginClass : "" }}" style="background-color:#FFCCBC">
+@elseif(session('account') == 'org-member')
+<body class="{{ isset($loginClass) ? $loginClass : "" }}" style="background-color:#E0F2F1">
+@else
+@endif
 
   @guest
     @yield('login')

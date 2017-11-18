@@ -2,17 +2,23 @@
   @if (session('account') == 'osa')
     <div class="header" style="background-color:#7986CB" >
   @elseif (session('account') == 'org-head')
-    <div class="header bg-brown">
+    <div class="header" style="background-color:#FF8A65">
   @else
-    <div class="header bg-blue-grey">
+    <div class="header" style="background-color:#4DB6AC">
   @endif
+  @if (session('account') == 'osa')
     <h2 style="color:white"> MANAGE NOTIFICATIONS
+  @elseif (session('account') == 'org-head')
+    <h2 style="color:black"> MANAGE NOTIFICATIONS
+  @else
+    <h2 style="color:black"> MANAGE NOTIFICATIONS
+  @endif
       @if (Auth::user()->user_type_id == 1)
-        <small style="color:white">your panel for notification management for your org's events or your personal events</small>
+        <small style="color:black">your panel for notification management for your org's events or your personal events</small>
       @elseif (Auth::user()->user_type_id == 3)
         <small style="color:white">your panel where you approve advertisement requests and notification management of events</small>
       @else
-        <small style="color:white">your panel for notification management for your personal events</small>
+        <small style="color:black">your panel for notification management for your personal events</small>
       @endif
     </h2>
   </div>
