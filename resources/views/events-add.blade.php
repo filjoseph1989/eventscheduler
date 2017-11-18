@@ -48,18 +48,6 @@
               <h2> Add New Events
                 <small>This form used to register new event in the system</small>
               </h2>
-              <ul class="header-dropdown m-r--5">
-                <li class="dropdown">
-                  <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="material-icons">more_vert</i>
-                  </a>
-                  <ul class="dropdown-menu pull-right">
-                    <li><a href="javascript:void(0);">Action</a></li>
-                    <li><a href="javascript:void(0);">Another action</a></li>
-                    <li><a href="javascript:void(0);">Something else here</a></li>
-                  </ul>
-                </li>
-              </ul>
             </div>
             <div class="body">
               <form class="" id="add-event-form" action="{{ route('Event.store') }}" method="POST">
@@ -121,7 +109,7 @@
                         @if ($errors->has('date_start_time'))
                           <span class="help-block"> <strong>{{ $errors->first('date_start_time') }}</strong> </span>
                         @endif
-                    </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -155,15 +143,15 @@
                       <div class="form-line focused">
                         <select class="form-control show-tick" id="category" name="category">
                           <option value="{{ old('category') }}" id="event-category-option">-- Select Event Category --</option>
-                            @if(Auth::user()->user_type_id != 2)
+                          @if(Auth::user()->user_type_id != 2)
                             <option value="university"> University </option>
                             <option value="organization"> Organizations </option>
-                            @endif
-                            @if(Auth::user()->user_type_id == 1)
-                              {{--  user_type_id == 1 is org-head, because only the organization-head can create within organization events  --}}
-                              <option value="within"> My Organization </option>
-                            @endif
-                            <option value="personal"> Personal </option>
+                          @endif
+                          @if(Auth::user()->user_type_id == 1)
+                            {{--  user_type_id == 1 is org-head, because only the organization-head can create within organization events  --}}
+                            <option value="within"> My Organization </option>
+                          @endif
+                          <option value="personal"> Personal </option>
                         </select>
                       </div>
                     </div>
@@ -197,7 +185,7 @@
   <script src="{{ asset('js/admin.js') }}?v=0.1"></script>
   <script src="{{ asset('js/tooltips-popovers.js') }}?v=0.1"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/app.js') }}?v=2.22"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.24"></script>
   <script type="text/javascript">
     $('.event-datepicker').bootstrapMaterialDatePicker({
       format: 'YYYY/MM/DD',

@@ -23,6 +23,20 @@
             </div>
           @endif
 
+          @if ($errors->any())
+            <div class="alert alert-warning" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" data-toggle="tooltip" data-placement="top" title="Dismiss alert">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <strong>Please fix the following error(s)</strong>
+              <ul>
+                @foreach ($errors->all() as $key => $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
+          @endif
+
           <div class="card">
             <div class="header">
               <h2> {{ ucwords($title) }} Events
@@ -255,6 +269,8 @@
                 </div>
               </div>
             </div>
+            <input type="hidden" name="type" value="edit-event">
+            <input type="hidden" name="user_id" value="{{ Auth::id() }}">
             <div class="row clearfix">
               <div class="col-sm-8 col-sm-offset-2">
                 <div class="form-group">

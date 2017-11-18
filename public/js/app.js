@@ -15,7 +15,7 @@
  * @since 0.1
  * @version 2.23
  * @date 09-30-2017
- * @date 11-18-2017 - last updated
+ * @date 11-19-2017 - last updated
  */
 (function() {
   /**
@@ -579,6 +579,19 @@
         'value': form_data[5].value
       };
 
+      $eventId = $('#edit-event').data('event-id');
+
+      // Check if the event id match with the return data
+      // Issue 37: What if ang event nag match ang date sa lain
+      // nga event? ang gina return dinhi nga data kay ang first
+      // nga makita dili ang tanan nga nakita.
+      if ($eventId == data.id) {
+        param.method = 'edit';
+      }
+
+      // Issue 39:
+      // the date_start to be check should be in the range
+      // from today and beyond, excluding the past
       ConflictDetect(param);
     });
   });
@@ -596,7 +609,15 @@
     $('#edit-event-form').attr('action', '/Event/' + $id);
     $('#cancel-edit-event').removeClass('hidden');
 
-    axios_post('/EventGetter', { id: $id }, function(data) {
+    $data = {
+      id: $id,
+      edit: 'true'
+    };
+
+    // Issue 36: display only those information
+    // needed when already approve, like title, description, venue
+    axios_post('/EventGetter', $data, function(data) {
+      $('#edit-event-form #event-id').val(data.id);
       $('#edit-event-form #title').val(data.title);
       $('#edit-event-form #description').val(data.description);
       $('#edit-event-form #venue').val(data.venue);
@@ -757,7 +778,10 @@
   var ConflictDetect = function(data)
   {
     $id = data.id;
-    if (data.date_start == data.value) {
+
+    // Issue 38: dapat mo execute gihapun ni dinhi if
+    // nag conflict sa lain nga event date_start
+    if (data.date_start == data.value && data.method != 'edit') {
       swal({
         title: "Conflict",
         text: "You have the same schedule with " + data.title,

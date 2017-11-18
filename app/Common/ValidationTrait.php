@@ -8,8 +8,8 @@ namespace App\Common;
  * @author Fil Joseph <filjoseph22@gmail.com>
  * @date 09-28-2017
  */
-trait ValidationTrait 
-{ 
+trait ValidationTrait
+{
 
   /**
    * make validation for event entries
@@ -22,7 +22,6 @@ trait ValidationTrait
     $data->validate($request, [
       'user_id'         => 'Required',
       'category'        => 'Required',
-      'semester_id'     => 'Required',
       'title'           => 'Required',
       'description'     => 'Required',
       'venue'           => 'Required',
@@ -40,7 +39,7 @@ trait ValidationTrait
    * @return void
    */
   public function validateUser(&$data, &$request)
-  {   
+  {
       $data->validate($request, [
         'full_name'      => 'Required',
         'account_number' => 'Required',
@@ -51,8 +50,8 @@ trait ValidationTrait
       ]);
   }
 
-  public function validateMembers( &$data, &$request ) {
-       
+  public function validateMembers( &$data, &$request )
+  {
       $data->validate($request, [
         'full_name'      => 'required|string|max      : 255',
         'email'          => 'required|string|email|max: 255|unique: users',
@@ -63,4 +62,3 @@ trait ValidationTrait
       ]);
   }
 }
- 

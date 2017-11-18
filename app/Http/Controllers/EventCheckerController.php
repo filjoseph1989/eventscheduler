@@ -12,7 +12,7 @@ use App\Models\Event;
  * @author Liz <janicalizdeguzman@gmail.com>
  * @version 1.0
  * @date 11-14-2017
- * @date 11-18-2017 - updated
+ * @date 11-19-2017 - updated
  */
 class EventCheckerController extends Controller
 {

@@ -64,6 +64,12 @@ class EventController extends Controller
     private $events;
 
     /**
+     * Validate exception
+     * @var array
+     */
+    private $exception = [];
+
+    /**
      * Build instance of a class
      */
     public function __construct()
@@ -225,11 +231,37 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-      d($request);
-      exit;
-      
+      if ($request->has('type') AND $request->type == 'edit-event') {
+        $this->validateRequest($this, $request);
+        $json = true;
+      }
+
       $event = Event::find($id);
 
+      if ($request->has('title')) {
+        $event->title = $request->title;
+      }
+      if ($request->has('description')) {
+        $event->description = $request->description;
+      }
+      if ($request->has('venue')) {
+        $event->venue = $request->venue;
+      }
+      if ($request->has('date_start')) {
+        $event->date_start = $request->date_start;
+      }
+      if ($request->has('date_start_time')) {
+        $event->date_start_time = $request->date_start_time;
+      }
+      if ($request->has('date_end')) {
+        $event->date_end = $request->date_end;
+      }
+      if ($request->has('date_end_time')) {
+        $event->date_end_time = $request->date_end_time;
+      }
+      if ($request->has('category')) {
+        $event->category = $request->category;
+      }
       if ($request->has('facebook')) {
         $event->facebook = ($request->facebook === true) ? 'off' : 'on';
       }
@@ -259,6 +291,11 @@ class EventController extends Controller
         $result['result'] = true;
       } else {
         $result['result'] = false;
+      }
+
+      if (isset($json) AND $json === true) {
+        return back()
+          ->with('status', 'Successfully updated');
       }
 
       echo json_encode($result);
