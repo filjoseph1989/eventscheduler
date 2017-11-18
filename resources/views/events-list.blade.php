@@ -61,9 +61,9 @@
               @endif
             </div>
             <div class="body">
-              <?php if ($account == 'org-head'): ?>
+              @if ($account == 'org-head')
                 <a href="{{ route('Event.create') }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right" style="margin-left:10px;">Create Event</a>
-              <?php endif; ?>
+              @endif
               @if ( session('account') == 'osa')
                 <button class="bg-teal waves-effect btn pull-right" data-toggle="modal" data-target="#edit-notification-modal" style="margin-left: 10px">Edit Notification</button>
                 <a href="{{ route('Event.create') }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right"  >Create Event</a>
@@ -82,34 +82,34 @@
                     </thead>
                     <tbody>
                       @if( session('account') != 'org-member' )
-                        <?php if (! is_null($events)): ?>
-                        <?php foreach ($events as $key => $event): ?>
-                          <tr data-event="{{ $event->id }}"
-                              data-route="{{ route('Event.edit', $event->id) }}"
-                              data-action="{{ route('Event.update', $event->id) }}"
-                              data-organization-id="{{ $event->organization_id }}"
-                              data-event-type-id="{{ $event->event_type_id }}"
-                              data-user-type-id="{{ Auth::user()->user_type_id }}"
-                              data-approval="{{ $event->is_approve }}"
-                              data-account="{{ Auth::id() }}">
-                            <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
-                            <td>{{ $event->venue }}</td>
-                            <td>{{ ! is_null($event->organization) ? $event->organization->name : 'University Official Event' }}</td>
-                            <td>{{ $event->eventType->name }}</td>
-                            <td>{{ date('M d, Y', strtotime($event->date_start)) }} {{ date('h:i A', strtotime($event->date_start_time)) }}</td>
-                            <td>{{ date('M d, Y', strtotime($event->date_end)) }} {{ date('h:i A', strtotime($event->date_end_time)) }}</td>
-                            <?php if ($account == 'org-member'): ?>
-                              <td>{{ ucwords($event->status) }}</td>
-                            <?php else: ?>
-                              <td>{{ ($event->is_approve == 'true') ? 'Approved' : 'Not' }}</td>
-                            <?php endif; ?>
-                          </tr>
-                        <?php endforeach; ?>
-                      <?php endif; ?>
+                        @if (! is_null($events))
+                          @foreach ($events as $key => $event)
+                            <tr data-event="{{ $event->id }}"
+                                data-route="{{ route('Event.edit', $event->id) }}"
+                                data-action="{{ route('Event.update', $event->id) }}"
+                                data-organization-id="{{ $event->organization_id }}"
+                                data-event-type-id="{{ $event->event_type_id }}"
+                                data-user-type-id="{{ Auth::user()->user_type_id }}"
+                                data-approval="{{ $event->is_approve }}"
+                                data-account="{{ Auth::id() }}">
+                              <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
+                              <td>{{ $event->venue }}</td>
+                              <td>{{ ! is_null($event->organization) ? $event->organization->name : 'University Official Event' }}</td>
+                              <td>{{ $event->eventType->name }}</td>
+                              <td>{{ date('M d, Y', strtotime($event->date_start)) }} {{ date('h:i A', strtotime($event->date_start_time)) }}</td>
+                              <td>{{ date('M d, Y', strtotime($event->date_end)) }} {{ date('h:i A', strtotime($event->date_end_time)) }}</td>
+                              @if ($account == 'org-member')
+                                <td>{{ ucwords($event->status) }}</td>
+                              @else
+                                <td>{{ ($event->is_approve == 'true') ? 'Approved' : 'Not' }}</td>
+                              @endif
+                            </tr>
+                          @endforeach
+                        @endif
                       @else
-                        <?php foreach ($org_ids as $key => $id): ?>
-                          <?php if (! is_null($events[$id])): ?>
-                            <?php foreach ($events[$id] as $key => $event): ?>
+                        @foreach ($org_ids as $key => $id)
+                          @if (! is_null($events[$id]))
+                            @foreach ($events[$id] as $key => $event)
                               <tr data-event="{{ $event->id }}"
                                   data-route="{{ route('Event.edit', $event->id) }}"
                                   data-action="{{ route('Event.update', $event->id) }}"
@@ -124,15 +124,15 @@
                                 <td>{{ $event->eventType->name }}</td>
                                 <td>{{ date('M d, Y', strtotime($event->date_start)) }}, {{ date('h:i A', strtotime($event->date_start_time)) }}</td>
                                 <td>{{ date('M d, Y', strtotime($event->date_end)) }}, {{ date('h:i A', strtotime($event->date_end_time)) }}</td>
-                                <?php if ($account == 'org-member'): ?>
+                                @if ($account == 'org-member')
                                   <td>{{ ucwords($event->status) }}</td>
-                                <?php else: ?>
+                                @else
                                   <td>{{ ($event->is_approve == 'true') ? 'Approved' : 'Not' }}</td>
-                                <?php endif; ?>
+                                @endif
                               </tr>
-                            <?php endforeach; ?>
-                          <?php endif; ?>
-                        <?php endforeach; ?>
+                            @endforeach
+                          @endif
+                        @endforeach
                       @endif
                     </tbody>
                     <tfoot>
