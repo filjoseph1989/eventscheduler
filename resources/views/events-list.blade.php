@@ -167,6 +167,7 @@
         </div>
         <div class="modal-body">
           <button type="button" class="btn btn-primary pull-right hidden" id="edit-event" name="button">Edit</button>
+          <button type="button" class="btn btn-primary pull-right hidden" id="cancel-edit-event" name="button">Cancel</button>
           <table class="table" id="modal-event-table">
             <thead>
               <tr> <th id="modal-event-title"></th> </tr>
@@ -315,7 +316,6 @@
       </div>
     </div>
   </div>
-
   <div id="edit-notification-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="event" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">

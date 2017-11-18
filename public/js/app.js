@@ -15,7 +15,7 @@
  * @since 0.1
  * @version 2.22
  * @date 09-30-2017
- * @date 11-10-2017 - last updated
+ * @date 11-18-2017 - last updated
  */
 (function() {
   /**
@@ -49,12 +49,14 @@
       id: eventId
     }
 
+    /* Display the edit button */
     axios_post('/EventChecker/checkuser', data, function(data) {
-      var account = $('.event-title').parents('tr').data('account');
-      console.log(account, data.account);
+      let account = $('.event-title').parents('tr').data('account');
+      let id      = $('.event-title').parents('tr').data('event');
+
       if (account == data.account) {
         $('#edit-event').removeClass('hidden');
-        $('#edit-event').attr('data-event-id', $('.event-title').parents('tr').data('event'));
+        $('#edit-event').attr('data-event-id', id);
       }
     });
 
@@ -594,14 +596,28 @@
    * @return {void}
    */
   $('#edit-event').click(function() {
+    $(this).addClass('hidden');
     $('#modal-event-table').addClass('hidden');
     $('#edit-event-form').removeClass('hidden');
-    $('#edit-event').addClass('hidden');
+    $('#cancel-edit-event').removeClass('hidden');
 
     var $id = $(this).data('event-id');
     axios_post('/EventGetter', { id: $id }, function(data) {
-      console.log(data);
+      // No code
     });
+  });
+
+  /**
+   * Cancel event editing
+   *
+   * @return {void}
+   */
+  $('#cancel-edit-event').click(function() {
+    $(this).addClass('hidden');
+    $('#edit-event').removeClass('hidden');
+    $('#modal-event-table').removeClass('hidden');
+    $('#modal-event-table').removeClass('hidden');
+    $('#edit-event-form').addClass('hidden');
   });
 
   /**
