@@ -34,7 +34,7 @@
   @php $loginClass = session('loginClass') @endphp
 @endif
 
-<body class="{{ isset($loginClass) ? $loginClass : "" }}">
+<body class="{{ isset($loginClass) ? $loginClass : "" }}" style="background-color:#C5CAE9">
 
   @guest
     @yield('login')

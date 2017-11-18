@@ -1,22 +1,22 @@
 <div class="card">
   @if (session('account') == 'osa')
-    <div class="header bg-teal">
+    <div class="header" style="background-color: #9FA8DA ">
   @elseif (session('account') == 'org-head')
     <div class="header bg-teal">
   @else
     <div class="header bg-teal">
   @endif
-    <h2> VIEW CALENDAR
-      <small>View approved events in the calendar of particular event type</small>
+    <h2 style="color:black"> VIEW CALENDAR
+      <small style="color:black">View approved events in the calendar of particular event type</small>
     </h2>
   </div>
-  <div class="body">
+  <div class="body" >
     <div class="list-group">
-      <a href="{{ route('Calendar.show', 1) }}" class="list-group-item" >  Official Events  </a>
+      <a href="{{ route('Calendar.show', 1) }}" class="list-group-item" style="border:none;  color: #7A7A7A" ><i class="material-icons" style="margin-right:5px">stars</i>  Official Events  </a>
         @if (session('account') != 'osa')
-          <a href="{{ route('Calendar.show', 2) }}" class="list-group-item" >Within Organization/s Events</a>
+          <a href="{{ route('Calendar.show', 2) }}" class="list-group-item" style="border:none;  color: #7A7A7A" ><i class="material-icons" style="margin-right:5px">domain</i>Within Organization/s Events</a>
         @endif
-          <a href="{{ route('Calendar.show', 3) }}" class="list-group-item" >Personal Events</a>
+          <a href="{{ route('Calendar.show', 3) }}" class="list-group-item" style="border:none;  color: #7A7A7A" ><i class="material-icons" style="margin-right:5px">person_outline</i>Personal Events</a>
     </div>
   </div>
 </div>
