@@ -169,20 +169,6 @@
                     </div>
                   </div>
                 </div>
-              {{--  <div class="row clearfix">
-                  <div class="col-sm-8 col-sm-offset-2">
-                    <div class="form-group form-float">
-                      <div class="form-line focused">
-                        <select class="form-control show-tick" id="semester_id" name="semester_id">
-                          <option value="{{ old('semester_id') }}" id="semester-option">-- Select Semester --</option>
-                          @foreach ($semesters as $key => $semester)
-                            <option value="{{ $semester->id }}">{{ $semester->name }}</option>
-                          @endforeach
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                </div> --}}
                 <div class="row clearfix">
                   <div class="col-sm-8 col-sm-offset-2">
                     <div class="form-group">
