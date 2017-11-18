@@ -2,7 +2,7 @@
   @if (session('account') == 'osa')
     <div class="header" style="background-color:#3F51B5">
   @elseif (session('account') == 'org-head')
-    <div class="header bg-brown">
+    <div class="header bg-red">
   @else
     <div class="header bg-blue-grey">
   @endif

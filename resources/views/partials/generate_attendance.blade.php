@@ -13,7 +13,7 @@
   <div class="body"  >
     <div class="list-group" >
       @if (session('account') == 'org-head')
-        <a href="{{ route('Attendances.show', 'Official') }}" class="list-group-item"  style="border:none;  color: #7A7A7A"><i class="material-icons" style="margin-right:5px">playlist_add_check</i> Official Events</a>
+        <i class="material-icons" style="margin-right:5px">playlist_add_check</i> <a href="{{ route('Attendances.show', 'Official') }}" class="list-group-item"  style="border:none;  color: #7A7A7A"> Official Events</a>
         <a href="{{ route('Attendances.show', 'Local') }}" class="list-group-item"  style="border:none;  color: #7A7A7A"><i class="material-icons" style="margin-right:5px">layers</i> Local Events</a>
         <a href="{{ route('Attendances.index') }}" class="list-group-item"  style="border:none;  color: #7A7A7A" > My Event Attendance</a>
       @elseif (session('account') == 'osa')

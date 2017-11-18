@@ -10191,7 +10191,7 @@ fieldset[disabled] .form-control {
     white-space: nowrap;
     position: relative;
     border-bottom: 1px solid #e9e9e9;
-    background: url("../img/user-img-background.jpg") no-repeat no-repeat;
+    background: url("../img/user-img-background.png") no-repeat no-repeat;
     height: 135px;
 }
 
@@ -11004,7 +11004,7 @@ tr>td:nth-child(2) {
 }
 
 .list-group a.list-group-item:hover {
-  background-color:	#C5CAE9;
+  background-color:	#E0E0E0;
 }
 
-a.ml-menu-item-links:hover { background-color:	#C5CAE9; }
+a.ml-menu-item-links:hover { background-color:	#E0E0E0; }
