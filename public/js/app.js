@@ -13,7 +13,7 @@
  * @author Fil <filjoseph22@gmail.com>
  * @author Liz <janicalizdeguzman@gmail.com>
  * @since 0.1
- * @version 2.22
+ * @version 2.23
  * @date 09-30-2017
  * @date 11-18-2017 - last updated
  */
@@ -478,8 +478,6 @@
     var eventType = $(this).data('event-type-id');
     var url       = '/Event/' + id;
 
-    console.log(id, eventType, url);
-
     // naa pa problem kay ang eventtyp naa pud sa event table '2' ang value
 
     if (eventType == 2) {
@@ -560,41 +558,28 @@
    * @return {void}
    */
   $('#save-event').click(function(event) {
-    console.log(event);
     var data = $('#add-event-form').serialize();
+    if (data.length == 0) {
+      data = $('#edit-event-form').serialize();
+    }
 
     axios_post('/EventChecker', data, function(data) {
-      var form_data = $('#add-event-form').serializeArray();
-      var date_start = data.date_start;
+      let $id       = '#add-event-form';
+      let form_data = $($id).serializeArray();
 
-      if (date_start == form_data[5].value) {
-        swal({
-          title: "Conflict",
-          text: "You have the same schedule with " + data.title,
-          icon: "warning",
-          buttons: {
-            cancel: {
-              text: "Save Anyway",
-              value: true,
-              visible: true,
-              className: "save-anyway"
-            },
-            confirm: {
-              text: "Cancel",
-              value: null
-            }
-          }
-        })
-        .then((value) => {
-          if (value == true) {
-            $('#add-event-form').submit();
-          } else {
-            $('#add-event-form').submit(function() {
-              return false;
-            });
-          }
-        });
-      } // end if
+      if (form_data.length == 0) {
+        $id       = '#edit-event-form';
+        form_data = $($id).serializeArray();
+      }
+
+      let param = {
+        'date_start': data.date_start,
+        'id': $id,
+        'title': data.title,
+        'value': form_data[5].value
+      };
+
+      ConflictDetect(param);
     });
   });
 
@@ -764,15 +749,44 @@
   }
 
   /**
-   * Put a data on edit event form on modal
+   * Determine the conflict
    *
-   * @param  {} data
-   * @return {}
+   * @param  {object} data
+   * @return {void}
    */
-  var fillUpEditForm = function(data)
+  var ConflictDetect = function(data)
   {
-    console.log(data);
-    // data.forEach(function(currentValue, index, arr) {
-    // });
+    $id = data.id;
+    if (data.date_start == data.value) {
+      swal({
+        title: "Conflict",
+        text: "You have the same schedule with " + data.title,
+        icon: "warning",
+        buttons: {
+          cancel: {
+            text: "Save Anyway",
+            value: true,
+            visible: true,
+            className: "save-anyway"
+          },
+          confirm: {
+            text: "Cancel",
+            value: null
+          }
+        }
+      })
+      .then((value) => {
+        if (value == true) {
+          $html = $('#fields-hidden').html();
+          $('#fields').html($html);
+          $($id).submit();
+        }
+      });
+    } else {
+      $html = $('#fields-hidden').html();
+      $('#fields').html($html);
+
+      $($id).submit();
+    }
   }
 })();

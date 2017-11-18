@@ -183,7 +183,7 @@
           </table>
           <form class="hidden" id="edit-event-form" action="" method="POST">
             {{ csrf_field() }}
-            {{ method_field('PUT') }}
+            <div id="fields"></div>
             <div class="row clearfix">
               <div class="col-sm-8 col-sm-offset-2">
                 <div class="form-group form-float form-group">
@@ -265,6 +265,9 @@
               </div>
             </div>
           </form>
+          <div class="hidden" id="fields-hidden">
+            {{ method_field('PUT') }}
+          </div>
         </div>
         <div class="modal-footer">
           @if (session('account') == 'org-head')
@@ -341,7 +344,7 @@
   <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}?v=0.1"></script>
   <script src="{{ asset('js/tooltips-popovers.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/app.js') }}?v=2.23" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.24" charset="utf-8"></script>
   <script type="text/javascript">
     $('.event-datepicker').bootstrapMaterialDatePicker({
       format: 'YYYY/MM/DD',
