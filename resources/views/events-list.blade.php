@@ -5,6 +5,7 @@
 @endsection
 
 @section('css')
+  <link href="{{ asset('css/bootstrap-material-datetimepicker.css') }}?v=1.0.1" rel="stylesheet">
   <link href="{{ asset('css/dataTables.bootstrap.css') }}?v=1" rel="stylesheet">
   <link href="{{ asset('css/bootstrap-select.css') }}?v=1" rel="stylesheet">
   <link href="{{ asset('css/all-themes.css') }}" rel="stylesheet">
@@ -180,8 +181,9 @@
               <tr> <td id="modal-event-category">&nbsp;</td> </tr>
             </tbody>
           </table>
-          <form class="hidden" id="edit-event-form" action="{{ route('Event.store') }}" method="POST">
+          <form class="hidden" id="edit-event-form" action="" method="POST">
             {{ csrf_field() }}
+            {{ method_field('PUT') }}
             <div class="row clearfix">
               <div class="col-sm-8 col-sm-offset-2">
                 <div class="form-group form-float form-group">
@@ -249,22 +251,7 @@
             <div class="row clearfix">
               <div class="col-sm-8 col-sm-offset-2">
                 <div class="form-group form-float">
-                  <div class="form-line focused">
-                    <select class="form-control show-tick" id="category" name="category">
-                      <option value="" id="event-category-option">-- Select Event Category --</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row clearfix">
-              <div class="col-sm-8 col-sm-offset-2">
-                <div class="form-group form-float">
-                  <div class="form-line focused">
-                    <select class="form-control show-tick" id="semester_id" name="semester_id">
-                      <option value="" id="semester-option">-- Select Semester --</option>
-                    </select>
-                  </div>
+                  <div class="form-line focused" id="div-category">{{-- Options Here --}}</div>
                 </div>
               </div>
             </div>
@@ -345,6 +332,9 @@
 
 @section('js')
   <script src="{{ asset('js/admin.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/autosize.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/moment.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}?v=0.1"></script>
   <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
   <script src="{{ asset('js/jquery.dataTables.js') }}?v=0.1"></script>
   <script src="{{ asset('js/jquery-datatable.js') }}?v=0.1"></script>
@@ -352,4 +342,18 @@
   <script src="{{ asset('js/sweetalert.min.js') }}?v=0.1"></script>
   <script src="{{ asset('js/tooltips-popovers.js') }}?v=0.1"></script>
   <script src="{{ asset('js/app.js') }}?v=2.23" charset="utf-8"></script>
+  <script type="text/javascript">
+    $('.event-datepicker').bootstrapMaterialDatePicker({
+      format: 'YYYY/MM/DD',
+      clearButton: true,
+      weekStart: 1,
+      time: false
+    });
+
+    $('.event-timepicker').bootstrapMaterialDatePicker({
+      format: 'HH:mm',
+      clearButton: true,
+      date: false
+    });
+  </script>
 @endsection

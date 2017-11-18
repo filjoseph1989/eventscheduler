@@ -553,7 +553,14 @@
     axios_post(url, data, function (data) { })
   });
 
+  /**
+   * Trigger when the save button on event is clicked
+   *
+   * @param  {object} event
+   * @return {void}
+   */
   $('#save-event').click(function(event) {
+    console.log(event);
     var data = $('#add-event-form').serialize();
 
     axios_post('/EventChecker', data, function(data) {
@@ -596,14 +603,35 @@
    * @return {void}
    */
   $('#edit-event').click(function() {
+    let $id = $(this).data('event-id');
+
     $(this).addClass('hidden');
     $('#modal-event-table').addClass('hidden');
     $('#edit-event-form').removeClass('hidden');
+    $('#edit-event-form').attr('action', '/Event/' + $id);
     $('#cancel-edit-event').removeClass('hidden');
 
-    var $id = $(this).data('event-id');
     axios_post('/EventGetter', { id: $id }, function(data) {
-      // No code
+      $('#edit-event-form #title').val(data.title);
+      $('#edit-event-form #description').val(data.description);
+      $('#edit-event-form #venue').val(data.venue);
+      $('#edit-event-form #date_start').val(data.date_start);
+      $('#edit-event-form #date_start_time').val(data.date_start_time);
+      $('#edit-event-form #date_end').val(data.date_end);
+      $('#edit-event-form #date_end_time').val(data.date_end_time);
+
+      let category = ['university', 'within', 'organization', 'personal'];
+      let htm      = '<select class="form-control show-tick" id="category" name="category">';
+      category.forEach(function(info) {
+        if (data.category != info) {
+          htm += '<option value="'+ info +'" id="event-category-'+ info +'">'+ info +'</option>';
+        } else {
+          htm += '<option value="'+ data.category +'" id="event-category-'+ data.category +'">'+ data.category +'</option>';
+        }
+      });
+      htm += '</select>';
+
+      $('#div-category').html(htm);
     });
   });
 

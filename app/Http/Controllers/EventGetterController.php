@@ -26,7 +26,11 @@ class EventGetterController extends Controller
    */
   public function getEvent(Request $request)
   {
-    return Event::find($request->id);
+    $event = Event::find($request->id);
+    $event->date_start = str_replace('-', '/', $event->date_start);
+    $event->date_end = str_replace('-', '/', $event->date_end);
+
+    return $event;
   }
 
 }
