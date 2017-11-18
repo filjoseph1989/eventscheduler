@@ -42,6 +42,7 @@ class OrganizationController extends Controller
           ->where('position_id', 3)
           ->with('user')
           ->get();
+          // dd($organizations);
 
         return view('organization_list')->with([
           'organizations' => $organizations,
@@ -180,13 +181,17 @@ class OrganizationController extends Controller
     public function show($id, RandomHelper $helper)
     {
       $ids = self::getOrganizationsID();
-
-      foreach ($ids as $key => $id) {
-        $organizations[$id] = OrganizationGroup::with('organization')
-            ->where('organization_id', $id)
-            ->where('position_id', 3)
-            ->with('user')
-            ->get();
+      // dd( $ids );
+      if( $ids == [] ){
+        $organizations = null;
+      } else {
+        foreach ($ids as $key => $id) {
+          $organizations[$id] = OrganizationGroup::with('organization')
+          ->where('organization_id', $id)
+          ->where('position_id', 3)
+          ->with('user')
+          ->get();
+        }
       }
 
       return view('organization_list')

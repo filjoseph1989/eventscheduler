@@ -31,7 +31,7 @@
               </h2>
             </div>
             <div class="body">
-              <a href="{{ route('Event.create') }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right">Create Event</a>              
+              <a href="{{ route('Event.create') }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right">Create Event</a>
               <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
@@ -44,11 +44,11 @@
                     <tbody>
                       @if (! is_null($events))
                         @foreach ($events as $key => $event)
-                           <tr data-event="{{ $event->id }}"  
-                              data-route="{{ route('Event.edit', $event->id) }}" 
+                           <tr data-event="{{ $event->id }}"
+                              data-route="{{ route('Event.edit', $event->id) }}"
                               data-action="{{ route('Event.update', $event->id) }}"
                               data-organization-id="{{ $event->organization_id }}"
-                              data-user-type-id="{{ Auth::user()->user_type_id }}"                              
+                              data-user-type-id="{{ Auth::user()->user_type_id }}"
                               data-approval="{{ $event->is_approve }}">
                             <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
                             <td>
@@ -109,7 +109,7 @@
               </div>
             </div>
 
-            @if ($account == 'org-head' || $account == 'osa') 
+            @if ($account == 'org-head' || $account == 'osa')
               <div class="panel social-media-notification">
                 <div class="panel-heading" role="tab" id="headingTwo_1">
                   <h4 class="panel-title">

@@ -604,7 +604,6 @@
     });
   });
 
-
   /**
    * New player for deal with http request
    *

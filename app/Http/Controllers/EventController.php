@@ -14,7 +14,6 @@ use DateTime;
 
 # Models
 use App\Models\Event;
-use App\Models\Semester;
 use App\Models\EventType;
 use App\Models\EventGroup;
 use App\Models\OrganizationGroup;
@@ -34,7 +33,7 @@ class EventController extends Controller
     use ValidationTrait, CommonMethodTrait;
 
     private $list  = [
-      'all',
+      ' ',
       'official',
       'local',
       'true'  => 'Approved Events',
@@ -96,10 +95,7 @@ class EventController extends Controller
     public function create()
     {
       # view
-      return  view('events-add')
-        ->with([
-          'semesters' => Semester::all()
-        ]);
+      return  view('events-add');
     }
 
     /**
@@ -113,7 +109,8 @@ class EventController extends Controller
       $this->validateRequest($this, $request);
 
       $orgId = null;
-      if (! parent::isOsa()) {
+
+      if (! parent::isOsa() && ( $request->category == "university" || $request->category == "organization" || $request->category == "within" ) ) {
         $org_id = OrganizationGroup::where('user_id', Auth::id())
           ->where('position_id', 3)
           ->get();
@@ -124,7 +121,6 @@ class EventController extends Controller
       }
 
       $is_approve = 'false';
-
       if ($request->category == "university" || $request->category == "organization") {
         $event_type_id = 1;
       } else {
@@ -140,7 +136,6 @@ class EventController extends Controller
         "user_id"         => $request->user_id,
         "event_type_id"   => $event_type_id,
         "organization_id" => $orgId,
-        "semester_id"     => $request->semester_id,
         "category"        => $request->category,
         "title"           => ucwords($request->title),
         "description"     => $request->description,
@@ -165,15 +160,21 @@ class EventController extends Controller
         $event = Event::create($data);
       }
 
-      if ($event->wasRecentlyCreated) {
         if( $request->category == 'personal' ){
-          return back()
+          if( Auth::user()->user_type_id == 1){
+            return back()
+            ->with('status', 'Successfully saved your event to "Local" List Of Events');
+          } else {
+            return back()
             ->with('status', 'Successfully saved your event to "Personal" List Of Events');
+          }
+        } else if( $request->category == 'organization' || $request->category == 'university' ) {
+            return back()
+            ->with('status', 'Successfully saved your event to "Official" List Of Events');
         } else {
           return back()
-            ->with('status', 'Successfully saved your event to "Official" List Of Events');
+            ->with('status', 'Successfully saved your event to "Local" List Of Events');
         }
-      }
     }
 
     /**
@@ -186,6 +187,7 @@ class EventController extends Controller
     {
       $this->account = Auth::user()->user_type_id;
       $this->events = self::whosGettingTheEvents($id);
+      $ids = self::getOrganizationsID();
 
       self::getDateComparison($this->events);
 
@@ -194,7 +196,8 @@ class EventController extends Controller
           'title'      => $this->list[$id], # title of the modal
           'events'     => $this->events,
           'eventType'  => $id,
-          'account'    => self::getAccount(Auth::user()->user_type_id)
+          'account'    => self::getAccount(Auth::user()->user_type_id),
+          'org_ids'    => $ids,
         ]);
     }
 
@@ -222,6 +225,7 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
+
       $event = Event::find($id);
 
       if ($request->has('facebook')) {

@@ -18,7 +18,6 @@ class CreateEventsTable extends Migration
             $table->integer('user_id')->unsigned()->index();
             $table->integer('organization_id')->unsigned()->index()->nullable(); //made nullable for osa users
             $table->integer('event_type_id')->unsigned()->index();
-            $table->integer('semester_id')->unsigned()->index();
             $table->enum('category', ['within','personal','university','organization'])->nullable();
             $table->string('title'); //this is not unique because there are events with same titles at both semesters
             $table->text('description');
@@ -32,15 +31,12 @@ class CreateEventsTable extends Migration
             $table->enum('is_approve', ['true', 'false'])->default('false');
             $table->enum('twitter', ['on','off'])->default('off');
             $table->string('twitter_msg')->nullable();
-            $table->string('twitter_img')->nullable();
             $table->enum('facebook', ['on','off'])->default('off');
             $table->string('facebook_msg')->nullable();
-            $table->string('facebook_img')->nullable();
             $table->enum('sms', ['on','off'])->default('off');
             $table->string('sms_msg')->nullable();
             $table->enum('email', ['on','off'])->default('off');
             $table->string('email_msg')->nullable();
-            $table->string('email_img')->nullable();
             $table->string('img')->nullable();
             $table->timestamps();
             $table->softDeletes();
@@ -49,7 +45,6 @@ class CreateEventsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('organization_id')->references('id')->on('organizations');
             $table->foreign('event_type_id')->references('id')->on('event_types');
-            $table->foreign('semester_id')->references('id')->on('semesters');
         });
     }
 

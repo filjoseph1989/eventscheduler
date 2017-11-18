@@ -17,7 +17,6 @@ class PersonalEvent extends Model
      protected $fillable = [
       'user_id',
       'event_type_id',
-      'semester_id',
       'title',
       'category',
       'description',
@@ -31,15 +30,13 @@ class PersonalEvent extends Model
       'is_approve',
       'twitter',
       'twitter_msg',
-      'twitter_img',
       'facebook',
       'facebook_msg',
-      'facebook_img',
       'sms',
       'sms_msg',
       'email',
       'email_msg',
-      'email_img',
+      'img',
     ];
 
     /**

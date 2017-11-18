@@ -14,7 +14,7 @@
         <div class="row clearfix">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             @if (! is_null(session('status')))
-              <div class="alert alert" role="alert">
+              <div class="alert alert-success" role="alert">
                 {{ session('status') }}
               </div>
             @endif
@@ -59,7 +59,7 @@
                       <tbody>
                         <tr>
                           <td><strong>Name: </strong></td>
-                          <td id="full_name">{{ Auth::user()->full_name }}</td>
+                          <td {{-- id="full_name" --}}>{{ Auth::user()->full_name }}</td>
                         </tr>
                         <tr>
                           <td><strong>Email: </strong></td>

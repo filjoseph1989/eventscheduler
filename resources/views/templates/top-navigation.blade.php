@@ -14,7 +14,7 @@
     </div>
   </div>
   <div class="overlay"></div>
-  
+
   {{--  Next time na ning search...
   <div class="search-bar">
     <div class="search-icon">
@@ -26,7 +26,7 @@
     </div>
   </div>  --}}
 
-  <nav class="navbar">
+  <nav class="navbar" {{-- style="border: 2px; border-style: none none solid none" --}} >
     <div class="container-fluid">
       <div class="navbar-header">
         <a href="#" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
@@ -72,5 +72,5 @@
           <li class="pull-right"><a href="#" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li>
         </ul> --}}
       </div>
-    </div>  
+    </div>
   </nav>

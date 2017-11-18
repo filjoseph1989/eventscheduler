@@ -24,12 +24,23 @@ trait CommonMethodTrait
     # if user accesses getOrganization() function from CommonMethodTrait,
     # array of organizationGroup instance must be returned where organnization_id are the id of orgs the user belongs to,
     # since org-user(member) can belong to many orgs
-    $orgs = OrganizationGroup::where('user_id', Auth::id())
-      ->get();
+    if(Auth::user()->user_type_id == 3){
+      $orgs = OrganizationGroup::where('position_id', 3)
+        ->get();
 
-    $IDs = [];
-    foreach ($orgs as $key => $value) {
-      $IDs[$value->id] = $value->getOrganizationId();
+      $IDs = [];
+      foreach ($orgs as $key => $value) {
+        $IDs[$value->id] = $value->getOrganizationId();
+      }
+    }
+    else {
+      $orgs = OrganizationGroup::where('user_id', Auth::id())
+        ->get();
+
+      $IDs = [];
+      foreach ($orgs as $key => $value) {
+        $IDs[$value->id] = $value->getOrganizationId();
+      }
     }
 
     return $IDs;
@@ -46,7 +57,6 @@ trait CommonMethodTrait
       //if org-head or org-user(and must be adviser)
       $my_primary_organization_id = OrganizationGroup::where('user_id', Auth::id())
         ->where('position_id', 3)
-        ->orWhere('position_id', 4)
         ->get()
         ->first();
 
@@ -90,11 +100,17 @@ trait CommonMethodTrait
   private function getOrgHeadOrgName($id)
   {
     $org = OrganizationGroup::with('organization')
-          ->where('user_id', $id )
-          ->where('position_id', 3)
-          ->get()->first();
-    $str = $org->organization->name;
-    return $str;
+      ->where('user_id', $id )
+      ->where('position_id', 3)
+      ->get()
+      ->first();
+
+    if (! is_null($org)) {
+      $str = $org->organization->name;
+      return $str;
+    } else {
+      return "";
+    }
   }
  /**
      * This method compare the given date to current date
@@ -104,16 +120,36 @@ trait CommonMethodTrait
      */
     private function getDateComparison(&$events)
     {
-      if ( ! is_null($events) ) {
-        foreach ($events as $key => $event) {
-          if ($events->count() > 1) {
-            if (self::matchDate($event->date_start)) {
-              $events[$key]->status = "on going";
-              # Issue 25
+      if( Auth::user()->user_type_id != 2 ){
+        if ( ! is_null($events) ) {
+          foreach ($events as $key => $event) {
+            if ($events->count() > 1) {
+              if (self::matchDate($event->date_start)) {
+                $events[$key]->status = "on going";
+                # Issue 25
+              }
+            } else {
+              if (self::matchDate($event->date_start)) {
+                $events[0]->status = "on going";
+              }
             }
-          } else {
-            if (self::matchDate($event->date_start)) {
-              $events[0]->status = "on going";
+          }
+        }
+      } else {
+        $ids = self::getOrganizationsID();
+        foreach ($ids as $key => $value) {
+          if ( ! is_null($events[$value]) ) {
+            foreach ($events[$value] as $key => $event) {
+              if ($events[$value]->count() > 1) {
+                if (self::matchDate($event->date_start)) {
+                  $events[$value][$key]->status = "on going";
+                  # Issue 25
+                }
+              } else {
+                if (self::matchDate($event->date_start)) {
+                  $events[0]->status = "on going";
+                }
+              }
             }
           }
         }

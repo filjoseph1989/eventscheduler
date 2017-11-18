@@ -3641,6 +3641,7 @@ section.content {
     padding: 9px 15px 6px 15px !important;
 }
 
+
 .ms-container .ms-optgroup-label {
     padding: 5px 0 0 8px !important;
 }
@@ -3829,6 +3830,7 @@ section.content {
     font-size: 18px;
     font-weight: normal;
     color: #111;
+      /*color: white;*/
 }
 
 .card .header h2 small {
@@ -3836,6 +3838,7 @@ section.content {
     font-size: 12px;
     margin-top: 5px;
     color: #999;
+    /*color: white;*/
     line-height: 15px;
 }
 
@@ -7643,6 +7646,7 @@ fieldset[disabled] .form-control {
     border-radius: 0;
 }
 
+
 .list-group .list-group-item .list-group-item-heading {
     font-weight: bold;
     font-size: 17px;
@@ -10263,6 +10267,7 @@ fieldset[disabled] .form-control {
     font-weight: bold;
 }
 
+
 .sidebar .menu .list .header {
     background: #eee;
     font-size: 12px;
@@ -10988,6 +10993,7 @@ tr>td:nth-child(2) {
     cursor: pointer;
 }
 
+
 #modal-event-title,
 #modal-event-ptitle {
   text-transform: capitalize;
@@ -10996,3 +11002,9 @@ tr>td:nth-child(2) {
 .modal-event {
   text-transform: capitalize;
 }
+
+.list-group a.list-group-item:hover {
+  background-color:	#FFDAB9;
+}
+
+a.ml-menu-item-links:hover { background-color:	#FFDAB9; }

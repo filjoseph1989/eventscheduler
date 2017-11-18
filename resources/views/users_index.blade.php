@@ -147,13 +147,13 @@
                       <?php else: ?>
                           <td>
                             <a href="#" class="user-name" data-toggle="modal" data-target="#profile" data-user-id="{{ $user->id }}">
-                              {{ $user->full_name }}
+                              {{ $user->user->full_name }}
                             </a>
                           </td>
                           <td>
                             <a href="#" class="user-name" data-toggle="modal" data-target="#profile" data-user-id="{{ $user->id }}">
                               <?php if (! is_null($user->course)): ?>
-                              {{ $user->course->name }}
+                              {{ $user->user->course->name }}
                               <?php else: ?>
                                 No course
                               <?php endif; ?>
@@ -161,12 +161,12 @@
                           </td>
                           <td>
                             <a href="#" class="user-name" data-toggle="modal" data-target="#profile" data-user-id="{{ $user->id }}">
-                              {{ $user->userType->name }}
+                              {{ AccounType($user->user->user_type_id) }}
                             </a>
                           </td>
                           <td>
                             <a href="#" class="user-name" data-toggle="modal" data-target="#profile" data-user-id="{{ $user->id }}">
-                              {{ ($user->status == 'true') ? 'Active' : 'Inactive' }}
+                              {{ ($user->user->status == 'true') ? 'Active' : 'Inactive' }}
                             </a>
                           </td>
                       <?php endif; ?>

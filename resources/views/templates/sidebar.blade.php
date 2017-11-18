@@ -1,6 +1,6 @@
 <section class="sidebar">
-  <aside id="leftsidebar" class="sidebar">
-    <div class="user-info">
+  <aside id="leftsidebar">
+    <div class="user-info" >
       <div class="image">
         @if( Auth::user()->picture != "profile.png" )
           <img src="{{ asset("img/profile/".Auth::user()->picture) }}" width="48" height="48" alt="Profile Picture">
@@ -34,7 +34,7 @@
         </div>
       </div>
     </div>
-    <div class="menu">
+    <div class="menu" >
       <ul class="list">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active">
@@ -50,15 +50,15 @@
               @if( session('account') == 'osa' )
                 <span>All System Users</span>
               @else
-                <span>Primary Org Co-Members</span>
+                <span>{{ session('org_name') }} Members</span>
               @endif
             </a>
             <ul class="ml-menu">
               @if (session('account') == 'org-head')
-                <li><a href="{{ route('User.index') }}">List of Members</a></li>
-                <li><a href="{{ route('User.create') }}">Register Members</a></li>
+                <li><a href="{{ route('User.index') }}" class="ml-menu-item-links">List of Members</a></li>
+                <li><a href="{{ route('User.create') }}" class="ml-menu-item-links">Register Members</a></li>
               @elseif(session('account') == 'osa')
-                <li><a href="{{ route('User.index') }}">List of System Users</a></li>
+                <li><a href="{{ route('User.index') }}"class="ml-menu-item-links" >List of Users</a></li>
               @endif
             </ul>
           @endif
@@ -70,10 +70,11 @@
           </a>
           <ul class="ml-menu">
             @if(session('account') == 'osa')
-              <li><a href="{{ route('Org.create') }}"><span>Add New</span></a></li>
-              <li><a href="{{ route('Org.index') }}"><span>University Organizations</span></a></li>
+              <li><a href="{{ route('Org.create') }}" class="ml-menu-item-links"><span>Add New</span></a></li>
+              <!-- <li><a href="{{ route('Org.index') }}" class="ml-menu-item-links"><span>University Organizations</span></a></li> -->
+              <li><a href="{{ route('Org.show', 'false') }}" class="ml-menu-item-links"><span>University Organizations</span></a></li>
             @elseif(session('account') != 'osa')
-              <li><a href="{{ route('Org.show', 'false') }}"><span>My Organizations</span></a></li>
+              <li><a href="{{ route('Org.show', 'false') }}" class="ml-menu-item-links"><span>My Organizations</span></a></li>
             @endif
           </ul>
         </li>
@@ -84,26 +85,26 @@
           </a>
           <ul class="ml-menu">
             <li>
-              <a href="{{ route('Event.create') }}"> <span>Create Event</span> </a>
+              <a href="{{ route('Event.create') }}" class="ml-menu-item-links"> <span>Create Event</span> </a>
             </li>
             <li>
               <a href="#" class="menu-toggle"><span>List of Events</span></a>
               <ul class="ml-menu">
                 @if( session('account') == 'org-head')
-                  <li><a href="{{ route('Event.show', 0) }}"><span><strong> {{ session('org_name') }} </strong> Events</span></a></li>
+                  <li><a href="{{ route('Event.show', 0) }}" class="ml-menu-item-links"><span><strong> {{ session('org_name') }} </strong> Events</span></a></li>
                 @elseif( session('account') == 'org-member' )
-                  <li><a href="{{ route('Event.show', 0) }}"><span>My Organization Events</span></a></li>
+                  <li><a href="{{ route('Event.show', 0) }}" class="ml-menu-item-links"><span>My Organization Events</span></a></li>
                 @endif
-                  <li><a href="{{ route('Event.show', 1) }}"> <span>Official</span></a></li>
-                @if (session('account') != 'osa')
+                  <li><a href="{{ route('Event.show', 1) }}" class="ml-menu-item-links"> <span>Official</span></a></li>
+                @if (session('account') == 'org-head')
                   <li>
-                    <a href="{{ route('event.dlv', 2) }}">
+                    <a href="{{ route('event.dlv', 2) }}" class="ml-menu-item-links">
                       <span>Local</span>
                     </a>
                   </li>
                 @else
                   <li>
-                    <a href="{{ route('event.dlv', 2) }}">
+                    <a href="{{ route('event.dlv', 2) }}" class="ml-menu-item-links">
                       <span>Personal</span>
                     </a>
                   </li>
@@ -114,20 +115,27 @@
               <a href="#" class="menu-toggle"><span>Edit Notification Settings</span></a>
               <ul class="ml-menu">
                 @if( session('account') == 'org-member' )
-                  <li><a href="{{ route('EventNotification.show', 2) }}"> Unadvertised Personal Events </a></li>
+                  <li><a href="{{ route('EventNotification.show', 2) }}" class="ml-menu-item-links"> Unadvertised Personal Events </a></li>
                 @elseif( session('account') == 'org-head' )
-                  <li><a href="{{ route('EventNotification.show', 1) }}"> Unadvertised Official Events </a></li>
-                  <li><a href="{{ route('EventNotification.show', 2) }}"> Unadvertised Local Events </a></li>
+                  <li><a href="{{ route('EventNotification.show', 1) }}" class="ml-menu-item-links"> Unadvertised Official Events </a></li>
+                  <li><a href="{{ route('EventNotification.show', 2) }}" class="ml-menu-item-links"> Unadvertised Local Events </a></li>
                 @elseif( session('account') == 'osa' )
-                  <li><a href="{{ route('EventNotification.show', 1) }}"> Unadvertised Official Events </a></li>
-                  <li><a href="{{ route('EventNotification.show', 2) }}"> Unadvertised Personal Events </a></li>
+                  <li><a href="{{ route('EventNotification.show', 1) }}" class="ml-menu-item-links"> Unadvertised Official Events </a></li>
+                  <li><a href="{{ route('EventNotification.show', 2) }}" class="ml-menu-item-links"> Unadvertised Personal Events </a></li>
                 @endif
               </ul>
+            </li>
+            @if( session('account') == 'osa' )
+              <li>
+                <a href="{{ route('Event.index') }}" class="ml-menu-item-links"> <span>Approve Advertisement Request for Official Events</span> </a>
+              </li>
+            @endif
+            <li>
               <a href="#" class="menu-toggle"> <span>Calendar</span> </a>
               <ul class="ml-menu">
-                <li><a href="{{ route('Calendar.show', 1) }}"><span>Official</span></a></li>
-                @if( session('account') == 'org-head' ) <li><a href="{{ route('Calendar.show', 2) }}"> <span>Within Primary Organization</span></a></li> @endif
-                <li><a href="{{ route('Calendar.show', 3) }}"> <span>Personal</span></a></li>
+                <li><a href="{{ route('Calendar.show', 1) }}" class="ml-menu-item-links" ><span>Official</span></a></li>
+                @if( session('account') != 'osa' ) <li><a href="{{ route('Calendar.show', 2) }}" class="ml-menu-item-links" ><span>Within Organization/s</span></a></li> @endif
+                <li><a href="{{ route('Calendar.show', 3) }}" class="ml-menu-item-links"> <span>Personal</span></a></li>
               </ul>
             </li>
           </ul>
@@ -139,12 +147,14 @@
           </a>
           <ul class="ml-menu">
             @if (session('account') == 'org-head')
-              <li><a href="{{ route('Attendances.show', 'Official') }}"><span>Official Events</span></a></li>
-              <li><a href="{{ route('Attendances.show', 'Local') }}"><span>Local Events</span></a></li>
+              <li><a href="{{ route('Attendances.show', 'Official') }}" class="ml-menu-item-links"><span>Official Events</span></a></li>
+              <li><a href="{{ route('Attendances.show', 'Local') }}" class="ml-menu-item-links"><span>Local Events</span></a></li>
+              <li><a href="{{ route('Attendances.index') }}" class="ml-menu-item-links"><span>My Event Attendance</span></a></li>
             @elseif (session('account') == 'osa')
-              <li><a href="{{ route('Attendances.show', 'Official') }}"><span>Official Events</span></a></li>
+              <li><a href="{{ route('Attendances.show', 'Official') }}" class="ml-menu-item-links"><span>Official Events</span></a></li>
+              <li><a href="{{ route('Attendances.index') }}" class="ml-menu-item-links"><span>My Event Attendance</span></a></li>
             @else
-              <li><a href="{{ route('Attendances.index') }}"><span>My Event Attendance</span></a></li>
+              <li><a href="{{ route('Attendances.index') }}" class="ml-menu-item-links"><span>My Event Attendance</span></a></li>
             @endif
           </ul>
         </li>

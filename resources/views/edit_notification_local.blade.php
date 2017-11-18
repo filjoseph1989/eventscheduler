@@ -37,6 +37,9 @@
                         <tr>
                           <th>Title</th>
                           <th>Type</th>
+                          <th>Venue</th>
+                          <th>Start</th>
+                          <th>End</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,12 +55,14 @@
                               data-user-type-id="{{ Auth::user()->user_type_id }}"
                               data-approval="{{ $event->is_approve }}">
                               <td><a href="#" class="edit-notif" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
-                              <td> Within Organization Event </td>
+                              <td> {{ ucwords($event->category) }} Organization Event</td>
+                              <td> {{ ucwords($event->venue) }} Event</td>
+                              <td>{{ date('M d, Y', strtotime($event->date_start)) }}, {{ date('h:i A', strtotime($event->date_start_time)) }}</td>
+                              <td>{{ date('M d, Y', strtotime($event->date_end)) }}, {{ date('h:i A', strtotime($event->date_end_time)) }}</td>
                             </tr>
                           @endforeach
                         @endforeach
                       @endif
-
                       @if (count($eventsPersonal) > 0)
                         @foreach ($eventsPersonal as $key => $event)
                           <?php $event = (object)$event; ?>
@@ -69,7 +74,8 @@
                               data-approval="{{ $event->is_approve }}"
                               data-personal="true">
                             <td><a href="#" class="edit-notif" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
-                            <td>Personal Event</td>
+                            <td>{{ ucwords($event->category) }} Event</td>
+                            <td> {{ ucwords($event->venue) }} Event</td>
                           </tr>
                         @endforeach
                       @endif
@@ -77,6 +83,10 @@
                     <tfoot>
                         <tr>
                           <th>Title</th>
+                          <th>Type</th>
+                          <th>Venue</th>
+                          <th>Start</th>
+                          <th>End</th>
                         </tr>
                     </tfoot>
                   </table>

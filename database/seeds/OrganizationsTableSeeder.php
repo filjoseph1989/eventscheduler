@@ -17,10 +17,11 @@ class OrganizationsTableSeeder extends Seeder
             'acronym'     => 'UP',
             'description' => 'No description yet',
             'created_at'  => date('Y-m-d H:i:s'),
-            'updated_at'  => date('Y-m-d H:i:s')
+            'updated_at'  => date('Y-m-d H:i:s'),
         ),
         array(
             'name'        => 'Temp My Organization',
+            'acronym'     => 'TO',
             'description' => 'No description yet',
             'created_at'  => date('Y-m-d H:i:s'),
             'updated_at'  => date('Y-m-d H:i:s')
