@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Common\CommonMethodTrait;
+
+# Models
 use App\Models\Event;
+use App\Models\PersonalEvent;
 
 /**
  * Used to check event
@@ -28,6 +31,29 @@ class EventCheckerController extends Controller
   {
     $request->date_start = str_replace('/', '-', $request->date_start);
     $event = Event::where('date_start', $request->date_start)
+      ->get()
+      ->first();
+
+    if (! is_null($event)) {
+      $event->date_start = str_replace('-', '/', $event->date_start);
+      return $event;
+    } else {
+      return json_encode([
+        'false' => false
+      ]);
+    }
+  }
+
+  /**
+   * Return the personal event date
+   *
+   * @param  Request $request
+   * @return json
+   */
+  public function getPersonalDate(Request $request)
+  {
+    $request->date_start = str_replace('/', '-', $request->date_start);
+    $event = PersonalEvent::where('date_start', $request->date_start)
       ->get()
       ->first();
 

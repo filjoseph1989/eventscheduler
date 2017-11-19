@@ -568,7 +568,38 @@
 
     $category = $('#category').val();
     if ($category == 'personal') {
-      $(elementId).submit();
+      // $(elementId).submit();
+      axios_post('/PersonalEventChecker', data, function(data) {
+        let $id       = '#add-event-form';
+        let form_data = $($id).serializeArray();
+
+        if (form_data.length == 0) {
+          $id       = '#edit-event-form';
+          form_data = $($id).serializeArray();
+        }
+
+        let param = {
+          'date_start': data.date_start,
+          'id': $id,
+          'title': data.title,
+          'value': form_data[5].value
+        };
+
+        $eventId = $('#edit-event').data('event-id');
+
+        // Check if the event id match with the return data
+        // Issue 37: What if ang event nag match ang date sa lain
+        // nga event? ang gina return dinhi nga data kay ang first
+        // nga makita dili ang tanan nga nakita.
+        if ($eventId == data.id) {
+          param.method = 'edit';
+        }
+
+        // Issue 39:
+        // the date_start to be check should be in the range
+        // from today and beyond, excluding the past
+        ConflictDetect(param);
+      });
     } else {
       axios_post('/EventChecker', data, function(data) {
         let $id       = '#add-event-form';

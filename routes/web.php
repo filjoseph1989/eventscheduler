@@ -84,6 +84,7 @@ Route::group(['middleware'=>['auth']], function() {
     });
 
     Route::post('/EventChecker', 'EventCheckerController@getDate');
+    Route::post('/PersonalEventChecker', 'EventCheckerController@getPersonalDate');
     Route::post('/EventChecker/checkuser', 'EventCheckerController@checkEventCreator');
     Route::post('/EventGetter', 'EventGetterController@getEvent');
 });
