@@ -302,6 +302,22 @@ class EventController extends Controller
     }
 
     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+      d($id);
+      # Get the event
+      # Check if hes the creator of the event
+      # if yes, then delete
+      # else not
+
+    }
+
+    /**
      * Display the local events
      *
      * @param  int $id
@@ -375,6 +391,29 @@ class EventController extends Controller
           'events'    => $events,
           'eventType' => $kind,
           'account'   => self::getAccount(Auth::user()->user_type_id)
+        ]);
+    }
+
+    /**
+     * Display the list of event conflicts
+     *
+     * @return \Illuminate\Response
+     */
+    public function showListOfEventConflict()
+    {
+      $results = Event::whereIn('date_start', function ( $query ) {
+        $query
+          ->select('date_start')
+          ->from('events')
+          ->groupBy('date_start')
+          ->havingRaw('count(*) > 1');
+      })
+      ->orderBy('date_start', 'asc')
+      ->get();
+
+      return view('events-conflict')
+        ->with([
+          'events' => $results
         ]);
     }
 
