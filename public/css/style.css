@@ -2,7 +2,7 @@
 /**
 * Style
 * @type {String}
-* @version 1.4.2
+* @version 1.5.2
 */
 
 @import url(materialize.css);
@@ -11019,4 +11019,8 @@ a.ml-menu-item-links:hover { background-color:	#E0E0E0; }
   margin: 7px 0 7px 12px;
   margin-top: 3px;
   overflow: hidden;
+}
+#edit-event,
+#cancel-edit-event {
+  margin-right: 5px;
 }

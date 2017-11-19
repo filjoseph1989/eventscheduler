@@ -181,6 +181,7 @@
         </div>
         <div class="modal-body">
           @if ($account != 'org-member')
+            <button type="button" class="btn btn-danger pull-right hidden" id="delete-event" name="button">Delete</button>
             <button type="button" class="btn btn-primary pull-right hidden" id="edit-event" name="button">Edit</button>
             <button type="button" class="btn btn-primary pull-right hidden" id="cancel-edit-event" name="button">Cancel</button>
           @endif
@@ -363,7 +364,7 @@
   <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}?v=0.1"></script>
   <script src="{{ asset('js/tooltips-popovers.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/app.js') }}?v=2.24" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.25" charset="utf-8"></script>
   <script type="text/javascript">
     $('.event-datepicker').bootstrapMaterialDatePicker({
       format: 'YYYY/MM/DD',

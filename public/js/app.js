@@ -13,7 +13,7 @@
  * @author Fil <filjoseph22@gmail.com>
  * @author Liz <janicalizdeguzman@gmail.com>
  * @since 0.1
- * @version 2.23
+ * @version 2.25
  * @date 09-30-2017
  * @date 11-19-2017 - last updated
  */
@@ -57,6 +57,8 @@
       if (account == data.account) {
         $('#edit-event').removeClass('hidden');
         $('#edit-event').attr('data-event-id', id);
+        $('#delete-event').removeClass('hidden');
+        $('#delete-event').attr('data-event-id', id);
       }
     });
 
@@ -604,6 +606,7 @@
     let $id = $(this).data('event-id');
 
     $(this).addClass('hidden');
+    $('#delete-event').addClass('hidden');
     $('#modal-event-table').addClass('hidden');
     $('#edit-event-form').removeClass('hidden');
     $('#edit-event-form').attr('action', '/Event/' + $id);
@@ -648,6 +651,7 @@
    */
   $('#cancel-edit-event').click(function() {
     $(this).addClass('hidden');
+    $('#delete-event').removeClass('hidden');
     $('#edit-event').removeClass('hidden');
     $('#modal-event-table').removeClass('hidden');
     $('#modal-event-table').removeClass('hidden');
