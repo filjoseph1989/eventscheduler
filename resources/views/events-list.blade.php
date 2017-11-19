@@ -93,7 +93,9 @@
                         <th>Type</th>
                         <th>Start</th>
                         <th>End</th>
-                        <th>Status</th>
+                        @if ($account != 'org-member')
+                          <th>Status</th>
+                        @endif
                     </thead>
                     <tbody>
                       @if( session('account') != 'org-member' )
@@ -122,31 +124,22 @@
                           @endforeach
                         @endif
                       @else
-                        @foreach ($org_ids as $key => $id)
-                          @if (! is_null($events[$id]))
-                            @foreach ($events[$id] as $key => $event)
-                              <tr data-event="{{ $event->id }}"
-                                  data-route="{{ route('Event.edit', $event->id) }}"
-                                  data-action="{{ route('Event.update', $event->id) }}"
-                                  data-organization-id="{{ $event->organization_id }}"
-                                  data-event-type-id="{{ $event->event_type_id }}"
-                                  data-user-type-id="{{ Auth::user()->user_type_id }}"
-                                  data-approval="{{ $event->is_approve }}"
-                                  data-account="{{ Auth::id() }}">
-                                <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
-                                <td>{{ $event->venue }}</td>
-                                <td>{{ ! is_null($event->organization) ? $event->organization->name : 'University Official Event' }}</td>
-                                <td>{{ $event->eventType->name }}</td>
-                                <td>{{ date('M d, Y', strtotime($event->date_start)) }}, {{ date('h:i A', strtotime($event->date_start_time)) }}</td>
-                                <td>{{ date('M d, Y', strtotime($event->date_end)) }}, {{ date('h:i A', strtotime($event->date_end_time)) }}</td>
-                                @if ($account == 'org-member')
-                                  <td>{{ ucwords($event->status) }}</td>
-                                @else
-                                  <td>{{ ($event->is_approve == 'true') ? 'Approved' : 'Not' }}</td>
-                                @endif
-                              </tr>
-                            @endforeach
-                          @endif
+                        @foreach ($events as $key => $event)
+                          <tr data-event="{{ $event->id }}"
+                              data-route="{{ route('Event.edit', $event->id) }}"
+                              data-action="{{ route('Event.update', $event->id) }}"
+                              data-organization-id="{{ $event->organization_id }}"
+                              data-event-type-id="{{ $event->event_type_id }}"
+                              data-user-type-id="{{ Auth::user()->user_type_id }}"
+                              data-approval="{{ $event->is_approve }}"
+                              data-account="{{ Auth::id() }}">
+                            <td>{{ $event->title }}</td>
+                            <td>{{ $event->venue }}</td>
+                            <td>{{ ! is_null($event->organization) ? $event->organization->name : 'University Official Event' }}</td>
+                            <td>{{ ($event->event_type_id == 1) ? 'Official' : 'Local' }}</td>
+                            <td>{{ date('M d, Y', strtotime($event->date_start)) }}</td>
+                            <td>{{ date('M d, Y', strtotime($event->date_end)) }}</td>
+                          </tr>
                         @endforeach
                       @endif
                     </tbody>
@@ -157,7 +150,9 @@
                         <th>Type</th>
                         <th>Start</th>
                         <th>End</th>
-                        <th>Status</th>
+                        @if ($account != 'org-member')
+                          <th>Status</th>
+                        @endif
                     </tfoot>
                   </table>
                 </div>
