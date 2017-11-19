@@ -20,6 +20,16 @@
               <h2> Conflicting Events
                 <small> Show all the event having same date schedule of start </small>
               </h2>
+              <ul class="header-dropdown m-r--5">
+                <li class="dropdown">
+                  <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="material-icons">more_vert</i>
+                  </a>
+                  <ul class="dropdown-menu pull-right">
+                    <li><a href="{{ route('event.filter', 'time') }}" class=" waves-effect waves-block">Conflict By Time</a></li>
+                  </ul>
+                </li>
+              </ul>
             </div>
             <div class="body">
               <div class="row clearfix">
@@ -27,19 +37,25 @@
                   <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                     <thead>
                       <th>Title</th>
+                      <th>Venue</th>
                       <th>Start</th>
+                      <th>Time</th>
                     </thead>
                     <tbody>
                       <?php foreach ($events as $key => $event): ?>
                         <tr>
                           <td>{{ $event->title }}</td>
+                          <td>{{ $event->venue }}</td>
                           <td>{{ date('M d, Y', strtotime($event->date_start)) }}</td>
+                          <td>{{ date('h:i', strtotime($event->date_start_time)) }}</td>
                         </tr>
                       <?php endforeach; ?>
                     </tbody>
                     <tfoot>
                       <th>Title</th>
+                      <th>Venue</th>
                       <th>Start</th>
+                      <th>Time</th>
                     </tfoot>
                   </table>
                 </div>
