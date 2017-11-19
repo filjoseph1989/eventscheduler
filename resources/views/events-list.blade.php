@@ -133,7 +133,11 @@
                               data-user-type-id="{{ Auth::user()->user_type_id }}"
                               data-approval="{{ $event->is_approve }}"
                               data-account="{{ Auth::id() }}">
-                            <td>{{ $event->title }}</td>
+                            <td>
+                              <a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">
+                                {{ $event->title }}
+                              </a>
+                            </td>
                             <td>{{ $event->venue }}</td>
                             <td>{{ ! is_null($event->organization) ? $event->organization->name : 'University Official Event' }}</td>
                             <td>{{ ($event->event_type_id == 1) ? 'Official' : 'Local' }}</td>
@@ -176,8 +180,10 @@
           <h4 class="modal-title" id="event-title">Event Information</h4>
         </div>
         <div class="modal-body">
-          <button type="button" class="btn btn-primary pull-right hidden" id="edit-event" name="button">Edit</button>
-          <button type="button" class="btn btn-primary pull-right hidden" id="cancel-edit-event" name="button">Cancel</button>
+          @if ($account != 'org-member')
+            <button type="button" class="btn btn-primary pull-right hidden" id="edit-event" name="button">Edit</button>
+            <button type="button" class="btn btn-primary pull-right hidden" id="cancel-edit-event" name="button">Cancel</button>
+          @endif
           <table class="table" id="modal-event-table">
             <thead>
               <tr> <th id="modal-event-title"></th> </tr>
@@ -190,95 +196,97 @@
               <tr> <td id="modal-event-category">&nbsp;</td> </tr>
             </tbody>
           </table>
-          <form class="hidden" id="edit-event-form" action="" method="POST">
-            {{ csrf_field() }}
-            <div id="fields"></div>
-            <div class="row clearfix">
-              <div class="col-sm-8 col-sm-offset-2">
-                <div class="form-group form-float form-group">
-                  <div class="form-line">
-                    <input type="hidden" id="event-id" name="id" value="">
-                    <input type="text" class="form-control" id="title" name="title" placeholder="Title of the event" value="" required autofocus>
+          @if ($account != 'org-member')
+            <form class="hidden" id="edit-event-form" action="" method="POST">
+              {{ csrf_field() }}
+              <div id="fields"></div>
+              <div class="row clearfix">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <div class="form-group form-float form-group">
+                    <div class="form-line">
+                      <input type="hidden" id="event-id" name="id" value="">
+                      <input type="text" class="form-control" id="title" name="title" placeholder="Title of the event" value="" required autofocus>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row clearfix">
-              <div class="col-sm-8 col-sm-offset-2">
-                <div class="form-group form-float form-group">
-                  <div class="form-line">
-                    <textarea rows="4" class="form-control no-resize" id="description" name="description" required placeholder="Description of the event"></textarea>
+              <div class="row clearfix">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <div class="form-group form-float form-group">
+                    <div class="form-line">
+                      <textarea rows="4" class="form-control no-resize" id="description" name="description" required placeholder="Description of the event"></textarea>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row clearfix">
-              <div class="col-sm-8 col-sm-offset-2">
-                <div class="form-group form-float form-group">
-                  <div class="form-line">
-                    <input type="text" class="form-control" id="venue" name="venue" placeholder="Venue" value="" required>
+              <div class="row clearfix">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <div class="form-group form-float form-group">
+                    <div class="form-line">
+                      <input type="text" class="form-control" id="venue" name="venue" placeholder="Venue" value="" required>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row clearfix">
-              <div class="col-sm-8 col-sm-offset-2">
-                <div class="form-group form-float form-group">
-                  <div class="form-line">
-                    <input type="text" class="form-control event-datepicker" id="date_start" name="date_start" placeholder="Select Date Start" value="">
+              <div class="row clearfix">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <div class="form-group form-float form-group">
+                    <div class="form-line">
+                      <input type="text" class="form-control event-datepicker" id="date_start" name="date_start" placeholder="Select Date Start" value="">
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row clearfix">
-              <div class="col-sm-8 col-sm-offset-2">
-                <div class="form-group form-float form-group">
-                  <div class="form-line">
-                    <input type="text" class="form-control event-timepicker" id="date_start_time" name="date_start_time" placeholder="Select Time Start" value="">
+              <div class="row clearfix">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <div class="form-group form-float form-group">
+                    <div class="form-line">
+                      <input type="text" class="form-control event-timepicker" id="date_start_time" name="date_start_time" placeholder="Select Time Start" value="">
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row clearfix">
-              <div class="col-sm-8 col-sm-offset-2">
-                <div class="form-group form-float form-group">
-                  <div class="form-line">
-                    <input type="text" class="form-control event-datepicker" id="date_end" name="date_end" placeholder="Select Date End" value="">
+              <div class="row clearfix">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <div class="form-group form-float form-group">
+                    <div class="form-line">
+                      <input type="text" class="form-control event-datepicker" id="date_end" name="date_end" placeholder="Select Date End" value="">
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row clearfix">
-              <div class="col-sm-8 col-sm-offset-2">
-                <div class="form-group form-float form-group">
-                  <div class="form-line">
-                    <input type="text" class="form-control event-timepicker" id="date_end_time" name="date_end_time" placeholder="Select Time End" value="">
+              <div class="row clearfix">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <div class="form-group form-float form-group">
+                    <div class="form-line">
+                      <input type="text" class="form-control event-timepicker" id="date_end_time" name="date_end_time" placeholder="Select Time End" value="">
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row clearfix">
-              <div class="col-sm-8 col-sm-offset-2">
-                <div class="form-group form-float">
-                  <div class="form-line focused" id="div-category">{{-- Options Here --}}</div>
+              <div class="row clearfix">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <div class="form-group form-float">
+                    <div class="form-line focused" id="div-category">{{-- Options Here --}}</div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <input type="hidden" name="type" value="edit-event">
-            <input type="hidden" name="user_id" value="{{ Auth::id() }}">
-            <div class="row clearfix">
-              <div class="col-sm-8 col-sm-offset-2">
-                <div class="form-group">
-                  <button type="button" class="btn btn-primary" id="save-event" name="button">
-                    <i class="material-icons">save</i> Save
-                  </button>
+              <input type="hidden" name="type" value="edit-event">
+              <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+              <div class="row clearfix">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <div class="form-group">
+                    <button type="button" class="btn btn-primary" id="save-event" name="button">
+                      <i class="material-icons">save</i> Save
+                    </button>
+                  </div>
                 </div>
               </div>
+            </form>
+            <div class="hidden" id="fields-hidden">
+              {{ method_field('PUT') }}
             </div>
-          </form>
-          <div class="hidden" id="fields-hidden">
-            {{ method_field('PUT') }}
-          </div>
+          @endif
         </div>
         <div class="modal-footer">
           @if (session('account') == 'org-head')
