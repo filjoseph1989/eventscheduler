@@ -181,7 +181,7 @@ class OrganizationController extends Controller
     public function show($id, RandomHelper $helper)
     {
       $ids = self::getOrganizationsID();
-      // dd( $ids );
+
       if( $ids == [] ){
         $organizations = null;
       } else {
@@ -223,9 +223,6 @@ class OrganizationController extends Controller
       if ($request->has('url')) {
         $org->url = str_replace('Url: ', '', $request->url);
       }
-      // if ($request->has('aniversary')) {
-      //   $org->aniversary = str_replace('Aniversary: ', '', $request->aniversary);
-      // }
 
       if ($org->save()) {
         return back();
