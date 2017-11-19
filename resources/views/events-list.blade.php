@@ -23,6 +23,12 @@
             </div>
           @endif
 
+          @if (session('status_warning'))
+            <div class="alert alert-warning" role="alert">
+              {{ session('status_warning') }}
+            </div>
+          @endif
+
           @if ($errors->any())
             <div class="alert alert-warning" role="alert">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close" data-toggle="tooltip" data-placement="top" title="Dismiss alert">
@@ -181,7 +187,11 @@
         </div>
         <div class="modal-body">
           @if ($account != 'org-member')
-            <button type="button" class="btn btn-danger pull-right hidden" id="delete-event" name="button">Delete</button>
+            <form class="" action="" method="post">
+              {{ csrf_field() }}
+              {{ method_field('DELETE') }}
+              <button type="submit" class="btn btn-danger pull-right hidden" id="delete-event" name="button">Delete</button>
+            </form>
             <button type="button" class="btn btn-primary pull-right hidden" id="edit-event" name="button">Edit</button>
             <button type="button" class="btn btn-primary pull-right hidden" id="cancel-edit-event" name="button">Cancel</button>
           @endif
@@ -364,7 +374,7 @@
   <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}?v=0.1"></script>
   <script src="{{ asset('js/tooltips-popovers.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/app.js') }}?v=2.25" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.26" charset="utf-8"></script>
   <script type="text/javascript">
     $('.event-datepicker').bootstrapMaterialDatePicker({
       format: 'YYYY/MM/DD',

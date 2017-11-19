@@ -13,7 +13,7 @@
  * @author Fil <filjoseph22@gmail.com>
  * @author Liz <janicalizdeguzman@gmail.com>
  * @since 0.1
- * @version 2.25
+ * @version 2.26
  * @date 09-30-2017
  * @date 11-19-2017 - last updated
  */
@@ -52,13 +52,12 @@
     /* Display the edit button */
     axios_post('/EventChecker/checkuser', data, function(data) {
       let account = $('.event-title').parents('tr').data('account');
-      let id      = $('.event-title').parents('tr').data('event');
 
       if (account == data.account) {
         $('#edit-event').removeClass('hidden');
-        $('#edit-event').attr('data-event-id', id);
+        $('#edit-event').attr('data-event-id', eventId);
         $('#delete-event').removeClass('hidden');
-        $('#delete-event').attr('data-event-id', id);
+        $('#delete-event').parents('form').attr('action', '/Event/' + eventId);
       }
     });
 

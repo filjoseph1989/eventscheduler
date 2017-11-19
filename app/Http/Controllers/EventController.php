@@ -309,12 +309,20 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-      d($id);
-      # Get the event
-      # Check if hes the creator of the event
-      # if yes, then delete
-      # else not
+      $event = Event::where('id', $id)
+        ->get();
 
+      $event = $event[0];
+
+      if ($event->user_id == Auth::id() AND $event->is_approve == 'false') {
+        if ($event->delete()) {
+          return back()
+            ->with('status', 'Deleted the event');
+        }
+      } else {
+        return back()
+          ->with('status_warning', "Sorry, you're not allowed to delete this event");
+      }
     }
 
     /**
