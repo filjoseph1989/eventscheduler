@@ -28,7 +28,6 @@ class Event extends Model
     'status',
     'is_approve',
     'twitter',
-    'twitter_msg',
     'twitter_img',
     'facebook',
     'facebook_msg',

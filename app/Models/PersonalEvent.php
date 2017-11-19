@@ -29,7 +29,6 @@ class PersonalEvent extends Model
       'status',
       'is_approve',
       'twitter',
-      'twitter_msg',
       'facebook',
       'facebook_msg',
       'sms',

@@ -29,19 +29,20 @@
             @include ($partial2)
           @endif
         </div>
-      </div>
-      <div class="row clearfix">
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
           @if (isset($partial3))
             @include ($partial3)
           @endif
         </div>
+      </div>
+      {{-- <div class="row clearfix">
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
           @if (isset($partial4))
             @include ($partial4)
           @endif
         </div>
-      </div>
+      </div> --}}
     </div>
   </section>
 @endsection

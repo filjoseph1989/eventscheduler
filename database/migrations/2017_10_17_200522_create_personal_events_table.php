@@ -29,7 +29,6 @@ class CreatePersonalEventsTable extends Migration
             $table->enum('status', ['new', 'requested', 'upcoming', 'on-going', 'canceled', 'archived'])->default('new');
             $table->enum('is_approve', ['true', 'false'])->default('false');
             $table->enum('twitter', ['on','off'])->default('off');
-            $table->string('twitter_msg')->nullable();
             $table->enum('facebook', ['on','off'])->default('off');
             $table->string('facebook_msg')->nullable();
             $table->enum('sms', ['on','off'])->default('off');

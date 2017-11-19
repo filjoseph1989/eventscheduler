@@ -85,7 +85,7 @@
           </a>
           <ul class="ml-menu">
             <li>
-              <a href="{{ route('Event.create') }}" class="ml-menu-item-links"> <span>Create Event</span> </a>
+              <a href="{{ route('Event.create') }}" class="ml-menu-item-links"> <span>Add Event</span> </a>
             </li>
             <li>
               <a href="#" class="menu-toggle"><span>List of Events</span></a>

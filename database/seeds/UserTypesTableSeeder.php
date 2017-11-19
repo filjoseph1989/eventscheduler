@@ -15,21 +15,21 @@ class UserTypesTableSeeder extends Seeder
        DB::table('user_types')->insert([
          array(
            'name'       => 'organization-head-user',
-           'theme'      => 'theme-brown',
+           'theme'      => 'theme-deep-orange',
            'color'      => 'bg-brown',
            'created_at' => Carbon::now()->toDateTimeString(),
            'updated_at' => Carbon::now()->toDateTimeString(),
          ),
          array(
            'name'       => 'organization-user',
-           'theme'      => 'theme-blue-grey',
+           'theme'      => 'theme-teal',
            'color'      => 'bg-blue-grey',
            'created_at' => Carbon::now()->toDateTimeString(),
            'updated_at' => Carbon::now()->toDateTimeString(),
          ),
          array(
            'name'       => 'osa-personnel',
-           'theme'      => 'theme-purple',
+           'theme'      => 'theme-indigo',
            'color'      => 'bg-purple',
            'created_at' => Carbon::now()->toDateTimeString(),
            'updated_at' => Carbon::now()->toDateTimeString(),
