@@ -4,8 +4,6 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   @guest
@@ -33,15 +31,16 @@
 @if (session('loginClass'))
   @php $loginClass = session('loginClass') @endphp
 @endif
-@if(session('account') == 'osa')
-<body class="{{ isset($loginClass) ? $loginClass : "" }}" style="background-color:#C5CAE9">
-@elseif(session('account') == 'org-head')
-<body class="{{ isset($loginClass) ? $loginClass : "" }}" style="background-color:#FFCCBC">
-@elseif(session('account') == 'org-member')
-<body class="{{ isset($loginClass) ? $loginClass : "" }}" style="background-color:#E0F2F1">
-@else
-@endif
 
+@if(session('account') == 'osa')
+<body class="{{ isset($loginClass) ? $loginClass : "" }}" style="background-color:#C5CAE9; ">
+@elseif(session('account') == 'org-head')
+<body class="{{ isset($loginClass) ? $loginClass : "" }}" style="background-color:#FFCCBC; ">
+@elseif(session('account') == 'org-member')
+<body class="{{ isset($loginClass) ? $loginClass : "" }}" style="background-color:#E0F2F1; ">
+@else
+<body class="{{ isset($loginClass) ? $loginClass : "" }}">
+@endif
   @guest
     @yield('login')
   @else
