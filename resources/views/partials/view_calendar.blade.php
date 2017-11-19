@@ -11,12 +11,21 @@
     </h2>
   </div>
   <div class="body" >
-    <div class="list-group">
-      <a href="{{ route('Calendar.show', 1) }}" class="list-group-item" style="border:none;  color: #7A7A7A" ><i class="material-icons" style="margin-right:5px">stars</i>  Official Events  </a>
-        @if (session('account') != 'osa')
-          <a href="{{ route('Calendar.show', 2) }}" class="list-group-item" style="border:none;  color: #7A7A7A" ><i class="material-icons" style="margin-right:5px">domain</i>Within Organization/s Events</a>
-        @endif
-          <a href="{{ route('Calendar.show', 3) }}" class="list-group-item" style="border:none;  color: #7A7A7A" ><i class="material-icons" style="margin-right:5px">person_outline</i>Personal Events</a>
+    <div class="list-group manage-calendar">
+      <a href="{{ route('Calendar.show', 1) }}" class="list-group-item" style="border:none;  color: #7A7A7A" >
+        <i class="material-icons">stars</i>
+        <span>Official Events</span>
+      </a>
+      @if (session('account') != 'osa')
+        <a href="{{ route('Calendar.show', 2) }}" class="list-group-item" style="border:none;  color: #7A7A7A" >
+          <i class="material-icons">domain</i>
+          <span>Within Organization/s Events</span>
+        </a>
+      @endif
+        <a href="{{ route('Calendar.show', 3) }}" class="list-group-item" style="border:none;  color: #7A7A7A" >
+          <i class="material-icons">person_outline</i>
+          <span>Personal Events</span>
+        </a>
     </div>
   </div>
 </div>

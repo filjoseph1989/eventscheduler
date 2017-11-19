@@ -19,16 +19,33 @@
       </h2>
   </div>
   <div class="body"  >
-    <div class="list-group" >
+    <div class="list-group manage-attendance">
       @if (session('account') == 'org-head')
-        <a href="{{ route('Attendances.show', 'Official') }}" class="list-group-item"  style="border:none;  color: #7A7A7A"><i class="material-icons" style="margin-right:5px">playlist_add_check</i> Official Events</a>
-        <a href="{{ route('Attendances.show', 'Local') }}" class="list-group-item"  style="border:none;  color: #7A7A7A"><i class="material-icons" style="margin-right:5px">layers</i> Local Events</a>
-        <a href="{{ route('Attendances.index') }}" class="list-group-item"  style="border:none;  color: #7A7A7A" > My Event Attendance</a>
+        <a href="{{ route('Attendances.show', 'Official') }}" class="list-group-item"  style="border:none;  color: #7A7A7A">
+          <i class="material-icons">playlist_add_check</i>
+          <span>Official Events</span>
+        </a>
+        <a href="{{ route('Attendances.show', 'Local') }}" class="list-group-item"  style="border:none;  color: #7A7A7A">
+          <i class="material-icons">layers</i>
+          <span>Local Events</span>
+        </a>
+        <a href="{{ route('Attendances.index') }}" class="list-group-item"  style="border:none;  color: #7A7A7A" >
+          <span>My Event Attendance</span>
+        </a>
       @elseif (session('account') == 'osa')
-        <a href="{{ route('Attendances.show', 'Official') }}" class="list-group-item"  style="border:none;  color: #7A7A7A"><i class="material-icons" style="margin-right:5px">playlist_add_check</i> Official Events</a>
-        <a href="{{ route('Attendances.index') }}" class="list-group-item"  style="border:none;  color: #7A7A7A"><i class="material-icons" style="margin-right:5px">person_pin</i> My Event Attendance</a>
+        <a href="{{ route('Attendances.show', 'Official') }}" class="list-group-item"  style="border:none;  color: #7A7A7A">
+          <i class="material-icons">playlist_add_check</i>
+          <span>Official Events</span>
+        </a>
+        <a href="{{ route('Attendances.index') }}" class="list-group-item"  style="border:none;  color: #7A7A7A">
+          <i class="material-icons">person_pin</i>
+          <span>My Event Attendance</span>
+        </a>
       @else
-        <a href="{{ route('Attendances.index') }}" class="list-group-item"  style="border:none;  color: #7A7A7A"><i class="material-icons" style="margin-right:5px">person_pin</i> My Event Attendance</a>
+        <a href="{{ route('Attendances.index') }}" class="list-group-item"  style="border:none;  color: #7A7A7A">
+          <i class="material-icons">person_pin</i>
+          <span>My Event Attendance</span>
+        </a>
       @endif
     </div>
   </div>

@@ -23,18 +23,36 @@
     </h2>
   </div>
   <div class="body">
-    <div class="list-group">
+    <div class="list-group manage-notification">
       @if( session('account') == 'org-member' )
-        <a href="{{ route('EventNotification.show', 2) }}" class="list-group-item"  style="border:none;  color: #7A7A7A"><i class="material-icons" style="margin-right:5px">settings_input_composite</i>  Edit Notification Settings for Unadvertised Personal Events </a>
+        <a href="{{ route('EventNotification.show', 2) }}" class="list-group-item"  style="border:none;  color: #7A7A7A">
+          <i class="material-icons">settings_input_composite</i>
+          <span>Edit Notification Settings for Unadvertised Personal Events </span>
+        </a>
       @elseif( session('account') == 'org-head' )
-        <a href="{{ route('EventNotification.show', 1) }}" class="list-group-item"  style="border:none;  color: #7A7A7A"><i class="material-icons" style="margin-right:5px">settings_input_composite</i>  Edit Notification Settings for Unadvertised Official Events</a>
-          <a href="{{ route('EventNotification.show', 2) }}" class="list-group-item"  style="border:none;  color: #7A7A7A"><i class="material-icons" style="margin-right:5px">settings_input_composite</i>  Edit Notification Settings for Unadvertised Local Events</a>
+        <a href="{{ route('EventNotification.show', 1) }}" class="list-group-item"  style="border:none;  color: #7A7A7A">
+          <i class="material-icons">settings_input_composite</i>
+          <span>Edit Notification Settings for Unadvertised Official Events</span>
+        </a>
+        <a href="{{ route('EventNotification.show', 2) }}" class="list-group-item"  style="border:none;  color: #7A7A7A">
+          <i class="material-icons">settings_input_composite</i>
+          <span>Edit Notification Settings for Unadvertised Local Events</span>
+        </a>
       @elseif( session('account') == 'osa' )
-        <a href="{{ route('EventNotification.show', 1) }}" class="list-group-item"  style="border:none;  color: #7A7A7A"><i class="material-icons" style="margin-right:5px">settings_input_composite</i>  Edit Notification Settings for Unadvertised Official Events</a>
-        <a href="{{ route('EventNotification.show', 2) }}" class="list-group-item"  style="border:none;  color: #7A7A7A"><i class="material-icons" style="margin-right:5px">settings_input_composite</i>  Edit Notification Settings for Unadvertised Personal Events</a>
+        <a href="{{ route('EventNotification.show', 1) }}" class="list-group-item"  style="border:none;  color: #7A7A7A">
+          <i class="material-icons">settings_input_composite</i>
+          <span>Edit Notification Settings for Unadvertised Official Events</span>
+        </a>
+        <a href="{{ route('EventNotification.show', 2) }}" class="list-group-item"  style="border:none;  color: #7A7A7A">
+          <i class="material-icons">settings_input_composite</i>
+          <span>Edit Notification Settings for Unadvertised Personal Events</span>Events</span>
+        </a>
       @endif
       @if (Auth::user()->user_type_id == 3)
-        <a href="{{ route('Event.index') }}" class="list-group-item"  style="border:none;  color: #7A7A7A"><i class="material-icons" style="margin-right:5px">playlist_add_check</i> Approve Advertisement Request for Official Events</a>
+        <a href="{{ route('Event.index') }}" class="list-group-item"  style="border:none;  color: #7A7A7A">
+          <i class="material-icons">playlist_add_check</i>
+          <span>Approve Advertisement Request for Official Events</span>
+        </a>
       @endif
     </div>
   </div>

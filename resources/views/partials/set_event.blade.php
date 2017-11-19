@@ -21,19 +21,37 @@
     @endif
   </div>
   <div class="body">
-    <div class="list-group">
+    <div class="list-group manage-schedule">
       @if( session('account') == 'org-head')
-        <a href="{{ route('Event.show', 0) }}" class="list-group-item"  style="border:none;  color: #7A7A7A"><i class="material-icons" style="margin-right:5px">group_work</i>{{ session('org_name') }} Events</a>
+        <a href="{{ route('Event.show', 0) }}" class="list-group-item"  style="border:none;  color: #7A7A7A">
+          <i class="material-icons">group_work</i>
+          <span>{{ session('org_name') }} Events</span>
+        </a>
       @elseif( session('account') == 'org-member' )
-        <a href="{{ route('Event.show', 0) }}" class="list-group-item " style="border:none;  color: #7A7A7A"><i class="material-icons" style="margin-right:5px">group_work</i>My Organization Events</a>
+        <a href="{{ route('Event.show', 0) }}" class="list-group-item " style="border:none;  color: #7A7A7A">
+          <i class="material-icons">group_work</i>
+          <span>My Organization Events</span>
+        </a>
       @endif
-        <a href="{{ route('Event.show', 1) }}" class="list-group-item " style="border:none;  color: #7A7A7A"><i class="material-icons" style="margin-right:5px">stars</i>Official Events</a>
+        <a href="{{ route('Event.show', 1) }}" class="list-group-item " style="border:none;  color: #7A7A7A">
+          <i class="material-icons">stars</i>
+          <span>Official Events</span>
+        </a>
       @if (session('account') == 'org-head')
-          <a href="{{ route('event.dlv', 2) }}" class="list-group-item " style="border:none;  color: #7A7A7A"> <i class="material-icons" style="margin-right:5px">domain </i>  Local Events </a>
+        <a href="{{ route('event.dlv', 2) }}" class="list-group-item " style="border:none;  color: #7A7A7A">
+          <i class="material-icons">domain</i>
+          <span>Local Events</span>
+        </a>
       @else
-          <a href="{{ route('event.dlv', 2) }}" class="list-group-item " style="border:none;  color: #7A7A7A"><i class="material-icons" style="margin-right:5px">person_outline</i>  Personal Events </a>
+        <a href="{{ route('event.dlv', 2) }}" class="list-group-item " style="border:none;  color: #7A7A7A">
+          <i class="material-icons">person_outline</i>
+          <span>Personal Events</span>
+        </a>
       @endif
-        <a href="{{ route('event.dlv', 2) }}" class="list-group-item " style="border:none;  color: #7A7A7A"> <i class="material-icons" style="margin-right:5px">create</i> Create Event </a>
+        <a href="{{ route('event.dlv', 2) }}" class="list-group-item " style="border:none;  color: #7A7A7A">
+          <i class="material-icons">create</i>
+          <span>Create Event</span>
+        </a>
     </div>
   </div>
 </div>

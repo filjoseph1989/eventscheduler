@@ -2,7 +2,7 @@
 /**
 * Style
 * @type {String}
-* @version 1.3.2
+* @version 1.4.2
 */
 
 @import url(materialize.css);
@@ -11008,3 +11008,15 @@ tr>td:nth-child(2) {
 }
 
 a.ml-menu-item-links:hover { background-color:	#E0E0E0; }
+
+.manage-schedule a,
+.manage-attendance a,
+.manage-notification a,
+.manage-calendar a {
+  display: flex;
+}
+.list-group .list-group-item > span {
+  margin: 7px 0 7px 12px;
+  margin-top: 3px;
+  overflow: hidden;
+}
