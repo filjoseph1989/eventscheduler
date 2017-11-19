@@ -22,7 +22,7 @@
   </div>
   <div class="body">
     <div class="list-group manage-schedule">
-      <a href="#"><strong>VIEW AND ADD EVENTS</strong></a>
+      <a href="#"><strong>ADD AND VIEW EVENTS</strong></a>
       @if( session('account') == 'org-head')
         <a href="{{ route('Event.show', 0) }}" class="list-group-item"  style="border:none;  color: #7A7A7A">
           <i class="material-icons">group_work</i>
