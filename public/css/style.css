@@ -1,4 +1,6 @@
 /* Navbar ====================================== */
+
+
 /**
 * Style
 * @type {String}
@@ -845,6 +847,8 @@
 .col-white .navbar .bars:hover {
     background-color: rgba(0, 0, 0, 0.08);
 }
+
+
 /* Material Icons ============================== */
 
 .material-icons.md-18 {
@@ -878,6 +882,8 @@
 .material-icons.md-48 {
     font-size: 48px;
 }
+
+
 /* Helpers ===================================== */
 
 .m-l--125 {
@@ -2656,6 +2662,8 @@
 .col-white {
     color: #ffffff !important;
 }
+
+
 /* Custom Animate ============================== */
 
 @-ms-keyframes spin {
@@ -2725,6 +2733,8 @@
         transform: rotate(360deg);
     }
 }
+
+
 /* Demo ======================================== */
 
 .demo-button-sizes .btn {
@@ -3024,7 +3034,11 @@
 .demo-choose-skin .white {
     background-color: #ffffff;
 }
+
+
 /* Materialize Css | Taken from www.materializecss.com */
+
+
 /* Media ======================================= */
 
 @media (max-width: 767px) {
@@ -3080,6 +3094,8 @@
         margin-left: 20px;
     }
 }
+
+
 /* General ===================================== */
 
 body {
@@ -3132,6 +3148,8 @@ section.content {
     -webkit-transition: 0.5s;
     transition: 0.5s;
 }
+
+
 /* Dashboard =================================== */
 
 .dashboard-flot-chart {
@@ -3166,6 +3184,8 @@ section.content {
     position: relative;
     top: 6px;
 }
+
+
 /* Buttons ===================================== */
 
 .btn:focus {
@@ -3322,6 +3342,8 @@ section.content {
 .btn-group-vertical .btn+.dropdown-toggle {
     border-left: 1px solid rgba(0, 0, 0, 0.08) !important;
 }
+
+
 /* Bootstrap Tags Input ======================== */
 
 .bootstrap-tagsinput {
@@ -3331,6 +3353,8 @@ section.content {
     box-shadow: none !important;
     border: none !important;
 }
+
+
 /* noUISlider ================================== */
 
 .noUi-target {
@@ -3599,6 +3623,8 @@ section.content {
 .noUi-active .range-label span {
     opacity: 1;
 }
+
+
 /* Multi Select ================================ */
 
 .ms-container {
@@ -3641,10 +3667,11 @@ section.content {
     padding: 9px 15px 6px 15px !important;
 }
 
-
 .ms-container .ms-optgroup-label {
     padding: 5px 0 0 8px !important;
 }
+
+
 /* Card ======================================== */
 
 .card {
@@ -3830,7 +3857,7 @@ section.content {
     font-size: 18px;
     font-weight: normal;
     color: #111;
-      /*color: white;*/
+    /*color: white;*/
 }
 
 .card .header h2 small {
@@ -3850,6 +3877,8 @@ section.content {
 .card .header .col-xs-12 h2 {
     margin-top: 5px;
 }
+
+
 /**
 * Style for calendar
 * @type {[type]}
@@ -3953,6 +3982,8 @@ section.content {
 .card .body .col-lg-12 {
     margin-bottom: 20px;
 }
+
+
 /* Infobox ===================================== */
 
 .info-box {
@@ -4384,6 +4415,8 @@ section.content {
 .info-box-4.hover-expand-effect:hover:after {
     width: 100%;
 }
+
+
 /* Alerts ====================================== */
 
 .alert {
@@ -4427,6 +4460,8 @@ section.content {
     border: none;
     text-shadow: none;
 }
+
+
 /* Dialogs (SweetAlert) ======================== */
 
 .sweet-alert {
@@ -4458,6 +4493,8 @@ section.content {
     border-radius: 0 !important;
     padding: 5px 20px !important;
 }
+
+
 /* Checkbox & Radio ============================ */
 
 [type="checkbox"]+label {
@@ -5008,6 +5045,8 @@ section.content {
     background-color: #ffffff;
     border: 2px solid #ffffff;
 }
+
+
 /* Switch ====================================== */
 
 .switch label {
@@ -5270,6 +5309,8 @@ section.content {
 .switch label input[type=checkbox]:checked+.lever.switch-col-white:after {
     background-color: #ffffff;
 }
+
+
 /* DateTime Picker ============================= */
 
 .dtp div.dtp-date,
@@ -5302,6 +5343,8 @@ section.content {
     background: #007d72;
     color: #fff;
 }
+
+
 /* Bootstrap Select ============================ */
 
 .bootstrap-select {
@@ -5376,6 +5419,8 @@ section.content {
 .bootstrap-select.btn-group.show-tick .dropdown-menu li.selected a span.check-mark {
     margin-top: 9px;
 }
+
+
 /* Tooltip & Popovers ========================== */
 
 .tooltip {
@@ -5415,6 +5460,8 @@ section.content {
     -ms-border-radius: 0;
     border-radius: 0;
 }
+
+
 /* Nav Tabs ==================================== */
 
 .nav-tabs {
@@ -5572,6 +5619,8 @@ section.content {
 .nav-tabs.tab-col-white>li>a:before {
     border-bottom: 2px solid #ffffff;
 }
+
+
 /* Thumbnails ================================== */
 
 .thumbnail {
@@ -5590,6 +5639,8 @@ section.content {
     font-weight: bold;
     font-size: 17px;
 }
+
+
 /* Modals ====================================== */
 
 .modal .modal-header {
@@ -6102,6 +6153,8 @@ section.content {
 .modal-col-white .modal-footer .btn-link:focus {
     background-color: rgba(0, 0, 0, 0.12);
 }
+
+
 /* Labels ====================================== */
 
 .label {
@@ -6130,6 +6183,8 @@ section.content {
 .label-danger {
     background-color: #fb483a;
 }
+
+
 /* Collapse ==================================== */
 
 .collapse .well,
@@ -6141,6 +6196,8 @@ section.content {
     border-radius: 0;
     margin-bottom: 0;
 }
+
+
 /* Tables ====================================== */
 
 .table tbody tr td,
@@ -6199,6 +6256,8 @@ section.content {
     padding: 10px;
     border: 1px solid #eee;
 }
+
+
 /* Panel ======================================= */
 
 .panel-group .panel-col-red {
@@ -6694,6 +6753,8 @@ section.content {
     background-color: #fb483a;
     color: #fff;
 }
+
+
 /* Progress Bars =============================== */
 
 .progress {
@@ -6724,6 +6785,8 @@ section.content {
 .progress .progress-bar-danger {
     background-color: #fb483a;
 }
+
+
 /* Ion Range Slider ============================ */
 
 .irs .irs-min,
@@ -6736,6 +6799,8 @@ section.content {
     -ms-border-radius: 0;
     border-radius: 0;
 }
+
+
 /* Input Group ================================= */
 
 .input-group {
@@ -6986,6 +7051,8 @@ section.content {
 fieldset[disabled] .form-control {
     background-color: transparent;
 }
+
+
 /* Color Picker ================================ */
 
 .colorpicker {
@@ -6996,6 +7063,8 @@ fieldset[disabled] .form-control {
 .colorpicker:after {
     display: none !important;
 }
+
+
 /* Dropzone ==================================== */
 
 .dropzone {
@@ -7011,6 +7080,8 @@ fieldset[disabled] .form-control {
 .dz-drag-hover {
     border: 2px dashed #888 !important;
 }
+
+
 /* Breadcrumbs ================================= */
 
 .breadcrumb {
@@ -7589,6 +7660,8 @@ fieldset[disabled] .form-control {
 .breadcrumb-bg-white li+li:before {
     color: #fff;
 }
+
+
 /* Badge | List Group Item ===================== */
 
 .badge {
@@ -7645,7 +7718,6 @@ fieldset[disabled] .form-control {
     -ms-border-radius: 0;
     border-radius: 0;
 }
-
 
 .list-group .list-group-item .list-group-item-heading {
     font-weight: bold;
@@ -8060,6 +8132,8 @@ fieldset[disabled] .form-control {
     color: #fff;
     opacity: 0.8;
 }
+
+
 /* Pagination & Pager ========================== */
 
 .pager li>a {
@@ -8151,6 +8225,8 @@ fieldset[disabled] .form-control {
     top: -3px;
     left: -10px;
 }
+
+
 /* Media Object ================================ */
 
 .media {
@@ -8167,6 +8243,8 @@ fieldset[disabled] .form-control {
     font-weight: bold;
     color: #333;
 }
+
+
 /* Form Wizard ================================= */
 
 .wizard,
@@ -8193,6 +8271,8 @@ fieldset[disabled] .form-control {
     display: block;
     padding: 0;
 }
+
+
 /* Accessibility */
 
 .wizard>.steps .current-info,
@@ -8518,6 +8598,8 @@ fieldset[disabled] .form-control {
 .wizard .steps .current a:hover {
     background-color: #009688;
 }
+
+
 /* Waves ======================================= */
 
 .waves-effect.waves-red .waves-ripple {
@@ -8603,6 +8685,8 @@ fieldset[disabled] .form-control {
 .waves-effect.waves-white .waves-ripple {
     background: rgba(255, 255, 255, 0.5);
 }
+
+
 /* Page Loader ================================= */
 
 .page-loader-wrapper {
@@ -8630,6 +8714,8 @@ fieldset[disabled] .form-control {
     position: relative;
     top: calc(50% - 30px);
 }
+
+
 /* Preloaders ================================== */
 
 .md-preloader .pl-red {
@@ -9123,6 +9209,8 @@ fieldset[disabled] .form-control {
         transform: rotate(-130deg);
     }
 }
+
+
 /* Navbars ===================================== */
 
 .navbar {
@@ -9964,6 +10052,8 @@ fieldset[disabled] .form-control {
 .col-white .navbar .bars:hover {
     background-color: rgba(0, 0, 0, 0.08);
 }
+
+
 /* Dropdown Menu =============================== */
 
 .dropdown-menu {
@@ -10113,6 +10203,8 @@ fieldset[disabled] .form-control {
     -o-animation-duration: .3s !important;
     animation-duration: .3s !important;
 }
+
+
 /* Left Sidebar & Overlay ====================== */
 
 .overlay {
@@ -10266,7 +10358,6 @@ fieldset[disabled] .form-control {
 .sidebar .menu .list li.active> :first-child span {
     font-weight: bold;
 }
-
 
 .sidebar .menu .list .header {
     background: #eee;
@@ -10445,12 +10536,16 @@ fieldset[disabled] .form-control {
 .right-sidebar .nav-tabs li:last-child {
     width: 55%;
 }
+
+
 /* Bootstrap Notify ============================ */
 
 .bootstrap-notify-container {
     max-width: 320px;
     text-align: center;
 }
+
+
 /* Jquery Nestable ============================= */
 
 .dd-handle {
@@ -10473,6 +10568,8 @@ fieldset[disabled] .form-control {
 .dd3-content:hover {
     color: #2196F3;
 }
+
+
 /* Login Page ================================== */
 
 .login-page {
@@ -10514,12 +10611,13 @@ fieldset[disabled] .form-control {
     color: #fff;
     margin-top: -5px;
 }
+
+
 /* Sign Up Page ================================ */
 
 .signup-page {
     background-color: #00BCD4;
     padding-left: 0;
-    max-width: 360px;
     margin: 5% auto;
     overflow-x: hidden;
 }
@@ -10555,6 +10653,8 @@ fieldset[disabled] .form-control {
     color: #fff;
     margin-top: -5px;
 }
+
+
 /* Forgot Password Page ======================== */
 
 .fp-page {
@@ -10596,6 +10696,8 @@ fieldset[disabled] .form-control {
     color: #fff;
     margin-top: -5px;
 }
+
+
 /* 404 Not Found Page ========================== */
 
 .four-zero-four {
@@ -10618,6 +10720,8 @@ fieldset[disabled] .form-control {
 .four-zero-four .four-zero-four-container .button-place {
     margin-top: 32px;
 }
+
+
 /* 500 Server Error Page ======================= */
 
 .five-zero-zero {
@@ -10640,20 +10744,30 @@ fieldset[disabled] .form-control {
 .five-zero-zero .five-zero-zero-container .button-place {
     margin-top: 32px;
 }
+
+
 /* Maps ======================================== */
+
+
 /* Google Maps */
 
 .gmap {
     width: 100%;
     height: 400px;
 }
+
+
 /* jVector Map */
 
 .jvector-map {
     width: 100%;
     height: 600px;
 }
+
+
 /* Charts ====================================== */
+
+
 /* Morris */
 
 .morris-hover.morris-default-style {
@@ -10662,6 +10776,8 @@ fieldset[disabled] .form-control {
     -ms-border-radius: 0;
     border-radius: 0;
 }
+
+
 /* Flot */
 
 .flot-chart {
@@ -10688,11 +10804,15 @@ fieldset[disabled] .form-control {
 #multiple_axis_chart .legendLabel {
     width: 160px !important;
 }
+
+
 /* Sparkline */
 
 .sparkline {
     text-align: center;
 }
+
+
 /* Searchbar =================================== */
 
 .search-bar {
@@ -10749,6 +10869,8 @@ fieldset[disabled] .form-control {
     padding: 25px 60px 23px 56px;
     border: none;
 }
+
+
 /* Jquery DataTable ============================ */
 
 .dataTables_wrapper {
@@ -10844,6 +10966,8 @@ fieldset[disabled] .form-control {
     color: #777;
     margin-bottom: 20px;
 }
+
+
 /* Light Gallery ================================ */
 
 .lg-outer .lg-thumb-item,
@@ -10853,6 +10977,8 @@ fieldset[disabled] .form-control {
     -ms-border-radius: 0 !important;
     border-radius: 0 !important;
 }
+
+
 /* For Internet Explorer 10 ===================== */
 
 html.ie10 .sidebar .menu .list li {
@@ -10879,6 +11005,8 @@ html.ie10 .dropdown-menu ul.menu li a {
 html.ie10 .bs-searchbox .form-control {
     width: 90%;
 }
+
+
 /* For Internet Explorer 11 ===================== */
 
 html.ie11 .sidebar .menu .list .ml-menu li.active a:not(.menu-toggle).toggled:before {
@@ -10993,34 +11121,37 @@ tr>td:nth-child(2) {
     cursor: pointer;
 }
 
-
 #modal-event-title,
 #modal-event-ptitle {
-  text-transform: capitalize;
+    text-transform: capitalize;
 }
 
 .modal-event {
-  text-transform: capitalize;
+    text-transform: capitalize;
 }
 
 .list-group a.list-group-item:hover {
-  background-color:	#E0E0E0;
+    background-color: #E0E0E0;
 }
 
-a.ml-menu-item-links:hover { background-color:	#E0E0E0; }
+a.ml-menu-item-links:hover {
+    background-color: #E0E0E0;
+}
 
 .manage-schedule a,
 .manage-attendance a,
 .manage-notification a,
 .manage-calendar a {
-  display: flex;
+    display: flex;
 }
-.list-group .list-group-item > span {
-  margin: 7px 0 7px 12px;
-  margin-top: 3px;
-  overflow: hidden;
+
+.list-group .list-group-item>span {
+    margin: 7px 0 7px 12px;
+    margin-top: 3px;
+    overflow: hidden;
 }
+
 #edit-event,
 #cancel-edit-event {
-  margin-right: 5px;
+    margin-right: 5px;
 }
