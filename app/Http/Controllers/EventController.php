@@ -277,9 +277,6 @@ class EventController extends Controller
       if ($request->has('facebook_msg')) {
         $event->facebook_msg = $request->facebook_msg;
       }
-      if ($request->has('twitter_msg')) {
-        $event->twitter_msg = $request->twitter_msg;
-      }
       if ($request->has('email_msg')) {
         $event->email_msg = $request->email_msg;
       }

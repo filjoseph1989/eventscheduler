@@ -112,7 +112,6 @@
         </div>
         <div class="modal-body">
           <div class="panel-group" id="accordion_1" role="tablist" aria-multiselectable="true">
-
             <div class="panel">
               <div class="panel-heading" role="tab" id="headingOne_1">
                 <h4 class="panel-title">
@@ -131,7 +130,6 @@
                 </div>
               </div>
             </div>
-
             @if ($account == 'org-head' || $account == 'osa')
               <div class="panel social-media-notification">
                 <div class="panel-heading" role="tab" id="headingTwo_1">
@@ -253,16 +251,6 @@
                         <div class="col-sm-12 col-md-12">
                           <div class="form-group form-float form-group">
                             <div class="form-line">
-                              <label for="twitter_msg">Twitter Message</label>
-                              <textarea rows="2" class="form-control no-resize" id="twitter_msg" name="twitter_msg" placeholder="Additional message for Twitter notification"></textarea>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row clearfix">
-                        <div class="col-sm-12 col-md-12">
-                          <div class="form-group form-float form-group">
-                            <div class="form-line">
                               <label for="email_msg">Email Message</label>
                               <textarea rows="2" class="form-control no-resize" id="email_msg" name="email_msg" placeholder="Additional message for email notification"></textarea>
                             </div>
@@ -287,7 +275,6 @@
             @endif
           </div>
         </div>
-
         <div class="modal-footer">
           @if ($account == 'org-head')
             <button type="button" data-color="teal" class="btn bg-teal waves-effect request-approval" id="modal-request-approval" data-toggle="tooltip" data-placement="top" title="Request for advertisement approval"
@@ -311,10 +298,6 @@
             </form>
           @endif
           @if ($account == 'osa')
-            {{--  <button type="button" data-color="teal" class="btn bg-teal waves-effect request-approval" id="modal-request-approval" data-toggle="tooltip" data-placement="top" title="Request for advertisement approval"
-              onclick="event.preventDefault(); document.getElementById('modal-request-approval-form').submit();">
-              Request Approval
-            </button>  --}}
             <form class="" id="modal-request-approval-form" action="" method="post" style="display: none;">
               {{ csrf_field() }}
               {{ method_field('PUT') }}
@@ -323,7 +306,6 @@
           @endif
           <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
         </div>
-
       </div>
     </div>
   </div>

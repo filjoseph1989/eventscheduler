@@ -141,7 +141,6 @@
                 </div>
               </div>
             </div>
-
             @if ($account == 'org-head' || $account == 'osa')
               <div class="panel social-media-notification">
                 <div class="panel-heading" role="tab" id="headingTwo_1">
@@ -263,16 +262,6 @@
                         <div class="col-sm-12 col-md-12">
                           <div class="form-group form-float form-group">
                             <div class="form-line">
-                              <label for="twitter_msg">Twitter Message</label>
-                              <textarea rows="2" class="form-control no-resize" id="twitter_msg" name="twitter_msg" placeholder="Additional message for Twitter notification"></textarea>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row clearfix">
-                        <div class="col-sm-12 col-md-12">
-                          <div class="form-group form-float form-group">
-                            <div class="form-line">
                               <label for="email_msg">Email Message</label>
                               <textarea rows="2" class="form-control no-resize" id="email_msg" name="email_msg" placeholder="Additional message for email notification"></textarea>
                             </div>
@@ -308,37 +297,8 @@
                       <div class="col-sm-12 col-md-12">
                         <form action="{{ route('facebook.photo') }}" enctype="multipart/form-data" method="POST">
                           {{ csrf_field() }}
-                          <label for="">Facebook</label>
                           <input type="hidden" id="facebook-event" name="id" value="">
                           <input type="hidden" name="facebook" value="true">
-                          <input type="file" name="image">
-                          <button type="submit" class="btn btn-success" style="margin-top: 3px; ">
-                            <i class="material-icons">file_upload</i> Upload
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                    <div class="row">&nbsp;</div>
-                    <div class="row clearfix">
-                      <div class="col-sm-12 col-md-12">
-                        <form action="{{ route('user.profile.upload') }}" enctype="multipart/form-data" method="POST">
-                          {{ csrf_field() }}
-                          <label for="">Twitter</label>
-                          <input type="hidden" name="id" value="{{ Auth::id() }}">
-                          <input type="file" name="image">
-                          <button type="submit" class="btn btn-success" style="margin-top: 3px; ">
-                            <i class="material-icons">file_upload</i> Upload
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                    <div class="row">&nbsp;</div>
-                    <div class="row clearfix">
-                      <div class="col-sm-12 col-md-12">
-                        <form action="{{ route('user.profile.upload') }}" enctype="multipart/form-data" method="POST">
-                          {{ csrf_field() }}
-                          <label for="">Email</label>
-                          <input type="hidden" name="id" value="{{ Auth::id() }}">
                           <input type="file" name="image">
                           <button type="submit" class="btn btn-success" style="margin-top: 3px; ">
                             <i class="material-icons">file_upload</i> Upload
