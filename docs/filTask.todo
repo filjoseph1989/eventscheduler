@@ -1,3 +1,4 @@
+☐ Personal event title checker
 ☐ Add Preloader on axios when editing event
 ☐ Upload photo
 ☐ Add user on OSA account
@@ -9,6 +10,7 @@
 ☐ For local event attendance, the organization head should be the one who will click did attend
 ☐ Display personal event for members
 ☐ Create personal event for members
+☐ Event reminder where user can boot
 ✔ Dapat wala notong options sa taas sa list of organization {http://test.dev/Org/false} @done(2017-11-19 23:17)
 ✔ list of conflicting events @done(2017-11-19 23:15)
 ✔ Add new user redefining @done(2017-11-09 18:04)

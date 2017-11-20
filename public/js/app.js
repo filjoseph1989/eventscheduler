@@ -316,6 +316,8 @@
 
   /**
    * Provide user list on the modal for official attendance
+   *
+   * Issue 42: Remove me
    * @return {void}
    */
   $(document).on('click', '.event-attendance-official', function() {
@@ -369,6 +371,8 @@
 
   /**
    * Provide user list on the modal for expected attendance
+   *
+   * Issue 42: Remove me
    * @return {void}
    */
   $(document).on('click', '.event-attendance-expected', function () {

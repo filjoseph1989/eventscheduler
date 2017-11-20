@@ -1,0 +1,11 @@
+Event:
+if conflict on date
+  check the availablity of time and venue
+    if available, then save event
+    else, return
+
+Personal Event:
+Get/Check the event created by the user
+  if conflict on title, ask to duplicate
+  if conflict on date start, notify user
+  if conflict on venue, notify user

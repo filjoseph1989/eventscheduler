@@ -26,7 +26,6 @@ use App\Models\OrganizationGroup;
 class AttendanceController extends Controller
 {
     private $list  = ['official', 'expected', 'confirm', 'decline'];
-    private $theme = 'theme-teal';
 
     /**
      * Build instance of a class

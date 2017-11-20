@@ -151,12 +151,7 @@
                           <td>
                             <div class="demo-switch">
                               <div class="switch" id="facebook">
-                                <label>
-                                  OFF
-                                  <input type="checkbox" name="facebook" checked>
-                                  <span class="lever switch-col-teal"></span>
-                                  ON
-                                </label> Facebook
+                                <label> OFF <input type="checkbox" name="facebook" checked> <span class="lever switch-col-teal"></span> ON </label> Facebook
                               </div>
                             </div>
                           </td>
