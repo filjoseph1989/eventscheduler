@@ -55,8 +55,8 @@
                             <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
                             <td><a href="{{ route('official.attendance', $event->id) }}" class="btn btn-success">View</a></td>
                             <td><a href="{{ route('expected.attendance', $event->id) }}" class="btn btn-success">View</a></td>
-                            <td><button type="submit" class="btn btn-success event-attendance-confirmed" data-target="#modal-attendances" data-toggle="modal">View</button></td>
-                            <td><button type="submit" class="btn btn-success event-attendance-declined" data-target="#modal-attendances"  data-toggle="modal">View</button></td>
+                            <td><a href="{{ route('confirmed.attendance', $event->id) }}" class="btn btn-success">View</a></td>
+                            <td><a href="{{ route('declined.attendance', $event->id) }}" class="btn btn-success">View</a></td>
                           </tr>
                         @endforeach
                       <?php endif; ?>

@@ -35,11 +35,9 @@ class AttendanceViewController extends Controller
   public function getOfficialAttendance($id)
   {
     $events = Event::find($id);
-    if ($events->category == 'university') {
-      $users = Attendance::where('event_id', $id)
-        ->with('user')
-        ->get();
-    }
+    $users = Attendance::where('event_id', $id)
+      ->with('user')
+      ->get();
 
     return view('attendees')
       ->with([
@@ -57,17 +55,64 @@ class AttendanceViewController extends Controller
   public function getExpectedAttendance($id)
   {
     $events = Event::find($id);
-    if ($events->category == 'university') {
-      $users = Attendance::where('event_id', $id)
-        ->with('user')
-        ->get();
-    }
+    $users  = Attendance::with('user')
+      ->where('event_id', $id)
+      ->where(function($query) {
+        return $query
+          ->where('status', 'confirmed')
+          ->orWhere('did_attend', 'true');
+      })
+      ->get();
 
     return view('attendees')
       ->with([
         'events'   => $events,
         'users'    => isset($users) ? $users: [],
         'expected' => true
+      ]);
+  }
+
+  /**
+   * Return the list of attendees who confirmed attendance
+   *
+   * @param int $id
+   * @return Illuminate\Response
+   */
+  public function getConfirmedAttendance($id)
+  {
+    $events = Event::find($id);
+    $users  = Attendance::with('user')
+      ->where('event_id', $id)
+      ->where('did_attend', 'true')
+      ->get();
+
+    return view('attendees')
+      ->with([
+        'events'    => $events,
+        'users'     => isset($users) ? $users : [],
+        'confirmed' => true
+      ]);
+  }
+
+  /**
+   * Return the list of attendees who declined attendance
+   *
+   * @param int $id
+   * @return Illuminate\Response
+   */
+  public function getDeclinedAttendance($id)
+  {
+    $events = Event::find($id);
+    $users  = Attendance::with('user')
+      ->where('event_id', $id)
+      ->where('did_attend', 'false')
+      ->get();
+
+    return view('attendees')
+      ->with([
+        'events'    => $events,
+        'users'     => isset($users) ? $users : [],
+        'declined' => true
       ]);
   }
 }

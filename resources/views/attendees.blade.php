@@ -25,6 +25,10 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <?php if (isset($expected)): ?>
                     <h5>These are the expected list of user who want to attend this event</h5>
+                  <?php elseif (isset($confirmed)): ?>
+                    <h5>These are the expected list of user who confirmed attendance to this event</h5>
+                  <?php elseif (isset($declined)): ?>
+                    <h5>These are the expected list of user who declined attendance to this event</h5>
                   <?php else: ?>
                     <h5>These are the official list of user expected to attend this event</h5>
                   <?php endif; ?>
