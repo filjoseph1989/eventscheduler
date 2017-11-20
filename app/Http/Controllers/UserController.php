@@ -69,16 +69,18 @@ class UserController extends Controller
           ->where('user_id', Auth::id())
           ->get();
 
-        $users = OrganizationGroup::with([
+        if (count($org_id) >= 1) {
+          $users = OrganizationGroup::with([
             'user' => function($query) {
               return $query
-                ->with('course')
-                ->get();
+              ->with('course')
+              ->get();
             },
             'organization', 'position'
-          ])->where('organization_id', $org_id[0]->organization_id)
-            ->get();
-              // dd($users);
+          ])
+          ->where('organization_id', $org_id[0]->organization_id)
+          ->get();
+        }
       } else {
         $org_id = self::getOrganizationsID();
         $users = OrganizationGroup::with([
@@ -88,12 +90,13 @@ class UserController extends Controller
                 ->get();
             },
             'organization', 'position'
-          ])->get();
+          ])
+          ->get();
       }
-      // dd($users);
+
       return view('users_index')
         ->with([
-          'users'   => $users,
+          'users'   => isset($users) ? $users : [],
           'org'     => $org_id,
           'account' => self::whatAccount(),
         ]);
