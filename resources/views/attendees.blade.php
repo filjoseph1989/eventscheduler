@@ -41,7 +41,7 @@
                       <tr>
                         <th style="width: 100px;">Count</th>
                         <th>Name</th>
-                        <?php if (isset($expected)): ?>
+                        <?php if (isset($expected) and $creator === true): ?>
                           <th>Confirm Attendance</th>
                         <?php endif; ?>
                       </tr>
@@ -52,7 +52,7 @@
                         <tr>
                           <td>{{ $count++ }}</td>
                           <td>{{ $user->user->full_name }}</td>
-                          <?php if (isset($expected)): ?>
+                          <?php if (isset($expected) and $creator === true): ?>
                             <td>
                               <button type="button" class="btn <?php echo ($user->did_attend == 'true') ? 'btn-success' : 'btn-defualt'; ?>" data-event-id="{{ $events->id }}" data-attendance-id="{{ $user->id }}" id="confirmed-attendance">
                                 <?php if ($user->did_attend == 'true'): ?>
