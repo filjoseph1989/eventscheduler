@@ -156,8 +156,6 @@
                       <table class="table table-bordered table-striped">
                       <thead>
                         <th>Advertising Options</th>
-                        <th colspan="2">Reminders</th>
-                        <th>Audience</th>
                       </thead>
                       <tbody>
                         <tr>
@@ -173,32 +171,6 @@
                               </div>
                             </div>
                           </td>
-                          <td>
-                            {{-- Issue 4 --}}
-                            <select class="form-control show-tick" name="">
-                              <option value="">1</option>
-                              <option value="">2</option>
-                              <option value="">3</option>
-                              <option value="">4</option>
-                            </select>
-                          </td>
-                          <td>
-                            {{-- Issue 4 --}}
-                            <select class="form-control show-tick" name="">
-                              <option value="">day</option>
-                              <option value="">week</option>
-                              <option value="">month</option>
-                              <option value="">year</option>
-                            </select>
-                          </td>
-                          <td>
-                            @if ($account != 'org-member')
-                              <select class="form-control show-tick" name="">
-                                <option value="">University</option>
-                                <option value="">Organization</option>
-                              </select>
-                            @endif
-                          </td>
                         </tr>
                         <tr>
                           <td>
@@ -208,7 +180,6 @@
                               </div>
                             </div>
                           </td>
-                          <td rowspan="4" colspan="3">Occuppied</td>
                         </tr>
                         <tr>
                           <td>
