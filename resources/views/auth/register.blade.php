@@ -68,12 +68,12 @@
                           <select class="form-control show-tick" id="position_id" name="position_id">
                             <option value="{{ old('position_id') }}" id="position-option">- Select Position -</option>
                             @foreach ($positions as $key => $position)
-                            <option value="{{ $position->id }}">{{ $position->name }}</option>
+                              <option value="{{ $position->id }}">{{ $position->name }}</option>
                             @endforeach
                           </select>
+                        </div>
                       </div>
                     </div>
-                  </div>
                   </div>
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                     <button type="button" class="btn btn-success" name="button">Remove</button>
@@ -165,31 +165,42 @@
   <script type="text/javascript">
     (function() {
       $(document).on('click', '.user-details', function() {
-        var url = $(this).parents('form').attr('action');
+        var url  = $(this).parents('form').attr('action');
         var data = $(this).parents('form').serialize();
 
-        axios_post(url, data, function($details) {
-          /* Show error */
-          if ($details.error_account_number != undefined || $details.error_account_number != null) {
-            $message = "Student Number should be in the following format (20XX-XXXXX) where X are natural numbers, not " + $details.error_account_number;
-            swal('Error!', $message, 'error');
-          }
-          if ($details.error_account_number != undefined || $details.error_account_number != null) {
-            swal('Error!', $details.error_account_number, 'error');
-          }
-          if ($details.error_email != undefined || $details.error_email != null) {
-            swal('Error!', $details.error_email, 'error');
-          }
-          if ($details.error_course != undefined || $details.error_course != null) {
-            swal('Error!', $details.error_course, 'error');
-          }
-          if ($details.error_position != undefined || $details.error_position != null) {
-            swal('Error!', $details.error_position, 'error');
-          }
-          if ($details.success != undefined || $details.success != null) {
-            swal('Great!', $details.message, 'success');
-          }
-        });
+        if ($('#account_number').val() == '' ||
+            $('#full_name').val() == '' ||
+            $('#email').val() == '' ||
+            $('#course_id').val() == '' ||
+            $('#position_id').val() == '') {
+          swal('Error!', "Please fill up the empty input field", 'error');
+        } else {
+          axios_post(url, data, function($details) {
+            swal('Error!', $details.message, 'error');
+            if ($details.message != undefined) {
+            }
+            if ($details.error_account_number != undefined || $details.error_account_number != null) {
+              $message = "Student Number should be in the following format (20XX-XXXXX) where X are natural numbers, not " + $details.error_account_number;
+              swal('Error!', $message, 'error');
+            }
+            if ($details.error_account_number != undefined || $details.error_account_number != null) {
+              swal('Error!', $details.error_account_number, 'error');
+            }
+            if ($details.error_email != undefined || $details.error_email != null) {
+              swal('Error!', $details.error_email, 'error');
+            }
+            if ($details.error_course != undefined || $details.error_course != null) {
+              swal('Error!', $details.error_course, 'error');
+            }
+            if ($details.error_position != undefined || $details.error_position != null) {
+              swal('Error!', $details.error_position, 'error');
+            }
+
+            if ($details.success != undefined || $details.success != null) {
+              swal('Great!', $details.message, 'success');
+            }
+          });
+        }
       });
 
       /**

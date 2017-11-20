@@ -140,11 +140,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-      // dd( $request );
-
       $user = $request->only([
         'account_number', 'full_name', 'email', 'position_id', 'course_id', 'password'
       ]);
+
+      if (empty(self::getOrganizationsID())) {
+        echo json_encode([
+          'message' => 'Sorry you cannot add new member because you dont have organization'
+        ]);
+        exit;
+      }
+
       if (parent::isOrgHead()) {
         $user['user_type_id']    = '2';
         $user['organization_id'] = self::extractID(self::getOrganizationsID()); # this is from a CommonMethodTrait
