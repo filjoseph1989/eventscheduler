@@ -30,6 +30,7 @@
           <span>Local Events</span>
         </a>
         <a href="{{ route('Attendances.index') }}" class="list-group-item"  style="border:none;  color: #7A7A7A" >
+          <i class="material-icons">date_range</i>
           <span>My Event Attendance</span>
         </a>
       @elseif (session('account') == 'osa')
