@@ -110,12 +110,9 @@
               <ul class="ml-menu">
                 @if( session('account') == 'org-member' )
                   <li><a href="{{ route('EventNotification.show', 2) }}" class="ml-menu-item-links"> Unadvertised Personal Events </a></li>
-                @elseif( session('account') == 'org-head' )
+                @elseif( session('account') == 'osa' || session('account') == 'org-head' )
                   <li><a href="{{ route('EventNotification.show', 1) }}" class="ml-menu-item-links"> Unadvertised Official Events </a></li>
                   <li><a href="{{ route('EventNotification.show', 2) }}" class="ml-menu-item-links"> Unadvertised Local Events </a></li>
-                @elseif( session('account') == 'osa' )
-                  <li><a href="{{ route('EventNotification.show', 1) }}" class="ml-menu-item-links"> Unadvertised Official Events </a></li>
-                  <li><a href="{{ route('EventNotification.show', 2) }}" class="ml-menu-item-links"> Unadvertised Personal Events </a></li>
                 @endif
               </ul>
             </li>
