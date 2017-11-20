@@ -49,7 +49,7 @@
           <span>Personal Events</span>
         </a>
       @endif
-        <a href="{{ route('event.dlv', 2) }}" class="list-group-item " style="border:none;  color: #7A7A7A">
+        <a href="{{ route('Event.create') }}" class="list-group-item " style="border:none;  color: #7A7A7A">
           <i class="material-icons">create</i>
           <span>Add Event</span>
         </a>
