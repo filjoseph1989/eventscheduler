@@ -47,4 +47,27 @@ class AttendanceViewController extends Controller
         'users'  => isset($users) ? $users : []
       ]);
   }
+
+  /**
+   * Display the expected attendance
+   *
+   * @param  int $id
+   * @return Illuminate\Response
+   */
+  public function getExpectedAttendance($id)
+  {
+    $events = Event::find($id);
+    if ($events->category == 'university') {
+      $users = Attendance::where('event_id', $id)
+        ->with('user')
+        ->get();
+    }
+
+    return view('attendees')
+      ->with([
+        'events'   => $events,
+        'users'    => isset($users) ? $users: [],
+        'expected' => true
+      ]);
+  }
 }
