@@ -64,6 +64,7 @@ Route::group(['middleware'=>['auth']], function() {
       Route::name('expected.attendance')->get('/get/expected/attendees/{id}','AttendanceViewController@getExpectedAttendance');
       Route::name('confirmed.attendance')->get('/get/confirmed/attendees/{id}','AttendanceViewController@getConfirmedAttendance');
       Route::name('declined.attendance')->get('/get/declined/attendees/{id}','AttendanceViewController@getDeclinedAttendance');
+      Route::post('/update','AttendanceViewController@update');
       Route::name('attendance.showWithinEachOrg')->get('get/within-an-organization/attendance/{id}', 'AttendanceController@showWithinEachOrg');
     });
 

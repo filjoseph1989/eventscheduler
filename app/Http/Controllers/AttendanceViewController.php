@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;;
 use Illuminate\Http\Request;
 
 # Models
@@ -67,8 +68,9 @@ class AttendanceViewController extends Controller
     return view('attendees')
       ->with([
         'events'   => $events,
-        'users'    => isset($users) ? $users: [],
-        'expected' => true
+        'users'    => isset($users) ? $users : [],
+        'expected' => true,
+        'creator'  => ($events->user_id == Auth::id()) ? true : false
       ]);
   }
 
@@ -114,5 +116,33 @@ class AttendanceViewController extends Controller
         'users'     => isset($users) ? $users : [],
         'declined' => true
       ]);
+  }
+
+  /**
+   * Store confirmation
+   *
+   * @param  Request $request
+   * @return
+   */
+  public function update(Request $request)
+  {
+    $event = Event::find($request->event_id);
+
+    if ($event->user_id == Auth::id()) {
+      $attend = Attendance::find($request->id);
+      $attend->did_attend = 'true';
+
+      if ($attend->save()) {
+        $response = true;
+      } else {
+        $response = false;
+      }
+    } else {
+      $response = false;
+    }
+
+    echo json_encode([
+      'response' => $response
+    ]);
   }
 }
