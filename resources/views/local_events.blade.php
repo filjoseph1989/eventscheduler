@@ -36,8 +36,6 @@
             </div>
             <div class="body">
               <a href="{{ route('Event.create') }}" type="button" data-color="violet" class="btn bg-teal waves-effect pull-right"  style="margin-left:10px;">Create Event</a>
-              <!-- <button class="bg-teal waves-effect btn pull-right" data-toggle="modal" data-target="#edit-notification-modal" style="margin-left: 10px">Edit Notification</button> -->
-
               <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
@@ -128,12 +126,17 @@
           <h4 class="modal-title" id="event-title">Event Information</h4>
         </div>
         <div class="modal-body">
-          <!-- <button type="button" class="btn btn-primary pull-right hidden" id="edit-local-event" name="button">Edit</button> -->
           <div class="panel-group" id="accordion_1" role="tablist" aria-multiselectable="true">
             <div class="panel">
               <div class="panel-heading" role="tab" id="headingOne_1">
                 <h4 class="panel-title">
-                  <a id="modal-event-title" role="button" data-toggle="collapse" data-parent="#accordion_1" href="#collapseOne_1" aria-expanded="false" aria-controls="collapseOne_1" class="collapsed">
+                  <a id="modal-event-title" role="button"
+                    href="#collapseOne_1"
+                    class="collapsed"
+                    data-toggle="collapse"
+                    data-parent="#accordion_1"
+                    aria-expanded="false"
+                    aria-controls="collapseOne_1">
                     Event Title
                   </a>
                 </h4>
@@ -162,83 +165,48 @@
                   <div class="panel-body">
                     <form class="" action="" method="post">
                       <table class="table table-bordered table-striped">
-                      <thead>
-                        <th>Advertising Options</th>
-                        <th colspan="2">Reminders</th>
-                        <th>Audience</th>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>
-                            <div class="demo-switch">
-                              <div class="switch" id="facebook">
-                                <label>
-                                  OFF
-                                  <input type="checkbox" name="facebook" checked>
-                                  <span class="lever switch-col-teal"></span>
-                                  ON
-                                </label> Facebook
+                        <thead>
+                          <th>Advertising Options</th>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div class="demo-switch">
+                                <div class="switch" id="facebook" data-personal="true">
+                                  <label> OFF <input type="checkbox" name="facebook" checked> <span class="lever switch-col-teal"></span> ON </label> Facebook
+                                </div>
                               </div>
-                            </div>
-                          </td>
-                          <td>
-                            {{-- Issue 4 --}}
-                            <select class="form-control show-tick" name="">
-                              <option value="">1</option>
-                              <option value="">2</option>
-                              <option value="">3</option>
-                              <option value="">4</option>
-                            </select>
-                          </td>
-                          <td>
-                            {{-- Issue 4 --}}
-                            <select class="form-control show-tick" name="">
-                              <option value="">day</option>
-                              <option value="">week</option>
-                              <option value="">month</option>
-                              <option value="">year</option>
-                            </select>
-                          </td>
-                          <td>
-                            @if ($account != 'org-member')
-                              <select class="form-control show-tick" name="">
-                                <option value="">University</option>
-                                <option value="">Organization</option>
-                              </select>
-                            @endif
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="demo-switch">
-                              <div class="switch" id="twitter">
-                                <label>OFF<input type="checkbox" name="twitter" checked><span class="lever switch-col-teal"></span>ON</label> Twitter
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="demo-switch">
+                                <div class="switch" id="twitter" data-personal="true">
+                                  <label>OFF<input type="checkbox" name="twitter" checked><span class="lever switch-col-teal"></span>ON</label> Twitter
+                                </div>
                               </div>
-                            </div>
-                          </td>
-                          <td rowspan="4" colspan="3">Occuppied</td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="demo-switch">
-                              <div class="switch" id="email">
-                                <label>OFF<input type="checkbox" name="email" checked><span class="lever switch-col-teal"></span>ON</label> Email
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="demo-switch">
+                                <div class="switch" id="email" data-personal="true">
+                                  <label>OFF<input type="checkbox" name="email" checked><span class="lever switch-col-teal"></span>ON</label> Email
+                                </div>
                               </div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="demo-switch">
-                              <div class="switch" id="sms">
-                                <label>OFF<input type="checkbox" name="sms" checked><span class="lever switch-col-teal"></span>ON</label> Mobile
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="demo-switch">
+                                <div class="switch" id="sms" data-personal="true">
+                                  <label>OFF<input type="checkbox" name="sms" checked><span class="lever switch-col-teal"></span>ON</label> Mobile
+                                </div>
                               </div>
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                      <button type="button" id="modal-event-notification" data-color="green" class="btn bg-teal waves-effect pull-right">Save Changes</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </form>
                   </div>
                 </div>
@@ -387,5 +355,5 @@
   <script src="{{ asset('js/jquery.dataTables.js') }}?v=0.1"></script>
   <script src="{{ asset('js/jquery-datatable.js') }}?v=0.1"></script>
   <script src="{{ asset('js/tooltips-popovers.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/app.js') }}?v=2.20" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.27" charset="utf-8"></script>
 @endsection

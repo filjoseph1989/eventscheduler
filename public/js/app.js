@@ -364,10 +364,9 @@
     var id        = $('#facebook').data('event-id');
     var eventType = $(this).data('event-type-id');
     var url       = '/Event/' + id;
+    let personal = $(this).parents('div').data('personal');
 
-    // naa pa problem kay ang eventtyp naa pud sa event table '2' ang value
-
-    if (eventType == 2) {
+    if (personal == true) {
       url = '/PersonalEvent/' + id;
     }
 
@@ -385,10 +384,9 @@
     var id        = $('#twitter').data('event-id');
     var eventType = $(this).data('event-type-id');
     var url       = '/Event/' + id;
+    let personal = $(this).parents('div').data('personal');
 
-    // naa pa problem kay ang eventtyp naa pud sa event table '2' ang value
-
-    if (eventType == 2) {
+    if (personal == true) {
       url = '/PersonalEvent/' + id;
     }
 
@@ -404,10 +402,9 @@
     var id        = $('#sms').data('event-id');
     var eventType = $(this).data('event-type-id');
     var url       = '/Event/' + id;
+    let personal = $(this).parents('div').data('personal');
 
-    // naa pa problem kay ang eventtyp naa pud sa event table '2' ang value
-
-    if (eventType == 2) {
+    if (personal == true) {
       url = '/PersonalEvent/' + id;
     }
 
@@ -423,10 +420,9 @@
     var id        = $('#email').data('event-id');
     var eventType = $(this).data('event-type-id');
     var url       = '/Event/' + id;
+    let personal = $(this).parents('div').data('personal');
 
-    // naa pa problem kay ang eventtyp naa pud sa event table '2' ang value
-
-    if (eventType == 2) {
+    if (personal == true) {
       url = '/PersonalEvent/' + id;
     }
 

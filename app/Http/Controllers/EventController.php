@@ -329,9 +329,8 @@ class EventController extends Controller
      * @param  RandomHelper $helper
      * @return \Illuminate\Response
      */
-    public function dlv($id, RandomHelper $helper)
+    public function personaEvent($id, RandomHelper $helper)
     {
-
       if ($id == 2) {
         $org_id = OrganizationGroup::where('user_id', Auth::id())
           ->get();

@@ -72,7 +72,7 @@ Route::group(['middleware'=>['auth']], function() {
     # additional routes for events user type
     Route::prefix('event')->group(function() {
       Route::name('event.showOrgEvents')->get('/org-events/{kind}/{orgId}', 'EventController@showOrgEvents');
-      Route::name('event.dlv')->get('/local-events/{id}', 'EventController@dlv');
+      Route::name('event.dlv')->get('/local-events/{id}', 'EventController@personaEvent');
       Route::name('event.advertise')->post('/AdvertiseEvent', 'EventAdvertiseController@updateEvent');
       Route::name('event.conflicts')->get('/Event/Conflict', 'EventController@showListOfEventConflict');
     });
