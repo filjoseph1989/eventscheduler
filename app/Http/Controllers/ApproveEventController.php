@@ -170,7 +170,7 @@ class ApproveEventController extends Controller
     private function twitterMessage($event)
     {
       $message = self::smsMessage($event->category, $event, true);
-      return str_limit($message, 100);
+      return str_limit($message, 250);
     }
 
     /**
@@ -265,11 +265,14 @@ class ApproveEventController extends Controller
         $heading .= "{$new_line}Description: {$event->description}";
       }
 
+      $date_start = date('M d, Y', strtotime($event->date_start));
+      $date_end   = date('M d, Y', strtotime($event->date_end));
+
       $heading .=
         "{$new_line}Venue: {$event->venue} " .
-        "{$new_line}Duration: {$event->date_start}, {$event->date_start_time} to {$event->date_end}, {$event->date_end_time} " .
-        "{$new_line}{$event->additional_msg_sms}" .
-        "{$new_line}Please be guided accordingly. Thank You!";
+        "{$new_line}Duration: {$date_start}, {$event->date_start_time} to {$date_end}, {$event->date_end_time} " .
+        "{$new_line}{$event->additional_msg_sms} " .
+        "{$new_line}Please be guided accordingly. Thank You! ";
 
       return $heading;
     }

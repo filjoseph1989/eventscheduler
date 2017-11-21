@@ -2,32 +2,52 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minty-Multipurpose Responsive Email Template</title>
+    <title>Event Reminder</title>
     <style type="text/css">
       #outlook a { padding:0; }
       body{
         width:100% !important;
-        -webkit-text-size-adjust:100%;
-        -ms-text-size-adjust:100%;
         margin:0;
         padding:0;
+        -webkit-text-size-adjust:100%;
+        -ms-text-size-adjust:100%;
       }
       .ExternalClass {
         width:100%;
       }
-     .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;} /* Force Hotmail to display normal line spacing.  More on that: http://www.emailonacid.com/forum/viewthread/43/ */
-     #backgroundTable {margin:0; padding:0; width:100% !important; line-height: 100% !important;}
-     img {outline:none; text-decoration:none;border:none; -ms-interpolation-mode: bicubic;}
-     a img {border:none;}
-     .image_fix {display:block;}
-     p {margin: 0px 0px !important;}
-
-     table td {border-collapse: collapse;}
-     table { border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; }
-     /*a {color: #e95353;text-decoration: none;text-decoration:none!important;}*/
-     /*STYLES*/
-     table[class=full] { width: 100%; clear: both; }
-
+      .ExternalClass,
+      .ExternalClass p,
+      .ExternalClass span,
+      .ExternalClass font,
+      .ExternalClass td,
+      .ExternalClass div {
+        line-height: 100%;
+      }
+      #backgroundTable {
+        margin:0;
+        padding:0;
+        width:100% !important;
+        line-height: 100% !important;
+      }
+      img {
+        outline:none;
+        text-decoration:none;
+        border:none;
+        -ms-interpolation-mode: bicubic;
+      }
+      a img {border:none;}
+      .image_fix {display:block;}
+      p {margin: 0px 0px !important;}
+      table {
+        border-collapse:collapse;
+        mso-table-lspace:0pt;
+        mso-table-rspace:0pt;
+      }
+      table td {border-collapse: collapse;}
+      table[class=full] {
+        width: 100%;
+        clear: both;
+      }
      /*################################################*/
      /*IPAD STYLES*/
      /*################################################*/
