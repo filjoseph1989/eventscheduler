@@ -65,7 +65,7 @@
         </div>
         <div class="modal-body">
           <p>System Creator</p>
-          <p>janicalizdeguzman at gmail dot com</p>
+          <p><a href="mailto:janicalizdeguzman@gmail.com">janicalizdeguzman@gmail.com</a></p>
         </div>
         <div class="modal-footer">
           <i class="material-icons" data-dismiss="modal" style="cursor:pointer;">close</i>
