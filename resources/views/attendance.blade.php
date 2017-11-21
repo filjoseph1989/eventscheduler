@@ -73,36 +73,6 @@
 @endsection
 
 @section('modals')
-  {{-- Issue 42: Remove me --}}
-  <div id="modal-attendances" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title" id="myModalLabel">{{-- MUST SHOW WHAT TYPE OF ATTENDANCE--}} Attendance</h4>
-        </div>
-        <div class="modal-body">
-          <table class="table table-bordered table-striped table-hover">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody id="event-attendees">
-              {{-- User's data here --}}
-            </tbody>
-          </table>
-        </div>
-        <div class="modal-footer">
-          ...
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div id="modal-event" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="event" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">

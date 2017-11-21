@@ -53,13 +53,6 @@ Route::group(['middleware'=>['auth']], function() {
 
     # Used for attendances
     Route::prefix('attendance')->group(function() {
-      # Deprecated here
-      # Issue 43: Removed this routes
-      Route::name('attendance.official')->post('/get/official/attendance','AttendanceController@getOfficialAttendance');
-      Route::name('attendance.expected')->post('/get/expected/attendance','AttendanceController@getExpectedAttendance');
-      Route::name('attendance.confirmed')->post('/get/confirmed/attendance','AttendanceController@getConfirmedAttendance');
-      Route::name('attendance.declined')->post('/get/declined/attendance','AttendanceController@getDeclinedAttendance');
-
       Route::name('official.attendance')->get('/get/official/attendees/{id}','AttendanceViewController@getOfficialAttendance');
       Route::name('expected.attendance')->get('/get/expected/attendees/{id}','AttendanceViewController@getExpectedAttendance');
       Route::name('confirmed.attendance')->get('/get/confirmed/attendees/{id}','AttendanceViewController@getConfirmedAttendance');
