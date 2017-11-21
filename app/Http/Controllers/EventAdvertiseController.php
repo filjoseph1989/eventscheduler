@@ -41,21 +41,17 @@ class EventAdvertiseController extends Controller
     public function updateEvent(Request $request)
     {
       if($request->category == 'personal' ){
-        // dd('true');
         $event = PersonalEvent::where('id', $request->id)->with(['user', 'organization'])->get()->first();
       } elseif($request->catergory == 'within') {
-        // dd('false');
         $event = Event::where('id', $request->id)->with(['user', 'organization'])->get()->first();
       } else {
         $event = Event::where('id', $request->id)->with('user')->get()->first();
       }
 
-      // dd($event );
-      $event->status = 'upcoming';
+      $event->status     = 'upcoming';
       $event->is_approve = 'true';
 
       if ($event->save()) {
-
         if ($event->sms == 'on') {
           self::smsPost($event);
         }
@@ -108,7 +104,7 @@ class EventAdvertiseController extends Controller
 
       # Public event
       if($event->category == 'university' OR $event->category == 'organization') {
-       $users = User::where('status', 'true')->get();
+        $users = User::where('status', 'true')->get();
       }
 
       # Within organization
@@ -120,7 +116,9 @@ class EventAdvertiseController extends Controller
           ->get();
         }
       } else { #personal event
-        $users = PersonalEvent::with('user')->where('user_id', $event->user_id)->get();
+        $users = PersonalEvent::with('user')
+          ->where('user_id', $event->user_id)
+          ->get();
       }
 
       # Send notification
@@ -223,7 +221,6 @@ class EventAdvertiseController extends Controller
      */
     private function smsMessage($category, $event, $twit = false)
     {
-      // dd($event->user->full_name);
       switch ($category) {
         case 'university':
           $heading = "Hello UP Mindanao! You have an upcoming event! ";
@@ -251,18 +248,28 @@ class EventAdvertiseController extends Controller
       if( $event->organization != null){
         $heading .= "{$new_line}{$event->title} headed by {$event->organization->name}. ";
       } else {
-        $heading .= "{$new_line}{$event->title} headed by {$event->user->full_name}. ";
+        $new_line = "\n";
+        $heading .= "{$new_line}You've been invited to";
+        $heading .= "{$new_line}{$event->title} created by {$event->user->full_name}. ";
       }
 
       if ($twit === true) {
         $heading .= "{$new_line}Description: {$event->description} ";
       }
 
+      $date_start = date('M d, Y', strtotime($event->date_start));
+      $date_end   = date('M d, Y', strtotime($event->date_end));
+
       $heading .=
         "{$new_line}Venue: {$event->venue} " .
-        "{$new_line}Duration: {$event->date_start}, {$event->date_start_time} to {$event->date_end}, {$event->date_end_time} " .
-        "{$new_line}{$event->additional_msg_sms} " .
-        "{$new_line}Please be guided accordingly. Thank You!";
+        "{$new_line}Duration: {$date_start}, {$event->date_start_time} to {$date_end}, {$event->date_end_time} " .
+        "{$new_line}{$event->additional_msg_sms} ";
+
+      if ($category == 'personal') {
+        $heading .= "{$new_line}See you there";
+      } else {
+        $heading .= "{$new_line}Please be guided accordingly. Thank You! ";
+      }
 
       return $heading;
     }

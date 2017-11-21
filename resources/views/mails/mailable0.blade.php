@@ -196,7 +196,7 @@
                               <p>{{ $event->organization->name }} members, please be informed that you have an upcoming event this {{ date('M d, Y', strtotime($event->date_start)) }}
                               titled, <strong>{{ ucwords($event->title) }}</strong>. {{ $event->description }} held at {{ ucwords($event->venue) }}</p>
                             @else
-                              <p>{{ $event->user->full_ame }}, please be informed that you have an upcoming event this {{ date('M d, Y', strtotime($event->date_start)) }}
+                              <p>Please be informed that you have an upcoming event this {{ date('M d, Y', strtotime($event->date_start)) }}
                               titled, <strong>{{ ucwords($event->title) }}</strong>. {{ $event->description }} held at {{ ucwords($event->venue) }}</p>
                             @endif
                           </td>
@@ -206,7 +206,11 @@
                         </tr>
                         <tr>
                           <td style="font-family: Helvetica, arial, sans-serif; font-size: 13px; color: #95a5a6; text-align:left;line-height: 24px;" st-content="rightimage-paragraph">
-                            <p>Please don't forget to click <em>Attend</em> Button on this event so that we can follow you attendace</p>
+                            @if( $event->organization != null )
+                              <p>Please don't forget to click <em>Attend</em> Button on this event so that we can follow up your attendace</p>
+                            @else
+                              <p>Please don't forget See you.</p>
+                            @endif
                           </td>
                         </tr>
                         <tr>
