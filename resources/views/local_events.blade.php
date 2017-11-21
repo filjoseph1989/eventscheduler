@@ -224,22 +224,13 @@
                     <form class="" id="form-additional-message" action="" method="post">
                       {{ csrf_field() }}
                       {{ method_field('PUT') }}
+                      <input type="hidden" name="addition_message" value="true">
                       <div class="row clearfix">
                         <div class="col-sm-12 col-md-12">
                           <div class="form-group form-float form-group">
                             <div class="form-line">
                               <label for="facebook_msg">Facebook Message</label>
                               <textarea rows="2" class="form-control no-resize" id="facebook_msg" name="facebook_msg" placeholder="Additional message for Facebook Notification"></textarea>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row clearfix">
-                        <div class="col-sm-12 col-md-12">
-                          <div class="form-group form-float form-group">
-                            <div class="form-line">
-                              <label for="twitter_msg">Twitter Message</label>
-                              <textarea rows="2" class="form-control no-resize" id="twitter_msg" name="twitter_msg" placeholder="Additional message for Twitter notification"></textarea>
                             </div>
                           </div>
                         </div>
@@ -264,7 +255,7 @@
                           </div>
                         </div>
                       </div>
-                      <button type="button" id="modal-additional-messages" data-color="teal" class="btn bg-teal waves-effect pull-right">Save Changes</button>
+                      <button type="submit" id="modal-additional-messages" data-personal="true" data-color="teal" class="btn bg-teal waves-effect pull-right">Save Changes</button>
                     </form>
                   </div>
                 </div>
@@ -272,7 +263,6 @@
             @endif
           </div>
         </div>
-
         <div class="modal-footer">
           <button type="button" data-color="teal" class="btn bg-teal waves-effect request-approval hidden" id="modal-advertise-local-events" data-toggle="tooltip" data-placement="top" title="Advertise Local Events"
             onclick="event.preventDefault(); document.getElementById('modal-advertise-local-events-form').submit();">
@@ -343,7 +333,6 @@
               </div>
             </div>
           </div>
-
       </div>
     </div>
   </div>
@@ -355,5 +344,5 @@
   <script src="{{ asset('js/jquery.dataTables.js') }}?v=0.1"></script>
   <script src="{{ asset('js/jquery-datatable.js') }}?v=0.1"></script>
   <script src="{{ asset('js/tooltips-popovers.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/app.js') }}?v=2.27" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.28" charset="utf-8"></script>
 @endsection

@@ -13,7 +13,7 @@
  * @author Fil <filjoseph22@gmail.com>
  * @author Liz <janicalizdeguzman@gmail.com>
  * @since 0.1
- * @version 2.27
+ * @version 2.28
  * @date 09-30-2017
  * @date 11-19-2017 - last updated
  */
@@ -65,6 +65,10 @@
       if (organizationId != undefined || personal == undefined || approval == true || eventTypeId == 2) {
         $('.social-media-notification').hide();
       }
+    }
+
+    if (personal == true) {
+      $('form#form-additional-message').attr('action', '/PersonalEvent/' + eventId);
     }
 
     /**
@@ -626,8 +630,6 @@
     $('#modal-advertise-local-events-form').attr('action', '/event/AdvertiseEvent');
     $('#advertise_id').val(currentValue.id);
     $('#advertise_category').val(currentValue.category);
-
-    $('#form-additional-message').attr('action', action);
 
     $('#modal-request-approval-form').attr('action', '/Request/' + currentValue.id);
 

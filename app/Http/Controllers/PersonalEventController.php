@@ -64,7 +64,6 @@ class PersonalEventController extends Controller
       $event->email = ($request->email === true) ? 'off' : 'on';
     }
 
-
     if ($request->has('facebook_msg')) {
       $event->facebook_msg = $request->facebook_msg;
     }
@@ -80,6 +79,11 @@ class PersonalEventController extends Controller
       $result['twitter'] = $event->twitter;
     } else {
       $result['result'] = false;
+    }
+
+    if ($request->addition_message == 'true') {
+      return back()
+        ->with('status', 'Successfully updated!');
     }
 
     echo json_encode($result);
