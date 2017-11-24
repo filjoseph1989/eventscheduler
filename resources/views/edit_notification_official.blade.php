@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-  <title>List of Events</title>
+  <title>Edit Events Notification</title>
 @endsection
 
 @section('css')

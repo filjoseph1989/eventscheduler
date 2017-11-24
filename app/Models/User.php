@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Models;
 
@@ -70,9 +70,9 @@ class User extends Authenticatable
     /**
      * Send Notifications to facebook
      */
-    public static function send($message)
+    public static function send($message, $picture = '')
     {
       $user = new User();
-      return $user->notify(new FaceBookNotification($message));
+      return $user->notify(new FaceBookNotification($message, $picture));
     }
 }

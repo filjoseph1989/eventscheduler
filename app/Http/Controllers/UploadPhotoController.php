@@ -40,12 +40,6 @@ class UploadPhotoController extends Controller
       'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
 
-    /*
-    Do it here.
-    Get the ID of the event and then get the upload picture,
-    deleted it
-     */
-
     # Get image, rename and save to images folder
     $imageName = time().'.'.$request->image->getClientOriginalExtension();
     $request->image->move(public_path('img/social'), $imageName);

@@ -51,7 +51,8 @@ class FaceBookNotification extends Notification
     public function toFacebookPoster($notifiable) {
       if ($this->picture != '') {
         return (new FacebookPosterPost($this->message))
-          ->withImage(url("img/social/{$this->picture}"));
+          ->withImage(url("https://i.imgur.com/GGfTdwZ.png"));
+          // ->withImage(url("img/social/{$this->picture}"));
       } else {
         return new FacebookPosterPost($this->message);
       }
@@ -66,9 +67,9 @@ class FaceBookNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+          ->line('The introduction to the notification.')
+          ->action('Notification Action', url('/'))
+          ->line('Thank you for using our application!');
     }
 
     /**
