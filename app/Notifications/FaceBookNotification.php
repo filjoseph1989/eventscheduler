@@ -49,10 +49,10 @@ class FaceBookNotification extends Notification
      * @return object
      */
     public function toFacebookPoster($notifiable) {
-      if ($this->picture != '') {
+      if ($this->picture != '' AND file_exists("img/social/{$this->picture}")) {
         return (new FacebookPosterPost($this->message))
-          ->withImage(url("https://i.imgur.com/GGfTdwZ.png"));
-          // ->withImage(url("img/social/{$this->picture}"));
+          ->withImage(url("/img/social/{$this->picture}"));
+          // ->withImage(url("https://i.imgur.com/GGfTdwZ.png"));
       } else {
         return new FacebookPosterPost($this->message);
       }
