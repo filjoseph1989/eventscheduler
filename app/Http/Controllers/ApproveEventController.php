@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -97,9 +98,14 @@ class ApproveEventController extends Controller
     {
       $tweet = self::twitterMessage($event);
 
-      return Twitter::postTweet([
-        'status' => $tweet,
-        'format' => 'json'
+      $uploaded_media = Twitter::uploadMedia([
+        'media' => File::get(public_path('img/social/' . $event->img))
+      ]);
+
+    	return Twitter::postTweet([
+        'status'    => $tweet,
+        'media_ids' => $uploaded_media->media_id_string,
+        'format'    => 'json'
       ]);
     }
 
