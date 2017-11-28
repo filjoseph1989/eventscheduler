@@ -100,8 +100,7 @@ class EventController extends Controller
      */
     public function create()
     {
-      # view
-      return  view('events-add');
+      return view('events-add');
     }
 
     /**
@@ -121,7 +120,12 @@ class EventController extends Controller
           ->where('position_id', 3)
           ->get();
 
-        $orgId = $org_id[0]->organization_id;
+        if ($org_id->count() >= 1) {
+          $orgId = $org_id[0]->organization_id;
+        } else {
+          return back()
+            ->with('status_warning', "You cannot create event, because currently you don't belong to any registered organization");
+        }
       } else {
         $orgId = 1;
       }
