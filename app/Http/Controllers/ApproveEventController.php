@@ -274,8 +274,8 @@ class ApproveEventController extends Controller
 
       $date_start             = date('M d, Y', strtotime($event->date_start));
       $date_end               = date('M d, Y', strtotime($event->date_end));
-      $event->date_start_time = date('h:i A', strtotime($event->date_start_time))
-      $event->date_end_time   = date('h:i A', strtotime($event->date_end_time))
+      $event->date_start_time = date('h:i A', strtotime($event->date_start_time));
+      $event->date_end_time   = date('h:i A', strtotime($event->date_end_time));
 
       $heading .=
         "{$new_line}Venue: {$event->venue} " .

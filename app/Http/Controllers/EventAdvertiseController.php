@@ -72,7 +72,11 @@ class EventAdvertiseController extends Controller
      */
     protected function facebookPost ($event) {
       $data['fb_message'] = self::smsMessage($event->category, $event);
-      User::send($data['fb_message']);
+      if (! is_null($event->img)) {
+        User::send($data['fb_message'], $event->img);
+      } else {
+        User::send($data['fb_message']);
+      }
     }
 
     /**
@@ -85,9 +89,14 @@ class EventAdvertiseController extends Controller
     {
       $tweet = self::twitterMessage($event);
 
-      return Twitter::postTweet([
-        'status' => $tweet,
-        'format' => 'json'
+      $uploaded_media = Twitter::uploadMedia([
+        'media' => File::get(public_path('img/social/' . $event->img))
+      ]);
+
+    	return Twitter::postTweet([
+        'status'    => $tweet,
+        'media_ids' => $uploaded_media->media_id_string,
+        'format'    => 'json'
       ]);
     }
 
@@ -227,18 +236,17 @@ class EventAdvertiseController extends Controller
           break;
 
         case 'within':
-          $heading = "Hello {$event->organization->name}! You have an upcoming event!";
+          $heading = "Hello {$event->organization->name}! You have an upcoming event! ";
           break;
 
         case 'organization':
-          $heading = "Hello Student Leaders! You have an upcoming event!";
+          $heading = "Hello Student Leaders! You have an upcoming event! ";
           break;
 
         case 'personal':
-          $heading = "Hello {$event->user->full_name} ";
+          $heading = "Hello {$event->user->full_name}";
           break;
       }
-
 
       $new_line = "";
       if ($twit === true) {
@@ -246,30 +254,25 @@ class EventAdvertiseController extends Controller
       }
 
       if( $event->organization != null){
-        $heading .= "{$new_line}{$event->title} headed by {$event->organization->name}. ";
+        $heading .= "{$new_line}{$event->title} headed by {$event->organization->name}.";
       } else {
-        $new_line = "\n";
-        $heading .= "{$new_line}You've been invited to";
-        $heading .= "{$new_line}{$event->title} created by {$event->user->full_name}. ";
+        $heading .= "{$new_line}{$event->title} headed by {$event->user->full_name}.";
       }
 
       if ($twit === true) {
-        $heading .= "{$new_line}Description: {$event->description} ";
+        $heading .= "{$new_line}Description: {$event->description}";
       }
 
-      $date_start = date('M d, Y', strtotime($event->date_start));
-      $date_end   = date('M d, Y', strtotime($event->date_end));
+      $date_start             = date('M d, Y', strtotime($event->date_start));
+      $date_end               = date('M d, Y', strtotime($event->date_end));
+      $event->date_start_time = date('h:i A', strtotime($event->date_start_time));
+      $event->date_end_time   = date('h:i A', strtotime($event->date_end_time));
 
       $heading .=
         "{$new_line}Venue: {$event->venue} " .
         "{$new_line}Duration: {$date_start}, {$event->date_start_time} to {$date_end}, {$event->date_end_time} " .
-        "{$new_line}{$event->additional_msg_sms} ";
-
-      if ($category == 'personal') {
-        $heading .= "{$new_line}See you there";
-      } else {
-        $heading .= "{$new_line}Please be guided accordingly. Thank You! ";
-      }
+        "{$new_line}{$event->additional_msg_sms} " .
+        "{$new_line}Please be guided accordingly. Thank You! ";
 
       return $heading;
     }
