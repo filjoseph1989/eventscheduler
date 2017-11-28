@@ -52,6 +52,12 @@ class EventAdvertiseController extends Controller
       $event->is_approve = 'true';
 
       if ($event->save()) {
+        if ($event->facebook == 'on') {
+          self::facebookPost($event);
+        }
+        if ($event->twitter == 'on') {
+          self::twitterPost($event);
+        }
         if ($event->sms == 'on') {
           self::smsPost($event);
         }
