@@ -7,13 +7,13 @@
   ✔ Cancel Button functionality @done(2017-11-29 13:12)
     ✔ Cancel button should appear when the user click attend @done(2017-11-29 14:09)
   ✔ Download fonts @done(2017-11-29 14:09) @project(☐ Event name)
+✔ Updated the attendance @done(2017-11-29 17:28)
+✔ Upload photo @done(2017-11-29 17:28)
 
-☐ Updated the attendance
 ☐ Dapat mawala na ang request approve button once naka request na for approval ang organization head
 ☐ Dapat ang organization head kay maka set pud og status sa event {ongoing, canceled, etc}
 ☐ Personal event title checker
 ☐ Add Preloader on axios when editing event
-☐ Upload photo
 ☐ Add user on OSA account
 ☐ Check my attendance.
 ☐ Org head should have a button for members confirmation of attendance
