@@ -154,4 +154,9 @@ class AttendanceViewController extends Controller
       'response' => $response
     ]);
   }
+
+  public function getAttendance(Request $request)
+  {
+    return Attendance::checkUser(Auth::id(), $request->id);
+  }
 }

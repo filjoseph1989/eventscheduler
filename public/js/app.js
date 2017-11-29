@@ -13,7 +13,7 @@
  * @author Fil <filjoseph22@gmail.com>
  * @author Liz <janicalizdeguzman@gmail.com>
  * @since 0.1
- * @version 2.28
+ * @version 2.29
  * @date 09-30-2017
  * @date 11-19-2017 - last updated
  */
@@ -26,7 +26,7 @@
   var preloader = '';
   var complete  = true;
   var param     = '';
-  var action    = ""; 
+  var action    = "";
   var next      = 1;
 
   /**
@@ -58,6 +58,15 @@
         $('#edit-event').attr('data-event-id', eventId);
         $('#delete-event').removeClass('hidden');
         $('#delete-event').parents('form').attr('action', '/Event/' + eventId);
+      }
+    });
+
+    /* Display the cancel button when the status of the attendance
+      is confirmed */
+    axios_post('/attendance/get', data, function(data) {
+      console.log(data.status);
+      if (data.status == 'confirmed') {
+        $('#modal-cancel').removeClass('hidden');
       }
     });
 
@@ -646,6 +655,8 @@
     $('#email .lever').attr('data-event-type-id', eventTypeId);
 
     $('#modal-attend-form').attr('action', '/Attendances/' + currentValue.id); // Set route
+    $('#modal-decline-form').attr('action', '/Attendances/' + currentValue.id); // Set route
+    $('#modal-cancel-form').attr('action', '/Attendances/' + currentValue.id); // Set route
 
     // If the following is off, remove checked attribute
     if (currentValue.facebook == 'off') {

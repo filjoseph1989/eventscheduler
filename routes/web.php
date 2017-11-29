@@ -53,11 +53,12 @@ Route::group(['middleware'=>['auth']], function() {
 
     # Used for attendances
     Route::prefix('attendance')->group(function() {
+      Route::post('/update','AttendanceViewController@update');
+      Route::post('/get', 'AttendanceViewController@getAttendance');
       Route::name('official.attendance')->get('/get/official/attendees/{id}','AttendanceViewController@getOfficialAttendance');
       Route::name('expected.attendance')->get('/get/expected/attendees/{id}','AttendanceViewController@getExpectedAttendance');
       Route::name('confirmed.attendance')->get('/get/confirmed/attendees/{id}','AttendanceViewController@getConfirmedAttendance');
       Route::name('declined.attendance')->get('/get/declined/attendees/{id}','AttendanceViewController@getDeclinedAttendance');
-      Route::post('/update','AttendanceViewController@update');
       Route::name('attendance.showWithinEachOrg')->get('get/within-an-organization/attendance/{id}', 'AttendanceController@showWithinEachOrg');
     });
 

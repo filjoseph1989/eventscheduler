@@ -89,21 +89,52 @@ class AttendanceController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $status       = 'confirmed';
+        $alert        = 'status';
+        $alertmessage = "See you on the event";
+
+        if (isset($request->decline)) {
+          $status       = 'declined';
+          $alertmessage = "We're sad that you decline";
+          $alert        = "status_warning";
+        }
+        if (isset($request->cancel)) {
+          $status       = 'unconfirmed';
+          $alertmessage = "We're sad that you cancel";
+          $alert        = "status_warning";
+        }
+
         $data = [
           'user_id'  => Auth::id(),
           'event_id' => $id,
-          'status'   => 'confirmed'
+          'status'   => $status
         ];
 
-        $attendance = Attendance::create($data);
+        $result = Attendance::checkUser(Auth::id(), $id);
+        if ($result->count() == 1) {
+          $attendance = Attendance::find($result->id);
+          $attendance->status = $status;
 
-        if ($attendance->wasRecentlyCreated) {
-          return back()
-            ->with([
-              'status' => 'See you on the event'
-            ]);
+          if ($attendance->save()) {
+            return back()
+              ->with([
+                $alert => $alertmessage
+              ]);
+          }
+        } else {
+          $attendance = Attendance::create($data);
+          if ($attendance->wasRecentlyCreated) {
+            return back()
+              ->with([
+                $alert => $alertmessage
+              ]);
+          }
         }
     }
+
+    /**
+     * ! Deprecated
+     */
 
     /**
      * this function will display the list of events in a specific organization

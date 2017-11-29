@@ -19,7 +19,6 @@ use App\Models\EventGroup;
 use App\Models\OrganizationGroup;
 use App\Models\PersonalEvent;
 
-
 /**
  * CRUDS class for events
  *

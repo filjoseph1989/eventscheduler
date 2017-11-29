@@ -49,4 +49,11 @@ class Attendance extends Model
       }])->where('user_id', $userId)
         ->get();
     }
+
+    public static function checkUser($userId, $eventId)
+    {
+      return static::where('user_id', $userId)
+        ->where('event_id', $eventId)
+        ->first();
+    }
 }

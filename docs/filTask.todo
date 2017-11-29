@@ -1,4 +1,13 @@
 ✔ Create user has error @done(2017-11-29 10:57)
+☐ Event name:
+  ✔ Add buttons @done(2017-11-29 11:13)
+    ✔ declined button @done(2017-11-29 11:12)
+    ✔ cancel button @done(2017-11-29 11:12)
+  ✔ Decline Button functionality @done(2017-11-29 13:12)
+  ✔ Cancel Button functionality @done(2017-11-29 13:12)
+    ☐ Cancel button should appear when the user click attend
+  ☐ Download fonts
+
 ☐ Updated the attendance
 ☐ Dapat mawala na ang request approve button once naka request na for approval ang organization head
 ☐ Dapat ang organization head kay maka set pud og status sa event {ongoing, canceled, etc}

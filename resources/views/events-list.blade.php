@@ -312,13 +312,42 @@
             </form>
           @endif
           @if (session('account') != 'osa' )
-            <button type="button" data-color="teal" class="btn bg-teal waves-effect request-approval" id="modal-attend" data-toggle="tooltip" data-placement="top" title="Attenda this event"
+            <button type="button" class="btn bg-teal waves-effect request-approval" id="modal-attend" title="Attenda this event"
+              data-color="teal"
+              data-toggle="tooltip"
+              data-placement="top"
               onclick="event.preventDefault(); document.getElementById('modal-attend-form').submit();">
               Attend
             </button>
             <form class="" id="modal-attend-form" action="" method="post" style="display: none;">
               {{ csrf_field() }}
               {{ method_field('PUT') }}
+            </form>
+
+            <button type="button" class="btn btn-primary waves-effect request-approval" id="modal-decline" title="Decline to attend this event"
+              data-color="teal"
+              data-toggle="tooltip"
+              data-placement="top"
+              onclick="event.preventDefault(); document.getElementById('modal-decline-form').submit();">
+              Decline
+            </button>
+            <form class="" id="modal-decline-form" action="" method="post" style="display: none;">
+              {{ csrf_field() }}
+              {{ method_field('PUT') }}
+              <input type="hidden" name="decline" value="true">
+            </form>
+
+            <button type="button" class="btn btn-warning waves-effect request-approval hidden" id="modal-cancel" title="Cancel your attendance confirmation"
+              data-color="teal"
+              data-toggle="tooltip"
+              data-placement="top"
+              onclick="event.preventDefault(); document.getElementById('modal-cancel-form').submit();">
+              Cancel
+            </button>
+            <form class="" id="modal-cancel-form" action="" method="post" style="display: none;">
+              {{ csrf_field() }}
+              {{ method_field('PUT') }}
+              <input type="hidden" name="cancel" value="true">
             </form>
           @else
             <button type="button" data-color="teal" class="btn bg-teal waves-effect request-approval hidden" id="modal-advertise-official-events" data-toggle="tooltip" data-placement="top" title="Advertise Official Events"
@@ -364,17 +393,17 @@
 @endsection
 
 @section('js')
-  <script src="{{ asset('js/admin.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/autosize.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/moment.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/jquery.dataTables.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/jquery-datatable.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/sweetalert.min.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/tooltips-popovers.js') }}?v=0.1"></script>
-  <script src="{{ asset('js/app.js') }}?v=2.26" charset="utf-8"></script>
+  <script src="{{ asset('js/admin.js') }}?v=0.1" charset="utf-8"></script>
+  <script src="{{ asset('js/autosize.js') }}?v=0.1" charset="utf-8"></script>
+  <script src="{{ asset('js/moment.js') }}?v=0.1" charset="utf-8"></script>
+  <script src="{{ asset('js/bootstrap-material-datetimepicker.js') }}?v=0.1" charset="utf-8"></script>
+  <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1" charset="utf-8"></script>
+  <script src="{{ asset('js/jquery.dataTables.js') }}?v=0.1" charset="utf-8"></script>
+  <script src="{{ asset('js/jquery-datatable.js') }}?v=0.1" charset="utf-8"></script>
+  <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1" charset="utf-8"></script>
+  <script src="{{ asset('js/sweetalert.min.js') }}?v=0.1" charset="utf-8"></script>
+  <script src="{{ asset('js/tooltips-popovers.js') }}?v=0.1" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.29" charset="utf-8"></script>
   <script type="text/javascript">
     $('.event-datepicker').bootstrapMaterialDatePicker({
       format: 'YYYY/MM/DD',
