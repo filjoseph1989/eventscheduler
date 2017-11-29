@@ -81,16 +81,6 @@ class AttendanceViewController extends Controller
           'creator'  => ($event->user_id == Auth::id()) ? true : false
         ]);
     }
-    //
-    // $users  = Attendance::with('user')
-    //   ->where(function($query) {
-    //     return $query
-    //       ->where('status', 'confirmed')
-    //       ->orWhere('did_attend', 'true');
-    //   })
-    //   ->get();
-
-
   }
 
   /**
@@ -104,7 +94,7 @@ class AttendanceViewController extends Controller
     $event = Event::find($id);
     $users  = Attendance::with('user')
       ->where('event_id', $id)
-      ->where('did_attend', 'true')
+      ->where('status', 'confirmed')
       ->get();
 
     return view('attendees')
@@ -126,7 +116,7 @@ class AttendanceViewController extends Controller
     $event = Event::find($id);
     $users  = Attendance::with('user')
       ->where('event_id', $id)
-      ->where('did_attend', 'false')
+      ->where('status', 'declined')
       ->get();
 
     return view('attendees')
