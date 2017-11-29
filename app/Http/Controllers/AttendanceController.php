@@ -111,7 +111,8 @@ class AttendanceController extends Controller
         ];
 
         $result = Attendance::checkUser(Auth::id(), $id);
-        if ($result->count() == 1) {
+
+        if (! is_null($result) and $result->count() == 1) {
           $attendance = Attendance::find($result->id);
           $attendance->status = $status;
 
