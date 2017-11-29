@@ -37,13 +37,14 @@ class AttendanceViewController extends Controller
   {
     $events = Event::find($id);
     $users = Attendance::where('event_id', $id)
+      ->where('did_attend', 'true')
       ->with('user')
       ->get();
 
     return view('attendees')
       ->with([
         'events' => $events,
-        'users'  => isset($users) ? $users : []
+        'users'  => isset($users) ? $users : [],
       ]);
   }
 
@@ -56,8 +57,10 @@ class AttendanceViewController extends Controller
   public function getExpectedAttendance($id)
   {
     $events = Event::find($id);
+
+    
+
     $users  = Attendance::with('user')
-      ->where('event_id', $id)
       ->where(function($query) {
         return $query
           ->where('status', 'confirmed')

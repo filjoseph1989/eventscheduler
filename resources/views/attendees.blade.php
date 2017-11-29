@@ -54,7 +54,7 @@
                           <td>{{ $user->user->full_name }}</td>
                           <?php if (isset($expected) and $creator === true): ?>
                             <td>
-                              <button type="button" class="btn <?php echo ($user->did_attend == 'true') ? 'btn-success' : 'btn-defualt'; ?>" data-event-id="{{ $events->id }}" data-attendance-id="{{ $user->id }}" id="confirmed-attendance">
+                              <button type="button" class="confirmed-attendance btn <?php echo ($user->did_attend == 'true') ? 'btn-success' : 'btn-defualt'; ?>" data-event-id="{{ $events->id }}" data-attendance-id="{{ $user->id }}">
                                 <?php if ($user->did_attend == 'true'): ?>
                                   Confirmed
                                 <?php else: ?>
@@ -92,7 +92,8 @@
   <?php if (isset($creator) and $creator === true): ?>
     <script type="text/javascript">
       (function() {
-        $('#confirmed-attendance').click(function() {
+        $(document).on('click', '.confirmed-attendance', function() {
+          var _this = $(this);
           let data = {
             id: $(this).data('attendance-id'),
             event_id: $(this).data('event-id')
@@ -101,11 +102,10 @@
           axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
           axios.post('/attendance/update', data)
             .then(function (response) {
-              console.log(response.data.response);
               if (response.data.response == true) {
-                $('#confirmed-attendance').addClass('btn-success');
-                $('#confirmed-attendance').removeClass('btn-default');
-                $('#confirmed-attendance').html('Confirmed');
+                $(_this).addClass('btn-success');
+                $(_this).removeClass('btn-default');
+                $(_this).html('Confirmed');
               }
             })
             .catch(function (error) {

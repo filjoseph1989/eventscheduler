@@ -26,7 +26,7 @@
   var preloader = '';
   var complete  = true;
   var param     = '';
-  var action    = "";
+  var action    = ""; 
   var next      = 1;
 
   /**
