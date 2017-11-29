@@ -30,7 +30,7 @@
                   <?php elseif (isset($declined)): ?>
                     <h5>These are the list of user(s) who declined to attend attendance to this event</h5>
                   <?php else: ?>
-                    <h5>These are the official list of user(s) expected to attend this event</h5>
+                    <h5>These are the official list of user(s) who attended this event</h5>
                   <?php endif; ?>
                 </div>
               </div>
@@ -54,7 +54,7 @@
                           <td>{{ $user->user->full_name }}</td>
                           <?php if (isset($expected) and $creator === true): ?>
                             <td>
-                              <button type="button" class="confirmed-attendance btn <?php echo ($user->did_attend == 'true') ? 'btn-success' : 'btn-defualt'; ?>" data-event-id="{{ $event->id }}" data-attendance-id="{{ $user->id }}">
+                              <button type="button" class="confirmed-attendance btn <?php echo ($user->did_attend == 'true') ? 'btn-success' : 'btn-defualt'; ?>" data-event-id="{{ $event->id }}" data-attendance-id="{{ $user->user->id }}">
                                 <?php if ($user->did_attend == 'true'): ?>
                                   Confirmed
                                 <?php else: ?>
