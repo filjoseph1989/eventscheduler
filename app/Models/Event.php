@@ -94,6 +94,7 @@ class Event extends Model
     return static::with('organization')
       ->where('category', 'within')
       ->orWhere('category', 'organization')
+      ->orWhere('category', 'university')
       ->where('organization_id', $leaderId)
       ->get();
   }
