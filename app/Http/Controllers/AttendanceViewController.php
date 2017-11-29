@@ -59,6 +59,21 @@ class AttendanceViewController extends Controller
   public function getExpectedAttendance($id)
   {
     $events = Event::find($id);
+    $users  = OrganizationGroup::with('user')
+      ->where('organization_id', $events->organization_id)
+      ->get();
+
+    return view('attendees')
+      ->with([
+        'events'   => $events,
+        'users'    => isset($users) ? $users : [],
+        'expected' => true,
+        'creator'  => ($events->user_id == Auth::id()) ? true : false,
+      ]);
+  }
+  public function _getExpectedAttendance($id)
+  {
+    $events = Event::find($id);
     $users  = Attendance::with('user')
       ->where('event_id', $id)
       ->where(function($query) {
