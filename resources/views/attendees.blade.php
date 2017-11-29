@@ -36,7 +36,7 @@
               </div>
               <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <table class="table table-bordered table-striped table-hover">
+                  <table class="table table-bordered table-striped table-hover js-exportable">
                     <thead>
                       <tr>
                         <th style="width: 100px;">Count</th>
@@ -90,6 +90,11 @@
   <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}?v=0.1"></script>
   <script src="{{ asset('js/tooltips-popovers.js') }}?v=0.1"></script>
+  <script src="{{ asset('js/dataTables.buttons.min.js') }}"></script>
+  <script src="{{ asset('js/pdfmake.min.js') }}"></script>
+  <script src="{{ asset('js/buttons.html5.min.js') }}"></script>
+  <script src="{{ asset('js/buttons.print.min.js') }}"></script>
+
   <script src="{{ asset('js/app.js') }}?v=2.7"></script>
   <?php if (isset($creator) and $creator === true): ?>
     <script type="text/javascript">

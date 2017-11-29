@@ -11155,3 +11155,6 @@ a.ml-menu-item-links:hover {
 #cancel-edit-event {
     margin-right: 5px;
 }
+.dt-button.buttons-pdf.buttons-html5 {
+  display: none !important;
+}
