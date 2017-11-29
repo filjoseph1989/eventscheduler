@@ -176,8 +176,9 @@
           swal('Error!', "Please fill up the empty input field", 'error');
         } else {
           axios_post(url, data, function($details) {
-            swal('Error!', $details.message, 'error');
+            console.log($details);
             if ($details.message != undefined) {
+              swal('Error!', $details.message, 'error');
             }
             if ($details.error_account_number != undefined || $details.error_account_number != null) {
               $message = "Student Number should be in the following format (20XX-XXXXX) where X are natural numbers, not " + $details.error_account_number;
