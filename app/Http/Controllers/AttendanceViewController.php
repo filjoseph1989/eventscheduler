@@ -30,7 +30,8 @@ class AttendanceViewController extends Controller
   }
 
   /**
-   * Return official attendance
+   * Return official attendance,
+   * this are the users that officially attend the event
    *
    * @return Illuminate\Response
    */
@@ -44,7 +45,7 @@ class AttendanceViewController extends Controller
 
     return view('attendees')
       ->with([
-        'event' => $event,
+        'events' => $event,
         'users'  => isset($users) ? $users : [],
       ]);
   }
@@ -57,30 +58,23 @@ class AttendanceViewController extends Controller
    */
   public function getExpectedAttendance($id)
   {
-    $event = Event::find($id);
-    if($event->event_type_id == 1) {
-      $users = User::where('user_type_id', '!=', 3)->get();
+    $events = Event::find($id);
+    $users  = Attendance::with('user')
+      ->where('event_id', $id)
+      ->where(function($query) {
+        return $query
+          ->where('status', 'confirmed')
+          ->orWhere('did_attend', 'true');
+      })
+      ->get();
 
-      return view('expected-attendees-for-official-events')
-        ->with([
-          'event'   => $event,
-          'users'    => isset($users) ? $users : [],
-          'expected' => true,
-          'creator'  => ($event->user_id == Auth::id()) ? true : false
-        ]);
-
-    } else if($event->event_type_id == 2) {
-      $users = OrganizationGroup::with('user')
-        ->where('organization_id', $event->organization_id)
-        ->get();
-      return view('attendees')
-        ->with([
-          'event'   => $event,
-          'users'    => isset($users) ? $users : [],
-          'expected' => true,
-          'creator'  => ($event->user_id == Auth::id()) ? true : false
-        ]);
-    }
+    return view('attendees')
+      ->with([
+        'events'   => $events,
+        'users'    => isset($users) ? $users : [],
+        'expected' => true,
+        'creator'  => ($events->user_id == Auth::id()) ? true : false,
+      ]);
   }
 
   /**
@@ -95,11 +89,12 @@ class AttendanceViewController extends Controller
     $users  = Attendance::with('user')
       ->where('event_id', $id)
       ->where('status', 'confirmed')
+      ->where('did_attend', 'false')
       ->get();
 
     return view('attendees')
       ->with([
-        'event'    => $event,
+        'events'    => $event,
         'users'     => isset($users) ? $users : [],
         'confirmed' => true
       ]);
@@ -121,8 +116,8 @@ class AttendanceViewController extends Controller
 
     return view('attendees')
       ->with([
-        'event'    => $event,
-        'users'     => isset($users) ? $users : [],
+        'events'   => $event,
+        'users'    => isset($users) ? $users : [],
         'declined' => true
       ]);
   }

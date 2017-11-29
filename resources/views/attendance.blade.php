@@ -40,6 +40,7 @@
             <div class="body">
               <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <p>The list of events below are the events approve by the OSA</p>
                   <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                     <thead>
                       <th>Title</th>

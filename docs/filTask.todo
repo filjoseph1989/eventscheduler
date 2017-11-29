@@ -5,8 +5,8 @@
     ✔ cancel button @done(2017-11-29 11:12)
   ✔ Decline Button functionality @done(2017-11-29 13:12)
   ✔ Cancel Button functionality @done(2017-11-29 13:12)
-    ☐ Cancel button should appear when the user click attend
-  ☐ Download fonts
+    ✔ Cancel button should appear when the user click attend @done(2017-11-29 14:09)
+  ✔ Download fonts @done(2017-11-29 14:09) @project(☐ Event name)
 
 ☐ Updated the attendance
 ☐ Dapat mawala na ang request approve button once naka request na for approval ang organization head

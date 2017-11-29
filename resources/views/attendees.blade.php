@@ -16,7 +16,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="card">
             <div class="header">
-              <h2> {{ $event->title }}
+              <h2> {{ $events->title }}
                 <small>Display the list attendees of the event</small>
               </h2>
             </div>
@@ -54,7 +54,9 @@
                           <td>{{ $user->user->full_name }}</td>
                           <?php if (isset($expected) and $creator === true): ?>
                             <td>
-                              <button type="button" class="confirmed-attendance btn <?php echo ($user->did_attend == 'true') ? 'btn-success' : 'btn-defualt'; ?>" data-event-id="{{ $event->id }}" data-attendance-id="{{ $user->user->id }}">
+                              <button type="button" class="confirmed-attendance btn <?php echo ($user->did_attend == 'true') ? 'btn-success' : 'btn-defualt'; ?>"
+                                data-event-id="{{ $events->id }}"
+                                data-attendance-id="{{ $user->user->id }}">
                                 <?php if ($user->did_attend == 'true'): ?>
                                   Confirmed
                                 <?php else: ?>
