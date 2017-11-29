@@ -71,26 +71,6 @@ class AttendanceViewController extends Controller
         'creator'  => ($events->user_id == Auth::id()) ? true : false,
       ]);
   }
-  public function _getExpectedAttendance($id)
-  {
-    $events = Event::find($id);
-    $users  = Attendance::with('user')
-      ->where('event_id', $id)
-      ->where(function($query) {
-        return $query
-          ->where('status', 'confirmed')
-          ->orWhere('did_attend', 'true');
-      })
-      ->get();
-
-    return view('attendees')
-      ->with([
-        'events'   => $events,
-        'users'    => isset($users) ? $users : [],
-        'expected' => true,
-        'creator'  => ($events->user_id == Auth::id()) ? true : false,
-      ]);
-  }
 
   /**
    * Return the list of attendees who confirmed attendance
