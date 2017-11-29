@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Attendance;
+use App\Models\OrganizationGroup;
 
 /**
  * Manage Attendances
@@ -35,7 +36,7 @@ class AttendanceViewController extends Controller
    */
   public function getOfficialAttendance($id)
   {
-    $events = Event::find($id);
+    $event = Event::find($id);
     $users = Attendance::where('event_id', $id)
       ->where('did_attend', 'true')
       ->with('user')
@@ -43,7 +44,7 @@ class AttendanceViewController extends Controller
 
     return view('attendees')
       ->with([
-        'events' => $events,
+        'event' => $event,
         'users'  => isset($users) ? $users : [],
       ]);
   }
@@ -56,25 +57,40 @@ class AttendanceViewController extends Controller
    */
   public function getExpectedAttendance($id)
   {
-    $events = Event::find($id);
+    $event = Event::find($id);
+    if($event->event_type_id == 1) {
+      $users = User::where('user_type_id', '!=', 3)->get();
 
-    
+      return view('expected-attendees-for-official-events')
+        ->with([
+          'event'   => $event,
+          'users'    => isset($users) ? $users : [],
+          'expected' => true,
+          'creator'  => ($event->user_id == Auth::id()) ? true : false
+        ]);
 
-    $users  = Attendance::with('user')
-      ->where(function($query) {
-        return $query
-          ->where('status', 'confirmed')
-          ->orWhere('did_attend', 'true');
-      })
-      ->get();
+    } else if($event->event_type_id == 2) {
+      $users = OrganizationGroup::with('user')
+        ->where('organization_id', $event->organization_id)
+        ->get();
+      return view('attendees')
+        ->with([
+          'event'   => $event,
+          'users'    => isset($users) ? $users : [],
+          'expected' => true,
+          'creator'  => ($event->user_id == Auth::id()) ? true : false
+        ]);
+    }
+    //
+    // $users  = Attendance::with('user')
+    //   ->where(function($query) {
+    //     return $query
+    //       ->where('status', 'confirmed')
+    //       ->orWhere('did_attend', 'true');
+    //   })
+    //   ->get();
 
-    return view('attendees')
-      ->with([
-        'events'   => $events,
-        'users'    => isset($users) ? $users : [],
-        'expected' => true,
-        'creator'  => ($events->user_id == Auth::id()) ? true : false
-      ]);
+
   }
 
   /**
@@ -85,7 +101,7 @@ class AttendanceViewController extends Controller
    */
   public function getConfirmedAttendance($id)
   {
-    $events = Event::find($id);
+    $event = Event::find($id);
     $users  = Attendance::with('user')
       ->where('event_id', $id)
       ->where('did_attend', 'true')
@@ -93,7 +109,7 @@ class AttendanceViewController extends Controller
 
     return view('attendees')
       ->with([
-        'events'    => $events,
+        'event'    => $event,
         'users'     => isset($users) ? $users : [],
         'confirmed' => true
       ]);
@@ -107,7 +123,7 @@ class AttendanceViewController extends Controller
    */
   public function getDeclinedAttendance($id)
   {
-    $events = Event::find($id);
+    $event = Event::find($id);
     $users  = Attendance::with('user')
       ->where('event_id', $id)
       ->where('did_attend', 'false')
@@ -115,7 +131,7 @@ class AttendanceViewController extends Controller
 
     return view('attendees')
       ->with([
-        'events'    => $events,
+        'event'    => $event,
         'users'     => isset($users) ? $users : [],
         'declined' => true
       ]);

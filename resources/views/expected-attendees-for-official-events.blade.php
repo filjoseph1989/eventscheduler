@@ -51,7 +51,7 @@
                       @foreach ($users as $key => $user)
                         <tr>
                           <td>{{ $count++ }}</td>
-                          <td>{{ $user->user->full_name }}</td>
+                          <td>{{ $user->full_name }}</td>
                           <?php if (isset($expected) and $creator === true): ?>
                             <td>
                               <button type="button" class="confirmed-attendance btn <?php echo ($user->did_attend == 'true') ? 'btn-success' : 'btn-defualt'; ?>" data-event-id="{{ $event->id }}" data-attendance-id="{{ $user->id }}">
