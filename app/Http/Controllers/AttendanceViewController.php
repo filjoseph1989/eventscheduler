@@ -59,9 +59,13 @@ class AttendanceViewController extends Controller
   public function getExpectedAttendance($id)
   {
     $events = Event::find($id);
-    $users  = OrganizationGroup::with('user')
+    if( $events->organization_id == null ){
+      $users  = OrganizationGroup::with('user')->get();
+    } else {
+      $users  = OrganizationGroup::with('user')
       ->where('organization_id', $events->organization_id)
       ->get();
+    }
 
     return view('attendees')
       ->with([
