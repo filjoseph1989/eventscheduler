@@ -133,10 +133,25 @@ class AttendanceViewController extends Controller
 
     $attend = Attendance::where('user_id', $request->id)->first();
 
-    if(! is_null($attend)) {
+    if (! is_null($attend)) {
       $attend->did_attend = 'true';
 
       if ($attend->save()) {
+        $response = true;
+      } else {
+        $response = false;
+      }
+    } else {
+      $data = [
+        'user_id'    => $request->id,
+        'event_id'   => $request->event_id,
+        'status'     => 'confirmed',
+        'did_attend' => 'true',
+      ];
+
+      $att = Attendance::create($data);
+
+      if ($att->wasRecentlyCreated) {
         $response = true;
       } else {
         $response = false;
