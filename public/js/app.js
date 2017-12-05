@@ -64,9 +64,11 @@
     /* Display the cancel button when the status of the attendance
       is confirmed */
     axios_post('/attendance/get', data, function(data) {
-      console.log(data.status);
-      if (data.status == 'confirmed') {
+      // console.log(data.status);
+      if (data.status == 'confirmed' || data.status == 'declined') {
         $('#modal-cancel').removeClass('hidden');
+        $('#modal-attend').addClass('hidden');
+        $('#modal-decline').addClass('hidden');
       }
     });
 

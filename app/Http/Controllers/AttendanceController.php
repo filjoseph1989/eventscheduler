@@ -99,7 +99,7 @@ class AttendanceController extends Controller
           $alert        = "status_warning";
         }
         if (isset($request->cancel)) {
-          $status       = 'unconfirmed';
+          $status       = 'canceled';
           $alertmessage = "We're sad that you cancel";
           $alert        = "status_warning";
         }
@@ -115,7 +115,6 @@ class AttendanceController extends Controller
         if (! is_null($result) and $result->count() == 1) {
           $attendance = Attendance::find($result->id);
           $attendance->status = $status;
-
           if ($attendance->save()) {
             return back()
               ->with([
@@ -123,13 +122,13 @@ class AttendanceController extends Controller
               ]);
           }
         } else {
-          $attendance = Attendance::create($data);
-          if ($attendance->wasRecentlyCreated) {
-            return back()
+            $attendance = Attendance::create($data);
+            if ($attendance->wasRecentlyCreated) {
+              return back()
               ->with([
                 $alert => $alertmessage
               ]);
-          }
+            }
         }
     }
 

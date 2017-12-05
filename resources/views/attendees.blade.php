@@ -10,6 +10,7 @@
 @endsection
 
 @section('content')
+<?php date_default_timezone_set('Asia/Manila'); ?>
   <section class="content">
     <div class="container-fluid">
       <div class="row clearfix">
@@ -41,31 +42,69 @@
                       <tr>
                         <th style="width: 100px;">Count</th>
                         <th>Name</th>
-                        <?php if (isset($expected) and $creator === true): ?>
-                          <th>Confirm Attendance</th>
+                        <th>RESPONSE</th>
+                        <?php if (isset($expected) and $creator === true and (date('Y-m-d', strtotime($events->date_start)) == date('Y-m-d'))): ?>
+                          <th>ACTUAL</th>
                         <?php endif; ?>
                       </tr>
                     </thead>
                     <tbody>
                       <?php $count = 1; ?>
                       @foreach ($users as $key => $user)
-                        <tr>
-                          <td>{{ $count++ }}</td>
-                          <td>{{ $user->user->full_name }}</td>
-                          <?php if (isset($expected) and $creator === true): ?>
-                            <td>
-                              <button type="button" class="confirmed-attendance btn <?php echo ($user->did_attend == 'true') ? 'btn-success' : 'btn-defualt'; ?>"
-                                data-event-id="{{ $events->id }}"
-                                data-attendance-id="{{ $user->user->id }}">
-                                <?php if ($user->did_attend == 'true'): ?>
-                                  Confirmed
-                                <?php else: ?>
-                                  Confirm
-                                <?php endif; ?>
-                              </button>
-                            </td>
-                          <?php endif; ?>
-                        </tr>
+                          @if( count($attendance) > 0 )
+                            @foreach( $attendance as $key => $att)
+                              @if( $user->user->id == $att->user_id )
+                                <tr>
+                                  <td>{{ $count++ }}</td>
+                                  <td>{{ $user->user->full_name }}</td>
+                                  <td> {{ $att->status }} </td>
+                                  <?php if (isset($expected) and $creator === true and (date('Y-m-d', strtotime($events->date_start)) == date('Y-m-d'))): ?>
+                                    <td>
+                                      @if($att->did_attend == 'true')
+                                        <button type="button" class="confirm-attendance btn" data-event-id="{{ $events->id }}" data-attendance-id="{{ $user->user->id }}"
+                                          data-actual="false">
+                                          PRESENT
+                                        </button>
+                                      @elseif($att->did_attend == 'false')
+                                        <button type="button" class="confirm-attendance btn" data-event-id="{{ $events->id }}" data-attendance-id="{{ $user->user->id }}"
+                                          data-actual = "true" >
+                                          ABSENT
+                                        </button>
+                                      @endif
+                                    </td>
+                                  <?php endif; ?>
+                                </tr>
+                              @else
+                                <tr>
+                                  <td>{{ $count++ }}</td>
+                                  <td>{{ $user->user->full_name }}</td>
+                                  <td> {{ $att->status }} </td>
+                                  <?php if (isset($expected) and $creator === true and (date('Y-m-d', strtotime($events->date_start)) == date('Y-m-d'))): ?>
+                                    <td>
+                                        <button type="button" class="confirm-attendance btn" data-event-id="{{ $events->id }}" data-attendance-id="{{ $user->user->id }}"
+                                          data-actual = "false" >
+                                          NOT YET DETERMINED
+                                        </button>
+                                    </td>
+                                  <?php endif; ?>
+                                </tr>
+                              @endif
+                            @endforeach
+                          @else
+                            <tr>
+                              <td>{{ $count++ }}</td>
+                              <td>{{ $user->user->full_name }}</td>
+                              <td> NO RESPONSE YET </td>
+                              <?php if (isset($expected) and $creator === true and (date('Y-m-d', strtotime($events->date_start)) == date('Y-m-d'))): ?>
+                                <td>
+                                    <button type="button" class="confirm-attendance btn" data-event-id="{{ $events->id }}" data-attendance-id="{{ $user->user->id }}"
+                                      data-actual = "false" >
+                                      NOT YET DETERMINED
+                                    </button>
+                                </td>
+                              <?php endif; ?>
+                            </tr>
+                          @endif
                       @endforeach
                     </tbody>
                   </table>
@@ -75,6 +114,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </section>
 @endsection
@@ -99,20 +139,25 @@
   <?php if (isset($creator) and $creator === true): ?>
     <script type="text/javascript">
       (function() {
-        $(document).on('click', '.confirmed-attendance', function() {
+        $(document).on('click', '.confirm-attendance', function() {
           var _this = $(this);
           let data = {
             id: $(this).data('attendance-id'),
-            event_id: $(this).data('event-id')
+            event_id: $(this).data('event-id'),
+            actual: $(this).data('actual')
           };
 
           axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
           axios.post('/attendance/update', data)
             .then(function (response) {
-              if (response.data.response == true) {
+              if (response.data.actual == true) {
                 $(_this).addClass('btn-success');
                 $(_this).removeClass('btn-default');
-                $(_this).html('Confirmed');
+                $(_this).html('PRESENT');
+              } else {
+                $(_this).removeClass('btn-success');
+                $(_this).addClass('btn-default');
+                $(_this).html('ABSENT');
               }
             })
             .catch(function (error) {

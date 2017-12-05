@@ -408,7 +408,7 @@
   <script src="{{ asset('js/bootstrap-select.js') }}?v=0.1" charset="utf-8"></script>
   <script src="{{ asset('js/sweetalert.min.js') }}?v=0.1" charset="utf-8"></script>
   <script src="{{ asset('js/tooltips-popovers.js') }}?v=0.1" charset="utf-8"></script>
-  <script src="{{ asset('js/app.js') }}?v=2.29" charset="utf-8"></script>
+  <script src="{{ asset('js/app.js') }}?v=2.31" charset="utf-8"></script>
   <script type="text/javascript">
     $('.event-datepicker').bootstrapMaterialDatePicker({
       format: 'YYYY/MM/DD',

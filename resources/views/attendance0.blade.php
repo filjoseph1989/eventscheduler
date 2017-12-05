@@ -44,14 +44,20 @@
                   <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                     <thead>
                       <th>Title</th>
-                      <th></th>
+                      <th>Official Attendance</th>
+                      <th>Expected Attendance</th>
+                      <th>Confirmed Attendance</th>
+                      <th>Declined Attendance</th>
                     </thead>
                     <tbody>
                       <?php if (! empty($events)): ?>
                         @foreach ($events as $key => $event)
                           <tr data-event="{{ $event->id }}" data-route="{{ route('Event.edit', $event->id) }}" data-action="{{ route('Event.update', $event->id) }}">
                             <td><a href="#" class="event-title" data-target="#modal-event" data-toggle="modal">{{ ucwords($event->title) }}</a></td>
-                            <td><a href="{{ route('attendanceSheet', $event->id) }}" class="btn btn-success">View Attendance</a></td>                             
+                            <td><a href="{{ route('official.attendance', $event->id) }}" class="btn btn-success">View</a></td>
+                            <td><a href="{{ route('expected.attendance', $event->id) }}" class="btn btn-success">View</a></td>
+                            <td><a href="{{ route('confirmed.attendance', $event->id) }}" class="btn btn-success">View</a></td>
+                            <td><a href="{{ route('declined.attendance', $event->id) }}" class="btn btn-success">View</a></td>
                           </tr>
                         @endforeach
                       <?php endif; ?>

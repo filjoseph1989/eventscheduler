@@ -29,6 +29,36 @@ class AttendanceViewController extends Controller
     $this->middleware('auth');
   }
 
+
+  /**
+   * Return attendance sheet,
+   * this are the users that officially attend the event
+   *
+   * @return Illuminate\Response
+   */
+  public function getAttendanceSheet($id)
+  {
+    $events = Event::find($id);
+    if( $events->organization_id == null ){
+      $users  = OrganizationGroup::with('user')->get();
+    } else {
+      $users  = OrganizationGroup::with('user')
+      ->where('organization_id', $events->organization_id)
+      ->get();
+    }
+
+    $attendance = Attendance::where('event_id', $id)->get();
+
+    return view('attendees')
+      ->with([
+        'events'     => $events,
+        'users'      => isset($users) ? $users: [],
+        'expected'   => true,
+        'creator'    => ($events->user_id == Auth::id()) ? true: false,
+        'attendance' => $attendance,
+      ]);
+  }
+
   /**
    * Return official attendance,
    * this are the users that officially attend the event
@@ -134,8 +164,7 @@ class AttendanceViewController extends Controller
     $attend = Attendance::where('user_id', $request->id)->first();
 
     if (! is_null($attend)) {
-      $attend->did_attend = 'true';
-
+      $attend->did_attend = (is_bool($request->actual) and $request->actual === true) ? 'true' : 'false';
       if ($attend->save()) {
         $response = true;
       } else {
@@ -145,8 +174,7 @@ class AttendanceViewController extends Controller
       $data = [
         'user_id'    => $request->id,
         'event_id'   => $request->event_id,
-        'status'     => 'confirmed',
-        'did_attend' => 'true',
+        'did_attend' =>  (is_bool($request->actual) and $request->actual === true) ? 'true' : 'false',
       ];
 
       $att = Attendance::create($data);
@@ -159,7 +187,8 @@ class AttendanceViewController extends Controller
     }
 
     echo json_encode([
-      'response' => $response
+      'response' => $response,
+      'actual'  => $request->actual
     ]);
   }
 
