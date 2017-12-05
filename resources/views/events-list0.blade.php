@@ -131,11 +131,6 @@
                         @endif
                       @else
                         @foreach ($events as $key => $event)
-                          <?php
-                            if (isset($event[0])) {
-                              $event = $event[0];
-                            }
-                          ?>
                           <tr data-event="{{ $event->id }}"
                               data-route="{{ route('Event.edit', $event->id) }}"
                               data-action="{{ route('Event.update', $event->id) }}"
