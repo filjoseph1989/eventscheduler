@@ -131,8 +131,9 @@ class AttendanceViewController extends Controller
   {
     $event = Event::find($request->event_id);
 
-    if ($event->user_id == Auth::id()) {
-      $attend = Attendance::find($request->id);
+    $attend = Attendance::where('user_id', $request->id)->first();
+
+    if(! is_null($attend)) {
       $attend->did_attend = 'true';
 
       if ($attend->save()) {
@@ -140,8 +141,6 @@ class AttendanceViewController extends Controller
       } else {
         $response = false;
       }
-    } else {
-      $response = false;
     }
 
     echo json_encode([
