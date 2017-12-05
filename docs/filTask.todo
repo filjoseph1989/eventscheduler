@@ -13,6 +13,7 @@
 ☐ Dapat mawala na ang request approve button once naka request na for approval ang organization head
 ☐ Dapat ang organization head kay maka set pud og status sa event {ongoing, canceled, etc}
 ☐ Personal event title checker
+☐ Are you sure you want to delete event? @http://liz1.local/Event/0#
 ☐ Add Preloader on axios when editing event
 ☐ Add user on OSA account
 ☐ Check my attendance.
