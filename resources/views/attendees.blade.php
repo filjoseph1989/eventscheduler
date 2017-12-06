@@ -58,7 +58,7 @@
                           @if (isset($expected) and $creator === true and (date('Y-m-d', strtotime($events->date_start)) == date('Y-m-d')))
                             <td>
                               @if($att->did_attend == 'true')
-                                <button type="button" class="confirm-attendance btn" data-event-id="{{ $events->id }}" data-attendance-id="{{ $att->user->id }}"
+                                <button type="button" class="confirm-attendance btn btn-success" data-event-id="{{ $events->id }}" data-attendance-id="{{ $att->user->id }}"
                                   data-actual="false">
                                   CONFIRMED
                                 </button>
@@ -80,10 +80,10 @@
                           <td>NO RESPONSE YET</td>
                           @if (isset($expected) and $creator === true and (date('Y-m-d', strtotime($events->date_start)) == date('Y-m-d')))
                             <td>
-                                <button type="button" class="confirm-attendance btn" data-event-id="{{ $events->id }}" data-attendance-id="{{ $user->user->id }}"
-                                  data-actual = "false" >
-                                  CONFIRM
-                                </button>
+                              <button type="button" class="confirm-attendance btn" data-event-id="{{ $events->id }}" data-attendance-id="{{ $user->user->id }}"
+                                data-actual="true">
+                                CONFIRM
+                              </button>
                             </td>
                           @endif
                         </tr>
@@ -132,6 +132,7 @@
           axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
           axios.post('/attendance/update', data)
             .then(function (response) {
+              console.log(response.data.actual);
               if (response.data.actual == true) {
                 $(_this).addClass('btn-success');
                 $(_this).removeClass('btn-default');
