@@ -47,7 +47,9 @@ class AttendanceViewController extends Controller
       ->get();
     }
 
-    $attendance = Attendance::where('event_id', $id)->get();
+    $attendance = Attendance::where('event_id', $id)
+      ->with('user')
+      ->get();
 
     return view('attendees')
       ->with([
