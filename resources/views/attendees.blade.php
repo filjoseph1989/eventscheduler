@@ -60,12 +60,12 @@
                               @if($att->did_attend == 'true')
                                 <button type="button" class="confirm-attendance btn" data-event-id="{{ $events->id }}" data-attendance-id="{{ $att->user->id }}"
                                   data-actual="false">
-                                  PRESENT
+                                  CONFIRMED
                                 </button>
                               @elseif($att->did_attend == 'false')
                                 <button type="button" class="confirm-attendance btn" data-event-id="{{ $events->id }}" data-attendance-id="{{ $att->user->id }}"
                                   data-actual = "true" >
-                                  ABSENT
+                                  CONFIRM
                                 </button>
                               @endif
                             </td>
@@ -77,12 +77,12 @@
                         <tr>
                           <td>{{ $count++ }}</td>
                           <td>{{ $user->user->full_name }}</td>
-                          <td>Not Yet Determined</td>
+                          <td>NO RESPONSE YET</td>
                           @if (isset($expected) and $creator === true and (date('Y-m-d', strtotime($events->date_start)) == date('Y-m-d')))
                             <td>
                                 <button type="button" class="confirm-attendance btn" data-event-id="{{ $events->id }}" data-attendance-id="{{ $user->user->id }}"
                                   data-actual = "false" >
-                                  NOT YET DETERMINED
+                                  CONFIRM
                                 </button>
                             </td>
                           @endif
@@ -135,11 +135,11 @@
               if (response.data.actual == true) {
                 $(_this).addClass('btn-success');
                 $(_this).removeClass('btn-default');
-                $(_this).html('PRESENT');
+                $(_this).html('CONFIRMED');
               } else {
                 $(_this).removeClass('btn-success');
                 $(_this).addClass('btn-default');
-                $(_this).html('ABSENT');
+                $(_this).html('CONFIRM');
               }
             })
             .catch(function (error) {
