@@ -51,10 +51,19 @@ class AttendanceViewController extends Controller
       ->with('user')
       ->get();
 
+    # remove duplication
+    foreach ($users as $ukey => $user) {
+      foreach ($attendance as $key => $att) {
+        if ($user->user_id == $att->user_id) {
+          unset($users[$ukey]);
+        }
+      }
+    }
+
     return view('attendees')
       ->with([
         'events'     => $events,
-        'users'      => isset($users) ? $users: [],
+        'users'      => isset($users) ? $users : [],
         'expected'   => true,
         'creator'    => ($events->user_id == Auth::id()) ? true: false,
         'attendance' => $attendance,

@@ -24,30 +24,19 @@
             <div class="body">
               <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <?php if (isset($expected)): ?>
+                  @if (isset($expected))
                     <h5>These are the list of user(s) who are expected to attend this event</h5>
-                  <?php elseif (isset($confirmed)): ?>
+                  @elseif (isset($confirmed))
                     <h5>These are the list of user(s) who confirmed to attend this event</h5>
-                  <?php elseif (isset($declined)): ?>
+                  @elseif (isset($declined))
                     <h5>These are the list of user(s) who declined to attend attendance to this event</h5>
-                  <?php else: ?>
+                  @else
                     <h5>These are the official list of user(s) who attended this event</h5>
-                  <?php endif; ?>
+                  @endif
                 </div>
               </div>
               <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  {{-- Remove duplicate --}}
-                  <?php foreach ($users as $ukey => $user): ?>
-                    <?php foreach ($attendance as $akey => $att): ?>
-                      <?php
-                      if ($user->user_id == $att->user_id) {
-                        unset($users[$ukey]);
-                      }
-                      ?>
-                    <?php endforeach; ?>
-                  <?php endforeach; ?>
-
                   <?php $count = 1; ?>
                   <table class="table table-bordered table-striped table-hover js-exportable">
                     <thead>
@@ -55,50 +44,50 @@
                         <th style="width: 100px;">Count</th>
                         <th>Name</th>
                         <th>RESPONSE</th>
-                        <?php if (isset($expected) and $creator === true and (date('Y-m-d', strtotime($events->date_start)) == date('Y-m-d'))): ?>
+                        @if (isset($expected) and $creator === true and (date('Y-m-d', strtotime($events->date_start)) == date('Y-m-d')))
                           <th>ACTUAL</th>
-                        <?php endif; ?>
+                        @endif
                       </tr>
                     </thead>
                     <tbody>
-                      <?php foreach ($attendance as $key => $att): ?>
+                      @foreach ($attendance as $key => $att)
                         <tr>
                           <td>{{ $count++ }}</td>
                           <td>{{ $att->user->full_name }}</td>
                           <td> {{ ucwords($att->status) }} </td>
-                          <?php if (isset($expected) and $creator === true and (date('Y-m-d', strtotime($events->date_start)) == date('Y-m-d'))): ?>
+                          @if (isset($expected) and $creator === true and (date('Y-m-d', strtotime($events->date_start)) == date('Y-m-d')))
                             <td>
                               @if($att->did_attend == 'true')
-                                <button type="button" class="confirm-attendance btn" data-event-id="{{ $events->id }}" data-attendance-id="{{ $user->user->id }}"
+                                <button type="button" class="confirm-attendance btn" data-event-id="{{ $events->id }}" data-attendance-id="{{ $att->user->id }}"
                                   data-actual="false">
                                   PRESENT
                                 </button>
                               @elseif($att->did_attend == 'false')
-                                <button type="button" class="confirm-attendance btn" data-event-id="{{ $events->id }}" data-attendance-id="{{ $user->user->id }}"
+                                <button type="button" class="confirm-attendance btn" data-event-id="{{ $events->id }}" data-attendance-id="{{ $att->user->id }}"
                                   data-actual = "true" >
                                   ABSENT
                                 </button>
                               @endif
                             </td>
-                          <?php endif; ?>
+                          @endif
                         </tr>
-                      <?php endforeach; ?>
+                      @endforeach
 
-                      <?php foreach ($users as $key => $user): ?>
+                      @foreach ($users as $key => $user)
                         <tr>
                           <td>{{ $count++ }}</td>
                           <td>{{ $user->user->full_name }}</td>
                           <td>Not Yet Determined</td>
-                          <?php if (isset($expected) and $creator === true and (date('Y-m-d', strtotime($events->date_start)) == date('Y-m-d'))): ?>
+                          @if (isset($expected) and $creator === true and (date('Y-m-d', strtotime($events->date_start)) == date('Y-m-d')))
                             <td>
                                 <button type="button" class="confirm-attendance btn" data-event-id="{{ $events->id }}" data-attendance-id="{{ $user->user->id }}"
                                   data-actual = "false" >
                                   NOT YET DETERMINED
                                 </button>
                             </td>
-                          <?php endif; ?>
+                          @endif
                         </tr>
-                      <?php endforeach; ?>
+                      @endforeach
                     </tbody>
                   </table>
                 </div>
