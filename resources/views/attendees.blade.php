@@ -64,7 +64,7 @@
                                 </button>
                               @elseif($att->did_attend == 'false')
                                 <button type="button" class="confirm-attendance btn" data-event-id="{{ $events->id }}" data-attendance-id="{{ $att->user->id }}"
-                                  data-actual = "true" >
+                                  data-actual="true">
                                   CONFIRM
                                 </button>
                               @endif
@@ -80,7 +80,7 @@
                           <td>NO RESPONSE YET</td>
                           @if (isset($expected) and $creator === true and (date('Y-m-d', strtotime($events->date_start)) == date('Y-m-d')))
                             <td>
-                              <button type="button" class="confirm-attendance btn" data-event-id="{{ $events->id }}" data-attendance-id="{{ $user->user->id }}"
+                              <button type="button" class="confirm-attendance btn" data-il="fil" data-event-id="{{ $events->id }}" data-attendance-id="{{ $user->user->id }}"
                                 data-actual="true">
                                 CONFIRM
                               </button>
@@ -129,10 +129,16 @@
             actual: $(this).data('actual')
           };
 
+          if (data.actual == false) {
+            $(this).data('actual', true);
+          }
+          if (data.actual == true) {
+            $(this).data('actual', false);
+          }
+
           axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
           axios.post('/attendance/update', data)
             .then(function (response) {
-              console.log(response.data.actual);
               if (response.data.actual == true) {
                 $(_this).addClass('btn-success');
                 $(_this).removeClass('btn-default');
