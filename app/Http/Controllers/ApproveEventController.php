@@ -81,6 +81,7 @@ class ApproveEventController extends Controller
      */
     protected function facebookPost ($event) {
       $data['fb_message'] = self::smsMessage($event->category, $event);
+
       if (! is_null($event->img)) {
         User::send($data['fb_message'], $event->img);
       } else {
@@ -98,15 +99,28 @@ class ApproveEventController extends Controller
     {
       $tweet = self::twitterMessage($event);
 
-      $uploaded_media = Twitter::uploadMedia([
-        'media' => File::get(public_path('img/social/' . $event->img))
-      ]);
+      $withFile = false;
 
-    	return Twitter::postTweet([
-        'status'    => $tweet,
-        'media_ids' => $uploaded_media->media_id_string,
-        'format'    => 'json'
-      ]);
+      if (! empty($event->img) and file_exists(public_path('img/social/' . $event->img))) {
+        $uploaded_media = Twitter::uploadMedia([
+          'media' => File::get(public_path('img/social/' . $event->img))
+        ]);
+
+        $withFile = true;
+      }
+
+      if ($withFile === true) {
+        return Twitter::postTweet([
+          'status'    => $tweet,
+          'media_ids' => $uploaded_media->media_id_string,
+          'format'    => 'json'
+        ]);
+      } else {
+        return Twitter::postTweet([
+          'status'    => $tweet,
+          'format'    => 'json'
+        ]);
+      }
     }
 
     /**
