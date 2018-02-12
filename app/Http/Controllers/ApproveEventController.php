@@ -163,7 +163,7 @@ class ApproveEventController extends Controller
    */
     protected function emailPost($event)
     {
-      if($event->category == 'organization' OR $event->category == 'university') {
+      if ($event->category == 'organization' OR $event->category == 'university') {
         $users = User::all();
       }
 
@@ -205,12 +205,12 @@ class ApproveEventController extends Controller
     {
       if( $event->category == 'university' OR $event->category == 'organization' ){
         foreach($users as $key => $user) {
-          Mail::to($user->email)
+          Mail::to($user->email) # kani lang nag lahi
             ->send(new ApproveEmailNotification($event));
         }
       } else {
         foreach($users as $key => $user) {
-          Mail::to($user->user->email)
+          Mail::to($user->user->email) # kani lang ang lahi
             ->send(new ApproveEmailNotification($event));
         }
       }

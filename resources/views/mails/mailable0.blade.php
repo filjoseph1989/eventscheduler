@@ -175,11 +175,7 @@
                         <tr>
                           <td align="center">
                             <a target="_blank" href="#">
-                              @if (($event->img != '' OR is_null($event->img)) AND file_exists("img/social/{$event->img}"))
-                                <img src="{{ $message->embed(asset("img/social/" . $event->img)) }}" class="bigimage" width="540" border="0" height="282" alt="" style="display:block; border:none; outline:none; text-decoration:none;">
-                              @else
-                                <img src="{{ $message->embed(asset('img/mint/bigimage.png')) }}" class="bigimage" width="540" border="0" height="282" alt="" style="display:block; border:none; outline:none; text-decoration:none;">
-                              @endif
+                              <img src="{{ $message->embed(asset('img/mint/bigimage.png')) }}" class="bigimage" width="540" border="0" height="282" alt="" style="display:block; border:none; outline:none; text-decoration:none;">
                             </a>
                           </td>
                         </tr>
