@@ -34,14 +34,18 @@ class UsersTableSeeder extends Seeder
           $password = rand(100000000,900000000);
 
           $gender = ['male','female'];
+
           email:
           $email = $faker->email;
+
           account_number:
           // $account_number = "2017-" . $faker->numberBetween($min = 10000, $max = 90000);
           $account_number = $password;
+
           facebook:
           $facebook = strtolower("{$faker->name}@facebook.com");
           $facebook = str_replace(' ', '', $facebook);
+
           twitter:
           $twitter = strtolower("@{$faker->name}");
           $twitter = str_replace(' ', '', $twitter);
